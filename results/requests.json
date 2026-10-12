@@ -1,0 +1,32 @@
+[
+ {
+  "method": "POST",
+  "url": "https://www.melaleuca.com/api/cart?sc_itemid=%7BFE1DED98-281E-46FA-9656-7D6A0C2E436D%7D&sc_lang=en-US&sc_site=productstoreUs",
+  "body": "{\"Sku\":\"3132\",\"Quantity\":5,\"Configurations\":[],\"PromotionId\":0,\"LineType\":null,\"LineId\":null,\"Position\":null}"
+ },
+ {
+  "method": "POST",
+  "url": "https://www.melaleuca.com/api/cart?sc_itemid=%7BFE1DED98-281E-46FA-9656-7D6A0C2E436D%7D&sc_lang=en-US&sc_site=productstoreUs",
+  "body": "{\"Sku\":\"39278\",\"Quantity\":3,\"Configurations\":[],\"PromotionId\":0,\"LineType\":null,\"LineId\":null,\"Position\":null}"
+ },
+ {
+  "method": "POST",
+  "url": "https://www.melaleuca.com/api/cart?sc_itemid=%7BD66F5173-C9AF-4322-8C41-FC0E937B7C9E%7D&sc_lang=en-US&sc_site=productstoreUs",
+  "body": "{\"Sku\":\"69235\",\"Quantity\":1,\"Configurations\":[],\"PromotionId\":2013741,\"LineType\":\"Promotion\",\"LineId\":null,\"Position\":null}"
+ },
+ {
+  "method": "DELETE",
+  "url": "https://www.melaleuca.com/api/cart?sc_itemid=%7BFE1DED98-281E-46FA-9656-7D6A0C2E436D%7D&sc_lang=en-US&sc_site=productstoreUs",
+  "body": "{\"LineId\":\"1\"}"
+ },
+ {
+  "method": "DELETE",
+  "url": "https://www.melaleuca.com/api/cart?sc_itemid=%7BFE1DED98-281E-46FA-9656-7D6A0C2E436D%7D&sc_lang=en-US&sc_site=productstoreUs",
+  "body": "{\"LineId\":\"2\"}"
+ },
+ {
+  "method": "DELETE",
+  "url": "https://www.melaleuca.com/api/cart?sc_itemid=%7BFE1DED98-281E-46FA-9656-7D6A0C2E436D%7D&sc_lang=en-US&sc_site=productstoreUs",
+  "body": "{\"LineId\":\"3\"}"
+ }
+]

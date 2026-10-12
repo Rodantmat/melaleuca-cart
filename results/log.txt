@@ -1,0 +1,33 @@
+using proxy gw.dataimpulse.com:10001 (account 1)
+exit IP at start: 178.94.214.180
+home status=200
+[01_home] url=https://www.melaleuca.com/ title='Welcome to Melaleuca, The Wellness Company'
+OK   home
+[02_signin_page] url=https://www.melaleuca.com/account/signin?ReturnUrl=%2fconnect%2fauthorize%2fcallback%3fclient_id%3dmelaleuca-sitecore%26culture%3den-US%26nonce%3d52225d28-c249-46be-9df1-4479e87da179%26redirect_uri%3dhttps%253A%252F%252Fwww.melaleuca.com%252Fdepaccount%252FLoadProfile%26response_mode%3dform_post%26response_type%3dcode%2520id_token%26scope%3dopenid%2520offline_access%2520DEPInterface.API.Full%2520CustomerAccount.API.Full%2520Order.API.Full%2520Product.API.Full%2520Communication.API.Full%2520Address.API.Full%2520Organization.API.Full%2520SubscribedServices.API.Full%2520PayMethod.API.Full%2520Document.API.Full%2520BackupOrder.API.Full%2520Promotion.API.Full%2520LSD.API.Full%26state%3dhttps%253A%252F%252Fwww.melaleuca.com%252Fcart title=''
+username inputs: 1, visible: 1
+[03_after_login] url=https://www.melaleuca.com/cart?sc_lang=es-US title='Carrito'
+still on sign-in form: False
+OK   login
+cart before: (0, 0.0)
+add 3132 x5: 200 {"Success":true,"ErrorMessages":[],"Data":{"Item":{"Details":{"Accessories":[],"LineId":"1","LineType":"Normal","Quantity":5,"Sku":"3132","Category":"Beauty
+add 39278 x3: 200 {"Success":true,"ErrorMessages":[],"Data":{"Item":{"Details":{"Accessories":[],"LineId":"2","LineType":"Normal","Quantity":3,"Sku":"39278","Category":"Clean
+cart after adds: (8, 37.0)
+OK   add by API
+[50_cart_35] url=https://www.melaleuca.com/cart?sc_lang=en-US title='Shopping Cart'
+[51_cart_35_scrolled] url=https://www.melaleuca.com/cart?sc_lang=en-US title='Shopping Cart'
+OK   cart screen
+proceed buttons: 1
+[52_after_proceed] url=https://www.melaleuca.com/checkout/promo-page title=''
+[53_after_proceed_scrolled] url=https://www.melaleuca.com/checkout/promo-page title=''
+promo page, cart before select: (8, 37.0)
+promo SELECT buttons: 27
+offer 0 needs a choice -> skip: close | Your Choices | forSave $10.00 on MelaPower Laundry Deter
+[54_promo_dialog_1] url=https://www.melaleuca.com/checkout/promo-page title=''
+offer 1 dialog: close | check | Added to Cart |  | Save $3.00 on Riverbend Ranch Beef Tallow! |  | Item Price | $11.95 | Points | 3 | Qty | 1 | Riverbend Ranch Beef Tallow | EDIT QUANTITY | Cart Subtotal | $108.57 | Cart Points | 40 Points | CONTINUE | G
+FAIL proceed to checkout: TimeoutError: Locator.click: Timeout 30000ms exceeded.
+Call log:
+  - waiting for locator("[role=dialog]:visible").first.get_by_text(re.compile(r"add to cart", re.IGNORECASE)).first
+
+cart at end: (0, 0.0)
+OK   empty cart
+exit IP at end: 178.94.214.180
