@@ -74,14 +74,15 @@ with sync_playwright() as p:
 
     def login():
         page.goto("https://www.melaleuca.com/cart", wait_until="domcontentloaded", timeout=60000)
-        page.wait_for_selector("input[name=username]", timeout=30000)
+        page.wait_for_timeout(8000)
         snap(page, "02_signin_page")
+        log("username inputs: %d, visible: %d" % (page.locator("input[name=username]").count(), page.locator("input[name=username]:visible").count()))
         if not USER or not PASS:
             raise RuntimeError("no credentials in env (secret not set?)")
-        page.fill("input[name=username]", USER)
-        page.fill("input[name=password]", PASS)
+        page.locator("input[name=username]:visible").first.fill(USER)
+        page.locator("input[name=password]:visible").first.fill(PASS)
         page.wait_for_timeout(500)
-        page.get_by_role("button", name=re.compile(r"^\s*sign in\s*$", re.I)).first.click()
+        page.locator("button:visible", has_text=re.compile(r"^\s*sign in\s*$", re.I)).last.click()
         page.wait_for_load_state("domcontentloaded", timeout=60000)
         page.wait_for_timeout(8000)
         snap(page, "03_after_login"); inputs(page, "03_after_login")
