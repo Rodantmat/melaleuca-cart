@@ -70,6 +70,7 @@ with sync_playwright() as p:
     def on_resp(r):
         try:
             if "/api/cart/summary" in r.url and r.request.method == "GET": LAST["summary"] = r.url
+            elif "/api/cart?" in r.url and r.request.method == "GET": LAST["cart"] = r.url
             ct = r.headers.get("content-type", "")
             if "json" in ct and "melaleuca" in r.url and cnt["n"] < 150:
                 body = r.body()
@@ -125,7 +126,7 @@ with sync_playwright() as p:
             page.wait_for_timeout(12000)
             page.mouse.wheel(0, 2500); page.wait_for_timeout(3000)
             snap(page, name); inputs(page, name)
-        if os.environ.get("MODE") not in ("cart", "checkout"):
+        if os.environ.get("MODE") not in ("cart", "checkout", "clear"):
             step(name, go)
 
     if os.environ.get("MODE") == "cart":
@@ -185,6 +186,30 @@ with sync_playwright() as p:
             snap(page, "13_after_remove")
             log("cart after remove: " + str(cart_total()))
         step("remove item", remove_it)
+    if os.environ.get("MODE") == "clear":
+        # ---- CLEAR: empty the cart (API first, then the exact "Remove" button). Never touches checkout. ----
+        def count():
+            u = LAST.get("summary")
+            if not u: return None
+            r = page.evaluate("async (u) => { const r = await fetch(u, {credentials:'include'}); return await r.json(); }", u)
+            sm = r["Data"]["Summary"]; return int(sm.get("ItemCount") or 0), float(sm.get("Points") or 0)
+        def clear():
+            page.goto("https://www.melaleuca.com/cart?sc_lang=en-US", wait_until="domcontentloaded", timeout=60000)
+            try: page.wait_for_load_state("networkidle", timeout=40000)
+            except Exception: pass
+            page.wait_for_timeout(8000)
+            log("cart before clear: " + str(count()))
+            for k in range(30):
+                st = count()
+                if st and st[0] == 0: break
+                btn = page.get_by_role("button", name="Remove", exact=True).locator("visible=true")
+                if btn.count() == 0:
+                    log("no exact Remove button; stopping"); break
+                btn.first.click(); page.wait_for_timeout(3500)
+            log("cart after clear: " + str(count()))
+            snap(page, "40_cart_cleared")
+        step("clear cart", clear)
+        (OUT / "requests.json").write_text(json.dumps(REQS, indent=1))
     if os.environ.get("MODE") == "checkout":
         # ---- CHECKOUT TEST: fill the cart to 35+ points, look at cart + checkout screens (read only), empty the cart. NEVER places an order. ----
         FORBID = re.compile(r"place\s*order|confirm\s*order|submit\s*order|pay\s*now|complete\s*(my\s*)?order", re.I)
@@ -246,9 +271,7 @@ with sync_playwright() as p:
                 page.goto("https://www.melaleuca.com/cart?sc_lang=en-US", wait_until="domcontentloaded", timeout=60000); settle(8000)
                 st = summ()
                 if st and st[0] == 0: break
-                rm = page.locator("button:visible, a:visible, [role=button]:visible").filter(has_text=re.compile(r"remove|delete", re.I))
-                if rm.count() == 0:
-                    rm = page.locator("[aria-label*=remove i]:visible, [aria-label*=delete i]:visible")
+                rm = page.get_by_role("button", name="Remove", exact=True).locator("visible=true")
                 if rm.count() == 0: log("no remove control found"); break
                 rm.first.click(); page.wait_for_timeout(4000)
             log("cart at end: " + str(summ()))
