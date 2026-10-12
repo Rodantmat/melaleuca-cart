@@ -72,7 +72,7 @@ def main():
     if not accounts:
         print("No account with credentials.")
         return 2
-    cfg = {"proxy": env.get("PROXY_URL", ""), "sticky_base": int(env.get("STICKY_BASE", "10000") or 10000),
+    cfg = {"proxy": env.get("PROXY_URL", ""), "sticky_base": (10000 if env.get("STICKY_BASE") is None else int(env.get("STICKY_BASE") or 0)),
            "headless": env.get("HEADLESS", "1") not in ("0", "false", "no")}
     import melaleuca_scan as ms
     from playwright.sync_api import sync_playwright
