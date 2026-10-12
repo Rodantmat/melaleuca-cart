@@ -42,6 +42,10 @@ class Tee:
 
 def main():
     os.makedirs(FEED, exist_ok=True)
+    try:
+        sys.__stdout__.reconfigure(errors="replace")      # the Windows console cannot show every character of a product name
+    except Exception:
+        pass
     sys.stdout = Tee(os.path.join(FEED, "scan_log.txt"))
     env = read_env(os.path.join(HERE, "credentials.env"))
     tabs = {}
@@ -89,7 +93,8 @@ def main():
     out = os.path.join(FEED, "melaleuca_offers.json")
     pathlib.Path(out).write_text(json.dumps({"generated": datetime.datetime.now().isoformat(timespec="seconds"), "accounts": results}, indent=1), encoding="utf-8")
     rc = subprocess.call([sys.executable, os.path.join(HERE, "melaleuca_offers_map.py"), out, os.path.join(FEED, "mel_rows.tsv"),
-                          os.path.join(FEED, "account_offers.tsv")])
+                          os.path.join(FEED, "account_offers.tsv")],
+                         env=dict(os.environ, PYTHONIOENCODING="utf-8:replace"))
     okn = sum(1 for r in results if r.get("ok"))
     print("accounts read: %d of %d" % (okn, len(results)))
     return 0 if okn and rc == 0 else 1
