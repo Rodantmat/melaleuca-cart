@@ -270,11 +270,23 @@ with sync_playwright() as p:
                 page.wait_for_timeout(5000)
                 sel = page.get_by_text(re.compile(r"^\s*select\s*$", re.I)).locator("visible=true")
                 log("promo SELECT buttons: %d" % sel.count())
-                sel.first.click(); page.wait_for_timeout(5000)
-                if page.locator("[role=dialog]:visible").count():
-                    snap(page, "54_promo_dialog"); log("dialog text: " + page.locator("[role=dialog]:visible").first.inner_text()[:300].replace("\n", " | "))
+                done = False
+                for i in range(min(sel.count(), 12)):
+                    sel.nth(i).click(); page.wait_for_timeout(3000)
+                    dlg = page.locator("[role=dialog]:visible")
+                    if dlg.count() == 0:
+                        log(f"offer {i}: no dialog; cart now {count()}"); done = True; break
+                    txt = dlg.first.inner_text()
+                    if re.search(r"choose", txt, re.I):
+                        log(f"offer {i} needs a choice -> skip: " + txt[:60].replace("\n", " | "))
+                        page.keyboard.press("Escape"); page.wait_for_timeout(1500); continue
+                    snap(page, f"54_promo_dialog_{i}")
+                    log(f"offer {i} dialog: " + txt[:200].replace("\n", " | "))
+                    add = dlg.first.get_by_text(re.compile(r"add to cart", re.I)).first
+                    add.click(); page.wait_for_timeout(5000)
+                    done = True; break
                 snap(page, "54_after_promo_select")
-                log("cart after promo select: " + str(count()) + " url=" + page.url[:80])
+                log("cart after promo select: " + str(count()) + " done=" + str(done))
         step("proceed to checkout", go_checkout)
         def clean():
             for k in range(30):
