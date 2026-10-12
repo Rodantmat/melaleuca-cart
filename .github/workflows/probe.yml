@@ -2,6 +2,9 @@ name: Melaleuca probe (read only)
 on:
   workflow_dispatch:
     inputs:
+      mode:
+        description: "probe = read only; cart = add ONE item, look at the cart, remove it (never checks out)"
+        default: "probe"
       account:
         description: "Account number (uses secrets MELA_USER_<n> / MELA_PASS_<n>)"
         default: "1"
@@ -20,6 +23,7 @@ jobs:
         env:
           PROXY_URL: ${{ secrets.PROXY_URL }}
           PROXY_STICKY_PORT_BASE: ${{ vars.PROXY_STICKY_PORT_BASE }}
+          MODE: ${{ inputs.mode }}
           ACCOUNT_INDEX: ${{ inputs.account }}
           MELA_USER: ${{ inputs.account == '1' && secrets.MELA_USER_1 || inputs.account == '2' && secrets.MELA_USER_2 || '' }}
           MELA_PASS: ${{ inputs.account == '1' && secrets.MELA_PASS_1 || inputs.account == '2' && secrets.MELA_PASS_2 || '' }}

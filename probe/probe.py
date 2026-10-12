@@ -117,6 +117,47 @@ with sync_playwright() as p:
             snap(page, name); inputs(page, name)
         step(name, go)
 
+    if os.environ.get("MODE") == "cart":
+        # ---- CART MECHANICS TEST: add ONE item, look at the cart, remove it. Never checks out. ----
+        def cart_total():
+            r = ctx.request.get("https://www.melaleuca.com/api/cart/summary?sc_lang=en-US&sc_site=productstoreUs", timeout=30000)
+            try:
+                sm = r.json()["Data"]["Summary"]; return sm.get("ItemCount"), sm.get("Points")
+            except Exception as e:
+                return f"summary failed {e}"
+        def add_one():
+            page.goto("https://www.melaleuca.com/productstore/extra-savings/outlet-store?sc_lang=en-US", wait_until="domcontentloaded", timeout=60000)
+            try: page.wait_for_load_state("networkidle", timeout=40000)
+            except Exception: pass
+            page.wait_for_timeout(8000)
+            log("cart before: " + str(cart_total()))
+            btns = page.locator("button:visible", has_text=re.compile(r"add to cart", re.I))
+            log("add-to-cart buttons visible: %d" % btns.count())
+            snap(page, "10_outlet_ready")
+            if btns.count() == 0:
+                # open the first product card and look for the button there
+                cards = page.locator("a[href*='/productstore/']:visible")
+                log("product links: %d" % cards.count())
+                raise RuntimeError("no add-to-cart button on the listing")
+            btns.first.click()
+            page.wait_for_timeout(6000)
+            snap(page, "11_after_add"); inputs(page, "11_after_add")
+            log("cart after add: " + str(cart_total()))
+        step("cart add one", add_one)
+        def view_cart():
+            page.goto("https://www.melaleuca.com/cart?sc_lang=en-US", wait_until="domcontentloaded", timeout=60000)
+            try: page.wait_for_load_state("networkidle", timeout=40000)
+            except Exception: pass
+            page.wait_for_timeout(10000)
+            snap(page, "12_cart_with_item"); inputs(page, "12_cart_with_item")
+        step("view cart", view_cart)
+        def remove_it():
+            rm = page.locator("button:visible, a:visible", has_text=re.compile(r"^\s*remove\s*$", re.I))
+            log("remove controls: %d" % rm.count())
+            rm.first.click(); page.wait_for_timeout(5000)
+            snap(page, "13_after_remove")
+            log("cart after remove: " + str(cart_total()))
+        step("remove item", remove_it)
     log("exit IP at end: " + str(myip()))
     (OUT / "network.txt").write_text("\n".join(f"{s} {m} {u}" for s, m, u in reqs[:400]))
     (OUT / "log.txt").write_text("\n".join(LOG))
