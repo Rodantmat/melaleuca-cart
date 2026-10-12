@@ -117,7 +117,8 @@ with sync_playwright() as p:
             page.wait_for_timeout(12000)
             page.mouse.wheel(0, 2500); page.wait_for_timeout(3000)
             snap(page, name); inputs(page, name)
-        step(name, go)
+        if os.environ.get("MODE") != "cart":
+            step(name, go)
 
     if os.environ.get("MODE") == "cart":
         # ---- CART MECHANICS TEST: add ONE item, look at the cart, remove it. Never checks out. ----
