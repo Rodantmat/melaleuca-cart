@@ -1,0 +1,290 @@
+"""
+melaleuca_scan.py - reads, for each account, the Special Offers, the monthly/outlet deals and the coupons shown by the Melaleuca store.
+
+SAFE BY DESIGN
+  * It never opens the order confirmation and never places an order.
+  * It only adds a few throw-away products to reach the point level that unlocks the Special Offers page,
+    reads the page, and takes out ONLY the lines it added (anything already in the cart stays).
+
+USAGE   python melaleuca_scan.py [accounts.json] [output.json] [--only "Tab name"]
+"""
+import json, os, re, sys, time, pathlib, datetime, traceback
+from urllib.parse import urlparse, unquote
+
+try:
+    from playwright.sync_api import sync_playwright
+except ImportError:
+    print("Playwright is not installed. Run:  pip install playwright   and then   playwright install chromium")
+    sys.exit(2)
+
+BASE = "https://www.melaleuca.com"
+TARGET_POINTS = 44                    # points to reach in the cart (offers unlock at 35, shipping rebate steps at 39 / 44)
+UA = ("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0 Safari/537.36")
+
+
+def log(*a):
+    print(time.strftime("%H:%M:%S"), *a, flush=True)
+
+
+class Session:
+    def __init__(self, p, acct, idx, cfg):
+        self.acct, self.idx, self.cfg = acct, idx, cfg
+        self.last = {}
+        self.json_log = []                        # (url, parsed json) of the api calls, for the coupon discovery
+        kw = {}
+        px = (cfg.get("proxy") or "").strip()
+        if px:
+            u = urlparse(px)
+            login = unquote(u.username or "")
+            if "__" not in login:
+                login += "__cr.us"
+            port = u.port or 823
+            if cfg.get("sticky_base"):
+                port = int(cfg["sticky_base"]) + int(idx)   # one port = one steady IP for this account
+            kw["proxy"] = {"server": "http://%s:%s" % (u.hostname, port), "username": login, "password": unquote(u.password or "")}
+            log("  proxy port", port)
+        self.browser = p.chromium.launch(headless=cfg.get("headless", True), **kw)
+        self.ctx = self.browser.new_context(viewport={"width": 1366, "height": 900}, locale="en-US", user_agent=UA)
+        self.page = self.ctx.new_page()
+        self.page.on("response", self._on_resp)
+
+    def _on_resp(self, r):
+        try:
+            u = r.url
+            if "/api/cart/summary" in u and r.request.method == "GET":
+                self.last["summary"] = u
+            elif "/api/cart?" in u and r.request.method == "GET":
+                self.last["cart"] = u
+            elif "/api/bogo" in u:
+                self.last["bogo"] = u
+            if "json" in r.headers.get("content-type", "") and "melaleuca.com/api/" in u and len(self.json_log) < 400:
+                body = r.body()
+                if 0 < len(body) < 600000:
+                    self.json_log.append((u, r.request.method, json.loads(body.decode("utf-8", "replace"))))
+        except Exception:
+            pass
+
+    def close(self):
+        try:
+            self.browser.close()
+        except Exception:
+            pass
+
+    # ---- helpers
+    def settle(self, ms=6000):
+        try:
+            self.page.wait_for_load_state("networkidle", timeout=30000)
+        except Exception:
+            pass
+        self.page.wait_for_timeout(ms)
+
+    def fetch(self, url, method="GET", body=None):
+        return self.page.evaluate("""async ([u, m, b]) => {
+            const o = {method: m, credentials: 'include'};
+            if (b) { o.headers = {'Content-Type': 'application/json'}; o.body = JSON.stringify(b); }
+            const r = await fetch(u, o); const t = await r.text();
+            try { return {status: r.status, json: JSON.parse(t)}; } catch (e) { return {status: r.status, text: t.slice(0, 300)}; }
+        }""", [url, method, body])
+
+    def login(self):
+        pg = self.page
+        pg.goto(BASE + "/cart", wait_until="domcontentloaded", timeout=60000)
+        pg.wait_for_timeout(6000)
+        pg.locator("input[name=username]:visible").first.fill(self.acct["user"], timeout=40000)
+        pg.locator("input[name=password]:visible").first.fill(self.acct["pass"], timeout=20000)
+        pg.wait_for_timeout(400)
+        pg.locator("button:visible", has_text=re.compile(r"^\s*sign in\s*$", re.I)).last.click()
+        pg.wait_for_load_state("domcontentloaded", timeout=60000)
+        pg.wait_for_timeout(6000)
+        pg.goto(BASE + "/account?sc_lang=en-US", wait_until="domcontentloaded", timeout=60000)
+        self.settle(6000)
+        if "signin" in pg.url.lower():
+            raise RuntimeError("sign-in failed (wrong password, or the site asked for a verification step)")
+
+    def summary(self):
+        u = self.last.get("summary")
+        if not u:
+            return None
+        r = self.fetch(u)
+        sm = r["json"]["Data"]["Summary"]
+        return int(sm.get("ItemCount") or 0), float(sm.get("Points") or 0)
+
+    def cart_url(self):
+        if "cart" not in self.last:
+            self.page.goto(BASE + "/cart?sc_lang=en-US", wait_until="domcontentloaded", timeout=60000)
+            self.settle(5000)
+        return self.last["cart"]
+
+    def add(self, sku, qty, promo=0, line_type=None):
+        r = self.fetch(self.cart_url(), "POST", {"Sku": str(sku), "Quantity": qty, "Configurations": [], "PromotionId": promo,
+                                                  "LineType": line_type, "LineId": None, "Position": None})
+        ok = r.get("status") == 200 and r.get("json", {}).get("Success")
+        line = None
+        if ok:
+            try:
+                line = r["json"]["Data"]["Item"]["Details"]["LineId"]
+            except Exception:
+                pass
+        return ok, line
+
+    def remove_line(self, line):
+        return self.fetch(self.cart_url(), "DELETE", {"LineId": str(line)})
+
+
+def money(v):
+    try:
+        return float(v)
+    except Exception:
+        return None
+
+
+def compact_card(d):
+    pr = d.get("PriceRange") or {}
+    return {"sku": d.get("Sku"), "promo_id": d.get("PromotionId"), "title": d.get("Title"),
+            "price": pr.get("RawMinPreferredPrice"), "regular": pr.get("RawMinRegularPrice"),
+            "points": pr.get("RawMinPoints"), "max_qty": d.get("MaxQuantity"), "qty_available": d.get("QtyAvailable"),
+            "points_required": d.get("ProductPointsRequired"), "stamp": d.get("Stamp"), "description": (d.get("Description") or "")[:200]}
+
+
+def read_store_page(s, name, url):
+    """outlet / monthly specials: the page loads /api/category/search/<id>; returns the product cards"""
+    before = len(s.json_log)
+    s.page.goto(BASE + url, wait_until="domcontentloaded", timeout=60000)
+    s.settle(9000)
+    out = []
+    for u, m, j in s.json_log[before:]:
+        if "/api/category/search/" in u and isinstance(j, dict):
+            for c in j.get("Cards", []):
+                d = (c.get("InnerData") or {}).get("Data") or {}
+                pr = d.get("PriceRange") or {}
+                prods = d.get("Products") or []
+                out.append({"title": d.get("Title"), "family": d.get("FamilyID"), "skus": [p.get("Sku") for p in prods] or [d.get("Sku")],
+                            "sold_out": [bool(p.get("IsSoldout")) for p in prods],
+                            "price": pr.get("RawMinPreferredPrice"), "price_max": pr.get("RawMaxPreferredPrice"),
+                            "regular": pr.get("RawMinRegularPrice"), "points": pr.get("RawMinPoints"),
+                            "is_pack": bool(c.get("IsSavingPack")), "size": d.get("Size")})
+            break
+    return out
+
+
+def pick_fill_products(s):
+    """throw-away products with points that can be added by number: from the monthly-specials / outlet cards"""
+    fill = []
+    for url in ("/productstore/extra-savings/monthly-specials?sc_lang=en-US", "/productstore/extra-savings/outlet-store?sc_lang=en-US"):
+        for c in read_store_page(s, "fill", url):
+            if c["skus"] and len(c["skus"]) == 1 and c["skus"][0] and not any(c["sold_out"]) and (c["points"] or 0) >= 2:
+                fill.append((c["skus"][0], float(c["points"]), c["title"]))
+        if fill:
+            break
+    fill.sort(key=lambda x: -x[1])
+    return fill
+
+
+def scan_account(p, acct, idx, cfg):
+    res = {"tab": acct.get("tab"), "scanned": datetime.datetime.now().isoformat(timespec="seconds"), "ok": False}
+    s = Session(p, acct, idx, cfg)
+    added = []
+    try:
+        s.login()
+        start = s.summary()
+        res["cart_at_start"] = start
+        log("  signed in; cart at start:", start)
+        res["loyalty_balance"] = None
+        try:
+            r = s.fetch(s.last.get("cart") or s.cart_url())
+            res["loyalty_balance"] = r["json"]["Data"]["Summary"]["LoyaltyShoppingDollars"]["Balance"]
+            res["monthly_commitment_points"] = r["json"]["Data"].get("MonthlyPointCommitment")
+        except Exception:
+            pass
+        res["monthly_specials"] = read_store_page(s, "monthly", "/productstore/extra-savings/monthly-specials?sc_lang=en-US")
+        res["outlet"] = read_store_page(s, "outlet", "/productstore/extra-savings/outlet-store?sc_lang=en-US")
+        log("  monthly specials: %d cards, outlet: %d cards" % (len(res["monthly_specials"]), len(res["outlet"])))
+        # ---- coupons: the cart screen has a collapsed "Your Coupons" section; open it and keep every api answer
+        before = len(s.json_log)
+        s.page.goto(BASE + "/cart?sc_lang=en-US", wait_until="domcontentloaded", timeout=60000)
+        s.settle(8000)
+        for label in ("Your Coupons", "Extra Savings"):
+            try:
+                s.page.get_by_text(label, exact=True).first.click(timeout=5000)
+                s.page.wait_for_timeout(4000)
+            except Exception:
+                pass
+        res["coupon_api_calls"] = [{"url": u[:140], "keys": list(j.keys())[:6] if isinstance(j, dict) else None}
+                                   for u, m, j in s.json_log[before:] if "coupon" in u.lower() or "bogo" in u.lower() or "promo" in u.lower()]
+        try:
+            res["coupons_text"] = s.page.inner_text("body")[:6000].split("Your Coupons", 1)[-1][:2500]
+        except Exception:
+            res["coupons_text"] = ""
+        # ---- fill the cart with throw-away products up to the target points
+        fill = pick_fill_products(s)
+        log("  fill candidates:", fill[:4])
+        cur = s.summary() or (0, 0)
+        for sku, pts, title in fill:
+            if cur[1] >= TARGET_POINTS:
+                break
+            qty = max(1, min(6, int((TARGET_POINTS - cur[1]) // pts) + (1 if (TARGET_POINTS - cur[1]) % pts else 0)))
+            ok, line = s.add(sku, qty)
+            if ok and line:
+                added.append(line)
+            cur = s.summary() or cur
+            log("   add", sku, "x", qty, "->", cur)
+        res["points_in_cart"] = cur[1]
+        # ---- Special Offers page
+        s.page.goto(BASE + "/checkout/promo-page", wait_until="domcontentloaded", timeout=60000)
+        s.settle(9000)
+        if "promo-page" not in s.page.url:
+            res["note"] = "special offers page did not open (cart points %s) -> %s" % (cur[1], s.page.url[:60])
+        offers = []
+        if s.last.get("bogo"):
+            r = s.fetch(s.last["bogo"])
+            for c in (r.get("json") or {}).get("Data", {}).get("Cards", []):
+                d = (c.get("InnerData") or {}).get("Data") or {}
+                o = compact_card(d)
+                o["coupon_price_field"] = c.get("CouponPrice")
+                o["can_redeem"] = d.get("CanRedeem")
+                offers.append(o)
+        res["special_offers"] = offers
+        log("  special offers:", len(offers))
+        res["ok"] = bool(offers)
+    except Exception as e:
+        res["error"] = "%s: %s" % (type(e).__name__, str(e)[:300])
+        log("  ERROR", res["error"])
+    finally:
+        # take out only what this scan added
+        try:
+            for line in added:
+                s.remove_line(line)
+            res["cart_at_end"] = s.summary()
+            log("  cart at end:", res["cart_at_end"])
+        except Exception as e:
+            res["cleanup_error"] = str(e)[:200]
+            log("  CLEANUP PROBLEM:", e)
+        s.close()
+    return res
+
+
+def main():
+    args = [a for a in sys.argv[1:] if not a.startswith("--")]
+    only = None
+    if "--only" in sys.argv:
+        only = sys.argv[sys.argv.index("--only") + 1]
+        args = [a for a in args if a != only]
+    cfg_path = args[0] if args else "accounts.json"
+    out_path = args[1] if len(args) > 1 else "melaleuca_offers.json"
+    cfg = json.load(open(cfg_path, encoding="utf-8"))
+    results = []
+    with sync_playwright() as p:
+        for i, acct in enumerate(cfg["accounts"], 1):
+            if only and acct.get("tab") != only:
+                continue
+            log("[%d/%d] %s" % (i, len(cfg["accounts"]), acct.get("tab")))
+            try:
+                results.append(scan_account(p, acct, i, cfg))
+            except Exception:
+                results.append({"tab": acct.get("tab"), "ok": False, "error": traceback.format_exc()[-400:]})
+            pathlib.Path(out_path).write_text(json.dumps({"generated": datetime.datetime.now().isoformat(timespec="seconds"), "accounts": results}, indent=1), encoding="utf-8")
+    log("done ->", out_path, "| ok:", sum(1 for r in results if r.get("ok")), "of", len(results))
+
+
+if __name__ == "__main__":
+    main()
