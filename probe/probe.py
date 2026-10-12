@@ -267,7 +267,8 @@ with sync_playwright() as p:
             page.mouse.wheel(0, 3000); page.wait_for_timeout(2000); snap(page, "53_after_proceed_scrolled")
             if os.environ.get("TEST_PROMO"):
                 before = count(); log("promo page, cart before select: " + str(before))
-                sel = page.get_by_role("button", name="SELECT", exact=True).locator("visible=true")
+                page.wait_for_timeout(5000)
+                sel = page.get_by_text(re.compile(r"^\s*select\s*$", re.I)).locator("visible=true")
                 log("promo SELECT buttons: %d" % sel.count())
                 sel.first.click(); page.wait_for_timeout(5000)
                 if page.locator("[role=dialog]:visible").count():
