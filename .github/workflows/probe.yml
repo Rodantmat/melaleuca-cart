@@ -23,6 +23,7 @@ jobs:
         env:
           PROXY_URL: ${{ secrets.PROXY_URL }}
           PROXY_STICKY_PORT_BASE: ${{ vars.PROXY_STICKY_PORT_BASE }}
+          TEST_PROMO: ${{ inputs.mode == 'checkout35' && '1' || '' }}
           MODE: ${{ inputs.mode }}
           ACCOUNT_INDEX: ${{ inputs.account }}
           MELA_USER: ${{ inputs.account == '1' && secrets.MELA_USER_1 || inputs.account == '2' && secrets.MELA_USER_2 || '' }}

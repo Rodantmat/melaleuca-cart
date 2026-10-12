@@ -71,6 +71,7 @@ with sync_playwright() as p:
         try:
             if "/api/cart/summary" in r.url and r.request.method == "GET": LAST["summary"] = r.url
             elif "/api/cart?" in r.url and r.request.method == "GET": LAST["cart"] = r.url
+            elif "/api/bogo" in r.url: LAST["bogo"] = r.url
             ct = r.headers.get("content-type", "")
             if "json" in ct and "melaleuca" in r.url and cnt["n"] < 150:
                 body = r.body()
@@ -233,6 +234,24 @@ with sync_playwright() as p:
             for sku, qty in (("3132", 5), ("39278", 3)):
                 log(f"add {sku} x{qty}: " + api_add(sku, qty)[:160])
             log("cart after adds: " + str(count()))
+            if os.environ.get("TEST_PROMO"):
+                # find the account's special offers (the page loads /api/bogo) and add the first one with its promotion id
+                page.goto("https://www.melaleuca.com/checkout/promo-page", wait_until="domcontentloaded", timeout=60000); settle(10000)
+                bu = LAST.get("bogo")
+                data = page.evaluate("async (u) => { const r = await fetch(u, {credentials:'include'}); return await r.json(); }", bu)
+                cards = data["Data"]["Cards"]
+                log("special offers on this account: %d" % len(cards))
+                pick = None
+                for c in cards:
+                    d = c["InnerData"]["Data"]
+                    if d.get("MaxQuantity") and d.get("Sku"): pick = d; break
+                log("trying offer: " + str(pick.get("Title")) + " sku=" + str(pick.get("Sku")) + " promo=" + str(pick.get("PromotionId")))
+                u = LAST["cartpost"]
+                res = page.evaluate("""async ([u, d]) => { const r = await fetch(u, {method:'POST', credentials:'include', headers:{'Content-Type':'application/json'}, body: JSON.stringify({Sku:String(d.Sku), Quantity:1, Configurations:[], PromotionId:d.PromotionId, LineType:null, LineId:null, Position:null})}); const t = await r.text(); return r.status + ' ' + t.slice(0,400); }""", [u, pick])
+                log("offer add (api): " + res)
+                log("cart after offer: " + str(count()))
+                page.goto("https://www.melaleuca.com/cart?sc_lang=en-US", wait_until="domcontentloaded", timeout=60000); settle(10000)
+                snap(page, "55_cart_with_offer")
         step("add by API", prepare)
         (OUT / "requests.json").write_text(json.dumps(REQS, indent=1))
         def cart_screen():
