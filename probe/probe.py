@@ -47,7 +47,7 @@ with sync_playwright() as p:
         if "__" not in login:
             login += "__cr.us"                      # US residential IPs only
         port = u.port or 823
-        base = os.environ.get("PROXY_STICKY_PORT_BASE", "").strip()
+        base = os.environ.get("PROXY_STICKY_PORT_BASE", "").strip() or "10000"
         if base:                                   # one fixed port = one fixed IP per account (sticky)
             port = int(base) + int(IDX)
         kw["proxy"] = {"server": f"http://{u.hostname}:{port}", "username": login, "password": unquote(u.password or "")}
