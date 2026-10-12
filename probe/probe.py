@@ -126,7 +126,7 @@ with sync_playwright() as p:
             page.wait_for_timeout(12000)
             page.mouse.wheel(0, 2500); page.wait_for_timeout(3000)
             snap(page, name); inputs(page, name)
-        if os.environ.get("MODE") not in ("cart", "checkout", "clear"):
+        if os.environ.get("MODE") not in ("cart", "checkout", "clear", "checkout35"):
             step(name, go)
 
     if os.environ.get("MODE") == "cart":
@@ -209,6 +209,54 @@ with sync_playwright() as p:
             log("cart after clear: " + str(count()))
             snap(page, "40_cart_cleared")
         step("clear cart", clear)
+        (OUT / "requests.json").write_text(json.dumps(REQS, indent=1))
+    if os.environ.get("MODE") == "checkout35":
+        # ---- CHECKOUT >=35 POINTS: add by SKU+quantity through the site API, open cart + checkout (read only), then empty the cart. NEVER places an order. ----
+        FORBID = re.compile(r"place\s*order|confirm|submit|pay\s*now|complete", re.I)
+        def settle(ms=7000):
+            try: page.wait_for_load_state("networkidle", timeout=30000)
+            except Exception: pass
+            page.wait_for_timeout(ms)
+        def count():
+            u = LAST.get("summary")
+            if not u: return None
+            r = page.evaluate("async (u) => { const r = await fetch(u, {credentials:'include'}); return await r.json(); }", u)
+            sm = r["Data"]["Summary"]; return int(sm.get("ItemCount") or 0), float(sm.get("Points") or 0)
+        def api_add(sku, qty):
+            u = LAST.get("cartpost")
+            return page.evaluate("""async ([u, sku, qty]) => { const r = await fetch(u, {method:'POST', credentials:'include', headers:{'Content-Type':'application/json'}, body: JSON.stringify({Sku:String(sku), Quantity:qty, Configurations:[], PromotionId:0, LineType:null, LineId:null, Position:null})}); const t = await r.text(); return r.status + ' ' + t.slice(0,200); }""", [u, sku, qty])
+        def prepare():
+            page.goto("https://www.melaleuca.com/cart?sc_lang=en-US", wait_until="domcontentloaded", timeout=60000); settle(8000)
+            gets = [x for x in LAST.get("all", [])]
+            log("cart before: " + str(count()))
+            LAST["cartpost"] = LAST["cart"]            # same URL pattern as the page's own cart call
+            for sku, qty in (("3132", 5), ("39278", 3)):
+                log(f"add {sku} x{qty}: " + api_add(sku, qty)[:160])
+            log("cart after adds: " + str(count()))
+        step("add by API", prepare)
+        (OUT / "requests.json").write_text(json.dumps(REQS, indent=1))
+        def cart_screen():
+            page.goto("https://www.melaleuca.com/cart?sc_lang=en-US", wait_until="domcontentloaded", timeout=60000); settle(12000)
+            snap(page, "50_cart_35"); inputs(page, "50_cart_35")
+            page.mouse.wheel(0, 2500); page.wait_for_timeout(2000); snap(page, "51_cart_35_scrolled")
+        step("cart screen", cart_screen)
+        def go_checkout():
+            b = page.locator("button:visible").filter(has_text=re.compile(r"proceed to checkout", re.I))
+            log("proceed buttons: %d" % b.count())
+            b.first.click(); settle(12000)
+            snap(page, "52_after_proceed"); inputs(page, "52_after_proceed")
+            page.mouse.wheel(0, 3000); page.wait_for_timeout(2000); snap(page, "53_after_proceed_scrolled")
+        step("proceed to checkout", go_checkout)
+        def clean():
+            for k in range(30):
+                page.goto("https://www.melaleuca.com/cart?sc_lang=en-US", wait_until="domcontentloaded", timeout=60000); settle(8000)
+                st = count()
+                if st and st[0] == 0: break
+                btn = page.get_by_role("button", name="Remove", exact=True).locator("visible=true")
+                if btn.count() == 0: log("no exact Remove button"); break
+                btn.first.click(); page.wait_for_timeout(3500)
+            log("cart at end: " + str(count()))
+        step("empty cart", clean)
         (OUT / "requests.json").write_text(json.dumps(REQS, indent=1))
     if os.environ.get("MODE") == "checkout":
         # ---- CHECKOUT TEST: fill the cart to 35+ points, look at cart + checkout screens (read only), empty the cart. NEVER places an order. ----
