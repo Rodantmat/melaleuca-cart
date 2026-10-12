@@ -72,9 +72,10 @@ def scan_one(job):
     from playwright.sync_api import sync_playwright
     n = a["n"]
     ipfile = os.path.join(FEED, "ip_%d.json" % n)
-    saved = None
+    saved, old_ip = None, None
     try:
-        saved = json.load(open(ipfile)).get("port")
+        d = json.load(open(ipfile))
+        saved, old_ip = d.get("port"), d.get("ip")
     except Exception:
         pass
     base = int(cfg.get("sticky_base") or 0)
@@ -94,6 +95,8 @@ def scan_one(job):
             except Exception:
                 res = {"tab": a["tab"], "ok": False, "error": traceback.format_exc()[-400:]}
             if res.get("ok"):
+                if old_ip and res.get("ip"):
+                    ms.log("  IP %s as last time (%s -> %s)" % ("is the SAME" if old_ip == res["ip"] else "CHANGED", old_ip, res["ip"]))
                 try:
                     json.dump({"tab": a["tab"], "port": res.get("port"), "ip": res.get("ip"), "date": res.get("scanned")}, open(ipfile, "w"))
                 except Exception:
