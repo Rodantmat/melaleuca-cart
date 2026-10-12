@@ -26,9 +26,18 @@ def log(*a):
     print(time.strftime("%H:%M:%S"), *a, flush=True)
 
 
+class BlockedError(RuntimeError):
+    """IP blocked / human check / network trouble: trying again from another IP can help"""
+
+
+class BadLogin(RuntimeError):
+    """the account's user name or password is refused: another IP will not help"""
+
+
 class Session:
-    def __init__(self, p, acct, idx, cfg):
+    def __init__(self, p, acct, idx, cfg, oport=None):
         self.acct, self.idx, self.cfg = acct, idx, cfg
+        self.port = None
         self.last = {}
         self.json_log = []                        # (url, parsed json) of the api calls, for the coupon discovery
         kw = {}
@@ -41,9 +50,12 @@ class Session:
             port = u.port or 823
             if cfg.get("sticky_base"):
                 port = int(cfg["sticky_base"]) + int(idx)   # one port = one steady IP for this account
+            if oport:
+                port = int(oport)                           # a port chosen by the runner (the saved one, or a fresh one after a block)
+            self.port = port
             kw["proxy"] = {"server": "http://%s:%s" % (u.hostname, port), "username": login, "password": unquote(u.password or "")}
             log("  proxy port", port)
-        self.browser = p.chromium.launch(headless=cfg.get("headless", True), **kw)
+        self.browser = p.chromium.launch(headless=cfg.get("headless", True), args=["--disable-blink-features=AutomationControlled"], **kw)
         self.ctx = self.browser.new_context(viewport={"width": 1366, "height": 900}, locale="en-US", user_agent=UA)
         if cfg.get("fast", True):                 # images, fonts and videos are not needed to read offers: pages load much faster
             self.ctx.route("**/*", lambda route: route.abort() if route.request.resource_type in ("image", "media", "font") else route.continue_())
@@ -101,7 +113,30 @@ class Session:
         pg.goto(BASE + "/account?sc_lang=en-US", wait_until="domcontentloaded", timeout=60000)
         self.settle(6000)
         if "signin" in pg.url.lower():
-            raise RuntimeError("sign-in failed (wrong password, or the site asked for a verification step)")
+            self.diagnose(pg)
+
+    def diagnose(self, pg):
+        """sign-in did not work: save what the page shows and say why (wrong password -> do not retry; a human check / block -> new IP)"""
+        try:
+            txt = " ".join(pg.inner_text("body", timeout=8000).split())
+        except Exception:
+            txt = ""
+        try:
+            d = self.cfg.get("debug_dir")
+            if d:
+                os.makedirs(d, exist_ok=True)
+                tag = re.sub(r"[^A-Za-z0-9]+", "_", str(self.acct.get("tab")))
+                pg.screenshot(path=os.path.join(d, "signin_%s_%s.png" % (tag, self.port)))
+                open(os.path.join(d, "signin_%s_%s.txt" % (tag, self.port)), "w", encoding="utf-8").write(pg.url + "\n" + txt[:3000])
+        except Exception:
+            pass
+        low = txt.lower()
+        frames = " ".join(f.url for f in pg.frames).lower()
+        if re.search(r"captcha|recaptcha|hcaptcha|turnstile|challenge", frames) or re.search(r"verify you are human|not a robot|human|captcha|unusual activity|access denied|blocked|just a moment|try again later", low):
+            raise BlockedError("the site asked for a human check / blocked this IP")
+        if re.search(r"incorrect|invalid|doesn.t match|not recognized|wrong|did not match|locked", low):
+            raise BadLogin("the site rejected the user name or password: " + txt[:160])
+        raise BlockedError("sign-in did not complete (no error shown): " + txt[:120])
 
     def summary(self):
         u = self.last.get("summary")
@@ -182,12 +217,18 @@ def pick_fill_products(s):
     return fill
 
 
-def scan_account(p, acct, idx, cfg):
+def scan_account(p, acct, idx, cfg, port=None):
     res = {"tab": acct.get("tab"), "scanned": datetime.datetime.now().isoformat(timespec="seconds"), "ok": False}
-    s = Session(p, acct, idx, cfg)
+    s = Session(p, acct, idx, cfg, port)
+    res["port"] = s.port
     added = []
     try:
         s.login()
+        try:
+            res["ip"] = s.ctx.request.get("https://api.ipify.org", timeout=20000).text().strip()
+            log("  IP:", res["ip"])
+        except Exception:
+            pass
         start = s.summary()
         res["cart_at_start"] = start
         log("  signed in; cart at start:", start)
@@ -250,6 +291,7 @@ def scan_account(p, acct, idx, cfg):
         res["ok"] = bool(offers)
     except Exception as e:
         res["error"] = "%s: %s" % (type(e).__name__, str(e)[:300])
+        res["error_kind"] = "badlogin" if isinstance(e, BadLogin) else "retry"
         log("  ERROR", res["error"])
     finally:
         # take out only what this scan added

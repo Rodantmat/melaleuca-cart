@@ -70,16 +70,36 @@ def scan_one(job):
     sys.stdout = Prefix("tab %d %s" % (a["n"], a["tab"]), logpath)
     import melaleuca_scan as ms
     from playwright.sync_api import sync_playwright
+    n = a["n"]
+    ipfile = os.path.join(FEED, "ip_%d.json" % n)
+    saved = None
+    try:
+        saved = json.load(open(ipfile)).get("port")
+    except Exception:
+        pass
+    base = int(cfg.get("sticky_base") or 0)
+    # the saved port first (same IP as long as the provider keeps that session), then fresh ports: no account may be skipped
+    ports = ([saved] if saved else ([base + n] if base else [None])) + ([base + n + 100 * k for k in range(1, 40)] if base else [None] * 40)
+    tries = int(cfg.get("max_tries", 8))
     res = None
     with sync_playwright() as p:
-        for attempt in (1, 2):
+        for attempt in range(1, tries + 1):
+            port = ports[attempt - 1] if attempt - 1 < len(ports) else None
+            if attempt > 1:
+                ms.log("retry %d of %d with another IP" % (attempt, tries))
             try:
-                res = ms.scan_account(p, a, a["n"], cfg)
+                res = ms.scan_account(p, a, n, cfg, port)
             except Exception:
                 res = {"tab": a["tab"], "ok": False, "error": traceback.format_exc()[-400:]}
             if res.get("ok"):
+                try:
+                    json.dump({"tab": a["tab"], "port": res.get("port"), "ip": res.get("ip"), "date": res.get("scanned")}, open(ipfile, "w"))
+                except Exception:
+                    pass
                 break
-            ms.log("failed, trying once more")
+            if res.get("error_kind") == "badlogin":
+                ms.log("the user name / password of this account is refused - fix it in credentials.env (not retrying)")
+                break
     print("-> " + ("ok" if res.get("ok") else "FAILED: " + str(res.get("error") or res.get("note"))[:200]))
     return res
 
@@ -119,6 +139,8 @@ def main():
         return 2
     cfg = {"proxy": env.get("PROXY_URL", ""), "sticky_base": (10000 if env.get("STICKY_BASE") is None else int(env.get("STICKY_BASE") or 0)),
            "headless": env.get("HEADLESS", "1") not in ("0", "false", "no")}
+    cfg["debug_dir"] = os.path.join(FEED, "debug")
+    cfg["max_tries"] = int(env.get("MAX_TRIES", "8") or 8)
     cfg["fast"] = env.get("FAST", "1") not in ("0", "false", "no")
     workers = max(1, min(int(env.get("WORKERS", "4") or 4), len(accounts)))
     print("scanning %d account(s), %d at a time" % (len(accounts), workers))

@@ -160,6 +160,41 @@ def main():
     data = json.load(open(offers, encoding="utf-8"))
     lines = ["Tab\tASIN\tType\tUnits\tUnitPrice\tSetPoints\tOfferSku\tOfferTitle\tHow\tScanned"]
     rep = []
+    # Canadian tabs (kind 1 = orange / yellow) show prices in CAD: their offers are priced with the US price of the same offer
+    # (same offer number) read from the blue (all-inventory, US) accounts. Points and set sizes are the same.
+    kinds = {}
+    tp = os.path.join(os.path.dirname(os.path.abspath(rows_path)), "mel_tabs.txt")
+    if os.path.exists(tp):
+        for ln in open(tp, encoding="utf-8-sig"):
+            p = ln.rstrip("\r\n").split("\t")
+            if len(p) >= 3:
+                kinds[p[1]] = p[2].strip()
+
+    def osku(o):
+        return str(o.get("sku") or (o.get("skus") or [""])[0] or "")
+
+    usd = {}
+    for a in data["accounts"]:
+        if a.get("ok") and kinds.get(a.get("tab")) == "2":
+            for lst in ("special_offers", "monthly_specials"):
+                for o in a.get(lst) or []:
+                    if o.get("price") is not None and osku(o):
+                        usd.setdefault((lst, osku(o)), (o.get("price"), o.get("points")))
+    for a in data["accounts"]:
+        if a.get("ok") and kinds.get(a.get("tab")) == "1":
+            import copy
+            a = copy.deepcopy(a)
+            data["accounts"][data["accounts"].index(next(x for x in data["accounts"] if x.get("tab") == a.get("tab")))] = a
+            for lst in ("special_offers", "monthly_specials"):
+                keep = []
+                for o in a.get(lst) or []:
+                    u = usd.get((lst, osku(o)))
+                    if u:
+                        o["price"], o["points"] = u[0], (u[1] if u[1] is not None else o.get("points"))
+                        keep.append(o)
+                    else:
+                        rep.append("%s: offer %s %s dropped (no US price from the blue accounts)" % (a["tab"], osku(o), (o.get("title") or "")[:50]))
+                a[lst] = keep
     for a in data["accounts"]:
         if not a.get("ok"):
             rep.append("%s: NOT scanned (%s)" % (a.get("tab"), a.get("error") or a.get("note")))
