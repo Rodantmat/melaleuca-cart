@@ -18,6 +18,7 @@ jobs:
       - run: pip install playwright && playwright install --with-deps chromium
       - name: Run probe
         env:
+          PROXY_URL: ${{ secrets.PROXY_URL }}
           ACCOUNT_INDEX: ${{ inputs.account }}
           MELA_USER: ${{ inputs.account == '1' && secrets.MELA_USER_1 || inputs.account == '2' && secrets.MELA_USER_2 || '' }}
           MELA_PASS: ${{ inputs.account == '1' && secrets.MELA_PASS_1 || inputs.account == '2' && secrets.MELA_PASS_2 || '' }}

@@ -38,7 +38,14 @@ def step(label, fn):
         log(f"FAIL {label}: {type(e).__name__}: {str(e)[:300]}")
 
 with sync_playwright() as p:
-    b = p.chromium.launch(headless=True)
+    px = os.environ.get("PROXY_URL", "").strip()
+    kw = {}
+    if px:
+        from urllib.parse import urlparse
+        u = urlparse(px)
+        kw["proxy"] = {"server": f"{u.scheme}://{u.hostname}:{u.port}", "username": u.username or "", "password": u.password or ""}
+        log("using proxy " + u.hostname)
+    b = p.chromium.launch(headless=True, **kw)
     ctx = b.new_context(viewport={"width": 1366, "height": 900}, locale="en-US",
         user_agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0 Safari/537.36")
     page = ctx.new_page()
@@ -52,36 +59,26 @@ with sync_playwright() as p:
     step("home", home)
 
     def login():
-        for u in ("https://www.melaleuca.com/signin", "https://www.melaleuca.com/login"):
-            try:
-                page.goto(u, wait_until="domcontentloaded", timeout=45000); page.wait_for_timeout(3000)
-                if page.locator("input[type=password]").count(): break
-            except Exception as e:
-                log(f"goto {u}: {e}")
-        if not page.locator("input[type=password]").count():
-            for t in ("Sign In", "Log In", "Sign in", "Login"):
-                l = page.get_by_text(t, exact=False).first
-                if l.count():
-                    l.click(); page.wait_for_timeout(4000); break
-        snap(page, "02_signin_page"); inputs(page, "02_signin_page")
+        page.goto("https://www.melaleuca.com/cart", wait_until="domcontentloaded", timeout=60000)
+        page.wait_for_selector("input[name=username]", timeout=30000)
+        snap(page, "02_signin_page")
         if not USER or not PASS:
             raise RuntimeError("no credentials in env (secret not set?)")
-        user_in = page.locator("input[type=email], input[name*=user i], input[id*=user i], input[name*=email i], input[type=text]").first
-        user_in.fill(USER)
-        # some sites show the password after the user name
-        if not page.locator("input[type=password]:visible").count():
-            page.keyboard.press("Enter"); page.wait_for_timeout(3000)
-        page.locator("input[type=password]").first.fill(PASS)
-        page.keyboard.press("Enter")
-        page.wait_for_load_state("domcontentloaded", timeout=45000); page.wait_for_timeout(6000)
+        page.fill("input[name=username]", USER)
+        page.fill("input[name=password]", PASS)
+        page.wait_for_timeout(500)
+        page.get_by_role("button", name=re.compile(r"^\s*sign in\s*$", re.I)).first.click()
+        page.wait_for_load_state("domcontentloaded", timeout=60000)
+        page.wait_for_timeout(8000)
         snap(page, "03_after_login"); inputs(page, "03_after_login")
-        log("logged-in guess: " + str(not page.locator("input[type=password]:visible").count()))
-    step("login", login)
+        log("still on sign-in form: " + str(page.locator("input[name=password]:visible").count() > 0))
+        step("login", login)
 
     for name, url in (("04_outlet", "https://www.melaleuca.com/productstore/extra-savings/outlet-store"),
                       ("05_monthly", "https://www.melaleuca.com/productstore/extra-savings/monthly-specials"),
                       ("06_cart", "https://www.melaleuca.com/cart"),
-                      ("07_search", "https://www.melaleuca.com/search?q=lip%20balm")):
+                      ("07_search", "https://www.melaleuca.com/search?q=lip%20balm"),
+                      ("08_account", "https://www.melaleuca.com/account")):
         def go(name=name, url=url):
             r = page.goto(url, wait_until="domcontentloaded", timeout=60000)
             log(f"{name} status={r.status if r else None}")
