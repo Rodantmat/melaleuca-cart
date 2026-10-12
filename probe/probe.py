@@ -234,7 +234,7 @@ with sync_playwright() as p:
             for sku, qty in (("3132", 5), ("39278", 3)):
                 log(f"add {sku} x{qty}: " + api_add(sku, qty)[:160])
             log("cart after adds: " + str(count()))
-            if os.environ.get("TEST_PROMO"):
+            if os.environ.get("TEST_PROMO_API"):
                 # find the account's special offers (the page loads /api/bogo) and add the first one with its promotion id
                 page.goto("https://www.melaleuca.com/checkout/promo-page", wait_until="domcontentloaded", timeout=60000); settle(10000)
                 bu = LAST.get("bogo")
@@ -265,6 +265,15 @@ with sync_playwright() as p:
             b.first.click(); settle(12000)
             snap(page, "52_after_proceed"); inputs(page, "52_after_proceed")
             page.mouse.wheel(0, 3000); page.wait_for_timeout(2000); snap(page, "53_after_proceed_scrolled")
+            if os.environ.get("TEST_PROMO"):
+                before = count(); log("promo page, cart before select: " + str(before))
+                sel = page.get_by_role("button", name="SELECT", exact=True).locator("visible=true")
+                log("promo SELECT buttons: %d" % sel.count())
+                sel.first.click(); page.wait_for_timeout(5000)
+                if page.locator("[role=dialog]:visible").count():
+                    snap(page, "54_promo_dialog"); log("dialog text: " + page.locator("[role=dialog]:visible").first.inner_text()[:300].replace("\n", " | "))
+                snap(page, "54_after_promo_select")
+                log("cart after promo select: " + str(count()) + " url=" + page.url[:80])
         step("proceed to checkout", go_checkout)
         def clean():
             for k in range(30):
