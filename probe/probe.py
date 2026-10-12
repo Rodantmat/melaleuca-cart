@@ -79,6 +79,14 @@ with sync_playwright() as p:
         except Exception:
             pass
     page.on("response", on_resp)
+    REQS = []
+    def on_req(rq):
+        try:
+            if "melaleuca.com/api/" in rq.url and rq.method in ("POST", "PUT", "DELETE", "PATCH") and "cart/ads" not in rq.url:
+                REQS.append({"method": rq.method, "url": rq.url[:200], "body": (rq.post_data or "")[:3000]})
+        except Exception:
+            pass
+    page.on("request", on_req)
     page.on("response", lambda r: reqs.append((r.status, r.request.method, r.url[:160])) if "melaleuca" in r.url and r.request.resource_type in ("xhr", "fetch", "document") else None)
 
     def home():
@@ -117,7 +125,7 @@ with sync_playwright() as p:
             page.wait_for_timeout(12000)
             page.mouse.wheel(0, 2500); page.wait_for_timeout(3000)
             snap(page, name); inputs(page, name)
-        if os.environ.get("MODE") != "cart":
+        if os.environ.get("MODE") not in ("cart", "checkout"):
             step(name, go)
 
     if os.environ.get("MODE") == "cart":
@@ -177,6 +185,75 @@ with sync_playwright() as p:
             snap(page, "13_after_remove")
             log("cart after remove: " + str(cart_total()))
         step("remove item", remove_it)
+    if os.environ.get("MODE") == "checkout":
+        # ---- CHECKOUT TEST: fill the cart to 35+ points, look at cart + checkout screens (read only), empty the cart. NEVER places an order. ----
+        FORBID = re.compile(r"place\s*order|confirm\s*order|submit\s*order|pay\s*now|complete\s*(my\s*)?order", re.I)
+        def summ():
+            try:
+                u = LAST["summary"]
+                r = page.evaluate("async (u) => { const r = await fetch(u, {credentials:'include'}); return await r.json(); }", u)
+                sm = r["Data"]["Summary"]; return int(sm.get("ItemCount") or 0), float(sm.get("Points") or 0)
+            except Exception as e:
+                return None
+        def settle(ms=7000):
+            try: page.wait_for_load_state("networkidle", timeout=30000)
+            except Exception: pass
+            page.wait_for_timeout(ms)
+        def warm():
+            page.goto("https://www.melaleuca.com/account?sc_lang=en-US", wait_until="domcontentloaded", timeout=60000); settle(6000)
+            log("warm-up: " + page.title())
+        step("warm up", warm)
+        def fill_cart():
+            for src in ("https://www.melaleuca.com/productstore/extra-savings/monthly-specials?sc_lang=en-US",
+                        "https://www.melaleuca.com/productstore/extra-savings/outlet-store?sc_lang=en-US"):
+                page.goto(src, wait_until="domcontentloaded", timeout=60000); settle(8000)
+                n = page.get_by_text(re.compile(r"^\s*select\s*$", re.I)).locator("visible=true").count()
+                log(f"{src[-30:]}: {n} SELECT buttons; cart now {summ()}")
+                for i in range(min(n, 14)):
+                    st = summ()
+                    if st and st[1] >= 40: break
+                    try:
+                        page.get_by_text(re.compile(r"^\s*select\s*$", re.I)).locator("visible=true").nth(i).click(timeout=8000)
+                        page.wait_for_timeout(3500)
+                        # options dialog? close it
+                        if page.locator("[role=dialog]:visible").count():
+                            snap(page, f"20_options_dialog_{i}")
+                            page.keyboard.press("Escape"); page.wait_for_timeout(1000)
+                    except Exception as e:
+                        log(f"click {i} failed: {str(e)[:100]}")
+                    log(f"after click {i}: {summ()}")
+                st = summ()
+                if st and st[1] >= 40: break
+            log("cart filled: " + str(summ()))
+        step("fill cart", fill_cart)
+        (OUT / "requests.json").write_text(json.dumps(REQS, indent=1))
+        def cart_screen():
+            page.goto("https://www.melaleuca.com/cart?sc_lang=en-US", wait_until="domcontentloaded", timeout=60000); settle(12000)
+            page.mouse.wheel(0, 3000); page.wait_for_timeout(2000)
+            snap(page, "30_cart_full"); inputs(page, "30_cart_full")
+        step("cart screen", cart_screen)
+        def go_checkout():
+            b = page.locator("button:visible, a:visible").filter(has_text=re.compile(r"proceed to checkout|checkout", re.I))
+            log("checkout controls: %d: %s" % (b.count(), [b.nth(i).inner_text()[:30] for i in range(min(b.count(), 5))]))
+            t = b.first.inner_text()
+            if FORBID.search(t): raise RuntimeError("refusing to click: " + t)
+            b.first.click(); settle(12000)
+            snap(page, "31_checkout_1"); inputs(page, "31_checkout_1")
+            page.mouse.wheel(0, 3000); page.wait_for_timeout(2000); snap(page, "32_checkout_1_scrolled")
+        step("go to checkout", go_checkout)
+        def empty_cart():
+            for k in range(25):
+                page.goto("https://www.melaleuca.com/cart?sc_lang=en-US", wait_until="domcontentloaded", timeout=60000); settle(8000)
+                st = summ()
+                if st and st[0] == 0: break
+                rm = page.locator("button:visible, a:visible, [role=button]:visible").filter(has_text=re.compile(r"remove|delete", re.I))
+                if rm.count() == 0:
+                    rm = page.locator("[aria-label*=remove i]:visible, [aria-label*=delete i]:visible")
+                if rm.count() == 0: log("no remove control found"); break
+                rm.first.click(); page.wait_for_timeout(4000)
+            log("cart at end: " + str(summ()))
+        step("empty cart", empty_cart)
+        (OUT / "requests.json").write_text(json.dumps(REQS, indent=1))
     log("exit IP at end: " + str(myip()))
     (OUT / "network.txt").write_text("\n".join(f"{s} {m} {u}" for s, m, u in reqs[:400]))
     (OUT / "log.txt").write_text("\n".join(LOG))
