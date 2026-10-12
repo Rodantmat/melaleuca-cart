@@ -46,7 +46,7 @@ def geo_test(label, geo, port=10001):
 
 print("\nLocation test (each line should show the city asked for):")
 for label, geo in (("blue / S. California", "cr.us;city.losangeles,sandiego,longbeach,anaheim,irvine,santaana,riverside"),
-                   ("blue / state only", "cr.us;state.california"),
+                   ("blue / wider S. Calif.", "cr.us;city.losangeles,burbank,glendale,pasadena,torrance,pomona,fullerton,oceanside,escondido,sanbernardino,corona,ontario,fontana,ventura,oxnard,carlsbad,murrieta,temecula"),
                    ("orange / Vancouver", "cr.ca;city.vancouver"), ("yellow / Toronto", "cr.ca;city.toronto"), ("Canada only", "cr.ca")):
     print("%-22s %s" % (label, geo_test(label, geo)))
 input("\nPress Enter to close")

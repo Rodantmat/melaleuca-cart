@@ -34,7 +34,7 @@ def geo_params(region, level=0):
     if r == "toronto":
         return ["cr.ca;city.toronto", "cr.ca", "cr.ca"][min(level, 2)], "America/Toronto"
     if r == "socal":
-        return ["cr.us;city.losangeles,sandiego,longbeach,anaheim,irvine,santaana,riverside", "cr.us;state.california", "cr.us"][min(level, 2)], "America/Los_Angeles"
+        return ["cr.us;city.losangeles,sandiego,longbeach,anaheim,irvine,santaana,riverside", "cr.us;city.losangeles,burbank,glendale,pasadena,torrance,pomona,fullerton,oceanside,escondido,sanbernardino,corona,ontario,fontana,ventura,oxnard,carlsbad,murrieta,temecula", "cr.us"][min(level, 2)], "America/Los_Angeles"
     return "cr.us", None
 
 
