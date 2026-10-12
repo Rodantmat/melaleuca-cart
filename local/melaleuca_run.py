@@ -87,7 +87,8 @@ def scan_one(job):
             port = ports[attempt - 1] if attempt - 1 < len(ports) else None
             if attempt > 1:
                 ms.log("retry %d of %d with another IP" % (attempt, tries))
-            a = dict(a, geo_level=0 if attempt <= 3 else (1 if attempt <= 5 else 2))   # exact city first, then wider if no IP can be had there
+            # exact city first, then the country, then (last resort) a US IP; the browser alternates between real Chrome and the built-in one
+            a = dict(a, geo_level=0 if attempt <= 2 else (1 if attempt <= 4 else 2), channel_override=("chrome" if attempt % 2 else "chromium"))
             try:
                 res = ms.scan_account(p, a, n, cfg, port)
             except Exception:

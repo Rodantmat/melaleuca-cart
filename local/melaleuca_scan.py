@@ -30,9 +30,9 @@ def geo_params(region, level=0):
     """DataImpulse targeting for the proxy user name. level 0 = the city, 1 = wider (state / country), 2 = the country only."""
     r = (region or "").lower()
     if r == "vancouver":
-        return ["cr.ca;city.vancouver", "cr.ca", "cr.ca"][min(level, 2)], "America/Vancouver"
+        return ["cr.ca;city.vancouver", "cr.ca", "cr.us"][min(level, 2)], ("America/Vancouver" if level < 2 else None)
     if r == "toronto":
-        return ["cr.ca;city.toronto", "cr.ca", "cr.ca"][min(level, 2)], "America/Toronto"
+        return ["cr.ca;city.toronto", "cr.ca", "cr.us"][min(level, 2)], ("America/Toronto" if level < 2 else None)
     if r == "socal":
         return ["cr.us;city.losangeles,sandiego,longbeach,anaheim,irvine,santaana,riverside", "cr.us;city.losangeles,burbank,glendale,pasadena,torrance,pomona,fullerton,oceanside,escondido,sanbernardino,corona,ontario,fontana,ventura,oxnard,carlsbad,murrieta,temecula", "cr.us"][min(level, 2)], "America/Los_Angeles"
     return "cr.us", None
@@ -70,7 +70,7 @@ class Session:
             log("  proxy port", port, "| location:", geo)
         self.channel = None
         self.browser = None
-        for ch in [cfg.get("channel") or "chrome", "chromium", None]:     # the real Chrome / new headless mode looks much more like a person than the bare headless shell
+        for ch in ([acct["channel_override"]] if acct.get("channel_override") else [cfg.get("channel") or "chrome"]) + ["chromium", None]:     # the real Chrome / new headless mode looks much more like a person than the bare headless shell
             try:
                 a = dict(headless=cfg.get("headless", True), args=["--disable-blink-features=AutomationControlled"], **kw)
                 if ch:
@@ -134,7 +134,12 @@ class Session:
         pg.goto(BASE + "/cart", wait_until="domcontentloaded", timeout=60000)
         pg.wait_for_timeout(6000 + random.randint(0, 2500))
         u = pg.locator("input[name=username]:visible").first
-        u.click(timeout=40000)
+        try:
+            u.wait_for(state="visible", timeout=25000)
+        except Exception:
+            self.snap(pg, "noform")
+            raise BlockedError("the sign-in form did not appear (page: %s)" % pg.url[:90])
+        u.click(timeout=15000)
         u.press_sequentially(self.acct["user"], delay=random.randint(45, 95))
         pg.wait_for_timeout(500 + random.randint(0, 600))
         w = pg.locator("input[name=password]:visible").first
@@ -161,6 +166,24 @@ class Session:
             self.diagnose(pg)
         if self.cfg.get("fast", True):                 # after sign-in, images / fonts / videos are not needed to read offers: pages load faster
             self.ctx.route("**/*", lambda route: route.abort() if route.request.resource_type in ("image", "media", "font") else route.continue_())
+
+    def snap(self, pg, why):
+        """save a screenshot + the visible text of the page, for me to read when something does not work"""
+        try:
+            d = self.cfg.get("debug_dir")
+            if not d:
+                return
+            os.makedirs(d, exist_ok=True)
+            tag = re.sub(r"[^A-Za-z0-9]+", "_", str(self.acct.get("tab")))
+            pg.screenshot(path=os.path.join(d, "%s_%s_%s.png" % (why, tag, self.port)))
+            try:
+                txt = " ".join(pg.inner_text("body", timeout=5000).split())
+            except Exception:
+                txt = ""
+            open(os.path.join(d, "%s_%s_%s.txt" % (why, tag, self.port)), "w", encoding="utf-8").write(pg.url + "\n" + txt[:3000])
+            log("  saved debug/%s_%s_%s.png | page: %s | %s" % (why, tag, self.port, pg.url[:80], txt[:160]))
+        except Exception:
+            pass
 
     def diagnose(self, pg):
         """sign-in did not work: save what the page shows and say why (wrong password -> do not retry; a human check / block -> new IP)"""
