@@ -22,18 +22,16 @@ jobs:
           U1: ${{ secrets.MELA_USER_1 }}
           P1: ${{ secrets.MELA_PASS_1 }}
         run: |
-          python - <<'PY'
-          import json, os
-          json.dump({"proxy": os.environ["PROXY_URL"], "sticky_base": 10000,
-                     "accounts": [{"tab": "Antonio M", "user": os.environ["U1"], "pass": os.environ["P1"]}]}, open("accounts.json", "w"))
-          PY
-          python local/melaleuca_scan.py accounts.json melaleuca_offers.json 2>&1 | tee scan.log
-          rm -f accounts.json
+          cd local
+          printf 'PROXY_URL=%s\nSTICKY_BASE=10000\nMELA_USER_7=%s\nMELA_PASS_7=%s\n' "$PROXY_URL" "$U1" "$P1" > credentials.env
+          python melaleuca_run.py --only 7 2>&1 | tee ../scan.log
+          cp feed/melaleuca_offers.json feed/account_offers.tsv ../ 2>/dev/null || true
+          rm -f credentials.env
         continue-on-error: true
       - name: Save results to branch scan-results
         run: |
           git config user.name "scan-bot"; git config user.email "scan-bot@users.noreply.github.com"
           git checkout --orphan scan-results
           git rm -rf . >/dev/null 2>&1 || true
-          mkdir -p results; cp melaleuca_offers.json scan.log results/ 2>/dev/null || true
+          mkdir -p results; cp melaleuca_offers.json account_offers.tsv scan.log results/ 2>/dev/null || true
           git add results; git commit -m "scan results" && git push -f origin scan-results
