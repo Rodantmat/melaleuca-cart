@@ -164,6 +164,13 @@ def main():
         with ProcessPoolExecutor(max_workers=workers) as ex:
             results = list(ex.map(scan_one, jobs))
     out = os.path.join(FEED, "melaleuca_offers.json")
+    # a partial run (--only N) must not wipe the other accounts: keep their last good results (also the US prices the Canadian tabs need)
+    try:
+        old = json.load(open(out, encoding="utf-8"))
+        have = {r.get("tab") for r in results}
+        results = results + [r for r in old.get("accounts", []) if r.get("ok") and r.get("tab") not in have]
+    except Exception:
+        pass
     pathlib.Path(out).write_text(json.dumps({"generated": datetime.datetime.now().isoformat(timespec="seconds"), "accounts": results}, indent=1), encoding="utf-8")
     rc = subprocess.call([sys.executable, os.path.join(HERE, "melaleuca_offers_map.py"), out, os.path.join(FEED, "mel_rows.tsv"),
                           os.path.join(FEED, "account_offers.tsv")],
