@@ -64,6 +64,19 @@ with sync_playwright() as p:
             return f"ip check failed: {type(e).__name__}"
     log("exit IP at start: " + str(myip()))
     reqs = []
+    API = OUT / "api"; API.mkdir(exist_ok=True)
+    cnt = {"n": 0}
+    def on_resp(r):
+        try:
+            ct = r.headers.get("content-type", "")
+            if "json" in ct and "melaleuca" in r.url and cnt["n"] < 150:
+                body = r.body()
+                if 0 < len(body) < 400000:
+                    cnt["n"] += 1
+                    (API / f"{cnt['n']:03d}.json").write_text(json.dumps({"url": r.url, "status": r.status, "method": r.request.method, "page": page.url[:120], "body": body.decode("utf-8", "replace")}))
+        except Exception:
+            pass
+    page.on("response", on_resp)
     page.on("response", lambda r: reqs.append((r.status, r.request.method, r.url[:160])) if "melaleuca" in r.url and r.request.resource_type in ("xhr", "fetch", "document") else None)
 
     def home():
@@ -89,15 +102,19 @@ with sync_playwright() as p:
         log("still on sign-in form: " + str(page.locator("input[name=password]:visible").count() > 0))
     step("login", login)
 
-    for name, url in (("04_outlet", "https://www.melaleuca.com/productstore/extra-savings/outlet-store"),
-                      ("05_monthly", "https://www.melaleuca.com/productstore/extra-savings/monthly-specials"),
-                      ("06_cart", "https://www.melaleuca.com/cart"),
-                      ("07_search", "https://www.melaleuca.com/search?q=lip%20balm"),
-                      ("08_account", "https://www.melaleuca.com/account")):
+    for name, url in (("04_outlet", "https://www.melaleuca.com/productstore/extra-savings/outlet-store?sc_lang=en-US"),
+                      ("05_monthly", "https://www.melaleuca.com/productstore/extra-savings/monthly-specials?sc_lang=en-US"),
+                      ("06_cart", "https://www.melaleuca.com/cart?sc_lang=en-US"),
+                      ("07_search", "https://www.melaleuca.com/search?q=lip%20balm&sc_lang=en-US"),
+                      ("08_account", "https://www.melaleuca.com/account?sc_lang=en-US")):
         def go(name=name, url=url):
             r = page.goto(url, wait_until="domcontentloaded", timeout=60000)
             log(f"{name} status={r.status if r else None}")
-            page.wait_for_timeout(6000); snap(page, name); inputs(page, name)
+            try: page.wait_for_load_state("networkidle", timeout=40000)
+            except Exception: pass
+            page.wait_for_timeout(12000)
+            page.mouse.wheel(0, 2500); page.wait_for_timeout(3000)
+            snap(page, name); inputs(page, name)
         step(name, go)
 
     log("exit IP at end: " + str(myip()))
