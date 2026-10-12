@@ -88,7 +88,7 @@ def scan_one(job):
             if attempt > 1:
                 ms.log("retry %d of %d with another IP" % (attempt, tries))
             # exact city first, then the country, then (last resort) a US IP; the browser alternates between real Chrome and the built-in one
-            a = dict(a, geo_level=0 if attempt <= 2 else (1 if attempt <= 4 else 2), channel_override=("chrome" if attempt % 2 else "chromium"))
+            a = dict(a, geo_level=0 if attempt <= 2 else (1 if attempt <= 4 else 2), channel_override=(None if attempt % 2 else "chromium"))
             try:
                 res = ms.scan_account(p, a, n, cfg, port)
             except Exception:
@@ -146,7 +146,7 @@ def main():
         return 2
     cfg = {"proxy": env.get("PROXY_URL", ""), "sticky_base": (10000 if env.get("STICKY_BASE") is None else int(env.get("STICKY_BASE") or 0)),
            "headless": env.get("HEADLESS", "1") not in ("0", "false", "no")}
-    cfg["channel"] = env.get("BROWSER", "chrome") or "chrome"
+    cfg["channel"] = env.get("BROWSER", "") or ""
     cfg["session_minutes"] = int(env.get("SESSION_MINUTES", "120") or 0)
     cfg["debug_dir"] = os.path.join(FEED, "debug")
     cfg["max_tries"] = int(env.get("MAX_TRIES", "8") or 8)

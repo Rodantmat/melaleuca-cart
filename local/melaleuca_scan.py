@@ -70,7 +70,7 @@ class Session:
             log("  proxy port", port, "| location:", geo)
         self.channel = None
         self.browser = None
-        for ch in ([acct["channel_override"]] if acct.get("channel_override") else [cfg.get("channel") or "chrome"]) + ["chromium", None]:     # the real Chrome / new headless mode looks much more like a person than the bare headless shell
+        for ch in [acct.get("channel_override") or cfg.get("channel") or None, "chromium", None]:     # the real Chrome / new headless mode looks much more like a person than the bare headless shell
             try:
                 a = dict(headless=cfg.get("headless", True), args=["--disable-blink-features=AutomationControlled"], **kw)
                 if ch:
@@ -85,8 +85,12 @@ class Session:
         ctxkw = dict(viewport={"width": 1366, "height": 900}, locale="en-US")
         if tz:
             ctxkw["timezone_id"] = tz                        # the clock of the browser matches the city of the IP
-        if not self.channel:
-            ctxkw["user_agent"] = UA                         # only the bare headless shell announces itself; give it a normal name
+        ctxkw["user_agent"] = UA                             # headless browsers announce themselves ("HeadlessChrome"): the security check catches that, so always give a normal name
+        if self.channel:
+            try:
+                ctxkw["user_agent"] = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/%s.0.0.0 Safari/537.36" % self.browser.version.split(".")[0]
+            except Exception:
+                pass
         self.ctx = self.browser.new_context(**ctxkw)
         self.page = self.ctx.new_page()
         self.page.on("response", self._on_resp)
