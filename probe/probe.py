@@ -131,7 +131,7 @@ with sync_playwright() as p:
             except Exception: pass
             page.wait_for_timeout(8000)
             log("cart before: " + str(cart_total()))
-            btns = page.locator("button:visible", has_text=re.compile(r"add to cart", re.I))
+            btns = page.locator("button:visible", has_text=re.compile(r"^\s*(select|add to cart)\s*$", re.I))
             log("add-to-cart buttons visible: %d" % btns.count())
             snap(page, "10_outlet_ready")
             if btns.count() == 0:
@@ -152,7 +152,9 @@ with sync_playwright() as p:
             snap(page, "12_cart_with_item"); inputs(page, "12_cart_with_item")
         step("view cart", view_cart)
         def remove_it():
-            rm = page.locator("button:visible, a:visible", has_text=re.compile(r"^\s*remove\s*$", re.I))
+            rm = page.locator("button:visible, a:visible, [role=button]:visible").filter(has_text=re.compile(r"remove|delete|^\s*clear", re.I))
+            if rm.count() == 0:
+                rm = page.locator("[aria-label*=remove i]:visible, [aria-label*=delete i]:visible, [title*=remove i]:visible")
             log("remove controls: %d" % rm.count())
             rm.first.click(); page.wait_for_timeout(5000)
             snap(page, "13_after_remove")
