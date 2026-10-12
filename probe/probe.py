@@ -41,14 +41,28 @@ with sync_playwright() as p:
     px = os.environ.get("PROXY_URL", "").strip()
     kw = {}
     if px:
-        from urllib.parse import urlparse
+        from urllib.parse import urlparse, unquote
         u = urlparse(px)
-        kw["proxy"] = {"server": f"{u.scheme}://{u.hostname}:{u.port}", "username": u.username or "", "password": u.password or ""}
-        log("using proxy " + u.hostname)
+        login = unquote(u.username or "")
+        if "__" not in login:
+            login += "__cr.us"                      # US residential IPs only
+        port = u.port or 823
+        base = os.environ.get("PROXY_STICKY_PORT_BASE", "").strip()
+        if base:                                   # one fixed port = one fixed IP per account (sticky)
+            port = int(base) + int(IDX)
+        kw["proxy"] = {"server": f"http://{u.hostname}:{port}", "username": login, "password": unquote(u.password or "")}
+        log(f"using proxy {u.hostname}:{port} (account {IDX})")
     b = p.chromium.launch(headless=True, **kw)
     ctx = b.new_context(viewport={"width": 1366, "height": 900}, locale="en-US",
         user_agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0 Safari/537.36")
     page = ctx.new_page()
+    def myip():
+        try:
+            r = ctx.request.get("https://api.ipify.org?format=json", timeout=30000)
+            return r.json().get("ip")
+        except Exception as e:
+            return f"ip check failed: {type(e).__name__}"
+    log("exit IP at start: " + str(myip()))
     reqs = []
     page.on("response", lambda r: reqs.append((r.status, r.request.method, r.url[:160])) if "melaleuca" in r.url and r.request.resource_type in ("xhr", "fetch", "document") else None)
 
@@ -85,6 +99,7 @@ with sync_playwright() as p:
             page.wait_for_timeout(6000); snap(page, name); inputs(page, name)
         step(name, go)
 
+    log("exit IP at end: " + str(myip()))
     (OUT / "network.txt").write_text("\n".join(f"{s} {m} {u}" for s, m, u in reqs[:400]))
     (OUT / "log.txt").write_text("\n".join(LOG))
     b.close()

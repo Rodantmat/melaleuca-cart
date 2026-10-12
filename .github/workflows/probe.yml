@@ -19,6 +19,7 @@ jobs:
       - name: Run probe
         env:
           PROXY_URL: ${{ secrets.PROXY_URL }}
+          PROXY_STICKY_PORT_BASE: ${{ vars.PROXY_STICKY_PORT_BASE }}
           ACCOUNT_INDEX: ${{ inputs.account }}
           MELA_USER: ${{ inputs.account == '1' && secrets.MELA_USER_1 || inputs.account == '2' && secrets.MELA_USER_2 || '' }}
           MELA_PASS: ${{ inputs.account == '1' && secrets.MELA_PASS_1 || inputs.account == '2' && secrets.MELA_PASS_2 || '' }}
