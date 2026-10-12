@@ -1,0 +1,36 @@
+name: Melaleuca probe (read only)
+on:
+  workflow_dispatch:
+    inputs:
+      account:
+        description: "Account number (uses secrets MELA_USER_<n> / MELA_PASS_<n>)"
+        default: "1"
+permissions:
+  contents: write
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - run: pip install playwright && playwright install --with-deps chromium
+      - name: Run probe
+        env:
+          ACCOUNT_INDEX: ${{ inputs.account }}
+          MELA_USER: ${{ inputs.account == '1' && secrets.MELA_USER_1 || inputs.account == '2' && secrets.MELA_USER_2 || '' }}
+          MELA_PASS: ${{ inputs.account == '1' && secrets.MELA_PASS_1 || inputs.account == '2' && secrets.MELA_PASS_2 || '' }}
+        run: python probe/probe.py
+        continue-on-error: true
+      - name: Save results to branch probe-results
+        run: |
+          git config user.name "probe-bot"; git config user.email "probe-bot@users.noreply.github.com"
+          git checkout --orphan probe-results
+          git rm -rf . >/dev/null 2>&1 || true
+          git checkout ${{ github.sha }} -- README.md || true
+          mkdir -p results && cp -r probe-output/* results/ 2>/dev/null || true
+          git add results README.md
+          git commit -m "probe results" && git push -f origin probe-results
+      - uses: actions/upload-artifact@v4
+        with: { name: probe-output, path: probe-output }
