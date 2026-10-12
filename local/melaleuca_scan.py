@@ -50,6 +50,7 @@ class Session:
     def __init__(self, p, acct, idx, cfg, oport=None):
         self.acct, self.idx, self.cfg = acct, idx, cfg
         self.port = None
+        self.bytes = 0
         self.last = {}
         self.json_log = []                        # (url, parsed json) of the api calls, for the coupon discovery
         kw = {}
@@ -95,8 +96,23 @@ class Session:
         self.page = self.ctx.new_page()
         self.page.on("response", self._on_resp)
 
+    TRACKERS = ("google-analytics", "googletagmanager", "doubleclick", "googlesyndication", "facebook.", "fbcdn", "hotjar", "clarity.ms", "segment.",
+                "tiktok", "snapchat", "linkedin", "pinterest", "criteo", "optimizely", "newrelic", "nr-data", "bing.com", "adsrvr", "taboola", "outbrain",
+                "quantserve", "scorecardresearch", "fullstory", "mouseflow", "crazyegg", "hubspot", "marketo", "mpulse", "akamai-rum", "sentry.io", "datadoghq")
+
+    def _route(self, route):
+        """after sign-in: no pictures, fonts, videos or tracking scripts - they cost proxy traffic and are not needed to read offers"""
+        rq = route.request
+        if rq.resource_type in ("image", "media", "font") or any(t in rq.url.lower().split("/")[2] for t in self.TRACKERS if len(rq.url.split("/")) > 2):
+            return route.abort()
+        return route.continue_()
+
     def _on_resp(self, r):
         try:
+            try:
+                self.bytes += int(r.headers.get("content-length") or 0)
+            except Exception:
+                pass
             u = r.url
             if "/api/cart/summary" in u and r.request.method == "GET":
                 self.last["summary"] = u
@@ -169,7 +185,7 @@ class Session:
         if "signin" in pg.url.lower():
             self.diagnose(pg)
         if self.cfg.get("fast", True):                 # after sign-in, images / fonts / videos are not needed to read offers: pages load faster
-            self.ctx.route("**/*", lambda route: route.abort() if route.request.resource_type in ("image", "media", "font") else route.continue_())
+            self.ctx.route("**/*", self._route)
 
     def snap(self, pg, why):
         """save a screenshot + the visible text of the page, for me to read when something does not work"""
@@ -386,6 +402,8 @@ def scan_account(p, acct, idx, cfg, port=None):
         except Exception as e:
             res["cleanup_error"] = str(e)[:200]
             log("  CLEANUP PROBLEM:", e)
+        res["mb"] = round(s.bytes / 1048576.0, 1)
+        log("  traffic through the proxy: about %.1f MB (counted from the page headers, real use is a bit higher)" % res["mb"])
         s.close()
     return res
 
