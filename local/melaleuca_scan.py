@@ -8,7 +8,7 @@ SAFE BY DESIGN
 
 USAGE   python melaleuca_scan.py [accounts.json] [output.json] [--only "Tab name"]
 """
-import json, os, re, sys, time, pathlib, datetime, traceback
+import json, os, random, re, sys, time, pathlib, datetime, traceback
 from urllib.parse import urlparse, unquote
 
 try:
@@ -24,6 +24,18 @@ UA = ("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like
 
 def log(*a):
     print(time.strftime("%H:%M:%S"), *a, flush=True)
+
+
+def geo_params(region, level=0):
+    """DataImpulse targeting for the proxy user name. level 0 = the city, 1 = wider (state / country), 2 = the country only."""
+    r = (region or "").lower()
+    if r == "vancouver":
+        return ["cr.ca;city.vancouver", "cr.ca", "cr.ca"][min(level, 2)], "America/Vancouver"
+    if r == "toronto":
+        return ["cr.ca;city.toronto", "cr.ca", "cr.ca"][min(level, 2)], "America/Toronto"
+    if r == "socal":
+        return ["cr.us;city.losangeles,sandiego,longbeach,anaheim,irvine,santaana,riverside", "cr.us;state.california", "cr.us"][min(level, 2)], "America/Los_Angeles"
+    return "cr.us", None
 
 
 class BlockedError(RuntimeError):
@@ -42,11 +54,12 @@ class Session:
         self.json_log = []                        # (url, parsed json) of the api calls, for the coupon discovery
         kw = {}
         px = (cfg.get("proxy") or "").strip()
+        tz = None
         if px:
             u = urlparse(px)
-            login = unquote(u.username or "")
-            if "__" not in login:
-                login += "__cr.us"
+            login = unquote(u.username or "").split("__")[0]
+            geo, tz = geo_params(acct.get("region"), acct.get("geo_level", 0))
+            login += "__" + geo + (";sessttl.%d" % int(cfg.get("session_minutes", 120)) if cfg.get("session_minutes", 120) else "")
             port = u.port or 823
             if cfg.get("sticky_base"):
                 port = int(cfg["sticky_base"]) + int(idx)   # one port = one steady IP for this account
@@ -54,11 +67,27 @@ class Session:
                 port = int(oport)                           # a port chosen by the runner (the saved one, or a fresh one after a block)
             self.port = port
             kw["proxy"] = {"server": "http://%s:%s" % (u.hostname, port), "username": login, "password": unquote(u.password or "")}
-            log("  proxy port", port)
-        self.browser = p.chromium.launch(headless=cfg.get("headless", True), args=["--disable-blink-features=AutomationControlled"], **kw)
-        self.ctx = self.browser.new_context(viewport={"width": 1366, "height": 900}, locale="en-US", user_agent=UA)
-        if cfg.get("fast", True):                 # images, fonts and videos are not needed to read offers: pages load much faster
-            self.ctx.route("**/*", lambda route: route.abort() if route.request.resource_type in ("image", "media", "font") else route.continue_())
+            log("  proxy port", port, "| location:", geo)
+        self.channel = None
+        self.browser = None
+        for ch in [cfg.get("channel") or "chrome", "chromium", None]:     # the real Chrome / new headless mode looks much more like a person than the bare headless shell
+            try:
+                a = dict(headless=cfg.get("headless", True), args=["--disable-blink-features=AutomationControlled"], **kw)
+                if ch:
+                    a["channel"] = ch
+                self.browser = p.chromium.launch(**a)
+                self.channel = ch
+                break
+            except Exception as e:
+                log("  browser", ch or "default", "not available:", str(e).split("\n")[0][:80])
+        if self.browser is None:
+            raise RuntimeError("no browser could be started - run install_scan.bat")
+        ctxkw = dict(viewport={"width": 1366, "height": 900}, locale="en-US")
+        if tz:
+            ctxkw["timezone_id"] = tz                        # the clock of the browser matches the city of the IP
+        if not self.channel:
+            ctxkw["user_agent"] = UA                         # only the bare headless shell announces itself; give it a normal name
+        self.ctx = self.browser.new_context(**ctxkw)
         self.page = self.ctx.new_page()
         self.page.on("response", self._on_resp)
 
@@ -103,17 +132,35 @@ class Session:
     def login(self):
         pg = self.page
         pg.goto(BASE + "/cart", wait_until="domcontentloaded", timeout=60000)
-        pg.wait_for_timeout(6000)
-        pg.locator("input[name=username]:visible").first.fill(self.acct["user"], timeout=40000)
-        pg.locator("input[name=password]:visible").first.fill(self.acct["pass"], timeout=20000)
-        pg.wait_for_timeout(400)
+        pg.wait_for_timeout(6000 + random.randint(0, 2500))
+        u = pg.locator("input[name=username]:visible").first
+        u.click(timeout=40000)
+        u.press_sequentially(self.acct["user"], delay=random.randint(45, 95))
+        pg.wait_for_timeout(500 + random.randint(0, 600))
+        w = pg.locator("input[name=password]:visible").first
+        w.click(timeout=20000)
+        w.press_sequentially(self.acct["pass"], delay=random.randint(45, 95))
+        pg.wait_for_timeout(600 + random.randint(0, 800))
         pg.locator("button:visible", has_text=re.compile(r"^\s*sign in\s*$", re.I)).last.click()
-        pg.wait_for_load_state("domcontentloaded", timeout=60000)
-        pg.wait_for_timeout(6000)
+        # wait until the sign-in page is left (slow proxies need more than a few seconds), or the page shows a message
+        for _ in range(45):
+            pg.wait_for_timeout(1000)
+            if "signin" not in pg.url.lower():
+                break
+            try:
+                if pg.locator("[role=alert]:visible, .error:visible, [class*=rror]:visible").count():
+                    break
+            except Exception:
+                pass
+        pg.wait_for_timeout(3000)
+        if "signin" in pg.url.lower():
+            self.diagnose(pg)
         pg.goto(BASE + "/account?sc_lang=en-US", wait_until="domcontentloaded", timeout=60000)
         self.settle(6000)
         if "signin" in pg.url.lower():
             self.diagnose(pg)
+        if self.cfg.get("fast", True):                 # after sign-in, images / fonts / videos are not needed to read offers: pages load faster
+            self.ctx.route("**/*", lambda route: route.abort() if route.request.resource_type in ("image", "media", "font") else route.continue_())
 
     def diagnose(self, pg):
         """sign-in did not work: save what the page shows and say why (wrong password -> do not retry; a human check / block -> new IP)"""
@@ -130,9 +177,18 @@ class Session:
                 open(os.path.join(d, "signin_%s_%s.txt" % (tag, self.port)), "w", encoding="utf-8").write(pg.url + "\n" + txt[:3000])
         except Exception:
             pass
-        low = txt.lower()
+        try:
+            alerts = " | ".join(t.strip() for t in pg.locator("[role=alert], .error, [class*=rror]").all_inner_texts() if t.strip())[:300]
+        except Exception:
+            alerts = ""
+        try:
+            main = " ".join(pg.inner_text("main", timeout=3000).split())[:300]
+        except Exception:
+            main = txt[-300:]
+        log("  sign-in page says:", alerts or main, "| url:", pg.url[:80])
+        low = (alerts + " " + main).lower() if (alerts or main) else txt.lower()
         frames = " ".join(f.url for f in pg.frames).lower()
-        if re.search(r"captcha|recaptcha|hcaptcha|turnstile|challenge", frames) or re.search(r"verify you are human|not a robot|human|captcha|unusual activity|access denied|blocked|just a moment|try again later", low):
+        if re.search(r"captcha|recaptcha|hcaptcha|turnstile|challenge", frames) or re.search(r"verify you are human|not a robot|captcha|unusual activity|access denied|blocked|just a moment|try again later", low):
             raise BlockedError("the site asked for a human check / blocked this IP")
         if re.search(r"incorrect|invalid|doesn.t match|not recognized|wrong|did not match|locked", low):
             raise BadLogin("the site rejected the user name or password: " + txt[:160])

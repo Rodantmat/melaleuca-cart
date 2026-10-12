@@ -87,6 +87,7 @@ def scan_one(job):
             port = ports[attempt - 1] if attempt - 1 < len(ports) else None
             if attempt > 1:
                 ms.log("retry %d of %d with another IP" % (attempt, tries))
+            a = dict(a, geo_level=0 if attempt <= 3 else (1 if attempt <= 5 else 2))   # exact city first, then wider if no IP can be had there
             try:
                 res = ms.scan_account(p, a, n, cfg, port)
             except Exception:
@@ -113,7 +114,7 @@ def main():
         pass
     sys.stdout = Tee(os.path.join(FEED, "scan_log.txt"))
     env = read_env(os.path.join(HERE, "credentials.env"))
-    tabs = {}
+    tabs, kinds, colours = {}, {}, {}
     tp = os.path.join(FEED, "mel_tabs.txt")
     if not os.path.exists(tp):
         print("feed\\mel_tabs.txt is missing - start this from Excel (Update Melaleuca Data).")
@@ -122,6 +123,8 @@ def main():
         p = ln.rstrip("\r\n").split("\t")
         if len(p) >= 2 and p[0].strip().isdigit():
             tabs[int(p[0])] = p[1]
+            kinds[int(p[0])] = p[2].strip() if len(p) > 2 else "2"
+            colours[int(p[0])] = p[3].strip().lower() if len(p) > 3 else ""
     only = None
     if "--only" in sys.argv:
         only = int(sys.argv[sys.argv.index("--only") + 1])
@@ -131,7 +134,10 @@ def main():
         if only and n != only:
             continue
         if u and pw:
-            accounts.append({"tab": tabs[n], "n": n, "user": u, "pass": pw})
+            region = env.get("REGION_%d" % n, "").strip().lower()
+            if not region:                                   # orange tabs = Vancouver, yellow = Toronto, blue = southern California
+                region = {"orange": "vancouver", "yellow": "toronto"}.get(colours.get(n, ""), "socal" if kinds.get(n) == "2" else "vancouver")
+            accounts.append({"tab": tabs[n], "n": n, "user": u, "pass": pw, "region": region})
         else:
             print("tab %d (%s): no MELA_USER_%d / MELA_PASS_%d in credentials.env - skipped" % (n, tabs[n], n, n))
     if not accounts:
@@ -139,6 +145,8 @@ def main():
         return 2
     cfg = {"proxy": env.get("PROXY_URL", ""), "sticky_base": (10000 if env.get("STICKY_BASE") is None else int(env.get("STICKY_BASE") or 0)),
            "headless": env.get("HEADLESS", "1") not in ("0", "false", "no")}
+    cfg["channel"] = env.get("BROWSER", "chrome") or "chrome"
+    cfg["session_minutes"] = int(env.get("SESSION_MINUTES", "120") or 0)
     cfg["debug_dir"] = os.path.join(FEED, "debug")
     cfg["max_tries"] = int(env.get("MAX_TRIES", "8") or 8)
     cfg["fast"] = env.get("FAST", "1") not in ("0", "false", "no")

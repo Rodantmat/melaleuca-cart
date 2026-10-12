@@ -28,7 +28,25 @@ def test(port, url):
         return "FAILED (%.1fs) %s" % (time.time() - t, str(e)[:120])
 
 
-for port in (823, 10001, 10007):
-    for url in ("https://api.ipify.org", "https://www.melaleuca.com/"):
-        print("port %-5s %-28s %s" % (port, url, test(port, url)))
+import json
+LOGIN_BASE = login.split("__")[0]
+
+
+def geo_test(label, geo, port=10001):
+    px = "http://%s:%s@%s:%s" % (urllib.parse.quote(LOGIN_BASE + "__" + geo, safe=""), urllib.parse.quote(pw, safe=""), u.hostname, port)
+    op = urllib.request.build_opener(urllib.request.ProxyHandler({"http": px, "https": px}))
+    t = time.time()
+    try:
+        r = op.open(urllib.request.Request("https://ipinfo.io/json", headers={"User-Agent": "Mozilla/5.0"}), timeout=30)
+        d = json.loads(r.read().decode())
+        return "OK  %s  %s, %s, %s  (%.1fs)" % (d.get("ip"), d.get("city"), d.get("region"), d.get("country"), time.time() - t)
+    except Exception as e:
+        return "FAILED (%.1fs) %s" % (time.time() - t, str(e)[:100])
+
+
+print("\nLocation test (each line should show the city asked for):")
+for label, geo in (("blue / S. California", "cr.us;city.losangeles,sandiego,longbeach,anaheim,irvine,santaana,riverside"),
+                   ("blue / state only", "cr.us;state.california"),
+                   ("orange / Vancouver", "cr.ca;city.vancouver"), ("yellow / Toronto", "cr.ca;city.toronto"), ("Canada only", "cr.ca")):
+    print("%-22s %s" % (label, geo_test(label, geo)))
 input("\nPress Enter to close")
