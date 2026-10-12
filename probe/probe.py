@@ -86,7 +86,7 @@ with sync_playwright() as p:
         page.wait_for_timeout(8000)
         snap(page, "03_after_login"); inputs(page, "03_after_login")
         log("still on sign-in form: " + str(page.locator("input[name=password]:visible").count() > 0))
-        step("login", login)
+    step("login", login)
 
     for name, url in (("04_outlet", "https://www.melaleuca.com/productstore/extra-savings/outlet-store"),
                       ("05_monthly", "https://www.melaleuca.com/productstore/extra-savings/monthly-specials"),
