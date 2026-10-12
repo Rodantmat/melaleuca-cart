@@ -66,8 +66,10 @@ with sync_playwright() as p:
     reqs = []
     API = OUT / "api"; API.mkdir(exist_ok=True)
     cnt = {"n": 0}
+    LAST = {}
     def on_resp(r):
         try:
+            if "/api/cart/summary" in r.url and r.request.method == "GET": LAST["summary"] = r.url
             ct = r.headers.get("content-type", "")
             if "json" in ct and "melaleuca" in r.url and cnt["n"] < 150:
                 body = r.body()
@@ -120,9 +122,10 @@ with sync_playwright() as p:
     if os.environ.get("MODE") == "cart":
         # ---- CART MECHANICS TEST: add ONE item, look at the cart, remove it. Never checks out. ----
         def cart_total():
-            r = ctx.request.get("https://www.melaleuca.com/api/cart/summary?sc_lang=en-US&sc_site=productstoreUs", timeout=30000)
             try:
-                sm = r.json()["Data"]["Summary"]; return sm.get("ItemCount"), sm.get("Points")
+                u = LAST["summary"]
+                r = page.evaluate("async (u) => { const r = await fetch(u, {credentials:'include'}); return await r.json(); }", u)
+                sm = r["Data"]["Summary"]; return sm.get("ItemCount"), sm.get("Points")
             except Exception as e:
                 return f"summary failed {e}"
         def add_one():
@@ -131,7 +134,7 @@ with sync_playwright() as p:
             except Exception: pass
             page.wait_for_timeout(8000)
             log("cart before: " + str(cart_total()))
-            btns = page.locator("button:visible", has_text=re.compile(r"^\s*(select|add to cart)\s*$", re.I))
+            btns = page.get_by_text(re.compile(r"^\s*(select|add to cart)\s*$", re.I)).locator("visible=true")
             log("add-to-cart buttons visible: %d" % btns.count())
             snap(page, "10_outlet_ready")
             if btns.count() == 0:
