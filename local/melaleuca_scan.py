@@ -45,6 +45,8 @@ class Session:
             log("  proxy port", port)
         self.browser = p.chromium.launch(headless=cfg.get("headless", True), **kw)
         self.ctx = self.browser.new_context(viewport={"width": 1366, "height": 900}, locale="en-US", user_agent=UA)
+        if cfg.get("fast", True):                 # images, fonts and videos are not needed to read offers: pages load much faster
+            self.ctx.route("**/*", lambda route: route.abort() if route.request.resource_type in ("image", "media", "font") else route.continue_())
         self.page = self.ctx.new_page()
         self.page.on("response", self._on_resp)
 
