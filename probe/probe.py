@@ -129,6 +129,13 @@ with sync_playwright() as p:
                 sm = r["Data"]["Summary"]; return sm.get("ItemCount"), sm.get("Points")
             except Exception as e:
                 return f"summary failed {e}"
+        def warm():
+            page.goto("https://www.melaleuca.com/account?sc_lang=en-US", wait_until="domcontentloaded", timeout=60000)
+            try: page.wait_for_load_state("networkidle", timeout=40000)
+            except Exception: pass
+            page.wait_for_timeout(8000)
+            log("warm-up page: " + page.url[:60] + " title=" + page.title())
+        step("warm up session", warm)
         def add_one():
             page.goto("https://www.melaleuca.com/productstore/extra-savings/outlet-store?sc_lang=en-US", wait_until="domcontentloaded", timeout=60000)
             try: page.wait_for_load_state("networkidle", timeout=40000)
@@ -138,6 +145,12 @@ with sync_playwright() as p:
             btns = page.get_by_text(re.compile(r"^\s*(select|add to cart)\s*$", re.I)).locator("visible=true")
             log("add-to-cart buttons visible: %d" % btns.count())
             snap(page, "10_outlet_ready")
+            try:
+                html = page.content()
+                i = html.find("Defining Gel")
+                (OUT / "10_card.html").write_text(html[max(0, i - 3000): i + 3000], encoding="utf-8")
+            except Exception as e:
+                log("card html failed " + str(e))
             if btns.count() == 0:
                 # open the first product card and look for the button there
                 cards = page.locator("a[href*='/productstore/']:visible")
