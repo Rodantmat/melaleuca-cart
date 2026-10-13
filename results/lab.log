@@ -1,0 +1,136 @@
+04:27:27   proxy port 10007 | location: cr.us;city.losangeles,sandiego,longbeach,anaheim,irvine,santaana,riverside
+{
+ "url": "https://www.melaleuca.com/productstore/home-fragrance/revive-fabric-freshener-wrinkle-relaxer-starter-pack?sc_lang=en-US",
+ "title": [
+  "Revive\u2122 Fabric Freshener &amp; Wrinkle Relaxer Starter Pack"
+ ],
+ "info": {
+  "conf": [
+   {
+    "type": "FSKU",
+    "title": "Scent",
+    "sku": null,
+    "feature": "F994",
+    "req": 1,
+    "choices": [
+     {
+      "title": "Original Fragrance",
+      "sku": "32993",
+      "refiner": "1119-5447"
+     },
+     {
+      "title": "Sea Salt & Vanilla",
+      "sku": "32992",
+      "refiner": "1119-5449"
+     },
+     {
+      "title": "Tropical Fruits & Floral",
+      "sku": "32991",
+      "refiner": "1119-5450"
+     }
+    ]
+   },
+   {
+    "type": "Static",
+    "title": "",
+    "sku": "799",
+    "feature": null,
+    "req": 0,
+    "choices": []
+   },
+   {
+    "type": "Static",
+    "title": "",
+    "sku": "33004",
+    "feature": null,
+    "req": 0,
+    "choices": []
+   },
+   {
+    "type": "Static",
+    "title": "",
+    "sku": "33008",
+    "feature": null,
+    "req": 0,
+    "choices": []
+   },
+   {
+    "type": "Static",
+    "title": "Revive\u2122 Fabric Freshener & Wrinkle Relaxer Mixing Bottle",
+    "sku": "32994",
+    "feature": null,
+    "req": 0,
+    "choices": []
+   }
+  ],
+  "acc": []
+ },
+ "variants": [
+  {
+   "sku": "33961",
+   "name": "Revive\u2122 Fabric Freshener & Wrinkle Relaxer Starter Pack",
+   "size": "2 products",
+   "price": 7.68,
+   "pts": 3.0,
+   "sold": false
+  }
+ ],
+ "tried": {
+  "A_all": {
+   "status": 200,
+   "ok": true,
+   "val": [],
+   "pts": 0,
+   "line": "1",
+   "cart": [
+    [
+     "1",
+     "33961",
+     3
+    ]
+   ]
+  },
+  "B_feat_only": {
+   "status": 200,
+   "ok": true,
+   "val": [],
+   "pts": 0,
+   "line": "1",
+   "cart": [
+    [
+     "1",
+     "33961",
+     3
+    ]
+   ]
+  },
+  "C_static_self": {
+   "status": 200,
+   "ok": true,
+   "val": [],
+   "pts": 0,
+   "line": "1",
+   "cart": [
+    [
+     "1",
+     "33961",
+     3
+    ]
+   ]
+  },
+  "D_nostatic_conf": {
+   "status": 200,
+   "ok": true,
+   "val": [],
+   "pts": 0,
+   "line": "1",
+   "cart": [
+    [
+     "1",
+     "33961",
+     3
+    ]
+   ]
+  }
+ }
+}
