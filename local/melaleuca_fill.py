@@ -653,25 +653,36 @@ def run(n, dry=False, lab=False, final=True):
             ok_pts, ok_cost = abs(pts - exp_pts) < 0.5, abs(net - exp_ws) < 0.05
             say("RESULT  : points %s | cost %s" % ("MATCH" if ok_pts else "DIFFER by %+.0f" % (pts - exp_pts), "MATCH" if ok_cost else "DIFFER by %+.2f" % (net - exp_ws)))
             by_line = {str(it.get("LineId")): it for it in cart_items(js)}
-            agg = {}
-            for a in acts:
-                if a.line is not None:
-                    g = agg.setdefault(str(a.line), [0.0, 0.0, []])
-                    g[0] += a.expect_pts
-                    g[1] += a.expect_ws
-                    g[2].append(a.label)
+            # actions that share a sheet row or a cart line belong together (a pack and its bottles, ...): compared as one block
+            parent = list(range(len(acts)))
+
+            def find(x):
+                while parent[x] != x:
+                    parent[x] = parent[parent[x]]
+                    x = parent[x]
+                return x
+            seen_key = {}
+            for i, a in enumerate(acts):
+                for key in [("row", r) for r in a.rows] + ([("line", str(a.line))] if a.line is not None else []):
+                    if key in seen_key:
+                        parent[find(i)] = find(seen_key[key])
+                    else:
+                        seen_key[key] = i
+            blocks = {}
+            for i, a in enumerate(acts):
+                blocks.setdefault(find(i), []).append(a)
             diffs = []
-            for lid, (ep, ew, labels) in agg.items():
-                it = by_line.get(lid)
-                if not it:
-                    diffs.append("%s: not found in the cart (sheet %.0f pts / %.2f)" % (" + ".join(labels)[:60], ep, ew))
-                    continue
-                ap, aw = f2(it.get("RawPoints")), f2(it.get("RawPrice"))
-                if abs(ap - ep) > 0.5 or abs(aw - ew) > 0.05:
-                    diffs.append("%s: sheet %.0f pts / %.2f  -  store %.0f pts / %.2f" % (" + ".join(labels)[:60], ep, ew, ap, aw))
-            for a in acts:
-                if a.line is None and not a.done:
-                    diffs.append("%s: NOT ADDED (%s)" % (a.label[:60], a.notes[-1:] ))
+            for aa in blocks.values():
+                ep, ew = sum(a.expect_pts for a in aa), sum(a.expect_ws for a in aa)
+                lids = {str(a.line) for a in aa if a.line is not None}
+                missing = [a for a in aa if not a.done]
+                ap = sum(f2(by_line[l].get("RawPoints")) for l in lids if l in by_line)
+                aw = sum(f2(by_line[l].get("RawPrice")) for l in lids if l in by_line)
+                name = " + ".join(sorted({a.label for a in aa}))[:70]
+                if missing:
+                    diffs.append("%s: NOT ADDED (%s)" % (name, (missing[0].notes[-1:] or ["?"])[0]))
+                elif abs(ap - ep) > 0.5 or abs(aw - ew) > 0.05:
+                    diffs.append("%s: sheet %.0f pts / %.2f  -  store %.0f pts / %.2f" % (name, ep, ew, ap, aw))
             for d in diffs:
                 say("  DIFFERENCE:", d)
             if not diffs and ok_pts and ok_cost:
