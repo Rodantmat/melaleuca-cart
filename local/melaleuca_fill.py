@@ -687,6 +687,12 @@ def run(n, dry=False, lab=False, final=True):
         finally:
             try:
                 if lab:
+                    try:
+                        left = fl.clear()
+                        if left:
+                            log("lab cleanup: removed", left, "lines")
+                    except Exception as e:
+                        log("LAB CLEANUP PROBLEM - empty the cart of the test account by hand:", str(e)[:100])
                     s.close()
             except Exception:
                 pass
