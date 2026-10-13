@@ -1,0 +1,104 @@
+{
+ "34914": {
+  "conf": [
+   {
+    "type": "FSKU",
+    "title": "Cleaner Selection",
+    "sku": null,
+    "feature": "F1577",
+    "req": 5,
+    "choices": [
+     {
+      "title": "Clean & Gleam Floor Cleaner",
+      "sku": "5612",
+      "refiner": "902-6324"
+     },
+     {
+      "title": "Clear Power Glass Cleaner",
+      "sku": "1212",
+      "refiner": "902-4636"
+     },
+     {
+      "title": "MelaMagic Heavy-Duty Cleaner",
+      "sku": "1235",
+      "refiner": "902-4640"
+     },
+     {
+      "title": "No Work Daily Shower Cleaner",
+      "sku": "1214",
+      "refiner": "902-4637"
+     },
+     {
+      "title": "Rustic Touch Furniture Polish",
+      "sku": "3427",
+      "refiner": "902-4638"
+     },
+     {
+      "title": "Safe & Mighty",
+      "sku": "5680",
+      "refiner": "902-4632"
+     },
+     {
+      "title": "Tough and Tender",
+      "sku": "1218",
+      "refiner": "902-4633"
+     },
+     {
+      "title": "Tub & Tile Bathroom Cleaner",
+      "sku": "1216",
+      "refiner": "902-4635"
+     },
+     {
+      "title": "Harvest Pure\u2122 Fruit And Vegetable Wash",
+      "sku": "30101",
+      "refiner": "902-6524"
+     }
+    ]
+   }
+  ],
+  "acc": [
+   {
+    "sku": "1219",
+    "title": "Tough & Tender\u00ae Mixing Spray Bottle",
+    "price": 1.79,
+    "pts": 0.0
+   },
+   {
+    "sku": "1217",
+    "title": "Tub & Tile\u2122 Mixing Spray Bottle",
+    "price": 1.79,
+    "pts": 0.0
+   },
+   {
+    "sku": "1215",
+    "title": "No Work\u00ae Mixing Spray Bottle",
+    "price": 1.79,
+    "pts": 0.0
+   },
+   {
+    "sku": "1213",
+    "title": "Clear Power\u2122 Mixing Spray Bottle  ",
+    "price": 1.79,
+    "pts": 0.0
+   },
+   {
+    "sku": "7188",
+    "title": "Microfiber Cleaning Cloths 2-Pack",
+    "price": 6.99,
+    "pts": 3.0
+   },
+   {
+    "sku": "5605",
+    "title": "Clean & Gleam\u2122 Spray Mop + 3 Mop Pads",
+    "price": 35.49,
+    "pts": 0.0
+   },
+   {
+    "sku": "8682",
+    "title": "Reusable Rustic Touch Furniture Polish Sprayer",
+    "price": 1.29,
+    "pts": 0.0
+   }
+  ]
+ }
+}

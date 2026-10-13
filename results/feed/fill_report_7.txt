@@ -1,0 +1,20 @@
+signed in as Antonio M | plan: 5 lines, TOTAL points ? cost ?
+actions: 4 | offer lines: 0 | problems: 0
+  added [pack] 34914 x1 CLEAN pack 1/1:  - No Work - 8oz with Bottle, Ecosense  
+       choice: Ecosense - Clear Power Glass Cleaner - 8oz with bottle -> Clear Power Glass Cleaner (10.0)
+       choice: Ecosense - Harvest Pure - 8oz -> Harvest Pure™ Fruit And Vegetable Wash (10.0)
+       choice: Ecosense - Mela-magic - 16oz -> MelaMagic Heavy-Duty Cleaner (10.0)
+       choice: Ecosense - No Work - 8oz with Bottle -> No Work Daily Shower Cleaner (10.0)
+       choice: Ecosense - Tub and Tile - 8oz with Bottle -> Tub & Tile Bathroom Cleaner (10.0)
+  added [single] 1213 x1 Clear Power™ Mixing Spray Bottle   for Ecosense - Clear 
+  added [single] 1215 x1 No Work® Mixing Spray Bottle for Ecosense - No Work - 8 
+  added [single] 1217 x1 Tub & Tile™ Mixing Spray Bottle for Ecosense - Tub and  
+cart before the offers: 4 items, 10 points
+
+CART NOW: 4 items | 10 points | gross 33.33 | net 33.33 | discount 0
+SHEET   : all lines 10 points | 33.33 cost   (TOTAL row: ? points counted for the order limit + 0 points of credit items)
+RESULT  : points MATCH | cost MATCH
+  DIFFERENCE: CLEAN pack 1/1:  - No Work - 8oz with Bottle, Ecosense - Mel: sheet 10 pts / 33.33  -  store 10 pts / 27.96
+  DIFFERENCE: Clear Power™ Mixing Spray Bottle   for Ecosense - Clear Powe: sheet 0 pts / 0.00  -  store 0 pts / 1.79
+  DIFFERENCE: No Work® Mixing Spray Bottle for Ecosense - No Work - 8oz wi: sheet 0 pts / 0.00  -  store 0 pts / 1.79
+  DIFFERENCE: Tub & Tile™ Mixing Spray Bottle for Ecosense - Tub and Tile : sheet 0 pts / 0.00  -  store 0 pts / 1.79
