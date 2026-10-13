@@ -66,12 +66,29 @@ def toks(s):
     return out
 
 
-def name_score(product_name, choice_title):
+ALIAS.update({"iced": "ice", "tea": "tea", "splash": "splash", "h2o": "splash"})
+
+
+def weights_for(titles):
+    """a word that only one choice has counts a lot, a word most choices share (fluoride, packets) counts little"""
+    df = {}
+    for t in titles:
+        for w in toks(t):
+            df[w] = df.get(w, 0) + 1
+    return {w: 1.0 / n for w, n in df.items()}
+
+
+def name_score(product_name, choice_title, weights=None):
     a, b = toks(product_name), toks(choice_title)
     if not b or not a:
         return 0.0
-    inter = len(a & b)
-    return (inter / len(b)) * 0.75 + (inter / len(a)) * 0.25
+    if weights is None:
+        inter = len(a & b)
+        return (inter / len(b)) * 0.75 + (inter / len(a)) * 0.25
+    wt = lambda t: weights.get(t, 1.0)
+    got = sum(wt(t) for t in b if t in a)
+    tot = sum(wt(t) for t in b)
+    return got / tot * 0.97 + 0.03 * len(a & b) / len(a)
 
 
 # ------------------------------------------------------------------------------------------------ store pages
@@ -116,13 +133,14 @@ def assign_choices(units, conf):
     fs = [c for c in conf if c["type"] == "FSKU"]
     cap = [c["req"] for c in fs]
     cands = []
+    wts = [weights_for([ch["title"] for ch in c["choices"]]) for c in fs]
     for ui, (nm, mel) in enumerate(units):
         for ci, c in enumerate(fs):
             for ch in c["choices"]:
                 if mel and NUM.match(mel) and ch["sku"] == mel:
                     sc = 10.0
                 else:
-                    sc = name_score(nm, ch["title"])
+                    sc = name_score(nm, ch["title"], wts[ci])
                 if sc >= 0.5:
                     cands.append((sc, ui, ci, ch))
     cands.sort(key=lambda t: -t[0])
@@ -274,11 +292,12 @@ class Catalog:
                 want = prices[0] if m.group(3) == "L" else prices[-1]
                 vs2 = [v for v in vs if v["price"] == want]
                 vs = vs2 or vs
-        sc = sorted(((name_score(L["name"], v["name"]), v) for v in vs), key=lambda t: -t[0])
+        wv = weights_for([v["name"] for v in vs])
+        sc = sorted(((name_score(L["name"], v["name"], wv), v) for v in vs), key=lambda t: -t[0])
         if len(vs) == 1:
             return vs[0]["sku"], "only variant: " + vs[0]["name"]
         best = sc[0]
-        if best[0] < 0.4:
+        if best[0] < 0.5:
             return None, "no variant of family %s looks like '%s' (best: %s %.2f)" % (fid, L["name"], best[1]["name"], best[0])
         if len(sc) > 1 and sc[1][0] >= best[0] - 0.001:
             return None, "ambiguous: '%s' fits %s and %s equally" % (L["name"], best[1]["name"], sc[1][1]["name"])
@@ -321,7 +340,7 @@ def build_actions(plan, info, resolve_variant=None):
             for _ in range(packs):
                 conf, pr, ch = assign_choices([(L["name"], L["melid"])] * n, inf["conf"]) if any(c["type"] == "FSKU" for c in inf["conf"]) else ([], [], [])
                 problems += ["row %d: %s" % (L["row"], x) for x in pr]
-                acts.append(Action("pack", L["packsku"], 1, conf, label="%d-pack: %s" % (n, L["name"]), rows=[L["row"]], expect_pts=L["pts"] / packs, expect_ws=L["ws"] / packs))
+                acts.append(Action("pack", L["packsku"], 1, conf, label="%d-pack: %s" % (n, L["name"]), rows=[L["row"]], expect_pts=L["pts"] / packs, expect_ws=L["ws"] / packs, notes=[("%s -> %s (%s)" % c) for c in ch]))
             note_coupon(L, notes)
             add_accessories(L, inf, acts, notes)
             continue
@@ -563,7 +582,9 @@ def run(n, dry=False, lab=False, final=True):
                 say("  PROBLEM:", pr)
             if dry:
                 for a in acts:
-                    say("  would add [%s] %s x%d %s %s" % (a.kind, a.sku, a.qty, a.label[:60], json.dumps(a.conf)[:120] if a.conf else ""))
+                    say("  would add [%s] %s x%d %s" % (a.kind, a.sku, a.qty, a.label[:70]))
+                    for c in a.notes:
+                        say("       choice:", c)
                 return 0
             # ---- 1. products and packs
             for a in acts:
