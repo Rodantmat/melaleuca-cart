@@ -1,0 +1,94 @@
+signed in as Antonio M | plan: 40 lines, TOTAL points 144.0 cost 400.3
+  variant: Exercise - Simply Fit Vanilla Greek Yogurt (F623) -> 1300  Vanilla Greek Yogurt (0.98)
+  variant: Exercise - FiberWise Orange No Sugar (F2666) -> 60140  FiberWise Drink: Orange Sugar-Free (0.66)
+  variant: Exercise - Sustain Sport - Raspberry Lemonade (F2768) -> 60127  Sustain Active Hydration: Raspberry Lemonade Packets   (0.70)
+  variant: Exercise - FiberWise Drink-Berry Sugar-free (F2666) -> 60141  FiberWise Drink: Berry Sugar-Free (0.99)
+  variant: Haircare - Original Shampoo - 32oz (R289H) -> 4906  only variant: Original Shampoo
+  variant: Ecosense - Sol-U-Mel - Lemon Blossom - 8oz with bo (R642L) -> 293  Lemon Blossom (0.98)
+actions: 23 | offer lines: 7 | problems: 0
+  added [single] 1300 x1 Exercise - Simply Fit Vanilla Greek Yogurt 
+  added [single] 60140 x1 Exercise - FiberWise Orange No Sugar 
+  added [single] 5612 x1 Ecosense - Clean And Gleam - 8oz 
+  added [pack] 33022 x1 3-pack: Ecosense - Prespot Instant Stain Remover 
+  added [single] 3620 x2 Renew - Body Wash 12oz 
+  added [pack] 5018 x1 2-pack: Ecosense - Diamond Brite - 25 Loads 
+  added [single] 4913 x1 Koala Pals - Hair Wash 
+  added [single] 60127 x1 Exercise - Sustain Sport - Raspberry Lemonade 
+  added [single] 60141 x1 Exercise - FiberWise Drink-Berry Sugar-free 
+  added [single] 4906 x1 Haircare - Original Shampoo - 32oz 
+  added [single] 293 x1 Ecosense - Sol-U-Mel - Lemon Blossom - 8oz with bottle 
+  added [single] 1209 x1 Sol-U-Mel® Mixing Spray Bottle for Ecosense - Sol-U-Mel 
+  added [single] 2211 x1 Ecosense - PreSpot - 8oz - 2-Pack 
+  added [pack] 34911 x1 CLEAN pack 1/1: Ecosense - Mela-magic - 16oz, Ecosense  
+       choice: Ecosense - Harvest Pure - 8oz -> Harvest Pure™ Fruit And Vegetable Wash (10.0)
+       choice: Ecosense - Mela-magic - 16oz -> MelaMagic Heavy-Duty Cleaner (10.0)
+       choice: Ecosense - No Work - 8oz -> No Work Daily Shower Cleaner (10.0)
+  added [pack] 190 x1 DEOD pack 1/1: finia Sweet Cream and Willow, nia Vanill 
+       choice: Deodorant - Affinia Sweet Cream and Willow -> Affinia Sweet Cream & Willow (0.99)
+       choice: Deodorant - Alloy Antiperspirant -> Alloy AP/DEO (10.0)
+       choice: Deodorant - Affinia Vanilla Musk and Jasmine -> Vanilla Musk & Jasmine (0.99)
+  added [pack] 7911 x1 F650 pack 1/1: des - Lip Balm - Pina Colada, p Balm - C 
+       choice: Sun Shades - Lip Balm - Cranberry Tangerine -> Cranberry Tangerine (0.98)
+       choice: Sun Shades - Lip Balm - Cranberry Tangerine -> Cranberry Tangerine (0.98)
+       choice: Sun Shades - Lip Balm - Pina Colada -> Pina Colada (0.98)
+  added [pack] 39176 x1 PSGEL2 pack 1/1: Prespot with Scrubbing Brush 
+  added [pack] 23963 x1 AFFSC pack 1/1: Affinia Moisture Conditioner, e - Affin 
+       choice: Haircare - Affinia Moisture Shampoo -> Moisture Shampoo (10.0)
+       choice: Haircare - Affinia Moisture Conditioner -> Moisture Conditioner (10.0)
+  added [pack] 43987 x1 TOOTH pack 1/1:  - Koala Pals - Berrylicious, hcare - C 
+       choice: Toothcare - Koala Pals - Berrylicious -> Berrylicious +Fluoride (0.87)
+       choice: Toothcare - Exceed - Cinnamon -> Cinnamon - Fluoride-Free (10.0)
+       choice: Toothcare - Classic - Fresh Mint -> Classic Fresh Mint - Fluoride-Free (0.83)
+  added [pack] 8911 x1 SGD2 pack 1/1: Ecosense - Sol U Guard 
+  added [pack] 5026 x1 F252 pack 1/1: Brite - 16oz - Apple Scented, Brite - 16 
+       choice: EcoSense - Lemon Brite - 16oz - Tropical Scented -> Tropical (0.98)
+       choice: EcoSense - Lemon Brite - 16oz - Apple Scented -> Apple (0.98)
+       choice: EcoSense - Lemon Brite - 16oz - Lemon Scented -> Lemon (0.98)
+  added [pack] 5027 x1 F298 pack 1/1:  Dryer Sheets - Clean Cotton, ft Dryer S 
+       choice: Laundry - Melasoft Dryer Sheets - Clean Cotton -> Clean Cotton (0.98)
+       choice: Laundry - Melasoft Dryer Sheets - Scent Free -> Scent Free (0.98)
+  added [pack] 2154 x1 F296 pack 1/1: laSoft Bottle - Clean Cotton 
+       choice: Laundry - MelaSoft Bottle - Clean Cotton -> Clean Cotton (0.98)
+       choice: Laundry - MelaSoft Bottle - Clean Cotton -> Clean Cotton (0.98)
+cart before the offers: 24 items, 133 points
+offers on the page: 27
+     offer card 34050 | promo 2013704 | Ahorre $10.00 al compar dos detergentes para la ropa MelaPower
+     offer card 69235 | promo 2013741 | Ahorre $3.00 en la manteca de res Riverbend Ranch!
+     offer card 39820 | promo 2013706 | Ahorre $2.00 al comprar dos botellas de Lemon Brite con aroma a arándanos rojos 
+     offer card 49677 | promo 2013688 | Ahorre $9.00 al comprar dos repuestos del jabón de manos Renew
+     offer card 64295 | promo 2013743 | Ahorre $7.00 al comprar 3 cajas de barras de frutos secos Simply Fit!
+     offer card 39734 | promo 2013705 | Ahorre $5.00 al comprar un Sol-U-Mel de manzana y canela y un Tough & Tender de 
+     offer card 59826 | promo 2013689 | Ahorre $21.00 en el conjunto para preparar la mezcla Pure Long Winter Nap
+     offer card 6269 | promo 2013697 | Compre un frasco de Vitality Coldwater Omega-3 y llévese otro frasco por solo $3
+     offer card 8068 | promo 2013693 | Ahorre $4.00 en el aceite Pure de lavanda
+     offer card 6833 | promo 2013687 | Compre un Safe & Mighty y llévese otro por $2.99
+     offer card 5070 | promo 2013702 | Ahorre $3.00 al comprar tres barras de aseo personal
+     offer card 69327 | promo 2013698 | Compre un frasco de Activate Immune Complex y llévese otro por $2.99
+     offer card 1682 | promo 2013684 | Ahorre $20.00 al comprar dos frascos de Luminex
+     offer card 6400 | promo 2013707 | Ahorre $3.50 al comprar cinco cajas de mentas Exceed
+     offer card 8194 | promo 2013695 | Compre un limpiador de baño Tub & Tile y llévese otro por $2.49
+     offer card 4227 | promo 2013694 | Ahorre $10.00 al comprar dos abrillantador de ropa MelaBrite
+     offer card 74141 | promo 2013696 | Ahorre entre $23.00 y $32.50 en un tratamiento y un humectante Sei Bella
+     offer card 49635 | promo 2013699 | Ahorre $4.00 al comprar dos tubos de crema para el eczema Renew
+     offer card 49096 | promo 2013685 | Compre un Pain-A-Trate Ultra y llévese otro por $2.49
+     offer card 69311 | promo 2013701 | Ahorre $20.00 al comprar dos PhloraV
+     offer card 8669 | promo 2013703 | Ahorre $5.00 al comprar tres jabones líquidos Sun Valley (Dispenadores se venden
+     offer card 6476 | promo 2013700 | Ahorre $10.00 al comprar dos bebidas FiberWise
+     offer card 74091 | promo 2013690 | Ahorra entre $30.00 y $32.50 en la colección esencial de Deep Marine
+     offer card 29500 | promo 2013769 | Ahorre $5.00 en el limpiador facial calmante Alloy!
+     offer card 79015 | promo 2013686 | Ahorre $3.00 en el limpiador facial suave de uso diario The Basic Collection de 
+     offer card 8246 | promo 2013691 | Compre un frasco de Vitality Calcium Complete y llévese otro por $2.49
+     offer card 5520 | promo 2013692 | Compre dos paquetes de toallitas desmaquillantes Sei Bella y llévese otro GRATIS
+  added offer 6833 x1 Compre un Safe & Mighty y llévese otro por $2.99 
+  added offer 79015 x1 Ahorre $3.00 en el limpiador facial suave de uso diario 
+  added offer 49096 x1 Compre un Pain-A-Trate Ultra y llévese otro por $2.49 
+  added offer 34050 x1 Ahorre $10.00 al compar dos detergentes para la ropa Me [{"FeatureSku": "F444", "SelectedSku": "3441"}, {"FeatureSku": "F444", "SelectedSku": "3441"}]
+  added offer 8194 x1 Compre un limpiador de baño Tub & Tile y llévese otro p 
+  added offer 49635 x1 Ahorre $4.00 al comprar dos tubos de crema para el ecze 
+  added offer 6269 x1 Compre un frasco de Vitality Coldwater Omega-3 y lléves 
+
+CART NOW: 31 items | 165 points | gross 409.3 | net 409.3 | discount 0
+SHEET   : all lines 158 points | 400.30 cost   (TOTAL row: 144 points counted for the order limit + 14 points of credit items)
+RESULT  : points DIFFER by +7 | cost DIFFER by +9.00
+  DIFFERENCE: Renew - Body Wash 12oz: sheet 5 pts / 12.98  -  store 12 pts / 21.98
+  NOTE: row 32 Renew - Body Wash 12oz: coupon line - the product is added, apply its coupon in the cart (coupons are not applied automatically)
