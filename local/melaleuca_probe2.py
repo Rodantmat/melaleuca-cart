@@ -42,8 +42,7 @@ def pick_in_open_boxes(pg, tag, which):
             info = pg.evaluate(JS_OPEN_BOX, i)
             if info:
                 save("%s_box%d.html" % (tag, i), info["text"] + "\n\n" + info["html"])
-            cand = pg.locator("[class*=accordion] li:visible, [class*=accordion] [role=option]:visible, [class*=accordion] label:visible, "
-                              "[class*=accordion] [class*=option]:visible, [class*=accordion] [class*=item]:visible")
+            cand = pg.locator(".o-configuratorAcc__list button.m-refinerImage:visible")
             k = cand.count()
             if k:
                 idx = (which + i) % k
@@ -106,7 +105,7 @@ def main():
                     save(tag + "_chosen.json", json.dumps(chosen))
                     s.page.screenshot(path=os.path.join(OUT, tag + "_chosen.png"), full_page=True)
                     state["block"], state["tag"] = True, tag
-                    btn = s.page.get_by_text("ADD TO CART", exact=True).first
+                    btn = s.page.locator("button", has_text=re.compile(r"^\\s*add to cart\\s*$", re.I)).first
                     btn.click(timeout=6000)
                     s.page.wait_for_timeout(3500)
                     s.page.screenshot(path=os.path.join(OUT, tag + "_afteradd.png"), full_page=False)
@@ -149,7 +148,7 @@ def main():
                             print("   card not found")
                             continue
                         state["block"], state["tag"] = True, tag
-                        s.page.locator("button:visible", has_text=re.compile(r"^\s*select\s*$", re.I)).nth(idx).click(timeout=6000)
+                        s.page.evaluate("""(i) => { const bs = Array.from(document.querySelectorAll('button')).filter(b => /^\\s*select\\s*$/i.test(b.innerText)); bs[i].scrollIntoView(); bs[i].click(); }""", idx)
                         s.page.wait_for_timeout(2500)
                         dl = s.page.evaluate("() => Array.from(document.querySelectorAll('[role=dialog], [class*=modal], [class*=Modal], [class*=dialog]')).filter(e => e.getBoundingClientRect().width > 0).map(e => ({text: e.innerText.slice(0,1500), html: e.outerHTML.slice(0,9000)}))")
                         save(tag + "_dialog.json", json.dumps(dl, indent=1))
