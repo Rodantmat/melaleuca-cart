@@ -1,0 +1,6 @@
+03:16:59   proxy port 10007 | location: cr.us;city.losangeles,sandiego,longbeach,anaheim,irvine,santaana,riverside
+added body wash True
+coupon cards: ['$7.89 $6.64 3 Points add shopping_cart', '$28.00 $23.50 9 Points add shopping_cart', '$21.99 $18.99 6 Points add shopping_cart']
+cart before (1, 6.0) after (1, 6.0)
+  line 3620 Normal 0 $10.99 6 1 Renew® Body Wash
+emptied (0, 0.0)
