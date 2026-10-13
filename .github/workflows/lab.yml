@@ -13,7 +13,7 @@ permissions:
 jobs:
   lab:
     runs-on: ubuntu-latest
-    timeout-minutes: 40
+    timeout-minutes: 170
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -31,6 +31,7 @@ jobs:
           rm -f credentials.env
         continue-on-error: true
       - name: Save results to branch lab-results
+        if: always()
         run: |
           git config user.name "lab-bot"; git config user.email "lab-bot@users.noreply.github.com"
           mkdir -p /tmp/res && cp lab.log /tmp/res/ ; cp -r local/feed /tmp/res/feed; rm -rf /tmp/res/feed/plans 2>/dev/null || true
