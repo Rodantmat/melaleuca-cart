@@ -237,6 +237,7 @@ class Catalog:
         for cat in CATEGORIES:
             if need and all((f in self.fam) for f in need if f != "manual") and "manual" not in need:
                 break
+            del self.s.json_log[:]            # the session keeps at most 400 answers: start every category with an empty list
             try:
                 pg.goto("%s/productstore/%s?sc_lang=en-US" % (BASE, cat), wait_until="domcontentloaded", timeout=60000)
                 pg.wait_for_timeout(5000)
@@ -244,9 +245,13 @@ class Catalog:
                 log("  category", cat, "not opened:", str(e)[:60])
                 continue
             base = None
-            for u, m, j in self.s.json_log:
-                if "/api/category/search/" in u:
-                    base, first = u, j
+            for attempt in (1, 2):
+                for u, m, j in self.s.json_log:
+                    if "/api/category/search/" in u:
+                        base, first = u, j
+                if base:
+                    break
+                pg.wait_for_timeout(5000)
             if base:
                 family_cards_from(first, self.fam)
                 total = int((first or {}).get("TotalResults") or 0)
