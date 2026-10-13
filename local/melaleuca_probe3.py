@@ -32,21 +32,26 @@ JS_OPEN_BOX = """(i) => {
 
 
 def pick_in_open_boxes(pg, tag, which):
-    """open each 'Choose: ...' box one after the other and pick an option in it (slowly: the page animates)"""
+    """one box after the other: if its options are not showing, press its title, then pick an option"""
     n = pg.locator(".o-accordion__toggler:visible").count()
     chosen = []
+    opts = lambda: pg.locator(".o-configuratorAcc__list button.m-refinerImage:visible")
     for i in range(n):
         try:
-            pg.locator(".o-accordion__toggler:visible").nth(i).scroll_into_view_if_needed(timeout=3000)
-            pg.locator(".o-accordion__toggler:visible").nth(i).click(timeout=4000)
-            pg.wait_for_timeout(1800)
-            cand = pg.locator(".o-configuratorAcc__list button.m-refinerImage:visible")
-            k = cand.count()
+            t = pg.locator(".o-accordion__toggler:visible").nth(i)
+            t.scroll_into_view_if_needed(timeout=3000)
+            pg.wait_for_timeout(500)
+            tries = 0
+            while opts().count() == 0 and tries < 2:
+                t.click(timeout=4000)
+                pg.wait_for_timeout(1500)
+                tries += 1
+            k = opts().count()
             pg.screenshot(path=os.path.join(OUT, "%s_slot%d_open.png" % (tag, i)))
             if k:
                 idx = (which + i) % k
-                txt = cand.nth(idx).inner_text()[:60]
-                cand.nth(idx).click(timeout=4000)
+                txt = opts().nth(idx).inner_text()[:60]
+                opts().nth(idx).click(timeout=4000)
                 chosen.append((i, idx, k, txt))
             else:
                 chosen.append((i, "no options visible"))
