@@ -1,0 +1,968 @@
+{
+ "190": {
+  "title": "Antiperspirants &amp; Deodorants 3\u2013Pack",
+  "url": "https://www.melaleuca.com/productstore/personal-care/antiperspirants-deodorants-3pack?sc_lang=en-US",
+  "conf": [
+   {
+    "Id": "2f234855715",
+    "Title": "Deodorant",
+    "Sku": null,
+    "Subtitle": "",
+    "WeightDescription": null,
+    "Type": "FSKU",
+    "ShelfStyle": "image",
+    "PdpStyle": "image",
+    "TotalRequired": 3,
+    "Visible": true,
+    "Targets": [
+     "F576"
+    ],
+    "Choices": [
+     {
+      "Title": "Vanilla Musk & Jasmine",
+      "FacetRefinerId": "484-5715",
+      "Filters": [],
+      "sku": "20088"
+     },
+     {
+      "Title": "Affinia Sweet Cream & Willow",
+      "FacetRefinerId": "484-5716",
+      "Filters": [],
+      "sku": "20087"
+     },
+     {
+      "Title": "Alloy AP/DEO",
+      "FacetRefinerId": "484-5717",
+      "Filters": [],
+      "sku": "20053"
+     },
+     {
+      "Title": "Herbal",
+      "FacetRefinerId": "484-2828",
+      "Filters": [],
+      "sku": "2468"
+     },
+     {
+      "Title": "Alloy DEO",
+      "FacetRefinerId": "484-5846",
+      "Filters": [],
+      "sku": "20121"
+     }
+    ],
+    "Filters": []
+   }
+  ],
+  "acc": []
+ },
+ "219": {
+  "title": "MelaBrite\u00ae 9x Color Booster: 96 Loads 2-Pack",
+  "url": "https://www.melaleuca.com/productstore/cleaning-and-laundry/melabrite-9x-color-booster-2-pack?sc_lang=en-US",
+  "conf": [],
+  "acc": [
+   {
+    "sku": "4848",
+    "title": "EcoSense\u00ae Drain-Back Cap",
+    "price": 1.29,
+    "pts": 0.0
+   },
+   {
+    "sku": "924",
+    "title": "32 fl. oz. Reusable Laundry Pump",
+    "price": 2.29,
+    "pts": 0.0
+   }
+  ]
+ },
+ "410": {
+  "title": "Vitality Pack: Women",
+  "url": "https://www.melaleuca.com/productstore/supplements/vitality-pack410?sc_lang=en-US",
+  "conf": [
+   {
+    "Id": "254162842",
+    "Title": "Vitamin",
+    "Sku": null,
+    "Subtitle": "",
+    "WeightDescription": null,
+    "Type": "Facet",
+    "ShelfStyle": "image",
+    "PdpStyle": "image",
+    "TotalRequired": 0,
+    "Visible": true,
+    "Targets": [],
+    "Choices": [
+     {
+      "Title": "Women",
+      "FacetRefinerId": "488-2842",
+      "Filters": [],
+      "sku": "410"
+     },
+     {
+      "Title": "Men",
+      "FacetRefinerId": "488-2843",
+      "Filters": [],
+      "sku": "411"
+     },
+     {
+      "Title": "50+",
+      "FacetRefinerId": "488-2844",
+      "Filters": [],
+      "sku": "412"
+     },
+     {
+      "Title": "Prenatal",
+      "FacetRefinerId": "488-3365",
+      "Filters": [],
+      "sku": "413"
+     }
+    ],
+    "Filters": []
+   }
+  ],
+  "acc": [
+   {
+    "sku": "10919",
+    "title": "Pair It With Peak Supplement Organizer",
+    "price": 9.99,
+    "pts": 0.0
+   }
+  ]
+ },
+ "885": {
+  "title": "Replenex\u00ae Extra Strength 2-Pack",
+  "url": "https://www.melaleuca.com/productstore/supplements/replenex-extra-strength-2-pack?sc_lang=en-US",
+  "conf": [
+   {
+    "Id": "2f189874100",
+    "Title": "Form",
+    "Sku": null,
+    "Subtitle": "",
+    "WeightDescription": null,
+    "Type": "FSKU",
+    "ShelfStyle": "image",
+    "PdpStyle": "image",
+    "TotalRequired": 2,
+    "Visible": true,
+    "Targets": [
+     "F799"
+    ],
+    "Choices": [
+     {
+      "Title": "Tablets",
+      "FacetRefinerId": "584-4100",
+      "Filters": [],
+      "sku": "1693"
+     },
+     {
+      "Title": "Drink",
+      "FacetRefinerId": "584-3468",
+      "Filters": [],
+      "sku": "4120"
+     }
+    ],
+    "Filters": []
+   }
+  ],
+  "acc": [
+   {
+    "sku": "10919",
+    "title": "Pair It With Peak Supplement Organizer",
+    "price": 9.99,
+    "pts": 0.0
+   }
+  ]
+ },
+ "2154": {
+  "title": "MelaSoft\u00ae Fabric Softener 96 Load 2-Pack",
+  "url": "https://www.melaleuca.com/productstore/cleaning-and-laundry/melasoft-fabric-softener-2-pack?sc_lang=en-US",
+  "conf": [
+   {
+    "Id": "2f116613914",
+    "Title": "Fragrance",
+    "Sku": null,
+    "Subtitle": "",
+    "WeightDescription": null,
+    "Type": "FSKU",
+    "ShelfStyle": "image",
+    "PdpStyle": "image",
+    "TotalRequired": 2,
+    "Visible": true,
+    "Targets": [
+     "F453"
+    ],
+    "Choices": [
+     {
+      "Title": "Garden Lavender",
+      "FacetRefinerId": "725-3914",
+      "Filters": [],
+      "sku": "268"
+     },
+     {
+      "Title": "Clean Cotton",
+      "FacetRefinerId": "725-3916",
+      "Filters": [],
+      "sku": "265"
+     },
+     {
+      "Title": "Spring Breeze",
+      "FacetRefinerId": "725-3915",
+      "Filters": [],
+      "sku": "267"
+     }
+    ],
+    "Filters": []
+   }
+  ],
+  "acc": [
+   {
+    "sku": "4848",
+    "title": "EcoSense\u00ae Drain-Back Cap",
+    "price": 1.29,
+    "pts": 0.0
+   },
+   {
+    "sku": "924",
+    "title": "32 fl. oz. Reusable Laundry Pump",
+    "price": 2.29,
+    "pts": 0.0
+   }
+  ]
+ },
+ "2211": {
+  "title": "PreSpot\u2122 4x Laundry Stain Remover 2-Pack ",
+  "url": "https://www.melaleuca.com/productstore/cleaning-and-laundry/prespot-4x-laundry-stain-remover-2pack?sc_lang=en-US",
+  "conf": [],
+  "acc": [
+   {
+    "sku": "33001",
+    "title": "PreSpot\u2122 4x Mixing Spray Bottle",
+    "price": 1.79,
+    "pts": 0.0
+   }
+  ]
+ },
+ "4071": {
+  "title": "Sol-U-Guard Botanical Convenience Wipes 2-Pack",
+  "url": "https://www.melaleuca.com/productstore/cleaning-and-laundry/sol-u-guard-botanical-convenience-wipes-2-pack?sc_lang=en-US",
+  "conf": [],
+  "acc": []
+ },
+ "5018": {
+  "title": "Diamond Brite\u00ae Gel Automatic Dishwasher Detergent 2-Pack",
+  "url": "https://www.melaleuca.com/productstore/cleaning-and-laundry/diamond-brite-gel-automatic-dishwasher-detergent-2pack?sc_lang=en-US",
+  "conf": [],
+  "acc": []
+ },
+ "5026": {
+  "title": "Lemon Brite\u00ae Hand Dishwashing Liquid 3-Pack",
+  "url": "https://www.melaleuca.com/productstore/cleaning-and-laundry/lemon-brite-hand-dishwashing-liquid-3pack?sc_lang=en-US",
+  "conf": [
+   {
+    "Id": "2f145103318",
+    "Title": "Lemon Brite Scent",
+    "Sku": null,
+    "Subtitle": "",
+    "WeightDescription": null,
+    "Type": "FSKU",
+    "ShelfStyle": "image",
+    "PdpStyle": "image",
+    "TotalRequired": 3,
+    "Visible": true,
+    "Targets": [
+     "F750"
+    ],
+    "Choices": [
+     {
+      "Title": "Apple",
+      "FacetRefinerId": "621-3318",
+      "Filters": [],
+      "sku": "7904"
+     },
+     {
+      "Title": "Tropical",
+      "FacetRefinerId": "621-3319",
+      "Filters": [],
+      "sku": "187"
+     },
+     {
+      "Title": "Lemon",
+      "FacetRefinerId": "621-3317",
+      "Filters": [],
+      "sku": "2854"
+     }
+    ],
+    "Filters": []
+   }
+  ],
+  "acc": []
+ },
+ "5027": {
+  "title": "MelaSoft\u00ae Dryer Sheet 2-Pack",
+  "url": "https://www.melaleuca.com/productstore/cleaning-and-laundry/melasoft-dryer-sheet-2pack?sc_lang=en-US",
+  "conf": [
+   {
+    "Id": "2f116633915",
+    "Title": "Fragrance",
+    "Sku": null,
+    "Subtitle": "",
+    "WeightDescription": null,
+    "Type": "FSKU",
+    "ShelfStyle": "image",
+    "PdpStyle": "image",
+    "TotalRequired": 2,
+    "Visible": true,
+    "Targets": [
+     "F1755"
+    ],
+    "Choices": [
+     {
+      "Title": "Spring Breeze",
+      "FacetRefinerId": "725-3915",
+      "Filters": [],
+      "sku": "9317"
+     },
+     {
+      "Title": "Garden Lavender",
+      "FacetRefinerId": "725-3914",
+      "Filters": [],
+      "sku": "9984"
+     },
+     {
+      "Title": "Clean Cotton",
+      "FacetRefinerId": "725-3916",
+      "Filters": [],
+      "sku": "5271"
+     },
+     {
+      "Title": "Scent Free",
+      "FacetRefinerId": "725-3920",
+      "Filters": [],
+      "sku": "9996"
+     }
+    ],
+    "Filters": []
+   }
+  ],
+  "acc": []
+ },
+ "5048": {
+  "title": "Luxury Glycerin Bath Bar 3-Pack",
+  "url": "https://www.melaleuca.com/productstore/personal-care/luxury-glycerin-bath-bar-3-pack?sc_lang=en-US",
+  "conf": [
+   {
+    "Id": "2f164643777",
+    "Title": "Fragrance",
+    "Sku": null,
+    "Subtitle": "",
+    "WeightDescription": null,
+    "Type": "FSKU",
+    "ShelfStyle": "image",
+    "PdpStyle": "image",
+    "TotalRequired": 3,
+    "Visible": true,
+    "Targets": [
+     "F028"
+    ],
+    "Choices": [
+     {
+      "Title": "Exfoliating",
+      "FacetRefinerId": "688-3777",
+      "Filters": [],
+      "sku": "5540"
+     },
+     {
+      "Title": "Pineapple Mango",
+      "FacetRefinerId": "688-3779",
+      "Filters": [],
+      "sku": "8927"
+     },
+     {
+      "Title": "Pink Grapefruit",
+      "FacetRefinerId": "688-3775",
+      "Filters": [],
+      "sku": "8928"
+     },
+     {
+      "Title": "Platinum",
+      "FacetRefinerId": "688-3776",
+      "Filters": [],
+      "sku": "3308"
+     },
+     {
+      "Title": "The Gold Bar",
+      "FacetRefinerId": "688-3806",
+      "Filters": [],
+      "sku": "117"
+     },
+     {
+      "Title": "Alloy",
+      "FacetRefinerId": "688-5718",
+      "Filters": [],
+      "sku": "20049"
+     }
+    ],
+    "Filters": []
+   }
+  ],
+  "acc": []
+ },
+ "5684": {
+  "title": "Activate-C Immune Complex\u2122 Drink Mix 2-Pack",
+  "url": "https://www.melaleuca.com/productstore/supplements/activate-c-immune-complex-drink-mix-2-pack?sc_lang=en-US",
+  "conf": [
+   {
+    "Id": "2f214875363",
+    "Title": "Activate Product",
+    "Sku": null,
+    "Subtitle": "",
+    "WeightDescription": null,
+    "Type": "FSKU",
+    "ShelfStyle": "image",
+    "PdpStyle": "image",
+    "TotalRequired": 2,
+    "Visible": true,
+    "Targets": [
+     "F1569"
+    ],
+    "Choices": [
+     {
+      "Title": "Activate-C Immune Complex Drink: Orange",
+      "FacetRefinerId": "1098-5363",
+      "Filters": [],
+      "sku": "4545"
+     },
+     {
+      "Title": "Activate-C Immune Complex Drink: Raspberry",
+      "FacetRefinerId": "1098-5365",
+      "Filters": [],
+      "sku": "4445"
+     }
+    ],
+    "Filters": []
+   }
+  ],
+  "acc": [
+   {
+    "sku": "9199",
+    "title": "Vitality For Life\u00ae Blender Bottle",
+    "price": 7.99,
+    "pts": 0.0
+   }
+  ]
+ },
+ "6111": {
+  "title": "MelaGel\u00ae 2-Pack",
+  "url": "https://www.melaleuca.com/productstore/medicines-and-treatments/melagel-2-pack?sc_lang=en-US",
+  "conf": [
+   {
+    "Id": "2f117784092",
+    "Title": "Product",
+    "Sku": null,
+    "Subtitle": "",
+    "WeightDescription": null,
+    "Type": "FSKU",
+    "ShelfStyle": "image",
+    "PdpStyle": "image",
+    "TotalRequired": 2,
+    "Visible": true,
+    "Targets": [
+     "F123"
+    ],
+    "Choices": [
+     {
+      "Title": "Tube",
+      "FacetRefinerId": "775-4092",
+      "Filters": [],
+      "sku": "3847"
+     },
+     {
+      "Title": "Disc",
+      "FacetRefinerId": "775-4093",
+      "Filters": [],
+      "sku": "3417"
+     }
+    ],
+    "Filters": []
+   }
+  ],
+  "acc": []
+ },
+ "6196": {
+  "title": "Breath-Away Essential Oil Mouth Rinse 2-Pack",
+  "url": "https://www.melaleuca.com/productstore/personal-care/breath-away-essential-oil-mouth-rinse-2-pack?sc_lang=en-US",
+  "conf": [],
+  "acc": []
+ },
+ "6277": {
+  "title": "Koala Pals Bath 2-Pack",
+  "url": "https://www.melaleuca.com/productstore/personal-care/koala-pals-bath-2-pack?sc_lang=en-US",
+  "conf": [
+   {
+    "Id": "2f137454048",
+    "Title": "Product",
+    "Sku": null,
+    "Subtitle": "",
+    "WeightDescription": null,
+    "Type": "FSKU",
+    "ShelfStyle": "image",
+    "PdpStyle": "image",
+    "TotalRequired": 2,
+    "Visible": true,
+    "Targets": [
+     "F160"
+    ],
+    "Choices": [
+     {
+      "Title": "Hair Wash",
+      "FacetRefinerId": "761-4048",
+      "Filters": [],
+      "sku": "4913"
+     },
+     {
+      "Title": "Body Wash",
+      "FacetRefinerId": "761-4047",
+      "Filters": [],
+      "sku": "4914"
+     }
+    ],
+    "Filters": []
+   }
+  ],
+  "acc": []
+ },
+ "6833": {
+  "title": "",
+  "url": "https://www.melaleuca.com/product-not-found?sc_lang=en-US",
+  "conf": [],
+  "acc": []
+ },
+ "7911": {
+  "title": "Sun Shades\u00ae Lip Balm: 3-Pack",
+  "url": "https://www.melaleuca.com/productstore/medicines-and-treatments/sun-shades-lip-balm-3-pack?sc_lang=en-US",
+  "conf": [
+   {
+    "Id": "2f164662923",
+    "Title": "Flavor",
+    "Sku": null,
+    "Subtitle": "",
+    "WeightDescription": null,
+    "Type": "FSKU",
+    "ShelfStyle": "image",
+    "PdpStyle": "image",
+    "TotalRequired": 3,
+    "Visible": true,
+    "Targets": [
+     "F361"
+    ],
+    "Choices": [
+     {
+      "Title": "Mountain Mint",
+      "FacetRefinerId": "516-2923",
+      "Filters": [],
+      "sku": "107"
+     },
+     {
+      "Title": "Pina Colada",
+      "FacetRefinerId": "516-2924",
+      "Filters": [],
+      "sku": "109"
+     },
+     {
+      "Title": "Vanilla Bean",
+      "FacetRefinerId": "516-2922",
+      "Filters": [],
+      "sku": "111"
+     },
+     {
+      "Title": "Cranberry Tangerine",
+      "FacetRefinerId": "516-2921",
+      "Filters": [],
+      "sku": "2270"
+     }
+    ],
+    "Filters": []
+   }
+  ],
+  "acc": []
+ },
+ "8194": {
+  "title": "",
+  "url": "https://www.melaleuca.com/product-not-found?sc_lang=en-US",
+  "conf": [],
+  "acc": []
+ },
+ "8246": {
+  "title": "",
+  "url": "https://www.melaleuca.com/product-not-found?sc_lang=en-US",
+  "conf": [],
+  "acc": []
+ },
+ "8911": {
+  "title": "Sol-U-Guard Botanical\u00ae 2x Disinfectant 2-Pack (Mixing Spray Bottle not included)",
+  "url": "https://www.melaleuca.com/productstore/cleaning-and-laundry/soluguard-botanical-2x-disinfectant-2pack?sc_lang=en-US",
+  "conf": [],
+  "acc": [
+   {
+    "sku": "8901",
+    "title": "Sol\u2013U\u2013Guard Botanical\u00ae 2x Spray Bottle",
+    "price": 1.79,
+    "pts": 0.0
+   }
+  ]
+ },
+ "23963": {
+  "title": "Affinia Shampoo &amp; Conditioner Bundle",
+  "url": "https://www.melaleuca.com/productstore/personal-care/affinia-shampoo-conditioner-bundle?sc_lang=en-US",
+  "conf": [
+   {
+    "Id": "2f83665673",
+    "Title": "Shampoo",
+    "Sku": null,
+    "Subtitle": "",
+    "WeightDescription": null,
+    "Type": "FSKU",
+    "ShelfStyle": "image",
+    "PdpStyle": "image",
+    "TotalRequired": 1,
+    "Visible": true,
+    "Targets": [
+     "F1854"
+    ],
+    "Choices": [
+     {
+      "Title": "Volume Shampoo",
+      "FacetRefinerId": "1167-5673",
+      "Filters": [],
+      "sku": "20063"
+     },
+     {
+      "Title": "Moisture Shampoo",
+      "FacetRefinerId": "1167-5674",
+      "Filters": [],
+      "sku": "20061"
+     }
+    ],
+    "Filters": []
+   },
+   {
+    "Id": "2f83675677",
+    "Title": "Conditioner",
+    "Sku": null,
+    "Subtitle": "",
+    "WeightDescription": null,
+    "Type": "FSKU",
+    "ShelfStyle": "image",
+    "PdpStyle": "image",
+    "TotalRequired": 1,
+    "Visible": true,
+    "Targets": [
+     "F1855"
+    ],
+    "Choices": [
+     {
+      "Title": "Volume Conditioner",
+      "FacetRefinerId": "1169-5677",
+      "Filters": [],
+      "sku": "20064"
+     },
+     {
+      "Title": "Moisture Conditioner",
+      "FacetRefinerId": "1169-5678",
+      "Filters": [],
+      "sku": "20062"
+     }
+    ],
+    "Filters": []
+   }
+  ],
+  "acc": [
+   {
+    "sku": "20065",
+    "title": "Affinia Shampoo & Conditioner Pump",
+    "price": 1.29,
+    "pts": 0.0
+   }
+  ]
+ },
+ "33022": {
+  "title": "PreSpot\u2122 Instant Stain Remover 3\u2013Pack",
+  "url": "https://www.melaleuca.com/productstore/cleaning-and-laundry/prespot-instant-stain-remover-3pack?sc_lang=en-US",
+  "conf": [],
+  "acc": []
+ },
+ "34050": {
+  "title": "",
+  "url": "https://www.melaleuca.com/product-not-found?sc_lang=en-US",
+  "conf": [],
+  "acc": []
+ },
+ "34911": {
+  "title": "EcoSense\u00ae Cleaners Customizable 3-Pack",
+  "url": "https://www.melaleuca.com/productstore/cleaning-and-laundry/ecosense-cleaners-customizable-3-pack?sc_lang=en-US",
+  "conf": [
+   {
+    "Id": "2f208416324",
+    "Title": "Cleaner Selection",
+    "Sku": null,
+    "Subtitle": "",
+    "WeightDescription": null,
+    "Type": "FSKU",
+    "ShelfStyle": "image",
+    "PdpStyle": "image",
+    "TotalRequired": 3,
+    "Visible": true,
+    "Targets": [
+     "F1577"
+    ],
+    "Choices": [
+     {
+      "Title": "Clean & Gleam Floor Cleaner",
+      "FacetRefinerId": "902-6324",
+      "Filters": [],
+      "sku": "5612"
+     },
+     {
+      "Title": "Clear Power Glass Cleaner",
+      "FacetRefinerId": "902-4636",
+      "Filters": [],
+      "sku": "1212"
+     },
+     {
+      "Title": "MelaMagic Heavy-Duty Cleaner",
+      "FacetRefinerId": "902-4640",
+      "Filters": [],
+      "sku": "1235"
+     },
+     {
+      "Title": "No Work Daily Shower Cleaner",
+      "FacetRefinerId": "902-4637",
+      "Filters": [],
+      "sku": "1214"
+     },
+     {
+      "Title": "Rustic Touch Furniture Polish",
+      "FacetRefinerId": "902-4638",
+      "Filters": [],
+      "sku": "3427"
+     },
+     {
+      "Title": "Safe & Mighty",
+      "FacetRefinerId": "902-4632",
+      "Filters": [],
+      "sku": "5680"
+     },
+     {
+      "Title": "Tough and Tender",
+      "FacetRefinerId": "902-4633",
+      "Filters": [],
+      "sku": "1218"
+     },
+     {
+      "Title": "Tub & Tile Bathroom Cleaner",
+      "FacetRefinerId": "902-4635",
+      "Filters": [],
+      "sku": "1216"
+     },
+     {
+      "Title": "Harvest Pure\u2122 Fruit And Vegetable Wash",
+      "FacetRefinerId": "902-6524",
+      "Filters": [],
+      "sku": "30101"
+     }
+    ],
+    "Filters": []
+   }
+  ],
+  "acc": [
+   {
+    "sku": "1219",
+    "title": "Tough & Tender\u00ae Mixing Spray Bottle",
+    "price": 1.79,
+    "pts": 0.0
+   },
+   {
+    "sku": "1217",
+    "title": "Tub & Tile\u2122 Mixing Spray Bottle",
+    "price": 1.79,
+    "pts": 0.0
+   },
+   {
+    "sku": "1215",
+    "title": "No Work\u00ae Mixing Spray Bottle",
+    "price": 1.79,
+    "pts": 0.0
+   },
+   {
+    "sku": "1213",
+    "title": "Clear Power\u2122 Mixing Spray Bottle  ",
+    "price": 1.79,
+    "pts": 0.0
+   },
+   {
+    "sku": "7188",
+    "title": "Microfiber Cleaning Cloths 2-Pack",
+    "price": 6.99,
+    "pts": 3.0
+   },
+   {
+    "sku": "5605",
+    "title": "Clean & Gleam\u2122 Spray Mop + 3 Mop Pads",
+    "price": 35.49,
+    "pts": 0.0
+   },
+   {
+    "sku": "8682",
+    "title": "Reusable Rustic Touch Furniture Polish Sprayer",
+    "price": 1.29,
+    "pts": 0.0
+   }
+  ]
+ },
+ "39172": {
+  "title": "Diamond Brite Gel &amp; Rinse Aid Bundle",
+  "url": "https://www.melaleuca.com/productstore/cleaning-and-laundry/diamond-brite-gel-rinse-aid-bundle?sc_lang=en-US",
+  "conf": [],
+  "acc": []
+ },
+ "39176": {
+  "title": "PreSpot\u2122 Gel with Scrub Brush Tip 2-Pack",
+  "url": "https://www.melaleuca.com/productstore/cleaning-and-laundry/prespot-gel-with-scrub-brush-tip-2-pack?sc_lang=en-US",
+  "conf": [],
+  "acc": []
+ },
+ "43987": {
+  "title": "Tooth Polish 3-Pack",
+  "url": "https://www.melaleuca.com/productstore/personal-care/tooth-polish-3-pack?sc_lang=en-US",
+  "conf": [
+   {
+    "Id": "2f208843808",
+    "Title": "Flavor",
+    "Sku": null,
+    "Subtitle": "",
+    "WeightDescription": null,
+    "Type": "FSKU",
+    "ShelfStyle": "image",
+    "PdpStyle": "image",
+    "TotalRequired": 3,
+    "Visible": true,
+    "Targets": [
+     "F2200"
+    ],
+    "Choices": [
+     {
+      "Title": "Berrylicious +Fluoride",
+      "FacetRefinerId": "1129-3808",
+      "Filters": [
+       "1271-6247",
+       "1271-6249"
+      ],
+      "sku": "1297"
+     },
+     {
+      "Title": "Apple - Fluoride-Free",
+      "FacetRefinerId": "1129-3809",
+      "Filters": [
+       "1271-6247",
+       "1271-6249"
+      ],
+      "sku": "4910"
+     },
+     {
+      "Title": "Exceed Fresh Mint - Fluoride-Free",
+      "FacetRefinerId": "1129-5520",
+      "Filters": [
+       "1271-6247",
+       "1271-6249"
+      ],
+      "sku": "42994"
+     },
+     {
+      "Title": "Spearmint +Fluoride",
+      "FacetRefinerId": "1129-5523",
+      "Filters": [
+       "1271-6247",
+       "1271-6249"
+      ],
+      "sku": "42996"
+     },
+     {
+      "Title": "Peppermint +Fluoride",
+      "FacetRefinerId": "1129-5689",
+      "Filters": [
+       "1271-6247",
+       "1271-6249"
+      ],
+      "sku": "42997"
+     },
+     {
+      "Title": "Classic Fresh Mint - Fluoride-Free",
+      "FacetRefinerId": "1129-6037",
+      "Filters": [
+       "1271-6247",
+       "1271-6249"
+      ],
+      "sku": "5395"
+     },
+     {
+      "Title": "Cool Mint with Fluoride",
+      "FacetRefinerId": "1129-6039",
+      "Filters": [
+       "1271-6247",
+       "1271-6249"
+      ],
+      "sku": "5780"
+     },
+     {
+      "Title": "Cinnamon - Fluoride-Free",
+      "FacetRefinerId": "1129-6627",
+      "Filters": [
+       "1271-6247",
+       "1271-6249"
+      ],
+      "sku": "40061"
+     }
+    ],
+    "Filters": [
+     {
+      "Title": "Fluoride-Free",
+      "FilterTarget": "1271-6247"
+     },
+     {
+      "Title": "Fluoride",
+      "FilterTarget": "1271-6249"
+     }
+    ]
+   }
+  ],
+  "acc": []
+ },
+ "49096": {
+  "title": "",
+  "url": "https://www.melaleuca.com/product-not-found?sc_lang=en-US",
+  "conf": [],
+  "acc": []
+ },
+ "49635": {
+  "title": "",
+  "url": "https://www.melaleuca.com/product-not-found?sc_lang=en-US",
+  "conf": [],
+  "acc": []
+ },
+ "49677": {
+  "title": "",
+  "url": "https://www.melaleuca.com/product-not-found?sc_lang=en-US",
+  "conf": [],
+  "acc": []
+ },
+ "63042": {
+  "title": "Mela-Out Magnesium 2-Pack",
+  "url": "https://www.melaleuca.com/productstore/supplements/mela-out-magnesium-2-pack?sc_lang=en-US",
+  "conf": [],
+  "acc": []
+ },
+ "79015": {
+  "title": "",
+  "url": "https://www.melaleuca.com/product-not-found?sc_lang=en-US",
+  "conf": [],
+  "acc": []
+ }
+}
