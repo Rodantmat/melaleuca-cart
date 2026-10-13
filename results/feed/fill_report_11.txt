@@ -1,0 +1,92 @@
+signed in as Antonio M | plan: 40 lines, TOTAL points 146.0 cost 391.92
+  variant: Exercise - Sustain Electrolyte Tub - Lemon (F2787) -> 60129  Sustain Active Hydration: Lemon Value Size (0.62)
+  variant: Exercise - Splash H2O - Peach Ice Tea (F3771) -> 60215  SplasH2O® Single Serve: Peach Iced Tea (0.77)
+  variant: Renew - Lotion - 20oz (R480H) -> 6600  only variant: Value Size Renew
+  variant: Renew - Lotion - 1oz (manual) -> 3887  Renew® Intensive Skin Therapy: Travel Size (price 2.09, 1 pts)
+  variant: Laundry - MelaBoost - Mountain Fresh (F264) -> 6421  MelaBoost™ Mountain Fresh (0.99)
+  variant: Exercise - FiberWise Drink-Berry Sugar-free (F2666) -> 60141  FiberWise Drink: Berry Sugar-Free (0.99)
+actions: 23 | offer lines: 6 | problems: 0
+  added [single] 20063 x1 Haircare - Affinia Volume Shampoo 
+  added [single] 60129 x1 Exercise - Sustain Electrolyte Tub - Lemon 
+  added [single] 5612 x1 Ecosense - Clean And Gleam - 8oz 
+  added [pack] 33022 x1 3-pack: Ecosense - Prespot Instant Stain Remover 
+  added [single] 30085 x1 Ecosense - Prespot with Scrubbing Brush 
+  added [pack] 5018 x1 2-pack: Ecosense - Diamond Brite - 25 Loads 
+  added [pack] 2211 x1 2-pack: Ecosense - PreSpot - 8oz 
+  added [single] 60215 x1 Exercise - Splash H2O - Peach Ice Tea 
+  added [single] 6600 x1 Renew - Lotion - 20oz 
+  added [single] 20064 x1 Haircare - Affinia Volume Conditioner 
+  added [single] 9770 x1 Laundry - Melabrite - 96 loads 
+  added [single] 3887 x1 Renew - Lotion - 1oz 
+  added [single] 6421 x1 Laundry - MelaBoost - Mountain Fresh 
+  added [single] 60141 x1 Exercise - FiberWise Drink-Berry Sugar-free 
+  added [pack] 34911 x1 CLEAN pack 1/1: Ecosense - Mela-magic - 16oz, Ecosense  
+       choice: Ecosense - Harvest Pure - 8oz -> Harvest Pure™ Fruit And Vegetable Wash (10.0)
+       choice: Ecosense - No Work - 8oz -> No Work Daily Shower Cleaner (10.0)
+       choice: Ecosense - Mela-magic - 16oz -> MelaMagic Heavy-Duty Cleaner (10.0)
+  added [pack] 190 x1 DEOD pack 1/1: finia Sweet Cream and Willow, nia Vanill 
+       choice: Deodorant - Affinia Vanilla Musk and Jasmine -> Vanilla Musk & Jasmine (0.99)
+       choice: Deodorant - Alloy Antiperspirant -> Alloy AP/DEO (10.0)
+       choice: Deodorant - Affinia Sweet Cream and Willow -> Affinia Sweet Cream & Willow (0.99)
+  added [pack] 7911 x1 F650 pack 1/1: des - Lip Balm - Pina Colada, p Balm - C 
+       choice: Sun Shades - Lip Balm - Cranberry Tangerine -> Cranberry Tangerine (0.98)
+       choice: Sun Shades - Lip Balm - Cranberry Tangerine -> Cranberry Tangerine (0.98)
+       choice: Sun Shades - Lip Balm - Pina Colada -> Pina Colada (0.98)
+  added [pack] 43987 x1 TOOTH pack 1/1: hcare - Classic - Fresh Mint, oothcare  
+       choice: Toothcare - Exceed - Cinnamon -> Cinnamon - Fluoride-Free (10.0)
+       choice: Toothcare - Koala Pals - Apple -> Apple - Fluoride-Free (0.71)
+       choice: Toothcare - Classic - Fresh Mint -> Classic Fresh Mint - Fluoride-Free (0.83)
+  added [pack] 8911 x1 SGD2 pack 1/1: Ecosense - Sol U Guard 
+  added [pack] 5026 x1 F252 pack 1/1: Brite - 16oz - Apple Scented, Brite - 16 
+       choice: EcoSense - Lemon Brite - 16oz - Apple Scented -> Apple (0.98)
+       choice: EcoSense - Lemon Brite - 16oz - Tropical Scented -> Tropical (0.98)
+       choice: EcoSense - Lemon Brite - 16oz - Lemon Scented -> Lemon (0.98)
+  added [pack] 5027 x1 F298 pack 1/1:  Dryer Sheets - Clean Cotton, ft Dryer S 
+       choice: Laundry - Melasoft Dryer Sheets - Clean Cotton -> Clean Cotton (0.98)
+       choice: Laundry - Melasoft Dryer Sheets - Scent Free -> Scent Free (0.98)
+  added [pack] 63972 x1 SUST2 pack 1/1: port - Blueberry Pomegranate 
+       choice: Exercise - Sustain Sport - Blueberry Pomegranate -> Blueberry Pomegranate (10.0)
+       choice: Exercise - Sustain Sport - Blueberry Pomegranate -> Blueberry Pomegranate (10.0)
+  added [pack] 2154 x1 F296 pack 1/1: laSoft Bottle - Clean Cotton, oft Bottle 
+       choice: Laundry - MelaSoft Bottle - Garden Lavender -> Garden Lavender (0.98)
+       choice: Laundry - MelaSoft Bottle - Clean Cotton -> Clean Cotton (0.98)
+cart before the offers: 23 items, 132 points
+offers on the page: 27
+     offer card 34050 | promo 2013704 | Save $10.00 on MelaPower Laundry Detergent 2-Pack!
+     offer card 69235 | promo 2013741 | Save $3.00 on Riverbend Ranch Beef Tallow!
+     offer card 39820 | promo 2013706 | Save $2.00 on Spiced Cranberry Scented Lemon Brite 2-Pack!
+     offer card 49677 | promo 2013688 | Save $9.00 on Renew Hand Wash Refill 2-Pack!
+     offer card 64295 | promo 2013743 | Save $7.00 on Simply Fit Trail Bars  3-Pack!
+     offer card 39734 | promo 2013705 | Save $5.00 on Spiced Apple Sol-U-Mel and Spiced Apple Tough & Tender!
+     offer card 59826 | promo 2013689 | Save $21.00 on Pure Long Winter Nap Relaxing Blend!
+     offer card 6269 | promo 2013697 | Buy one Vitality Coldwater Omega-3, get one for $3.99!
+     offer card 8068 | promo 2013693 | Save $4.00 on Pure Lavender Essential Oil!
+     offer card 6833 | promo 2013687 | Buy one Safe & Mighty, get one for $2.99!
+     offer card 5070 | promo 2013702 | Save $3.00 on Bath Bars 3-Pack!
+     offer card 69327 | promo 2013698 | Buy one Activate Immune Complex, get one for $2.99!
+     offer card 1682 | promo 2013684 | Save $20.00 on Luminex 2-Pack!
+     offer card 6400 | promo 2013707 | Save $3.50 on Exceed Mints 5-Pack!
+     offer card 8194 | promo 2013695 | Buy one Tub & Tile Bathroom Cleaner, get one for $2.49!
+     offer card 4227 | promo 2013694 | Save $10.00 on MelaBrite Color Booster 2-Pack!
+     offer card 74141 | promo 2013696 | Save $23.00 - $32.50 on Sei Bella Treatment and Moisturizer!
+     offer card 49635 | promo 2013699 | Save $4.00 on Renew Targeted Eczema Treatment 2-Pack!
+     offer card 49096 | promo 2013685 | Buy one Pain-A-Trate Ultra, get one for $2.49!
+     offer card 69311 | promo 2013701 | Save $20.00 on PhloraV 2-Pack!
+     offer card 8669 | promo 2013703 | Save $5.00 on Sun Valley Liquid Soap 3-Pack! (Pumps Sold Separately)
+     offer card 6476 | promo 2013700 | Save $10.00 on FiberWise Canister 2-Pack!
+     offer card 74091 | promo 2013690 | Save $30.00 - $32.50 on Sei Bella Deep Marine Bundle!
+     offer card 29500 | promo 2013769 | Save $5.00 on Alloy Calming Face Wash!
+     offer card 79015 | promo 2013686 | Save $3.00 on Sei Bella The Basic Collection Gentle Daily Cleanser!
+     offer card 8246 | promo 2013691 | Buy one Vitality Calcium Complete, get one for $2.49!
+     offer card 5520 | promo 2013692 | Buy two Sei Bella Makeup Removing Cleansing Wipes, get one FREE!
+  added offer 6833 x1 Buy one Safe & Mighty, get one for $2.99! 
+  added offer 49096 x1 Buy one Pain-A-Trate Ultra, get one for $2.49! 
+  added offer 34050 x1 Save $10.00 on MelaPower Laundry Detergent 2-Pack! [{"FeatureSku": "F444", "SelectedSku": "3441"}, {"FeatureSku": "F444", "SelectedSku": "3441"}]
+  added offer 8194 x1 Buy one Tub & Tile Bathroom Cleaner, get one for $2.49! 
+  added offer 49635 x1 Save $4.00 on Renew Targeted Eczema Treatment 2-Pack! 
+  added offer 8246 x1 Buy one Vitality Calcium Complete, get one for $2.49! 
+
+CART NOW: 29 items | 161 points | gross 391.92 | net 391.92 | discount 0
+SHEET   : all lines 161 points | 391.92 cost   (TOTAL row: 146 points counted for the order limit + 15 points of credit items)
+RESULT  : points MATCH | cost MATCH
+  every line of the cart equals the sheet.
