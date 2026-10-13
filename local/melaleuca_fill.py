@@ -141,6 +141,8 @@ def assign_choices(units, conf):
                     sc = 10.0
                 else:
                     sc = name_score(nm, ch["title"], wts[ci])
+                    if re.match(r"\s*HE\b", ch["title"]) and not re.search(r"\bHE\b|high.efficiency", nm, re.I):
+                        sc -= 0.01          # "Regular" and "HE" versions of one scent: the sheet means the regular one unless it says HE
                 if sc >= 0.5:
                     cands.append((sc, ui, ci, ch))
     cands.sort(key=lambda t: -t[0])
@@ -448,7 +450,13 @@ class Filler:
             try:
                 pg.goto("%s/products/%s?sc_lang=en-US" % (BASE, sku), wait_until="domcontentloaded", timeout=60000)
                 pg.wait_for_timeout(2500)
-                self.cache[sku] = parse_info(pg.content())
+                inf = parse_info(pg.content())
+                if not inf["conf"] and not inf["acc"]:
+                    # special-offer items have no page of their own: the offer dialog reads its choices from /api/shelf?Sku=
+                    r = self.s.fetch("%s/api/shelf?Sku=%s&sc_lang=en-US&sc_site=productstoreUs" % (BASE, sku))
+                    if r.get("json"):
+                        inf = parse_info(json.dumps(r["json"], separators=(",", ":")))
+                self.cache[sku] = inf
             except Exception as e:
                 log("  could not read page of item", sku, str(e)[:80])
                 self.cache[sku] = {"conf": [], "acc": []}
