@@ -1,0 +1,26 @@
+[
+ {
+  "for": "pack_190",
+  "method": "POST",
+  "url": "https://www.melaleuca.com/api/cart?sc_itemid=%7BA0F8DF9C-4719-47E4-A5E8-C79E8B311433%7D&sc_lang=en-US&sc_site=productsto",
+  "body": "{\"Sku\":\"190\",\"Quantity\":1,\"Configurations\":[{\"FeatureSku\":\"F576\",\"SelectedSku\":\"20088\"},{\"FeatureSku\":\"F576\",\"SelectedSku\":\"20087\"},{\"FeatureSku\":\"F576\",\"SelectedSku\":\"20053\"}],\"PromotionId\":\"\",\"LineType\":\"Normal\",\"LineId\":\"\",\"Position\":null}"
+ },
+ {
+  "for": "pack_34906",
+  "method": "POST",
+  "url": "https://www.melaleuca.com/api/cart?sc_itemid=%7B49A309CD-D8FB-47D3-8197-4BD7C4B889B2%7D&sc_lang=en-US&sc_site=productsto",
+  "body": "{\"Sku\":\"34906\",\"Quantity\":1,\"Configurations\":[{\"FeatureSku\":\"F1036\",\"SelectedSku\":\"9770\"},{\"FeatureSku\":\"F1547\",\"SelectedSku\":\"6422\"},{\"FeatureSku\":\"F444\",\"SelectedSku\":\"6902\"}],\"PromotionId\":\"\",\"LineType\":\"Normal\",\"LineId\":\"\",\"Position\":null}"
+ },
+ {
+  "for": "pack_33968",
+  "method": "POST",
+  "url": "https://www.melaleuca.com/api/cart?sc_itemid=%7B1ACE2B36-F8B9-4451-8045-3B0CF008F4FE%7D&sc_lang=en-US&sc_site=productsto",
+  "body": "{\"Sku\":\"33968\",\"Quantity\":1,\"Configurations\":[{\"FeatureSku\":\"F927\",\"SelectedSku\":\"2338\"},{\"FeatureSku\":\"F927\",\"SelectedSku\":\"4398\"},{\"FeatureSku\":\"4056\",\"SelectedSku\":null},{\"FeatureSku\":\"2338\",\"SelectedSku\":null},{\"FeatureSku\":\"4074\",\"SelectedSku\":null}],\"PromotionId\":\"\",\"LineType\":\"Normal\",\"LineId\":\"\",\"Position\":null}"
+ },
+ {
+  "for": "offer_MelaPower_Laundry",
+  "method": "POST",
+  "url": "https://www.melaleuca.com/api/cart?sc_itemid=%7BD66F5173-C9AF-4322-8C41-FC0E937B7C9E%7D&sc_lang=en-US&sc_site=productsto",
+  "body": "{\"Sku\":\"34050\",\"Quantity\":1,\"Configurations\":[{\"FeatureSku\":\"F444\",\"SelectedSku\":\"6901\"},{\"FeatureSku\":\"F444\",\"SelectedSku\":\"6902\"}],\"PromotionId\":2013704,\"LineType\":\"Promotion\",\"LineId\":null,\"Position\":null}"
+ }
+]

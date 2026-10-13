@@ -1,0 +1,14 @@
+02:18:28   proxy port 10007 | location: cr.us;city.losangeles,sandiego,longbeach,anaheim,irvine,santaana,riverside
+signed in as Antonio M
+pack 190
+   BLOCKED (not sent): pack_190 {"Sku":"190","Quantity":1,"Configurations":[{"FeatureSku":"F576","SelectedSku":"20088"},{"FeatureSku":"F576","SelectedSku":"20087"},{"FeatureSku":"F576","SelectedSku":"20053"}],"PromotionId":"","LineType":"Normal","LineId":"","Position":null}
+pack 34906
+   BLOCKED (not sent): pack_34906 {"Sku":"34906","Quantity":1,"Configurations":[{"FeatureSku":"F1036","SelectedSku":"9770"},{"FeatureSku":"F1547","SelectedSku":"6422"},{"FeatureSku":"F444","SelectedSku":"6902"}],"PromotionId":"","LineType":"Normal","LineId":"","Position":null}
+pack 33968
+   BLOCKED (not sent): pack_33968 {"Sku":"33968","Quantity":1,"Configurations":[{"FeatureSku":"F927","SelectedSku":"2338"},{"FeatureSku":"F927","SelectedSku":"4398"},{"FeatureSku":"4056","SelectedSku":null},{"FeatureSku":"2338","SelectedSku":null},{"FeatureSku":"4074","SelectedSku":null}],"PromotionId":"","LineType":"Normal","LineId":"","Position":null}
+cart for the offers page: (16, 44.0)
+offer MelaPower Laundry
+   BLOCKED (not sent): offer_MelaPower_Laundry {"Sku":"34050","Quantity":1,"Configurations":[{"FeatureSku":"F444","SelectedSku":"6901"},{"FeatureSku":"F444","SelectedSku":"6902"}],"PromotionId":2013704,"LineType":"Promotion","LineId":null,"Position":null}
+throw-away products removed; cart now (0, 0.0)
+
+Done. Send me: /home/runner/work/melaleuca-cart/melaleuca-cart/local/feed/probe3.zip
