@@ -593,6 +593,11 @@ def run(n, dry=False, lab=False, final=True):
                         d = (c.get("InnerData") or {}).get("Data") or {}
                         cards[str(d.get("Sku"))] = d
                 say("offers on the page:", len(cards))
+                try:
+                    json.dump(cards, open(os.path.join(FEED, "fill_offer_cards_%d.json" % n), "w", encoding="utf-8"), indent=1)
+                    json.dump(fl.cache, open(os.path.join(FEED, "fill_info_cache_%d.json" % n), "w", encoding="utf-8"), indent=1)
+                except Exception:
+                    pass
                 for k, d in cards.items():
                     say("     offer card %s | promo %s | %s" % (k, d.get("PromotionId"), (d.get("Title") or "")[:80]))
                 by = {}
