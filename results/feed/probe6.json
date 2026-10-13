@@ -1,0 +1,121 @@
+{
+ "base": "https://www.melaleuca.com/api/category/search/b32fefff4c664c4d94e6a4e6f2ebe10a?sc_lang=en-US&isLvipPromotion=false&sc_itemid=%7BB32FEFFF-4C66-4C4D-94E6-A4E6F2EBE10A%7D&sc_lang=en-US&sc_site=productstoreUs",
+ "p1": [
+  [
+   "4344",
+   "1275",
+   null
+  ],
+  40,
+  1,
+  168
+ ],
+ "try_page": [
+  [
+   "4344",
+   "1275",
+   null
+  ],
+  40,
+  1,
+  168
+ ],
+ "try_currentPage": [
+  [
+   "4344",
+   "1275",
+   null
+  ],
+  40,
+  1,
+  168
+ ],
+ "try_pageNumber": [
+  [
+   "4344",
+   "1275",
+   null
+  ],
+  80,
+  2,
+  168
+ ],
+ "try_p": [
+  [
+   "4344",
+   "1275",
+   null
+  ],
+  40,
+  1,
+  168
+ ],
+ "try_pageIndex": [
+  [
+   "4344",
+   "1275",
+   null
+  ],
+  40,
+  1,
+  168
+ ],
+ "try_Page": [
+  [
+   "4344",
+   "1275",
+   null
+  ],
+  40,
+  1,
+  168
+ ],
+ "search_melaboost": {
+  "status": 200,
+  "keys": [
+   "Success",
+   "ErrorMessages",
+   "Data"
+  ],
+  "first": [
+   [],
+   0,
+   1,
+   null
+  ],
+  "titles": [],
+  "text": ""
+ },
+ "search_splash": {
+  "status": 200,
+  "keys": [
+   "Success",
+   "ErrorMessages",
+   "Data"
+  ],
+  "first": [
+   [],
+   0,
+   1,
+   null
+  ],
+  "titles": [],
+  "text": ""
+ },
+ "search_original shampoo": {
+  "status": 200,
+  "keys": [
+   "Success",
+   "ErrorMessages",
+   "Data"
+  ],
+  "first": [
+   [],
+   0,
+   1,
+   null
+  ],
+  "titles": [],
+  "text": ""
+ }
+}
