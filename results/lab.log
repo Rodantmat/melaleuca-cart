@@ -1,0 +1,34 @@
+04:15:45   proxy port 10007 | location: cr.us;city.losangeles,sandiego,longbeach,anaheim,irvine,santaana,riverside
+04:16:20   saved debug/noform_t_10007.png | page: https://www.melaleuca.com/cart | www.melaleuca.com Performing security verification This website uses a security service to protect against malicious bots. This page is displayed while the webs
+Traceback (most recent call last):
+  File "/home/runner/work/melaleuca-cart/melaleuca-cart/local/melaleuca_scan.py", line 158, in login
+    u.wait_for(state="visible", timeout=25000)
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/sync_api/_generated.py", line 20696, in wait_for
+    self._sync(
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_sync_base.py", line 115, in _sync
+    return task.result()
+           ^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_locator.py", line 752, in wait_for
+    await self._frame.wait_for_selector(
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_frame.py", line 395, in wait_for_selector
+    await self._channel.send(
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_connection.py", line 76, in send
+    return await self._connection.wrap_api_call(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_connection.py", line 632, in wrap_api_call
+    raise rewrite_error(error, f"{parsed_st['apiName']}: {error}") from None
+playwright._impl._errors.TimeoutError: Locator.wait_for: Timeout 25000ms exceeded.
+Call log:
+  - waiting for locator("input[name=username]:visible").first to be visible
+
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/runner/work/melaleuca-cart/melaleuca-cart/local/melaleuca_probe11.py", line 45, in <module>
+    main()
+  File "/home/runner/work/melaleuca-cart/melaleuca-cart/local/melaleuca_probe11.py", line 19, in main
+    s.login()
+  File "/home/runner/work/melaleuca-cart/melaleuca-cart/local/melaleuca_scan.py", line 161, in login
+    raise BlockedError("the sign-in form did not appear (page: %s)" % pg.url[:90])
+melaleuca_scan.BlockedError: the sign-in form did not appear (page: https://www.melaleuca.com/cart)
