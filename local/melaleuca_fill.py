@@ -319,7 +319,7 @@ class Catalog:
                 if npk > 1:
                     L["qty"] = q * npk
                 return c["skus"][0], "%s (price %.2f, %.0f pts)%s" % (c["title"], up, upts, (" x%d for the %d-pack" % (npk, npk)) if npk > 1 else "")
-        elif all(len(h[2]["skus"]) == 1 for h in hits[:2]) and hits[0][0] <= 0.001:
+        elif all(len(h[2]["skus"]) == 1 for h in hits[:2]):
             # nothing in the name tells them apart (e.g. a credit oil 'T36-C5'): same price and points, so the totals are identical - take the first, say so
             c = hits[0][2]
             L.setdefault("warn", []).append("CHECK: '%s' has no name in the store; took '%s' (same price and points as %s)" % (L["name"], c["title"], "; ".join(h[2]["title"] for h in hits[1:3])))
@@ -415,6 +415,8 @@ def build_actions(plan, info, resolve_variant=None):
             problems.extend("row %d: %s" % (L["row"], x) for x in sprob)
             snotes = [("%s -> %s (%s)" % c) for c in sch]
         acts.append(Action("single", sku, L["qty"], sconf, label=L["name"], rows=[L["row"]], expect_pts=L["pts"], expect_ws=L["ws"], notes=snotes))
+        if si and si.get("acc"):
+            add_accessories(L, si, acts, notes)
         note_coupon(L, notes)
     # ---- mix-and-match groups
     for key, ls in groups.items():
