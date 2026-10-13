@@ -511,15 +511,19 @@ def run(n, dry=False, lab=False, final=True):
         p = ln.rstrip("\r\n").split("\t")
         if len(p) >= 3 and p[0].strip().isdigit():
             tabs[int(p[0])] = (p[1], p[2].strip(), p[3].strip().lower() if len(p) > 3 else "")
-    name, kind, colour = tabs[n]
-    region = env.get("REGION_%d" % n, "").strip().lower() or {"orange": "vancouver", "yellow": "toronto"}.get(colour, "socal" if kind == "2" else "vancouver")
-    acct = {"tab": name, "n": n, "user": env["MELA_USER_%d" % n], "pass": env["MELA_PASS_%d" % n], "region": region}
+    an = n                                           # account used to sign in (the test bench signs in with account 7 for any plan)
+    for a in sys.argv:
+        if a.startswith("--as="):
+            an = int(a[5:])
+    name, kind, colour = tabs[an]
+    region = env.get("REGION_%d" % an, "").strip().lower() or {"orange": "vancouver", "yellow": "toronto"}.get(colour, "socal" if kind == "2" else "vancouver")
+    acct = {"tab": name, "n": an, "user": env["MELA_USER_%d" % an], "pass": env["MELA_PASS_%d" % an], "region": region}
     cfg = {"proxy": env.get("PROXY_URL", ""), "sticky_base": int(env.get("STICKY_BASE") or 10000), "headless": bool(lab) or env.get("HEADLESS", "0") in ("1", "true"),
            "channel": env.get("BROWSER", "") or "", "session_minutes": int(env.get("SESSION_MINUTES", "120") or 0), "debug_dir": os.path.join(FEED, "debug"),
            "fast": bool(lab)}
     port = None
     try:
-        port = json.load(open(os.path.join(FEED, "ip_%d.json" % n))).get("port")
+        port = json.load(open(os.path.join(FEED, "ip_%d.json" % an))).get("port")
     except Exception:
         pass
     report = []
@@ -533,7 +537,7 @@ def run(n, dry=False, lab=False, final=True):
         for attempt in range(1, 6):
             try:
                 a2 = dict(acct, geo_level=0 if attempt <= 2 else 1, channel_override=(None if attempt % 2 else "chromium"))
-                s = ms.Session(p, a2, n, cfg, port if attempt == 1 else (10000 + n + 100 * attempt))
+                s = ms.Session(p, a2, an, cfg, port if attempt == 1 else (10000 + an + 100 * attempt))
                 s.login()
                 break
             except ms.BadLogin:
