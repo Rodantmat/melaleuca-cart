@@ -1,0 +1,214 @@
+04:17:18   proxy port 10007 | location: cr.us;city.losangeles,sandiego,longbeach,anaheim,irvine,santaana,riverside
+{
+ "url": "https://www.melaleuca.com/productstore/home-fragrance/revive-fabric-freshener-wrinkle-relaxer-starter-pack?sc_lang=en-US",
+ "title": [
+  "Revive\u2122 Fabric Freshener &amp; Wrinkle Relaxer Starter Pack"
+ ],
+ "info": {
+  "conf": [
+   {
+    "type": "FSKU",
+    "title": "Scent",
+    "sku": null,
+    "feature": "F994",
+    "req": 1,
+    "choices": [
+     {
+      "title": "Original Fragrance",
+      "sku": "32993",
+      "refiner": "1119-5447"
+     },
+     {
+      "title": "Sea Salt & Vanilla",
+      "sku": "32992",
+      "refiner": "1119-5449"
+     },
+     {
+      "title": "Tropical Fruits & Floral",
+      "sku": "32991",
+      "refiner": "1119-5450"
+     }
+    ]
+   },
+   {
+    "type": "Static",
+    "title": "",
+    "sku": "799",
+    "feature": null,
+    "req": 0,
+    "choices": []
+   },
+   {
+    "type": "Static",
+    "title": "",
+    "sku": "33004",
+    "feature": null,
+    "req": 0,
+    "choices": []
+   },
+   {
+    "type": "Static",
+    "title": "",
+    "sku": "33008",
+    "feature": null,
+    "req": 0,
+    "choices": []
+   },
+   {
+    "type": "Static",
+    "title": "Revive\u2122 Fabric Freshener & Wrinkle Relaxer Mixing Bottle",
+    "sku": "32994",
+    "feature": null,
+    "req": 0,
+    "choices": []
+   }
+  ],
+  "acc": []
+ },
+ "variants": [
+  {
+   "sku": "33961",
+   "name": "Revive\u2122 Fabric Freshener & Wrinkle Relaxer Starter Pack",
+   "size": "2 products",
+   "price": 7.68,
+   "pts": 3.0,
+   "sold": false
+  }
+ ],
+ "post": {
+  "status": 200,
+  "json": {
+   "Success": true,
+   "ErrorMessages": [],
+   "Data": {
+    "Item": {
+     "Details": {
+      "Accessories": [],
+      "LineId": "0",
+      "LineType": "Normal",
+      "Quantity": 1,
+      "Sku": "33961",
+      "Category": "Home Fragrance",
+      "Configurations": null,
+      "Title": "Revive\u2122 Fabric Freshener & Wrinkle Relaxer Starter Pack",
+      "Description": "Includes a Revive\u2122 Fabric Freshener & Wrinkle Relaxer Mixing Bottle and your choice of concentrate fragrance: Original, Sea Salt & Vanilla, or Tropical Fruits & Floral. Sprayer colors may vary.",
+      "PriceRange": {
+       "MinRegularPrice": "$15.00",
+       "RawMinRegularPrice": 15,
+       "MaxRegularPrice": "$15.00",
+       "RawMaxRegularPrice": 15,
+       "ShowRangeForRegularPrice": false,
+       "MinPreferredPrice": "$7.68",
+       "RawMinPreferredPrice": 7.68,
+       "MaxPreferredPrice": "$7.68",
+       "RawMaxPreferredPrice": 7.68,
+       "MaxPreferredCommitmentPrice": null,
+       "RawMaxPreferredCommitmentPrice": 0,
+       "PrimaryMinRegularPrice": "$15.00",
+       "PrimaryRawMinRegularPrice": 15,
+       "PrimaryMaxRegularPrice": "$15.00",
+       "PrimaryRawMaxRegularPrice": 15,
+       "PrimaryMinPreferredPrice": "$7.68",
+       "PrimaryRawMinPreferredPrice": 7.68,
+       "PrimaryMaxPreferredPrice": "$7.68",
+       "PrimaryRawMaxPreferredPrice": 7.68,
+       "SecondaryMinRegularPrice": "$16.40",
+       "SecondaryRawMinRegularPrice": 16.4,
+       "SecondaryMaxRegularPrice": "$16.40",
+       "SecondaryRawMaxRegularPrice": 16.4,
+       "SecondaryMinPreferredPrice": "$8.39",
+       "SecondaryRawMinPreferredPrice": 8.39,
+       "SecondaryMaxPreferredPrice": "$8.39",
+       "SecondaryRawMaxPreferredPrice": 8.39,
+       "ShowRangeForPreferredPrice": false,
+       "MinPoints": "3",
+       "RawMinPoints": 3,
+       "MaxPoints": "3",
+       "RawMaxPoints": 3,
+       "ShowRangeForPoints": false,
+       "PreferredMemberSavings": "$7.32",
+       "RawPreferredMemberSavings": 7.32,
+       "PrimaryPreferredMemberSavings": "$7.32",
+       "PrimaryRawPreferredMemberSavings": 7.32,
+       "SecondaryPreferredMemberSavings": "$8.01",
+       "SecondaryRawPreferredMemberSavings": 8.01,
+       "PackSavings": "$2.00",
+       "HasPackSavings": true,
+       "HasMultiplePacks": false,
+       "OriginalRegularPricePerUnit": null,
+       "OriginalPreferredPricePerUnit": null,
+       "ConcentratedRegularPricePerUnit": null,
+       "ConcentratedPreferredPricePerUnit": null,
+       "DilutedRegularPricePerUnit": null,
+       "DilutedPreferredPricePerUnit": null,
+       "OriginalPPUMeasurementType": "",
+       "ConcentratedPPUMeasurementType": "",
+       "DilutedPPUMeasurementType": "",
+       "OriginalPriceNonMember": null,
+       "OriginalPriceMember": null,
+       "MinPointsFormatted": null,
+       "MaxPointsFormatted": null
+      },
+      "Image": {
+       "Url": "//cdnsc1.melaleuca.com/cdn-cgi/image/width=500height=500,quality=85/global/products/33961h-01-enus.png",
+       "Alt": "Revive\u2122 Fabric Freshener & Wrinkle Relaxer Starter Pack"
+      },
+      "Size": "2 products",
+      "Weight": "",
+      "PdpUrl": "/productstore/home-fragrance/revive-fabric-freshener-wrinkle-relaxer-starter-pack",
+      "Points": "0",
+      "RawPoints": 0,
+      "FamilyTitle": null,
+      "OptionTitle": null,
+      "IsOffSale": false,
+      "IsErpDateValid": false,
+      "IsInventoryControlled": false,
+      "IsPermanentlyUnavailable": false,
+      "IsRestrictedPack": false,
+      "OffSaleTitle": "Temporarily Unavailable",
+      "IsMarketPlaceProduct": false,
+      "SelectionOptions": [
+       {
+        "Title": null,
+        "Value": ""
+       },
+       {
+        "Title": null,
+        "Value": ""
+       },
+       {
+        "Title": null,
+        "Value": ""
+       },
+       {
+        "Title": null,
+        "Value": "Revive\u2122 Fabric Freshener & Wrinkle Relaxer Mixing Bottle"
+       }
+      ]
+     },
+     "Validation": [
+      {
+       "Status": "Critical",
+       "ValidationCode": "InvalidComboKit",
+       "Snippets": {
+        "Parameters": null,
+        "Inline": {
+         "RteContent": "<p>We're sorry. This item is no longer available.</p>",
+         "ForceLoad": false,
+         "Data": null,
+         "Labels": null
+        },
+        "Footer": null
+       },
+       "LineItem": null,
+       "Modal": null,
+       "Priority": 4,
+       "IgnoreCta": false,
+       "SkipCache": false
+      }
+     ]
+    },
+    "Summary": {
+     "PreferredSavings": 0,
+     "PreferredGrossTotal": 0,
+     "R
