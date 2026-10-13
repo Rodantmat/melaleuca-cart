@@ -1,0 +1,22 @@
+03:18:55   proxy port 10007 | location: cr.us;city.losangeles,sandiego,longbeach,anaheim,irvine,santaana,riverside
+cleaning-and-laundry total 86 cards 87
+cleaning-and-laundry/cleaning total 57 cards 57
+member-savings-pack total 57 cards 57
+{'cat': 'cleaning-and-laundry', 'title': 'EcoSense® Customizable Laundry Value 3-Pack', 'sku': None, 'skus': ['34906'], 'pdp': '/productstore/cleaning-and-laundry/ecosense-customizable-laundry-value-3-pack', 'pack': False}
+{'cat': 'cleaning-and-laundry', 'title': 'EcoSense® Customizable Laundry Value 4-Pack', 'sku': None, 'skus': ['34907'], 'pdp': '/productstore/cleaning-and-laundry/ecosense-customizable-laundry-value-4-pack', 'pack': False}
+{'cat': 'cleaning-and-laundry', 'title': 'EcoSense® Laundry 5-Pack', 'sku': None, 'skus': ['34908'], 'pdp': '/productstore/cleaning-and-laundry/ecosense-laundry-5-pack', 'pack': False}
+{'cat': 'cleaning-and-laundry', 'title': 'EcoSense Cleaning Wipes 5-Pack', 'sku': None, 'skus': ['33968'], 'pdp': '/productstore/cleaning-and-laundry/ecosense-cleaning-wipes-5-pack', 'pack': False}
+{'cat': 'cleaning-and-laundry', 'title': 'EcoSense® Cleaners Customizable 2-Pack', 'sku': None, 'skus': ['34912'], 'pdp': '/productstore/cleaning-and-laundry/ecosense-cleaners-customizable-2-pack', 'pack': False}
+{'cat': 'cleaning-and-laundry', 'title': 'EcoSense® Cleaners Customizable 3-Pack', 'sku': None, 'skus': ['34911'], 'pdp': '/productstore/cleaning-and-laundry/ecosense-cleaners-customizable-3-pack', 'pack': False}
+{'cat': 'cleaning-and-laundry', 'title': 'EcoSense® Cleaners Customizable 4-Pack', 'sku': None, 'skus': ['34913'], 'pdp': '/productstore/cleaning-and-laundry/ecosense-cleaners-customizable-4-pack', 'pack': False}
+{'cat': 'cleaning-and-laundry', 'title': 'EcoSense® Cleaners Customizable 5-Pack', 'sku': None, 'skus': ['34914'], 'pdp': '/productstore/cleaning-and-laundry/ecosense-cleaners-customizable-5-pack', 'pack': False}
+{'cat': 'cleaning-and-laundry/cleaning', 'title': 'EcoSense Cleaning Wipes 5-Pack', 'sku': None, 'skus': ['33968'], 'pdp': '/productstore/cleaning-and-laundry/ecosense-cleaning-wipes-5-pack', 'pack': False}
+{'cat': 'cleaning-and-laundry/cleaning', 'title': 'EcoSense® Cleaners Customizable 2-Pack', 'sku': None, 'skus': ['34912'], 'pdp': '/productstore/cleaning-and-laundry/ecosense-cleaners-customizable-2-pack', 'pack': False}
+{'cat': 'cleaning-and-laundry/cleaning', 'title': 'EcoSense® Cleaners Customizable 3-Pack', 'sku': None, 'skus': ['34911'], 'pdp': '/productstore/cleaning-and-laundry/ecosense-cleaners-customizable-3-pack', 'pack': False}
+{'cat': 'cleaning-and-laundry/cleaning', 'title': 'EcoSense® Cleaners Customizable 4-Pack', 'sku': None, 'skus': ['34913'], 'pdp': '/productstore/cleaning-and-laundry/ecosense-cleaners-customizable-4-pack', 'pack': False}
+{'cat': 'cleaning-and-laundry/cleaning', 'title': 'EcoSense® Cleaners Customizable 5-Pack', 'sku': None, 'skus': ['34914'], 'pdp': '/productstore/cleaning-and-laundry/ecosense-cleaners-customizable-5-pack', 'pack': False}
+{'cat': 'member-savings-pack', 'title': 'EcoSense Cleaning Wipes 5-Pack', 'sku': None, 'skus': ['33968'], 'pdp': '/productstore/cleaning-and-laundry/ecosense-cleaning-wipes-5-pack', 'pack': False}
+{'cat': 'member-savings-pack', 'title': 'EcoSense® Cleaners Customizable 2-Pack', 'sku': None, 'skus': ['34912'], 'pdp': '/productstore/cleaning-and-laundry/ecosense-cleaners-customizable-2-pack', 'pack': False}
+{'cat': 'member-savings-pack', 'title': 'EcoSense® Cleaners Customizable 3-Pack', 'sku': None, 'skus': ['34911'], 'pdp': '/productstore/cleaning-and-laundry/ecosense-cleaners-customizable-3-pack', 'pack': False}
+{'cat': 'member-savings-pack', 'title': 'EcoSense® Cleaners Customizable 4-Pack', 'sku': None, 'skus': ['34913'], 'pdp': '/productstore/cleaning-and-laundry/ecosense-cleaners-customizable-4-pack', 'pack': False}
+{'cat': 'member-savings-pack', 'title': 'EcoSense® Cleaners Customizable 5-Pack', 'sku': None, 'skus': ['34914'], 'pdp': '/productstore/cleaning-and-laundry/ecosense-cleaners-customizable-5-pack', 'pack': False}
