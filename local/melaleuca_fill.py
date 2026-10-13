@@ -393,7 +393,16 @@ def build_actions(plan, info, resolve_variant=None):
             else:
                 problems.append("row %d %s: no item number for '%s' (sheet has '%s') - add this one by hand" % (L["row"], L["asin"], L["name"], sku))
                 continue
-        acts.append(Action("single", sku, L["qty"], label=L["name"], rows=[L["row"]], expect_pts=L["pts"], expect_ws=L["ws"]))
+        sconf, snotes = [], []
+        try:
+            si = info(sku)
+        except Exception:
+            si = None
+        if si and si.get("conf"):         # a product with its own choices (e.g. scent of a starter pack)
+            sconf, sprob, sch = assign_choices([(L["name"], L["melid"])], si["conf"]) if any(c["type"] == "FSKU" for c in si["conf"]) else ([{"FeatureSku": str(c["sku"]), "SelectedSku": None} for c in si["conf"] if c["type"] == "Static"], [], [])
+            problems.extend("row %d: %s" % (L["row"], x) for x in sprob)
+            snotes = [("%s -> %s (%s)" % c) for c in sch]
+        acts.append(Action("single", sku, L["qty"], sconf, label=L["name"], rows=[L["row"]], expect_pts=L["pts"], expect_ws=L["ws"], notes=snotes))
         note_coupon(L, notes)
     # ---- mix-and-match groups
     for key, ls in groups.items():
