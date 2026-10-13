@@ -14,7 +14,7 @@ sys.path.insert(0, HERE)
 NUM = re.compile(r"^\d+$")
 STOP = {"and", "the", "of", "with", "a", "pack", "set", "oz", "fl", "ml", "regular", "size", "plus"}
 ALIAS = {"antiperspirant": "ap", "antiperspirants": "ap", "deodorant": "deo", "deodorants": "deo", "scented": "", "scent": "", "flavor": "", "flavour": ""}
-CLEAN_PACKS = {}          # size -> item number of the 4-pack / 5-pack of the customizable cleaners (filled from the store, see clean_pack_sku)
+CLEAN_PACKS = {3: "34911", 4: "34913", 5: "34914"}      # EcoSense Cleaners Customizable 3 / 4 / 5-Pack (item numbers read from the store)
 
 
 def log(*a):
@@ -629,7 +629,8 @@ def run(n, dry=False, lab=False, final=True):
                         if any(c["type"] == "FSKU" for c in inf["conf"]):
                             conf, pr, ch = assign_choices(chunk, inf["conf"])
                             problems += ["offer %s: %s" % (osku, x) for x in pr]
-                        a = Action("offer", osku, 1, conf, promo=d.get("PromotionId"), label=d.get("Title") or "", rows=[L["row"] for L in ls])
+                        a = Action("offer", osku, 1, conf, promo=d.get("PromotionId"), label=d.get("Title") or "", rows=[L["row"] for L in ls],
+                                   expect_pts=sum(L["pts"] for L in ls) / red, expect_ws=sum(L["ws"] for L in ls) / red)
                         ok = fl.post(a, promo_type=True)
                         say("  %s offer %s x1 %s %s" % ("added" if ok else "FAILED", osku, (d.get("Title") or "")[:55], json.dumps(conf)[:100] if conf else ""))
                         if not ok:
@@ -642,16 +643,43 @@ def run(n, dry=False, lab=False, final=True):
             # ---- 3. check against the sheet
             js, sm = fl.summary()
             pts, cnt = f2(sm.get("Points")), sm.get("ItemCount")
+            net = f2(sm.get("CartNetTotal"))
             say("\nCART NOW: %s items | %.0f points | gross %s | net %s | discount %s" % (cnt, pts, sm.get("CartGrossTotal"), sm.get("CartNetTotal"), sm.get("TotalDiscount")))
-            if plan["total"]:
-                t = plan["total"]
-                say("SHEET   : TOTAL points %.0f | cost (Total WS) %.2f" % (t["pts"], t["ws"]))
-                say("points %s | cost %s" % ("MATCH" if abs(pts - t["pts"]) < 0.5 else "DIFFER by %+.0f" % (pts - t["pts"]),
-                                              "MATCH" if abs(f2(sm.get("CartNetTotal")) - t["ws"]) < 0.05 else "see net/gross above"))
-            for it in cart_items(js):
-                say("   cart line:", it.get("Sku"), "x", it.get("Quantity"), "|", str(it.get("Title") or it.get("Name") or "")[:50], "|", {k: it[k] for k in it if k in ("Price", "LinePrice", "Points", "UnitPrice", "LineTotal", "ExtendedPrice")})
+            exp_pts = sum(L["pts"] for L in plan["lines"] if L["qty"] > 0)
+            exp_ws = sum(L["ws"] for L in plan["lines"] if L["qty"] > 0)
+            credit_pts = sum(L["pts"] for L in plan["lines"] if L["qty"] > 0 and str(L["type"]).lower().startswith("credit"))
+            say("SHEET   : all lines %.0f points | %.2f cost   (TOTAL row: %s points counted for the order limit + %.0f points of credit items)" % (
+                exp_pts, exp_ws, ("%.0f" % plan["total"]["pts"]) if plan["total"] else "?", credit_pts))
+            ok_pts, ok_cost = abs(pts - exp_pts) < 0.5, abs(net - exp_ws) < 0.05
+            say("RESULT  : points %s | cost %s" % ("MATCH" if ok_pts else "DIFFER by %+.0f" % (pts - exp_pts), "MATCH" if ok_cost else "DIFFER by %+.2f" % (net - exp_ws)))
+            by_line = {str(it.get("LineId")): it for it in cart_items(js)}
+            agg = {}
+            for a in acts:
+                if a.line is not None:
+                    g = agg.setdefault(str(a.line), [0.0, 0.0, []])
+                    g[0] += a.expect_pts
+                    g[1] += a.expect_ws
+                    g[2].append(a.label)
+            diffs = []
+            for lid, (ep, ew, labels) in agg.items():
+                it = by_line.get(lid)
+                if not it:
+                    diffs.append("%s: not found in the cart (sheet %.0f pts / %.2f)" % (" + ".join(labels)[:60], ep, ew))
+                    continue
+                ap, aw = f2(it.get("RawPoints")), f2(it.get("RawPrice"))
+                if abs(ap - ep) > 0.5 or abs(aw - ew) > 0.05:
+                    diffs.append("%s: sheet %.0f pts / %.2f  -  store %.0f pts / %.2f" % (" + ".join(labels)[:60], ep, ew, ap, aw))
+            for a in acts:
+                if a.line is None and not a.done:
+                    diffs.append("%s: NOT ADDED (%s)" % (a.label[:60], a.notes[-1:] ))
+            for d in diffs:
+                say("  DIFFERENCE:", d)
+            if not diffs and ok_pts and ok_cost:
+                say("  every line of the cart equals the sheet.")
             for nn in notes:
                 say("  NOTE:", nn)
+            result = {"match": bool(ok_pts and ok_cost), "cart_points": pts, "sheet_points": exp_pts, "cart_cost": net, "sheet_cost": exp_ws, "differences": diffs}
+            json.dump(result, open(os.path.join(FEED, "fill_result_%d.json" % n), "w", encoding="utf-8"), indent=1)
             os.makedirs(FEED, exist_ok=True)
             open(os.path.join(FEED, "fill_report_%d.txt" % n), "w", encoding="utf-8").write("\n".join(report))
             json.dump(js, open(os.path.join(FEED, "fill_cart_%d.json" % n), "w"))
