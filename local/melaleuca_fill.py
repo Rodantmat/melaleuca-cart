@@ -132,7 +132,7 @@ def assign_choices(units, conf):
     """units = [(name, melid)] ; conf = the 'Choose' slots of a pack. Returns (configurations list for the cart, problems)"""
     fs = [c for c in conf if c["type"] == "FSKU"]
     cap = [c["req"] for c in fs]
-    cands = []
+    cands, cands2 = [], []
     wts = [weights_for([ch["title"] for ch in c["choices"]]) for c in fs]
     for ui, (nm, mel) in enumerate(units):
         for ci, c in enumerate(fs):
@@ -143,6 +143,8 @@ def assign_choices(units, conf):
                     sc = name_score(nm, ch["title"], wts[ci])
                     if re.match(r"\s*HE\b", ch["title"]) and not re.search(r"\bHE\b|high.efficiency", nm, re.I):
                         sc -= 0.01          # "Regular" and "HE" versions of one scent: the sheet means the regular one unless it says HE
+                if sc >= 0.3:
+                    cands2.append((sc, ui, ci, ch))
                 if sc >= 0.5:
                     cands.append((sc, ui, ci, ch))
     cands.sort(key=lambda t: -t[0])
@@ -154,6 +156,12 @@ def assign_choices(units, conf):
         got[ui] = (ci, ch, sc)
         used.add(ui)
         cap[ci] -= 1
+    for ui, (nm, mel) in enumerate(units):       # weak match (0.3..0.5): accept the single best choice when it is clearly ahead
+        if ui in got:
+            continue
+        weak = sorted([(sc, ci, ch) for sc, u, ci, ch in cands2 if u == ui and cap[ci] > 0 and ch["sku"]], key=lambda t: -t[0])
+        if weak and weak[0][0] >= 0.3 and (len(weak) == 1 or weak[0][0] - weak[1][0] >= 0.2):
+            got[ui] = (weak[0][1], weak[0][2], weak[0][0]); used.add(ui); cap[weak[0][1]] -= 1
     out = []
     for ui, (nm, mel) in enumerate(units):
         if ui not in got:
@@ -519,6 +527,14 @@ class Filler:
                 "LineType": ("Promotion" if promo_type else "Normal"), "LineId": ("" if not promo_type else None), "Position": None}
         r = self.s.fetch(self.s.cart_url(), "POST", body)
         ok = r.get("status") == 200 and (r.get("json") or {}).get("Success")
+        try:
+            vals = r["json"]["Data"]["Item"].get("Validation") or []
+            bad = [v.get("ValidationCode") for v in vals if v.get("Status") == "Critical"]
+            if ok and bad:
+                ok = False
+                a.notes.append("store refused the item: %s" % ", ".join(bad))
+        except Exception:
+            pass
         line = None
         if ok:
             try:
