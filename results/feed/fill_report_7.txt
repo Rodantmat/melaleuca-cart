@@ -1,0 +1,97 @@
+signed in as Antonio M | plan: 43 lines, TOTAL points 144.0 cost 397.08
+  variant: Haircare - Original Shampoo - 8oz (R289L) -> NOT RESOLVED: family 289 not found in the store
+  variant: Renew - Lotion - 20oz (R480H) -> 6600  only variant: Value Size Renew
+  variant: Exercise - Splash H2O - Lemonade (F3771) -> NOT RESOLVED: family 3771 not found in the store
+  variant: Exercise - Splash H2O - Peach Ice Tea (F3771) -> NOT RESOLVED: family 3771 not found in the store
+  variant: Exercise - Sustain Sport - Orange Splash (F2768) -> NOT RESOLVED: family 2768 not found in the store
+  variant: Exercise - Sustain Sport - Raspberry Lemonade (F2768) -> NOT RESOLVED: family 2768 not found in the store
+  variant: Laundry - MelaBoost - Garden Lavender (F264) -> 6423  Garden Lavender (0.98)
+  variant: Laundry - MelaBoost - Mountain Fresh (F264) -> 6421  MelaBoost™ Mountain Fresh (0.99)
+actions: 21 | offer lines: 8 | problems: 5
+  PROBLEM: row 24 B00Q3HVF44: no item number for 'Haircare - Original Shampoo - 8oz' (sheet has 'R289L') - add this one by hand
+  PROBLEM: row 18 Exercise - Splash H2O - Lemonade: no item number (group F3771 has no pack)
+  PROBLEM: row 19 Exercise - Splash H2O - Peach Ice Tea: no item number (group F3771 has no pack)
+  PROBLEM: row 20 Exercise - Sustain Sport - Orange Splash: no item number (group F2768 has no pack)
+  PROBLEM: row 21 Exercise - Sustain Sport - Raspberry Lemonade: no item number (group F2768 has no pack)
+  added [single] 5612 x1 Ecosense - Clean And Gleam - 8oz 
+  added [single] 3300 x1 Ecosense - Clear Power Glass Cleaner Wipes 
+  added [pack] 2211 x1 2-pack: Ecosense - PreSpot - 8oz 
+  added [pack] 33022 x1 3-pack: Ecosense - Prespot Instant Stain Remover 
+  added [single] 1218 x1 Ecosense - Tough and Tender - 8oz 
+  added [single] 4120 x1 Mela-Pharmacy - Replenex Extra Strength Drink Mix 
+  added [single] 3620 x2 Renew - Body Wash 12oz 
+  added [single] 3634 x1 Renew - Lotion - 1oz - Pure Lavender 
+  added [single] 6600 x1 Renew - Lotion - 20oz 
+  added [pack] 190 x1 DEOD pack 1/1: finia Sweet Cream and Willow, nia Vanill 
+       choice: Deodorant - Affinia Sweet Cream and Willow -> Affinia Sweet Cream & Willow (0.99)
+       choice: Deodorant - Affinia Vanilla Musk and Jasmine -> Vanilla Musk & Jasmine (0.99)
+       choice: Deodorant - Alloy Antiperspirant -> Alloy AP/DEO (10.0)
+  added [pack] 34911 x1 CLEAN pack 1/1: Ecosense - Mela-magic - 16oz, Ecosense  
+       choice: Ecosense - Harvest Pure - 8oz -> Harvest Pure™ Fruit And Vegetable Wash (10.0)
+       choice: Ecosense - Mela-magic - 16oz -> MelaMagic Heavy-Duty Cleaner (10.0)
+       choice: Ecosense - No Work - 8oz -> No Work Daily Shower Cleaner (10.0)
+  added [pack] 39176 x1 PSGEL2 pack 1/1: Prespot with Scrubbing Brush 
+  added [pack] 8911 x1 SGD2 pack 1/1: Ecosense - Sol U Guard 
+  added [pack] 23963 x1 AFFSC pack 1/1: - Affinia Volume Conditioner, e - Affin 
+       choice: Haircare - Affinia Moisture Shampoo -> Moisture Shampoo (10.0)
+       choice: Haircare - Affinia Volume Conditioner -> Volume Conditioner (10.0)
+  added [pack] 6277 x1 KPB2 pack 1/1: Koala Pals - Hair Wash 
+       choice: Koala Pals - Hair Wash -> Hair Wash (10.0)
+       choice: Koala Pals - Hair Wash -> Hair Wash (10.0)
+  added [single] 6423 x1 Laundry - MelaBoost - Garden Lavender 
+  added [single] 6421 x1 Laundry - MelaBoost - Mountain Fresh 
+  added [pack] 219 x1 MB9X2 pack 1/1: undry - Melabrite - 96 loads 
+  added [pack] 5027 x1 F298 pack 1/1:  Dryer Sheets - Clean Cotton, yer Sheets 
+       choice: Laundry - Melasoft Dryer Sheets - Clean Cotton -> Clean Cotton (0.98)
+       choice: Laundry - Melasoft Dryer Sheets - Garden Lavender -> Garden Lavender (0.98)
+  added [pack] 7911 x1 F650 pack 1/1: des - Lip Balm - Pina Colada, p Balm - C 
+       choice: Sun Shades - Lip Balm - Cranberry Tangerine -> Cranberry Tangerine (0.98)
+       choice: Sun Shades - Lip Balm - Cranberry Tangerine -> Cranberry Tangerine (0.98)
+       choice: Sun Shades - Lip Balm - Pina Colada -> Pina Colada (0.98)
+  added [pack] 43987 x1 TOOTH pack 1/1:  - Koala Pals - Berrylicious, ed - Spea 
+       choice: Toothcare - Exceed - Cinnamon -> Cinnamon - Fluoride-Free (10.0)
+       choice: Toothcare - Exceed - Spearmint with Fluoride -> Spearmint +Fluoride (10.0)
+       choice: Toothcare - Koala Pals - Berrylicious -> Berrylicious +Fluoride (0.87)
+cart before the offers: 22 items, 121 points
+offers on the page: 27
+  added offer 79015 x1 Save $3.00 on Sei Bella The Basic Collection Gentle Dai 
+  added offer 6833 x1 Buy one Safe & Mighty, get one for $2.99! 
+  added offer 8194 x1 Buy one Tub & Tile Bathroom Cleaner, get one for $2.49! 
+  added offer 34050 x1 Save $10.00 on MelaPower Laundry Detergent 2-Pack! 
+  added offer 49096 x1 Buy one Pain-A-Trate Ultra, get one for $2.49! 
+  added offer 8246 x1 Buy one Vitality Calcium Complete, get one for $2.49! 
+  added offer 49635 x1 Save $4.00 on Renew Targeted Eczema Treatment 2-Pack! 
+  added offer 49677 x1 Save $9.00 on Renew Hand Wash Refill 2-Pack! 
+
+CART NOW: 29 items | 151 points | gross 353.79 | net 353.79 | discount 0
+SHEET   : TOTAL points 144 | cost (Total WS) 397.08
+points DIFFER by +7 | cost see net/gross above
+   cart line: 5612 x 1 | Clean & Gleam™ 12x Floor Cleaner | {'Price': '$6.99', 'Points': '3'}
+   cart line: 3300 x 1 | Clear Power Glass Wipes | {'Price': '$4.29', 'Points': '2'}
+   cart line: 2211 x 1 | PreSpot™ 4x Laundry Stain Remover 2–Pack | {'Price': '$12.98', 'Points': '5'}
+   cart line: 33022 x 1 | PreSpot™ Instant Stain Remover 3–Pack | {'Price': '$6.77', 'Points': '2'}
+   cart line: 1218 x 1 | Tough & Tender® 12x All-Purpose Cleaner | {'Price': '$6.99', 'Points': '3'}
+   cart line: 4120 x 1 | Replenex Extra Strength Drink | {'Price': '$22.39', 'Points': '12'}
+   cart line: 3620 x 2 | Renew® Body Wash | {'Price': '$21.98', 'Points': '12'}
+   cart line: 3634 x 1 | Travel Renew® with Pure™ Lavender | {'Price': '$2.29', 'Points': '1'}
+   cart line: 6600 x 1 | Renew® Intensive Skin Therapy | {'Price': '$16.99', 'Points': '10'}
+   cart line: 190 x 1 | Antiperspirants & Deodorants 3–Pack | {'Price': '$14.37', 'Points': '4'}
+   cart line: 34911 x 1 | EcoSense® Cleaners Customizable 3-Pack | {'Price': '$17.97', 'Points': '7'}
+   cart line: 39176 x 1 | PreSpot™ Gel with Scrub Brush Tip 2-Pack | {'Price': '$7.38', 'Points': '3'}
+   cart line: 8911 x 1 | Sol–U–Guard Botanical® 2x Disinfectant 2–Pack | {'Price': '$20.78', 'Points': '10'}
+   cart line: 23963 x 1 | Affinia Shampoo & Conditioner Bundle | {'Price': '$14.98', 'Points': '6'}
+   cart line: 6277 x 1 | Koala Pals Bath 2-Pack | {'Price': '$10.38', 'Points': '5'}
+   cart line: 6423 x 1 | MelaBoost™ Laundry Fragrance Booster | {'Price': '$11.99', 'Points': '5'}
+   cart line: 6421 x 1 | MelaBoost™ Laundry Fragrance Booster | {'Price': '$11.99', 'Points': '5'}
+   cart line: 219 x 1 | MelaBrite® 9x Color Booster 2-Pack | {'Price': '$29.48', 'Points': '14'}
+   cart line: 5027 x 1 | MelaSoft® Dryer Sheet 2–Pack | {'Price': '$11.98', 'Points': '5'}
+   cart line: 7911 x 1 | Sun Shades® Lip Balm: 3-Pack | {'Price': '$6.57', 'Points': '2'}
+   cart line: 43987 x 1 | Tooth Polish 3-Pack | {'Price': '$12.77', 'Points': '5'}
+   cart line: 79015 x 1 | Save $3.00 on Sei Bella The Basic Collection Gentl | {'Price': '$7.50', 'Points': '2'}
+   cart line: 6833 x 1 | Buy one Safe & Mighty, get one for $2.99! | {'Price': '$9.18', 'Points': '3'}
+   cart line: 8194 x 1 | Buy one Tub & Tile Bathroom Cleaner, get one for $ | {'Price': '$9.48', 'Points': '3'}
+   cart line: 49096 x 1 | Buy one Pain-A-Trate Ultra, get one for $2.49! | {'Price': '$15.28', 'Points': '6'}
+   cart line: 8246 x 1 | Buy one Vitality Calcium Complete, get one for $2. | {'Price': '$13.98', 'Points': '5'}
+   cart line: 49635 x 1 | Save $4.00 on Renew Targeted Eczema Treatment 2-Pa | {'Price': '$9.48', 'Points': '4'}
+   cart line: 49677 x 1 | Save $9.00 on Renew Hand Wash Refill 2-Pack! | {'Price': '$16.58', 'Points': '7'}
+  NOTE: row 35 Renew - Body Wash 12oz: coupon line - the product is added, apply its coupon in the cart (coupons are not applied automatically)
