@@ -298,6 +298,11 @@ class Catalog:
             self.crawl(["manual"])
         q = max(1, L["qty"])
         up, upts = L["ws"] / q, L["pts"] / q
+        npk = 1
+        mpk = re.search(r"\b(\d+)-Pack\b", L["name"], re.I)
+        if mpk and int(mpk.group(1)) > 1:       # "X - 2-Pack" without an item number: the same as N single units of X
+            npk = int(mpk.group(1))
+            up, upts = up / npk, upts / npk
         hits = []
         for k, c in ALL_CARDS.items():
             ps = [x for x in (c.get("pmin"), c.get("pmax")) if x]
@@ -311,7 +316,14 @@ class Catalog:
             if sc > 0.0 or len(hits) == 1:
                 if len(c["skus"]) > 1:
                     return None, "card '%s' has several versions: pick by hand" % c["title"]
-                return c["skus"][0], "%s (price %.2f, %.0f pts)" % (c["title"], up, upts)
+                if npk > 1:
+                    L["qty"] = q * npk
+                return c["skus"][0], "%s (price %.2f, %.0f pts)%s" % (c["title"], up, upts, (" x%d for the %d-pack" % (npk, npk)) if npk > 1 else "")
+        elif all(len(h[2]["skus"]) == 1 for h in hits[:2]) and hits[0][0] <= 0.001:
+            # nothing in the name tells them apart (e.g. a credit oil 'T36-C5'): same price and points, so the totals are identical - take the first, say so
+            c = hits[0][2]
+            L.setdefault("warn", []).append("CHECK: '%s' has no name in the store; took '%s' (same price and points as %s)" % (L["name"], c["title"], "; ".join(h[2]["title"] for h in hits[1:3])))
+            return c["skus"][0], "%s - AMBIGUOUS, same price/points as %d others, check it" % (c["title"], len(hits) - 1)
         return None, "several store products cost %.2f with %.0f points: %s" % (up, upts, "; ".join(h[2]["title"] for h in hits[:3]))
 
     def resolve(self, L):
