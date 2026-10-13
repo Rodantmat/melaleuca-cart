@@ -1,0 +1,45 @@
+02:31:47   proxy port 10007 | location: cr.us;city.losangeles,sandiego,longbeach,anaheim,irvine,santaana,riverside
+02:32:19 signed in as Antonio M | plan: 43 lines, TOTAL points 144.0 cost 397.08
+02:32:39   category supplements: 8 families known
+02:32:47   category cleaning-and-laundry: 15 families known
+02:32:55   category cleaning-and-laundry/cleaning: 15 families known
+02:33:03   category cleaning-and-laundry/laundry: 15 families known
+02:33:13   category personal-care: 40 families known
+02:33:22   category beauty: 60 families known
+02:33:31   category healthy-foods-and-drinks: 80 families known
+02:33:44   variant: Haircare - Original Shampoo - 8oz (R289L) -> 4118  only variant: Melaleuca® Original Shampoo
+02:33:48   variant: Renew - Lotion - 20oz (R480H) -> 6600  only variant: Value Size Renew
+02:34:13   variant: Exercise - Splash H2O - Lemonade (F3771) -> NOT RESOLVED: no variant of family 3771 looks like 'Exercise - Splash H2O - Lemonade' (best: SplasH2O® Single Serve: Lemonade 0.25)
+02:34:13   variant: Exercise - Splash H2O - Peach Ice Tea (F3771) -> NOT RESOLVED: no variant of family 3771 looks like 'Exercise - Splash H2O - Peach Ice Tea' (best: SplasH2O® Single Serve: Peach Iced Tea 0.33)
+02:34:18   variant: Exercise - Sustain Sport - Orange Splash (F2768) -> 60125  Sustain Active Hydration: Orange Packets (0.40)
+02:34:18   variant: Exercise - Sustain Sport - Raspberry Lemonade (F2768) -> 60127  Sustain Active Hydration: Raspberry Lemonade Packets   (0.53)
+02:34:32   variant: Laundry - MelaBoost - Garden Lavender (F264) -> 6423  Garden Lavender (0.88)
+02:34:32   variant: Laundry - MelaBoost - Mountain Fresh (F264) -> 6421  MelaBoost™ Mountain Fresh (0.94)
+02:34:50 actions: 24 | offer lines: 8 | problems: 3
+02:34:50   PROBLEM: row 18 Exercise - Splash H2O - Lemonade: no item number (group F3771 has no pack)
+02:34:50   PROBLEM: row 19 Exercise - Splash H2O - Peach Ice Tea: no item number (group F3771 has no pack)
+02:34:50   PROBLEM: group TOOTH: no choice found for 'Toothcare - Koala Pals - Berrylicious' (F207)
+02:34:50   would add [single] 5612 x1 Ecosense - Clean And Gleam - 8oz 
+02:34:50   would add [single] 3300 x1 Ecosense - Clear Power Glass Cleaner Wipes 
+02:34:50   would add [pack] 2211 x1 2-pack: Ecosense - PreSpot - 8oz 
+02:34:50   would add [pack] 33022 x1 3-pack: Ecosense - Prespot Instant Stain Remover 
+02:34:50   would add [single] 1218 x1 Ecosense - Tough and Tender - 8oz 
+02:34:50   would add [single] 4118 x1 Haircare - Original Shampoo - 8oz 
+02:34:50   would add [single] 4120 x1 Mela-Pharmacy - Replenex Extra Strength Drink Mix 
+02:34:50   would add [single] 3620 x2 Renew - Body Wash 12oz 
+02:34:50   would add [single] 3634 x1 Renew - Lotion - 1oz - Pure Lavender 
+02:34:50   would add [single] 6600 x1 Renew - Lotion - 20oz 
+02:34:50   would add [pack] 190 x1 DEOD pack 1/1: finia Sweet Cream and Willow, nia Vanilla Mus [{"FeatureSku": "F576", "SelectedSku": "20053"}, {"FeatureSku": "F576", "SelectedSku": "20087"}, {"FeatureSku": "F576", 
+02:34:50   would add [pack] 34911 x1 CLEAN pack 1/1: Ecosense - Mela-magic - 16oz, Ecosense - No  [{"FeatureSku": "F1577", "SelectedSku": "30101"}, {"FeatureSku": "F1577", "SelectedSku": "1235"}, {"FeatureSku": "F1577"
+02:34:50   would add [pack] 39176 x1 PSGEL2 pack 1/1: Prespot with Scrubbing Brush 
+02:34:50   would add [pack] 8911 x1 SGD2 pack 1/1: Ecosense - Sol U Guard 
+02:34:50   would add [single] 60125 x1 Exercise - Sustain Sport - Orange Splash 
+02:34:50   would add [single] 60127 x1 Exercise - Sustain Sport - Raspberry Lemonade 
+02:34:50   would add [pack] 23963 x1 AFFSC pack 1/1: - Affinia Volume Conditioner, e - Affinia Mo [{"FeatureSku": "F1854", "SelectedSku": "20061"}, {"FeatureSku": "F1855", "SelectedSku": "20064"}]
+02:34:50   would add [pack] 6277 x1 KPB2 pack 1/1: Koala Pals - Hair Wash [{"FeatureSku": "F160", "SelectedSku": "4913"}, {"FeatureSku": "F160", "SelectedSku": "4913"}]
+02:34:50   would add [single] 6423 x1 Laundry - MelaBoost - Garden Lavender 
+02:34:50   would add [single] 6421 x1 Laundry - MelaBoost - Mountain Fresh 
+02:34:50   would add [pack] 219 x1 MB9X2 pack 1/1: undry - Melabrite - 96 loads 
+02:34:50   would add [pack] 5027 x1 F298 pack 1/1:  Dryer Sheets - Clean Cotton, yer Sheets - Ga [{"FeatureSku": "F1755", "SelectedSku": "5271"}, {"FeatureSku": "F1755", "SelectedSku": "9984"}]
+02:34:50   would add [pack] 7911 x1 F650 pack 1/1: des - Lip Balm - Pina Colada, p Balm - Cranbe [{"FeatureSku": "F361", "SelectedSku": "2270"}, {"FeatureSku": "F361", "SelectedSku": "2270"}, {"FeatureSku": "F361", "S
+02:34:50   would add [pack] 43987 x1 TOOTH pack 1/1:  - Koala Pals - Berrylicious, ed - Spearmint [{"FeatureSku": "F2200", "SelectedSku": "40061"}, {"FeatureSku": "F2200", "SelectedSku": "42996"}]
