@@ -222,36 +222,23 @@ class Catalog:
                 break
             try:
                 pg.goto("%s/productstore/%s?sc_lang=en-US" % (BASE, cat), wait_until="domcontentloaded", timeout=60000)
-                pg.wait_for_timeout(3000)
+                pg.wait_for_timeout(5000)
             except Exception as e:
                 log("  category", cat, "not opened:", str(e)[:60])
                 continue
-            seen, same, last = 0, 0, -1
-            for _ in range(50):
-                try:
-                    pg.mouse.wheel(0, 4000)
-                    pg.keyboard.press("End")
-                    for sel in ("button:has-text('Load more')", "button:has-text('Show more')", "button:has-text('View more')"):
-                        loc = pg.locator(sel)
-                        if loc.count() > 0:
-                            try:
-                                loc.first.click(timeout=1500)
-                            except Exception:
-                                pass
-                    pg.wait_for_timeout(800)
-                    n = pg.evaluate("() => document.querySelectorAll('a[href*=\"/products/\"]').length")
-                except Exception:
-                    break
-                for u, m, j in self.s.json_log[seen:]:
-                    if "/api/category/search/" in u:
-                        family_cards_from(j, self.fam)
-                seen = len(self.s.json_log)
-                if n == last:
-                    same += 1
-                    if same >= 3:
-                        break
-                else:
-                    same, last = 0, n
+            base = None
+            for u, m, j in self.s.json_log:
+                if "/api/category/search/" in u:
+                    base, first = u, j
+            if base:
+                family_cards_from(first, self.fam)
+                total = int((first or {}).get("TotalResults") or 0)
+                got = len((first or {}).get("Cards") or [])
+                if total > got and got:
+                    pages = -(-total // got)          # the store hands out 40 cards per page; pageNumber=N returns pages 1..N together
+                    r = self.s.fetch(base + "&pageNumber=%d" % pages)
+                    family_cards_from(r.get("json") or {}, self.fam)
+                del self.s.json_log[:]
             log("  category %s: %d families known" % (cat, len(self.fam)))
         try:
             os.makedirs(FEED, exist_ok=True)
@@ -606,6 +593,8 @@ def run(n, dry=False, lab=False, final=True):
                         d = (c.get("InnerData") or {}).get("Data") or {}
                         cards[str(d.get("Sku"))] = d
                 say("offers on the page:", len(cards))
+                for k, d in cards.items():
+                    say("     offer card %s | promo %s | %s" % (k, d.get("PromotionId"), (d.get("Title") or "")[:80]))
                 by = {}
                 for L in offers:
                     by.setdefault(L["offsku"], []).append(L)
