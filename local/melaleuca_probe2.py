@@ -105,7 +105,7 @@ def main():
                     save(tag + "_chosen.json", json.dumps(chosen))
                     s.page.screenshot(path=os.path.join(OUT, tag + "_chosen.png"), full_page=True)
                     state["block"], state["tag"] = True, tag
-                    btn = s.page.locator("button", has_text=re.compile(r"^\\s*add to cart\\s*$", re.I)).first
+                    btn = s.page.locator("button", has_text=re.compile(r"^\s*add to cart\s*$", re.I)).first
                     btn.click(timeout=6000)
                     s.page.wait_for_timeout(3500)
                     s.page.screenshot(path=os.path.join(OUT, tag + "_afteradd.png"), full_page=False)
