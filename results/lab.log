@@ -1,0 +1,7 @@
+03:05:24   proxy port 10007 | location: cr.us;city.losangeles,sandiego,longbeach,anaheim,irvine,santaana,riverside
+add 3620 True 1
+add 42996 True 2
+cart: (5, 18.0)
+pressing REDEEM
+cart after: (5, 18.0)
+emptied; cart now (0, 0.0)
