@@ -177,10 +177,21 @@ CATEGORIES = ["supplements", "cleaning-and-laundry", "cleaning-and-laundry/clean
               "extra-savings", "featured-this-month", "curated-collections"]
 
 
+ALL_CARDS = {}          # every card seen: key = first item number -> title, item numbers, price range, points
+
+
 def family_cards_from(js, out):
     for c in (js.get("Cards") or []) if isinstance(js, dict) else []:
         d = (c.get("InnerData") or {}).get("Data") or {}
         prods = d.get("Products") or []
+        try:
+            pr = d.get("PriceRange") or {}
+            skus = [str(p.get("Sku")) for p in prods] or ([str(d.get("Sku"))] if d.get("Sku") else [])
+            if skus:
+                ALL_CARDS[skus[0]] = {"title": d.get("Title") or "", "skus": skus, "pmin": pr.get("RawMinPreferredPrice"), "pmax": pr.get("RawMaxPreferredPrice"),
+                                      "pts": pr.get("RawMinPoints"), "ptsmax": pr.get("RawMaxPoints")}
+        except Exception:
+            pass
         if d.get("FamilyID") and len(prods) > 1 and d.get("PdpLink"):
             out[str(d["FamilyID"])] = {"pdp": d["PdpLink"], "skus": [str(p.get("Sku")) for p in prods], "title": d.get("Title")}
 
@@ -213,6 +224,10 @@ class Catalog:
             self.fam = {}
         self.var = {}
         self.crawled = False
+        try:
+            ALL_CARDS.update(json.load(open(os.path.join(FEED, "catalog_cards.json"), encoding="utf-8")))
+        except Exception:
+            pass
 
     def crawl(self, need):
         if self.crawled:
@@ -220,7 +235,7 @@ class Catalog:
         self.crawled = True
         pg = self.s.page
         for cat in CATEGORIES:
-            if all(f in self.fam for f in need):
+            if need and all((f in self.fam) for f in need if f != "manual") and "manual" not in need:
                 break
             try:
                 pg.goto("%s/productstore/%s?sc_lang=en-US" % (BASE, cat), wait_until="domcontentloaded", timeout=60000)
@@ -245,6 +260,7 @@ class Catalog:
         try:
             os.makedirs(FEED, exist_ok=True)
             json.dump(self.fam, open(self.path, "w", encoding="utf-8"))
+            json.dump(ALL_CARDS, open(os.path.join(FEED, "catalog_cards.json"), "w", encoding="utf-8"))
         except Exception:
             pass
 
@@ -263,12 +279,34 @@ class Catalog:
         self.var[fid] = out
         return out
 
+    def resolve_manual(self, L):
+        """the sheet has no item number for this row ('manual'): find the store card with the same price and points, then the best name"""
+        if not ALL_CARDS:
+            self.crawl(["manual"])
+        q = max(1, L["qty"])
+        up, upts = L["ws"] / q, L["pts"] / q
+        hits = []
+        for k, c in ALL_CARDS.items():
+            ps = [x for x in (c.get("pmin"), c.get("pmax")) if x]
+            if any(abs(float(x) - up) < 0.006 for x in ps) and (c.get("pts") is None or abs(float(c.get("pts") or 0) - upts) < 0.51 or abs(float(c.get("ptsmax") or 0) - upts) < 0.51):
+                hits.append((name_score(L["name"], c["title"]), k, c))
+        hits.sort(key=lambda t: -t[0])
+        if not hits:
+            return None, "no store product costs %.2f with %.0f points" % (up, upts)
+        if len(hits) == 1 or hits[0][0] > hits[1][0] + 0.001:
+            sc, k, c = hits[0]
+            if sc > 0.0 or len(hits) == 1:
+                if len(c["skus"]) > 1:
+                    return None, "card '%s' has several versions: pick by hand" % c["title"]
+                return c["skus"][0], "%s (price %.2f, %.0f pts)" % (c["title"], up, upts)
+        return None, "several store products cost %.2f with %.0f points: %s" % (up, upts, "; ".join(h[2]["title"] for h in hits[:3]))
+
     def resolve(self, L):
         """-> (sku, why) for a plan line whose Mela ID is F#### or R####L/H"""
         mid = L["melid"]
         m = re.fullmatch(r"([FR])(\d+)([LH]?)", mid or "")
         if not m:
-            return None, "no family id"
+            return self.resolve_manual(L)
         fid = m.group(2)
         if fid not in self.fam:
             self.crawl([fid])
@@ -568,6 +606,8 @@ def run(n, dry=False, lab=False, final=True):
                     say("cart emptied:", fl.clear(), "lines")
             cat = Catalog(s)
             need = sorted({re.sub(r"\D", "", L["melid"]) for L in plan["lines"] if re.fullmatch(r"[FR]\d+[LH]?", L["melid"] or "")})
+            if any(L["qty"] > 0 and L["melid"] and not NUM.match(L["melid"]) and not re.fullmatch(r"[FR]\d+[LH]?", L["melid"]) for L in plan["lines"]):
+                need.append("manual")
             if need:
                 cat.crawl(need)
 
