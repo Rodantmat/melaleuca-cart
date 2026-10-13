@@ -284,7 +284,7 @@ class Catalog:
         out = []
         if f:
             try:
-                self.s.page.goto(BASE + f["pdp"], wait_until="domcontentloaded", timeout=60000)
+                self.s.page.goto(BASE + f["pdp"] + ("&" if "?" in f["pdp"] else "?") + "sc_lang=en-US", wait_until="domcontentloaded", timeout=60000)
                 self.s.page.wait_for_timeout(2500)
                 out = parse_variants(self.s.page.content())
             except Exception as e:
@@ -759,7 +759,7 @@ def run(n, dry=False, lab=False, final=True):
             blocks = {}
             for i, a in enumerate(acts):
                 blocks.setdefault(find(i), []).append(a)
-            diffs = []
+            diffs, pump_extra, pump_notes = [], 0.0, []
             for aa in blocks.values():
                 ep, ew = sum(a.expect_pts for a in aa), sum(a.expect_ws for a in aa)
                 lids = {str(a.line) for a in aa if a.line is not None}
@@ -769,10 +769,15 @@ def run(n, dry=False, lab=False, final=True):
                 name = " + ".join(sorted({a.label for a in aa}))[:70]
                 if missing:
                     diffs.append("%s: NOT ADDED (%s)" % (name, (missing[0].notes[-1:] or ["?"])[0]))
+                elif abs(ap - ep) < 0.5 and aw > ew + 0.05 and any("pump" in a.label.lower() for a in aa):
+                    pump_extra += aw - ew          # the sheet does not price the pump (0 points); the store does
+                    pump_notes.append("%s: the pump costs %.2f in the store, the sheet does not count it" % (name, aw - ew))
                 elif abs(ap - ep) > 0.5 or abs(aw - ew) > 0.05:
                     diffs.append("%s: sheet %.0f pts / %.2f  -  store %.0f pts / %.2f" % (name, ep, ew, ap, aw))
             for d in diffs:
                 say("  DIFFERENCE:", d)
+            for d in pump_notes:
+                say("  NOTE:", d)
             if not diffs and ok_pts and ok_cost:
                 say("  every line of the cart equals the sheet.")
             for nn in notes:
