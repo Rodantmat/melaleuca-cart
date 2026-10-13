@@ -1,0 +1,211 @@
+{
+ "cleaning-and-laundry/laundry": [
+  {
+   "url": "https://www.melaleuca.com/api/cart/summary?sc_itemid=%7B2AD12916-CF29-43F5-836E-E3A2ED555D9B%7D&sc_lang=en-US&sc_site=productstoreUs",
+   "method": "GET",
+   "cards": null,
+   "keys": [
+    "Success",
+    "ErrorMessages",
+    "Data"
+   ],
+   "total": {
+    "Success": true
+   }
+  },
+  {
+   "url": "https://www.melaleuca.com/api/profile/flags/?sc_itemid=%7B2AD12916-CF29-43F5-836E-E3A2ED555D9B%7D&sc_lang=en-US&sc_site=productstoreUs",
+   "method": "GET",
+   "cards": null,
+   "keys": [
+    "Success",
+    "ErrorMessages",
+    "Data"
+   ],
+   "total": {
+    "Success": true
+   }
+  },
+  {
+   "url": "https://www.melaleuca.com/api/toast/showToast/?sc_itemid=%7B2AD12916-CF29-43F5-836E-E3A2ED555D9B%7D&sc_lang=en-US&sc_site=productstoreUs",
+   "method": "GET",
+   "cards": null,
+   "keys": [
+    "Success",
+    "ErrorMessages",
+    "Data"
+   ],
+   "total": {
+    "Success": true,
+    "Data": false
+   }
+  },
+  {
+   "url": "https://www.melaleuca.com/api/account/lsd/?sc_itemid=%7B2AD12916-CF29-43F5-836E-E3A2ED555D9B%7D&sc_lang=en-US&sc_site=productstoreUs",
+   "method": "GET",
+   "cards": null,
+   "keys": [
+    "Success",
+    "ErrorMessages",
+    "Data"
+   ],
+   "total": {
+    "Success": true
+   }
+  },
+  {
+   "url": "https://www.melaleuca.com/api/customerprofile/notification/?sc_itemid=%7B2AD12916-CF29-43F5-836E-E3A2ED555D9B%7D&sc_lang=en-US&sc_site=productstoreUs",
+   "method": "GET",
+   "cards": null,
+   "keys": null,
+   "total": null
+  },
+  {
+   "url": "https://www.melaleuca.com/api/category/search/2ad12916cf2943f5836ee3a2ed555d9b?sc_lang=en-US&isLvipPromotion=false&sc_itemid=%7B2AD12916-CF29-43F5-836E-E3A2ED555D9B%7D&sc_lang=en-US&sc_site=productstoreUs",
+   "method": "GET",
+   "cards": 32,
+   "keys": [
+    "TotalResults",
+    "Cards",
+    "FacetRefiners",
+    "IsPreferredUser",
+    "UserFlags",
+    "CurrentPage"
+   ],
+   "total": {
+    "TotalResults": 32,
+    "IsPreferredUser": true,
+    "CurrentPage": 1
+   }
+  }
+ ],
+ "cleaning-and-laundry/laundry_text": "Skip to Main Navigation Skip to main content Skip to Footer PRODUCT STORE OUR STORY R3 REWARDS SERVICES RIVERBEND RANCH GROW (BUSINESS CENTER) Antonio Mattos , Member | Loyalty Shopping Dollars $10.42 help MENU Categories Supplements Cleaning and Laundry Personal Care Beauty Healthy Foods and Drinks Medicines and Treatments Home Fragrance Essential Oils New Member Savings Packs Logo Gear Sales Aids and Materials New Products Extra Savings Featured This Month Curated Collections Riverbend Ranch Steaks My Account Our Story Rewards Learning Library Services Which Products Do You Use? R3 Weight Lo",
+ "personal-care": [
+  {
+   "url": "https://www.melaleuca.com/api/profile/flags/?sc_itemid=%7BB32FEFFF-4C66-4C4D-94E6-A4E6F2EBE10A%7D&sc_lang=en-US&sc_site=productstoreUs",
+   "method": "GET",
+   "cards": null,
+   "keys": [
+    "Success",
+    "ErrorMessages",
+    "Data"
+   ],
+   "total": {
+    "Success": true
+   }
+  },
+  {
+   "url": "https://www.melaleuca.com/api/account/lsd/?sc_itemid=%7BB32FEFFF-4C66-4C4D-94E6-A4E6F2EBE10A%7D&sc_lang=en-US&sc_site=productstoreUs",
+   "method": "GET",
+   "cards": null,
+   "keys": [
+    "Success",
+    "ErrorMessages",
+    "Data"
+   ],
+   "total": {
+    "Success": true
+   }
+  },
+  {
+   "url": "https://www.melaleuca.com/api/cart/summary?sc_itemid=%7BB32FEFFF-4C66-4C4D-94E6-A4E6F2EBE10A%7D&sc_lang=en-US&sc_site=productstoreUs",
+   "method": "GET",
+   "cards": null,
+   "keys": [
+    "Success",
+    "ErrorMessages",
+    "Data"
+   ],
+   "total": {
+    "Success": true
+   }
+  },
+  {
+   "url": "https://www.melaleuca.com/api/toast/showToast/?sc_itemid=%7BB32FEFFF-4C66-4C4D-94E6-A4E6F2EBE10A%7D&sc_lang=en-US&sc_site=productstoreUs",
+   "method": "GET",
+   "cards": null,
+   "keys": [
+    "Success",
+    "ErrorMessages",
+    "Data"
+   ],
+   "total": {
+    "Success": true,
+    "Data": false
+   }
+  },
+  {
+   "url": "https://www.melaleuca.com/api/customerprofile/notification/?sc_itemid=%7BB32FEFFF-4C66-4C4D-94E6-A4E6F2EBE10A%7D&sc_lang=en-US&sc_site=productstoreUs",
+   "method": "GET",
+   "cards": null,
+   "keys": null,
+   "total": null
+  },
+  {
+   "url": "https://www.melaleuca.com/api/category/search/b32fefff4c664c4d94e6a4e6f2ebe10a?sc_lang=en-US&isLvipPromotion=false&sc_itemid=%7BB32FEFFF-4C66-4C4D-94E6-A4E6F2EBE10A%7D&sc_lang=en-US&sc_site=productstoreUs",
+   "method": "GET",
+   "cards": 40,
+   "keys": [
+    "TotalResults",
+    "Cards",
+    "FacetRefiners",
+    "IsPreferredUser",
+    "UserFlags",
+    "CurrentPage"
+   ],
+   "total": {
+    "TotalResults": 168,
+    "IsPreferredUser": true,
+    "CurrentPage": 1
+   }
+  }
+ ],
+ "personal-care_text": "Skip to Main Navigation Skip to main content Skip to Footer PRODUCT STORE OUR STORY R3 REWARDS SERVICES RIVERBEND RANCH GROW (BUSINESS CENTER) Antonio Mattos , Member | Loyalty Shopping Dollars $10.42 help MENU Categories Supplements Cleaning and Laundry Personal Care Beauty Healthy Foods and Drinks Medicines and Treatments Home Fragrance Essential Oils New Member Savings Packs Logo Gear Sales Aids and Materials New Products Extra Savings Featured This Month Curated Collections Riverbend Ranch Steaks My Account Our Story Rewards Learning Library Services Which Products Do You Use? R3 Weight Lo",
+ "search": [
+  {
+   "url": "https://www.melaleuca.com/api/cart/summary?sc_itemid=%7B2DB7CA56-D8E5-4A4F-B007-5E1F91F85418%7D&sc_lang=en-US&sc_site=productstoreUs",
+   "cards": null
+  },
+  {
+   "url": "https://www.melaleuca.com/api/profile/flags/?sc_itemid=%7B2DB7CA56-D8E5-4A4F-B007-5E1F91F85418%7D&sc_lang=en-US&sc_site=productstoreUs",
+   "cards": null
+  },
+  {
+   "url": "https://www.melaleuca.com/api/account/lsd/?sc_itemid=%7B2DB7CA56-D8E5-4A4F-B007-5E1F91F85418%7D&sc_lang=en-US&sc_site=productstoreUs",
+   "cards": null
+  },
+  {
+   "url": "https://www.melaleuca.com/api/toast/showToast/?sc_itemid=%7B2DB7CA56-D8E5-4A4F-B007-5E1F91F85418%7D&sc_lang=en-US&sc_site=productstoreUs",
+   "cards": null
+  },
+  {
+   "url": "https://www.melaleuca.com/api/productstore/search/videos?searchTerm=&pageSize=10&sc_itemid=%7B2DB7CA56-D8E5-4A4F-B007-5E1F91F85418%7D&sc_lang=en-US&sc_site=productstoreUs",
+   "cards": null
+  },
+  {
+   "url": "https://www.melaleuca.com/api/productstore/search/products?searchTerm=&pageSize=40&sc_itemid=%7B2DB7CA56-D8E5-4A4F-B007-5E1F91F85418%7D&sc_lang=en-US&sc_site=productstoreUs",
+   "cards": null
+  },
+  {
+   "url": "https://www.melaleuca.com/api/productstore/search/links?searchTerm=&pageSize=20&sc_itemid=%7B2DB7CA56-D8E5-4A4F-B007-5E1F91F85418%7D&sc_lang=en-US&sc_site=productstoreUs",
+   "cards": null
+  },
+  {
+   "url": "https://www.melaleuca.com/api/customerprofile/notification/?sc_itemid=%7B2DB7CA56-D8E5-4A4F-B007-5E1F91F85418%7D&sc_lang=en-US&sc_site=productstoreUs",
+   "cards": null
+  },
+  {
+   "url": "https://www.melaleuca.com/api/productstore/search/mixinads?sc_itemid=%7B2DB7CA56-D8E5-4A4F-B007-5E1F91F85418%7D&sc_lang=en-US&sc_site=productstoreUs&searchTerm=&searchresulttype=Video&numberOfRecords=0",
+   "cards": null
+  },
+  {
+   "url": "https://www.melaleuca.com/api/productstore/search/mixinads?sc_itemid=%7B2DB7CA56-D8E5-4A4F-B007-5E1F91F85418%7D&sc_lang=en-US&sc_site=productstoreUs&searchTerm=&searchresulttype=Product&numberOfRecords=0",
+   "cards": null
+  },
+  {
+   "url": "https://www.melaleuca.com/api/carousel/product?sc_itemid=%7B2DB7CA56-D8E5-4A4F-B007-5E1F91F85418%7D&sc_lang=en-US&sc_site=productstoreUs&dataSourceId=09fc9bd1-c19a-41b9-afdc-a492d73034e6&numberOfCards=28",
+   "cards": null
+  }
+ ],
+ "search_url": "https://www.melaleuca.com/search?q=lemon+brite"
+}
