@@ -33,9 +33,9 @@ jobs:
       - name: Save results to branch lab-results
         run: |
           git config user.name "lab-bot"; git config user.email "lab-bot@users.noreply.github.com"
-          mkdir -p /tmp/res && cp lab.log /tmp/res/ ; cp -r local/feed /tmp/res/feed 2>/dev/null || true
+          mkdir -p /tmp/res && cp lab.log /tmp/res/ ; cp -r local/feed /tmp/res/feed; rm -rf /tmp/res/feed/plans 2>/dev/null || true
           rm -rf /tmp/res/feed/debug/*.png
-          git checkout --orphan lab-results
+          git checkout --orphan lab-results-${{ github.run_id }}
           git rm -rf . >/dev/null 2>&1 || true
           mkdir -p results && cp -r /tmp/res/* results/
-          git add results && git commit -m "lab results" && git push -f origin lab-results
+          git add results && git commit -m "lab results" && git push -f origin lab-results-${{ github.run_id }}

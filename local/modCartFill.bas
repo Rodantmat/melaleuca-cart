@@ -72,7 +72,7 @@ Public Function Build_Cart_Plan(ws As Worksheet, ByVal tabNo As Long) As String
     Dim gKey As Long, gWhat As Long, gPack As Long, gUnits As Long, gSlots As Long, gLabel As Long
     Dim mKey As Long, mAsin As Long, mSlot As Long, mName As Long
     Dim cc As Long
-    Dim asin As String, key As String, seen As String, offSku As String, offType As String, packSku As String, melId As String
+    Dim asin As String, key As String, seen As String, offSku As String, offType As String, packSku As String, melId As String, offUnits As String
     Dim lastA As Long, lastM As Long
     Set wm = ThisWorkbook.Sheets("Melaleuca")
     On Error Resume Next
@@ -106,18 +106,18 @@ Public Function Build_Cart_Plan(ws As Worksheet, ByVal tabNo As Long) As String
                     End If
                 End If
             End If
-            offSku = "": offType = ""
+            offSku = "": offType = "": offUnits = ""
             If Not wa Is Nothing Then
                 For k = 2 To lastA
                     If CStr(wa.Cells(k, 1).Value) = ws.Name And CStr(wa.Cells(k, 2).Value) = asin Then
-                        offType = Clean(wa.Cells(k, 3).Value): offSku = Clean(wa.Cells(k, 7).Value)
+                        offType = Clean(wa.Cells(k, 3).Value): offSku = Clean(wa.Cells(k, 7).Value): offUnits = Num(wa.Cells(k, 4).Value)
                         Exit For
                     End If
                 Next k
             End If
             t = t & "L" & vbTab & r & vbTab & asin & vbTab & Clean(ws.Cells(r, 1).Value) & vbTab & Clean(ws.Cells(r, 8).Value) & vbTab & _
                 Num(ws.Cells(r, 9).Value) & vbTab & Num(ws.Cells(r, 12).Value) & vbTab & Clean(ws.Cells(r, 14).Value) & vbTab & Clean(ws.Cells(r, 18).Value) & vbTab & _
-                Num(ws.Cells(r, 19).Value) & vbTab & melId & vbTab & packSku & vbTab & offSku & vbTab & offType & vbTab & Num(ws.Cells(r, 10).Value) & vbLf
+                Num(ws.Cells(r, 19).Value) & vbTab & melId & vbTab & packSku & vbTab & offSku & vbTab & offType & vbTab & Num(ws.Cells(r, 10).Value) & vbTab & offUnits & vbLf
             key = Clean(ws.Cells(r, 18).Value)
             If Len(key) > 0 And Left$(key, 1) <> "#" And InStr(seen, "|" & key & "|") = 0 Then seen = seen & "|" & key & "|"
         End If
