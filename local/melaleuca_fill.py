@@ -627,6 +627,10 @@ def run(n, dry=False, lab=False, final=True):
                         if not ok:
                             say("      ", a.notes[-1:])
                         acts.append(a)
+            try:
+                json.dump(fl.cache, open(os.path.join(FEED, "fill_info_cache_%d.json" % n), "w", encoding="utf-8"), indent=1)
+            except Exception:
+                pass
             # ---- 3. check against the sheet
             js, sm = fl.summary()
             pts, cnt = f2(sm.get("Points")), sm.get("ItemCount")
