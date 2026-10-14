@@ -1,0 +1,8 @@
+03:19:55   proxy port 10007 | location: cr.us;city.losangeles,sandiego,longbeach,anaheim,irvine,santaana,riverside
+A: ([('6600', 1)], 10)
+03:20:46   proxy port 10007 | location: cr.us;city.losangeles,sandiego,longbeach,anaheim,irvine,santaana,riverside
+B (second browser, A still open): ([('6600', 1)], 10)
+A again after B signed in: ([('6600', 1)], 10)
+B cart page text: Skip to Main Navigation Skip to main content Skip to Footer PRODUCT STORE OUR STORY R3 REWARDS SERVICES RIVERBEND RANCH GROW (BUSINESS CENTER) Antonio Mattos , Member | Loyalty Shopping Dollars $10.42 help MENU Categories Supplements Cleaning and Laundry Personal Care Beauty Healthy Foods and Drinks
+B after viewing cart page: ([('6600', 1)], 10)
+cleared A: 1 ([], 0)
