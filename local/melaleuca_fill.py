@@ -837,6 +837,21 @@ def run(n, dry=False, lab=False, final=True):
                     open(os.path.join(FEED, "fill_final_%d.txt" % n), "w", encoding="utf-8").write(" ".join(s.page.inner_text("body", timeout=8000).split())[:4000])
                 except Exception as e:
                     say("could not reach the checkout screen:", str(e)[:150])
+            if lab and "--persist-test" in sys.argv:          # lab only: does the cart survive for a second sign-in?
+                try:
+                    s2 = ms.Session(p, a2, an, cfg, port)
+                    s2.login()
+                    f2_ = Filler(s2)
+                    say("PERSIST: second browser sees the cart:", len(cart_items(f2_.cart())), "lines, points", f2_.summary()[1].get("Points"))
+                    s.close()
+                    for w in (5, 25):
+                        time.sleep(w)
+                        say("PERSIST: after the first browser closed (+%ds):" % w, len(cart_items(f2_.cart())), "lines")
+                    say("PERSIST: lab emptied:", f2_.clear())
+                    s2.close()
+                except Exception as e:
+                    say("PERSIST test failed:", str(e)[:200])
+                return 0
             if lab:
                 s.page.goto(BASE + "/cart?sc_lang=en-US", wait_until="domcontentloaded", timeout=60000)
                 say("lab: emptied the cart again:", fl.clear(), "lines")
