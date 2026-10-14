@@ -847,8 +847,15 @@ def run(n, dry=False, lab=False, final=True):
                     for w in (5, 25):
                         time.sleep(w)
                         say("PERSIST: after the first browser closed (+%ds):" % w, len(cart_items(f2_.cart())), "lines")
-                    say("PERSIST: lab emptied:", f2_.clear())
                     s2.close()
+                    say("PERSIST: every browser closed; signing in again after 20 s")
+                    time.sleep(20)
+                    s3 = ms.Session(p, a2, an, cfg, port)
+                    s3.login()
+                    f3_ = Filler(s3)
+                    say("PERSIST: brand-new browser after all were closed sees:", len(cart_items(f3_.cart())), "lines")
+                    say("PERSIST: lab emptied:", f3_.clear())
+                    s3.close()
                 except Exception as e:
                     say("PERSIST test failed:", str(e)[:200])
                 return 0
