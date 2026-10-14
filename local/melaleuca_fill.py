@@ -854,6 +854,15 @@ def run(n, dry=False, lab=False, final=True):
                     s3.login()
                     f3_ = Filler(s3)
                     say("PERSIST: brand-new browser after all were closed sees:", len(cart_items(f3_.cart())), "lines")
+                    try:
+                        s3.page.goto(BASE + "/cart?sc_lang=en-US", wait_until="domcontentloaded", timeout=60000)
+                        s3.settle(6000)
+                        tx = " ".join(s3.page.inner_text("body", timeout=8000).split())
+                        i = tx.lower().find("cart")
+                        say("PERSIST: what the /cart page shows to the new browser:", ("EMPTY MESSAGE FOUND" if "empty" in tx.lower() else "no 'empty' text"), "|", tx[tx.lower().find("shopping cart"):][:300] if "shopping cart" in tx.lower() else tx[600:900])
+                        s3.page.screenshot(path=os.path.join(FEED, "persist_cart_page.png"), full_page=False)
+                    except Exception as e:
+                        say("PERSIST cart page failed:", str(e)[:150])
                     say("PERSIST: lab emptied:", f3_.clear())
                     s3.close()
                 except Exception as e:
