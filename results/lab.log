@@ -1,0 +1,10 @@
+03:22:45   proxy port 10007 | location: cr.us;city.losangeles,sandiego,longbeach,anaheim,irvine,santaana,riverside
+A: ([('3620', 1), ('6600', 1)], 16)
+03:23:34   proxy port 10007 | location: cr.us;city.losangeles,sandiego,longbeach,anaheim,irvine,santaana,riverside
+B (second browser, A still open): ([('3620', 1), ('6600', 1)], 16)
+A again after B signed in: ([('3620', 1), ('6600', 1)], 16)
+A browser closed
+B after A closed (+3s): ([('3620', 1), ('6600', 1)], 16)
+B after A closed (+15s): ([('3620', 1), ('6600', 1)], 16)
+B after A closed (+40s): ([('3620', 1), ('6600', 1)], 16)
+cleared B: 2 ([], 0)
