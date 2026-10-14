@@ -886,7 +886,7 @@ def run(n, dry=False, lab=False, final=True):
             return 0
         finally:
             try:
-                if lab:
+                if lab and not dry:
                     try:
                         left = fl.clear()
                         if left:
