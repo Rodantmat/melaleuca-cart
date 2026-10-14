@@ -1,0 +1,8 @@
+03:17:08   proxy port 10007 | location: cr.us;city.losangeles,sandiego,longbeach,anaheim,irvine,santaana,riverside
+add 3620 True
+add 6600 True
+A same session: ([('3620', 1), ('6600', 1)], 16)
+A after cart page: ([('3620', 1), ('6600', 1)], 16)
+03:18:07   proxy port 10007 | location: cr.us;city.losangeles,sandiego,longbeach,anaheim,irvine,santaana,riverside
+B new browser, signed in again: ([], 0)
+cleared 0 -> ([], 0)
