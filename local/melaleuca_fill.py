@@ -253,6 +253,7 @@ class Catalog:
         self.s = s
         self.famc = cload("family_map", 45)          # {"all": {"t":..,"v":{family: ...}}, "cards": {...}}
         self.fam = dict((self.famc.get("all") or {}).get("v") or {})
+        self.complete = bool((self.famc.get("all") or {}).get("complete"))
         self.varc = cload("variants", 7)
         self.var = {k: e["v"] for k, e in self.varc.items()}
         self.crawled = False
@@ -261,14 +262,12 @@ class Catalog:
     def crawl(self, need):
         if self.crawled:
             return
-        if self.fam and ALL_CARDS and all(f in self.fam for f in need if f != "manual"):
+        if self.complete and self.fam and ALL_CARDS and all(f in self.fam for f in need if f != "manual"):
             log("  catalog from the saved copy: %d families (no need to read the store)" % len(self.fam))
             return
         self.crawled = True
         pg = self.s.page
         for cat in CATEGORIES:
-            if need and all((f in self.fam) for f in need if f != "manual") and "manual" not in need:
-                break
             del self.s.json_log[:]            # the session keeps at most 400 answers: start every category with an empty list
             try:
                 pg.goto("%s/productstore/%s?sc_lang=en-US" % (BASE, cat), wait_until="domcontentloaded", timeout=60000)
@@ -295,7 +294,8 @@ class Catalog:
                 del self.s.json_log[:]
             log("  category %s: %d families known" % (cat, len(self.fam)))
         now = time.time()
-        csave("family_map", {"all": {"t": now, "v": self.fam}, "cards": {"t": now, "v": ALL_CARDS}})
+        self.complete = len(self.fam) >= 30 and len(ALL_CARDS) >= 200          # a crawl that really read the whole store
+        csave("family_map", {"all": {"t": now, "v": self.fam, "complete": self.complete}, "cards": {"t": now, "v": ALL_CARDS}})
 
     def variants(self, fid):
         if fid in self.var:
