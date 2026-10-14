@@ -17,6 +17,32 @@ ALIAS = {"antiperspirant": "ap", "antiperspirants": "ap", "deodorant": "deo", "d
 CLEAN_PACKS = {3: "34911", 4: "34913", 5: "34914"}      # EcoSense Cleaners Customizable 3 / 4 / 5-Pack (item numbers read from the store)
 
 
+REG = "us"                      # "us" or "ca": every region keeps its own saved catalog (item numbers differ between the two stores)
+DAY = 86400
+
+
+def cpath(name):
+    return os.path.join(FEED, "%s_%s.json" % (name, REG))
+
+
+def cload(name, ttl_days):
+    """saved answers of the store: {key: {"t": time, "v": value}}; entries older than ttl_days are dropped"""
+    try:
+        d = json.load(open(cpath(name), encoding="utf-8"))
+    except Exception:
+        return {}
+    now = time.time()
+    return {k: e for k, e in d.items() if isinstance(e, dict) and now - float(e.get("t", 0)) < ttl_days * DAY}
+
+
+def csave(name, d):
+    try:
+        os.makedirs(FEED, exist_ok=True)
+        json.dump(d, open(cpath(name), "w", encoding="utf-8"))
+    except Exception:
+        pass
+
+
 def log(*a):
     print(time.strftime("%H:%M:%S"), *a, flush=True)
 
@@ -225,20 +251,18 @@ class Catalog:
     """finds the item number of a flavour / scent / size when the sheet only knows the family (F252, R480H)"""
     def __init__(self, s):
         self.s = s
-        self.path = os.path.join(FEED, "family_map.json")
-        try:
-            self.fam = json.load(open(self.path, encoding="utf-8"))
-        except Exception:
-            self.fam = {}
-        self.var = {}
+        self.famc = cload("family_map", 45)          # {"all": {"t":..,"v":{family: ...}}, "cards": {...}}
+        self.fam = dict((self.famc.get("all") or {}).get("v") or {})
+        self.varc = cload("variants", 7)
+        self.var = {k: e["v"] for k, e in self.varc.items()}
         self.crawled = False
-        try:
-            ALL_CARDS.update(json.load(open(os.path.join(FEED, "catalog_cards.json"), encoding="utf-8")))
-        except Exception:
-            pass
+        ALL_CARDS.update((self.famc.get("cards") or {}).get("v") or {})
 
     def crawl(self, need):
         if self.crawled:
+            return
+        if self.fam and ALL_CARDS and all(f in self.fam for f in need if f != "manual"):
+            log("  catalog from the saved copy: %d families (no need to read the store)" % len(self.fam))
             return
         self.crawled = True
         pg = self.s.page
@@ -270,12 +294,8 @@ class Catalog:
                     family_cards_from(r.get("json") or {}, self.fam)
                 del self.s.json_log[:]
             log("  category %s: %d families known" % (cat, len(self.fam)))
-        try:
-            os.makedirs(FEED, exist_ok=True)
-            json.dump(self.fam, open(self.path, "w", encoding="utf-8"))
-            json.dump(ALL_CARDS, open(os.path.join(FEED, "catalog_cards.json"), "w", encoding="utf-8"))
-        except Exception:
-            pass
+        now = time.time()
+        csave("family_map", {"all": {"t": now, "v": self.fam}, "cards": {"t": now, "v": ALL_CARDS}})
 
     def variants(self, fid):
         if fid in self.var:
@@ -290,6 +310,9 @@ class Catalog:
             except Exception as e:
                 log("  family page not read:", fid, str(e)[:70])
         self.var[fid] = out
+        if out:
+            self.varc[fid] = {"t": time.time(), "v": out}
+            csave("variants", self.varc)
         return out
 
     def resolve_manual(self, L):
@@ -514,7 +537,8 @@ def cart_items(js):
 class Filler:
     def __init__(self, s):
         self.s = s
-        self.cache = {}
+        self.infoc = cload("info", 30)
+        self.cache = {k: e["v"] for k, e in self.infoc.items()}
         self.added = []
 
     def info(self, sku):
@@ -524,13 +548,18 @@ class Filler:
             try:
                 pg.goto("%s/products/%s?sc_lang=en-US" % (BASE, sku), wait_until="domcontentloaded", timeout=60000)
                 pg.wait_for_timeout(2500)
-                inf = parse_info(pg.content())
+                html = pg.content()
+                inf = parse_info(html)
+                loaded = len(html) > 60000 and ('"%s"' % sku) in html
                 if not inf["conf"] and not inf["acc"]:
                     # special-offer items have no page of their own: the offer dialog reads its choices from /api/shelf?Sku=
                     r = self.s.fetch("%s/api/shelf?Sku=%s&sc_lang=en-US&sc_site=productstoreUs" % (BASE, sku))
                     if r.get("json"):
                         inf = parse_info(json.dumps(r["json"], separators=(",", ":")))
                 self.cache[sku] = inf
+                if inf.get("conf") or inf.get("acc") or loaded:
+                    self.infoc[sku] = {"t": time.time(), "v": inf}
+                    csave("info", self.infoc)
             except Exception as e:
                 log("  could not read page of item", sku, str(e)[:80])
                 self.cache[sku] = {"conf": [], "acc": []}
@@ -600,6 +629,8 @@ def run(n, dry=False, lab=False, final=True):
     name, kind, colour = tabs[an]
     region = env.get("REGION_%d" % an, "").strip().lower() or {"orange": "vancouver", "yellow": "toronto"}.get(colour, "socal" if kind == "2" else "vancouver")
     acct = {"tab": name, "n": an, "user": env["MELA_USER_%d" % an], "pass": env["MELA_PASS_%d" % an], "region": region}
+    global REG
+    REG = "ca" if region in ("vancouver", "toronto") else "us"
     cfg = {"proxy": env.get("PROXY_URL", ""), "sticky_base": int(env.get("STICKY_BASE") or 10000), "headless": bool(lab) or env.get("HEADLESS", "0") in ("1", "true"),
            "channel": env.get("BROWSER", "") or "", "session_minutes": int(env.get("SESSION_MINUTES", "120") or 0), "debug_dir": os.path.join(FEED, "debug"),
            "fast": bool(lab)}
