@@ -631,8 +631,8 @@ def run(n, dry=False, lab=False, final=True):
     acct = {"tab": name, "n": an, "user": env["MELA_USER_%d" % an], "pass": env["MELA_PASS_%d" % an], "region": region}
     global REG
     REG = "ca" if region in ("vancouver", "toronto") else "us"
-    cfg = {"proxy": env.get("PROXY_URL", ""), "sticky_base": int(env.get("STICKY_BASE") or 10000), "headless": bool(lab) or env.get("HEADLESS", "0") in ("1", "true"),
-           "channel": env.get("BROWSER", "") or "", "session_minutes": int(env.get("SESSION_MINUTES", "120") or 0), "debug_dir": os.path.join(FEED, "debug"),
+    cfg = {"proxy": env.get("PROXY_URL", ""), "sticky_base": int(env.get("STICKY_BASE") or 10000), "headless": bool(lab) or env.get("FILL_HEADLESS", "0") in ("1", "true"),     # the scan uses HEADLESS=1; the filler always shows its window (you pay in it)
+           "channel": (env.get("BROWSER", "") or "") if lab else (env.get("FILL_BROWSER", "") or "chrome"), "session_minutes": int(env.get("SESSION_MINUTES", "120") or 0), "debug_dir": os.path.join(FEED, "debug"),
            "fast": bool(lab)}
     port = None
     try:
