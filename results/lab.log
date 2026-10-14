@@ -1,0 +1,197 @@
+============================== plan 4
+03:48:10   proxy port 10007 | location: cr.us;city.losangeles,sandiego,longbeach,anaheim,irvine,santaana,riverside
+03:48:46 signed in as Antonio M | plan: 42 lines, TOTAL points 145.0 cost 384.27
+03:49:06   category supplements: 8 families known
+03:49:13   category cleaning-and-laundry: 15 families known
+03:49:20   category cleaning-and-laundry/cleaning: 15 families known
+03:49:26   category cleaning-and-laundry/laundry: 15 families known
+03:49:33   category personal-care: 40 families known
+03:49:41   category beauty: 60 families known
+03:49:48   category healthy-foods-and-drinks: 80 families known
+03:49:55   category medicines-and-treatments: 81 families known
+03:50:01   category home-fragrance: 83 families known
+03:50:09   category essential-oils: 83 families known
+03:50:15   category member-savings-pack: 83 families known
+03:50:21   category new-products: 83 families known
+03:50:29   category extra-savings: 83 families known
+03:50:35   category featured-this-month: 83 families known
+03:50:42   category curated-collections: 83 families known
+03:50:42   variant: Oil - T36-C5-0.5 fl.oz. (manual) -> 50028  PURE™ Eucalyptus Essential Oil - AMBIGUOUS, same price/points as 1 others, check it
+03:50:53   variant: Haircare - Herbal Shampoo - 32oz (R1729H) -> 4905  only variant: Herbal Shampoo
+03:51:26   variant: Renew - Lotion - 20oz (R480H) -> 6600  only variant: Value Size Renew
+03:51:43   variant: Laundry - MelaBoost - Mountain Fresh (F264) -> 6421  MelaBoost™ Mountain Fresh (0.99)
+03:52:00   variant: Ecosense - Sol-U-Mel - Original - 8oz (R642L) -> 292  Original Scent (0.98)
+03:53:18 actions: 25 | offer lines: 6 | problems: 0
+03:53:18   would add [single] 50028 x1 Oil - T36-C5-0.5 fl.oz.
+03:53:18   would add [single] 4905 x1 Haircare - Herbal Shampoo - 32oz
+03:53:18   would add [single] 4889 x1 32 oz. Shampoo & Conditioner Pump for Haircare - Herbal Shampoo - 32oz
+03:53:18   would add [single] 5612 x1 Ecosense - Clean And Gleam - 8oz
+03:53:18   would add [pack] 33022 x1 3-pack: Ecosense - Prespot Instant Stain Remover
+03:53:18   would add [pack] 2211 x1 2-pack: Ecosense - PreSpot - 8oz
+03:53:18   would add [pack] 5018 x1 2-pack: Ecosense - Diamond Brite - 25 Loads
+03:53:18   would add [single] 6600 x1 Renew - Lotion - 20oz
+03:53:18   would add [single] 3634 x1 Renew - Lotion - 1oz - Pure Lavender
+03:53:18   would add [single] 6421 x1 Laundry - MelaBoost - Mountain Fresh
+03:53:18   would add [single] 70338 x1 Beauty - Sei Bella Facial Scrub
+03:53:18   would add [single] 292 x1 Ecosense - Sol-U-Mel - Original - 8oz
+03:53:18   would add [single] 3427 x1 Ecosense - Rustic - 8oz
+03:53:18   would add [pack] 34911 x1 CLEAN pack 1/1: Ecosense - Mela-magic - 16oz, Ecosense - No Work - 8oz
+03:53:18        choice: Ecosense - Harvest Pure - 8oz -> Harvest Pure™ Fruit And Vegetable Wash (10.0)
+03:53:18        choice: Ecosense - Mela-magic - 16oz -> MelaMagic Heavy-Duty Cleaner (10.0)
+03:53:18        choice: Ecosense - No Work - 8oz -> No Work Daily Shower Cleaner (10.0)
+03:53:18   would add [pack] 7911 x1 F650 pack 1/1: des - Lip Balm - Pina Colada, p Balm - Cranberry Tanger
+03:53:18        choice: Sun Shades - Lip Balm - Cranberry Tangerine -> Cranberry Tangerine (0.98)
+03:53:18        choice: Sun Shades - Lip Balm - Cranberry Tangerine -> Cranberry Tangerine (0.98)
+03:53:18        choice: Sun Shades - Lip Balm - Pina Colada -> Pina Colada (0.98)
+03:53:18   would add [pack] 190 x1 DEOD pack 1/1: finia Sweet Cream and Willow, nia Vanilla Musk and Jasm
+03:53:18        choice: Deodorant - Affinia Vanilla Musk and Jasmine -> Vanilla Musk & Jasmine (0.99)
+03:53:18        choice: Deodorant - Affinia Sweet Cream and Willow -> Affinia Sweet Cream & Willow (0.99)
+03:53:18        choice: Deodorant - Alloy Antiperspirant -> Alloy AP/DEO (10.0)
+03:53:18   would add [pack] 39176 x1 PSGEL2 pack 1/1: Prespot with Scrubbing Brush
+03:53:18   would add [pack] 23963 x1 AFFSC pack 1/1: Affinia Moisture Conditioner, e - Affinia Moisture Sha
+03:53:18        choice: Haircare - Affinia Moisture Shampoo -> Moisture Shampoo (10.0)
+03:53:18        choice: Haircare - Affinia Moisture Conditioner -> Moisture Conditioner (10.0)
+03:53:18   would add [pack] 8911 x1 SGD2 pack 1/1: Ecosense - Sol U Guard
+03:53:18   would add [pack] 43987 x1 TOOTH pack 1/1:  - Koala Pals - Berrylicious, ed - Spearmint with Fluo
+03:53:18        choice: Toothcare - Koala Pals - Berrylicious -> Berrylicious +Fluoride (0.87)
+03:53:18        choice: Toothcare - Exceed - Cinnamon -> Cinnamon - Fluoride-Free (10.0)
+03:53:18        choice: Toothcare - Exceed - Spearmint with Fluoride -> Spearmint +Fluoride (10.0)
+03:53:18   would add [pack] 5026 x1 F252 pack 1/1: Brite - 16oz - Apple Scented, Brite - 16oz - Lemon Scen
+03:53:18        choice: EcoSense - Lemon Brite - 16oz - Lemon Scented -> Lemon (0.98)
+03:53:18        choice: EcoSense - Lemon Brite - 16oz - Tropical Scented -> Tropical (0.98)
+03:53:18        choice: EcoSense - Lemon Brite - 16oz - Apple Scented -> Apple (0.98)
+03:53:18   would add [pack] 219 x1 MB9X2 pack 1/1: undry - Melabrite - 96 loads
+03:53:18   would add [pack] 2154 x1 F296 pack 1/1: laSoft Bottle - Clean Cotton, oft Bottle - Garden Laven
+03:53:18        choice: Laundry - MelaSoft Bottle - Garden Lavender -> Garden Lavender (0.98)
+03:53:18        choice: Laundry - MelaSoft Bottle - Clean Cotton -> Clean Cotton (0.98)
+03:53:18   would add [pack] 6277 x1 KPB2 pack 1/1: Koala Pals - Hair Wash
+03:53:18        choice: Koala Pals - Hair Wash -> Hair Wash (10.0)
+03:53:18        choice: Koala Pals - Hair Wash -> Hair Wash (10.0)
+03:53:18   would add [pack] 5027 x1 F298 pack 1/1: Dryer Sheets - Spring Breeze, ft Dryer Sheets - Scent F
+03:53:18        choice: Laundry - Melasoft Dryer Sheets - Spring Breeze -> Spring Breeze (0.98)
+03:53:18        choice: Laundry - Melasoft Dryer Sheets - Scent Free -> Scent Free (0.98)
+03:53:32 lab cleanup: removed 24 lines
+============================== plan 1
+03:53:33   proxy port 10007 | location: cr.us;city.losangeles,sandiego,longbeach,anaheim,irvine,santaana,riverside
+03:54:17 signed in as Antonio M | plan: 44 lines, TOTAL points 143.0 cost 391.97
+03:54:28   catalog from the saved copy: 83 families (no need to read the store)
+03:54:28   variant: Renew - Lotion - 8oz (R480L) -> 6969  only variant: 8 oz tube
+03:54:38   variant: Haircare - Sei Bella Argan Oil and Coconut Conditi (F3293) -> 70114  Argan Oil & Coconut Moisture Smooth Conditioner (0.62)
+03:55:07   variant: Haircare - Herbal Shampoo - 8oz (R1729L) -> 4117  only variant: Melaleuca Herbal Shampoo
+03:55:23 actions: 24 | offer lines: 7 | problems: 0
+03:55:23   would add [single] 6969 x1 Renew - Lotion - 8oz
+03:55:23   would add [single] 70114 x1 Haircare - Sei Bella Argan Oil and Coconut Conditioner
+03:55:23   would add [single] 5612 x1 Ecosense - Clean And Gleam - 8oz
+03:55:23   would add [pack] 33022 x1 3-pack: Ecosense - Prespot Instant Stain Remover
+03:55:23   would add [single] 3620 x2 Renew - Body Wash 12oz
+03:55:23   would add [single] 20061 x1 Haircare - Affinia Moisture Shampoo
+03:55:23   would add [pack] 2211 x1 2-pack: Ecosense - PreSpot - 8oz
+03:55:23   would add [pack] 6196 x1 2-pack: Toothcare - Breath-Away Mouth Rinse - 16oz
+03:55:23   would add [single] 3634 x1 Renew - Lotion - 1oz - Pure Lavender
+03:55:23   would add [single] 33961 x1 Ecosense - Revive - Original with Bottle
+03:55:23        choice: Ecosense - Revive - Original with Bottle -> Original Fragrance (0.49)
+03:55:23   would add [single] 4117 x1 Haircare - Herbal Shampoo - 8oz
+03:55:23   would add [single] 1218 x1 Ecosense - Tough and Tender - 8oz
+03:55:23   would add [pack] 34911 x1 CLEAN pack 1/1: Ecosense - Mela-magic - 16oz, Ecosense - No Work - 8oz
+03:55:23        choice: Ecosense - Harvest Pure - 8oz -> Harvest Pure™ Fruit And Vegetable Wash (10.0)
+03:55:23        choice: Ecosense - Mela-magic - 16oz -> MelaMagic Heavy-Duty Cleaner (10.0)
+03:55:23        choice: Ecosense - No Work - 8oz -> No Work Daily Shower Cleaner (10.0)
+03:55:23   would add [pack] 190 x1 DEOD pack 1/1: finia Sweet Cream and Willow, nia Vanilla Musk and Jasm
+03:55:23        choice: Deodorant - Affinia Vanilla Musk and Jasmine -> Vanilla Musk & Jasmine (0.99)
+03:55:23        choice: Deodorant - Alloy Antiperspirant -> Alloy AP/DEO (10.0)
+03:55:23        choice: Deodorant - Affinia Sweet Cream and Willow -> Affinia Sweet Cream & Willow (0.99)
+03:55:23   would add [pack] 7911 x1 F650 pack 1/1: des - Lip Balm - Pina Colada, p Balm - Cranberry Tanger
+03:55:23        choice: Sun Shades - Lip Balm - Cranberry Tangerine -> Cranberry Tangerine (0.98)
+03:55:23        choice: Sun Shades - Lip Balm - Cranberry Tangerine -> Cranberry Tangerine (0.98)
+03:55:23        choice: Sun Shades - Lip Balm - Pina Colada -> Pina Colada (0.98)
+03:55:23   would add [pack] 39172 x1 RINSEG pack 1/1: EcoSense - Rinse Aid - 16oz, e - Diamond Brite - 25 L
+03:55:23   would add [pack] 43987 x1 TOOTH pack 1/1: oothcare - Exceed - Cinnamon, othcare - Koala Pals - A
+03:55:23        choice: Toothcare - Koala Pals - Apple -> Apple - Fluoride-Free (0.71)
+03:55:23        choice: Toothcare - Exceed - Cinnamon -> Cinnamon - Fluoride-Free (10.0)
+03:55:23        choice: Toothcare - Exceed - Fresh Mint -> Exceed Fresh Mint - Fluoride-Free (10.0)
+03:55:23   would add [pack] 39176 x1 PSGEL2 pack 1/1: Prespot with Scrubbing Brush
+03:55:23   would add [pack] 5026 x1 F252 pack 1/1: Brite - 16oz - Apple Scented, Brite - 16oz - Lemon Scen
+03:55:23        choice: EcoSense - Lemon Brite - 16oz - Apple Scented -> Apple (0.98)
+03:55:23        choice: EcoSense - Lemon Brite - 16oz - Tropical Scented -> Tropical (0.98)
+03:55:23        choice: EcoSense - Lemon Brite - 16oz - Lemon Scented -> Lemon (0.98)
+03:55:23   would add [pack] 5027 x1 F298 pack 1/1:  Dryer Sheets - Clean Cotton, yer Sheets - Garden Laven
+03:55:23        choice: Laundry - Melasoft Dryer Sheets - Garden Lavender -> Garden Lavender (0.98)
+03:55:23        choice: Laundry - Melasoft Dryer Sheets - Clean Cotton -> Clean Cotton (0.98)
+03:55:23   would add [pack] 8911 x1 SGD2 pack 1/1: Ecosense - Sol U Guard
+03:55:23   would add [pack] 2154 x1 F296 pack 1/1: laSoft Bottle - Clean Cotton, oft Bottle - Garden Laven
+03:55:23        choice: Laundry - MelaSoft Bottle - Clean Cotton -> Clean Cotton (0.98)
+03:55:23        choice: Laundry - MelaSoft Bottle - Garden Lavender -> Garden Lavender (0.98)
+03:55:23   would add [pack] 6277 x1 KPB2 pack 1/1: Koala Pals - Body Wash, Koala Pals - Hair Wash
+03:55:23        choice: Koala Pals - Hair Wash -> Hair Wash (10.0)
+03:55:23        choice: Koala Pals - Body Wash -> Body Wash (10.0)
+03:55:23   would add [pack] 219 x1 MB9X2 pack 1/1: undry - Melabrite - 96 loads
+03:55:25 lab cleanup: removed 2 lines
+============================== plan 2
+03:55:26   proxy port 10007 | location: cr.us;city.losangeles,sandiego,longbeach,anaheim,irvine,santaana,riverside
+03:56:01 signed in as Antonio M | plan: 48 lines, TOTAL points 145.0 cost 391.04
+03:56:11   catalog from the saved copy: 83 families (no need to read the store)
+03:56:11   variant: Renew - Lotion - 20oz (R480H) -> 6600  only variant: Value Size Renew
+03:56:11   variant: Laundry - MelaBoost - Island Breeze (F264) -> 6422  Island Breeze (0.98)
+03:56:17   variant: Ecosense - Sol-U-Mel - Original - 8oz (R642L) -> 292  Original Scent (0.98)
+03:56:17   variant: Renew - Lotion - 1oz (manual) -> 3887  Renew® Intensive Skin Therapy: Travel Size (price 2.09, 1 pts)
+03:56:29   variant: Haircare - Original Shampoo - 32oz (R289H) -> 4906  only variant: Original Shampoo
+03:57:04 actions: 29 | offer lines: 6 | problems: 0
+03:57:04   would add [single] 1218 x1 Ecosense - Tough and Tender - 8oz with Bottle
+03:57:04   would add [single] 1219 x1 Tough & Tender® Mixing Spray Bottle for Ecosense - Tough and Tender - 
+03:57:04   would add [single] 6600 x1 Renew - Lotion - 20oz
+03:57:04   would add [single] 5612 x1 Ecosense - Clean And Gleam - 8oz
+03:57:04   would add [pack] 33022 x1 3-pack: Ecosense - Prespot Instant Stain Remover
+03:57:04   would add [single] 3620 x2 Renew - Body Wash 12oz
+03:57:04   would add [single] 6422 x1 Laundry - MelaBoost - Island Breeze
+03:57:04   would add [single] 292 x1 Ecosense - Sol-U-Mel - Original - 8oz
+03:57:04   would add [single] 3887 x1 Renew - Lotion - 1oz
+03:57:04   would add [single] 3427 x1 Ecosense - Rustic - 8oz
+03:57:04   would add [single] 70338 x1 Beauty - Sei Bella Facial Scrub
+03:57:04   would add [single] 4906 x1 Haircare - Original Shampoo - 32oz
+03:57:04   would add [single] 3300 x1 Ecosense - Clear Power Glass Cleaner Wipes
+03:57:04   would add [single] 30083 x1 Ecosense - Prespot - 8oz with Bottle
+03:57:04   would add [single] 33001 x1 PreSpot™ 4x Mixing Spray Bottle for Ecosense - Prespot - 8oz with Bott
+03:57:04   would add [pack] 34913 x1 CLEAN pack 1/1: Ecosense - Mela-magic - 16oz, Ecosense - No Work - 8oz
+03:57:04        choice: Ecosense - Harvest Pure - 8oz -> Harvest Pure™ Fruit And Vegetable Wash (10.0)
+03:57:04        choice: Ecosense - Mela-magic - 16oz -> MelaMagic Heavy-Duty Cleaner (10.0)
+03:57:04        choice: Ecosense - No Work - 8oz -> No Work Daily Shower Cleaner (10.0)
+03:57:04        choice: Ecosense - Clear Power Glass Cleaner - 8oz with bottle -> Clear Power Glass Cleaner (10.0)
+03:57:04   would add [single] 1213 x1 Clear Power™ Mixing Spray Bottle   for Ecosense - Clear Power Glass Cl
+03:57:04   would add [pack] 190 x1 DEOD pack 1/1: finia Sweet Cream and Willow, nia Vanilla Musk and Jasm
+03:57:04        choice: Deodorant - Alloy Antiperspirant -> Alloy AP/DEO (10.0)
+03:57:04        choice: Deodorant - Affinia Vanilla Musk and Jasmine -> Vanilla Musk & Jasmine (0.99)
+03:57:04        choice: Deodorant - Affinia Sweet Cream and Willow -> Affinia Sweet Cream & Willow (0.99)
+03:57:04   would add [pack] 7911 x1 F650 pack 1/1: des - Lip Balm - Pina Colada, p Balm - Cranberry Tanger
+03:57:04        choice: Sun Shades - Lip Balm - Cranberry Tangerine -> Cranberry Tangerine (0.98)
+03:57:04        choice: Sun Shades - Lip Balm - Cranberry Tangerine -> Cranberry Tangerine (0.98)
+03:57:04        choice: Sun Shades - Lip Balm - Pina Colada -> Pina Colada (0.98)
+03:57:04   would add [pack] 39176 x1 PSGEL2 pack 1/1: Prespot with Scrubbing Brush
+03:57:04   would add [pack] 39172 x1 RINSEG pack 1/1: EcoSense - Rinse Aid - 16oz, e - Diamond Brite - 25 L
+03:57:04   would add [pack] 23963 x1 AFFSC pack 1/1: Affinia Moisture Conditioner, e - Affinia Moisture Sha
+03:57:04        choice: Haircare - Affinia Moisture Shampoo -> Moisture Shampoo (10.0)
+03:57:04        choice: Haircare - Affinia Moisture Conditioner -> Moisture Conditioner (10.0)
+03:57:04   would add [pack] 43987 x1 TOOTH pack 1/1:  - Koala Pals - Berrylicious, hcare - Classic - Fresh 
+03:57:04        choice: Toothcare - Koala Pals - Berrylicious -> Berrylicious +Fluoride (0.87)
+03:57:04        choice: Toothcare - Exceed - Cinnamon -> Cinnamon - Fluoride-Free (10.0)
+03:57:04        choice: Toothcare - Classic - Fresh Mint -> Classic Fresh Mint - Fluoride-Free (0.83)
+03:57:04   would add [pack] 5027 x1 F298 pack 1/1:  Dryer Sheets - Clean Cotton, yer Sheets - Garden Laven
+03:57:04        choice: Laundry - Melasoft Dryer Sheets - Garden Lavender -> Garden Lavender (0.98)
+03:57:04        choice: Laundry - Melasoft Dryer Sheets - Clean Cotton -> Clean Cotton (0.98)
+03:57:04   would add [pack] 8911 x1 SGD2 pack 1/1: Ecosense - Sol U Guard
+03:57:04   would add [pack] 5026 x1 F252 pack 1/1: Brite - 16oz - Apple Scented, Brite - 16oz - Lemon Scen
+03:57:04        choice: EcoSense - Lemon Brite - 16oz - Apple Scented -> Apple (0.98)
+03:57:04        choice: EcoSense - Lemon Brite - 16oz - Tropical Scented -> Tropical (0.98)
+03:57:04        choice: EcoSense - Lemon Brite - 16oz - Lemon Scented -> Lemon (0.98)
+03:57:04   would add [pack] 2154 x1 F296 pack 1/1: aSoft Bottle - Spring Breeze, oft Bottle - Garden Laven
+03:57:04        choice: Laundry - MelaSoft Bottle - Garden Lavender -> Garden Lavender (0.98)
+03:57:04        choice: Laundry - MelaSoft Bottle - Spring Breeze -> Spring Breeze (0.98)
+03:57:04   would add [pack] 5048 x1 F55 pack 1/1: Soap Bar - Exfoliating Bar, ap Bar - Pink Grapefruit Bar
+03:57:04        choice: Soap Bar - Exfoliating Bar - Almond Vanilla -> Exfoliating (0.98)
+03:57:04        choice: Soap Bar - Pink Grapefruit Bar -> Pink Grapefruit (0.98)
+03:57:04        choice: Soap Bar - Exfoliating Bar -> Exfoliating (0.98)
+03:57:04   would add [pack] 6111 x1 GEL pack 1/1: Pharmacy - MelaGel .4oz Disk
+03:57:04        choice: Mela-Pharmacy - MelaGel .4oz Disk -> Disc (10.0)
+03:57:04        choice: Mela-Pharmacy - MelaGel .4oz Disk -> Disc (10.0)
+============================== plan 3
+03:57:05   proxy port 10007 | location: cr.us;city.losangeles,sandiego,longbeach,anaheim,irvine,santaana,riverside
+03:57:47 signed in as Antonio M | plan: 42 lines, TOTAL points 148.0 cost 395.99
