@@ -1,0 +1,48 @@
+00:58:01   proxy port 10007 | location: cr.us;city.losangeles,sandiego,longbeach,anaheim,irvine,santaana,riverside
+CART BEFORE: 31 lines, points 152, LSD used 10.42
+    ('5018', '1', 1, False, 0.0, 15.38, 7)
+    ('2211', '2', 1, False, 0.0, 12.98, 5)
+    ('33022', '3', 1, False, 0.0, 6.77, 2)
+    ('3427', '4', 1, False, 0.0, 6.99, 3)
+    ('293', '5', 1, False, 0.0, 11.99, 5)
+    ('1209', '6', 1, False, 0.0, 1.79, 0)
+    ('4120', '7', 1, True, 4.23, 22.39, 0)
+    ('403', '8', 1, False, 0.0, 14.99, 8)
+    ('3620', '9', 2, False, 0.0, 21.98, 12)
+    ('6600', '10', 1, False, 0.0, 16.99, 10)
+    ('179', '11', 1, True, 6.19, 6.19, 0)
+    ('5996', '12', 1, False, 0.0, 1.29, 0)
+    ('190', '13', 1, False, 0.0, 14.37, 4)
+    ('34911', '14', 1, False, 0.0, 17.97, 7)
+    ('5026', '15', 1, False, 0.0, 12.42, 5)
+    ('8911', '16', 1, False, 0.0, 20.78, 10)
+    ('63939', '17', 1, False, 0.0, 11.78, 5)
+    ('23963', '18', 1, False, 0.0, 14.98, 6)
+    ('6277', '19', 1, False, 0.0, 10.38, 5)
+    ('590', '20', 1, False, 0.0, 21.98, 8)
+    ('5027', '21', 1, False, 0.0, 11.98, 5)
+    ('7911', '22', 1, False, 0.0, 6.57, 2)
+    ('43987', '23', 1, False, 0.0, 12.77, 5)
+    ('79015', '24', 1, False, 0.0, 7.5, 2)
+    ('6833', '25', 1, False, 0.0, 9.18, 3)
+    ('8194', '26', 1, False, 0.0, 9.48, 3)
+    ('34050', '27', 1, False, 0.0, 25.98, 8)
+    ('49096', '28', 1, False, 0.0, 15.28, 6)
+    ('8246', '29', 1, False, 0.0, 13.98, 5)
+    ('49635', '30', 1, False, 0.0, 9.48, 4)
+    ('49677', '31', 1, False, 0.0, 16.58, 7)
+YOUR COUPONS: {"text": "Your Coupons\nkeyboard_arrow_down\nSave $1.25\n\nSave $1.25 on Revive Freshener & Wrinkle Relaxer Concentrate\n\nLimit 2\n\n$7.89\n\n$6.64\n\n3 Points\n\nadd\nshopping_cart\nSave $4.50\n\nSave $4.50 on Sei Bella Charcoal & Flower Daily Mattifying Lotion\n\nLimit 2\n\n$28.00\n\n$23.50\n\n9 Points\n\nadd\nshopping_cart\nSave $3.00\n\nSave $3.00 on Simply Fit Simple Start Baking Mix: Muffins\n\nLimit 2\n\n$21.99\n\n$18.99\n\n6 Points\n\nadd\nshopping_cart", "html": "<div class=\"o-accordion\"><h2 class=\"o-accordion__title -cartAccordion -open\"><button id=\"MelaId_mv8tz5eb__toggleId\" class=\"o-accordion__toggler -vue -cartAccordion\" data-testid=\"\" aria-controls=\"MelaId_mv8tz5eb__contentId\" aria-expanded=\"true\"><span class=\"\"><span class=\"\">Your Coupons</span><span class=\"\"></span></span><span class=\"\"></span><span class=\"text-2xl leading-none\"><span class=\"a-icon material-icons -inherit -flip -transition\" aria-hidden=\"true\"> keyboard_arrow_down </span></span></button></h2><div id=\"MelaId_mv8tz5eb__contentId\" class=\"o-accordion__content -open\" aria-labelledby=\"MelaId_mv8tz5eb__toggleId\" role=\"region\" style=\"\"><!-- content --><div class=\"o-cartAccordion__content\"><div class=\"ps\"><div class=\"o-cartAccordion__scroll\"><!--v-if--><div><!--v-if--><ul class=\"o-recentlyPurchased\"><li class=\"o-recentlyPurchased__item\"><article class=\"m-recentProduct -cartCoupons\"><div class=\"m-recentProduct__wrapper\"><img src=\"//cdnsc1.melaleuca.com/cdn-cgi/image/width=500height=500,quality=85/global/products/34152h-01-enus.png\" alt=\"Save $1.25 on Revive Freshener &amp; Wrinkle Relaxer Concentrate\" class=\"m-recentProduct__img\"></div><div class=\"m-recentProduct__details\"><h3 class=\"m-recentProduct__title\">Save $1.25</h3><p class=\"m-recentProduct__description\">Save $1.25 on Revive Freshener &amp; Wrinkle Relaxer Concentrate</p><p class=\"m-recentProduct__description -limit\">Limit 2</p></div><div class=\"m-recentProduct__add\"><p class=\"m-recentProduct__price -old\">$7.89</p><p class=\"m-recentProduct__price\"><strong>$6.64</strong></p><p class=\"m-recentProduct__points\">3 Points</p><button type=\"button\" aria-label=\"SELECT\" aria-disabled=\"false\" tabindex=\"0\" class=\"m-shelfAccessory__btn -cartCoupon\"><span class=\"a-icon material-icons -inherit\" aria-hidden=\"true\" style=\"\">add</span><span class=\"a-icon material-icons -inherit\" aria-hidden=\"true\" style=\"\">shopping_cart</span><!--v-if--></button></di
+lines eligible for the credit: 2 | using the one already checked: [('4120', '7', 1, True, 4.23, 22.39, 0)]
+CHECKBOX DOM: {"html": "<div id=\"vApp\" class=\"\" data-v-app=\"\"><div class=\"bg-gray-25\"><ul aria-label=\"Skip Links Navigation\" class=\"m-skipLinks\"><li class=\"m-skipLinks__link\"><a class=\"m-skipLinks__btn bg-green\" href=\"#mainNav\">Skip to Main Navigation</a></li><li class=\"m-skipLinks__link\"><a class=\"m-skipLinks__btn bg-green\" href=\"#mainContent\">Skip to main content</a></li><li class=\"m-skipLinks__link\"><a class=\"m-skipLinks__btn bg-green\" href=\"#footer\">Skip to Footer</a></li></ul><header class=\"o-siteHeader\"><div class=\"o-siteHeader__row -eyebrow\"><div class=\"m-eyebrowNav\" data-testid=\"container-eyebrowNav\" style=\"background-image: url(&quot;https://cdnsc1.melaleuca.com/cdn-cgi/image/quality=85/na/images/header/eyebrow.png&quot;);\"><div class=\"max-w-contain mx-auto flex w-full\"><ul class=\"m-eyebrowNav__col -left\" data-testid=\"list-eyebrowNav\"><li class=\"m-eyebrowNav__item\"><a class=\"m-eyebrowNav__link -current\" href=\"/\">Product Store</a></li><li class=\"m-eyebrowNav__item\"><a class=\"m-eyebrowNav__link\" href=\"/our-story\">Our Story</a></li><li class=\"m-eyebrowNav__item\"><a class=\"m-eyebrowNav__link\" href=\"/productstore/r3\">R3</a></li><li class=\"m-eyebrowNav__item\"><a class=\"m-eyebrowNav__link\" href=\"/rewards\">Rewards</a></li><li class=\"m-eyebrowNav__item\"><a class=\"m-eyebrowNav__link\" href=\"/services\">Services</a></li><li class=\"m-eyebrowNav__item\"><a class=\"m-eyebrowNav__link\" href=\"https://www.melaleuca.com/riverbendranch\">Riverbend Ranch</a></li><li class=\"m-eyebrowNav__item\"><a class=\"m-eyebrowNav", "cb": "<input id=\"MelaId_mv8tz58m__inputId\" class=\"a-input -checkbox\" type=\"checkbox\" name=\"BuyWithLsd\" readonly=\"\" aria-required=\"false\" aria-invalid=\"false\" aria-disabled=\"true\" value=\"\">", "checked": false}
+TOGGLE 1 clicked: True | requests: []
+   cart now: points 152 LSD used 10.42 [('4120', '7', 1, True, 4.23, 22.39, 0)]
+TOGGLE 2 (back) clicked: True | requests: []
+   cart now: points 152 LSD used 10.42 [('4120', '7', 1, True, 4.23, 22.39, 0)]
+CART AFTER: 31 lines, points 152, LSD used 10.42 | identical to before: True
+coupon buttons: 3
+COUPON ADD requests: []
+   new lines after the coupon: []
+CART AFTER COUPON TEST: 31 lines, points 152 | identical to before: True
+00:59:28   proxy port 10007 | location: cr.us;city.losangeles,sandiego,longbeach,anaheim,irvine,santaana,riverside
+NEW BROWSER /checkout -> https://www.melaleuca.com/checkout?sc_lang=en-US
+   text: Skip to Main Navigation Skip to main content Skip to Footer MENU Categories Supplements Cleaning and Laundry Personal Care Beauty Healthy Foods and Drinks Medicines and Treatments Home Fragrance Essential Oils New Member Savings Packs Logo Gear Sales Aids and Materials New Products Extra Savings Featured This Month Curated Collections Riverbend Ranch Steaks My Account Our Story Rewards Learning Library Services Which Products Do You Use? R3 Weight Loss Grow (Business Center) Help Center Sign Out close SECURE CHECKOUT shopping_cart 32 PRODUCT STORE Order Review navigate_before Back to Cart 1 Shipping Address Antonio Mattos 14615 Otay Lakes Rd Unit 1 Jamul, California 91935-7005 Change 2 Ship 
