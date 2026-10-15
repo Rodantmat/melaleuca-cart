@@ -1,0 +1,21 @@
+01:42:40   proxy port 10007 | location: cr.us;city.losangeles,sandiego,longbeach,anaheim,irvine,santaana,riverside
+01:43:20 signed in as Antonio M | plan: 3 lines, TOTAL points 21.0 cost 43.25
+01:43:42 actions: 3 | offer lines: 0 | problems: 1
+01:43:42   PROBLEM: row 2: no choice found for 'Ecosense - Revive Freshener and Wrinkle Relaxer Concentrate' (34152)
+01:43:58 coupons of this account: 3 | Save $1.25 on Revive Freshener & Wrinkle Relaxer C ; Save $4.50 on Sei Bella Charcoal & Flower Daily Ma ; Save $3.00 on Simply Fit Simple Start Baking Mix: 
+01:43:58   COUPON NOT ON THIS ACCOUNT: 'Renew - Body Wash 12oz' - the sheet counts it at the coupon price (5 pts / 12.98), the store charges the normal price. Clear its Discount Type on the Melaleuca tab and generate the orders again.
+01:43:59   added [single] 6600 x1 Renew - Lotion - 20oz 
+01:43:59   added [single] 3620 x2 Renew - Body Wash 12oz 
+01:44:22   added [coupon] x2 Save $1.25 on Revive Freshener & Wrinkle Relaxer Concentrate
+01:44:23 cart before the offers: 5 items, 28 points
+01:44:23 
+CART NOW: 5 items | 28 points | gross 52.25 | net 52.25 | discount 0
+01:44:23 SHEET   : 21 points count for the limit (TOTAL row: 21) + 0 points of credit items | cost of all lines 43.25
+01:44:23 CREDIT  : $0.00 of loyalty dollars used by the cart
+01:44:23 RESULT  : points DIFFER by +7 | cost DIFFER by +9.00
+01:44:23   DIFFERENCE: Renew - Body Wash 12oz: sheet 5 pts / 12.98  -  store 12 pts / 21.98
+01:44:23   NOTE: row 2 Ecosense - Revive Freshener and Wrinkle Relaxer Concentrate: coupon line - the product is added, apply its coupon in the cart (coupons are not applied automatically)
+01:44:23   NOTE: row 4 Renew - Body Wash 12oz: coupon line - the product is added, apply its coupon in the cart (coupons are not applied automatically)
+01:44:53 page: https://www.melaleuca.com/checkout
+01:44:53 page: https://www.melaleuca.com/checkout
+01:45:00 lab: emptied the cart again: 3 lines
