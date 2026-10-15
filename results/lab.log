@@ -1,0 +1,8 @@
+01:32:46   proxy port 10007 | location: cr.us;city.losangeles,sandiego,longbeach,anaheim,irvine,santaana,riverside
+BEFORE: 32 lines, points 153
+coupon cards: 3 ['Save $1.25 on Revive Freshener & Wrinkle Relaxer Concentrate', 'Save $4.50 on Sei Bella Charcoal & Flower Daily Mattifying Lotion', 'Save $3.00 on Simply Fit Simple Start Baking Mix: Muffins']
+BUTTON: <button type="button" aria-label="SELECT" aria-disabled="false" tabindex="0" class="m-shelfAccessory__btn -cartCoupon"><span class="a-icon material-icons -inherit" aria-hidden="true" style="">add</span><span class="a-icon material-icons -inherit" aria-hidden="true" style="">shopping_cart</span><!--v-if--></button> | visible: True | box: {'x': 1132.234375, 'y': 513, 'width': 135.765625, 'height': 30}
+REQUESTS: []
+DIALOGS: ["close\nYour Choices\nforSave $1.25 on Revive Freshener & Wrinkle Relaxer Concentrate\n\n$6.64\n\nPoints: 3\n\nChoose: Scent\nkeyboard_arrow_down\nOriginal Fragrance\nSea Salt & Vanilla\nTropical Fruits & Floral\nremove\nadd\nADD TO CART"]
+AFTER CLICK: 32 lines, points 153 | new lines: []
+FINAL: 32 lines, points 153 | same lines as before: True
