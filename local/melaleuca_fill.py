@@ -631,7 +631,7 @@ def run(n, dry=False, lab=False, final=True):
     acct = {"tab": name, "n": an, "user": env["MELA_USER_%d" % an], "pass": env["MELA_PASS_%d" % an], "region": region}
     global REG
     REG = "ca" if region in ("vancouver", "toronto") else "us"
-    cfg = {"proxy": env.get("PROXY_URL", ""), "sticky_base": int(env.get("STICKY_BASE") or 10000), "headless": bool(lab) or env.get("FILL_HEADLESS", "0") in ("1", "true"),     # the scan uses HEADLESS=1; the filler always shows its window (you pay in it)
+    cfg = {"proxy": env.get("PROXY_URL", ""), "sticky_base": int(env.get("STICKY_BASE") or 10000), "headless": not (not lab and env.get("FILL_SHOW", "0") in ("1", "true")),     # the scan uses HEADLESS=1; the filler always shows its window (you pay in it)
            "channel": (env.get("BROWSER", "") or "") if lab else (env.get("FILL_BROWSER", "") or "chrome"), "session_minutes": int(env.get("SESSION_MINUTES", "120") or 0), "debug_dir": os.path.join(FEED, "debug"),
            "fast": bool(lab)}
     port = None
@@ -759,16 +759,43 @@ def run(n, dry=False, lab=False, final=True):
                 json.dump(fl.cache, open(os.path.join(FEED, "fill_info_cache_%d.json" % n), "w", encoding="utf-8"), indent=1)
             except Exception:
                 pass
+            # ---- 2b. the account credit: the box "Buy with Loyalty Shopping Dollars" on the lines the sheet marks Credit 1 / Credit 2
+            credit_rows = sorted({(str(L["type"]), L["row"]) for L in plan["lines"] if L["qty"] > 0 and str(L["type"]).lower().startswith("credit")})
+            credit_done, credit_fail = set(), []
+            for ctype, crow in credit_rows:
+                tgt = next((a for a in acts if crow in a.rows and a.done and a.line is not None), None)
+                if tgt is None:
+                    credit_fail.append("%s (row %d): the product is not in the cart" % (ctype, crow))
+                    continue
+                try:
+                    r = s.fetch(s.cart_url().replace("/api/cart?", "/api/cart/linetype?"), "POST", {"LineId": str(tgt.line), "LineType": "LSD", "Quantity": int(tgt.qty)})
+                    res = ((r.get("json") or {}).get("Data") or {}).get("linesResults") or []
+                    if r.get("status") == 200 and (r.get("json") or {}).get("Success") and res and not res[0].get("validationItems"):
+                        tgt.line = str(res[0].get("lineId", tgt.line))
+                        credit_done.add(crow)
+                        say("  credit  : %s -> box 'Buy with Loyalty Shopping Dollars' ticked on %s" % (ctype, tgt.label[:55]))
+                    else:
+                        credit_fail.append("%s (row %d): the store did not accept it: %s" % (ctype, crow, str(r.get("json"))[:160]))
+                except Exception as e:
+                    credit_fail.append("%s (row %d): %s" % (ctype, crow, str(e)[:100]))
+            for c in credit_fail:
+                say("  CREDIT PROBLEM:", c)
+                problems.append("credit: " + c)
+            for a in acts:
+                if any(r_ in credit_done for r_ in a.rows) and a.kind in ("single", "pack") and a.line is not None and not a.label.lower().find(" for ") > 0:
+                    a.expect_pts = 0.0          # a line bought with the credit counts 0 points
             # ---- 3. check against the sheet
             js, sm = fl.summary()
             pts, cnt = f2(sm.get("Points")), sm.get("ItemCount")
-            net = f2(sm.get("CartNetTotal"))
+            net = f2(sm.get("CartGrossTotal"))
             say("\nCART NOW: %s items | %.0f points | gross %s | net %s | discount %s" % (cnt, pts, sm.get("CartGrossTotal"), sm.get("CartNetTotal"), sm.get("TotalDiscount")))
-            exp_pts = sum(L["pts"] for L in plan["lines"] if L["qty"] > 0)
+            exp_pts_all = sum(L["pts"] for L in plan["lines"] if L["qty"] > 0)
+            exp_pts = sum(L["pts"] for L in plan["lines"] if L["qty"] > 0 and L["row"] not in credit_done)       # points that count for the 150 limit (credit lines bought with the credit count 0)
             exp_ws = sum(L["ws"] for L in plan["lines"] if L["qty"] > 0)
             credit_pts = sum(L["pts"] for L in plan["lines"] if L["qty"] > 0 and str(L["type"]).lower().startswith("credit"))
-            say("SHEET   : all lines %.0f points | %.2f cost   (TOTAL row: %s points counted for the order limit + %.0f points of credit items)" % (
-                exp_pts, exp_ws, ("%.0f" % plan["total"]["pts"]) if plan["total"] else "?", credit_pts))
+            say("SHEET   : %.0f points count for the limit (TOTAL row: %s) + %.0f points of credit items | cost of all lines %.2f" % (
+                exp_pts, ("%.0f" % plan["total"]["pts"]) if plan["total"] else "?", credit_pts, exp_ws))
+            say("CREDIT  : %s of loyalty dollars used by the cart" % ((sm.get("LoyaltyShoppingDollars") or {}).get("FormattedUsed") or "?"))
             ok_pts, ok_cost = abs(pts - exp_pts) < 0.5, abs(net - exp_ws) < 0.05
             say("RESULT  : points %s | cost %s" % ("MATCH" if ok_pts else "DIFFER by %+.0f" % (pts - exp_pts), "MATCH" if ok_cost else "DIFFER by %+.2f" % (net - exp_ws)))
             by_line = {str(it.get("LineId")): it for it in cart_items(js)}
@@ -813,6 +840,12 @@ def run(n, dry=False, lab=False, final=True):
                 say("  every line of the cart equals the sheet.")
             for nn in notes:
                 say("  NOTE:", nn)
+            if pts > 150.0001:
+                say("")
+                say("!" * 78)
+                say("!!  THIS CART HAS %.0f POINTS - OVER THE 150 LIMIT (the sheet expected %.0f)." % (pts, exp_pts))
+                say("!!  Look at the DIFFERENCE lines above: that is where the extra points come from.")
+                say("!" * 78)
             result = {"match": bool(ok_pts and ok_cost), "cart_points": pts, "sheet_points": exp_pts, "cart_cost": net, "sheet_cost": exp_ws, "differences": diffs}
             json.dump(result, open(os.path.join(FEED, "fill_result_%d.json" % n), "w", encoding="utf-8"), indent=1)
             os.makedirs(FEED, exist_ok=True)
@@ -872,15 +905,55 @@ def run(n, dry=False, lab=False, final=True):
                 s.page.goto(BASE + "/cart?sc_lang=en-US", wait_until="domcontentloaded", timeout=60000)
                 say("lab: emptied the cart again:", fl.clear(), "lines")
                 return 0
+            # ---- 5. everything was done in the hidden window: now open YOUR browser window straight on the checkout screen
+            say("opening your browser window on the checkout screen ...")
+            v = None
+            try:
+                vcfg = dict(cfg, headless=False, fast=False)
+                v = ms.Session(p, a2, an, vcfg, port)
+                v.login()
+                v.page.goto(BASE + "/checkout?sc_lang=en-US", wait_until="domcontentloaded", timeout=60000)
+                v.settle(6000)
+                if "promo-page" in v.page.url:
+                    b = v.page.locator("button:visible, a:visible").filter(has_text=re.compile(r"^\s*continue to checkout\s*$", re.I))
+                    if b.count():
+                        b.first.click(timeout=15000)
+                        v.settle(6000)
+                say("page:", v.page.url[:90])
+            except Exception as e:
+                say("could not open the visible window:", str(e)[:150], "- sign in to the store by hand: the cart is saved on the account")
+                v = None
+            try:
+                s.close()
+            except Exception:
+                pass
             print("\n==============================================================================")
-            print(" Cart of '%s' is ready. CHECK it in the browser window and pay yourself." % name)
-            print(" Nothing was paid and no order was placed. Close the browser window when done.")
+            print(" Cart of '%s' is ready on the checkout screen of your browser window." % name)
+            print(" %.0f points | %s of loyalty dollars used | nothing was paid, no order was placed." % (pts, (sm.get("LoyaltyShoppingDollars") or {}).get("FormattedUsed") or "$0.00"))
+            for pn in problems:
+                print("  TO DO BY HAND:", pn)
+            if pts > 150.0001:
+                print("  !! OVER THE 150 POINT LIMIT - see the DIFFERENCE lines above before you pay")
+            print(" Check it, pay yourself, then close the window (this black window closes after it).")
             print("==============================================================================")
-            while True:
+            if "--window-test" in sys.argv and v is not None:       # lab: look at the window once and finish (nobody is there to close it)
                 try:
-                    if not s.browser.is_connected() or not s.page.context.pages:
+                    v.page.screenshot(path=os.path.join(FEED, "fill_window_%d.png" % n), full_page=False)
+                    say("WINDOW TEST: url", v.page.url[:90], "|", " ".join(v.page.inner_text("body", timeout=8000).split())[:400])
+                    v.close()
+                except Exception as e:
+                    say("window test:", str(e)[:120])
+                return 0
+            if v is None:
+                try:
+                    input(" Press Enter to close this window ...")
+                except Exception:
+                    pass
+            while v is not None:
+                try:
+                    if not v.browser.is_connected() or not v.page.context.pages:
                         break
-                    s.page.wait_for_timeout(1500)
+                    v.page.wait_for_timeout(1500)
                 except Exception:
                     break
             return 0
