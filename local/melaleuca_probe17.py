@@ -10,10 +10,16 @@ import melaleuca_scan as ms
 import melaleuca_fill as mf
 from playwright.sync_api import sync_playwright
 
+def money(v):
+    try:
+        return float(str(v).replace("$", "").replace(",", "") or 0)
+    except Exception:
+        return 0.0
+
 def snap(s):
     js = s.fetch(s.cart_url()).get("json") or {}
     its = (js.get("Data") or {}).get("Items") or []
-    return [(i.get("Sku"), i.get("LineId"), i.get("Quantity"), i.get("LsdEligible"), i.get("LsdDollarsUsed"), i.get("RawPrice"), i.get("RawPoints")) for i in its], (js.get("Data") or {}).get("Summary", {}), js
+    return [(i.get("Sku"), i.get("LineId"), i.get("Quantity"), i.get("LsdEligible"), money(i.get("LsdDollarsUsed")), i.get("RawPrice"), i.get("RawPoints")) for i in its], (js.get("Data") or {}).get("Summary", {}), js
 
 def main():
     env = mr.read_env(os.path.join(HERE, "credentials.env"))
@@ -70,6 +76,28 @@ def main():
         if after != before:
             for b, a in zip(before, after):
                 if a != b: print("   CHANGED", b, "->", a)
+        # ---- a coupon card: press its add button, look at the request and the new line, take the line out again
+        try:
+            del reqs[:]
+            n0 = len(snap(s)[0])
+            btn = s.page.locator("button.-cartCoupon").first
+            print("coupon buttons:", s.page.locator("button.-cartCoupon").count())
+            btn.click(timeout=6000)
+            s.page.wait_for_timeout(5000)
+            print("COUPON ADD requests:", json.dumps(reqs)[:2000])
+            a, sm4, js4 = snap(s)
+            old_ids = {str(b[1]) for b in before}
+            new = [x for x in a if str(x[1]) not in old_ids]
+            print("   new lines after the coupon:", new)
+            for it in (js4.get("Data") or {}).get("Items") or []:
+                if str(it.get("LineId")) in {str(x[1]) for x in new}:
+                    print("   line detail:", json.dumps({k: it.get(k) for k in ("Sku", "LineType", "PromotionId", "Title", "RawPrice", "RawPoints", "Quantity", "RevenueSource")}))
+                    s.remove_line(it["LineId"])
+            s.page.wait_for_timeout(2000)
+        except Exception as e:
+            print("coupon test failed:", str(e)[:200])
+        after, sm3, js3 = snap(s)
+        print("CART AFTER COUPON TEST: %d lines, points %s | identical to before: %s" % (len(after), sm3.get("Points"), after == before))
         # ---- a new browser opens /checkout directly
         s2 = ms.Session(p, acct, 7, cfg, None); s2.login()
         s2.page.goto(ms.BASE + "/checkout?sc_lang=en-US", wait_until="domcontentloaded", timeout=60000)
