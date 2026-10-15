@@ -838,11 +838,17 @@ def run(n, dry=False, lab=False, final=True):
                 s.page.goto(BASE + "/checkout/promo-page", wait_until="domcontentloaded", timeout=60000)
                 s.settle(8000)
                 cards = {}
-                if s.last.get("bogo"):
-                    r = s.fetch(s.last["bogo"])
-                    for c in (r.get("json") or {}).get("Data", {}).get("Cards", []):
-                        d = (c.get("InnerData") or {}).get("Data") or {}
-                        cards[str(d.get("Sku"))] = d
+                for _try in range(3):                           # the offers page can be slow on a slow proxy: wait / reload before giving up
+                    if s.last.get("bogo"):
+                        r = s.fetch(s.last["bogo"])
+                        for c in (r.get("json") or {}).get("Data", {}).get("Cards", []):
+                            d = (c.get("InnerData") or {}).get("Data") or {}
+                            cards[str(d.get("Sku"))] = d
+                    if cards:
+                        break
+                    say("  offers not loaded yet - trying again (%d/3)" % (_try + 1))
+                    s.page.goto(BASE + "/checkout/promo-page", wait_until="domcontentloaded", timeout=60000)
+                    s.settle(10000)
                 say("offers on the page:", len(cards))
                 try:
                     json.dump(cards, open(os.path.join(FEED, "fill_offer_cards_%d.json" % n), "w", encoding="utf-8"), indent=1)

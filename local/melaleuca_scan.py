@@ -255,6 +255,18 @@ class Session:
         return int(sm.get("ItemCount") or 0), float(sm.get("Points") or 0)
 
     def cart_url(self):
+        if "cart" in self.last:
+            return self.last["cart"]
+        # the cart address is the same for every sign-in: ask for it directly (works even when the cart page is slow or never announces it)
+        site = "productstoreCa" if str(self.acct.get("region") or "").lower() in ("vancouver", "toronto") else "productstoreUs"
+        direct = BASE + "/api/cart?sc_itemid=%7BFE1DED98-281E-46FA-9656-7D6A0C2E436D%7D&sc_lang=en-US&sc_site=" + site
+        try:
+            r = self.fetch(direct)
+            if r.get("status") == 200 and (r.get("json") or {}).get("Data") is not None:
+                self.last["cart"] = direct
+                return direct
+        except Exception:
+            pass
         for attempt in range(3):
             if "cart" in self.last:
                 return self.last["cart"]
@@ -263,14 +275,7 @@ class Session:
                 if "cart" in self.last:
                     return self.last["cart"]
                 self.page.wait_for_timeout(1000)
-            try:                                                  # fall back to what the page itself requested
-                urls = self.page.evaluate("() => performance.getEntriesByType('resource').map(e => e.name)")
-                for u in urls:
-                    if "/api/cart?" in u and "linetype" not in u:
-                        self.last["cart"] = u
-                        return u
-            except Exception:
-                pass
+        self.snap(self.page, "nocart")
         raise RuntimeError("the cart page did not load its cart (page: %s)" % self.page.url[:90])
 
     def add(self, sku, qty, promo=0, line_type=None):
