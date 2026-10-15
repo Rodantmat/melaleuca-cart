@@ -805,6 +805,7 @@ def run(n, dry=False, lab=False, final=True):
                         msg = "COUPON NOT ON THIS ACCOUNT: '%s' - the sheet counts it at the coupon price (%.0f pts / %.2f), the store charges the normal price. Clear its Discount Type on the Melaleuca tab and generate the orders again." % (L["name"], L["pts"], L["ws"])
                         say("  " + msg)
                         problems.append(msg)
+                notes = [n_ for n_ in notes if "coupon line" not in n_]          # the coupon lines are handled here (added from the coupons box, or reported above)
                 rows_c = {L["row"] for L, _, _ in coupon_use}
                 acts = [a for a in acts if not (a.rows and set(a.rows) <= rows_c and a.kind == "single")]
             # ---- 1. products and packs
