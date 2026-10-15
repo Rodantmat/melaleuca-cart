@@ -95,8 +95,9 @@ class Session:
         self.ctx = self.browser.new_context(**ctxkw)
         self.page = self.ctx.new_page()
         self.page.on("response", self._on_resp)
-        if cfg.get("fast", True) and cfg.get("early_route"):          # also during sign-in: no pictures / fonts / trackers through the proxy
-            self.ctx.route("**/*", self._route)
+        self.login_route = bool(cfg.get("fast", True) and cfg.get("early_route"))
+        if self.login_route:          # also during sign-in: no pictures / fonts / trackers through the proxy
+            self.ctx.route("**/*", self._route_login)
 
     TRACKERS = ("google-analytics", "googletagmanager", "doubleclick", "googlesyndication", "facebook.", "fbcdn", "hotjar", "clarity.ms", "segment.",
                 "tiktok", "snapchat", "linkedin", "pinterest", "criteo", "optimizely", "newrelic", "nr-data", "bing.com", "adsrvr", "taboola", "outbrain",
@@ -106,6 +107,12 @@ class Session:
         """after sign-in: no pictures, fonts, videos or tracking scripts - they cost proxy traffic and are not needed to read offers"""
         rq = route.request
         if rq.resource_type in ("image", "media", "font") or any(t in rq.url.lower().split("/")[2] for t in self.TRACKERS if len(rq.url.split("/")) > 2):
+            return route.abort()
+        return route.continue_()
+
+    def _route_login(self, route):
+        """during sign-in only pictures and videos are dropped (the security check needs the scripts, fonts and trackers to look normal)"""
+        if route.request.resource_type in ("image", "media"):
             return route.abort()
         return route.continue_()
 
@@ -186,7 +193,7 @@ class Session:
         self.settle(6000)
         if "signin" in pg.url.lower():
             self.diagnose(pg)
-        if self.cfg.get("fast", True) and not self.cfg.get("early_route"):                 # after sign-in, images / fonts / videos are not needed to read offers: pages load faster
+        if self.cfg.get("fast", True):                 # after sign-in, images / fonts / videos are not needed to read offers: pages load faster
             self.ctx.route("**/*", self._route)
 
     def snap(self, pg, why):
