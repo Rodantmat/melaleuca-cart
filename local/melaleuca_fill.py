@@ -636,44 +636,56 @@ def coupon_cards(s):
 
 
 def coupon_add(s, card_no, qty, product_name):
-    """presses the add button of coupon card number card_no (qty times), answers the 'Your Choices' dialog if it appears. Returns (ok, why)"""
+    """presses the add button of coupon card number card_no, answers the 'Your Choices' dialog if it appears (choice by name, quantity with its + button),
+    otherwise presses the card button qty times. Returns (ok, why)"""
     pg = s.page
-    for k in range(max(1, int(qty))):
-        pg.goto(BASE + "/cart?sc_lang=en-US", wait_until="domcontentloaded", timeout=60000) if k else None
-        if k:
-            s.settle(4000)
-        tg = pg.locator("button.o-accordion__toggler", has_text="Your Coupons").first
-        try:
-            if tg.count() and tg.get_attribute("aria-expanded") != "true":
-                tg.click(timeout=8000)
-                pg.wait_for_timeout(2000)
-        except Exception:
-            pass
-        btn = pg.locator("article.-cartCoupons").nth(card_no).locator("button.-cartCoupon").first
-        btn.scroll_into_view_if_needed(timeout=6000)
-        btn.click(timeout=8000)
-        pg.wait_for_timeout(3000)
-        dlg = pg.locator("[role=dialog]:visible")
-        if dlg.count():
-            tog = dlg.first.locator(".o-accordion__toggler:visible")
-            for t in range(tog.count()):          # every 'Choose: ...' box: the option that looks like the product, else the first one
-                try:
+    qty = max(1, int(qty))
+    pg.goto(BASE + "/cart?sc_lang=en-US", wait_until="domcontentloaded", timeout=60000)
+    s.settle(4000)
+    tg = pg.locator("button.o-accordion__toggler", has_text="Your Coupons").first
+    try:
+        if tg.count() and tg.get_attribute("aria-expanded") != "true":
+            tg.click(timeout=8000)
+            pg.wait_for_timeout(2000)
+    except Exception:
+        pass
+    btn = pg.locator("article.-cartCoupons").nth(card_no).locator("button.-cartCoupon").first
+    btn.scroll_into_view_if_needed(timeout=6000)
+    btn.click(timeout=8000)
+    pg.wait_for_timeout(3000)
+    dlg = pg.locator("[role=dialog]:visible")
+    if dlg.count():
+        d = dlg.first
+        tog = d.locator("button.o-accordion__toggler")
+        for t in range(tog.count()):              # every 'Choose: ...' box: the option that looks like the product, else the first one
+            try:
+                if tog.nth(t).get_attribute("aria-expanded") != "true":
                     tog.nth(t).click(timeout=4000)
-                    pg.wait_for_timeout(700)
-                    opts = dlg.first.locator("button.m-refinerImage:visible")
-                    best, bi = -1.0, 0
-                    for o in range(opts.count()):
-                        sc = name_score(product_name, opts.nth(o).inner_text())
-                        if sc > best:
-                            best, bi = sc, o
-                    if opts.count():
-                        opts.nth(bi).click(timeout=4000)
-                        pg.wait_for_timeout(600)
-                except Exception:
-                    pass
-            ok = dlg.first.locator("button", has_text=re.compile(r"add to cart", re.I)).last
-            ok.click(timeout=8000)
-            pg.wait_for_timeout(3500)
+                    pg.wait_for_timeout(800)
+            except Exception:
+                pass
+        groups = d.locator("ul.o-configuratorAcc__list")
+        for g in range(groups.count()):
+            opts = groups.nth(g).locator("button.m-refinerImage")
+            best, bi = -1.0, 0
+            for o in range(opts.count()):
+                sc = name_score(product_name, opts.nth(o).inner_text())
+                if sc > best:
+                    best, bi = sc, o
+            if opts.count():
+                opts.nth(bi).click(timeout=4000)
+                pg.wait_for_timeout(700)
+        plus = d.locator("button", has_text=re.compile(r"^\s*add\s*$"))
+        for _ in range(qty - 1):
+            if plus.count():
+                plus.first.click(timeout=4000)
+                pg.wait_for_timeout(500)
+        d.locator("button", has_text=re.compile(r"add to cart", re.I)).last.click(timeout=8000)
+        pg.wait_for_timeout(4000)
+    else:
+        for _ in range(qty - 1):
+            pg.locator("article.-cartCoupons").nth(card_no).locator("button.-cartCoupon").first.click(timeout=8000)
+            pg.wait_for_timeout(3000)
     return True, ""
 
 
