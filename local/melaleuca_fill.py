@@ -970,6 +970,42 @@ def run(n, dry=False, lab=False, final=True):
                 say("  every line of the cart equals the sheet.")
             for nn in notes:
                 say("  NOTE:", nn)
+            adjusted = []
+            if pts > 150.0001 and os.environ.get("FILL_AUTOFIT", "1") != "0":
+                # the store charges more points than the sheet expected (a coupon this account does not have): take units off the line that causes it
+                # until the cart is back under the limit (target 148, the same band as the order builder). Only a plain item with quantity 2 or more is touched.
+                try:
+                    cand = []
+                    for aa in blocks.values():
+                        ep = sum(a.expect_pts for a in aa)
+                        lids = {str(x) for a in aa for x in ([a.line] + list(a.extra)) if x is not None}
+                        ap = sum(f2(by_line[l].get("RawPoints")) for l in lids if l in by_line)
+                        singles = [a for a in aa if a.kind == "single" and a.line is not None and a.qty >= 2 and not any(r_ in credit_done for r_ in a.rows)]
+                        if ap - ep > 0.5 and len(singles) == 1 and len(aa) == 1:
+                            cand.append((ap - ep, ap, singles[0]))
+                    cand.sort(key=lambda t: -t[0])
+                    for excess, ap, a in cand:
+                        if pts <= 150.0001:
+                            break
+                        unit = ap / a.qty
+                        need = int(-(-(pts - 148.0) // unit)) if unit > 0 else 0       # ceil
+                        k = max(1, min(a.qty - 1, need))
+                        old_q = a.qty
+                        s.remove_line(a.line)
+                        a.qty = old_q - k
+                        if fl.post(a):
+                            adjusted.append("%s: quantity %d -> %d (the store gives it %.0f points per unit; the sheet expected a coupon price)" % (a.label[:50], old_q, a.qty, unit))
+                            say("  AUTO-ADJUSTED:", adjusted[-1])
+                        else:
+                            say("  AUTO-ADJUST FAILED for", a.label[:50], "- put it back by hand: quantity", old_q)
+                            problems.append("put %s back to quantity %d (the automatic reduction failed)" % (a.label[:50], old_q))
+                        js, sm = fl.summary()
+                        pts = f2(sm.get("Points"))
+                        net = f2(sm.get("CartGrossTotal"))
+                        by_line = {str(it.get("LineId")): it for it in cart_items(js)}
+                    say("CART AFTER THE ADJUSTMENT: %s items | %.0f points | gross %s" % (sm.get("ItemCount"), pts, sm.get("CartGrossTotal")))
+                except Exception as e:
+                    say("automatic reduction failed:", str(e)[:120])
             if pts > 150.0001:
                 say("")
                 say("!" * 78)
@@ -1073,6 +1109,8 @@ def run(n, dry=False, lab=False, final=True):
             print("\n==============================================================================")
             print(" Cart of '%s' is ready on the checkout screen of your browser window." % name)
             print(" %.0f points | %s of loyalty dollars used | nothing was paid, no order was placed." % (pts, (sm.get("LoyaltyShoppingDollars") or {}).get("FormattedUsed") or "$0.00"))
+            for ad in adjusted:
+                print("  AUTO-ADJUSTED:", ad)
             for pn in problems:
                 print("  TO DO BY HAND:", pn)
             if pts > 150.0001:
