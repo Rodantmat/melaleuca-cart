@@ -971,10 +971,13 @@ def run(n, dry=False, lab=False, final=True):
                 say("!!  Look at the DIFFERENCE lines above: that is where the extra points come from.")
                 say("!" * 78)
             result = {"match": bool(ok_pts and ok_cost), "cart_points": pts, "sheet_points": exp_pts, "cart_cost": net, "sheet_cost": exp_ws, "differences": diffs}
-            json.dump(result, open(os.path.join(FEED, "fill_result_%d.json" % n), "w", encoding="utf-8"), indent=1)
-            os.makedirs(FEED, exist_ok=True)
-            open(os.path.join(FEED, "fill_report_%d.txt" % n), "w", encoding="utf-8").write("\n".join(report))
-            json.dump(js, open(os.path.join(FEED, "fill_cart_%d.json" % n), "w"))
+            try:                                              # the reports are only for me: a failure here must never stop the browser window
+                os.makedirs(FEED, exist_ok=True)
+                json.dump(result, open(os.path.join(FEED, "fill_result_%d.json" % n), "w", encoding="utf-8"), indent=1)
+                open(os.path.join(FEED, "fill_report_%d.txt" % n), "w", encoding="utf-8").write("\n".join(report))
+                json.dump(js, open(os.path.join(FEED, "fill_cart_%d.json" % n), "w", encoding="utf-8"))
+            except Exception as e:
+                say("could not save the report files:", str(e)[:120])
             # ---- 4. the checkout screen (never pays, never places the order)
             if final:
                 try:
