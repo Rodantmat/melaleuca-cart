@@ -294,7 +294,7 @@ class Catalog:
                 del self.s.json_log[:]
             log("  category %s: %d families known" % (cat, len(self.fam)))
         now = time.time()
-        self.complete = len(self.fam) >= 30 and len(ALL_CARDS) >= 200          # a crawl that really read the whole store
+        self.complete = len(self.fam) >= 75 and len(ALL_CARDS) >= 400          # a crawl that really read the whole store
         csave("family_map", {"all": {"t": now, "v": self.fam, "complete": self.complete}, "cards": {"t": now, "v": ALL_CARDS}})
 
     def variants(self, fid):
@@ -358,6 +358,11 @@ class Catalog:
         fid = m.group(2)
         if fid not in self.fam:
             self.crawl([fid])
+        if fid not in self.fam and self.crawled:           # the store listing came back incomplete: read it once more
+            self.crawled = False
+            self.crawl([fid])
+            if fid not in self.fam:
+                return None, "family %s not found in the store" % fid
         vs = [v for v in self.variants(fid) if not v["sold"]] or self.variants(fid)
         if not vs:
             return None, "family %s not found in the store" % fid
