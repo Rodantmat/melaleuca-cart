@@ -979,7 +979,7 @@ def run(n, dry=False, lab=False, final=True):
             except Exception as e:
                 say("could not save the report files:", str(e)[:120])
             # ---- 4. the checkout screen (never pays, never places the order)
-            if final:
+            if final and lab:                                  # (a real fill opens the checkout in the visible window below - no need to do it twice)
                 try:
                     s.page.goto(BASE + "/cart?sc_lang=en-US", wait_until="domcontentloaded", timeout=60000)
                     s.settle(5000)
@@ -1033,14 +1033,23 @@ def run(n, dry=False, lab=False, final=True):
                 say("lab: emptied the cart again:", fl.clear(), "lines")
                 return 0
             # ---- 5. everything was done in the hidden window: now open YOUR browser window straight on the checkout screen
-            say("opening your browser window on the checkout screen ...")
+            say("")
+            say("THE CART IS FILLED. Opening your browser window on the checkout screen now (about 20-40 seconds) ...")
             v = None
             try:
                 vcfg = dict(cfg, headless=False, fast=False)
                 v = ms.Session(p, a2, an, vcfg, port)
-                v.login()
+                try:                                           # same proxy IP + the cookies of the hidden window = already signed in, no second login
+                    v.ctx.add_cookies(s.ctx.storage_state().get("cookies", []))
+                except Exception as e:
+                    say("  (cookie copy failed:", str(e)[:80], ")")
                 v.page.goto(BASE + "/checkout?sc_lang=en-US", wait_until="domcontentloaded", timeout=60000)
-                v.settle(6000)
+                v.settle(4000)
+                if re.search(r"login|signin|sign-in|account/log", v.page.url, re.I) or v.page.locator("input[name=username]:visible").count():
+                    say("  window was not signed in - signing in ...")
+                    v.login()
+                    v.page.goto(BASE + "/checkout?sc_lang=en-US", wait_until="domcontentloaded", timeout=60000)
+                    v.settle(5000)
                 if "promo-page" in v.page.url:
                     b = v.page.locator("button:visible, a:visible").filter(has_text=re.compile(r"^\s*continue to checkout\s*$", re.I))
                     if b.count():

@@ -25,6 +25,10 @@ jobs:
           U1: ${{ secrets.MELA_USER_1 }}
           P1: ${{ secrets.MELA_PASS_1 }}
           FILL_CLEAR: "1"
+          PYTHONUTF8: "0"
+          PYTHONCOERCECLOCALE: "0"
+          LC_ALL: "C"
+          PYTHONIOENCODING: "ascii:replace"
         run: |
           cd local
           printf 'PROXY_URL=%s\nSTICKY_BASE=10000\nMELA_USER_7=%s\nMELA_PASS_7=%s\n' "$PROXY_URL" "$U1" "$P1" > credentials.env
