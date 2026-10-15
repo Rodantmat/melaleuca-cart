@@ -17,8 +17,15 @@ def main():
         s = ms.Session(p, acct, 7, cfg, None); s.login()
         reqs = []
         def on_req(rq):
-            if rq.resource_type in ("fetch", "xhr") and rq.method != "GET":
-                reqs.append({"m": rq.method, "u": rq.url[:160], "body": (rq.post_data or "")[:500]})
+            try:
+                if rq.resource_type in ("fetch", "xhr") and rq.method != "GET":
+                    try:
+                        b = (rq.post_data or "")[:500]
+                    except Exception:
+                        b = "<binary>"
+                    reqs.append({"m": rq.method, "u": rq.url[:160], "body": b})
+            except Exception:
+                pass
         s.ctx.on("request", on_req)
         scripts = []
         def on_resp(r):
@@ -29,7 +36,7 @@ def main():
         s.settle(6000)
         print("scripts seen:", len(scripts))
         hits = {}
-        for u in scripts[:80]:
+        for u in scripts[:0]:
             try:
                 t = s.page.evaluate("async (u) => { const r = await fetch(u); return r.ok ? await r.text() : ''; }", u)
             except Exception:
