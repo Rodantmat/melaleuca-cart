@@ -715,7 +715,7 @@ def run(n, dry=False, lab=False, final=True):
     REG = "ca" if region in ("vancouver", "toronto") else "us"
     cfg = {"proxy": env.get("PROXY_URL", ""), "sticky_base": int(env.get("STICKY_BASE") or 10000), "headless": not (not lab and env.get("FILL_SHOW", "0") in ("1", "true")),     # the scan uses HEADLESS=1; the filler always shows its window (you pay in it)
            "channel": (env.get("BROWSER", "") or "") if lab else (env.get("FILL_BROWSER", "") or "chrome"), "session_minutes": int(env.get("SESSION_MINUTES", "120") or 0), "debug_dir": os.path.join(FEED, "debug"),
-           "fast": bool(lab)}
+           "fast": True, "early_route": True}
     port = None
     try:
         port = json.load(open(os.path.join(FEED, "ip_%d.json" % an))).get("port")
@@ -1034,10 +1034,11 @@ def run(n, dry=False, lab=False, final=True):
                 return 0
             # ---- 5. everything was done in the hidden window: now open YOUR browser window straight on the checkout screen
             say("")
+            say("proxy traffic of this fill: about %.1f MB" % (s.bytes / 1048576.0))
             say("THE CART IS FILLED. Opening your browser window on the checkout screen now (about 20-40 seconds) ...")
             v = None
             try:
-                vcfg = dict(cfg, headless=False, fast=False)
+                vcfg = dict(cfg, headless=False, fast=False, early_route=False, proxy="")        # your own window uses YOUR connection: nothing more through the proxy
                 v = ms.Session(p, a2, an, vcfg, port)
                 try:                                           # same proxy IP + the cookies of the hidden window = already signed in, no second login
                     v.ctx.add_cookies(s.ctx.storage_state().get("cookies", []))

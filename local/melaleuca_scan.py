@@ -95,6 +95,8 @@ class Session:
         self.ctx = self.browser.new_context(**ctxkw)
         self.page = self.ctx.new_page()
         self.page.on("response", self._on_resp)
+        if cfg.get("fast", True) and cfg.get("early_route"):          # also during sign-in: no pictures / fonts / trackers through the proxy
+            self.ctx.route("**/*", self._route)
 
     TRACKERS = ("google-analytics", "googletagmanager", "doubleclick", "googlesyndication", "facebook.", "fbcdn", "hotjar", "clarity.ms", "segment.",
                 "tiktok", "snapchat", "linkedin", "pinterest", "criteo", "optimizely", "newrelic", "nr-data", "bing.com", "adsrvr", "taboola", "outbrain",
@@ -184,7 +186,7 @@ class Session:
         self.settle(6000)
         if "signin" in pg.url.lower():
             self.diagnose(pg)
-        if self.cfg.get("fast", True):                 # after sign-in, images / fonts / videos are not needed to read offers: pages load faster
+        if self.cfg.get("fast", True) and not self.cfg.get("early_route"):                 # after sign-in, images / fonts / videos are not needed to read offers: pages load faster
             self.ctx.route("**/*", self._route)
 
     def snap(self, pg, why):
@@ -246,10 +248,23 @@ class Session:
         return int(sm.get("ItemCount") or 0), float(sm.get("Points") or 0)
 
     def cart_url(self):
-        if "cart" not in self.last:
+        for attempt in range(3):
+            if "cart" in self.last:
+                return self.last["cart"]
             self.page.goto(BASE + "/cart?sc_lang=en-US", wait_until="domcontentloaded", timeout=60000)
-            self.settle(5000)
-        return self.last["cart"]
+            for _ in range(20):                                   # the page asks for its cart a few seconds after it loads
+                if "cart" in self.last:
+                    return self.last["cart"]
+                self.page.wait_for_timeout(1000)
+            try:                                                  # fall back to what the page itself requested
+                urls = self.page.evaluate("() => performance.getEntriesByType('resource').map(e => e.name)")
+                for u in urls:
+                    if "/api/cart?" in u and "linetype" not in u:
+                        self.last["cart"] = u
+                        return u
+            except Exception:
+                pass
+        raise RuntimeError("the cart page did not load its cart (page: %s)" % self.page.url[:90])
 
     def add(self, sku, qty, promo=0, line_type=None):
         r = self.fetch(self.cart_url(), "POST", {"Sku": str(sku), "Quantity": qty, "Configurations": [], "PromotionId": promo,
