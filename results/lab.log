@@ -1,0 +1,23 @@
+01:36:42   proxy port 10007 | location: cr.us;city.losangeles,sandiego,longbeach,anaheim,irvine,santaana,riverside
+01:37:21 signed in as Antonio M | plan: 3 lines, TOTAL points 21.0 cost 43.25
+01:37:48 cart had 32 lines - emptied (lab)
+01:37:53 actions: 3 | offer lines: 0 | problems: 1
+01:37:53   PROBLEM: row 2: no choice found for 'Ecosense - Revive Freshener and Wrinkle Relaxer Concentrate' (34152)
+01:38:07 coupons of this account: 3 | Save $1.25 on Revive Freshener & Wrinkle Relaxer C ; Save $4.50 on Sei Bella Charcoal & Flower Daily Ma ; Save $3.00 on Simply Fit Simple Start Baking Mix: 
+01:38:07   COUPON NOT ON THIS ACCOUNT: 'Renew - Body Wash 12oz' - the sheet counts it at the coupon price (5 pts / 12.98), the store charges the normal price. Clear its Discount Type on the Melaleuca tab and generate the orders again.
+01:38:07   added [single] 6600 x1 Renew - Lotion - 20oz 
+01:38:07   added [single] 3620 x2 Renew - Body Wash 12oz 
+01:38:35   FAILED [coupon] x2 Save $1.25 on Revive Freshener & Wrinkle Relaxer Concentrate
+01:38:35 cart before the offers: 3 items, 22 points
+01:38:36 
+CART NOW: 3 items | 22 points | gross 38.97 | net 38.97 | discount 0
+01:38:36 SHEET   : 21 points count for the limit (TOTAL row: 21) + 0 points of credit items | cost of all lines 43.25
+01:38:36 CREDIT  : $0.00 of loyalty dollars used by the cart
+01:38:36 RESULT  : points DIFFER by +1 | cost DIFFER by -4.28
+01:38:36   DIFFERENCE: Renew - Body Wash 12oz: sheet 5 pts / 12.98  -  store 12 pts / 21.98
+01:38:36   DIFFERENCE: COUPON Save $1.25 on Revive Freshener & Wrinkle Rela: NOT ADDED (the coupon button did not add anything)
+01:38:36   NOTE: row 2 Ecosense - Revive Freshener and Wrinkle Relaxer Concentrate: coupon line - the product is added, apply its coupon in the cart (coupons are not applied automatically)
+01:38:36   NOTE: row 4 Renew - Body Wash 12oz: coupon line - the product is added, apply its coupon in the cart (coupons are not applied automatically)
+01:39:01 page: https://www.melaleuca.com/checkout
+01:39:01 page: https://www.melaleuca.com/checkout
+01:39:05 lab: emptied the cart again: 2 lines
