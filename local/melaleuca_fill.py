@@ -390,6 +390,7 @@ class Action:
         self.kind, self.sku, self.qty, self.conf, self.promo, self.label = kind, str(sku), qty, conf or [], promo, label
         self.rows, self.expect_pts, self.expect_ws, self.notes = rows or [], expect_pts, expect_ws, notes or []
         self.done, self.line = False, None
+        self.extra = []                  # more cart lines that belong to this action (a coupon that was added twice)
 
 
 def build_actions(plan, info, resolve_variant=None):
@@ -612,6 +613,70 @@ class Filler:
         return n
 
 
+def coupon_cards(s):
+    """opens the cart page, opens 'Your Coupons' and returns the descriptions of the coupons this account has: ['Save $4.50 on Renew Body Wash', ...]"""
+    pg = s.page
+    pg.goto(BASE + "/cart?sc_lang=en-US", wait_until="domcontentloaded", timeout=60000)
+    s.settle(5000)
+    try:
+        tg = pg.locator("button.o-accordion__toggler", has_text="Your Coupons").first
+        if tg.count() and tg.get_attribute("aria-expanded") != "true":
+            tg.click(timeout=8000)
+            pg.wait_for_timeout(2500)
+    except Exception:
+        pass
+    out = []
+    cards = pg.locator("article.-cartCoupons")
+    for i in range(cards.count()):
+        try:
+            out.append(cards.nth(i).locator(".m-recentProduct__description").first.inner_text().strip())
+        except Exception:
+            out.append("")
+    return out
+
+
+def coupon_add(s, card_no, qty, product_name):
+    """presses the add button of coupon card number card_no (qty times), answers the 'Your Choices' dialog if it appears. Returns (ok, why)"""
+    pg = s.page
+    for k in range(max(1, int(qty))):
+        pg.goto(BASE + "/cart?sc_lang=en-US", wait_until="domcontentloaded", timeout=60000) if k else None
+        if k:
+            s.settle(4000)
+        tg = pg.locator("button.o-accordion__toggler", has_text="Your Coupons").first
+        try:
+            if tg.count() and tg.get_attribute("aria-expanded") != "true":
+                tg.click(timeout=8000)
+                pg.wait_for_timeout(2000)
+        except Exception:
+            pass
+        btn = pg.locator("article.-cartCoupons").nth(card_no).locator("button.-cartCoupon").first
+        btn.scroll_into_view_if_needed(timeout=6000)
+        btn.click(timeout=8000)
+        pg.wait_for_timeout(3000)
+        dlg = pg.locator("[role=dialog]:visible")
+        if dlg.count():
+            tog = dlg.first.locator(".o-accordion__toggler:visible")
+            for t in range(tog.count()):          # every 'Choose: ...' box: the option that looks like the product, else the first one
+                try:
+                    tog.nth(t).click(timeout=4000)
+                    pg.wait_for_timeout(700)
+                    opts = dlg.first.locator("button.m-refinerImage:visible")
+                    best, bi = -1.0, 0
+                    for o in range(opts.count()):
+                        sc = name_score(product_name, opts.nth(o).inner_text())
+                        if sc > best:
+                            best, bi = sc, o
+                    if opts.count():
+                        opts.nth(bi).click(timeout=4000)
+                        pg.wait_for_timeout(600)
+                except Exception:
+                    pass
+            ok = dlg.first.locator("button", has_text=re.compile(r"add to cart", re.I)).last
+            ok.click(timeout=8000)
+            pg.wait_for_timeout(3500)
+    return True, ""
+
+
 def run(n, dry=False, lab=False, final=True):
     import melaleuca_run as mr
     import melaleuca_scan as ms
@@ -705,6 +770,31 @@ def run(n, dry=False, lab=False, final=True):
                     for c in a.notes:
                         say("       choice:", c)
                 return 0
+            # ---- 0. coupons: the ones this account really has are added from its 'Your Coupons' box at the coupon price
+            coupon_lines = [L for L in plan["lines"] if L["qty"] > 0 and (str(L["type"]).strip().lower() == "coupon" or str(L["note"]).strip().lower().startswith("coupon of"))]
+            coupon_use = []
+            if coupon_lines:
+                try:
+                    cards = coupon_cards(s)
+                except Exception as e:
+                    cards = []
+                    say("  could not read the coupons box:", str(e)[:100])
+                say("coupons of this account:", len(cards), "|", " ; ".join(c[:50] for c in cards))
+                for L in coupon_lines:
+                    best = (0.0, None)
+                    for ci, d in enumerate(cards):
+                        title = re.sub(r"^\s*Save\s*\$[\d.,]+\s*(on\s*)?", "", d, flags=re.I)
+                        sc = name_score(L["name"], title)
+                        if sc > best[0]:
+                            best = (sc, ci)
+                    if best[1] is not None and best[0] >= 0.5:
+                        coupon_use.append((L, best[1], cards[best[1]]))
+                    else:
+                        msg = "COUPON NOT ON THIS ACCOUNT: '%s' - the sheet counts it at the coupon price (%.0f pts / %.2f), the store charges the normal price. Clear its Discount Type on the Melaleuca tab and generate the orders again." % (L["name"], L["pts"], L["ws"])
+                        say("  " + msg)
+                        problems.append(msg)
+                rows_c = {L["row"] for L, _, _ in coupon_use}
+                acts = [a for a in acts if not (a.rows and set(a.rows) <= rows_c and a.kind == "single")]
             # ---- 1. products and packs
             for a in acts:
                 ok = fl.post(a)
@@ -712,6 +802,22 @@ def run(n, dry=False, lab=False, final=True):
                 for c in a.notes:
                     if "->" in c:
                         say("       choice:", c)
+            for L, ci, desc in coupon_use:
+                ids0 = {str(i["LineId"]) for i in cart_items(fl.cart())}
+                try:
+                    coupon_add(s, ci, L["qty"], L["name"])
+                except Exception as e:
+                    say("  coupon button problem:", str(e)[:120])
+                new = [i for i in cart_items(fl.cart()) if str(i["LineId"]) not in ids0]
+                a = Action("single", "coupon", L["qty"], label="COUPON %s" % desc[:45], rows=[L["row"]], expect_pts=L["pts"], expect_ws=L["ws"])
+                a.done = bool(new)
+                a.line = str(new[0]["LineId"]) if new else None
+                a.extra = [str(i["LineId"]) for i in new[1:]]
+                if not new:
+                    a.notes.append("the coupon button did not add anything")
+                    problems.append("coupon '%s' could not be added: do it by hand from 'Your Coupons' in the cart" % desc[:60])
+                acts.append(a)
+                say("  %s [coupon] x%d %s" % ("added" if new else "FAILED", L["qty"], desc[:70]))
             # ---- 2. special offers
             js, sm = fl.summary()
             say("cart before the offers:", sm.get("ItemCount"), "items,", sm.get("Points"), "points")
@@ -825,7 +931,7 @@ def run(n, dry=False, lab=False, final=True):
             diffs, pump_extra, pump_notes = [], 0.0, []
             for aa in blocks.values():
                 ep, ew = sum(a.expect_pts for a in aa), sum(a.expect_ws for a in aa)
-                lids = {str(a.line) for a in aa if a.line is not None}
+                lids = {str(x) for a in aa for x in ([a.line] + list(a.extra)) if x is not None}
                 missing = [a for a in aa if not a.done]
                 ap = sum(f2(by_line[l].get("RawPoints")) for l in lids if l in by_line)
                 aw = sum(f2(by_line[l].get("RawPrice")) for l in lids if l in by_line)
