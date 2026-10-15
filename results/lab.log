@@ -1,0 +1,4 @@
+01:07:12   proxy port 10007 | location: cr.us;city.losangeles,sandiego,longbeach,anaheim,irvine,santaana,riverside
+BEFORE: points 164 LSD used 6.19 [('4120', '32', '$0.00'), ('179', '11', '$6.19')]
+POST linetype: 200 {'Success': True, 'ErrorMessages': [], 'Data': {'linesResults': [{'sku': '4120', 'lineType': 'LSD', 'lineId': 32, 'validationItems': []}], 'cartSummary': {'loyalShoppingDollars': {'availableToActivate': 0, 'availableToSpend': 10.42, 'balance': 0, 'earned': 0, 'earnedNonSkuGift': 0, 'earnedShippingOn
+AFTER: points 152 LSD used 10.42 [('4120', '32', '$4.23', 0), ('179', '11', '$6.19', 0)]
