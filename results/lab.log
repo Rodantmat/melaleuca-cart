@@ -1,0 +1,9 @@
+CREATE FAILED: HTTP 403 on POST /reports/2021-06-30/reports: {
+  "errors": [
+    {
+      "code": "Unauthorized",
+      "message": "Access to the resource is forbidden",
+      "details": ""
+    }
+  ]
+}
