@@ -184,7 +184,7 @@ Public Sub Auto_Fill_Cart()
     End If
     msg = "Fill the Melaleuca cart of the account of tab '" & ws.Name & "' (tab " & n & ") with this order?" & vbCrLf & vbCrLf & _
           "A browser window opens, signs in and puts the products in the cart. It stops on the checkout screen - it does not pay and does not place the order." & vbCrLf & _
-          "(Anything already in that cart stays; if the cart is not empty you will be told.)"
+          "(Anything already in that cart is removed first.)"
     If MsgBox(msg, vbQuestion + vbOKCancel, "Auto-Fill Cart") <> vbOK Then Exit Sub
     On Error GoTo failed
     plan = Build_Cart_Plan(ws, n)

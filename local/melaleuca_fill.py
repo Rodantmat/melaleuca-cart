@@ -760,15 +760,17 @@ def run(n, dry=False, lab=False, final=True):
             js, sm = fl.summary()
             items = cart_items(js)
             if items and not dry:
-                if lab or os.environ.get("FILL_CLEAR") == "1":
-                    say("cart had %d lines - emptied (lab)" % fl.clear())
-                else:
-                    print("\nThe cart of this account is NOT empty (%d lines, %s points)." % (len(items), sm.get("Points")))
-                    ans = input("Type E and Enter to EMPTY it and fill it with this order, or just Enter to stop: ").strip().lower()
-                    if ans != "e":
-                        say("stopped: cart not empty")
-                        return 3
-                    say("cart emptied:", fl.clear(), "lines")
+                # always: whatever is in the cart of this account is removed first (never asks)
+                say("cart had %d lines (%s points) - emptying it first" % (len(items), sm.get("Points")))
+                for _try in range(3):
+                    fl.clear()
+                    js, sm = fl.summary()
+                    items = cart_items(js)
+                    if not items:
+                        break
+                if items:
+                    raise RuntimeError("the cart could not be emptied (%d lines left)" % len(items))
+                say("cart emptied")
             cat = Catalog(s)
             need = sorted({re.sub(r"\D", "", L["melid"]) for L in plan["lines"] if re.fullmatch(r"[FR]\d+[LH]?", L["melid"] or "")})
             if any(L["qty"] > 0 and L["melid"] and not NUM.match(L["melid"]) and not re.fullmatch(r"[FR]\d+[LH]?", L["melid"]) for L in plan["lines"]):
