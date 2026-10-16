@@ -2,10 +2,15 @@
    python lab_certify.py 6 7 8"""
 import subprocess, sys, os, re, time
 HERE = os.path.dirname(os.path.abspath(__file__))
+PDIR = "feed/plans"
+for a in list(sys.argv[1:]):
+    if a.startswith("--dir="):
+        PDIR = a[6:]
+        sys.argv.remove(a)
 which = sys.argv[1:] or [str(i) for i in range(1, 18)]
 summary = []
 for n in which:
-    f = "feed/plans/cart_plan_%s.tsv" % n
+    f = "%s/cart_plan_%s.tsv" % (PDIR, n)
     if not os.path.exists(os.path.join(HERE, f)):
         summary.append((n, "NO PLAN"))
         continue
