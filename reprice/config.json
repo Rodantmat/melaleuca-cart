@@ -1,0 +1,8 @@
+{
+  "live_enabled": false,
+  "allowlist": [],
+  "max_changes_per_run": 8,
+  "max_changes_per_day": 20,
+  "overrides": {},
+  "cfg": {}
+}

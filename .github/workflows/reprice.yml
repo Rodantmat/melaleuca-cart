@@ -1,0 +1,46 @@
+name: Reprice
+on:
+  workflow_dispatch:
+    inputs:
+      mode: { description: "shadow (default, changes nothing) or live", default: "shadow" }
+  schedule:
+    - cron: "17 7,13,19 * * *"
+permissions:
+  contents: write
+concurrency: { group: reprice-state, cancel-in-progress: false }
+jobs:
+  reprice:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+        with: { ref: main }
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - name: Safety gate - tests and stress simulation must pass
+        run: |
+          cd reprice
+          python tests/test_engine.py
+          python sim.py 25 200 11 | tail -3
+          python sim.py 25 200 12 | tail -3
+      - name: Fetch saved state
+        run: git fetch origin reprice-state:reprice-state 2>/dev/null && git checkout reprice-state -- reprice/state 2>/dev/null || true
+      - name: Run
+        env:
+          CRED_ENV: ${{ secrets.CREDENTIALS_ENV }}
+          REPRICE_LIVE: ${{ vars.REPRICE_LIVE }}
+        run: |
+          cd reprice
+          printf '%s\n' "$CRED_ENV" > credentials.env
+          MODE="${{ github.event.inputs.mode }}"; MODE="${MODE:-shadow}"
+          python run.py "$MODE" 2>&1 | tee run.log
+          rm -f credentials.env
+      - name: Save state
+        if: always()
+        run: |
+          git config user.name "reprice-bot"; git config user.email "reprice-bot@users.noreply.github.com"
+          rm -rf /tmp/st && mkdir /tmp/st && cp -r reprice/state /tmp/st/state && cp reprice/run.log /tmp/st/ 2>/dev/null || true
+          git checkout --orphan reprice-state-new
+          git rm -rf . >/dev/null 2>&1 || true
+          mkdir -p reprice && cp -r /tmp/st/state reprice/state && cp /tmp/st/run.log reprice/ 2>/dev/null || true
+          git add reprice && git commit -qm "reprice state" && git push -f origin reprice-state-new:reprice-state
