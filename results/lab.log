@@ -1,0 +1,5 @@
+Traceback (most recent call last):
+  File "/home/runner/work/melaleuca-cart/melaleuca-cart/local/lab_access.py", line 17, in <module>
+    cs = json.load(open(os.path.join(OUT, "competitive_summary.json")))
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/home/runner/work/melaleuca-cart/melaleuca-cart/local/feed/amz/competitive_summary.json'
