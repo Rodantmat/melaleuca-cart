@@ -18,11 +18,12 @@ with sync_playwright() as p:
     for u in ["/api/shelf?Sku=34050&sc_lang=en-US&sc_site=productstoreCa", "/api/shelf?Sku=34050&sc_lang=en-CA&sc_site=productstoreCa",
               "/api/shelf?Sku=34050", "/api/shelf?Sku=34050&sc_lang=en-US&sc_site=productstoreUs", "/api/shelf?Sku=34050&sc_lang=en-US&sc_site=productstoreCa&sc_itemid=%7BFE1DED98-281E-46FA-9656-7D6A0C2E436D%7D"]:
         try:
-            r = s._fetch1(mf.BASE + u)
+            r = s._fetch1(u)
             print("URL", u, "->", r.get("status"), str(r.get("json") or r.get("text"))[:300], flush=True)
         except Exception as e:
             print("URL", u, "ERR", str(e)[:100], flush=True)
-    for sku in ("34050", "3441"):
+    print("page origin:", s.page.url[:60], flush=True)
+    for sku in ("3441",):
         pg = s.page
         pg.goto("%s/products/%s?sc_lang=en-US" % (mf.BASE, sku), wait_until="domcontentloaded", timeout=60000)
         pg.wait_for_timeout(3000)
