@@ -6,10 +6,9 @@ import engine
 NOW = datetime(2026, 10, 16, 12, 0)
 
 def base(**kw):
-    s = dict(asin="B0TEST", sku="S1", price=12.0, cost=5.0, fba_fee=3.5, fee_fixed=0.0,
-             on_hand=20, units30=0, units7=0, days_since_sale=40, hist_median=12.0,
-             market_low_fba=11.0, foep=None, has_buybox=True, changes_14d=0, last_change=None,
-             frozen_until=None, manual_seen=False, comp_price=12.0, dos=60, aged_units=0)
+    s = dict(sku="S1", price=12.0, cost=5.0, fba_fee=3.5, on_hand=20, inbound=0,
+             units_7=0, units_30=0, units_90=0, days_since_sale=40, bb=12.0, we_hold_bb=True,
+             low_fba=12.0, low_new=12.0, foep=None, hist=None, last_change=None, changes=[], aged_units=0)
     s.update(kw); return s
 
 class T(unittest.TestCase):
@@ -18,9 +17,8 @@ class T(unittest.TestCase):
         for _ in range(3000):
             r = random.Random(_)
             s = base(price=r.uniform(1, 40), cost=r.uniform(1, 20), fba_fee=r.uniform(2, 8),
-                     on_hand=r.randint(0, 200), units30=r.randint(0, 40), days_since_sale=r.randint(0, 300),
-                     market_low_fba=r.choice([None, r.uniform(1, 40)]), dos=r.uniform(0, 400),
-                     hist_median=r.uniform(1, 40), changes_14d=r.randint(0, 5))
+                     on_hand=r.randint(0, 200), units_30=r.randint(0, 40), units_90=r.randint(0, 100), days_since_sale=r.randint(0, 300),
+                     low_fba=r.choice([None, r.uniform(1, 40)]), bb=r.uniform(1,40), we_hold_bb=r.random()<.5)
             d = engine.decide(s, cfg, NOW)
             safety, fl, ce = engine.floors(s, cfg)
             if d.get("price") is not None and d["action"] in ("down", "to_floor"):
@@ -28,7 +26,7 @@ class T(unittest.TestCase):
 
     def test_garbage_inputs_hold(self):
         for bad in (None, float("nan"), -1, 0):
-            for k in ("price", "cost", "fba_fee", "hist_median", "market_low_fba"):
+            for k in ("price", "cost", "fba_fee", "low_fba", "bb", "foep"):
                 s = base(); s[k] = bad
                 d = engine.decide(s, engine.DEFAULTS, NOW)
                 self.assertIn(d["action"], ("hold", "down", "up", "to_floor", "revert"))
@@ -45,7 +43,7 @@ class T(unittest.TestCase):
             self.assertGreaterEqual(d["price"], 12.0 * (1 - engine.DEFAULTS["STEP_DOWN_MAX"]) - 0.011)
 
     def test_no_drop_when_little_stock(self):
-        d = engine.decide(base(units30=10, units7=3, days_since_sale=2, on_hand=2), engine.DEFAULTS, NOW)
+        d = engine.decide(base(units_30=10, units_7=3, days_since_sale=2, on_hand=2), engine.DEFAULTS, NOW)
         self.assertNotEqual(d["action"], "down")
 
 if __name__ == "__main__":
