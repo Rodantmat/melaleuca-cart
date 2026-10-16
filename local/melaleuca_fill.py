@@ -809,6 +809,22 @@ def run(n, dry=False, lab=False, final=True):
                 s.login()
                 break
             except ms.BadLogin:
+                u_, w_ = str(acct.get("user", "")), str(acct.get("pass", ""))
+                mask = lambda x: (x[:2] + "*" * max(0, len(x) - 4) + x[-2:]) if len(x) > 4 else "*" * len(x)
+                print("")
+                print("=" * 78)
+                print(" The store REFUSED the sign-in of tab %d (%s)." % (an, acct.get("tab")))
+                print("   user name read from credentials.env : %s   (%d characters)" % (mask(u_), len(u_)))
+                print("   password read from credentials.env  : %s   (%d characters)" % (mask(w_), len(w_)))
+                odd = [n for n, bad in (("a space at the start or end", u_ != u_.strip() or w_ != w_.strip()),
+                                         ("a quote character", any(c in u_ + w_ for c in "\"'")),
+                                         ("a non-ASCII character", any(ord(c) > 127 for c in u_ + w_))) if bad]
+                if odd:
+                    print("   WARNING: the user name / password contains " + ", ".join(odd))
+                print("   Check the lines MELA_USER_%d= and MELA_PASS_%d= in C:\\AmazonFeed\\credentials.env" % (an, an))
+                print("   (tab %d must be the %s coloured tab from the left; Antonio M is 7)." % (an, an))
+                print("   Test: sign in at melaleuca.com by hand with exactly these values. Nothing was retried (a 2nd wrong try can lock the account).")
+                print("=" * 78)
                 raise
             except Exception as e:
                 log("sign-in attempt %d failed: %s" % (attempt, str(e)[:100]))
