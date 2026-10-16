@@ -1247,7 +1247,7 @@ def run(n, dry=False, lab=False, final=True):
             say("THE CART IS FILLED. Opening your browser window on the checkout screen now (about 20-40 seconds) ...")
             v = None
             try:
-                vcfg = dict(cfg, headless=False, fast=False, early_route=False, proxy=(cfg.get("proxy") if env.get("FINAL_PROXY", "0").strip().lower() in ("1", "true", "yes") else ""))        # default: your own window uses YOUR connection (nothing more through the proxy); FINAL_PROXY=1 in credentials.env keeps the account's proxy IP in the window
+                vcfg = dict(cfg, headless=False, fast=False, early_route=False, proxy=(cfg.get("proxy") if env.get("FINAL_PROXY", "1").strip().lower() not in ("0", "false", "no") else ""))        # default: the window keeps the account's own proxy IP (never your own IP); FINAL_PROXY=0 in credentials.env = your own connection
                 v = ms.Session(p, a2, an, vcfg, port)
                 try:                                           # same proxy IP + the cookies of the hidden window = already signed in, no second login
                     v.ctx.add_cookies(s.ctx.storage_state().get("cookies", []))
