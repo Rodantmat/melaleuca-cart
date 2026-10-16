@@ -191,7 +191,7 @@ def assign_choices(units, conf):
     out = []
     for ui, (nm, mel) in enumerate(units):
         if ui not in got:
-            problems.append("no choice found for '%s' (%s)" % (nm, mel))
+            problems.append("no choice found for '%s' (%s)%s" % (nm, mel, (" - this store's pack holds only %d choices, the sheet has %d products in it (the store pack differs from the US one): add the missing ones by hand" % (sum(c["req"] for c in fs), len(units))) if sum(c["req"] for c in fs) < len(units) else ""))
     # two DIFFERENT products of the sheet that landed on the same choice: the store pack does not offer one of them (e.g. a flavour that no longer exists in it)
     bychoice = {}
     for ui, (ci, ch, sc) in got.items():
@@ -1073,6 +1073,8 @@ def run(n, dry=False, lab=False, final=True):
                             pass
                     if not moved:
                         say("  (no other product of the cart takes the credit either)")
+                        if any("NotLSDEligible" in c_ for c_ in credit_fail) and credit_done:
+                            credit_fail[credit_fail.index(c)] = c + " | the first credit line already used up the account's credit, so nothing is left for this one: tick it by hand if the checkout still offers loyalty dollars"
             for c in credit_fail:
                 say("  CREDIT PROBLEM:", c)
                 problems.append("credit: " + c)
