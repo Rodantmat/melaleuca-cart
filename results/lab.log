@@ -1,0 +1,164 @@
+============================== tab 2 02:50:46
+02:50:47   proxy port 10002 | location: cr.ca;city.vancouver
+02:51:30 signed in as Liliana O | plan: 41 lines, TOTAL points 145.0 cost 391.80999999999995
+02:52:09   category supplements: 8 families known
+02:52:17   category cleaning-and-laundry: 8 families known
+02:52:30   category cleaning-and-laundry/cleaning: 10 families known
+02:52:37   category cleaning-and-laundry/laundry: 10 families known
+02:52:56   category personal-care: 34 families known
+02:53:04   category beauty: 34 families known
+02:53:19   category healthy-foods-and-drinks: 53 families known
+02:53:27   category medicines-and-treatments: 53 families known
+02:53:39   category home-fragrance: 56 families known
+02:53:53   category essential-oils: 56 families known
+02:54:01   category member-savings-pack: 56 families known
+02:54:13   category new-products: 57 families known
+02:54:28   category extra-savings: 57 families known
+02:54:36   category featured-this-month: 57 families known
+02:54:50   category curated-collections: 63 families known
+02:55:19   could not read page of item 5018 Page.evaluate: TypeError: Failed to fetch
+    at eval (eval at evaluate (:370:30
+02:55:49   could not read page of item 33022 Page.evaluate: TypeError: Failed to fetch
+    at eval (eval at evaluate (:370:30
+02:56:09   variant: Haircare - Sei Bella Argan Oil and Coconut Conditi (F3293) -> 70114  Argan Oil & Coconut Moisture Smooth Conditioner (0.62)
+02:56:41   could not read page of item 108 Page.evaluate: TypeError: Failed to fetch
+    at eval (eval at evaluate (:370:30
+02:57:06   could not read page of item 3620 Page.evaluate: TypeError: Failed to fetch
+    at eval (eval at evaluate (:370:30
+02:57:31   could not read page of item 3634 Page.evaluate: TypeError: Failed to fetch
+    at eval (eval at evaluate (:370:30
+02:57:36   variant: Renew - Lotion - 20oz (R480H) -> 6600  only variant: Value Size Renew
+02:58:27   could not read page of item 39176 Page.evaluate: TypeError: Failed to fetch
+    at eval (eval at evaluate (:370:30
+02:59:17 actions: 22 | offer lines: 7 | problems: 0
+02:59:36 coupons of this account: 3 | Save $1.75 on Revive Freshener & Wrinkle Relaxer C ; Save $6.50 on Sei Bella Charcoal & Flower Daily Ma ; Save $3.70 on Simply Fit Simple Start Baking Mix: 
+02:59:36   COUPON NOT ON THIS ACCOUNT: 'Renew - Body Wash 12oz' - the sheet counts it at the coupon price (5 pts / 12.98), the store charges the normal price (run Scan Account Offers, then Generate All Orders, so the builder knows this account's coupons).
+02:59:37   added [single] 5612 x1 Ecosense - Clean And Gleam - 8oz 
+02:59:37   added [pack] 5018 x1 2-pack: Ecosense - Diamond Brite - 25 Loads 
+02:59:37   added [pack] 2211 x1 2-pack: Ecosense - PreSpot - 8oz 
+02:59:38   added [pack] 33022 x1 3-pack: Ecosense - Prespot Instant Stain Remover 
+02:59:38   added [single] 1218 x1 Ecosense - Tough and Tender - 8oz 
+02:59:38   added [single] 20061 x1 Haircare - Affinia Moisture Shampoo 
+02:59:39   added [single] 70114 x1 Haircare - Sei Bella Argan Oil and Coconut Conditioner 
+02:59:39   added [single] 108 x1 Renew - Bath Oil 
+02:59:40   added [single] 3620 x2 Renew - Body Wash 12oz 
+02:59:40   added [single] 3634 x1 Renew - Lotion - 1oz - Pure Lavender 
+02:59:40   added [single] 6600 x1 Renew - Lotion - 20oz 
+02:59:41   added [pack] 190 x1 DEOD pack 1/1: finia Sweet Cream and Willow, nia Vanill 
+02:59:41        choice: Deodorant - Affinia Sweet Cream and Willow -> Sweet Cream & Willow Antiperspirant & Deodorant (0.9)
+02:59:41        choice: Deodorant - Affinia Vanilla Musk and Jasmine -> Vanilla Musk & Jasmine Antiperspirant & Deodorant (0.9)
+02:59:41        choice: Deodorant - Alloy Antiperspirant -> Antiperspirant & Deodorant   (10.0)
+02:59:41   added [pack] 34911 x1 CLEAN pack 1/1: Ecosense - Mela-magic - 16oz, Ecosense  
+02:59:41        choice: Ecosense - Harvest Pure - 8oz -> Harvest Pure? Fruit And Vegetable Wash (10.0)
+02:59:41        choice: Ecosense - Mela-magic - 16oz -> MelaMagic Heavy-Duty Cleaner (10.0)
+02:59:41        choice: Ecosense - No Work - 8oz -> No Work Daily Shower Cleaner (10.0)
+02:59:42   added [pack] 5026 x1 F252 pack 1/1: Brite - 16oz - Apple Scented, Brite - 16 
+02:59:42        choice: EcoSense - Lemon Brite - 16oz - Apple Scented -> Apple (0.98)
+02:59:42        choice: EcoSense - Lemon Brite - 16oz - Lemon Scented -> Lemon (0.98)
+02:59:42        choice: EcoSense - Lemon Brite - 16oz - Tropical Scented -> Tropical (0.98)
+02:59:42   added [pack] 39176 x1 PSGEL2 pack 1/1: Prespot with Scrubbing Brush 
+02:59:42   added [pack] 8911 x1 SGD2 pack 1/1: Ecosense - Sol U Guard 
+02:59:43   added [pack] 590 x1 F264 pack 1/1:  MelaBoost - Garden Lavender, - MelaBoos 
+02:59:43        choice: Laundry - MelaBoost - Garden Lavender -> MelaBoost - Garden Lavender (0.99)
+02:59:43        choice: Laundry - MelaBoost - Mountain Fresh -> MelaBoost - Mountain Fresh (0.99)
+02:59:43   added [pack] 219 x1 MB9X2 pack 1/1: undry - Melabrite - 96 loads 
+02:59:43   added [pack] 2154 x1 F296 pack 1/1: aSoft Bottle - Spring Breeze, oft Bottle 
+02:59:43        choice: Laundry - MelaSoft Bottle - Garden Lavender -> Garden Lavender (0.98)
+02:59:43        choice: Laundry - MelaSoft Bottle - Spring Breeze -> Spring Breeze (0.98)
+02:59:44   added [pack] 5027 x1 F298 pack 1/1:  Dryer Sheets - Clean Cotton, yer Sheets 
+02:59:44        choice: Laundry - Melasoft Dryer Sheets - Clean Cotton -> Clean Cotton (0.98)
+02:59:44        choice: Laundry - Melasoft Dryer Sheets - Garden Lavender -> Garden Lavender (0.98)
+02:59:44   added [pack] 7911 x1 F650 pack 1/1: des - Lip Balm - Pina Colada, p Balm - C 
+02:59:44        choice: Sun Shades - Lip Balm - Cranberry Tangerine -> Cranberry Tangerine (0.98)
+02:59:44        choice: Sun Shades - Lip Balm - Cranberry Tangerine -> Cranberry Tangerine (0.98)
+02:59:44        choice: Sun Shades - Lip Balm - Pina Colada -> Pi?a Colada (0.49)
+02:59:45   added [pack] 43987 x1 TOOTH pack 1/1: oothcare - Exceed - Cinnamon, othcare - 
+02:59:45        choice: Toothcare - Exceed - Cinnamon -> Cinnamon - Fluoride-Free (10.0)
+02:59:45        choice: Toothcare - Exceed - Fresh Mint -> Exceed Fresh Mint - Fluoride-Free (10.0)
+02:59:45        choice: Toothcare - Koala Pals - Apple -> Apple - Fluoride-Free (0.71)
+02:59:45 cart before the offers: 23 items, 135 points
+03:00:04 offers on the page: 26
+03:00:04      offer card 34050 | promo 2013704 | Save $12.00 on MelaPower Laundry Detergent 2-Pack!
+03:00:04      offer card 39820 | promo 2013706 | Save $3.00 on Spiced Cranberry Scented Lemon Brite 2-Pack!
+03:00:04      offer card 49677 | promo 2013688 | Save $11.00 on Renew Hand Wash Refill 2-Pack!
+03:00:04      offer card 64295 | promo 2013743 | Save $8.00 on Simply Fit Trail Bars  3-Pack!
+03:00:04      offer card 39734 | promo 2013705 | Save $6.00 on Spiced Apple Sol-U-Mel and Spiced Apple Tough & Tender!
+03:00:04      offer card 59826 | promo 2013689 | Save $26.00 on Pure Long Winter Nap Relaxing Blend!
+03:00:04      offer card 6269 | promo 2013697 | Buy one Vitality Coldwater Omega-3, get one for $4.99!
+03:00:04      offer card 8068 | promo 2013693 | Save $5.00 on Pure Lavender Essential Oil!
+03:00:04      offer card 6833 | promo 2013687 | Buy one Safe & Mighty, get one for $3.74!
+03:00:04      offer card 5070 | promo 2013702 | Save $4.00 on Bath Bars 3-Pack!
+03:00:04      offer card 69327 | promo 2013698 | Buy one Activate Immune Complex, get one for $3.74!
+03:00:04      offer card 1682 | promo 2013684 | Save $25.00 on Luminex 2-Pack!
+03:00:04      offer card 6400 | promo 2013707 | Save $4.50 on Exceed Mints 5-Pack!
+03:00:04      offer card 8194 | promo 2013695 | Buy one Tub & Tile Bathroom Cleaner, get one for $3.24!
+03:00:04      offer card 4227 | promo 2013694 | Save $13.00 on MelaBrite Colour Booster 2-Pack!
+03:00:04      offer card 74141 | promo 2013696 | Save $29.00 - $41.50 on Sei Bella Treatment and Moisturizer!
+03:00:04      offer card 49635 | promo 2013699 | Save $5.00 on Renew Targeted Eczema Treatment 2-Pack!
+03:00:04      offer card 49096 | promo 2013685 | Buy one Pain-A-Trate Ultra, get one for $2.99!
+03:00:04      offer card 69311 | promo 2013701 | Save $26.00 on Vitality FloraV 2-Pack!
+03:00:04      offer card 643 | promo 2013703 | Save $10.00 on Replenex Advance with Type II Collagen!
+03:00:04      offer card 6476 | promo 2013700 | Save $13.00 on FiberWise Canister 2-Pack!
+03:00:04      offer card 74091 | promo 2013690 | Save $38.00 - $43.00 on Sei Bella Deep Marine Bundle!
+03:00:04      offer card 69294 | promo 2013880 | Save $6.50 on Vitality Iron Support!
+03:00:04      offer card 79015 | promo 2013686 | Save $4.00 on Sei Bella The Basic Collection Gentle Daily Cleanser!
+03:00:04      offer card 74042 | promo 2013691 | Save $26.00 on Sei Bella Perfume!
+03:00:04      offer card 5520 | promo 2013692 | Buy two Sei Bella Makeup Removing Cleansing Wipes, get one FREE!
+03:00:27   could not read page of item 79015 Page.evaluate: TypeError: Failed to fetch
+    at eval (eval at evaluate (:370:30
+03:00:28   added offer 79015 x1 Save $4.00 on Sei Bella The Basic Collection Gentle Dai 
+03:00:51   could not read page of item 6833 Page.evaluate: TypeError: Failed to fetch
+    at eval (eval at evaluate (:370:30
+03:00:51   added offer 6833 x1 Buy one Safe & Mighty, get one for $3.74! 
+03:01:14   could not read page of item 8194 Page.evaluate: TypeError: Failed to fetch
+    at eval (eval at evaluate (:370:30
+03:01:15   added offer 8194 x1 Buy one Tub & Tile Bathroom Cleaner, get one for $3.24! 
+03:01:40   could not read page of item 34050 Page.evaluate: TypeError: Failed to fetch
+    at eval (eval at evaluate (:370:30
+03:01:40   FAILED offer 34050 x1 Save $12.00 on MelaPower Laundry Detergent 2-Pack! 
+03:01:40        ['store refused the item: InvalidComboKit', "store said: {'Success': True, 'ErrorMessages': [], 'Data': {'Item': {'Details': {'Accessories': [{'Sku': '924', 'Configurations': [], 'Title': 'Reusable Laundry Pump', 'Category': None, 'Description': 'This sturd"]
+03:02:03   could not read page of item 49096 Page.evaluate: TypeError: Failed to fetch
+    at eval (eval at evaluate (:370:30
+03:02:03   added offer 49096 x1 Buy one Pain-A-Trate Ultra, get one for $2.99! 
+03:02:26   could not read page of item 49635 Page.evaluate: TypeError: Failed to fetch
+    at eval (eval at evaluate (:370:30
+03:02:27   added offer 49635 x1 Save $5.00 on Renew Targeted Eczema Treatment 2-Pack! 
+03:02:50   could not read page of item 49677 Page.evaluate: TypeError: Failed to fetch
+    at eval (eval at evaluate (:370:30
+03:02:50   added offer 49677 x1 Save $11.00 on Renew Hand Wash Refill 2-Pack! 
+03:02:53   credit  : Credit 1 -> box 'Buy with Loyalty Shopping Dollars' ticked on Renew - Bath Oil
+03:02:53   credit  : Credit 2 -> box 'Buy with Loyalty Shopping Dollars' ticked on Haircare - Sei Bella Argan Oil and Coconut Conditioner
+03:02:54 
+CART NOW: 29 items | 145 points | gross 490.11 | net 476.99 | discount 0
+03:02:54 SHEET   : 145 points count for the limit (TOTAL row: 145) + 15 points of credit items | cost of all lines 391.81
+03:02:54 CREDIT  : $13.12 of loyalty dollars used by the cart
+03:02:54 RESULT  : points MATCH | cost not compared (Canadian dollars in the store, US dollars in the sheet)
+03:02:54   DIFFERENCE: Renew - Body Wash 12oz: sheet 5 pts / 12.98  -  store 12 pts / 28.58
+03:02:54   DIFFERENCE: PSGEL2 pack 1/1: Prespot with Scrubbing Brush: sheet 3 pts / 7.38  -  store 4 pts / 10.13
+03:02:54   DIFFERENCE: Save $12.00 on MelaPower Laundry Detergent 2-Pack!: NOT ADDED (store refused the item: InvalidComboKit | store said: {'Success': True, 'ErrorMessages': [], 'Data': {'Item': {'Details': {'Accessories': [{'Sku': '924', 'Configurations': [], 'Title': 'Reusable Laundry Pump', 'Category': None, 'Description': 'This sturd)
+03:03:11 lab: emptied the cart again: 28 lines
+
+
+############################## SUMMARY
+--- tab 2 rc=0
+     02:51:30 signed in as Liliana O | plan: 41 lines, TOTAL points 145.0 cost 391.80999999999995
+     02:55:19   could not read page of item 5018 Page.evaluate: TypeError: Failed to fetch
+     02:55:49   could not read page of item 33022 Page.evaluate: TypeError: Failed to fetch
+     02:56:41   could not read page of item 108 Page.evaluate: TypeError: Failed to fetch
+     02:57:06   could not read page of item 3620 Page.evaluate: TypeError: Failed to fetch
+     02:57:31   could not read page of item 3634 Page.evaluate: TypeError: Failed to fetch
+     02:58:27   could not read page of item 39176 Page.evaluate: TypeError: Failed to fetch
+     02:59:36   COUPON NOT ON THIS ACCOUNT: 'Renew - Body Wash 12oz' - the sheet counts it at the coupon price (5 pts / 12.98), the store charges the normal price (run Scan Account Offers, then Generate All Orders, so the builder knows
+     03:00:27   could not read page of item 79015 Page.evaluate: TypeError: Failed to fetch
+     03:00:51   could not read page of item 6833 Page.evaluate: TypeError: Failed to fetch
+     03:01:14   could not read page of item 8194 Page.evaluate: TypeError: Failed to fetch
+     03:01:40   could not read page of item 34050 Page.evaluate: TypeError: Failed to fetch
+     03:01:40        ['store refused the item: InvalidComboKit', "store said: {'Success': True, 'ErrorMessages': [], 'Data': {'Item': {'Details': {'Accessories': [{'Sku': '924', 'Configurations': [], 'Title': 'Reusable Laundry Pump', '
+     03:02:03   could not read page of item 49096 Page.evaluate: TypeError: Failed to fetch
+     03:02:26   could not read page of item 49635 Page.evaluate: TypeError: Failed to fetch
+     03:02:50   could not read page of item 49677 Page.evaluate: TypeError: Failed to fetch
+     03:02:54 RESULT  : points MATCH | cost not compared (Canadian dollars in the store, US dollars in the sheet)
+     03:02:54   DIFFERENCE: Renew - Body Wash 12oz: sheet 5 pts / 12.98  -  store 12 pts / 28.58
+     03:02:54   DIFFERENCE: PSGEL2 pack 1/1: Prespot with Scrubbing Brush: sheet 3 pts / 7.38  -  store 4 pts / 10.13
+     03:02:54   DIFFERENCE: Save $12.00 on MelaPower Laundry Detergent 2-Pack!: NOT ADDED (store refused the item: InvalidComboKit | store said: {'Success': True, 'ErrorMessages': [], 'Data': {'Item': {'Details': {'Accessories': [{'Sku
+     03:03:11 lab: emptied the cart again: 28 lines

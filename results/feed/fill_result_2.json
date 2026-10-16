@@ -1,0 +1,12 @@
+{
+ "match": true,
+ "cart_points": 145.0,
+ "sheet_points": 145.0,
+ "cart_cost": 490.11,
+ "sheet_cost": 391.81,
+ "differences": [
+  "Renew - Body Wash 12oz: sheet 5 pts / 12.98  -  store 12 pts / 28.58",
+  "PSGEL2 pack 1/1: Prespot with Scrubbing Brush: sheet 3 pts / 7.38  -  store 4 pts / 10.13",
+  "Save $12.00 on MelaPower Laundry Detergent 2-Pack!: NOT ADDED (store refused the item: InvalidComboKit | store said: {'Success': True, 'ErrorMessages': [], 'Data': {'Item': {'Details': {'Accessories': [{'Sku': '924', 'Configurations': [], 'Title': 'Reusable Laundry Pump', 'Category': None, 'Description': 'This sturd)"
+ ]
+}
