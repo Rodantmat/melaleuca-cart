@@ -21,6 +21,7 @@ jobs:
         env:
           CRED_ENV: ${{ secrets.CREDENTIALS_ENV }}
         run: |
+          set -o pipefail
           cd reprice
           printf '%s\n' "$CRED_ENV" > credentials.env
           python history.py ${{ github.event.inputs.months }} 2>&1 | tee history.log

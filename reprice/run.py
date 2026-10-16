@@ -160,7 +160,12 @@ def main():
         fba = max(0.0, (fees_total - 0.15 * inv_price)) if fees_total and inv_price else None
         if fba is None:
             continue
-        item = listing(c, seller, sku) if seller else {}
+        try:
+            item = listing(c, seller, sku) if seller else {}
+        except spapi.SpError as e:
+            if e.code == 404:
+                continue                      # no such listing (closed / renamed sku): never touch
+            raise
         price, po = current_price(item)
         if price is None:
             price = f(p.get("your-price"))
@@ -202,7 +207,10 @@ def main():
             can = live_ok and sku in (conf.get("allowlist") or []) and po and changed_run < conf.get("max_changes_per_run", 8) and changed_today < conf.get("max_changes_per_day", 20)
             if can:
                 ptype = (item.get("summaries") or [{}])[0].get("productType", "PRODUCT")
-                cur2, _ = current_price(listing(c, seller, sku))
+                try:
+                    cur2, _ = current_price(listing(c, seller, sku))
+                except spapi.SpError:
+                    cur2 = None
                 if cur2 is not None and abs(cur2 - price) < 0.005:
                     ok, msg = set_price(c, seller, sku, d["price"], po, ptype)
                     time.sleep(8)
