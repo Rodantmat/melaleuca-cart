@@ -162,6 +162,9 @@ class Session:
                 self.page.wait_for_timeout(2500 * (k + 1))
 
     def _fetch1(self, url, method="GET", body=None):
+        # the Canadian store lives on ca.melaleuca.com: a call to www.melaleuca.com from there is blocked ("Failed to fetch"), so a full address of
+        # the main site is turned into a path = always the site the page is on
+        url = re.sub(r"^https?://www\.melaleuca\.com", "", url or "")
         return self.page.evaluate("""async ([u, m, b]) => {
             const o = {method: m, credentials: 'include'};
             if (b) { o.headers = {'Content-Type': 'application/json'}; o.body = JSON.stringify(b); }
