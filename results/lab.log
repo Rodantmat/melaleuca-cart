@@ -1,0 +1,920 @@
+============================== tab 1 02:27:51
+02:27:52   proxy port 10001 | location: cr.ca;city.vancouver
+02:28:27   saved debug/noform_David_H_10001.png | page: https://www.melaleuca.com/cart | www.melaleuca.com Performing security verification This website uses a security service to protect against malicious bots. This page is displayed while the webs
+02:28:27 sign-in attempt 1 failed: the sign-in form did not appear (page: https://www.melaleuca.com/cart)
+02:28:27   proxy port 10201 | location: cr.ca;city.vancouver
+02:28:59 signed in as David H | plan: 46 lines, TOTAL points 143.0 cost 403.6
+02:29:11   category supplements: 8 families known
+02:29:18   category cleaning-and-laundry: 15 families known
+02:29:24   category cleaning-and-laundry/cleaning: 15 families known
+02:29:30   category cleaning-and-laundry/laundry: 15 families known
+02:29:38   category personal-care: 39 families known
+02:29:45   category beauty: 59 families known
+02:29:52   category healthy-foods-and-drinks: 78 families known
+02:29:58   category medicines-and-treatments: 79 families known
+02:30:05   category home-fragrance: 81 families known
+02:30:12   category essential-oils: 81 families known
+02:30:18   category member-savings-pack: 81 families known
+02:30:24   category new-products: 81 families known
+02:30:31   category extra-savings: 81 families known
+02:30:37   category featured-this-month: 81 families known
+02:30:44   category curated-collections: 81 families known
+02:30:58   could not read page of item 33022 Page.evaluate: TypeError: Failed to fetch
+    at eval (eval at evaluate (:370:30
+02:31:08   variant: Haircare - Sei Bella Argan Oil and Coconut Shampoo (F3292) -> 5509  Argan Oil & Coconut Moisture Smooth Shampoo (0.62)
+02:31:19   could not read page of item 3620 Page.evaluate: TypeError: Failed to fetch
+    at eval (eval at evaluate (:370:30
+02:31:24   could not read page of item 3634 Page.evaluate: TypeError: Failed to fetch
+    at eval (eval at evaluate (:370:30
+02:31:28   variant: Renew - Lotion - 8oz (R480L) -> 6969  only variant: 237 mL tube
+02:31:53   could not read page of item 39172 Page.evaluate: TypeError: Failed to fetch
+    at eval (eval at evaluate (:370:30
+02:32:03   could not read page of item 39176 Page.evaluate: TypeError: Failed to fetch
+    at eval (eval at evaluate (:370:30
+02:32:43 actions: 24 | offer lines: 6 | problems: 3
+02:32:43   PROBLEM: group WIPES5: no choice found for 'Ecosense - Sol-U-Guard Wipes' (4056)
+02:32:43   PROBLEM: group WIPES5: no choice found for 'Ecosense - Sol-U-Guard Wipes' (4056)
+02:32:43   PROBLEM: group WIPES5: no choice found for 'Ecosense - Tough and Tender Wipes' (4074)
+02:32:55 coupons of this account: 3 | Save $1.75 on Revive Freshener & Wrinkle Relaxer C ; Save $6.50 on Sei Bella Charcoal & Flower Daily Ma ; Save $3.70 on Simply Fit Simple Start Baking Mix: 
+02:32:55   COUPON NOT ON THIS ACCOUNT: 'Renew - Body Wash 12oz' - the sheet counts it at the coupon price (5 pts / 12.98), the store charges the normal price (run Scan Account Offers, then Generate All Orders, so the builder knows this account's coupons).
+02:32:56   added [single] 5612 x1 Ecosense - Clean And Gleam - 8oz 
+02:32:56   added [pack] 2211 x1 2-pack: Ecosense - PreSpot - 8oz 
+02:32:56   added [pack] 33022 x1 3-pack: Ecosense - Prespot Instant Stain Remover 
+02:32:56   added [single] 20064 x1 Haircare - Affinia Volume Conditioner 
+02:32:57   added [single] 5509 x1 Haircare - Sei Bella Argan Oil and Coconut Shampoo 
+02:32:57   added [single] 3620 x2 Renew - Body Wash 12oz 
+02:32:57   added [single] 3634 x1 Renew - Lotion - 1oz - Pure Lavender 
+02:32:58   added [single] 6969 x1 Renew - Lotion - 8oz 
+02:32:58   added [pack] 190 x1 DEOD pack 1/1: finia Sweet Cream and Willow, nia Vanill 
+02:32:58        choice: Deodorant - Affinia Sweet Cream and Willow -> Sweet Cream & Willow Antiperspirant & Deodorant (0.9)
+02:32:58        choice: Deodorant - Affinia Vanilla Musk and Jasmine -> Vanilla Musk & Jasmine Antiperspirant & Deodorant (0.9)
+02:32:58        choice: Deodorant - Alloy Antiperspirant -> Antiperspirant & Deodorant   (10.0)
+02:32:58   added [pack] 34914 x1 CLEAN pack 1/1: Ecosense - Mela-magic - 16oz, Ecosense  
+02:32:58        choice: Ecosense - Clear Power Glass Cleaner - 8oz with bottle -> Clear Power Glass Cleaner (10.0)
+02:32:58        choice: Ecosense - Harvest Pure - 8oz -> Harvest Pure? Fruit And Vegetable Wash (10.0)
+02:32:58        choice: Ecosense - Mela-magic - 16oz -> MelaMagic Heavy-Duty Cleaner (10.0)
+02:32:58        choice: Ecosense - No Work - 8oz -> No Work Daily Shower Cleaner (10.0)
+02:32:58        choice: Ecosense - Tub and Tile - 8oz with Bottle -> Tub & Tile 6x Bathroom Cleaner (10.0)
+02:32:58   added [single] 1213 x1 Clear Power? Mixing Spray Bottle for Ecosense - Clear P 
+02:32:59   added [single] 1217 x1 Tub & Tile? Mixing Spray Bottle for Ecosense - Tub and  
+02:32:59   added [pack] 33968 x1 WIPES5 pack 1/1: Ecosense - Sol-U-Guard Wipes, ar Power 
+02:32:59        choice: Ecosense - Clear Power Glass Cleaner Wipes -> Clear Power Glass Wipes (10.0)
+02:32:59        choice: Ecosense - Clear Power Glass Cleaner Wipes -> Clear Power Glass Wipes (10.0)
+02:32:59   added [pack] 39172 x1 RINSEG pack 1/1: EcoSense - Rinse Aid - 16oz, e - Diamo 
+02:32:59   added [pack] 5026 x1 F252 pack 1/1: Brite - 16oz - Apple Scented, Brite - 16 
+02:32:59        choice: EcoSense - Lemon Brite - 16oz - Apple Scented -> Apple (0.98)
+02:32:59        choice: EcoSense - Lemon Brite - 16oz - Lemon Scented -> Lemon (0.98)
+02:32:59        choice: EcoSense - Lemon Brite - 16oz - Tropical Scented -> Tropical (0.98)
+02:33:00   added [pack] 39176 x1 PSGEL2 pack 1/1: Prespot with Scrubbing Brush 
+02:33:00   added [pack] 8911 x1 SGD2 pack 1/1: Ecosense - Sol U Guard 
+02:33:00   added [pack] 6277 x1 KPB2 pack 1/1: Koala Pals - Body Wash, Koala Pals - Hai 
+02:33:00        choice: Koala Pals - Body Wash -> Body Wash (10.0)
+02:33:00        choice: Koala Pals - Hair Wash -> Hair Wash (10.0)
+02:33:01   added [pack] 590 x1 F264 pack 1/1:  - MelaBoost - Island Breeze,  MelaBoost 
+02:33:01        choice: Laundry - MelaBoost - Garden Lavender -> MelaBoost - Garden Lavender (0.99)
+02:33:01        choice: Laundry - MelaBoost - Island Breeze -> MelaBoost - Island Breeze (0.99)
+02:33:01   added [pack] 219 x1 MB9X2 pack 1/1: undry - Melabrite - 96 loads 
+02:33:01   added [pack] 2154 x1 F296 pack 1/1: laSoft Bottle - Clean Cotton, oft Bottle 
+02:33:01        choice: Laundry - MelaSoft Bottle - Clean Cotton -> Clean Cotton (0.98)
+02:33:01        choice: Laundry - MelaSoft Bottle - Garden Lavender -> Garden Lavender (0.98)
+02:33:02   added [pack] 5027 x1 F298 pack 1/1:  Dryer Sheets - Clean Cotton, yer Sheets 
+02:33:02        choice: Laundry - Melasoft Dryer Sheets - Clean Cotton -> Clean Cotton (0.98)
+02:33:02        choice: Laundry - Melasoft Dryer Sheets - Garden Lavender -> Garden Lavender (0.98)
+02:33:02   added [pack] 7911 x1 F650 pack 1/1: des - Lip Balm - Pina Colada, p Balm - C 
+02:33:02        choice: Sun Shades - Lip Balm - Cranberry Tangerine -> Cranberry Tangerine (0.98)
+02:33:02        choice: Sun Shades - Lip Balm - Cranberry Tangerine -> Cranberry Tangerine (0.98)
+02:33:02        choice: Sun Shades - Lip Balm - Pina Colada -> Pi?a Colada (0.49)
+02:33:03   added [pack] 43987 x1 TOOTH pack 1/1:  - Koala Pals - Berrylicious, hcare - C 
+02:33:03        choice: Toothcare - Classic - Fresh Mint -> Classic Fresh Mint - Fluoride-Free (0.83)
+02:33:03        choice: Toothcare - Exceed - Cinnamon -> Cinnamon - Fluoride-Free (10.0)
+02:33:03        choice: Toothcare - Koala Pals - Berrylicious -> Berrylicious +Fluoride (0.87)
+02:33:04 cart before the offers: 25 items, 137 points
+02:33:16 offers on the page: 26
+02:33:16      offer card 34050 | promo 2013704 | Save $12.00 on MelaPower Laundry Detergent 2-Pack!
+02:33:16      offer card 39820 | promo 2013706 | Save $3.00 on Spiced Cranberry Scented Lemon Brite 2-Pack!
+02:33:16      offer card 49677 | promo 2013688 | Save $11.00 on Renew Hand Wash Refill 2-Pack!
+02:33:16      offer card 64295 | promo 2013743 | Save $8.00 on Simply Fit Trail Bars  3-Pack!
+02:33:16      offer card 39734 | promo 2013705 | Save $6.00 on Spiced Apple Sol-U-Mel and Spiced Apple Tough & Tender!
+02:33:16      offer card 59826 | promo 2013689 | Save $26.00 on Pure Long Winter Nap Relaxing Blend!
+02:33:16      offer card 6269 | promo 2013697 | Buy one Vitality Coldwater Omega-3, get one for $4.99!
+02:33:16      offer card 8068 | promo 2013693 | Save $5.00 on Pure Lavender Essential Oil!
+02:33:16      offer card 6833 | promo 2013687 | Buy one Safe & Mighty, get one for $3.74!
+02:33:16      offer card 5070 | promo 2013702 | Save $4.00 on Bath Bars 3-Pack!
+02:33:16      offer card 69327 | promo 2013698 | Buy one Activate Immune Complex, get one for $3.74!
+02:33:16      offer card 1682 | promo 2013684 | Save $25.00 on Luminex 2-Pack!
+02:33:16      offer card 69823 | promo 2013707 | Save $15.00 on Florify for Kids Probiotic 2-Pack!
+02:33:16      offer card 8194 | promo 2013695 | Buy one Tub & Tile Bathroom Cleaner, get one for $3.24!
+02:33:16      offer card 4227 | promo 2013694 | Save $13.00 on MelaBrite Colour Booster 2-Pack!
+02:33:16      offer card 74141 | promo 2013696 | Save $29.00 - $41.50 on Sei Bella Treatment and Moisturizer!
+02:33:16      offer card 49635 | promo 2013699 | Save $5.00 on Renew Targeted Eczema Treatment 2-Pack!
+02:33:16      offer card 49096 | promo 2013685 | Buy one Pain-A-Trate Ultra, get one for $2.99!
+02:33:16      offer card 69311 | promo 2013701 | Save $26.00 on Vitality FloraV 2-Pack!
+02:33:16      offer card 643 | promo 2013703 | Save $10.00 on Replenex Advance with Type II Collagen!
+02:33:16      offer card 6476 | promo 2013700 | Save $13.00 on FiberWise Canister 2-Pack!
+02:33:16      offer card 74091 | promo 2013690 | Save $38.00 - $43.00 on Sei Bella Deep Marine Bundle!
+02:33:16      offer card 69294 | promo 2013880 | Save $6.50 on Vitality Iron Support!
+02:33:16      offer card 79015 | promo 2013686 | Save $4.00 on Sei Bella The Basic Collection Gentle Daily Cleanser!
+02:33:16      offer card 8246 | promo 2013691 | Buy one Vitality Calcium Complete, get one for $2.99!
+02:33:16      offer card 5520 | promo 2013692 | Buy two Sei Bella Makeup Removing Cleansing Wipes, get one FREE!
+02:33:21   could not read page of item 79015 Page.evaluate: TypeError: Failed to fetch
+    at eval (eval at evaluate (:370:30
+02:33:21   added offer 79015 x1 Save $4.00 on Sei Bella The Basic Collection Gentle Dai 
+02:33:26   could not read page of item 6833 Page.evaluate: TypeError: Failed to fetch
+    at eval (eval at evaluate (:370:30
+02:33:26   added offer 6833 x1 Buy one Safe & Mighty, get one for $3.74! 
+02:33:30   could not read page of item 34050 Page.evaluate: TypeError: Failed to fetch
+    at eval (eval at evaluate (:370:30
+02:33:31   FAILED offer 34050 x1 Save $12.00 on MelaPower Laundry Detergent 2-Pack! 
+02:33:31        ["store said: {'Success': True, 'ErrorMessages': [], 'Data': {'Item': {'Details': {'Accessories': [{'Sku': '924', 'Configurations': [], 'Title': 'Reusable Laundry Pump', 'Category': None, 'Description': 'This sturd"]
+02:33:35   could not read page of item 49096 Page.evaluate: TypeError: Failed to fetch
+    at eval (eval at evaluate (:370:30
+02:33:36   added offer 49096 x1 Buy one Pain-A-Trate Ultra, get one for $2.99! 
+02:33:40   could not read page of item 49635 Page.evaluate: TypeError: Failed to fetch
+    at eval (eval at evaluate (:370:30
+02:33:41   added offer 49635 x1 Save $5.00 on Renew Targeted Eczema Treatment 2-Pack! 
+02:33:45   could not read page of item 49677 Page.evaluate: TypeError: Failed to fetch
+    at eval (eval at evaluate (:370:30
+02:33:45   added offer 49677 x1 Save $11.00 on Renew Hand Wash Refill 2-Pack! 
+02:33:46   credit  : Credit 1 -> box 'Buy with Loyalty Shopping Dollars' ticked on Renew - Lotion - 8oz
+02:33:46   CREDIT PROBLEM: Credit 2 (row 26): the store did not accept it: {'Success': True, 'ErrorMessages': [], 'Data': {'linesResults': [{'sku': '5509', 'lineType': 'LSD', 'lineId': 5, 'validationItems': [{'messageCode': 'NotLSDElig
+02:33:46 
+CART NOW: 30 items | 153 points | gross 504.92 | net 491.8 | discount 0
+02:33:46 SHEET   : 153 points count for the limit (TOTAL row: 143) + 16 points of credit items | cost of all lines 403.60
+02:33:46 CREDIT  : $13.12 of loyalty dollars used by the cart
+02:33:46 RESULT  : points MATCH | cost DIFFER by +101.32
+02:33:46   DIFFERENCE: Ecosense - Clean And Gleam - 8oz: sheet 3 pts / 6.99  -  store 3 pts / 9.49
+02:33:46   DIFFERENCE: 2-pack: Ecosense - PreSpot - 8oz: sheet 5 pts / 12.98  -  store 5 pts / 17.23
+02:33:46   DIFFERENCE: 3-pack: Ecosense - Prespot Instant Stain Remover: sheet 2 pts / 6.77  -  store 2 pts / 8.57
+02:33:46   DIFFERENCE: Haircare - Affinia Volume Conditioner: sheet 4 pts / 8.49  -  store 4 pts / 10.99
+02:33:46   DIFFERENCE: Haircare - Sei Bella Argan Oil and Coconut Shampoo: sheet 10 pts / 20.00  -  store 10 pts / 26.00
+02:33:46   DIFFERENCE: Renew - Body Wash 12oz: sheet 5 pts / 12.98  -  store 12 pts / 28.58
+02:33:46   DIFFERENCE: Renew - Lotion - 1oz - Pure Lavender: sheet 1 pts / 2.29  -  store 1 pts / 2.99
+02:33:46   DIFFERENCE: Renew - Lotion - 8oz: sheet 0 pts / 10.29  -  store 0 pts / 13.29
+02:33:46   DIFFERENCE: DEOD pack 1/1: finia Sweet Cream and Willow, nia Vanilla Musk and Jasm: sheet 4 pts / 14.37  -  store 4 pts / 17.99
+02:33:46   DIFFERENCE: CLEAN pack 1/1: Ecosense - Mela-magic - 16oz, Ecosense - No Work - 8oz: sheet 10 pts / 31.54  -  store 10 pts / 42.54
+02:33:46   DIFFERENCE: WIPES5 pack 1/1: Ecosense - Sol-U-Guard Wipes, ar Power Glass Cleaner : sheet 8 pts / 22.30  -  store 8 pts / 30.35
+02:33:46   DIFFERENCE: RINSEG pack 1/1: EcoSense - Rinse Aid - 16oz, e - Diamond Brite - 25 L: sheet 5 pts / 13.68  -  store 5 pts / 18.19
+02:33:46   DIFFERENCE: F252 pack 1/1: Brite - 16oz - Apple Scented, Brite - 16oz - Lemon Scen: sheet 5 pts / 12.42  -  store 5 pts / 16.97
+02:33:46   DIFFERENCE: PSGEL2 pack 1/1: Prespot with Scrubbing Brush: sheet 3 pts / 7.38  -  store 4 pts / 10.13
+02:33:46   DIFFERENCE: SGD2 pack 1/1: Ecosense - Sol U Guard: sheet 10 pts / 20.78  -  store 10 pts / 26.78
+02:33:46   DIFFERENCE: KPB2 pack 1/1: Koala Pals - Body Wash, Koala Pals - Hair Wash: sheet 5 pts / 10.38  -  store 5 pts / 12.39
+02:33:46   DIFFERENCE: F264 pack 1/1:  - MelaBoost - Island Breeze,  MelaBoost - Garden Laven: sheet 8 pts / 21.98  -  store 8 pts / 27.98
+02:33:46   DIFFERENCE: MB9X2 pack 1/1: undry - Melabrite - 96 loads: sheet 14 pts / 29.48  -  store 14 pts / 39.39
+02:33:46   DIFFERENCE: F296 pack 1/1: laSoft Bottle - Clean Cotton, oft Bottle - Garden Laven: sheet 9 pts / 23.18  -  store 9 pts / 29.78
+02:33:46   DIFFERENCE: F298 pack 1/1:  Dryer Sheets - Clean Cotton, yer Sheets - Garden Laven: sheet 5 pts / 11.98  -  store 5 pts / 15.63
+02:33:46   DIFFERENCE: F650 pack 1/1: des - Lip Balm - Pina Colada, p Balm - Cranberry Tanger: sheet 2 pts / 6.57  -  store 2 pts / 8.77
+02:33:46   DIFFERENCE: TOOTH pack 1/1:  - Koala Pals - Berrylicious, hcare - Classic - Fresh : sheet 5 pts / 12.77  -  store 5 pts / 15.82
+02:33:46   DIFFERENCE: Save $4.00 on Sei Bella The Basic Collection Gentle Daily Cleanser!: sheet 2 pts / 7.50  -  store 2 pts / 9.00
+02:33:46   DIFFERENCE: Buy one Safe & Mighty, get one for $3.74!: sheet 3 pts / 9.18  -  store 3 pts / 12.13
+02:33:46   DIFFERENCE: Save $12.00 on MelaPower Laundry Detergent 2-Pack!: NOT ADDED (store said: {'Success': True, 'ErrorMessages': [], 'Data': {'Item': {'Details': {'Accessories': [{'Sku': '924', 'Configurations': [], 'Title': 'Reusable Laundry Pump', 'Category': None, 'Description': 'This sturd)
+02:33:46   DIFFERENCE: Buy one Pain-A-Trate Ultra, get one for $2.99!: sheet 6 pts / 15.28  -  store 6 pts / 19.78
+02:33:46   DIFFERENCE: Save $5.00 on Renew Targeted Eczema Treatment 2-Pack!: sheet 4 pts / 9.48  -  store 4 pts / 11.78
+02:33:46   DIFFERENCE: Save $11.00 on Renew Hand Wash Refill 2-Pack!: sheet 7 pts / 16.58  -  store 7 pts / 22.38
+02:33:47   AUTO-ADJUSTED: Renew - Body Wash 12oz: quantity 2 -> 1 (the store gives it 6 points per unit; the sheet expected a coupon price)
+02:33:47 CART AFTER THE ADJUSTMENT: 29 items | 147 points | gross 490.63
+02:33:58 lab: emptied the cart again: 29 lines
+
+============================== tab 2 02:33:59
+02:33:59   proxy port 10002 | location: cr.ca;city.vancouver
+02:34:30 sign-in attempt 1 failed: Page.goto: net::ERR_TIMED_OUT at https://www.melaleuca.com/cart
+Call log:
+  - navigating to "https:/
+02:34:30   proxy port 10202 | location: cr.ca;city.vancouver
+02:35:05 sign-in attempt 2 failed: Page.goto: net::ERR_TIMED_OUT at https://www.melaleuca.com/cart
+Call log:
+  - navigating to "https:/
+02:35:05   proxy port 10302 | location: cr.ca
+02:35:39 signed in as Liliana O | plan: 41 lines, TOTAL points 145.0 cost 391.80999999999995
+02:35:45   catalog from the saved copy: 81 families (no need to read the store)
+02:35:51   could not read page of item 5018 Page.evaluate: TypeError: Failed to fetch
+    at eval (eval at evaluate (:370:30
+02:35:56   could not read page of item 33022 Page.evaluate: TypeError: Failed to fetch
+    at eval (eval at evaluate (:370:30
+02:36:12   variant: Haircare - Sei Bella Argan Oil and Coconut Conditi (F3293) -> 70114  Argan Oil & Coconut Moisture Smooth Conditioner (0.62)
+02:36:23   could not read page of item 108 Page.evaluate: TypeError: Failed to fetch
+    at eval (eval at evaluate (:370:30
+02:36:29   could not read page of item 3620 Page.evaluate: TypeError: Failed to fetch
+    at eval (eval at evaluate (:370:30
+02:36:34   could not read page of item 3634 Page.evaluate: TypeError: Failed to fetch
+    at eval (eval at evaluate (:370:30
+02:36:34   variant: Renew - Lotion - 20oz (R480H) -> 6600  only variant: Value Size Renew
+02:36:51   could not read page of item 39176 Page.evaluate: TypeError: Failed to fetch
+    at eval (eval at evaluate (:370:30
+02:36:51 actions: 22 | offer lines: 7 | problems: 0
+02:37:03 coupons of this account: 3 | Save $1.75 on Revive Freshener & Wrinkle Relaxer C ; Save $6.50 on Sei Bella Charcoal & Flower Daily Ma ; Save $3.70 on Simply Fit Simple Start Baking Mix: 
+02:37:03   COUPON NOT ON THIS ACCOUNT: 'Renew - Body Wash 12oz' - the sheet counts it at the coupon price (5 pts / 12.98), the store charges the normal price (run Scan Account Offers, then Generate All Orders, so the builder knows this account's coupons).
+02:37:03   added [single] 5612 x1 Ecosense - Clean And Gleam - 8oz 
+02:37:04   added [pack] 5018 x1 2-pack: Ecosense - Diamond Brite - 25 Loads 
+02:37:04   added [pack] 2211 x1 2-pack: Ecosense - PreSpot - 8oz 
+02:37:05   added [pack] 33022 x1 3-pack: Ecosense - Prespot Instant Stain Remover 
+02:37:05   added [single] 1218 x1 Ecosense - Tough and Tender - 8oz 
+02:37:05   added [single] 20061 x1 Haircare - Affinia Moisture Shampoo 
+02:37:06   added [single] 70114 x1 Haircare - Sei Bella Argan Oil and Coconut Conditioner 
+02:37:06   added [single] 108 x1 Renew - Bath Oil 
+02:37:07   added [single] 3620 x2 Renew - Body Wash 12oz 
+02:37:07   added [single] 3634 x1 Renew - Lotion - 1oz - Pure Lavender 
+02:37:08   added [single] 6600 x1 Renew - Lotion - 20oz 
+02:37:08   added [pack] 190 x1 DEOD pack 1/1: finia Sweet Cream and Willow, nia Vanill 
+02:37:08        choice: Deodorant - Affinia Sweet Cream and Willow -> Sweet Cream & Willow Antiperspirant & Deodorant (0.9)
+02:37:08        choice: Deodorant - Affinia Vanilla Musk and Jasmine -> Vanilla Musk & Jasmine Antiperspirant & Deodorant (0.9)
+02:37:08        choice: Deodorant - Alloy Antiperspirant -> Antiperspirant & Deodorant   (10.0)
+02:37:09   added [pack] 34911 x1 CLEAN pack 1/1: Ecosense - Mela-magic - 16oz, Ecosense  
+02:37:09        choice: Ecosense - Harvest Pure - 8oz -> Harvest Pure? Fruit And Vegetable Wash (10.0)
+02:37:09        choice: Ecosense - Mela-magic - 16oz -> MelaMagic Heavy-Duty Cleaner (10.0)
+02:37:09        choice: Ecosense - No Work - 8oz -> No Work Daily Shower Cleaner (10.0)
+02:37:09   added [pack] 5026 x1 F252 pack 1/1: Brite - 16oz - Apple Scented, Brite - 16 
+02:37:09        choice: EcoSense - Lemon Brite - 16oz - Apple Scented -> Apple (0.98)
+02:37:09        choice: EcoSense - Lemon Brite - 16oz - Lemon Scented -> Lemon (0.98)
+02:37:09        choice: EcoSense - Lemon Brite - 16oz - Tropical Scented -> Tropical (0.98)
+02:37:09   added [pack] 39176 x1 PSGEL2 pack 1/1: Prespot with Scrubbing Brush 
+02:37:10   added [pack] 8911 x1 SGD2 pack 1/1: Ecosense - Sol U Guard 
+02:37:10   added [pack] 590 x1 F264 pack 1/1:  MelaBoost - Garden Lavender, - MelaBoos 
+02:37:10        choice: Laundry - MelaBoost - Garden Lavender -> MelaBoost - Garden Lavender (0.99)
+02:37:10        choice: Laundry - MelaBoost - Mountain Fresh -> MelaBoost - Mountain Fresh (0.99)
+02:37:11   added [pack] 219 x1 MB9X2 pack 1/1: undry - Melabrite - 96 loads 
+02:37:11   added [pack] 2154 x1 F296 pack 1/1: aSoft Bottle - Spring Breeze, oft Bottle 
+02:37:11        choice: Laundry - MelaSoft Bottle - Garden Lavender -> Garden Lavender (0.98)
+02:37:11        choice: Laundry - MelaSoft Bottle - Spring Breeze -> Spring Breeze (0.98)
+02:37:12   added [pack] 5027 x1 F298 pack 1/1:  Dryer Sheets - Clean Cotton, yer Sheets 
+02:37:12        choice: Laundry - Melasoft Dryer Sheets - Clean Cotton -> Clean Cotton (0.98)
+02:37:12        choice: Laundry - Melasoft Dryer Sheets - Garden Lavender -> Garden Lavender (0.98)
+02:37:12   added [pack] 7911 x1 F650 pack 1/1: des - Lip Balm - Pina Colada, p Balm - C 
+02:37:12        choice: Sun Shades - Lip Balm - Cranberry Tangerine -> Cranberry Tangerine (0.98)
+02:37:12        choice: Sun Shades - Lip Balm - Cranberry Tangerine -> Cranberry Tangerine (0.98)
+02:37:12        choice: Sun Shades - Lip Balm - Pina Colada -> Pi?a Colada (0.49)
+02:37:12   added [pack] 43987 x1 TOOTH pack 1/1: oothcare - Exceed - Cinnamon, othcare - 
+02:37:12        choice: Toothcare - Exceed - Cinnamon -> Cinnamon - Fluoride-Free (10.0)
+02:37:12        choice: Toothcare - Exceed - Fresh Mint -> Exceed Fresh Mint - Fluoride-Free (10.0)
+02:37:12        choice: Toothcare - Koala Pals - Apple -> Apple - Fluoride-Free (0.71)
+02:37:13 cart before the offers: 23 items, 135 points
+02:37:27 offers on the page: 26
+02:37:27      offer card 34050 | promo 2013704 | Save $12.00 on MelaPower Laundry Detergent 2-Pack!
+02:37:27      offer card 39820 | promo 2013706 | Save $3.00 on Spiced Cranberry Scented Lemon Brite 2-Pack!
+02:37:27      offer card 49677 | promo 2013688 | Save $11.00 on Renew Hand Wash Refill 2-Pack!
+02:37:27      offer card 64295 | promo 2013743 | Save $8.00 on Simply Fit Trail Bars  3-Pack!
+02:37:27      offer card 39734 | promo 2013705 | Save $6.00 on Spiced Apple Sol-U-Mel and Spiced Apple Tough & Tender!
+02:37:27      offer card 59826 | promo 2013689 | Save $26.00 on Pure Long Winter Nap Relaxing Blend!
+02:37:27      offer card 6269 | promo 2013697 | Buy one Vitality Coldwater Omega-3, get one for $4.99!
+02:37:27      offer card 8068 | promo 2013693 | Save $5.00 on Pure Lavender Essential Oil!
+02:37:27      offer card 6833 | promo 2013687 | Buy one Safe & Mighty, get one for $3.74!
+02:37:27      offer card 5070 | promo 2013702 | Save $4.00 on Bath Bars 3-Pack!
+02:37:27      offer card 69327 | promo 2013698 | Buy one Activate Immune Complex, get one for $3.74!
+02:37:27      offer card 1682 | promo 2013684 | Save $25.00 on Luminex 2-Pack!
+02:37:27      offer card 6400 | promo 2013707 | Save $4.50 on Exceed Mints 5-Pack!
+02:37:27      offer card 8194 | promo 2013695 | Buy one Tub & Tile Bathroom Cleaner, get one for $3.24!
+02:37:27      offer card 4227 | promo 2013694 | Save $13.00 on MelaBrite Colour Booster 2-Pack!
+02:37:27      offer card 74141 | promo 2013696 | Save $29.00 - $41.50 on Sei Bella Treatment and Moisturizer!
+02:37:27      offer card 49635 | promo 2013699 | Save $5.00 on Renew Targeted Eczema Treatment 2-Pack!
+02:37:27      offer card 49096 | promo 2013685 | Buy one Pain-A-Trate Ultra, get one for $2.99!
+02:37:27      offer card 69311 | promo 2013701 | Save $26.00 on Vitality FloraV 2-Pack!
+02:37:27      offer card 643 | promo 2013703 | Save $10.00 on Replenex Advance with Type II Collagen!
+02:37:27      offer card 6476 | promo 2013700 | Save $13.00 on FiberWise Canister 2-Pack!
+02:37:27      offer card 74091 | promo 2013690 | Save $38.00 - $43.00 on Sei Bella Deep Marine Bundle!
+02:37:27      offer card 69294 | promo 2013880 | Save $6.50 on Vitality Iron Support!
+02:37:27      offer card 79015 | promo 2013686 | Save $4.00 on Sei Bella The Basic Collection Gentle Daily Cleanser!
+02:37:27      offer card 74042 | promo 2013691 | Save $26.00 on Sei Bella Perfume!
+02:37:27      offer card 5520 | promo 2013692 | Buy two Sei Bella Makeup Removing Cleansing Wipes, get one FREE!
+02:37:31   could not read page of item 79015 Page.evaluate: TypeError: Failed to fetch
+    at eval (eval at evaluate (:370:30
+02:37:32   added offer 79015 x1 Save $4.00 on Sei Bella The Basic Collection Gentle Dai 
+02:37:37   could not read page of item 6833 Page.evaluate: TypeError: Failed to fetch
+    at eval (eval at evaluate (:370:30
+02:37:37   added offer 6833 x1 Buy one Safe & Mighty, get one for $3.74! 
+02:37:42   could not read page of item 8194 Page.evaluate: TypeError: Failed to fetch
+    at eval (eval at evaluate (:370:30
+02:37:43   added offer 8194 x1 Buy one Tub & Tile Bathroom Cleaner, get one for $3.24! 
+02:37:48   could not read page of item 34050 Page.evaluate: TypeError: Failed to fetch
+    at eval (eval at evaluate (:370:30
+02:37:48   FAILED offer 34050 x1 Save $12.00 on MelaPower Laundry Detergent 2-Pack! 
+02:37:48        ["store said: {'Success': True, 'ErrorMessages': [], 'Data': {'Item': {'Details': {'Accessories': [{'Sku': '924', 'Configurations': [], 'Title': 'Reusable Laundry Pump', 'Category': None, 'Description': 'This sturd"]
+02:37:53   could not read page of item 49096 Page.evaluate: TypeError: Failed to fetch
+    at eval (eval at evaluate (:370:30
+02:37:54   added offer 49096 x1 Buy one Pain-A-Trate Ultra, get one for $2.99! 
+02:37:59   could not read page of item 49635 Page.evaluate: TypeError: Failed to fetch
+    at eval (eval at evaluate (:370:30
+02:37:59   added offer 49635 x1 Save $5.00 on Renew Targeted Eczema Treatment 2-Pack! 
+02:38:04   could not read page of item 49677 Page.evaluate: TypeError: Failed to fetch
+    at eval (eval at evaluate (:370:30
+02:38:05   added offer 49677 x1 Save $11.00 on Renew Hand Wash Refill 2-Pack! 
+02:38:05   credit  : Credit 1 -> box 'Buy with Loyalty Shopping Dollars' ticked on Renew - Bath Oil
+02:38:06   credit  : Credit 2 -> box 'Buy with Loyalty Shopping Dollars' ticked on Haircare - Sei Bella Argan Oil and Coconut Conditioner
+02:38:06 
+CART NOW: 29 items | 145 points | gross 490.11 | net 476.99 | discount 0
+02:38:06 SHEET   : 145 points count for the limit (TOTAL row: 145) + 15 points of credit items | cost of all lines 391.81
+02:38:06 CREDIT  : $13.12 of loyalty dollars used by the cart
+02:38:06 RESULT  : points MATCH | cost DIFFER by +98.30
+02:38:06   DIFFERENCE: Ecosense - Clean And Gleam - 8oz: sheet 3 pts / 6.99  -  store 3 pts / 9.49
+02:38:06   DIFFERENCE: 2-pack: Ecosense - Diamond Brite - 25 Loads: sheet 7 pts / 15.38  -  store 7 pts / 20.48
+02:38:06   DIFFERENCE: 2-pack: Ecosense - PreSpot - 8oz: sheet 5 pts / 12.98  -  store 5 pts / 17.23
+02:38:06   DIFFERENCE: 3-pack: Ecosense - Prespot Instant Stain Remover: sheet 2 pts / 6.77  -  store 2 pts / 8.57
+02:38:06   DIFFERENCE: Ecosense - Tough and Tender - 8oz: sheet 3 pts / 6.99  -  store 3 pts / 9.49
+02:38:06   DIFFERENCE: Haircare - Affinia Moisture Shampoo: sheet 4 pts / 8.49  -  store 4 pts / 10.99
+02:38:06   DIFFERENCE: Haircare - Sei Bella Argan Oil and Coconut Conditioner: sheet 0 pts / 20.00  -  store 0 pts / 26.00
+02:38:06   DIFFERENCE: Renew - Bath Oil: sheet 0 pts / 9.59  -  store 0 pts / 12.49
+02:38:06   DIFFERENCE: Renew - Body Wash 12oz: sheet 5 pts / 12.98  -  store 12 pts / 28.58
+02:38:06   DIFFERENCE: Renew - Lotion - 1oz - Pure Lavender: sheet 1 pts / 2.29  -  store 1 pts / 2.99
+02:38:06   DIFFERENCE: Renew - Lotion - 20oz: sheet 10 pts / 16.99  -  store 10 pts / 22.29
+02:38:06   DIFFERENCE: DEOD pack 1/1: finia Sweet Cream and Willow, nia Vanilla Musk and Jasm: sheet 4 pts / 14.37  -  store 4 pts / 17.99
+02:38:06   DIFFERENCE: CLEAN pack 1/1: Ecosense - Mela-magic - 16oz, Ecosense - No Work - 8oz: sheet 7 pts / 17.97  -  store 7 pts / 24.47
+02:38:06   DIFFERENCE: F252 pack 1/1: Brite - 16oz - Apple Scented, Brite - 16oz - Lemon Scen: sheet 5 pts / 12.42  -  store 5 pts / 16.97
+02:38:06   DIFFERENCE: PSGEL2 pack 1/1: Prespot with Scrubbing Brush: sheet 3 pts / 7.38  -  store 4 pts / 10.13
+02:38:06   DIFFERENCE: SGD2 pack 1/1: Ecosense - Sol U Guard: sheet 10 pts / 20.78  -  store 10 pts / 26.78
+02:38:06   DIFFERENCE: F264 pack 1/1:  MelaBoost - Garden Lavender, - MelaBoost - Mountain Fr: sheet 8 pts / 21.98  -  store 8 pts / 27.98
+02:38:06   DIFFERENCE: MB9X2 pack 1/1: undry - Melabrite - 96 loads: sheet 14 pts / 29.48  -  store 14 pts / 39.39
+02:38:06   DIFFERENCE: F296 pack 1/1: aSoft Bottle - Spring Breeze, oft Bottle - Garden Laven: sheet 9 pts / 23.18  -  store 9 pts / 29.78
+02:38:06   DIFFERENCE: F298 pack 1/1:  Dryer Sheets - Clean Cotton, yer Sheets - Garden Laven: sheet 5 pts / 11.98  -  store 5 pts / 15.63
+02:38:06   DIFFERENCE: F650 pack 1/1: des - Lip Balm - Pina Colada, p Balm - Cranberry Tanger: sheet 2 pts / 6.57  -  store 2 pts / 8.77
+02:38:06   DIFFERENCE: TOOTH pack 1/1: oothcare - Exceed - Cinnamon, othcare - Koala Pals - A: sheet 5 pts / 12.77  -  store 5 pts / 15.82
+02:38:06   DIFFERENCE: Save $4.00 on Sei Bella The Basic Collection Gentle Daily Cleanser!: sheet 2 pts / 7.50  -  store 2 pts / 9.00
+02:38:06   DIFFERENCE: Buy one Safe & Mighty, get one for $3.74!: sheet 3 pts / 9.18  -  store 3 pts / 12.13
+02:38:06   DIFFERENCE: Buy one Tub & Tile Bathroom Cleaner, get one for $3.24!: sheet 3 pts / 9.48  -  store 3 pts / 12.73
+02:38:06   DIFFERENCE: Save $12.00 on MelaPower Laundry Detergent 2-Pack!: NOT ADDED (store said: {'Success': True, 'ErrorMessages': [], 'Data': {'Item': {'Details': {'Accessories': [{'Sku': '924', 'Configurations': [], 'Title': 'Reusable Laundry Pump', 'Category': None, 'Description': 'This sturd)
+02:38:06   DIFFERENCE: Buy one Pain-A-Trate Ultra, get one for $2.99!: sheet 6 pts / 15.28  -  store 6 pts / 19.78
+02:38:06   DIFFERENCE: Save $5.00 on Renew Targeted Eczema Treatment 2-Pack!: sheet 4 pts / 9.48  -  store 4 pts / 11.78
+02:38:06   DIFFERENCE: Save $11.00 on Renew Hand Wash Refill 2-Pack!: sheet 7 pts / 16.58  -  store 7 pts / 22.38
+02:38:21 lab: emptied the cart again: 28 lines
+
+============================== tab 3 02:38:22
+02:38:22   proxy port 10003 | location: cr.ca;city.vancouver
+02:38:54 sign-in attempt 1 failed: Page.goto: net::ERR_TIMED_OUT at https://www.melaleuca.com/cart
+Call log:
+  - navigating to "https:/
+02:38:54   proxy port 10203 | location: cr.ca;city.vancouver
+02:39:26 signed in as Liliana C | plan: 42 lines, TOTAL points 145.0 cost 390.38000000000005
+02:39:30   catalog from the saved copy: 81 families (no need to read the store)
+02:39:35   could not read page of item 5018 Page.evaluate: TypeError: Failed to fetch
+    at eval (eval at evaluate (:370:30
+02:39:44   could not read page of item 33022 Page.evaluate: TypeError: Failed to fetch
+    at eval (eval at evaluate (:370:30
+02:39:49   could not read page of item 30085 Page.evaluate: TypeError: Failed to fetch
+    at eval (eval at evaluate (:370:30
+02:39:58   variant: Ecosense - Sol-U-Mel - Original - 8oz (R642L) -> 292  Original Scent (0.98)
+02:40:07   variant: Haircare - Original Shampoo - 32oz (R289H) -> 4906  only variant: Original Shampoo
+02:40:16   could not read page of item 3620 Page.evaluate: TypeError: Failed to fetch
+    at eval (eval at evaluate (:370:30
+02:40:16   variant: Renew - Lotion - 20oz (R480H) -> 6600  only variant: Value Size Renew
+02:40:21   could not read page of item 6196 Page.evaluate: TypeError: Failed to fetch
+    at eval (eval at evaluate (:370:30
+02:40:26 actions: 26 | offer lines: 4 | problems: 0
+02:40:38 coupons of this account: 3 | Save $1.75 on Revive Freshener & Wrinkle Relaxer C ; Save $6.50 on Sei Bella Charcoal & Flower Daily Ma ; Save $3.70 on Simply Fit Simple Start Baking Mix: 
+02:40:38   COUPON NOT ON THIS ACCOUNT: 'Renew - Body Wash 12oz' - the sheet counts it at the coupon price (5 pts / 12.98), the store charges the normal price (run Scan Account Offers, then Generate All Orders, so the builder knows this account's coupons).
+02:40:38   added [single] 5612 x1 Ecosense - Clean And Gleam - 8oz 
+02:40:38   added [pack] 5018 x1 2-pack: Ecosense - Diamond Brite - 25 Loads 
+02:40:38   added [single] 30083 x1 Ecosense - Prespot - 8oz with Bottle 
+02:40:39   added [single] 33001 x1 PreSpot? 4x Mixing Spray Bottle for Ecosense - Prespot  
+02:40:39   added [pack] 33022 x1 3-pack: Ecosense - Prespot Instant Stain Remover 
+02:40:39   added [single] 30085 x1 Ecosense - Prespot with Scrubbing Brush 
+02:40:39   added [single] 33961 x1 Ecosense - Revive - Original with Bottle 
+02:40:39        choice: Ecosense - Revive - Original with Bottle -> Original Fragrance (0.49)
+02:40:40   added [single] 292 x1 Ecosense - Sol-U-Mel - Original - 8oz 
+02:40:40   added [single] 1218 x1 Ecosense - Tough and Tender - 8oz 
+02:40:40   added [single] 4906 x1 Haircare - Original Shampoo - 32oz 
+02:40:41   added [single] 3620 x2 Renew - Body Wash 12oz 
+02:40:41   added [single] 6600 x1 Renew - Lotion - 20oz 
+02:40:41   added [pack] 6196 x1 2-pack: Toothcare - Breath-Away Mouth Rinse - 16oz 
+02:40:42   added [pack] 190 x1 DEOD pack 1/1: finia Sweet Cream and Willow, nia Vanill 
+02:40:42        choice: Deodorant - Affinia Sweet Cream and Willow -> Sweet Cream & Willow Antiperspirant & Deodorant (0.9)
+02:40:42        choice: Deodorant - Affinia Vanilla Musk and Jasmine -> Vanilla Musk & Jasmine Antiperspirant & Deodorant (0.9)
+02:40:42        choice: Deodorant - Alloy Antiperspirant -> Antiperspirant & Deodorant   (10.0)
+02:40:42   added [pack] 34914 x1 CLEAN pack 1/1: Ecosense - Mela-magic - 16oz, Ecosense  
+02:40:42        choice: Ecosense - Clear Power Glass Cleaner - 8oz with bottle -> Clear Power Glass Cleaner (10.0)
+02:40:42        choice: Ecosense - Harvest Pure - 8oz -> Harvest Pure? Fruit And Vegetable Wash (10.0)
+02:40:42        choice: Ecosense - Mela-magic - 16oz -> MelaMagic Heavy-Duty Cleaner (10.0)
+02:40:42        choice: Ecosense - No Work - 8oz -> No Work Daily Shower Cleaner (10.0)
+02:40:42        choice: Ecosense - Tub and Tile - 8oz with Bottle -> Tub & Tile 6x Bathroom Cleaner (10.0)
+02:40:42   added [single] 1213 x1 Clear Power? Mixing Spray Bottle for Ecosense - Clear P 
+02:40:43   added [single] 1217 x1 Tub & Tile? Mixing Spray Bottle for Ecosense - Tub and  
+02:40:43   added [pack] 5026 x1 F252 pack 1/1: Brite - 16oz - Apple Scented, Brite - 16 
+02:40:43        choice: EcoSense - Lemon Brite - 16oz - Apple Scented -> Apple (0.98)
+02:40:43        choice: EcoSense - Lemon Brite - 16oz - Lemon Scented -> Lemon (0.98)
+02:40:43        choice: EcoSense - Lemon Brite - 16oz - Tropical Scented -> Tropical (0.98)
+02:40:43   added [pack] 8911 x1 SGD2 pack 1/1: Ecosense - Sol U Guard 
+02:40:43   added [pack] 23963 x1 AFFSC pack 1/1: Affinia Moisture Conditioner, e - Affin 
+02:40:43        choice: Haircare - Affinia Moisture Conditioner -> Moisture Conditioner (10.0)
+02:40:43        choice: Haircare - Affinia Moisture Shampoo -> Moisture Shampoo (10.0)
+02:40:44   added [pack] 590 x1 F264 pack 1/1:  - MelaBoost - Island Breeze,  MelaBoost 
+02:40:44        choice: Laundry - MelaBoost - Garden Lavender -> MelaBoost - Garden Lavender (0.99)
+02:40:44        choice: Laundry - MelaBoost - Island Breeze -> MelaBoost - Island Breeze (0.99)
+02:40:44   added [pack] 219 x1 MB9X2 pack 1/1: undry - Melabrite - 96 loads 
+02:40:44   added [pack] 2154 x1 F296 pack 1/1: laSoft Bottle - Clean Cotton, oft Bottle 
+02:40:44        choice: Laundry - MelaSoft Bottle - Clean Cotton -> Clean Cotton (0.98)
+02:40:44        choice: Laundry - MelaSoft Bottle - Garden Lavender -> Garden Lavender (0.98)
+02:40:45   added [pack] 5027 x1 F298 pack 1/1:  Dryer Sheets - Clean Cotton, ft Dryer S 
+02:40:45        choice: Laundry - Melasoft Dryer Sheets - Clean Cotton -> Clean Cotton (0.98)
+02:40:45        choice: Laundry - Melasoft Dryer Sheets - Scent Free -> Scent Free (0.98)
+02:40:45   added [pack] 7911 x1 F650 pack 1/1: des - Lip Balm - Pina Colada, p Balm - C 
+02:40:45        choice: Sun Shades - Lip Balm - Cranberry Tangerine -> Cranberry Tangerine (0.98)
+02:40:45        choice: Sun Shades - Lip Balm - Cranberry Tangerine -> Cranberry Tangerine (0.98)
+02:40:45        choice: Sun Shades - Lip Balm - Pina Colada -> Pi?a Colada (0.49)
+02:40:45   added [pack] 43987 x1 TOOTH pack 1/1:  - Koala Pals - Berrylicious, ed - Spea 
+02:40:45        choice: Toothcare - Exceed - Cinnamon -> Cinnamon - Fluoride-Free (10.0)
+02:40:45        choice: Toothcare - Exceed - Spearmint with Fluoride -> Spearmint +Fluoride (10.0)
+02:40:45        choice: Toothcare - Koala Pals - Berrylicious -> Berrylicious +Fluoride (0.87)
+02:40:46 cart before the offers: 27 items, 143 points
+02:40:57 offers on the page: 26
+02:40:57      offer card 34050 | promo 2013704 | Save $12.00 on MelaPower Laundry Detergent 2-Pack!
+02:40:57      offer card 39820 | promo 2013706 | Save $3.00 on Spiced Cranberry Scented Lemon Brite 2-Pack!
+02:40:57      offer card 49677 | promo 2013688 | Save $11.00 on Renew Hand Wash Refill 2-Pack!
+02:40:57      offer card 64295 | promo 2013743 | Save $8.00 on Simply Fit Trail Bars  3-Pack!
+02:40:57      offer card 39734 | promo 2013705 | Save $6.00 on Spiced Apple Sol-U-Mel and Spiced Apple Tough & Tender!
+02:40:57      offer card 59826 | promo 2013689 | Save $26.00 on Pure Long Winter Nap Relaxing Blend!
+02:40:57      offer card 6269 | promo 2013697 | Buy one Vitality Coldwater Omega-3, get one for $4.99!
+02:40:57      offer card 8068 | promo 2013693 | Save $5.00 on Pure Lavender Essential Oil!
+02:40:57      offer card 6833 | promo 2013687 | Buy one Safe & Mighty, get one for $3.74!
+02:40:57      offer card 5070 | promo 2013702 | Save $4.00 on Bath Bars 3-Pack!
+02:40:57      offer card 69327 | promo 2013698 | Buy one Activate Immune Complex, get one for $3.74!
+02:40:57      offer card 1682 | promo 2013684 | Save $25.00 on Luminex 2-Pack!
+02:40:57      offer card 69823 | promo 2013707 | Save $15.00 on Florify for Kids Probiotic 2-Pack!
+02:40:57      offer card 8194 | promo 2013695 | Buy one Tub & Tile Bathroom Cleaner, get one for $3.24!
+02:40:57      offer card 4227 | promo 2013694 | Save $13.00 on MelaBrite Colour Booster 2-Pack!
+02:40:57      offer card 74141 | promo 2013696 | Save $29.00 - $41.50 on Sei Bella Treatment and Moisturizer!
+02:40:57      offer card 49635 | promo 2013699 | Save $5.00 on Renew Targeted Eczema Treatment 2-Pack!
+02:40:57      offer card 49096 | promo 2013685 | Buy one Pain-A-Trate Ultra, get one for $2.99!
+02:40:57      offer card 69311 | promo 2013701 | Save $26.00 on Vitality FloraV 2-Pack!
+02:40:57      offer card 643 | promo 2013703 | Save $10.00 on Replenex Advance with Type II Collagen!
+02:40:57      offer card 6476 | promo 2013700 | Save $13.00 on FiberWise Canister 2-Pack!
+02:40:57      offer card 74091 | promo 2013690 | Save $38.00 - $43.00 on Sei Bella Deep Marine Bundle!
+02:40:57      offer card 69294 | promo 2013880 | Save $6.50 on Vitality Iron Support!
+02:40:57      offer card 8297 | promo 2013686 | Buy one NutraView, get one for $4.99!
+02:40:57      offer card 74042 | promo 2013691 | Save $26.00 on Sei Bella Perfume!
+02:40:57      offer card 5520 | promo 2013692 | Buy two Sei Bella Makeup Removing Cleansing Wipes, get one FREE!
+02:41:02   could not read page of item 6833 Page.evaluate: TypeError: Failed to fetch
+    at eval (eval at evaluate (:370:30
+02:41:02   added offer 6833 x1 Buy one Safe & Mighty, get one for $3.74! 
+02:41:07   could not read page of item 34050 Page.evaluate: TypeError: Failed to fetch
+    at eval (eval at evaluate (:370:30
+02:41:07   FAILED offer 34050 x1 Save $12.00 on MelaPower Laundry Detergent 2-Pack! 
+02:41:07        ["store said: {'Success': True, 'ErrorMessages': [], 'Data': {'Item': {'Details': {'Accessories': [{'Sku': '924', 'Configurations': [], 'Title': 'Reusable Laundry Pump', 'Category': None, 'Description': 'This sturd"]
+02:41:11   could not read page of item 49096 Page.evaluate: TypeError: Failed to fetch
+    at eval (eval at evaluate (:370:30
+02:41:12   added offer 49096 x1 Buy one Pain-A-Trate Ultra, get one for $2.99! 
+02:41:16   could not read page of item 49635 Page.evaluate: TypeError: Failed to fetch
+    at eval (eval at evaluate (:370:30
+02:41:16   added offer 49635 x1 Save $5.00 on Renew Targeted Eczema Treatment 2-Pack! 
+02:41:17   credit  : Credit 1 -> box 'Buy with Loyalty Shopping Dollars' ticked on Ecosense - Prespot - 8oz with Bottle
+02:41:17   credit  : Credit 2 -> box 'Buy with Loyalty Shopping Dollars' ticked on Haircare - Original Shampoo - 32oz
+02:41:17 
+CART NOW: 30 items | 144 points | gross 488.05 | net 474.93 | discount 0
+02:41:17 SHEET   : 145 points count for the limit (TOTAL row: 145) + 12 points of credit items | cost of all lines 390.38
+02:41:17 CREDIT  : $13.12 of loyalty dollars used by the cart
+02:41:17 RESULT  : points DIFFER by -1 | cost DIFFER by +97.67
+02:41:17   DIFFERENCE: Ecosense - Clean And Gleam - 8oz: sheet 3 pts / 6.99  -  store 3 pts / 9.49
+02:41:17   DIFFERENCE: 2-pack: Ecosense - Diamond Brite - 25 Loads: sheet 7 pts / 15.38  -  store 7 pts / 20.48
+02:41:17   DIFFERENCE: Ecosense - Prespot - 8oz with Bottle + PreSpot? 4x Mixing Spray Bottle: sheet 0 pts / 8.78  -  store 0 pts / 11.78
+02:41:17   DIFFERENCE: 3-pack: Ecosense - Prespot Instant Stain Remover: sheet 2 pts / 6.77  -  store 2 pts / 8.57
+02:41:17   DIFFERENCE: Ecosense - Prespot with Scrubbing Brush: sheet 2 pts / 4.19  -  store 2 pts / 5.69
+02:41:17   DIFFERENCE: Ecosense - Revive - Original with Bottle: sheet 3 pts / 7.68  -  store 3 pts / 10.23
+02:41:17   DIFFERENCE: Ecosense - Sol-U-Mel - Original - 8oz: sheet 5 pts / 11.99  -  store 5 pts / 15.29
+02:41:17   DIFFERENCE: Ecosense - Tough and Tender - 8oz: sheet 3 pts / 6.99  -  store 3 pts / 9.49
+02:41:17   DIFFERENCE: Haircare - Original Shampoo - 32oz: sheet 0 pts / 17.49  -  store 0 pts / 22.29
+02:41:17   DIFFERENCE: Renew - Body Wash 12oz: sheet 5 pts / 12.98  -  store 12 pts / 28.58
+02:41:17   DIFFERENCE: Renew - Lotion - 20oz: sheet 10 pts / 16.99  -  store 10 pts / 22.29
+02:41:17   DIFFERENCE: 2-pack: Toothcare - Breath-Away Mouth Rinse - 16oz: sheet 6 pts / 14.18  -  store 6 pts / 18.80
+02:41:17   DIFFERENCE: DEOD pack 1/1: finia Sweet Cream and Willow, nia Vanilla Musk and Jasm: sheet 4 pts / 14.37  -  store 4 pts / 17.99
+02:41:17   DIFFERENCE: CLEAN pack 1/1: Ecosense - Mela-magic - 16oz, Ecosense - No Work - 8oz: sheet 10 pts / 31.54  -  store 10 pts / 42.54
+02:41:17   DIFFERENCE: F252 pack 1/1: Brite - 16oz - Apple Scented, Brite - 16oz - Lemon Scen: sheet 5 pts / 12.42  -  store 5 pts / 16.97
+02:41:17   DIFFERENCE: SGD2 pack 1/1: Ecosense - Sol U Guard: sheet 10 pts / 20.78  -  store 10 pts / 26.78
+02:41:17   DIFFERENCE: AFFSC pack 1/1: Affinia Moisture Conditioner, e - Affinia Moisture Sha: sheet 6 pts / 14.98  -  store 6 pts / 19.73
+02:41:17   DIFFERENCE: F264 pack 1/1:  - MelaBoost - Island Breeze,  MelaBoost - Garden Laven: sheet 8 pts / 21.98  -  store 8 pts / 27.98
+02:41:17   DIFFERENCE: MB9X2 pack 1/1: undry - Melabrite - 96 loads: sheet 14 pts / 29.48  -  store 14 pts / 39.39
+02:41:17   DIFFERENCE: F296 pack 1/1: laSoft Bottle - Clean Cotton, oft Bottle - Garden Laven: sheet 9 pts / 23.18  -  store 9 pts / 29.78
+02:41:17   DIFFERENCE: F298 pack 1/1:  Dryer Sheets - Clean Cotton, ft Dryer Sheets - Scent F: sheet 5 pts / 11.98  -  store 5 pts / 15.63
+02:41:17   DIFFERENCE: F650 pack 1/1: des - Lip Balm - Pina Colada, p Balm - Cranberry Tanger: sheet 2 pts / 6.57  -  store 2 pts / 8.77
+02:41:17   DIFFERENCE: TOOTH pack 1/1:  - Koala Pals - Berrylicious, ed - Spearmint with Fluo: sheet 5 pts / 12.77  -  store 5 pts / 15.82
+02:41:17   DIFFERENCE: Buy one Safe & Mighty, get one for $3.74!: sheet 3 pts / 9.18  -  store 3 pts / 12.13
+02:41:17   DIFFERENCE: Save $12.00 on MelaPower Laundry Detergent 2-Pack!: NOT ADDED (store said: {'Success': True, 'ErrorMessages': [], 'Data': {'Item': {'Details': {'Accessories': [{'Sku': '924', 'Configurations': [], 'Title': 'Reusable Laundry Pump', 'Category': None, 'Description': 'This sturd)
+02:41:17   DIFFERENCE: Buy one Pain-A-Trate Ultra, get one for $2.99!: sheet 6 pts / 15.28  -  store 6 pts / 19.78
+02:41:17   DIFFERENCE: Save $5.00 on Renew Targeted Eczema Treatment 2-Pack!: sheet 4 pts / 9.48  -  store 4 pts / 11.78
+02:41:33 lab: emptied the cart again: 29 lines
+
+============================== tab 4 02:41:34
+02:41:35   proxy port 10004 | location: cr.ca;city.toronto
+02:42:09   saved debug/noform_Marcos_F_10004.png | page: https://www.melaleuca.com/cart | www.melaleuca.com Performing security verification This website uses a security service to protect against malicious bots. This page is displayed while the webs
+02:42:09 sign-in attempt 1 failed: the sign-in form did not appear (page: https://www.melaleuca.com/cart)
+02:42:09   proxy port 10204 | location: cr.ca;city.toronto
+02:42:31 sign-in attempt 2 failed: Page.goto: net::ERR_TUNNEL_CONNECTION_FAILED at https://www.melaleuca.com/account?sc_lang=en-US
+Call
+02:42:31   proxy port 10304 | location: cr.ca
+02:43:11 signed in as Marcos F | plan: 44 lines, TOTAL points 147.0 cost 396.59999999999997
+02:43:20   catalog from the saved copy: 81 families (no need to read the store)
+02:43:27   could not read page of item 70338 Page.evaluate: TypeError: Failed to fetch
+    at eval (eval at evaluate (:370:30
+02:44:14   could not read page of item 5018 Page.evaluate: TypeError: Failed to fetch
+    at eval (eval at evaluate (:370:30
+02:44:15   could not read page of item 33022 Page.goto: net::ERR_TUNNEL_CONNECTION_FAILED at https://www.melaleuca.com/produc
+02:44:15   family page not read: 1729 Page.goto: net::ERR_TUNNEL_CONNECTION_FAILED at https://www.melaleuca.
+02:44:15   variant: Haircare - Herbal Shampoo - 32oz (R1729H) -> NOT RESOLVED: family 1729 not found in the store
+02:44:16   could not read page of item 3620 Page.goto: net::ERR_TUNNEL_CONNECTION_FAILED at https://www.melaleuca.com/produc
+02:44:16   could not read page of item 3748 Page.goto: net::ERR_TUNNEL_CONNECTION_FAILED at https://www.melaleuca.com/produc
+02:44:16   variant: Renew - Lotion - 1oz (manual) -> NOT RESOLVED: no store product costs 2.09 with 1 points
+02:44:16   variant: Renew - Lotion - 20oz (R480H) -> 6600  only variant: Value Size Renew
+02:44:17   could not read page of item 6196 Page.goto: net::ERR_TUNNEL_CONNECTION_FAILED at https://www.melaleuca.com/produc
+02:44:17   could not read page of item 34913 Page.goto: net::ERR_TUNNEL_CONNECTION_FAILED at https://www.melaleuca.com/produc
+02:44:18   could not read page of item 1151 Page.goto: net::ERR_TUNNEL_CONNECTION_FAILED at https://www.melaleuca.com/produc
+02:44:18 actions: 23 | offer lines: 6 | problems: 2
+02:44:18   PROBLEM: row 24 B008HVD8IK: no item number for 'Haircare - Herbal Shampoo - 32oz' (sheet has 'R1729H') - add this one by hand
+02:44:18   PROBLEM: row 38 B00P1G0H24: no item number for 'Renew - Lotion - 1oz' (sheet has 'manual') - add this one by hand
+02:44:18   could not read the coupons box: Page.goto: net::ERR_TUNNEL_CONNECTION_FAILED at https://www.melaleuca.com/cart?sc_lang=en-US
+Call lo
+02:44:18 coupons of this account: 0 | 
+02:44:18   COUPON NOT ON THIS ACCOUNT: 'Renew - Body Wash 12oz' - the sheet counts it at the coupon price (5 pts / 12.98), the store charges the normal price (run Scan Account Offers, then Generate All Orders, so the builder knows this account's coupons).
+02:44:19 LAB CLEANUP PROBLEM - empty the cart of the test account by hand: Page.evaluate: TypeError: Failed to fetch
+    at eval (eval at evaluate (:370:30), <anonymous>:4:29)
+Traceback (most recent call last):
+  File "/home/runner/work/melaleuca-cart/melaleuca-cart/local/melaleuca_fill.py", line 1255, in <module>
+    rc = run(n, dry="--dry" in sys.argv, lab="--lab" in sys.argv, final="--nofinal" not in sys.argv)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/melaleuca-cart/melaleuca-cart/local/melaleuca_fill.py", line 904, in run
+    ok = fl.post(a)
+         ^^^^^^^^^^
+  File "/home/runner/work/melaleuca-cart/melaleuca-cart/local/melaleuca_fill.py", line 659, in post
+    r = self.s.fetch(self.s.cart_url(), "POST", body)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/melaleuca-cart/melaleuca-cart/local/melaleuca_scan.py", line 154, in fetch
+    return self.page.evaluate("""async ([u, m, b]) => {
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/sync_api/_generated.py", line 16843, in evaluate
+    self._sync(
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_sync_base.py", line 111, in _sync
+    return task.result()
+           ^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_page.py", line 476, in evaluate
+    return await self._main_frame.evaluate(expression, arg)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_frame.py", line 346, in evaluate
+    await self._channel.send(
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_connection.py", line 78, in send
+    return await self._connection.wrap_api_call(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_connection.py", line 636, in wrap_api_call
+    raise rewrite_error(error, f"{parsed_st['apiName']}: {error}") from None
+playwright._impl._errors.Error: Page.evaluate: Execution context was destroyed, most likely because of a navigation
+
+============================== tab 5 02:44:19
+02:44:19   proxy port 10005 | location: cr.ca;city.toronto
+02:44:52 signed in as Alexandra S | plan: 41 lines, TOTAL points 146.0 cost 391.46
+02:44:57   catalog from the saved copy: 81 families (no need to read the store)
+02:45:02   could not read page of item 70338 Page.evaluate: TypeError: Failed to fetch
+    at eval (eval at evaluate (:370:30
+02:45:08   could not read page of item 5018 Page.evaluate: TypeError: Failed to fetch
+    at eval (eval at evaluate (:370:30
+02:45:14   could not read page of item 33022 Page.evaluate: TypeError: Failed to fetch
+    at eval (eval at evaluate (:370:30
+02:45:23   variant: Haircare - Herbal Shampoo - 8oz (R1729L) -> 4117  only variant: Melaleuca? Herbal Shampoo
+02:45:28   variant: Haircare - Sei Bella Argan Oil and Coconut Conditi (F3293) -> 70114  Argan Oil & Coconut Moisture Smooth Conditioner (0.62)
+02:45:28   variant: Oil - T36-C5-0.5 fl.oz. (manual) -> NOT RESOLVED: no store product costs 8.75 with 4 points
+02:45:34   could not read page of item 3634 Page.evaluate: TypeError: Failed to fetch
+    at eval (eval at evaluate (:370:30
+02:45:40   could not read page of item 6196 Page.evaluate: TypeError: Failed to fetch
+    at eval (eval at evaluate (:370:30
+02:45:45 actions: 23 | offer lines: 6 | problems: 1
+02:45:45   PROBLEM: row 34 B0FKZLVY7B: no item number for 'Oil - T36-C5-0.5 fl.oz.' (sheet has 'manual') - add this one by hand
+02:45:46   added [single] 70338 x1 Beauty - Sei Bella Facial Scrub 
+02:45:46   added [single] 5612 x1 Ecosense - Clean And Gleam - 8oz 
+02:45:47   added [pack] 5018 x1 2-pack: Ecosense - Diamond Brite - 25 Loads 
+02:45:47   added [pack] 2211 x1 2-pack: Ecosense - PreSpot - 8oz 
+02:45:47   added [pack] 33022 x1 3-pack: Ecosense - Prespot Instant Stain Remover 
+02:45:48   added [single] 33961 x1 Ecosense - Revive - Original with Bottle 
+02:45:48        choice: Ecosense - Revive - Original with Bottle -> Original Fragrance (0.49)
+02:45:48   added [single] 20063 x1 Haircare - Affinia Volume Shampoo 
+02:45:49   added [single] 4117 x1 Haircare - Herbal Shampoo - 8oz 
+02:45:49   added [single] 70114 x1 Haircare - Sei Bella Argan Oil and Coconut Conditioner 
+02:45:50   added [single] 3634 x1 Renew - Lotion - 1oz - Pure Lavender 
+02:45:50   added [pack] 6196 x1 2-pack: Toothcare - Breath-Away Mouth Rinse - 16oz 
+02:45:50   added [pack] 190 x1 DEOD pack 1/1: finia Sweet Cream and Willow, nia Vanill 
+02:45:50        choice: Deodorant - Affinia Sweet Cream and Willow -> Sweet Cream & Willow Antiperspirant & Deodorant (0.9)
+02:45:50        choice: Deodorant - Affinia Vanilla Musk and Jasmine -> Vanilla Musk & Jasmine Antiperspirant & Deodorant (0.9)
+02:45:50        choice: Deodorant - Alloy Antiperspirant -> Antiperspirant & Deodorant   (10.0)
+02:45:51   added [pack] 34911 x1 CLEAN pack 1/1: Ecosense - Mela-magic - 16oz, Ecosense  
+02:45:51        choice: Ecosense - Harvest Pure - 8oz -> Harvest Pure? Fruit And Vegetable Wash (10.0)
+02:45:51        choice: Ecosense - Mela-magic - 16oz -> MelaMagic Heavy-Duty Cleaner (10.0)
+02:45:51        choice: Ecosense - No Work - 8oz -> No Work Daily Shower Cleaner (10.0)
+02:45:51   added [pack] 5026 x1 F252 pack 1/1: Brite - 16oz - Apple Scented, Brite - 16 
+02:45:51        choice: EcoSense - Lemon Brite - 16oz - Apple Scented -> Apple (0.98)
+02:45:51        choice: EcoSense - Lemon Brite - 16oz - Lemon Scented -> Lemon (0.98)
+02:45:51        choice: EcoSense - Lemon Brite - 16oz - Tropical Scented -> Tropical (0.98)
+02:45:52   added [pack] 8911 x1 SGD2 pack 1/1: Ecosense - Sol U Guard 
+02:45:53   added [pack] 6277 x1 KPB2 pack 1/1: Koala Pals - Hair Wash 
+02:45:53        choice: Koala Pals - Hair Wash -> Hair Wash (10.0)
+02:45:53        choice: Koala Pals - Hair Wash -> Hair Wash (10.0)
+02:45:53   added [pack] 590 x1 F264 pack 1/1:  MelaBoost - Garden Lavender, - MelaBoos 
+02:45:53        choice: Laundry - MelaBoost - Garden Lavender -> MelaBoost - Garden Lavender (0.99)
+02:45:53        choice: Laundry - MelaBoost - Mountain Fresh -> MelaBoost - Mountain Fresh (0.99)
+02:45:53   added [pack] 219 x1 MB9X2 pack 1/1: undry - Melabrite - 96 loads 
+02:45:54   added [pack] 2154 x1 F296 pack 1/1: laSoft Bottle - Clean Cotton 
+02:45:54        choice: Laundry - MelaSoft Bottle - Clean Cotton -> Clean Cotton (0.98)
+02:45:54        choice: Laundry - MelaSoft Bottle - Clean Cotton -> Clean Cotton (0.98)
+02:45:54   added [pack] 5027 x1 F298 pack 1/1:  Dryer Sheets - Clean Cotton, ft Dryer S 
+02:45:54        choice: Laundry - Melasoft Dryer Sheets - Clean Cotton -> Clean Cotton (0.98)
+02:45:54        choice: Laundry - Melasoft Dryer Sheets - Scent Free -> Scent Free (0.98)
+02:45:55   added [pack] 6111 x1 GEL pack 1/1: Pharmacy - MelaGel .4oz Disk 
+02:45:55        choice: Mela-Pharmacy - MelaGel .4oz Disk -> Disc (10.0)
+02:45:55        choice: Mela-Pharmacy - MelaGel .4oz Disk -> Disc (10.0)
+02:45:55   added [pack] 7911 x1 F650 pack 1/1: des - Lip Balm - Pina Colada, p Balm - C 
+02:45:55        choice: Sun Shades - Lip Balm - Cranberry Tangerine -> Cranberry Tangerine (0.98)
+02:45:55        choice: Sun Shades - Lip Balm - Cranberry Tangerine -> Cranberry Tangerine (0.98)
+02:45:55        choice: Sun Shades - Lip Balm - Pina Colada -> Pi?a Colada (0.49)
+02:45:56   added [pack] 43987 x1 TOOTH pack 1/1:  - Koala Pals - Berrylicious, ed - Spea 
+02:45:56        choice: Toothcare - Exceed - Cinnamon -> Cinnamon - Fluoride-Free (10.0)
+02:45:56        choice: Toothcare - Exceed - Spearmint with Fluoride -> Spearmint +Fluoride (10.0)
+02:45:56        choice: Toothcare - Koala Pals - Berrylicious -> Berrylicious +Fluoride (0.87)
+02:45:56 cart before the offers: 23 items, 130 points
+02:46:09 offers on the page: 26
+02:46:09      offer card 34050 | promo 2013704 | Save $12.00 on MelaPower Laundry Detergent 2-Pack!
+02:46:09      offer card 39820 | promo 2013706 | Save $3.00 on Spiced Cranberry Scented Lemon Brite 2-Pack!
+02:46:09      offer card 49677 | promo 2013688 | Save $11.00 on Renew Hand Wash Refill 2-Pack!
+02:46:09      offer card 64295 | promo 2013743 | Save $8.00 on Simply Fit Trail Bars  3-Pack!
+02:46:09      offer card 39734 | promo 2013705 | Save $6.00 on Spiced Apple Sol-U-Mel and Spiced Apple Tough & Tender!
+02:46:09      offer card 59826 | promo 2013689 | Save $26.00 on Pure Long Winter Nap Relaxing Blend!
+02:46:09      offer card 6269 | promo 2013697 | Buy one Vitality Coldwater Omega-3, get one for $4.99!
+02:46:09      offer card 8068 | promo 2013693 | Save $5.00 on Pure Lavender Essential Oil!
+02:46:09      offer card 6833 | promo 2013687 | Buy one Safe & Mighty, get one for $3.74!
+02:46:09      offer card 5070 | promo 2013702 | Save $4.00 on Bath Bars 3-Pack!
+02:46:09      offer card 69327 | promo 2013698 | Buy one Activate Immune Complex, get one for $3.74!
+02:46:09      offer card 1682 | promo 2013684 | Save $25.00 on Luminex 2-Pack!
+02:46:09      offer card 69823 | promo 2013707 | Save $15.00 on Florify for Kids Probiotic 2-Pack!
+02:46:09      offer card 8194 | promo 2013695 | Buy one Tub & Tile Bathroom Cleaner, get one for $3.24!
+02:46:09      offer card 4227 | promo 2013694 | Save $13.00 on MelaBrite Colour Booster 2-Pack!
+02:46:09      offer card 74141 | promo 2013696 | Save $29.00 - $41.50 on Sei Bella Treatment and Moisturizer!
+02:46:09      offer card 49635 | promo 2013699 | Save $5.00 on Renew Targeted Eczema Treatment 2-Pack!
+02:46:09      offer card 49096 | promo 2013685 | Buy one Pain-A-Trate Ultra, get one for $2.99!
+02:46:09      offer card 69311 | promo 2013701 | Save $26.00 on Vitality FloraV 2-Pack!
+02:46:09      offer card 643 | promo 2013703 | Save $10.00 on Replenex Advance with Type II Collagen!
+02:46:09      offer card 6476 | promo 2013700 | Save $13.00 on FiberWise Canister 2-Pack!
+02:46:09      offer card 74091 | promo 2013690 | Save $38.00 - $43.00 on Sei Bella Deep Marine Bundle!
+02:46:09      offer card 69294 | promo 2013880 | Save $6.50 on Vitality Iron Support!
+02:46:09      offer card 79015 | promo 2013686 | Save $4.00 on Sei Bella The Basic Collection Gentle Daily Cleanser!
+02:46:09      offer card 74042 | promo 2013691 | Save $26.00 on Sei Bella Perfume!
+02:46:09      offer card 5520 | promo 2013692 | Buy two Sei Bella Makeup Removing Cleansing Wipes, get one FREE!
+02:46:14   could not read page of item 79015 Page.evaluate: TypeError: Failed to fetch
+    at eval (eval at evaluate (:370:30
+02:46:14   added offer 79015 x1 Save $4.00 on Sei Bella The Basic Collection Gentle Dai 
+02:46:19   could not read page of item 6833 Page.evaluate: TypeError: Failed to fetch
+    at eval (eval at evaluate (:370:30
+02:46:20   added offer 6833 x1 Buy one Safe & Mighty, get one for $3.74! 
+02:46:25   could not read page of item 8194 Page.evaluate: TypeError: Failed to fetch
+    at eval (eval at evaluate (:370:30
+02:46:25   added offer 8194 x1 Buy one Tub & Tile Bathroom Cleaner, get one for $3.24! 
+02:46:31   could not read page of item 34050 Page.evaluate: TypeError: Failed to fetch
+    at eval (eval at evaluate (:370:30
+02:46:31   FAILED offer 34050 x1 Save $12.00 on MelaPower Laundry Detergent 2-Pack! 
+02:46:31        ["store said: {'Success': True, 'ErrorMessages': [], 'Data': {'Item': {'Details': {'Accessories': [{'Sku': '924', 'Configurations': [], 'Title': 'Reusable Laundry Pump', 'Category': None, 'Description': 'This sturd"]
+02:46:36   could not read page of item 49096 Page.evaluate: TypeError: Failed to fetch
+    at eval (eval at evaluate (:370:30
+02:46:37   added offer 49096 x1 Buy one Pain-A-Trate Ultra, get one for $2.99! 
+02:46:41   could not read page of item 49635 Page.evaluate: TypeError: Failed to fetch
+    at eval (eval at evaluate (:370:30
+02:46:42   added offer 49635 x1 Save $5.00 on Renew Targeted Eczema Treatment 2-Pack! 
+02:46:42   credit  : Credit 2 -> box 'Buy with Loyalty Shopping Dollars' ticked on Haircare - Sei Bella Argan Oil and Coconut Conditioner
+02:46:42   CREDIT PROBLEM: Credit 1 (row 34): the product is not in the cart
+02:46:43 
+CART NOW: 28 items | 138 points | gross 464.74 | net 451.62 | discount 0
+02:46:43 SHEET   : 150 points count for the limit (TOTAL row: 146) + 14 points of credit items | cost of all lines 391.46
+02:46:43 CREDIT  : $13.12 of loyalty dollars used by the cart
+02:46:43 RESULT  : points DIFFER by -12 | cost DIFFER by +73.28
+02:46:43   DIFFERENCE: Beauty - Sei Bella Facial Scrub: sheet 3 pts / 6.50  -  store 3 pts / 8.00
+02:46:43   DIFFERENCE: Ecosense - Clean And Gleam - 8oz: sheet 3 pts / 6.99  -  store 3 pts / 9.49
+02:46:43   DIFFERENCE: 2-pack: Ecosense - Diamond Brite - 25 Loads: sheet 7 pts / 15.38  -  store 7 pts / 20.48
+02:46:43   DIFFERENCE: 2-pack: Ecosense - PreSpot - 8oz: sheet 5 pts / 12.98  -  store 5 pts / 17.23
+02:46:43   DIFFERENCE: 3-pack: Ecosense - Prespot Instant Stain Remover: sheet 2 pts / 6.77  -  store 2 pts / 8.57
+02:46:43   DIFFERENCE: Ecosense - Revive - Original with Bottle: sheet 3 pts / 7.68  -  store 3 pts / 10.23
+02:46:43   DIFFERENCE: Haircare - Affinia Volume Shampoo: sheet 4 pts / 8.49  -  store 4 pts / 10.99
+02:46:43   DIFFERENCE: Haircare - Herbal Shampoo - 8oz: sheet 4 pts / 7.89  -  store 4 pts / 10.69
+02:46:43   DIFFERENCE: Haircare - Sei Bella Argan Oil and Coconut Conditioner: sheet 0 pts / 20.00  -  store 0 pts / 26.00
+02:46:43   DIFFERENCE: Renew - Lotion - 1oz - Pure Lavender: sheet 1 pts / 2.29  -  store 1 pts / 2.99
+02:46:43   DIFFERENCE: 2-pack: Toothcare - Breath-Away Mouth Rinse - 16oz: sheet 6 pts / 14.18  -  store 6 pts / 18.80
+02:46:43   DIFFERENCE: DEOD pack 1/1: finia Sweet Cream and Willow, nia Vanilla Musk and Jasm: sheet 4 pts / 14.37  -  store 4 pts / 17.99
+02:46:43   DIFFERENCE: CLEAN pack 1/1: Ecosense - Mela-magic - 16oz, Ecosense - No Work - 8oz: sheet 7 pts / 17.97  -  store 7 pts / 24.47
+02:46:43   DIFFERENCE: F252 pack 1/1: Brite - 16oz - Apple Scented, Brite - 16oz - Lemon Scen: sheet 5 pts / 12.42  -  store 5 pts / 16.97
+02:46:43   DIFFERENCE: SGD2 pack 1/1: Ecosense - Sol U Guard: sheet 10 pts / 20.78  -  store 10 pts / 26.78
+02:46:43   DIFFERENCE: KPB2 pack 1/1: Koala Pals - Hair Wash: sheet 5 pts / 10.38  -  store 5 pts / 12.39
+02:46:43   DIFFERENCE: F264 pack 1/1:  MelaBoost - Garden Lavender, - MelaBoost - Mountain Fr: sheet 8 pts / 21.98  -  store 8 pts / 27.98
+02:46:43   DIFFERENCE: MB9X2 pack 1/1: undry - Melabrite - 96 loads: sheet 14 pts / 29.48  -  store 14 pts / 39.39
+02:46:43   DIFFERENCE: F296 pack 1/1: laSoft Bottle - Clean Cotton: sheet 9 pts / 23.18  -  store 9 pts / 29.78
+02:46:43   DIFFERENCE: F298 pack 1/1:  Dryer Sheets - Clean Cotton, ft Dryer Sheets - Scent F: sheet 5 pts / 11.98  -  store 5 pts / 15.63
+02:46:43   DIFFERENCE: GEL pack 1/1: Pharmacy - MelaGel .4oz Disk: sheet 8 pts / 14.78  -  store 8 pts / 19.88
+02:46:43   DIFFERENCE: F650 pack 1/1: des - Lip Balm - Pina Colada, p Balm - Cranberry Tanger: sheet 2 pts / 6.57  -  store 2 pts / 8.77
+02:46:43   DIFFERENCE: TOOTH pack 1/1:  - Koala Pals - Berrylicious, ed - Spearmint with Fluo: sheet 5 pts / 12.77  -  store 5 pts / 15.82
+02:46:43   DIFFERENCE: Save $4.00 on Sei Bella The Basic Collection Gentle Daily Cleanser!: sheet 2 pts / 7.50  -  store 2 pts / 9.00
+02:46:43   DIFFERENCE: Buy one Safe & Mighty, get one for $3.74!: sheet 3 pts / 9.18  -  store 3 pts / 12.13
+02:46:43   DIFFERENCE: Buy one Tub & Tile Bathroom Cleaner, get one for $3.24!: sheet 3 pts / 9.48  -  store 3 pts / 12.73
+02:46:43   DIFFERENCE: Save $12.00 on MelaPower Laundry Detergent 2-Pack!: NOT ADDED (store said: {'Success': True, 'ErrorMessages': [], 'Data': {'Item': {'Details': {'Accessories': [{'Sku': '924', 'Configurations': [], 'Title': 'Reusable Laundry Pump', 'Category': None, 'Description': 'This sturd)
+02:46:43   DIFFERENCE: Buy one Pain-A-Trate Ultra, get one for $2.99!: sheet 6 pts / 15.28  -  store 6 pts / 19.78
+02:46:43   DIFFERENCE: Save $5.00 on Renew Targeted Eczema Treatment 2-Pack!: sheet 4 pts / 9.48  -  store 4 pts / 11.78
+02:47:00 lab: emptied the cart again: 28 lines
+
+
+############################## SUMMARY
+--- tab 1 rc=0
+     02:28:27 sign-in attempt 1 failed: the sign-in form did not appear (page: https://www.melaleuca.com/cart)
+     02:28:59 signed in as David H | plan: 46 lines, TOTAL points 143.0 cost 403.6
+     02:30:58   could not read page of item 33022 Page.evaluate: TypeError: Failed to fetch
+     02:31:19   could not read page of item 3620 Page.evaluate: TypeError: Failed to fetch
+     02:31:24   could not read page of item 3634 Page.evaluate: TypeError: Failed to fetch
+     02:31:53   could not read page of item 39172 Page.evaluate: TypeError: Failed to fetch
+     02:32:03   could not read page of item 39176 Page.evaluate: TypeError: Failed to fetch
+     02:32:43   PROBLEM: group WIPES5: no choice found for 'Ecosense - Sol-U-Guard Wipes' (4056)
+     02:32:43   PROBLEM: group WIPES5: no choice found for 'Ecosense - Sol-U-Guard Wipes' (4056)
+     02:32:43   PROBLEM: group WIPES5: no choice found for 'Ecosense - Tough and Tender Wipes' (4074)
+     02:32:55   COUPON NOT ON THIS ACCOUNT: 'Renew - Body Wash 12oz' - the sheet counts it at the coupon price (5 pts / 12.98), the store charges the normal price (run Scan Account Offers, then Generate All Orders, so the builder knows
+     02:33:21   could not read page of item 79015 Page.evaluate: TypeError: Failed to fetch
+     02:33:26   could not read page of item 6833 Page.evaluate: TypeError: Failed to fetch
+     02:33:30   could not read page of item 34050 Page.evaluate: TypeError: Failed to fetch
+     02:33:31        ["store said: {'Success': True, 'ErrorMessages': [], 'Data': {'Item': {'Details': {'Accessories': [{'Sku': '924', 'Configurations': [], 'Title': 'Reusable Laundry Pump', 'Category': None, 'Description': 'This sturd
+     02:33:35   could not read page of item 49096 Page.evaluate: TypeError: Failed to fetch
+     02:33:40   could not read page of item 49635 Page.evaluate: TypeError: Failed to fetch
+     02:33:45   could not read page of item 49677 Page.evaluate: TypeError: Failed to fetch
+     02:33:46   CREDIT PROBLEM: Credit 2 (row 26): the store did not accept it: {'Success': True, 'ErrorMessages': [], 'Data': {'linesResults': [{'sku': '5509', 'lineType': 'LSD', 'lineId': 5, 'validationItems': [{'messageCode': 'NotLS
+     02:33:46 RESULT  : points MATCH | cost DIFFER by +101.32
+     02:33:46   DIFFERENCE: Ecosense - Clean And Gleam - 8oz: sheet 3 pts / 6.99  -  store 3 pts / 9.49
+     02:33:46   DIFFERENCE: 2-pack: Ecosense - PreSpot - 8oz: sheet 5 pts / 12.98  -  store 5 pts / 17.23
+     02:33:46   DIFFERENCE: 3-pack: Ecosense - Prespot Instant Stain Remover: sheet 2 pts / 6.77  -  store 2 pts / 8.57
+     02:33:46   DIFFERENCE: Haircare - Affinia Volume Conditioner: sheet 4 pts / 8.49  -  store 4 pts / 10.99
+     02:33:46   DIFFERENCE: Haircare - Sei Bella Argan Oil and Coconut Shampoo: sheet 10 pts / 20.00  -  store 10 pts / 26.00
+     02:33:46   DIFFERENCE: Renew - Body Wash 12oz: sheet 5 pts / 12.98  -  store 12 pts / 28.58
+     02:33:46   DIFFERENCE: Renew - Lotion - 1oz - Pure Lavender: sheet 1 pts / 2.29  -  store 1 pts / 2.99
+     02:33:46   DIFFERENCE: Renew - Lotion - 8oz: sheet 0 pts / 10.29  -  store 0 pts / 13.29
+     02:33:46   DIFFERENCE: DEOD pack 1/1: finia Sweet Cream and Willow, nia Vanilla Musk and Jasm: sheet 4 pts / 14.37  -  store 4 pts / 17.99
+     02:33:46   DIFFERENCE: CLEAN pack 1/1: Ecosense - Mela-magic - 16oz, Ecosense - No Work - 8oz: sheet 10 pts / 31.54  -  store 10 pts / 42.54
+     02:33:46   DIFFERENCE: WIPES5 pack 1/1: Ecosense - Sol-U-Guard Wipes, ar Power Glass Cleaner : sheet 8 pts / 22.30  -  store 8 pts / 30.35
+     02:33:46   DIFFERENCE: RINSEG pack 1/1: EcoSense - Rinse Aid - 16oz, e - Diamond Brite - 25 L: sheet 5 pts / 13.68  -  store 5 pts / 18.19
+     02:33:46   DIFFERENCE: F252 pack 1/1: Brite - 16oz - Apple Scented, Brite - 16oz - Lemon Scen: sheet 5 pts / 12.42  -  store 5 pts / 16.97
+     02:33:46   DIFFERENCE: PSGEL2 pack 1/1: Prespot with Scrubbing Brush: sheet 3 pts / 7.38  -  store 4 pts / 10.13
+     02:33:46   DIFFERENCE: SGD2 pack 1/1: Ecosense - Sol U Guard: sheet 10 pts / 20.78  -  store 10 pts / 26.78
+     02:33:46   DIFFERENCE: KPB2 pack 1/1: Koala Pals - Body Wash, Koala Pals - Hair Wash: sheet 5 pts / 10.38  -  store 5 pts / 12.39
+     02:33:46   DIFFERENCE: F264 pack 1/1:  - MelaBoost - Island Breeze,  MelaBoost - Garden Laven: sheet 8 pts / 21.98  -  store 8 pts / 27.98
+     02:33:46   DIFFERENCE: MB9X2 pack 1/1: undry - Melabrite - 96 loads: sheet 14 pts / 29.48  -  store 14 pts / 39.39
+     02:33:46   DIFFERENCE: F296 pack 1/1: laSoft Bottle - Clean Cotton, oft Bottle - Garden Laven: sheet 9 pts / 23.18  -  store 9 pts / 29.78
+     02:33:46   DIFFERENCE: F298 pack 1/1:  Dryer Sheets - Clean Cotton, yer Sheets - Garden Laven: sheet 5 pts / 11.98  -  store 5 pts / 15.63
+     02:33:46   DIFFERENCE: F650 pack 1/1: des - Lip Balm - Pina Colada, p Balm - Cranberry Tanger: sheet 2 pts / 6.57  -  store 2 pts / 8.77
+     02:33:46   DIFFERENCE: TOOTH pack 1/1:  - Koala Pals - Berrylicious, hcare - Classic - Fresh : sheet 5 pts / 12.77  -  store 5 pts / 15.82
+     02:33:46   DIFFERENCE: Save $4.00 on Sei Bella The Basic Collection Gentle Daily Cleanser!: sheet 2 pts / 7.50  -  store 2 pts / 9.00
+     02:33:46   DIFFERENCE: Buy one Safe & Mighty, get one for $3.74!: sheet 3 pts / 9.18  -  store 3 pts / 12.13
+     02:33:46   DIFFERENCE: Save $12.00 on MelaPower Laundry Detergent 2-Pack!: NOT ADDED (store said: {'Success': True, 'ErrorMessages': [], 'Data': {'Item': {'Details': {'Accessories': [{'Sku': '924', 'Configurations': [], 'Title': '
+     02:33:46   DIFFERENCE: Buy one Pain-A-Trate Ultra, get one for $2.99!: sheet 6 pts / 15.28  -  store 6 pts / 19.78
+     02:33:46   DIFFERENCE: Save $5.00 on Renew Targeted Eczema Treatment 2-Pack!: sheet 4 pts / 9.48  -  store 4 pts / 11.78
+     02:33:46   DIFFERENCE: Save $11.00 on Renew Hand Wash Refill 2-Pack!: sheet 7 pts / 16.58  -  store 7 pts / 22.38
+     02:33:47   AUTO-ADJUSTED: Renew - Body Wash 12oz: quantity 2 -> 1 (the store gives it 6 points per unit; the sheet expected a coupon price)
+     02:33:58 lab: emptied the cart again: 29 lines
+--- tab 2 rc=0
+     02:34:30 sign-in attempt 1 failed: Page.goto: net::ERR_TIMED_OUT at https://www.melaleuca.com/cart
+     02:35:05 sign-in attempt 2 failed: Page.goto: net::ERR_TIMED_OUT at https://www.melaleuca.com/cart
+     02:35:39 signed in as Liliana O | plan: 41 lines, TOTAL points 145.0 cost 391.80999999999995
+     02:35:51   could not read page of item 5018 Page.evaluate: TypeError: Failed to fetch
+     02:35:56   could not read page of item 33022 Page.evaluate: TypeError: Failed to fetch
+     02:36:23   could not read page of item 108 Page.evaluate: TypeError: Failed to fetch
+     02:36:29   could not read page of item 3620 Page.evaluate: TypeError: Failed to fetch
+     02:36:34   could not read page of item 3634 Page.evaluate: TypeError: Failed to fetch
+     02:36:51   could not read page of item 39176 Page.evaluate: TypeError: Failed to fetch
+     02:37:03   COUPON NOT ON THIS ACCOUNT: 'Renew - Body Wash 12oz' - the sheet counts it at the coupon price (5 pts / 12.98), the store charges the normal price (run Scan Account Offers, then Generate All Orders, so the builder knows
+     02:37:31   could not read page of item 79015 Page.evaluate: TypeError: Failed to fetch
+     02:37:37   could not read page of item 6833 Page.evaluate: TypeError: Failed to fetch
+     02:37:42   could not read page of item 8194 Page.evaluate: TypeError: Failed to fetch
+     02:37:48   could not read page of item 34050 Page.evaluate: TypeError: Failed to fetch
+     02:37:48        ["store said: {'Success': True, 'ErrorMessages': [], 'Data': {'Item': {'Details': {'Accessories': [{'Sku': '924', 'Configurations': [], 'Title': 'Reusable Laundry Pump', 'Category': None, 'Description': 'This sturd
+     02:37:53   could not read page of item 49096 Page.evaluate: TypeError: Failed to fetch
+     02:37:59   could not read page of item 49635 Page.evaluate: TypeError: Failed to fetch
+     02:38:04   could not read page of item 49677 Page.evaluate: TypeError: Failed to fetch
+     02:38:06 RESULT  : points MATCH | cost DIFFER by +98.30
+     02:38:06   DIFFERENCE: Ecosense - Clean And Gleam - 8oz: sheet 3 pts / 6.99  -  store 3 pts / 9.49
+     02:38:06   DIFFERENCE: 2-pack: Ecosense - Diamond Brite - 25 Loads: sheet 7 pts / 15.38  -  store 7 pts / 20.48
+     02:38:06   DIFFERENCE: 2-pack: Ecosense - PreSpot - 8oz: sheet 5 pts / 12.98  -  store 5 pts / 17.23
+     02:38:06   DIFFERENCE: 3-pack: Ecosense - Prespot Instant Stain Remover: sheet 2 pts / 6.77  -  store 2 pts / 8.57
+     02:38:06   DIFFERENCE: Ecosense - Tough and Tender - 8oz: sheet 3 pts / 6.99  -  store 3 pts / 9.49
+     02:38:06   DIFFERENCE: Haircare - Affinia Moisture Shampoo: sheet 4 pts / 8.49  -  store 4 pts / 10.99
+     02:38:06   DIFFERENCE: Haircare - Sei Bella Argan Oil and Coconut Conditioner: sheet 0 pts / 20.00  -  store 0 pts / 26.00
+     02:38:06   DIFFERENCE: Renew - Bath Oil: sheet 0 pts / 9.59  -  store 0 pts / 12.49
+     02:38:06   DIFFERENCE: Renew - Body Wash 12oz: sheet 5 pts / 12.98  -  store 12 pts / 28.58
+     02:38:06   DIFFERENCE: Renew - Lotion - 1oz - Pure Lavender: sheet 1 pts / 2.29  -  store 1 pts / 2.99
+     02:38:06   DIFFERENCE: Renew - Lotion - 20oz: sheet 10 pts / 16.99  -  store 10 pts / 22.29
+     02:38:06   DIFFERENCE: DEOD pack 1/1: finia Sweet Cream and Willow, nia Vanilla Musk and Jasm: sheet 4 pts / 14.37  -  store 4 pts / 17.99
+     02:38:06   DIFFERENCE: CLEAN pack 1/1: Ecosense - Mela-magic - 16oz, Ecosense - No Work - 8oz: sheet 7 pts / 17.97  -  store 7 pts / 24.47
+     02:38:06   DIFFERENCE: F252 pack 1/1: Brite - 16oz - Apple Scented, Brite - 16oz - Lemon Scen: sheet 5 pts / 12.42  -  store 5 pts / 16.97
+     02:38:06   DIFFERENCE: PSGEL2 pack 1/1: Prespot with Scrubbing Brush: sheet 3 pts / 7.38  -  store 4 pts / 10.13
+     02:38:06   DIFFERENCE: SGD2 pack 1/1: Ecosense - Sol U Guard: sheet 10 pts / 20.78  -  store 10 pts / 26.78
+     02:38:06   DIFFERENCE: F264 pack 1/1:  MelaBoost - Garden Lavender, - MelaBoost - Mountain Fr: sheet 8 pts / 21.98  -  store 8 pts / 27.98
+     02:38:06   DIFFERENCE: MB9X2 pack 1/1: undry - Melabrite - 96 loads: sheet 14 pts / 29.48  -  store 14 pts / 39.39
+     02:38:06   DIFFERENCE: F296 pack 1/1: aSoft Bottle - Spring Breeze, oft Bottle - Garden Laven: sheet 9 pts / 23.18  -  store 9 pts / 29.78
+     02:38:06   DIFFERENCE: F298 pack 1/1:  Dryer Sheets - Clean Cotton, yer Sheets - Garden Laven: sheet 5 pts / 11.98  -  store 5 pts / 15.63
+     02:38:06   DIFFERENCE: F650 pack 1/1: des - Lip Balm - Pina Colada, p Balm - Cranberry Tanger: sheet 2 pts / 6.57  -  store 2 pts / 8.77
+     02:38:06   DIFFERENCE: TOOTH pack 1/1: oothcare - Exceed - Cinnamon, othcare - Koala Pals - A: sheet 5 pts / 12.77  -  store 5 pts / 15.82
+     02:38:06   DIFFERENCE: Save $4.00 on Sei Bella The Basic Collection Gentle Daily Cleanser!: sheet 2 pts / 7.50  -  store 2 pts / 9.00
+     02:38:06   DIFFERENCE: Buy one Safe & Mighty, get one for $3.74!: sheet 3 pts / 9.18  -  store 3 pts / 12.13
+     02:38:06   DIFFERENCE: Buy one Tub & Tile Bathroom Cleaner, get one for $3.24!: sheet 3 pts / 9.48  -  store 3 pts / 12.73
+     02:38:06   DIFFERENCE: Save $12.00 on MelaPower Laundry Detergent 2-Pack!: NOT ADDED (store said: {'Success': True, 'ErrorMessages': [], 'Data': {'Item': {'Details': {'Accessories': [{'Sku': '924', 'Configurations': [], 'Title': '
+     02:38:06   DIFFERENCE: Buy one Pain-A-Trate Ultra, get one for $2.99!: sheet 6 pts / 15.28  -  store 6 pts / 19.78
+     02:38:06   DIFFERENCE: Save $5.00 on Renew Targeted Eczema Treatment 2-Pack!: sheet 4 pts / 9.48  -  store 4 pts / 11.78
+     02:38:06   DIFFERENCE: Save $11.00 on Renew Hand Wash Refill 2-Pack!: sheet 7 pts / 16.58  -  store 7 pts / 22.38
+     02:38:21 lab: emptied the cart again: 28 lines
+--- tab 3 rc=0
+     02:38:54 sign-in attempt 1 failed: Page.goto: net::ERR_TIMED_OUT at https://www.melaleuca.com/cart
+     02:39:26 signed in as Liliana C | plan: 42 lines, TOTAL points 145.0 cost 390.38000000000005
+     02:39:35   could not read page of item 5018 Page.evaluate: TypeError: Failed to fetch
+     02:39:44   could not read page of item 33022 Page.evaluate: TypeError: Failed to fetch
+     02:39:49   could not read page of item 30085 Page.evaluate: TypeError: Failed to fetch
+     02:40:16   could not read page of item 3620 Page.evaluate: TypeError: Failed to fetch
+     02:40:21   could not read page of item 6196 Page.evaluate: TypeError: Failed to fetch
+     02:40:38   COUPON NOT ON THIS ACCOUNT: 'Renew - Body Wash 12oz' - the sheet counts it at the coupon price (5 pts / 12.98), the store charges the normal price (run Scan Account Offers, then Generate All Orders, so the builder knows
+     02:41:02   could not read page of item 6833 Page.evaluate: TypeError: Failed to fetch
+     02:41:07   could not read page of item 34050 Page.evaluate: TypeError: Failed to fetch
+     02:41:07        ["store said: {'Success': True, 'ErrorMessages': [], 'Data': {'Item': {'Details': {'Accessories': [{'Sku': '924', 'Configurations': [], 'Title': 'Reusable Laundry Pump', 'Category': None, 'Description': 'This sturd
+     02:41:11   could not read page of item 49096 Page.evaluate: TypeError: Failed to fetch
+     02:41:16   could not read page of item 49635 Page.evaluate: TypeError: Failed to fetch
+     02:41:17 RESULT  : points DIFFER by -1 | cost DIFFER by +97.67
+     02:41:17   DIFFERENCE: Ecosense - Clean And Gleam - 8oz: sheet 3 pts / 6.99  -  store 3 pts / 9.49
+     02:41:17   DIFFERENCE: 2-pack: Ecosense - Diamond Brite - 25 Loads: sheet 7 pts / 15.38  -  store 7 pts / 20.48
+     02:41:17   DIFFERENCE: Ecosense - Prespot - 8oz with Bottle + PreSpot? 4x Mixing Spray Bottle: sheet 0 pts / 8.78  -  store 0 pts / 11.78
+     02:41:17   DIFFERENCE: 3-pack: Ecosense - Prespot Instant Stain Remover: sheet 2 pts / 6.77  -  store 2 pts / 8.57
+     02:41:17   DIFFERENCE: Ecosense - Prespot with Scrubbing Brush: sheet 2 pts / 4.19  -  store 2 pts / 5.69
+     02:41:17   DIFFERENCE: Ecosense - Revive - Original with Bottle: sheet 3 pts / 7.68  -  store 3 pts / 10.23
+     02:41:17   DIFFERENCE: Ecosense - Sol-U-Mel - Original - 8oz: sheet 5 pts / 11.99  -  store 5 pts / 15.29
+     02:41:17   DIFFERENCE: Ecosense - Tough and Tender - 8oz: sheet 3 pts / 6.99  -  store 3 pts / 9.49
+     02:41:17   DIFFERENCE: Haircare - Original Shampoo - 32oz: sheet 0 pts / 17.49  -  store 0 pts / 22.29
+     02:41:17   DIFFERENCE: Renew - Body Wash 12oz: sheet 5 pts / 12.98  -  store 12 pts / 28.58
+     02:41:17   DIFFERENCE: Renew - Lotion - 20oz: sheet 10 pts / 16.99  -  store 10 pts / 22.29
+     02:41:17   DIFFERENCE: 2-pack: Toothcare - Breath-Away Mouth Rinse - 16oz: sheet 6 pts / 14.18  -  store 6 pts / 18.80
+     02:41:17   DIFFERENCE: DEOD pack 1/1: finia Sweet Cream and Willow, nia Vanilla Musk and Jasm: sheet 4 pts / 14.37  -  store 4 pts / 17.99
+     02:41:17   DIFFERENCE: CLEAN pack 1/1: Ecosense - Mela-magic - 16oz, Ecosense - No Work - 8oz: sheet 10 pts / 31.54  -  store 10 pts / 42.54
+     02:41:17   DIFFERENCE: F252 pack 1/1: Brite - 16oz - Apple Scented, Brite - 16oz - Lemon Scen: sheet 5 pts / 12.42  -  store 5 pts / 16.97
+     02:41:17   DIFFERENCE: SGD2 pack 1/1: Ecosense - Sol U Guard: sheet 10 pts / 20.78  -  store 10 pts / 26.78
+     02:41:17   DIFFERENCE: AFFSC pack 1/1: Affinia Moisture Conditioner, e - Affinia Moisture Sha: sheet 6 pts / 14.98  -  store 6 pts / 19.73
+     02:41:17   DIFFERENCE: F264 pack 1/1:  - MelaBoost - Island Breeze,  MelaBoost - Garden Laven: sheet 8 pts / 21.98  -  store 8 pts / 27.98
+     02:41:17   DIFFERENCE: MB9X2 pack 1/1: undry - Melabrite - 96 loads: sheet 14 pts / 29.48  -  store 14 pts / 39.39
+     02:41:17   DIFFERENCE: F296 pack 1/1: laSoft Bottle - Clean Cotton, oft Bottle - Garden Laven: sheet 9 pts / 23.18  -  store 9 pts / 29.78
+     02:41:17   DIFFERENCE: F298 pack 1/1:  Dryer Sheets - Clean Cotton, ft Dryer Sheets - Scent F: sheet 5 pts / 11.98  -  store 5 pts / 15.63
+     02:41:17   DIFFERENCE: F650 pack 1/1: des - Lip Balm - Pina Colada, p Balm - Cranberry Tanger: sheet 2 pts / 6.57  -  store 2 pts / 8.77
+     02:41:17   DIFFERENCE: TOOTH pack 1/1:  - Koala Pals - Berrylicious, ed - Spearmint with Fluo: sheet 5 pts / 12.77  -  store 5 pts / 15.82
+     02:41:17   DIFFERENCE: Buy one Safe & Mighty, get one for $3.74!: sheet 3 pts / 9.18  -  store 3 pts / 12.13
+     02:41:17   DIFFERENCE: Save $12.00 on MelaPower Laundry Detergent 2-Pack!: NOT ADDED (store said: {'Success': True, 'ErrorMessages': [], 'Data': {'Item': {'Details': {'Accessories': [{'Sku': '924', 'Configurations': [], 'Title': '
+     02:41:17   DIFFERENCE: Buy one Pain-A-Trate Ultra, get one for $2.99!: sheet 6 pts / 15.28  -  store 6 pts / 19.78
+     02:41:17   DIFFERENCE: Save $5.00 on Renew Targeted Eczema Treatment 2-Pack!: sheet 4 pts / 9.48  -  store 4 pts / 11.78
+     02:41:33 lab: emptied the cart again: 29 lines
+--- tab 4 rc=1
+     02:42:09 sign-in attempt 1 failed: the sign-in form did not appear (page: https://www.melaleuca.com/cart)
+     02:42:31 sign-in attempt 2 failed: Page.goto: net::ERR_TUNNEL_CONNECTION_FAILED at https://www.melaleuca.com/account?sc_lang=en-US
+     02:43:11 signed in as Marcos F | plan: 44 lines, TOTAL points 147.0 cost 396.59999999999997
+     02:43:27   could not read page of item 70338 Page.evaluate: TypeError: Failed to fetch
+     02:44:14   could not read page of item 5018 Page.evaluate: TypeError: Failed to fetch
+     02:44:15   could not read page of item 33022 Page.goto: net::ERR_TUNNEL_CONNECTION_FAILED at https://www.melaleuca.com/produc
+     02:44:15   variant: Haircare - Herbal Shampoo - 32oz (R1729H) -> NOT RESOLVED: family 1729 not found in the store
+     02:44:16   could not read page of item 3620 Page.goto: net::ERR_TUNNEL_CONNECTION_FAILED at https://www.melaleuca.com/produc
+     02:44:16   could not read page of item 3748 Page.goto: net::ERR_TUNNEL_CONNECTION_FAILED at https://www.melaleuca.com/produc
+     02:44:16   variant: Renew - Lotion - 1oz (manual) -> NOT RESOLVED: no store product costs 2.09 with 1 points
+     02:44:17   could not read page of item 6196 Page.goto: net::ERR_TUNNEL_CONNECTION_FAILED at https://www.melaleuca.com/produc
+     02:44:17   could not read page of item 34913 Page.goto: net::ERR_TUNNEL_CONNECTION_FAILED at https://www.melaleuca.com/produc
+     02:44:18   could not read page of item 1151 Page.goto: net::ERR_TUNNEL_CONNECTION_FAILED at https://www.melaleuca.com/produc
+     02:44:18   PROBLEM: row 24 B008HVD8IK: no item number for 'Haircare - Herbal Shampoo - 32oz' (sheet has 'R1729H') - add this one by hand
+     02:44:18   PROBLEM: row 38 B00P1G0H24: no item number for 'Renew - Lotion - 1oz' (sheet has 'manual') - add this one by hand
+     02:44:18   could not read the coupons box: Page.goto: net::ERR_TUNNEL_CONNECTION_FAILED at https://www.melaleuca.com/cart?sc_lang=en-US
+     02:44:18   COUPON NOT ON THIS ACCOUNT: 'Renew - Body Wash 12oz' - the sheet counts it at the coupon price (5 pts / 12.98), the store charges the normal price (run Scan Account Offers, then Generate All Orders, so the builder knows
+     02:44:19 LAB CLEANUP PROBLEM - empty the cart of the test account by hand: Page.evaluate: TypeError: Failed to fetch
+     Traceback (most recent call last):
+     playwright._impl._errors.Error: Page.evaluate: Execution context was destroyed, most likely because of a navigation
+--- tab 5 rc=0
+     02:44:52 signed in as Alexandra S | plan: 41 lines, TOTAL points 146.0 cost 391.46
+     02:45:02   could not read page of item 70338 Page.evaluate: TypeError: Failed to fetch
+     02:45:08   could not read page of item 5018 Page.evaluate: TypeError: Failed to fetch
+     02:45:14   could not read page of item 33022 Page.evaluate: TypeError: Failed to fetch
+     02:45:28   variant: Oil - T36-C5-0.5 fl.oz. (manual) -> NOT RESOLVED: no store product costs 8.75 with 4 points
+     02:45:34   could not read page of item 3634 Page.evaluate: TypeError: Failed to fetch
+     02:45:40   could not read page of item 6196 Page.evaluate: TypeError: Failed to fetch
+     02:45:45   PROBLEM: row 34 B0FKZLVY7B: no item number for 'Oil - T36-C5-0.5 fl.oz.' (sheet has 'manual') - add this one by hand
+     02:46:14   could not read page of item 79015 Page.evaluate: TypeError: Failed to fetch
+     02:46:19   could not read page of item 6833 Page.evaluate: TypeError: Failed to fetch
+     02:46:25   could not read page of item 8194 Page.evaluate: TypeError: Failed to fetch
+     02:46:31   could not read page of item 34050 Page.evaluate: TypeError: Failed to fetch
+     02:46:31        ["store said: {'Success': True, 'ErrorMessages': [], 'Data': {'Item': {'Details': {'Accessories': [{'Sku': '924', 'Configurations': [], 'Title': 'Reusable Laundry Pump', 'Category': None, 'Description': 'This sturd
+     02:46:36   could not read page of item 49096 Page.evaluate: TypeError: Failed to fetch
+     02:46:41   could not read page of item 49635 Page.evaluate: TypeError: Failed to fetch
+     02:46:42   CREDIT PROBLEM: Credit 1 (row 34): the product is not in the cart
+     02:46:43 RESULT  : points DIFFER by -12 | cost DIFFER by +73.28
+     02:46:43   DIFFERENCE: Beauty - Sei Bella Facial Scrub: sheet 3 pts / 6.50  -  store 3 pts / 8.00
+     02:46:43   DIFFERENCE: Ecosense - Clean And Gleam - 8oz: sheet 3 pts / 6.99  -  store 3 pts / 9.49
+     02:46:43   DIFFERENCE: 2-pack: Ecosense - Diamond Brite - 25 Loads: sheet 7 pts / 15.38  -  store 7 pts / 20.48
+     02:46:43   DIFFERENCE: 2-pack: Ecosense - PreSpot - 8oz: sheet 5 pts / 12.98  -  store 5 pts / 17.23
+     02:46:43   DIFFERENCE: 3-pack: Ecosense - Prespot Instant Stain Remover: sheet 2 pts / 6.77  -  store 2 pts / 8.57
+     02:46:43   DIFFERENCE: Ecosense - Revive - Original with Bottle: sheet 3 pts / 7.68  -  store 3 pts / 10.23
+     02:46:43   DIFFERENCE: Haircare - Affinia Volume Shampoo: sheet 4 pts / 8.49  -  store 4 pts / 10.99
+     02:46:43   DIFFERENCE: Haircare - Herbal Shampoo - 8oz: sheet 4 pts / 7.89  -  store 4 pts / 10.69
+     02:46:43   DIFFERENCE: Haircare - Sei Bella Argan Oil and Coconut Conditioner: sheet 0 pts / 20.00  -  store 0 pts / 26.00
+     02:46:43   DIFFERENCE: Renew - Lotion - 1oz - Pure Lavender: sheet 1 pts / 2.29  -  store 1 pts / 2.99
+     02:46:43   DIFFERENCE: 2-pack: Toothcare - Breath-Away Mouth Rinse - 16oz: sheet 6 pts / 14.18  -  store 6 pts / 18.80
+     02:46:43   DIFFERENCE: DEOD pack 1/1: finia Sweet Cream and Willow, nia Vanilla Musk and Jasm: sheet 4 pts / 14.37  -  store 4 pts / 17.99
+     02:46:43   DIFFERENCE: CLEAN pack 1/1: Ecosense - Mela-magic - 16oz, Ecosense - No Work - 8oz: sheet 7 pts / 17.97  -  store 7 pts / 24.47
+     02:46:43   DIFFERENCE: F252 pack 1/1: Brite - 16oz - Apple Scented, Brite - 16oz - Lemon Scen: sheet 5 pts / 12.42  -  store 5 pts / 16.97
+     02:46:43   DIFFERENCE: SGD2 pack 1/1: Ecosense - Sol U Guard: sheet 10 pts / 20.78  -  store 10 pts / 26.78
+     02:46:43   DIFFERENCE: KPB2 pack 1/1: Koala Pals - Hair Wash: sheet 5 pts / 10.38  -  store 5 pts / 12.39
+     02:46:43   DIFFERENCE: F264 pack 1/1:  MelaBoost - Garden Lavender, - MelaBoost - Mountain Fr: sheet 8 pts / 21.98  -  store 8 pts / 27.98
+     02:46:43   DIFFERENCE: MB9X2 pack 1/1: undry - Melabrite - 96 loads: sheet 14 pts / 29.48  -  store 14 pts / 39.39
+     02:46:43   DIFFERENCE: F296 pack 1/1: laSoft Bottle - Clean Cotton: sheet 9 pts / 23.18  -  store 9 pts / 29.78
+     02:46:43   DIFFERENCE: F298 pack 1/1:  Dryer Sheets - Clean Cotton, ft Dryer Sheets - Scent F: sheet 5 pts / 11.98  -  store 5 pts / 15.63
+     02:46:43   DIFFERENCE: GEL pack 1/1: Pharmacy - MelaGel .4oz Disk: sheet 8 pts / 14.78  -  store 8 pts / 19.88
+     02:46:43   DIFFERENCE: F650 pack 1/1: des - Lip Balm - Pina Colada, p Balm - Cranberry Tanger: sheet 2 pts / 6.57  -  store 2 pts / 8.77
+     02:46:43   DIFFERENCE: TOOTH pack 1/1:  - Koala Pals - Berrylicious, ed - Spearmint with Fluo: sheet 5 pts / 12.77  -  store 5 pts / 15.82
+     02:46:43   DIFFERENCE: Save $4.00 on Sei Bella The Basic Collection Gentle Daily Cleanser!: sheet 2 pts / 7.50  -  store 2 pts / 9.00
+     02:46:43   DIFFERENCE: Buy one Safe & Mighty, get one for $3.74!: sheet 3 pts / 9.18  -  store 3 pts / 12.13
+     02:46:43   DIFFERENCE: Buy one Tub & Tile Bathroom Cleaner, get one for $3.24!: sheet 3 pts / 9.48  -  store 3 pts / 12.73
+     02:46:43   DIFFERENCE: Save $12.00 on MelaPower Laundry Detergent 2-Pack!: NOT ADDED (store said: {'Success': True, 'ErrorMessages': [], 'Data': {'Item': {'Details': {'Accessories': [{'Sku': '924', 'Configurations': [], 'Title': '
+     02:46:43   DIFFERENCE: Buy one Pain-A-Trate Ultra, get one for $2.99!: sheet 6 pts / 15.28  -  store 6 pts / 19.78
+     02:46:43   DIFFERENCE: Save $5.00 on Renew Targeted Eczema Treatment 2-Pack!: sheet 4 pts / 9.48  -  store 4 pts / 11.78
+     02:47:00 lab: emptied the cart again: 28 lines
