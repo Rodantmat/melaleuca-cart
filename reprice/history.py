@@ -62,6 +62,8 @@ def main():
     for k, (s, e) in enumerate(wins):
         recent = k >= len(wins) - 2
         for kind, fn in (("orders", pull_orders), ("ledger", pull_ledger)):
+            if kind == "ledger" and k < len(wins) - 12:      # the ledger only reaches back about a year
+                continue
             path = os.path.join(STATE, "%s_%s.tsv" % (kind, s.strftime("%Y-%m")))
             if os.path.exists(path) and not recent:
                 continue

@@ -88,7 +88,18 @@ def report(c, rtype, start=None, end=None, options=None, wait_minutes=45):
     if start: body["dataStartTime"] = start
     if end: body["dataEndTime"] = end
     if options: body["reportOptions"] = options
-    rid = call(c, "POST", "/reports/2021-06-30/reports", body=body)["reportId"]
+    rid = None
+    for k in range(14):                     # createReport allows ~1 request per minute: wait and retry instead of failing
+        try:
+            rid = call(c, "POST", "/reports/2021-06-30/reports", body=body, tries=2, quiet=True)["reportId"]
+            break
+        except SpError as e:
+            if e.code != 429:
+                raise
+            time.sleep(75)
+    if not rid:
+        return "QUOTA", ""
+    time.sleep(20)
     t0 = time.time()
     while time.time() - t0 < wait_minutes * 60:
         r = call(c, "GET", "/reports/2021-06-30/reports/" + rid, quiet=True)
