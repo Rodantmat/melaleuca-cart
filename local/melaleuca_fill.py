@@ -802,7 +802,7 @@ def run(n, dry=False, lab=False, final=True):
                     if best[1] is not None and best[0] >= 0.5:
                         coupon_use.append((L, best[1], cards[best[1]]))
                     else:
-                        msg = "COUPON NOT ON THIS ACCOUNT: '%s' - the sheet counts it at the coupon price (%.0f pts / %.2f), the store charges the normal price. Clear its Discount Type on the Melaleuca tab and generate the orders again." % (L["name"], L["pts"], L["ws"])
+                        msg = "COUPON NOT ON THIS ACCOUNT: '%s' - the sheet counts it at the coupon price (%.0f pts / %.2f), the store charges the normal price (run Scan Account Offers, then Generate All Orders, so the builder knows this account's coupons)." % (L["name"], L["pts"], L["ws"])
                         say("  " + msg)
                         problems.append(msg)
                 notes = [n_ for n_ in notes if "coupon line" not in n_]          # the coupon lines are handled here (added from the coupons box, or reported above)
