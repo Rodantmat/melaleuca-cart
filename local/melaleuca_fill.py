@@ -826,22 +826,22 @@ def run(n, dry=False, lab=False, final=True):
         log(t)
     with sync_playwright() as p:
         s = None
-        bad_seen = False
-        for attempt in range(1, 6):
+        bad_n = 0
+        for attempt in range(1, 9):
             try:
                 a2 = dict(acct, geo_level=0 if attempt <= 2 else 1, channel_override=(None if attempt % 2 else "chromium"))
                 s = ms.Session(p, a2, an, cfg, port if attempt == 1 else (10000 + an + 100 * attempt))
                 s.login()
                 break
             except ms.BadLogin:
-                if not bad_seen:                  # the store sometimes refuses a right password once (a human check in disguise): ONE more try on a new IP
-                    bad_seen = True
-                    log("sign-in refused - trying once more on a fresh connection (the same account signs in fine at other times)")
+                bad_n += 1
+                if bad_n <= 4 and attempt < 8:       # like the offers scan: the store often answers "Invalid Username or Password" to an IP / browser it does not like (a human check in disguise) -> new IP, other browser, longer pause
+                    log("sign-in refused (%d of 4) - trying again on a fresh connection and browser (the same account signs in fine at other times)" % bad_n)
                     try:
                         s.close()
                     except Exception:
                         pass
-                    time.sleep(20)
+                    time.sleep(15 + 15 * bad_n)
                     continue
                 u_, w_ = str(acct.get("user", "")), str(acct.get("pass", ""))
                 mask = lambda x: (x[:2] + "*" * max(0, len(x) - 4) + x[-2:]) if len(x) > 4 else "*" * len(x)
@@ -857,7 +857,7 @@ def run(n, dry=False, lab=False, final=True):
                     print("   WARNING: the user name / password contains " + ", ".join(odd))
                 print("   Check the lines MELA_USER_%d= and MELA_PASS_%d= in C:\\AmazonFeed\\credentials.env" % (an, an))
                 print("   (tab %d must be the %s coloured tab from the left; Antonio M is 7)." % (an, an))
-                print("   Test: sign in at melaleuca.com by hand with exactly these values. It was tried twice, then stopped (more wrong tries can lock the account).")
+                print("   Test: sign in at melaleuca.com by hand with exactly these values. It was tried on several fresh connections, then stopped.")
                 print("=" * 78)
                 raise
             except Exception as e:
