@@ -110,23 +110,10 @@ def match_offer(title, rows):
 
 
 def match_coupon(desc, rows):
-    """products of the sheet a coupon belongs to: the strict offer match, plus rows whose product segment ('Toothcare - Exceed - Cinnamon' -> Exceed) is named in the coupon"""
-    out = list(match_offer(desc, rows))
-    if out:
-        return out                                            # the strict match is decisive
-    have = set()
-    ct = set(norm(product_phrase(desc)))
-    for r in rows:
-        if r["row"] in have:
-            continue
-        segs = [x.strip() for x in r["name"].split(" - ")]
-        if len(segs) < 2:
-            continue
-        key = [t for t in norm(segs[1]) if not re.match(r"^\d+(oz|ml|g|lb)?$", t)]
-        if key and all(t in ct for t in key):
-            out.append(r)
-            have.add(r["row"])
-    return out
+    """products of the sheet a coupon belongs to. STRICT: every word of the coupon's product must be in the sheet's product name
+    ('Alloy 3-in-1 Hair & Body Wash' is NOT 'Renew - Body Wash'). A coupon that is missed only makes the sheet plan the normal price,
+    which is what the store charges when the account has no coupon - a coupon matched by mistake would keep a price the store does not give."""
+    return list(match_offer(desc, rows))
 
 
 def map_account(acct, rows, omap):
