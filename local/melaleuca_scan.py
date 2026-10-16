@@ -384,6 +384,26 @@ def scan_account(p, acct, idx, cfg, port=None):
             res["coupons_text"] = s.page.inner_text("body")[:6000].split("Your Coupons", 1)[-1][:2500]
         except Exception:
             res["coupons_text"] = ""
+        # the coupons this account really has (None = could not be read; [] = the account has none)
+        res["coupons"] = None
+        try:
+            pg = s.page
+            if "shopping cart" in pg.inner_text("body", timeout=8000).lower():
+                tg = pg.locator("button.o-accordion__toggler", has_text="Your Coupons").first
+                if tg.count() and tg.get_attribute("aria-expanded") != "true":
+                    tg.click(timeout=8000)
+                    pg.wait_for_timeout(2500)
+                cards = pg.locator("article.-cartCoupons")
+                lst = []
+                for i in range(cards.count()):
+                    try:
+                        lst.append(cards.nth(i).locator(".m-recentProduct__description").first.inner_text().strip())
+                    except Exception:
+                        pass
+                res["coupons"] = lst
+                log("  coupons of this account: %d | %s" % (len(lst), " ; ".join(x[:60] for x in lst)))
+        except Exception as e:
+            log("  coupons could not be read:", str(e)[:100])
         # ---- fill the cart with throw-away products up to the target points
         fill = pick_fill_products(s)
         log("  fill candidates:", fill[:4])

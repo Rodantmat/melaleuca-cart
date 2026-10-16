@@ -109,6 +109,26 @@ def match_offer(title, rows):
     return out
 
 
+def match_coupon(desc, rows):
+    """products of the sheet a coupon belongs to: the strict offer match, plus rows whose product segment ('Toothcare - Exceed - Cinnamon' -> Exceed) is named in the coupon"""
+    out = list(match_offer(desc, rows))
+    if out:
+        return out                                            # the strict match is decisive
+    have = set()
+    ct = set(norm(product_phrase(desc)))
+    for r in rows:
+        if r["row"] in have:
+            continue
+        segs = [x.strip() for x in r["name"].split(" - ")]
+        if len(segs) < 2:
+            continue
+        key = [t for t in norm(segs[1]) if not re.match(r"^\d+(oz|ml|g|lb)?$", t)]
+        if key and all(t in ct for t in key):
+            out.append(r)
+            have.add(r["row"])
+    return out
+
+
 def map_account(acct, rows, omap):
     res, skipped = [], []
     byid = {}
@@ -202,6 +222,17 @@ def main():
         res, skipped = map_account(a, rows, omap)
         for r in res:
             lines.append("\t".join(str(x) for x in (a["tab"], r["asin"], r["type"], r["units"], r["unit_price"], r["points"], r["offer_sku"], r["title"], r["how"], a["scanned"])))
+        if a.get("coupons") is not None:               # the account's coupons were read: the builder may only use these (an empty list = the account has none)
+            ncp = 0
+            for desc in a["coupons"]:
+                cm = match_coupon(desc, rows)
+                for r in cm:
+                    lines.append("\t".join((a["tab"], r["asin"], "Coupon", "0", "0", "0", "", desc, "coupon", a["scanned"])))
+                    ncp += 1
+                if not cm:
+                    rep.append("     coupon not on your sheet: %s" % desc[:70])
+            lines.append("\t".join((a["tab"], "*", "COUPONSCAN", "0", "0", "0", "", "", "", a["scanned"])))
+            rep.append("%s: %d coupon(s) on the account, %d match products of your sheet" % (a["tab"], len(a["coupons"]), ncp))
         lines.append("\t".join((a["tab"], "*", "SCANNED", "0", "0", "0", "", "", "", a["scanned"])))
         rep.append("%s: %d offers on your products, %d not used" % (a["tab"], len(res), len(skipped)))
         for sku, t, why in skipped:
