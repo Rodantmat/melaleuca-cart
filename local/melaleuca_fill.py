@@ -192,6 +192,14 @@ def assign_choices(units, conf):
     for ui, (nm, mel) in enumerate(units):
         if ui not in got:
             problems.append("no choice found for '%s' (%s)" % (nm, mel))
+    # two DIFFERENT products of the sheet that landed on the same choice: the store pack does not offer one of them (e.g. a flavour that no longer exists in it)
+    bychoice = {}
+    for ui, (ci, ch, sc) in got.items():
+        bychoice.setdefault((ci, ch["title"]), []).append(units[ui][0])
+    for (ci, title), names in bychoice.items():
+        dist = sorted(set(names), key=lambda x: (len(toks(x)), x))
+        for other in dist[1:]:
+            problems.append("SUBSTITUTED: '%s' is not a choice of this pack - the store pack has '%s' (also used for '%s'); change it by hand if you need the exact one" % (other, title, dist[0]))
     per = {}
     for ui, (ci, ch, sc) in got.items():
         per.setdefault(ci, []).append(ch)
