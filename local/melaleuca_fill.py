@@ -401,6 +401,69 @@ class Action:
         self.extra = []                  # more cart lines that belong to this action (a coupon that was added twice)
 
 
+FIXED_SKUS = []          # item numbers the sheet had wrong, corrected by name: shown in the final box
+IGN_TAIL = {"bottle", "loads", "load", "count", "ct", "ounce", "with"}
+
+
+def check_single(L, sku, info):
+    """the sheet's item number must be the flavour / scent the sheet's NAME says. If another item of the same price and points
+    fits the name clearly better (e.g. 'Creamy Vanilla Bean' listed under the Creamy Chocolate item), use that one."""
+    try:
+        card = None
+        for k, c in ALL_CARDS.items():
+            if str(sku) in [str(x) for x in c.get("skus", [])]:
+                card = c
+                break
+        parts = [x.strip() for x in L["name"].split(" - ")]
+        if not card or len(parts) < 2:
+            return sku
+        D = toks(" ".join(parts[1:])) - IGN_TAIL
+        if len(D) < 2:
+            return sku
+        have = set(toks(card["title"]))
+        try:
+            for cf in (info(sku) or {}).get("conf", []):
+                for ch in cf.get("choices", []):
+                    have |= toks(ch.get("title", ""))
+        except Exception:
+            pass
+        cur = len(D & have) / float(len(D))
+        if cur >= 0.999:
+            return sku
+        q = max(1, L["qty"])
+        up, upts = L["ws"] / q, L["pts"] / q
+        found = []
+        for k, c in ALL_CARDS.items():
+            if c is card:
+                continue
+            ps = [x for x in (c.get("pmin"), c.get("pmax")) if x]
+            if not any(abs(float(x) - up) < 0.006 for x in ps):
+                continue
+            if not (c.get("pts") is None or abs(float(c.get("pts") or 0) - upts) < 0.51 or abs(float(c.get("ptsmax") or 0) - upts) < 0.51):
+                continue
+            if len(c.get("skus", [])) > 1:
+                inf = info(c["skus"][0]) or {}
+                for cf in inf.get("conf", []):
+                    if cf.get("type") != "Facet":
+                        continue
+                    for ch in cf.get("choices", []):
+                        if ch.get("sku"):
+                            found.append((len(D & (toks(ch["title"]) | toks(c["title"]))) / float(len(D)), str(ch["sku"]), ch["title"]))
+            else:
+                found.append((len(D & toks(c["title"])) / float(len(D)), str(c["skus"][0]), c["title"]))
+        found.sort(key=lambda x: -x[0])
+        if found and found[0][0] >= cur + 0.1 and (len(found) == 1 or found[0][0] > found[1][0] + 0.001) and found[0][1] != str(sku):
+            msg = "'%s': the sheet has item %s (%s), the name fits item %s (%s) better - used that one" % (L["name"][:50], sku, card["title"][:45], found[0][1], found[0][2][:45])
+            FIXED_SKUS.append(msg)
+            log("  SKU CORRECTED:", msg)
+            return found[0][1]
+        if cur < 0.5:
+            log("  name check: '%s' vs store item %s '%s' - could not find a better one, kept as the sheet says" % (L["name"][:45], sku, card["title"][:45]))
+    except Exception as e:
+        log("  name check skipped:", str(e)[:80])
+    return sku
+
+
 def build_actions(plan, info, resolve_variant=None):
     """info(sku) -> {'conf','acc'} of a pack page. Returns (actions, offer_lines, problems, notes)"""
     acts, offers, problems, notes = [], [], [], []
@@ -442,6 +505,8 @@ def build_actions(plan, info, resolve_variant=None):
             else:
                 problems.append("row %d %s: no item number for '%s' (sheet has '%s') - add this one by hand" % (L["row"], L["asin"], L["name"], sku))
                 continue
+        if NUM.match(L["melid"] or "") and ALL_CARDS:
+            sku = check_single(L, sku, info)
         sconf, snotes = [], []
         try:
             si = info(sku)
@@ -1121,6 +1186,8 @@ def run(n, dry=False, lab=False, final=True):
             print(" %.0f points | %s of loyalty dollars used | nothing was paid, no order was placed." % (pts, (sm.get("LoyaltyShoppingDollars") or {}).get("FormattedUsed") or "$0.00"))
             for ad in adjusted:
                 print("  AUTO-ADJUSTED:", ad)
+            for fx in FIXED_SKUS:
+                print("  SKU CORRECTED:", fx)
             for pn in problems:
                 print("  TO DO BY HAND:", pn)
             if pts > 150.0001:
