@@ -1,0 +1,2545 @@
+{
+ "50028": {
+  "conf": [],
+  "acc": [
+   {
+    "sku": "52995",
+    "title": "Pure Aromatic Home Diffuser   ",
+    "price": 32.25,
+    "pts": 0.0
+   },
+   {
+    "sku": "52999",
+    "title": "Pure Aura Petite Diffuser 2-Pack",
+    "price": 12.6,
+    "pts": 0.0
+   }
+  ]
+ },
+ "4905": {
+  "conf": [
+   {
+    "type": "Facet",
+    "title": "Shampoo",
+    "sku": null,
+    "feature": null,
+    "req": 0,
+    "choices": [
+     {
+      "title": "Herbal 8 fl. oz",
+      "sku": "4117",
+      "refiner": "513-3825"
+     },
+     {
+      "title": "Herbal 32 fl. oz",
+      "sku": "4905",
+      "refiner": "513-3826"
+     }
+    ]
+   },
+   {
+    "type": "Static",
+    "title": "",
+    "sku": "5905",
+    "feature": null,
+    "req": 0,
+    "choices": []
+   }
+  ],
+  "acc": [
+   {
+    "sku": "4889",
+    "title": "32 oz. Shampoo & Conditioner Pump",
+    "price": 1.29,
+    "pts": 0.0
+   }
+  ]
+ },
+ "5612": {
+  "conf": [],
+  "acc": [
+   {
+    "sku": "5605",
+    "title": "Clean & Gleam\u2122 Spray Mop + 3 Mop Pads",
+    "price": 35.49,
+    "pts": 0.0
+   }
+  ]
+ },
+ "33022": {
+  "conf": [],
+  "acc": []
+ },
+ "2211": {
+  "conf": [],
+  "acc": [
+   {
+    "sku": "33001",
+    "title": "PreSpot\u2122 4x Mixing Spray Bottle",
+    "price": 1.79,
+    "pts": 0.0
+   }
+  ]
+ },
+ "5018": {
+  "conf": [],
+  "acc": []
+ },
+ "6600": {
+  "conf": [
+   {
+    "type": "Facet",
+    "title": "Size",
+    "sku": null,
+    "feature": null,
+    "req": 0,
+    "choices": [
+     {
+      "title": "8 oz tube",
+      "sku": "6969",
+      "refiner": "497-2868"
+     },
+     {
+      "title": "20 oz bottle",
+      "sku": "6600",
+      "refiner": "497-2871"
+     }
+    ]
+   }
+  ],
+  "acc": [
+   {
+    "sku": "6601",
+    "title": "Renew\u00ae Pump for 20 fl oz (optional)",
+    "price": 1.29,
+    "pts": 0.0
+   }
+  ]
+ },
+ "3634": {
+  "conf": [],
+  "acc": []
+ },
+ "6421": {
+  "conf": [
+   {
+    "type": "Facet",
+    "title": "Scent",
+    "sku": null,
+    "feature": null,
+    "req": 0,
+    "choices": [
+     {
+      "title": "MelaBoost - Garden Lavender",
+      "sku": "6423",
+      "refiner": "724-3911"
+     },
+     {
+      "title": "MelaBoost - Mountain Fresh",
+      "sku": "6421",
+      "refiner": "724-3913"
+     },
+     {
+      "title": "MelaBoost - Island Breeze",
+      "sku": "6422",
+      "refiner": "724-3912"
+     }
+    ]
+   }
+  ],
+  "acc": [
+   {
+    "sku": "4848",
+    "title": "EcoSense\u00ae Drain-Back Cap",
+    "price": 1.29,
+    "pts": 0.0
+   },
+   {
+    "sku": "924",
+    "title": "32 fl. oz. Reusable Laundry Pump",
+    "price": 2.29,
+    "pts": 0.0
+   }
+  ]
+ },
+ "70338": {
+  "conf": [],
+  "acc": []
+ },
+ "292": {
+  "conf": [
+   {
+    "type": "Facet",
+    "title": "Scent",
+    "sku": null,
+    "feature": null,
+    "req": 0,
+    "choices": [
+     {
+      "title": "Lemon Blossom 16 fl oz",
+      "sku": "294",
+      "refiner": "517-3192"
+     },
+     {
+      "title": "Original 8 fl oz",
+      "sku": "292",
+      "refiner": "517-2925"
+     },
+     {
+      "title": "Lemon Blossom 8 fl oz",
+      "sku": "293",
+      "refiner": "517-2926"
+     },
+     {
+      "title": "Original 16 fl oz",
+      "sku": "130",
+      "refiner": "517-3302"
+     }
+    ]
+   }
+  ],
+  "acc": [
+   {
+    "sku": "1209",
+    "title": "Sol-U-Mel\u00ae Mixing Spray Bottle",
+    "price": 1.79,
+    "pts": 0.0
+   }
+  ]
+ },
+ "3427": {
+  "conf": [],
+  "acc": [
+   {
+    "sku": "8682",
+    "title": "Reusable Rustic Touch Furniture Polish Sprayer",
+    "price": 1.29,
+    "pts": 0.0
+   }
+  ]
+ },
+ "34911": {
+  "conf": [
+   {
+    "type": "FSKU",
+    "title": "Cleaner Selection",
+    "sku": null,
+    "feature": "F1577",
+    "req": 3,
+    "choices": [
+     {
+      "title": "Clean & Gleam Floor Cleaner",
+      "sku": "5612",
+      "refiner": "902-6324"
+     },
+     {
+      "title": "Clear Power Glass Cleaner",
+      "sku": "1212",
+      "refiner": "902-4636"
+     },
+     {
+      "title": "MelaMagic Heavy-Duty Cleaner",
+      "sku": "1235",
+      "refiner": "902-4640"
+     },
+     {
+      "title": "No Work Daily Shower Cleaner",
+      "sku": "1214",
+      "refiner": "902-4637"
+     },
+     {
+      "title": "Rustic Touch Furniture Polish",
+      "sku": "3427",
+      "refiner": "902-4638"
+     },
+     {
+      "title": "Safe & Mighty",
+      "sku": "5680",
+      "refiner": "902-4632"
+     },
+     {
+      "title": "Tough and Tender",
+      "sku": "1218",
+      "refiner": "902-4633"
+     },
+     {
+      "title": "Tub & Tile Bathroom Cleaner",
+      "sku": "1216",
+      "refiner": "902-4635"
+     },
+     {
+      "title": "Harvest Pure\u2122 Fruit And Vegetable Wash",
+      "sku": "30101",
+      "refiner": "902-6524"
+     }
+    ]
+   }
+  ],
+  "acc": [
+   {
+    "sku": "1219",
+    "title": "Tough & Tender\u00ae Mixing Spray Bottle",
+    "price": 1.79,
+    "pts": 0.0
+   },
+   {
+    "sku": "1217",
+    "title": "Tub & Tile\u2122 Mixing Spray Bottle",
+    "price": 1.79,
+    "pts": 0.0
+   },
+   {
+    "sku": "1215",
+    "title": "No Work\u00ae Mixing Spray Bottle",
+    "price": 1.79,
+    "pts": 0.0
+   },
+   {
+    "sku": "1213",
+    "title": "Clear Power\u2122 Mixing Spray Bottle  ",
+    "price": 1.79,
+    "pts": 0.0
+   },
+   {
+    "sku": "7188",
+    "title": "Microfiber Cleaning Cloths 2-Pack",
+    "price": 6.99,
+    "pts": 3.0
+   },
+   {
+    "sku": "5605",
+    "title": "Clean & Gleam\u2122 Spray Mop + 3 Mop Pads",
+    "price": 35.49,
+    "pts": 0.0
+   },
+   {
+    "sku": "8682",
+    "title": "Reusable Rustic Touch Furniture Polish Sprayer",
+    "price": 1.29,
+    "pts": 0.0
+   }
+  ]
+ },
+ "7911": {
+  "conf": [
+   {
+    "type": "FSKU",
+    "title": "Flavor",
+    "sku": null,
+    "feature": "F361",
+    "req": 3,
+    "choices": [
+     {
+      "title": "Mountain Mint",
+      "sku": "107",
+      "refiner": "516-2923"
+     },
+     {
+      "title": "Pina Colada",
+      "sku": "109",
+      "refiner": "516-2924"
+     },
+     {
+      "title": "Vanilla Bean",
+      "sku": "111",
+      "refiner": "516-2922"
+     },
+     {
+      "title": "Cranberry Tangerine",
+      "sku": "2270",
+      "refiner": "516-2921"
+     }
+    ]
+   }
+  ],
+  "acc": []
+ },
+ "190": {
+  "conf": [
+   {
+    "type": "FSKU",
+    "title": "Deodorant",
+    "sku": null,
+    "feature": "F576",
+    "req": 3,
+    "choices": [
+     {
+      "title": "Vanilla Musk & Jasmine",
+      "sku": "20088",
+      "refiner": "484-5715"
+     },
+     {
+      "title": "Affinia Sweet Cream & Willow",
+      "sku": "20087",
+      "refiner": "484-5716"
+     },
+     {
+      "title": "Alloy AP/DEO",
+      "sku": "20053",
+      "refiner": "484-5717"
+     },
+     {
+      "title": "Herbal",
+      "sku": "2468",
+      "refiner": "484-2828"
+     },
+     {
+      "title": "Alloy DEO",
+      "sku": "20121",
+      "refiner": "484-5846"
+     }
+    ]
+   }
+  ],
+  "acc": []
+ },
+ "39176": {
+  "conf": [],
+  "acc": []
+ },
+ "23963": {
+  "conf": [
+   {
+    "type": "FSKU",
+    "title": "Shampoo",
+    "sku": null,
+    "feature": "F1854",
+    "req": 1,
+    "choices": [
+     {
+      "title": "Volume Shampoo",
+      "sku": "20063",
+      "refiner": "1167-5673"
+     },
+     {
+      "title": "Moisture Shampoo",
+      "sku": "20061",
+      "refiner": "1167-5674"
+     }
+    ]
+   },
+   {
+    "type": "FSKU",
+    "title": "Conditioner",
+    "sku": null,
+    "feature": "F1855",
+    "req": 1,
+    "choices": [
+     {
+      "title": "Volume Conditioner",
+      "sku": "20064",
+      "refiner": "1169-5677"
+     },
+     {
+      "title": "Moisture Conditioner",
+      "sku": "20062",
+      "refiner": "1169-5678"
+     }
+    ]
+   }
+  ],
+  "acc": [
+   {
+    "sku": "20065",
+    "title": "Affinia Shampoo & Conditioner Pump",
+    "price": 1.29,
+    "pts": 0.0
+   }
+  ]
+ },
+ "8911": {
+  "conf": [],
+  "acc": [
+   {
+    "sku": "8901",
+    "title": "Sol\u2013U\u2013Guard Botanical\u00ae 2x Spray Bottle",
+    "price": 1.79,
+    "pts": 0.0
+   }
+  ]
+ },
+ "43987": {
+  "conf": [
+   {
+    "type": "FSKU",
+    "title": "Flavor",
+    "sku": null,
+    "feature": "F2200",
+    "req": 3,
+    "choices": [
+     {
+      "title": "Berrylicious +Fluoride",
+      "sku": "1297",
+      "refiner": "1129-3808"
+     },
+     {
+      "title": "Apple - Fluoride-Free",
+      "sku": "4910",
+      "refiner": "1129-3809"
+     },
+     {
+      "title": "Exceed Fresh Mint - Fluoride-Free",
+      "sku": "42994",
+      "refiner": "1129-5520"
+     },
+     {
+      "title": "Spearmint +Fluoride",
+      "sku": "42996",
+      "refiner": "1129-5523"
+     },
+     {
+      "title": "Peppermint +Fluoride",
+      "sku": "42997",
+      "refiner": "1129-5689"
+     },
+     {
+      "title": "Classic Fresh Mint - Fluoride-Free",
+      "sku": "5395",
+      "refiner": "1129-6037"
+     },
+     {
+      "title": "Cool Mint with Fluoride",
+      "sku": "5780",
+      "refiner": "1129-6039"
+     },
+     {
+      "title": "Cinnamon - Fluoride-Free",
+      "sku": "40061",
+      "refiner": "1129-6627"
+     }
+    ]
+   }
+  ],
+  "acc": []
+ },
+ "5026": {
+  "conf": [
+   {
+    "type": "FSKU",
+    "title": "Lemon Brite Scent",
+    "sku": null,
+    "feature": "F750",
+    "req": 3,
+    "choices": [
+     {
+      "title": "Apple",
+      "sku": "7904",
+      "refiner": "621-3318"
+     },
+     {
+      "title": "Tropical",
+      "sku": "187",
+      "refiner": "621-3319"
+     },
+     {
+      "title": "Lemon",
+      "sku": "2854",
+      "refiner": "621-3317"
+     }
+    ]
+   }
+  ],
+  "acc": []
+ },
+ "219": {
+  "conf": [],
+  "acc": [
+   {
+    "sku": "4848",
+    "title": "EcoSense\u00ae Drain-Back Cap",
+    "price": 1.29,
+    "pts": 0.0
+   },
+   {
+    "sku": "924",
+    "title": "32 fl. oz. Reusable Laundry Pump",
+    "price": 2.29,
+    "pts": 0.0
+   }
+  ]
+ },
+ "2154": {
+  "conf": [
+   {
+    "type": "FSKU",
+    "title": "Fragrance",
+    "sku": null,
+    "feature": "F453",
+    "req": 2,
+    "choices": [
+     {
+      "title": "Garden Lavender",
+      "sku": "268",
+      "refiner": "725-3914"
+     },
+     {
+      "title": "Clean Cotton",
+      "sku": "265",
+      "refiner": "725-3916"
+     },
+     {
+      "title": "Spring Breeze",
+      "sku": "267",
+      "refiner": "725-3915"
+     }
+    ]
+   }
+  ],
+  "acc": [
+   {
+    "sku": "4848",
+    "title": "EcoSense\u00ae Drain-Back Cap",
+    "price": 1.29,
+    "pts": 0.0
+   },
+   {
+    "sku": "924",
+    "title": "32 fl. oz. Reusable Laundry Pump",
+    "price": 2.29,
+    "pts": 0.0
+   }
+  ]
+ },
+ "6277": {
+  "conf": [
+   {
+    "type": "FSKU",
+    "title": "Product",
+    "sku": null,
+    "feature": "F160",
+    "req": 2,
+    "choices": [
+     {
+      "title": "Hair Wash",
+      "sku": "4913",
+      "refiner": "761-4048"
+     },
+     {
+      "title": "Body Wash",
+      "sku": "4914",
+      "refiner": "761-4047"
+     }
+    ]
+   }
+  ],
+  "acc": []
+ },
+ "5027": {
+  "conf": [
+   {
+    "type": "FSKU",
+    "title": "Fragrance",
+    "sku": null,
+    "feature": "F1755",
+    "req": 2,
+    "choices": [
+     {
+      "title": "Spring Breeze",
+      "sku": "9317",
+      "refiner": "725-3915"
+     },
+     {
+      "title": "Garden Lavender",
+      "sku": "9984",
+      "refiner": "725-3914"
+     },
+     {
+      "title": "Clean Cotton",
+      "sku": "5271",
+      "refiner": "725-3916"
+     },
+     {
+      "title": "Scent Free",
+      "sku": "9996",
+      "refiner": "725-3920"
+     }
+    ]
+   }
+  ],
+  "acc": []
+ },
+ "6969": {
+  "conf": [
+   {
+    "type": "Facet",
+    "title": "Size",
+    "sku": null,
+    "feature": null,
+    "req": 0,
+    "choices": [
+     {
+      "title": "8 oz tube",
+      "sku": "6969",
+      "refiner": "497-2868"
+     },
+     {
+      "title": "20 oz bottle",
+      "sku": "6600",
+      "refiner": "497-2871"
+     }
+    ]
+   }
+  ],
+  "acc": [
+   {
+    "sku": "6601",
+    "title": "Renew\u00ae Pump for 20 fl oz (optional)",
+    "price": 1.29,
+    "pts": 0.0
+   }
+  ]
+ },
+ "70114": {
+  "conf": [
+   {
+    "type": "Facet",
+    "title": "Conditioner",
+    "sku": null,
+    "feature": null,
+    "req": 0,
+    "choices": [
+     {
+      "title": "Argan Oil & Coconut Moisture Smooth",
+      "sku": "70114",
+      "refiner": "659-3639"
+     },
+     {
+      "title": "Olive Fruit & Almond Protein Strength",
+      "sku": "70116",
+      "refiner": "659-3640"
+     },
+     {
+      "title": "Rice & Amaranth Full Volume",
+      "sku": "70115",
+      "refiner": "659-3642"
+     }
+    ]
+   }
+  ],
+  "acc": []
+ },
+ "3620": {
+  "conf": [],
+  "acc": []
+ },
+ "20061": {
+  "conf": [],
+  "acc": [
+   {
+    "sku": "20065",
+    "title": "Affinia Shampoo & Conditioner Pump",
+    "price": 1.29,
+    "pts": 0.0
+   }
+  ]
+ },
+ "6196": {
+  "conf": [],
+  "acc": []
+ },
+ "33961": {
+  "conf": [
+   {
+    "type": "FSKU",
+    "title": "Scent",
+    "sku": null,
+    "feature": "F994",
+    "req": 1,
+    "choices": [
+     {
+      "title": "Original Fragrance",
+      "sku": "32993",
+      "refiner": "1119-5447"
+     },
+     {
+      "title": "Sea Salt & Vanilla",
+      "sku": "32992",
+      "refiner": "1119-5449"
+     },
+     {
+      "title": "Tropical Fruits & Floral",
+      "sku": "32991",
+      "refiner": "1119-5450"
+     }
+    ]
+   },
+   {
+    "type": "Static",
+    "title": "",
+    "sku": "799",
+    "feature": null,
+    "req": 0,
+    "choices": []
+   },
+   {
+    "type": "Static",
+    "title": "",
+    "sku": "33004",
+    "feature": null,
+    "req": 0,
+    "choices": []
+   },
+   {
+    "type": "Static",
+    "title": "",
+    "sku": "33008",
+    "feature": null,
+    "req": 0,
+    "choices": []
+   },
+   {
+    "type": "Static",
+    "title": "Revive\u2122 Fabric Freshener & Wrinkle Relaxer Mixing Bottle",
+    "sku": "32994",
+    "feature": null,
+    "req": 0,
+    "choices": []
+   }
+  ],
+  "acc": []
+ },
+ "4117": {
+  "conf": [
+   {
+    "type": "Facet",
+    "title": "Shampoo",
+    "sku": null,
+    "feature": null,
+    "req": 0,
+    "choices": [
+     {
+      "title": "Herbal 8 fl. oz",
+      "sku": "4117",
+      "refiner": "513-3825"
+     },
+     {
+      "title": "Herbal 32 fl. oz",
+      "sku": "4905",
+      "refiner": "513-3826"
+     }
+    ]
+   },
+   {
+    "type": "Static",
+    "title": "",
+    "sku": "5905",
+    "feature": null,
+    "req": 0,
+    "choices": []
+   }
+  ],
+  "acc": [
+   {
+    "sku": "4889",
+    "title": "32 oz. Shampoo & Conditioner Pump",
+    "price": 1.29,
+    "pts": 0.0
+   }
+  ]
+ },
+ "1218": {
+  "conf": [],
+  "acc": [
+   {
+    "sku": "1219",
+    "title": "Tough & Tender\u00ae Mixing Spray Bottle",
+    "price": 1.79,
+    "pts": 0.0
+   }
+  ]
+ },
+ "39172": {
+  "conf": [],
+  "acc": []
+ },
+ "6422": {
+  "conf": [
+   {
+    "type": "Facet",
+    "title": "Scent",
+    "sku": null,
+    "feature": null,
+    "req": 0,
+    "choices": [
+     {
+      "title": "MelaBoost - Garden Lavender",
+      "sku": "6423",
+      "refiner": "724-3911"
+     },
+     {
+      "title": "MelaBoost - Mountain Fresh",
+      "sku": "6421",
+      "refiner": "724-3913"
+     },
+     {
+      "title": "MelaBoost - Island Breeze",
+      "sku": "6422",
+      "refiner": "724-3912"
+     }
+    ]
+   }
+  ],
+  "acc": [
+   {
+    "sku": "4848",
+    "title": "EcoSense\u00ae Drain-Back Cap",
+    "price": 1.29,
+    "pts": 0.0
+   },
+   {
+    "sku": "924",
+    "title": "32 fl. oz. Reusable Laundry Pump",
+    "price": 2.29,
+    "pts": 0.0
+   }
+  ]
+ },
+ "3887": {
+  "conf": [],
+  "acc": []
+ },
+ "4906": {
+  "conf": [
+   {
+    "type": "Facet",
+    "title": "Shampoo",
+    "sku": null,
+    "feature": null,
+    "req": 0,
+    "choices": [
+     {
+      "title": "Original 8 fl. oz",
+      "sku": "4118",
+      "refiner": "513-3828"
+     },
+     {
+      "title": "Original 32 fl. oz",
+      "sku": "4906",
+      "refiner": "513-3827"
+     }
+    ]
+   },
+   {
+    "type": "Static",
+    "title": "",
+    "sku": "5906",
+    "feature": null,
+    "req": 0,
+    "choices": []
+   }
+  ],
+  "acc": [
+   {
+    "sku": "4889",
+    "title": "32 oz. Shampoo & Conditioner Pump",
+    "price": 1.29,
+    "pts": 0.0
+   }
+  ]
+ },
+ "3300": {
+  "conf": [],
+  "acc": []
+ },
+ "30083": {
+  "conf": [],
+  "acc": [
+   {
+    "sku": "33001",
+    "title": "PreSpot\u2122 4x Mixing Spray Bottle",
+    "price": 1.79,
+    "pts": 0.0
+   }
+  ]
+ },
+ "34913": {
+  "conf": [
+   {
+    "type": "FSKU",
+    "title": "Cleaner Selection",
+    "sku": null,
+    "feature": "F1577",
+    "req": 4,
+    "choices": [
+     {
+      "title": "Clean & Gleam Floor Cleaner",
+      "sku": "5612",
+      "refiner": "902-6324"
+     },
+     {
+      "title": "Clear Power Glass Cleaner",
+      "sku": "1212",
+      "refiner": "902-4636"
+     },
+     {
+      "title": "MelaMagic Heavy-Duty Cleaner",
+      "sku": "1235",
+      "refiner": "902-4640"
+     },
+     {
+      "title": "No Work Daily Shower Cleaner",
+      "sku": "1214",
+      "refiner": "902-4637"
+     },
+     {
+      "title": "Rustic Touch Furniture Polish",
+      "sku": "3427",
+      "refiner": "902-4638"
+     },
+     {
+      "title": "Safe & Mighty",
+      "sku": "5680",
+      "refiner": "902-4632"
+     },
+     {
+      "title": "Tough and Tender",
+      "sku": "1218",
+      "refiner": "902-4633"
+     },
+     {
+      "title": "Tub & Tile Bathroom Cleaner",
+      "sku": "1216",
+      "refiner": "902-4635"
+     },
+     {
+      "title": "Harvest Pure\u2122 Fruit And Vegetable Wash",
+      "sku": "30101",
+      "refiner": "902-6524"
+     }
+    ]
+   }
+  ],
+  "acc": [
+   {
+    "sku": "1219",
+    "title": "Tough & Tender\u00ae Mixing Spray Bottle",
+    "price": 1.79,
+    "pts": 0.0
+   },
+   {
+    "sku": "1217",
+    "title": "Tub & Tile\u2122 Mixing Spray Bottle",
+    "price": 1.79,
+    "pts": 0.0
+   },
+   {
+    "sku": "1215",
+    "title": "No Work\u00ae Mixing Spray Bottle",
+    "price": 1.79,
+    "pts": 0.0
+   },
+   {
+    "sku": "1213",
+    "title": "Clear Power\u2122 Mixing Spray Bottle  ",
+    "price": 1.79,
+    "pts": 0.0
+   },
+   {
+    "sku": "7188",
+    "title": "Microfiber Cleaning Cloths 2-Pack",
+    "price": 6.99,
+    "pts": 3.0
+   },
+   {
+    "sku": "5605",
+    "title": "Clean & Gleam\u2122 Spray Mop + 3 Mop Pads",
+    "price": 35.49,
+    "pts": 0.0
+   },
+   {
+    "sku": "8682",
+    "title": "Reusable Rustic Touch Furniture Polish Sprayer",
+    "price": 1.29,
+    "pts": 0.0
+   }
+  ]
+ },
+ "5048": {
+  "conf": [
+   {
+    "type": "FSKU",
+    "title": "Fragrance",
+    "sku": null,
+    "feature": "F028",
+    "req": 3,
+    "choices": [
+     {
+      "title": "Exfoliating",
+      "sku": "5540",
+      "refiner": "688-3777"
+     },
+     {
+      "title": "Pineapple Mango",
+      "sku": "8927",
+      "refiner": "688-3779"
+     },
+     {
+      "title": "Pink Grapefruit",
+      "sku": "8928",
+      "refiner": "688-3775"
+     },
+     {
+      "title": "Platinum",
+      "sku": "3308",
+      "refiner": "688-3776"
+     },
+     {
+      "title": "The Gold Bar",
+      "sku": "117",
+      "refiner": "688-3806"
+     },
+     {
+      "title": "Alloy",
+      "sku": "20049",
+      "refiner": "688-5718"
+     }
+    ]
+   }
+  ],
+  "acc": []
+ },
+ "6111": {
+  "conf": [
+   {
+    "type": "FSKU",
+    "title": "Product",
+    "sku": null,
+    "feature": "F123",
+    "req": 2,
+    "choices": [
+     {
+      "title": "Tube",
+      "sku": "3847",
+      "refiner": "775-4092"
+     },
+     {
+      "title": "Disc",
+      "sku": "3417",
+      "refiner": "775-4093"
+     }
+    ]
+   }
+  ],
+  "acc": []
+ },
+ "20064": {
+  "conf": [],
+  "acc": [
+   {
+    "sku": "20065",
+    "title": "Affinia Shampoo & Conditioner Pump",
+    "price": 1.29,
+    "pts": 0.0
+   }
+  ]
+ },
+ "5509": {
+  "conf": [
+   {
+    "type": "Facet",
+    "title": "Shampoo",
+    "sku": null,
+    "feature": null,
+    "req": 0,
+    "choices": [
+     {
+      "title": "Argan Oil & Coconut Moisture Smooth",
+      "sku": "5509",
+      "refiner": "513-2915"
+     },
+     {
+      "title": "Olive Fruit & Almond Protein Strength",
+      "sku": "5517",
+      "refiner": "513-2911"
+     },
+     {
+      "title": "Rice & Amaranth Full Volume",
+      "sku": "5510",
+      "refiner": "513-2912"
+     }
+    ]
+   }
+  ],
+  "acc": []
+ },
+ "6423": {
+  "conf": [
+   {
+    "type": "Facet",
+    "title": "Scent",
+    "sku": null,
+    "feature": null,
+    "req": 0,
+    "choices": [
+     {
+      "title": "MelaBoost - Garden Lavender",
+      "sku": "6423",
+      "refiner": "724-3911"
+     },
+     {
+      "title": "MelaBoost - Mountain Fresh",
+      "sku": "6421",
+      "refiner": "724-3913"
+     },
+     {
+      "title": "MelaBoost - Island Breeze",
+      "sku": "6422",
+      "refiner": "724-3912"
+     }
+    ]
+   }
+  ],
+  "acc": [
+   {
+    "sku": "4848",
+    "title": "EcoSense\u00ae Drain-Back Cap",
+    "price": 1.29,
+    "pts": 0.0
+   },
+   {
+    "sku": "924",
+    "title": "32 fl. oz. Reusable Laundry Pump",
+    "price": 2.29,
+    "pts": 0.0
+   }
+  ]
+ },
+ "4075": {
+  "conf": [],
+  "acc": []
+ },
+ "20063": {
+  "conf": [],
+  "acc": [
+   {
+    "sku": "20065",
+    "title": "Affinia Shampoo & Conditioner Pump",
+    "price": 1.29,
+    "pts": 0.0
+   }
+  ]
+ },
+ "8900": {
+  "conf": [
+   {
+    "type": "Facet",
+    "title": "Mascara",
+    "sku": null,
+    "feature": null,
+    "req": 0,
+    "choices": [
+     {
+      "title": "Volume Extreme Mascara - Black",
+      "sku": "9077",
+      "refiner": "714-4348"
+     },
+     {
+      "title": "Volume Extreme Waterproof Mascara - Black",
+      "sku": "8900",
+      "refiner": "714-4344"
+     }
+    ]
+   }
+  ],
+  "acc": []
+ },
+ "34914": {
+  "conf": [
+   {
+    "type": "FSKU",
+    "title": "Cleaner Selection",
+    "sku": null,
+    "feature": "F1577",
+    "req": 5,
+    "choices": [
+     {
+      "title": "Clean & Gleam Floor Cleaner",
+      "sku": "5612",
+      "refiner": "902-6324"
+     },
+     {
+      "title": "Clear Power Glass Cleaner",
+      "sku": "1212",
+      "refiner": "902-4636"
+     },
+     {
+      "title": "MelaMagic Heavy-Duty Cleaner",
+      "sku": "1235",
+      "refiner": "902-4640"
+     },
+     {
+      "title": "No Work Daily Shower Cleaner",
+      "sku": "1214",
+      "refiner": "902-4637"
+     },
+     {
+      "title": "Rustic Touch Furniture Polish",
+      "sku": "3427",
+      "refiner": "902-4638"
+     },
+     {
+      "title": "Safe & Mighty",
+      "sku": "5680",
+      "refiner": "902-4632"
+     },
+     {
+      "title": "Tough and Tender",
+      "sku": "1218",
+      "refiner": "902-4633"
+     },
+     {
+      "title": "Tub & Tile Bathroom Cleaner",
+      "sku": "1216",
+      "refiner": "902-4635"
+     },
+     {
+      "title": "Harvest Pure\u2122 Fruit And Vegetable Wash",
+      "sku": "30101",
+      "refiner": "902-6524"
+     }
+    ]
+   }
+  ],
+  "acc": [
+   {
+    "sku": "1219",
+    "title": "Tough & Tender\u00ae Mixing Spray Bottle",
+    "price": 1.79,
+    "pts": 0.0
+   },
+   {
+    "sku": "1217",
+    "title": "Tub & Tile\u2122 Mixing Spray Bottle",
+    "price": 1.79,
+    "pts": 0.0
+   },
+   {
+    "sku": "1215",
+    "title": "No Work\u00ae Mixing Spray Bottle",
+    "price": 1.79,
+    "pts": 0.0
+   },
+   {
+    "sku": "1213",
+    "title": "Clear Power\u2122 Mixing Spray Bottle  ",
+    "price": 1.79,
+    "pts": 0.0
+   },
+   {
+    "sku": "7188",
+    "title": "Microfiber Cleaning Cloths 2-Pack",
+    "price": 6.99,
+    "pts": 3.0
+   },
+   {
+    "sku": "5605",
+    "title": "Clean & Gleam\u2122 Spray Mop + 3 Mop Pads",
+    "price": 35.49,
+    "pts": 0.0
+   },
+   {
+    "sku": "8682",
+    "title": "Reusable Rustic Touch Furniture Polish Sprayer",
+    "price": 1.29,
+    "pts": 0.0
+   }
+  ]
+ },
+ "2799": {
+  "conf": [],
+  "acc": [
+   {
+    "sku": "10919",
+    "title": "Pair It With Peak Supplement Organizer",
+    "price": 9.99,
+    "pts": 0.0
+   }
+  ]
+ },
+ "60155": {
+  "conf": [],
+  "acc": [
+   {
+    "sku": "9199",
+    "title": "Vitality For Life\u00ae Blender Bottle",
+    "price": 7.99,
+    "pts": 0.0
+   }
+  ]
+ },
+ "4020": {
+  "conf": [],
+  "acc": [
+   {
+    "sku": "8901",
+    "title": "Sol\u2013U\u2013Guard Botanical\u00ae 2x Spray Bottle",
+    "price": 1.79,
+    "pts": 0.0
+   }
+  ]
+ },
+ "60212": {
+  "conf": [
+   {
+    "type": "Facet",
+    "title": "Flavor",
+    "sku": null,
+    "feature": null,
+    "req": 0,
+    "choices": [
+     {
+      "title": "Fruit Punch",
+      "sku": "60211",
+      "refiner": "743-6668"
+     },
+     {
+      "title": "Lemonade",
+      "sku": "60212",
+      "refiner": "743-6673"
+     },
+     {
+      "title": "Strawberry Kiwi",
+      "sku": "60213",
+      "refiner": "743-6671"
+     },
+     {
+      "title": "Tangerine Peach",
+      "sku": "60214",
+      "refiner": "743-6670"
+     },
+     {
+      "title": "Peach Iced Tea",
+      "sku": "60215",
+      "refiner": "743-6674"
+     },
+     {
+      "title": "Raspberry Iced Tea",
+      "sku": "60216",
+      "refiner": "743-6672"
+     },
+     {
+      "title": "Cherry Pomegranate + Caffeine",
+      "sku": "60205",
+      "refiner": "743-6669"
+     }
+    ]
+   }
+  ],
+  "acc": [
+   {
+    "sku": "9199",
+    "title": "Vitality For Life\u00ae Blender Bottle",
+    "price": 7.99,
+    "pts": 0.0
+   }
+  ]
+ },
+ "1361": {
+  "conf": [
+   {
+    "type": "Facet",
+    "title": "Simply Fit ",
+    "sku": null,
+    "feature": null,
+    "req": 0,
+    "choices": [
+     {
+      "title": "Vanilla Greek Yogurt",
+      "sku": "1300",
+      "refiner": "485-3266"
+     },
+     {
+      "title": "Yogurt Berry Parfait",
+      "sku": "1299",
+      "refiner": "485-3261"
+     },
+     {
+      "title": "Chocolate Chip Drizzle",
+      "sku": "1361",
+      "refiner": "485-3260"
+     },
+     {
+      "title": "Chocolate Caramel Coconut",
+      "sku": "1362",
+      "refiner": "485-3264"
+     }
+    ]
+   }
+  ],
+  "acc": []
+ },
+ "60093": {
+  "conf": [],
+  "acc": []
+ },
+ "3748": {
+  "conf": [],
+  "acc": [
+   {
+    "sku": "3774",
+    "title": "Renew Hand Wash Pump",
+    "price": 1.29,
+    "pts": 0.0
+   }
+  ]
+ },
+ "63972": {
+  "conf": [
+   {
+    "type": "FSKU",
+    "title": "Sustain",
+    "sku": null,
+    "feature": "F2298",
+    "req": 2,
+    "choices": [
+     {
+      "title": "Raspberry Lemonade",
+      "sku": "60127",
+      "refiner": "745-3978"
+     },
+     {
+      "title": "Lemon ",
+      "sku": "60124",
+      "refiner": "745-6004"
+     },
+     {
+      "title": "Blueberry Pomegranate",
+      "sku": "60128",
+      "refiner": "745-6007"
+     },
+     {
+      "title": "Orange",
+      "sku": "60125",
+      "refiner": "745-6012"
+     }
+    ]
+   }
+  ],
+  "acc": [
+   {
+    "sku": "9199",
+    "title": "Vitality For Life\u00ae Blender Bottle",
+    "price": 7.99,
+    "pts": 0.0
+   }
+  ]
+ },
+ "5684": {
+  "conf": [
+   {
+    "type": "FSKU",
+    "title": "Activate Product",
+    "sku": null,
+    "feature": "F1569",
+    "req": 2,
+    "choices": [
+     {
+      "title": "Activate-C Immune Complex Drink: Orange",
+      "sku": "4545",
+      "refiner": "1098-5363"
+     },
+     {
+      "title": "Activate-C Immune Complex Drink: Raspberry",
+      "sku": "4445",
+      "refiner": "1098-5365"
+     }
+    ]
+   }
+  ],
+  "acc": [
+   {
+    "sku": "9199",
+    "title": "Vitality For Life\u00ae Blender Bottle",
+    "price": 7.99,
+    "pts": 0.0
+   }
+  ]
+ },
+ "4120": {
+  "conf": [],
+  "acc": [
+   {
+    "sku": "9199",
+    "title": "Vitality For Life\u00ae Blender Bottle",
+    "price": 7.99,
+    "pts": 0.0
+   }
+  ]
+ },
+ "60213": {
+  "conf": [
+   {
+    "type": "Facet",
+    "title": "Flavor",
+    "sku": null,
+    "feature": null,
+    "req": 0,
+    "choices": [
+     {
+      "title": "Fruit Punch",
+      "sku": "60211",
+      "refiner": "743-6668"
+     },
+     {
+      "title": "Lemonade",
+      "sku": "60212",
+      "refiner": "743-6673"
+     },
+     {
+      "title": "Strawberry Kiwi",
+      "sku": "60213",
+      "refiner": "743-6671"
+     },
+     {
+      "title": "Tangerine Peach",
+      "sku": "60214",
+      "refiner": "743-6670"
+     },
+     {
+      "title": "Peach Iced Tea",
+      "sku": "60215",
+      "refiner": "743-6674"
+     },
+     {
+      "title": "Raspberry Iced Tea",
+      "sku": "60216",
+      "refiner": "743-6672"
+     },
+     {
+      "title": "Cherry Pomegranate + Caffeine",
+      "sku": "60205",
+      "refiner": "743-6669"
+     }
+    ]
+   }
+  ],
+  "acc": [
+   {
+    "sku": "9199",
+    "title": "Vitality For Life\u00ae Blender Bottle",
+    "price": 7.99,
+    "pts": 0.0
+   }
+  ]
+ },
+ "60125": {
+  "conf": [
+   {
+    "type": "Facet",
+    "title": "Sustain",
+    "sku": null,
+    "feature": null,
+    "req": 0,
+    "choices": [
+     {
+      "title": "Raspberry Lemonade",
+      "sku": "60127",
+      "refiner": "745-3978"
+     },
+     {
+      "title": "Lemon ",
+      "sku": "60124",
+      "refiner": "745-6004"
+     },
+     {
+      "title": "Orange",
+      "sku": "60125",
+      "refiner": "745-6012"
+     }
+    ]
+   }
+  ],
+  "acc": [
+   {
+    "sku": "9199",
+    "title": "Vitality For Life\u00ae Blender Bottle",
+    "price": 7.99,
+    "pts": 0.0
+   }
+  ]
+ },
+ "293": {
+  "conf": [
+   {
+    "type": "Facet",
+    "title": "Scent",
+    "sku": null,
+    "feature": null,
+    "req": 0,
+    "choices": [
+     {
+      "title": "Lemon Blossom 16 fl oz",
+      "sku": "294",
+      "refiner": "517-3192"
+     },
+     {
+      "title": "Original 8 fl oz",
+      "sku": "292",
+      "refiner": "517-2925"
+     },
+     {
+      "title": "Lemon Blossom 8 fl oz",
+      "sku": "293",
+      "refiner": "517-2926"
+     },
+     {
+      "title": "Original 16 fl oz",
+      "sku": "130",
+      "refiner": "517-3302"
+     }
+    ]
+   }
+  ],
+  "acc": [
+   {
+    "sku": "1209",
+    "title": "Sol-U-Mel\u00ae Mixing Spray Bottle",
+    "price": 1.79,
+    "pts": 0.0
+   }
+  ]
+ },
+ "4118": {
+  "conf": [
+   {
+    "type": "Facet",
+    "title": "Shampoo",
+    "sku": null,
+    "feature": null,
+    "req": 0,
+    "choices": [
+     {
+      "title": "Original 8 fl. oz",
+      "sku": "4118",
+      "refiner": "513-3828"
+     },
+     {
+      "title": "Original 32 fl. oz",
+      "sku": "4906",
+      "refiner": "513-3827"
+     }
+    ]
+   },
+   {
+    "type": "Static",
+    "title": "",
+    "sku": "5906",
+    "feature": null,
+    "req": 0,
+    "choices": []
+   }
+  ],
+  "acc": [
+   {
+    "sku": "4889",
+    "title": "32 oz. Shampoo & Conditioner Pump",
+    "price": 1.29,
+    "pts": 0.0
+   }
+  ]
+ },
+ "60132": {
+  "conf": [
+   {
+    "type": "Facet",
+    "title": "Sustain",
+    "sku": null,
+    "feature": null,
+    "req": 0,
+    "choices": [
+     {
+      "title": "Raspberry Lemonade",
+      "sku": "60132",
+      "refiner": "745-3978"
+     },
+     {
+      "title": "Lemon ",
+      "sku": "60129",
+      "refiner": "745-6004"
+     },
+     {
+      "title": "Frosted Lime",
+      "sku": "60193",
+      "refiner": "745-6610"
+     },
+     {
+      "title": "Pink Grapefruit",
+      "sku": "60131",
+      "refiner": "745-6983"
+     }
+    ]
+   }
+  ],
+  "acc": [
+   {
+    "sku": "9199",
+    "title": "Vitality For Life\u00ae Blender Bottle",
+    "price": 7.99,
+    "pts": 0.0
+   }
+  ]
+ },
+ "60124": {
+  "conf": [
+   {
+    "type": "Facet",
+    "title": "Sustain",
+    "sku": null,
+    "feature": null,
+    "req": 0,
+    "choices": [
+     {
+      "title": "Raspberry Lemonade",
+      "sku": "60127",
+      "refiner": "745-3978"
+     },
+     {
+      "title": "Lemon ",
+      "sku": "60124",
+      "refiner": "745-6004"
+     },
+     {
+      "title": "Orange",
+      "sku": "60125",
+      "refiner": "745-6012"
+     }
+    ]
+   }
+  ],
+  "acc": [
+   {
+    "sku": "9199",
+    "title": "Vitality For Life\u00ae Blender Bottle",
+    "price": 7.99,
+    "pts": 0.0
+   }
+  ]
+ },
+ "403": {
+  "conf": [
+   {
+    "type": "Facet",
+    "title": "Vitamin",
+    "sku": null,
+    "feature": null,
+    "req": 0,
+    "choices": [
+     {
+      "title": "Women",
+      "sku": "400",
+      "refiner": "488-2842"
+     },
+     {
+      "title": "Men",
+      "sku": "401",
+      "refiner": "488-2843"
+     },
+     {
+      "title": "50+",
+      "sku": "402",
+      "refiner": "488-2844"
+     },
+     {
+      "title": "Prenatal",
+      "sku": "403",
+      "refiner": "488-3365"
+     }
+    ]
+   }
+  ],
+  "acc": [
+   {
+    "sku": "10919",
+    "title": "Pair It With Peak Supplement Organizer",
+    "price": 9.99,
+    "pts": 0.0
+   }
+  ]
+ },
+ "179": {
+  "conf": [
+   {
+    "type": "Facet",
+    "title": "Fragrance",
+    "sku": null,
+    "feature": null,
+    "req": 0,
+    "choices": [
+     {
+      "title": "Mint & Herb",
+      "sku": null,
+      "refiner": "519-2935"
+     },
+     {
+      "title": "Pomegranate Sage",
+      "sku": null,
+      "refiner": "519-2936"
+     },
+     {
+      "title": "Grapefruit Splash",
+      "sku": null,
+      "refiner": "519-2931"
+     },
+     {
+      "title": "White Tea & Ginger",
+      "sku": null,
+      "refiner": "519-2933"
+     },
+     {
+      "title": "Honey Almond",
+      "sku": null,
+      "refiner": "519-2934"
+     },
+     {
+      "title": "Blackberry Kiss",
+      "sku": null,
+      "refiner": "519-2929"
+     },
+     {
+      "title": "Lemon Avocado",
+      "sku": null,
+      "refiner": "519-2930"
+     },
+     {
+      "title": "Caribbean Coast",
+      "sku": null,
+      "refiner": "519-2932"
+     }
+    ]
+   }
+  ],
+  "acc": [
+   {
+    "sku": "5996",
+    "title": "Sun Valley\u00ae Liquid Hand Soap Pump",
+    "price": 1.29,
+    "pts": 0.0
+   }
+  ]
+ },
+ "130": {
+  "conf": [
+   {
+    "type": "Facet",
+    "title": "Scent",
+    "sku": null,
+    "feature": null,
+    "req": 0,
+    "choices": [
+     {
+      "title": "Lemon Blossom 16 fl oz",
+      "sku": "294",
+      "refiner": "517-3192"
+     },
+     {
+      "title": "Original 8 fl oz",
+      "sku": "292",
+      "refiner": "517-2925"
+     },
+     {
+      "title": "Lemon Blossom 8 fl oz",
+      "sku": "293",
+      "refiner": "517-2926"
+     },
+     {
+      "title": "Original 16 fl oz",
+      "sku": "130",
+      "refiner": "517-3302"
+     }
+    ]
+   }
+  ],
+  "acc": [
+   {
+    "sku": "1209",
+    "title": "Sol-U-Mel\u00ae Mixing Spray Bottle",
+    "price": 1.79,
+    "pts": 0.0
+   }
+  ]
+ },
+ "60215": {
+  "conf": [
+   {
+    "type": "Facet",
+    "title": "Flavor",
+    "sku": null,
+    "feature": null,
+    "req": 0,
+    "choices": [
+     {
+      "title": "Fruit Punch",
+      "sku": "60211",
+      "refiner": "743-6668"
+     },
+     {
+      "title": "Lemonade",
+      "sku": "60212",
+      "refiner": "743-6673"
+     },
+     {
+      "title": "Strawberry Kiwi",
+      "sku": "60213",
+      "refiner": "743-6671"
+     },
+     {
+      "title": "Tangerine Peach",
+      "sku": "60214",
+      "refiner": "743-6670"
+     },
+     {
+      "title": "Peach Iced Tea",
+      "sku": "60215",
+      "refiner": "743-6674"
+     },
+     {
+      "title": "Raspberry Iced Tea",
+      "sku": "60216",
+      "refiner": "743-6672"
+     },
+     {
+      "title": "Cherry Pomegranate + Caffeine",
+      "sku": "60205",
+      "refiner": "743-6669"
+     }
+    ]
+   }
+  ],
+  "acc": [
+   {
+    "sku": "9199",
+    "title": "Vitality For Life\u00ae Blender Bottle",
+    "price": 7.99,
+    "pts": 0.0
+   }
+  ]
+ },
+ "63985": {
+  "conf": [
+   {
+    "type": "FSKU",
+    "title": "Fiberwise Flavor",
+    "sku": null,
+    "feature": "F2290",
+    "req": 2,
+    "choices": [
+     {
+      "title": "Orange",
+      "sku": "60138",
+      "refiner": "504-3199"
+     },
+     {
+      "title": "Sugar-Free Orange Canister",
+      "sku": "60140",
+      "refiner": "504-3125"
+     },
+     {
+      "title": "Sugar-Free Berry Canister",
+      "sku": "60141",
+      "refiner": "504-3124"
+     },
+     {
+      "title": "Green Apple with Stevia",
+      "sku": "60143",
+      "refiner": "504-5876"
+     },
+     {
+      "title": "All Purpose",
+      "sku": "60137",
+      "refiner": "504-5878"
+     }
+    ]
+   }
+  ],
+  "acc": []
+ },
+ "1300": {
+  "conf": [
+   {
+    "type": "Facet",
+    "title": "Simply Fit ",
+    "sku": null,
+    "feature": null,
+    "req": 0,
+    "choices": [
+     {
+      "title": "Vanilla Greek Yogurt",
+      "sku": "1300",
+      "refiner": "485-3266"
+     },
+     {
+      "title": "Yogurt Berry Parfait",
+      "sku": "1299",
+      "refiner": "485-3261"
+     },
+     {
+      "title": "Chocolate Chip Drizzle",
+      "sku": "1361",
+      "refiner": "485-3260"
+     },
+     {
+      "title": "Chocolate Caramel Coconut",
+      "sku": "1362",
+      "refiner": "485-3264"
+     }
+    ]
+   }
+  ],
+  "acc": []
+ },
+ "60140": {
+  "conf": [
+   {
+    "type": "Facet",
+    "title": "Fiberwise Flavor",
+    "sku": null,
+    "feature": null,
+    "req": 0,
+    "choices": [
+     {
+      "title": "Sugar-Free Orange Canister",
+      "sku": "60140",
+      "refiner": "504-3125"
+     },
+     {
+      "title": "Sugar-Free Berry Canister",
+      "sku": "60141",
+      "refiner": "504-3124"
+     }
+    ]
+   }
+  ],
+  "acc": []
+ },
+ "4913": {
+  "conf": [],
+  "acc": []
+ },
+ "60127": {
+  "conf": [
+   {
+    "type": "Facet",
+    "title": "Sustain",
+    "sku": null,
+    "feature": null,
+    "req": 0,
+    "choices": [
+     {
+      "title": "Raspberry Lemonade",
+      "sku": "60127",
+      "refiner": "745-3978"
+     },
+     {
+      "title": "Lemon ",
+      "sku": "60124",
+      "refiner": "745-6004"
+     },
+     {
+      "title": "Orange",
+      "sku": "60125",
+      "refiner": "745-6012"
+     }
+    ]
+   }
+  ],
+  "acc": [
+   {
+    "sku": "9199",
+    "title": "Vitality For Life\u00ae Blender Bottle",
+    "price": 7.99,
+    "pts": 0.0
+   }
+  ]
+ },
+ "60141": {
+  "conf": [
+   {
+    "type": "Facet",
+    "title": "Fiberwise Flavor",
+    "sku": null,
+    "feature": null,
+    "req": 0,
+    "choices": [
+     {
+      "title": "Sugar-Free Orange Canister",
+      "sku": "60140",
+      "refiner": "504-3125"
+     },
+     {
+      "title": "Sugar-Free Berry Canister",
+      "sku": "60141",
+      "refiner": "504-3124"
+     }
+    ]
+   }
+  ],
+  "acc": []
+ },
+ "60129": {
+  "conf": [
+   {
+    "type": "Facet",
+    "title": "Sustain",
+    "sku": null,
+    "feature": null,
+    "req": 0,
+    "choices": [
+     {
+      "title": "Raspberry Lemonade",
+      "sku": "60132",
+      "refiner": "745-3978"
+     },
+     {
+      "title": "Lemon ",
+      "sku": "60129",
+      "refiner": "745-6004"
+     },
+     {
+      "title": "Frosted Lime",
+      "sku": "60193",
+      "refiner": "745-6610"
+     },
+     {
+      "title": "Pink Grapefruit",
+      "sku": "60131",
+      "refiner": "745-6983"
+     }
+    ]
+   }
+  ],
+  "acc": [
+   {
+    "sku": "9199",
+    "title": "Vitality For Life\u00ae Blender Bottle",
+    "price": 7.99,
+    "pts": 0.0
+   }
+  ]
+ },
+ "30085": {
+  "conf": [],
+  "acc": []
+ },
+ "9770": {
+  "conf": [],
+  "acc": [
+   {
+    "sku": "4848",
+    "title": "EcoSense\u00ae Drain-Back Cap",
+    "price": 1.29,
+    "pts": 0.0
+   },
+   {
+    "sku": "924",
+    "title": "32 fl. oz. Reusable Laundry Pump",
+    "price": 2.29,
+    "pts": 0.0
+   }
+  ]
+ },
+ "294": {
+  "conf": [
+   {
+    "type": "Facet",
+    "title": "Scent",
+    "sku": null,
+    "feature": null,
+    "req": 0,
+    "choices": [
+     {
+      "title": "Lemon Blossom 16 fl oz",
+      "sku": "294",
+      "refiner": "517-3192"
+     },
+     {
+      "title": "Original 8 fl oz",
+      "sku": "292",
+      "refiner": "517-2925"
+     },
+     {
+      "title": "Lemon Blossom 8 fl oz",
+      "sku": "293",
+      "refiner": "517-2926"
+     },
+     {
+      "title": "Original 16 fl oz",
+      "sku": "130",
+      "refiner": "517-3302"
+     }
+    ]
+   }
+  ],
+  "acc": [
+   {
+    "sku": "1209",
+    "title": "Sol-U-Mel\u00ae Mixing Spray Bottle",
+    "price": 1.79,
+    "pts": 0.0
+   }
+  ]
+ },
+ "4056": {
+  "conf": [],
+  "acc": []
+ },
+ "60143": {
+  "conf": [],
+  "acc": []
+ },
+ "410": {
+  "conf": [
+   {
+    "type": "Facet",
+    "title": "Vitamin",
+    "sku": null,
+    "feature": null,
+    "req": 0,
+    "choices": [
+     {
+      "title": "Women",
+      "sku": "410",
+      "refiner": "488-2842"
+     },
+     {
+      "title": "Men",
+      "sku": "411",
+      "refiner": "488-2843"
+     },
+     {
+      "title": "50+",
+      "sku": "412",
+      "refiner": "488-2844"
+     },
+     {
+      "title": "Prenatal",
+      "sku": "413",
+      "refiner": "488-3365"
+     }
+    ]
+   }
+  ],
+  "acc": [
+   {
+    "sku": "10919",
+    "title": "Pair It With Peak Supplement Organizer",
+    "price": 9.99,
+    "pts": 0.0
+   }
+  ]
+ },
+ "63042": {
+  "conf": [],
+  "acc": []
+ },
+ "60146": {
+  "conf": [
+   {
+    "type": "Facet",
+    "title": "GC Control",
+    "sku": null,
+    "feature": null,
+    "req": 0,
+    "choices": [
+     {
+      "title": "Vanilla Bean GC Control",
+      "sku": "60146",
+      "refiner": "704-6239"
+     },
+     {
+      "title": "Strawberry GC Control",
+      "sku": "60147",
+      "refiner": "704-6241"
+     },
+     {
+      "title": "Creamy Chocolate GC Control",
+      "sku": "60148",
+      "refiner": "704-6240"
+     },
+     {
+      "title": "Caramel Cr\u00e8me Br\u00fbl\u00e9e GC Control",
+      "sku": "60171",
+      "refiner": "704-3857"
+     },
+     {
+      "title": "Cinnamon Roll GC Control",
+      "sku": "60247",
+      "refiner": "704-6619"
+     }
+    ]
+   }
+  ],
+  "acc": [
+   {
+    "sku": "9199",
+    "title": "Vitality For Life\u00ae Blender Bottle",
+    "price": 7.99,
+    "pts": 0.0
+   }
+  ]
+ },
+ "63939": {
+  "conf": [
+   {
+    "type": "FSKU",
+    "title": "Flavor",
+    "sku": null,
+    "feature": "F2321",
+    "req": 2,
+    "choices": [
+     {
+      "title": "Strawberry Kiwi",
+      "sku": "60213",
+      "refiner": "743-6671"
+     },
+     {
+      "title": "Cherry Pomegranate + Caffeine",
+      "sku": "60205",
+      "refiner": "743-6669"
+     },
+     {
+      "title": "Fruit Punch",
+      "sku": "60211",
+      "refiner": "743-6668"
+     },
+     {
+      "title": "Raspberry Iced Tea",
+      "sku": "60216",
+      "refiner": "743-6672"
+     },
+     {
+      "title": "Lemonade",
+      "sku": "60212",
+      "refiner": "743-6673"
+     },
+     {
+      "title": "Peach Iced Tea",
+      "sku": "60215",
+      "refiner": "743-6674"
+     },
+     {
+      "title": "Tangerine Peach",
+      "sku": "60214",
+      "refiner": "743-6670"
+     }
+    ]
+   }
+  ],
+  "acc": [
+   {
+    "sku": "9199",
+    "title": "Vitality For Life\u00ae Blender Bottle",
+    "price": 7.99,
+    "pts": 0.0
+   }
+  ]
+ },
+ "8194": {
+  "conf": [],
+  "acc": [
+   {
+    "sku": "1217",
+    "title": "Tub & Tile\u2122 Mixing Spray Bottle",
+    "price": 1.79,
+    "pts": 0
+   }
+  ]
+ },
+ "34050": {
+  "conf": [
+   {
+    "type": "FSKU",
+    "title": "Scent",
+    "sku": null,
+    "feature": "F444",
+    "req": 2,
+    "choices": [
+     {
+      "title": "Regular: Island Breeze ",
+      "sku": "6901",
+      "refiner": "512-2907"
+     },
+     {
+      "title": "Regular: Mountain Fresh ",
+      "sku": "6902",
+      "refiner": "512-2908"
+     },
+     {
+      "title": "Regular: Scent Free ",
+      "sku": "3441",
+      "refiner": "512-2910"
+     },
+     {
+      "title": "HE: Garden Lavender ",
+      "sku": "5547",
+      "refiner": "512-3154"
+     },
+     {
+      "title": "HE: Island Breeze ",
+      "sku": "6903",
+      "refiner": "512-3155"
+     },
+     {
+      "title": "HE: Mountain Fresh ",
+      "sku": "6904",
+      "refiner": "512-3211"
+     },
+     {
+      "title": "HE: Scent Free ",
+      "sku": "215",
+      "refiner": "512-3212"
+     },
+     {
+      "title": "Regular: Garden Lavender",
+      "sku": "5546",
+      "refiner": "512-2909"
+     }
+    ]
+   }
+  ],
+  "acc": [
+   {
+    "sku": "4848",
+    "title": "EcoSense\u00ae Drain-Back Cap",
+    "price": 1.29,
+    "pts": 0
+   },
+   {
+    "sku": "924",
+    "title": "32 fl. oz. Reusable Laundry Pump",
+    "price": 2.29,
+    "pts": 0
+   }
+  ]
+ },
+ "8246": {
+  "conf": [],
+  "acc": [
+   {
+    "sku": "10919",
+    "title": "Pair It With Peak Supplement Organizer",
+    "price": 9.99,
+    "pts": 0
+   }
+  ]
+ },
+ "79015": {
+  "conf": [],
+  "acc": []
+ },
+ "6833": {
+  "conf": [],
+  "acc": []
+ },
+ "49096": {
+  "conf": [],
+  "acc": []
+ },
+ "49635": {
+  "conf": [],
+  "acc": []
+ },
+ "49677": {
+  "conf": [],
+  "acc": []
+ }
+}

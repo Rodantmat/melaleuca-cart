@@ -1,0 +1,336 @@
+============================== tab 7 02:27:46
+02:27:47   proxy port 10007 | location: cr.us;city.losangeles,sandiego,longbeach,anaheim,irvine,santaana,riverside
+02:28:17 signed in as Antonio M | plan: 41 lines, TOTAL points 145.0 cost 393.09
+02:28:17 cart had 30 lines (145 points) - emptying it first
+02:28:28 cart emptied
+02:28:28   catalog from the saved copy: 83 families (no need to read the store)
+02:28:28   variant: Ecosense - Sol-U-Mel - Original - 8oz (R642L) -> 292  Original Scent (0.98)
+02:28:32   SKU CORRECTED: 'Exercise - GC Control Creamy Vanilla Bean': the sheet has item 60155 (GC Control? Weight Management Shake for Speci), the name fits item 60146 (Vanilla Bean GC Control) better - used that one
+02:28:32   variant: Haircare - Herbal Shampoo - 8oz (R1729L) -> 4117  only variant: Melaleuca Herbal Shampoo
+02:28:32   variant: Mela-Pharmacy - Vitality Women (F711) -> 403  only variant: Prenatal
+02:28:32   variant: Renew - Lotion - 1oz (manual) -> 3887  Renew? Intensive Skin Therapy: Travel Size (price 2.09, 1 pts)
+02:28:32   variant: Renew - Lotion - 20oz (R480H) -> 6600  only variant: Value Size Renew
+02:28:37 actions: 23 | offer lines: 7 | problems: 0
+02:28:37   added [single] 70338 x1 Beauty - Sei Bella Facial Scrub 
+02:28:37   added [pack] 5018 x1 2-pack: Ecosense - Diamond Brite - 25 Loads 
+02:28:38   added [pack] 2211 x1 2-pack: Ecosense - PreSpot - 8oz 
+02:28:38   added [pack] 33022 x1 3-pack: Ecosense - Prespot Instant Stain Remover 
+02:28:38   added [single] 33961 x1 Ecosense - Revive - Original with Bottle 
+02:28:38        choice: Ecosense - Revive - Original with Bottle -> Original Fragrance (0.49)
+02:28:38   added [single] 292 x1 Ecosense - Sol-U-Mel - Original - 8oz 
+02:28:39   added [single] 60146 x1 Exercise - GC Control Creamy Vanilla Bean 
+02:28:39   added [single] 4117 x1 Haircare - Herbal Shampoo - 8oz 
+02:28:39   added [single] 403 x1 Mela-Pharmacy - Vitality Women 
+02:28:39   added [single] 3887 x1 Renew - Lotion - 1oz 
+02:28:40   added [single] 6600 x1 Renew - Lotion - 20oz 
+02:28:40   added [pack] 6196 x1 2-pack: Toothcare - Breath-Away Mouth Rinse - 16oz 
+02:28:40   added [pack] 190 x1 DEOD pack 1/1: finia Sweet Cream and Willow, nia Vanill 
+02:28:40        choice: Deodorant - Affinia Sweet Cream and Willow -> Affinia Sweet Cream & Willow (0.99)
+02:28:40        choice: Deodorant - Affinia Vanilla Musk and Jasmine -> Vanilla Musk & Jasmine (0.99)
+02:28:40        choice: Deodorant - Alloy Antiperspirant -> Alloy AP/DEO (10.0)
+02:28:40   added [pack] 34911 x1 CLEAN pack 1/1: Ecosense - Mela-magic - 16oz, Ecosense  
+02:28:40        choice: Ecosense - Harvest Pure - 8oz -> Harvest Pure? Fruit And Vegetable Wash (10.0)
+02:28:40        choice: Ecosense - Mela-magic - 16oz -> MelaMagic Heavy-Duty Cleaner (10.0)
+02:28:40        choice: Ecosense - No Work - 8oz -> No Work Daily Shower Cleaner (10.0)
+02:28:40   added [pack] 5026 x1 F252 pack 1/1: Brite - 16oz - Apple Scented, Brite - 16 
+02:28:40        choice: EcoSense - Lemon Brite - 16oz - Apple Scented -> Apple (0.98)
+02:28:40        choice: EcoSense - Lemon Brite - 16oz - Lemon Scented -> Lemon (0.98)
+02:28:40        choice: EcoSense - Lemon Brite - 16oz - Tropical Scented -> Tropical (0.98)
+02:28:41   added [pack] 8911 x1 SGD2 pack 1/1: Ecosense - Sol U Guard 
+02:28:41   added [pack] 63939 x1 F3771 pack 1/1: - Splash H2O - Peach Ice Tea, cise - Sp 
+02:28:41        choice: Exercise - Splash H2O - Lemonade -> Lemonade (0.98)
+02:28:41        choice: Exercise - Splash H2O - Peach Ice Tea -> Peach Iced Tea (0.99)
+02:28:41   added [pack] 23963 x1 AFFSC pack 1/1: - Affinia Volume Conditioner, e - Affin 
+02:28:41        choice: Haircare - Affinia Moisture Shampoo -> Moisture Shampoo (10.0)
+02:28:41        choice: Haircare - Affinia Volume Conditioner -> Volume Conditioner (10.0)
+02:28:42   added [pack] 6277 x1 KPB2 pack 1/1: Koala Pals - Body Wash 
+02:28:42        choice: Koala Pals - Body Wash -> Body Wash (10.0)
+02:28:42        choice: Koala Pals - Body Wash -> Body Wash (10.0)
+02:28:42   added [pack] 5027 x1 F298 pack 1/1:  Dryer Sheets - Clean Cotton 
+02:28:42        choice: Laundry - Melasoft Dryer Sheets - Clean Cotton -> Clean Cotton (0.98)
+02:28:42        choice: Laundry - Melasoft Dryer Sheets - Clean Cotton -> Clean Cotton (0.98)
+02:28:42   added [pack] 5684 x1 ACT2 pack 1/1: armacy - Activate-C - Orange 
+02:28:42        choice: Mela-Pharmacy - Activate-C - Orange -> Activate-C Immune Complex Drink: Orange (10.0)
+02:28:42        choice: Mela-Pharmacy - Activate-C - Orange -> Activate-C Immune Complex Drink: Orange (10.0)
+02:28:42   added [pack] 7911 x1 F650 pack 1/1: des - Lip Balm - Pina Colada, p Balm - C 
+02:28:42        choice: Sun Shades - Lip Balm - Cranberry Tangerine -> Cranberry Tangerine (0.98)
+02:28:42        choice: Sun Shades - Lip Balm - Cranberry Tangerine -> Cranberry Tangerine (0.98)
+02:28:42        choice: Sun Shades - Lip Balm - Pina Colada -> Pina Colada (0.98)
+02:28:43   added [pack] 43987 x1 TOOTH pack 1/1: hcare - Classic - Fresh Mint, oothcare  
+02:28:43        choice: Toothcare - Classic - Fresh Mint -> Classic Fresh Mint - Fluoride-Free (0.83)
+02:28:43        choice: Toothcare - Exceed - Cinnamon -> Cinnamon - Fluoride-Free (10.0)
+02:28:43        choice: Toothcare - Koala Pals - Apple -> Apple - Fluoride-Free (0.71)
+02:28:43 cart before the offers: 23 items, 130 points
+02:28:54 offers on the page: 27
+02:28:54      offer card 34050 | promo 2013704 | Save $10.00 on MelaPower Laundry Detergent 2-Pack!
+02:28:54      offer card 69235 | promo 2013741 | Save $3.00 on Riverbend Ranch Beef Tallow!
+02:28:54      offer card 39820 | promo 2013706 | Save $2.00 on Spiced Cranberry Scented Lemon Brite 2-Pack!
+02:28:54      offer card 49677 | promo 2013688 | Save $9.00 on Renew Hand Wash Refill 2-Pack!
+02:28:54      offer card 64295 | promo 2013743 | Save $7.00 on Simply Fit Trail Bars  3-Pack!
+02:28:54      offer card 39734 | promo 2013705 | Save $5.00 on Spiced Apple Sol-U-Mel and Spiced Apple Tough & Tender!
+02:28:54      offer card 59826 | promo 2013689 | Save $21.00 on Pure Long Winter Nap Relaxing Blend!
+02:28:54      offer card 6269 | promo 2013697 | Buy one Vitality Coldwater Omega-3, get one for $3.99!
+02:28:54      offer card 8068 | promo 2013693 | Save $4.00 on Pure Lavender Essential Oil!
+02:28:54      offer card 6833 | promo 2013687 | Buy one Safe & Mighty, get one for $2.99!
+02:28:54      offer card 5070 | promo 2013702 | Save $3.00 on Bath Bars 3-Pack!
+02:28:54      offer card 69327 | promo 2013698 | Buy one Activate Immune Complex, get one for $2.99!
+02:28:54      offer card 1682 | promo 2013684 | Save $20.00 on Luminex 2-Pack!
+02:28:54      offer card 6400 | promo 2013707 | Save $3.50 on Exceed Mints 5-Pack!
+02:28:54      offer card 8194 | promo 2013695 | Buy one Tub & Tile Bathroom Cleaner, get one for $2.49!
+02:28:54      offer card 4227 | promo 2013694 | Save $10.00 on MelaBrite Color Booster 2-Pack!
+02:28:54      offer card 74141 | promo 2013696 | Save $23.00 - $32.50 on Sei Bella Treatment and Moisturizer!
+02:28:54      offer card 49635 | promo 2013699 | Save $4.00 on Renew Targeted Eczema Treatment 2-Pack!
+02:28:54      offer card 49096 | promo 2013685 | Buy one Pain-A-Trate Ultra, get one for $2.49!
+02:28:54      offer card 69311 | promo 2013701 | Save $20.00 on PhloraV 2-Pack!
+02:28:54      offer card 8669 | promo 2013703 | Save $5.00 on Sun Valley Liquid Soap 3-Pack! (Pumps Sold Separately)
+02:28:54      offer card 6476 | promo 2013700 | Save $10.00 on FiberWise Canister 2-Pack!
+02:28:54      offer card 74091 | promo 2013690 | Save $30.00 - $32.50 on Sei Bella Deep Marine Bundle!
+02:28:54      offer card 69294 | promo 2013880 | Save $5.00 on Vitality Iron Support!
+02:28:54      offer card 79015 | promo 2013686 | Save $3.00 on Sei Bella The Basic Collection Gentle Daily Cleanser!
+02:28:54      offer card 8246 | promo 2013691 | Buy one Vitality Calcium Complete, get one for $2.49!
+02:28:54      offer card 5520 | promo 2013692 | Buy two Sei Bella Makeup Removing Cleansing Wipes, get one FREE!
+02:28:58   added offer 79015 x1 Save $3.00 on Sei Bella The Basic Collection Gentle Dai 
+02:29:03   added offer 6833 x1 Buy one Safe & Mighty, get one for $2.99! 
+02:29:07   added offer 8194 x1 Buy one Tub & Tile Bathroom Cleaner, get one for $2.49! 
+02:29:11   added offer 34050 x1 Save $10.00 on MelaPower Laundry Detergent 2-Pack! [{"FeatureSku": "F444", "SelectedSku": "3441"}, {"FeatureSku": "F444", "SelectedSku": "3441"}]
+02:29:15   added offer 49096 x1 Buy one Pain-A-Trate Ultra, get one for $2.49! 
+02:29:19   added offer 8246 x1 Buy one Vitality Calcium Complete, get one for $2.49! 
+02:29:23   added offer 49635 x1 Save $4.00 on Renew Targeted Eczema Treatment 2-Pack! 
+02:29:23   credit  : Credit 1 -> box 'Buy with Loyalty Shopping Dollars' ticked on Haircare - Herbal Shampoo - 8oz
+02:29:23   credit  : Credit 2 -> box 'Buy with Loyalty Shopping Dollars' ticked on Exercise - GC Control Creamy Vanilla Bean
+02:29:24 
+CART NOW: 30 items | 145 points | gross 393.09 | net 382.67 | discount 0
+02:29:24 SHEET   : 145 points count for the limit (TOTAL row: 145) + 16 points of credit items | cost of all lines 393.09
+02:29:24 CREDIT  : $10.42 of loyalty dollars used by the cart
+02:29:24 RESULT  : points MATCH | cost MATCH
+02:29:24   every line of the cart equals the sheet.
+02:29:33 lab: emptied the cart again: 30 lines
+
+============================== tab 8 02:29:34
+02:29:35   proxy port 10008 | location: cr.us;city.losangeles,sandiego,longbeach,anaheim,irvine,santaana,riverside
+02:30:13 signed in as William Y | plan: 41 lines, TOTAL points 147.0 cost 402.47999999999996
+02:30:14   catalog from the saved copy: 83 families (no need to read the store)
+02:30:14   variant: Ecosense - Sol-U-Mel - Original - 8oz (R642L) -> 292  Original Scent (0.98)
+02:30:14   SKU CORRECTED: 'Exercise - GC Control Creamy Vanilla Bean': the sheet has item 60155 (GC Control? Weight Management Shake for Speci), the name fits item 60146 (Vanilla Bean GC Control) better - used that one
+02:30:14   variant: Mela-Pharmacy - Vitality 50+ (F711) -> 403  only variant: Prenatal
+02:30:14   variant: Sun Valley - Hand Wash - Mint and Herb - 8oz with  (R669H) -> 179  Hand Wash: Mint & Herb (0.99)
+02:30:14 actions: 22 | offer lines: 8 | problems: 0
+02:30:15   added [pack] 5018 x1 2-pack: Ecosense - Diamond Brite - 25 Loads 
+02:30:16   added [pack] 2211 x1 2-pack: Ecosense - PreSpot - 8oz 
+02:30:16   added [pack] 33022 x1 3-pack: Ecosense - Prespot Instant Stain Remover 
+02:30:17   added [single] 3427 x1 Ecosense - Rustic - 8oz 
+02:30:17   added [single] 292 x1 Ecosense - Sol-U-Mel - Original - 8oz 
+02:30:18   added [single] 60146 x1 Exercise - GC Control Creamy Vanilla Bean 
+02:30:18   added [single] 403 x1 Mela-Pharmacy - Vitality 50+ 
+02:30:19   added [single] 3634 x1 Renew - Lotion - 1oz - Pure Lavender 
+02:30:20   added [single] 179 x1 Sun Valley - Hand Wash - Mint and Herb - 8oz with pump 
+02:30:20   added [single] 5996 x1 Sun Valley? Liquid Hand Soap Pump for Sun Valley - Hand 
+02:30:21   added [single] 6196 x1 Toothcare - Breath-Away Mouth Rinse - 16oz - 2-Pack 
+02:30:21   added [pack] 190 x1 DEOD pack 1/1: finia Sweet Cream and Willow, nia Vanill 
+02:30:21        choice: Deodorant - Affinia Sweet Cream and Willow -> Affinia Sweet Cream & Willow (0.99)
+02:30:21        choice: Deodorant - Affinia Vanilla Musk and Jasmine -> Vanilla Musk & Jasmine (0.99)
+02:30:21        choice: Deodorant - Alloy Antiperspirant -> Alloy AP/DEO (10.0)
+02:30:22   added [pack] 34911 x1 CLEAN pack 1/1: Ecosense - Mela-magic - 16oz, Ecosense  
+02:30:22        choice: Ecosense - Harvest Pure - 8oz -> Harvest Pure? Fruit And Vegetable Wash (10.0)
+02:30:22        choice: Ecosense - Mela-magic - 16oz -> MelaMagic Heavy-Duty Cleaner (10.0)
+02:30:22        choice: Ecosense - No Work - 8oz -> No Work Daily Shower Cleaner (10.0)
+02:30:22   added [pack] 5026 x1 F252 pack 1/1: Brite - 16oz - Apple Scented, Brite - 16 
+02:30:22        choice: EcoSense - Lemon Brite - 16oz - Apple Scented -> Apple (0.98)
+02:30:22        choice: EcoSense - Lemon Brite - 16oz - Lemon Scented -> Lemon (0.98)
+02:30:22        choice: EcoSense - Lemon Brite - 16oz - Tropical Scented -> Tropical (0.98)
+02:30:23   added [pack] 8911 x1 SGD2 pack 1/1: Ecosense - Sol U Guard 
+02:30:26   added [pack] 63939 x1 F3771 pack 1/1: Splash H2O - Strawberry Kiwi, cise - Sp 
+02:30:26        choice: Exercise - Splash H2O - Lemonade -> Lemonade (0.98)
+02:30:26        choice: Exercise - Splash H2O - Strawberry Kiwi -> Strawberry Kiwi (0.98)
+02:30:27   added [pack] 23963 x1 AFFSC pack 1/1: - Affinia Volume Conditioner, are - Aff 
+02:30:27        choice: Haircare - Affinia Volume Conditioner -> Volume Conditioner (10.0)
+02:30:27        choice: Haircare - Affinia Volume Shampoo -> Volume Shampoo (10.0)
+02:30:31   added [pack] 6277 x1 KPB2 pack 1/1: Koala Pals - Body Wash 
+02:30:31        choice: Koala Pals - Body Wash -> Body Wash (10.0)
+02:30:31        choice: Koala Pals - Body Wash -> Body Wash (10.0)
+02:30:31   added [pack] 219 x1 MB9X2 pack 1/1: undry - Melabrite - 96 loads 
+02:30:32   added [pack] 2154 x1 F296 pack 1/1: laSoft Bottle - Clean Cotton, oft Bottle 
+02:30:32        choice: Laundry - MelaSoft Bottle - Clean Cotton -> Clean Cotton (0.98)
+02:30:32        choice: Laundry - MelaSoft Bottle - Garden Lavender -> Garden Lavender (0.98)
+02:30:33   added [pack] 7911 x1 F650 pack 1/1: des - Lip Balm - Pina Colada, p Balm - C 
+02:30:33        choice: Sun Shades - Lip Balm - Cranberry Tangerine -> Cranberry Tangerine (0.98)
+02:30:33        choice: Sun Shades - Lip Balm - Cranberry Tangerine -> Cranberry Tangerine (0.98)
+02:30:33        choice: Sun Shades - Lip Balm - Pina Colada -> Pina Colada (0.98)
+02:30:33   added [pack] 43987 x1 TOOTH pack 1/1:  - Koala Pals - Berrylicious, ed - Spea 
+02:30:33        choice: Toothcare - Exceed - Cinnamon -> Cinnamon - Fluoride-Free (10.0)
+02:30:33        choice: Toothcare - Exceed - Spearmint with Fluoride -> Spearmint +Fluoride (10.0)
+02:30:33        choice: Toothcare - Koala Pals - Berrylicious -> Berrylicious +Fluoride (0.87)
+02:30:34 cart before the offers: 22 items, 124 points
+02:30:49 offers on the page: 27
+02:30:49      offer card 34050 | promo 2013704 | Save $10.00 on MelaPower Laundry Detergent 2-Pack!
+02:30:49      offer card 69235 | promo 2013741 | Save $3.00 on Riverbend Ranch Beef Tallow!
+02:30:49      offer card 39820 | promo 2013706 | Save $2.00 on Spiced Cranberry Scented Lemon Brite 2-Pack!
+02:30:49      offer card 49677 | promo 2013688 | Save $9.00 on Renew Hand Wash Refill 2-Pack!
+02:30:49      offer card 64295 | promo 2013743 | Save $7.00 on Simply Fit Trail Bars  3-Pack!
+02:30:49      offer card 39734 | promo 2013705 | Save $5.00 on Spiced Apple Sol-U-Mel and Spiced Apple Tough & Tender!
+02:30:49      offer card 59826 | promo 2013689 | Save $21.00 on Pure Long Winter Nap Relaxing Blend!
+02:30:49      offer card 6269 | promo 2013697 | Buy one Vitality Coldwater Omega-3, get one for $3.99!
+02:30:49      offer card 8068 | promo 2013693 | Save $4.00 on Pure Lavender Essential Oil!
+02:30:49      offer card 6833 | promo 2013687 | Buy one Safe & Mighty, get one for $2.99!
+02:30:49      offer card 5070 | promo 2013702 | Save $3.00 on Bath Bars 3-Pack!
+02:30:49      offer card 69327 | promo 2013698 | Buy one Activate Immune Complex, get one for $2.99!
+02:30:49      offer card 1682 | promo 2013684 | Save $20.00 on Luminex 2-Pack!
+02:30:49      offer card 69823 | promo 2013707 | Save $12.00 on Florify for Kids Probiotic 2-Pack!
+02:30:49      offer card 8194 | promo 2013695 | Buy one Tub & Tile Bathroom Cleaner, get one for $2.49!
+02:30:49      offer card 4227 | promo 2013694 | Save $10.00 on MelaBrite Color Booster 2-Pack!
+02:30:49      offer card 74141 | promo 2013696 | Save $23.00 - $32.50 on Sei Bella Treatment and Moisturizer!
+02:30:49      offer card 49635 | promo 2013699 | Save $4.00 on Renew Targeted Eczema Treatment 2-Pack!
+02:30:49      offer card 49096 | promo 2013685 | Buy one Pain-A-Trate Ultra, get one for $2.49!
+02:30:49      offer card 69311 | promo 2013701 | Save $20.00 on PhloraV 2-Pack!
+02:30:49      offer card 643 | promo 2013703 | Save $8.00 on Replenex Advance with Type II Collagen!
+02:30:49      offer card 6476 | promo 2013700 | Save $10.00 on FiberWise Canister 2-Pack!
+02:30:49      offer card 74091 | promo 2013690 | Save $30.00 - $32.50 on Sei Bella Deep Marine Bundle!
+02:30:49      offer card 69294 | promo 2013880 | Save $5.00 on Vitality Iron Support!
+02:30:49      offer card 79015 | promo 2013686 | Save $3.00 on Sei Bella The Basic Collection Gentle Daily Cleanser!
+02:30:49      offer card 8246 | promo 2013691 | Buy one Vitality Calcium Complete, get one for $2.49!
+02:30:49      offer card 5520 | promo 2013692 | Buy two Sei Bella Makeup Removing Cleansing Wipes, get one FREE!
+02:30:56   added offer 79015 x1 Save $3.00 on Sei Bella The Basic Collection Gentle Dai 
+02:31:02   added offer 6833 x1 Buy one Safe & Mighty, get one for $2.99! 
+02:31:02   added offer 8194 x1 Buy one Tub & Tile Bathroom Cleaner, get one for $2.49! 
+02:31:03   added offer 34050 x1 Save $10.00 on MelaPower Laundry Detergent 2-Pack! [{"FeatureSku": "F444", "SelectedSku": "3441"}, {"FeatureSku": "F444", "SelectedSku": "3441"}]
+02:31:09   added offer 49096 x1 Buy one Pain-A-Trate Ultra, get one for $2.49! 
+02:31:10   added offer 8246 x1 Buy one Vitality Calcium Complete, get one for $2.49! 
+02:31:16   added offer 49635 x1 Save $4.00 on Renew Targeted Eczema Treatment 2-Pack! 
+02:31:21   added offer 49677 x1 Save $9.00 on Renew Hand Wash Refill 2-Pack! 
+02:31:22   credit  : Credit 1 -> box 'Buy with Loyalty Shopping Dollars' ticked on Sun Valley - Hand Wash - Mint and Herb - 8oz with pump
+02:31:22   credit  : Credit 2 -> box 'Buy with Loyalty Shopping Dollars' ticked on Exercise - GC Control Creamy Vanilla Bean
+02:31:24 
+CART NOW: 30 items | 147 points | gross 402.48 | net 392.06 | discount 0
+02:31:24 SHEET   : 147 points count for the limit (TOTAL row: 147) + 15 points of credit items | cost of all lines 402.48
+02:31:24 CREDIT  : $10.42 of loyalty dollars used by the cart
+02:31:24 RESULT  : points MATCH | cost MATCH
+02:31:24   every line of the cart equals the sheet.
+02:31:47 lab: emptied the cart again: 30 lines
+
+============================== tab 9 02:31:48
+02:31:48   proxy port 10009 | location: cr.us;city.losangeles,sandiego,longbeach,anaheim,irvine,santaana,riverside
+02:32:19 signed in as Adriana M | plan: 41 lines, TOTAL points 145.0 cost 392.88999999999993
+02:32:20   catalog from the saved copy: 83 families (no need to read the store)
+02:32:20   variant: Ecosense - Tough and Tender - 8oz - 2-Pack () -> 4075  Tough & Tender? Wipes 2?Pack (price 6.99, 3 pts) x2 for the 2-pack
+02:32:20   variant: Exercise - Simply Fit Vanilla Greek Yogurt (F623) -> 1300  Vanilla Greek Yogurt (0.98)
+02:32:20   variant: Exercise - Sustain Electrolyte Tub - Raspberry Lem (F2787) -> 60132  Sustain Active Hydration: Raspberry Lemonade Value Size (0.74)
+02:32:20   variant: Haircare - Original Shampoo - 32oz (R289H) -> 4906  only variant: Original Shampoo
+02:32:20   variant: Renew - Lotion - 1oz (manual) -> 3887  Renew? Intensive Skin Therapy: Travel Size (price 2.09, 1 pts)
+02:32:24 actions: 21 | offer lines: 7 | problems: 0
+02:32:38 coupons of this account: 3 | Save $1.25 on Revive Freshener & Wrinkle Relaxer C ; Save $4.50 on Sei Bella Charcoal & Flower Daily Ma ; Save $3.00 on Simply Fit Simple Start Baking Mix: 
+02:32:38   COUPON NOT ON THIS ACCOUNT: 'Renew - Body Wash 12oz' - the sheet counts it at the coupon price (5 pts / 12.98), the store charges the normal price (run Scan Account Offers, then Generate All Orders, so the builder knows this account's coupons).
+02:32:39   added [pack] 5018 x1 2-pack: Ecosense - Diamond Brite - 25 Loads 
+02:32:39   added [pack] 2211 x1 2-pack: Ecosense - PreSpot - 8oz 
+02:32:39   added [pack] 33022 x1 3-pack: Ecosense - Prespot Instant Stain Remover 
+02:32:39   added [single] 4075 x2 Ecosense - Tough and Tender - 8oz - 2-Pack 
+02:32:40   added [single] 1300 x1 Exercise - Simply Fit Vanilla Greek Yogurt 
+02:32:40   added [single] 60132 x1 Exercise - Sustain Electrolyte Tub - Raspberry Lemonade 
+02:32:40   added [single] 4906 x1 Haircare - Original Shampoo - 32oz 
+02:32:40   added [single] 3620 x2 Renew - Body Wash 12oz 
+02:32:42   added [single] 3887 x1 Renew - Lotion - 1oz 
+02:32:42   added [pack] 190 x1 DEOD pack 1/1: finia Sweet Cream and Willow, nia Vanill 
+02:32:42        choice: Deodorant - Affinia Sweet Cream and Willow -> Affinia Sweet Cream & Willow (0.99)
+02:32:42        choice: Deodorant - Affinia Vanilla Musk and Jasmine -> Vanilla Musk & Jasmine (0.99)
+02:32:42        choice: Deodorant - Alloy Antiperspirant -> Alloy AP/DEO (10.0)
+02:32:42   added [pack] 34911 x1 CLEAN pack 1/1: Ecosense - Mela-magic - 16oz, Ecosense  
+02:32:42        choice: Ecosense - Harvest Pure - 8oz -> Harvest Pure? Fruit And Vegetable Wash (10.0)
+02:32:42        choice: Ecosense - Mela-magic - 16oz -> MelaMagic Heavy-Duty Cleaner (10.0)
+02:32:42        choice: Ecosense - No Work - 8oz -> No Work Daily Shower Cleaner (10.0)
+02:32:43   added [pack] 5026 x1 F252 pack 1/1: Brite - 16oz - Apple Scented, Brite - 16 
+02:32:43        choice: EcoSense - Lemon Brite - 16oz - Apple Scented -> Apple (0.98)
+02:32:43        choice: EcoSense - Lemon Brite - 16oz - Lemon Scented -> Lemon (0.98)
+02:32:43        choice: EcoSense - Lemon Brite - 16oz - Tropical Scented -> Tropical (0.98)
+02:32:43   added [pack] 8911 x1 SGD2 pack 1/1: Ecosense - Sol U Guard 
+02:32:43   added [pack] 63939 x1 F3771 pack 1/1: - Splash H2O - Peach Ice Tea, cise - Sp 
+02:32:43        choice: Exercise - Splash H2O - Lemonade -> Lemonade (0.98)
+02:32:43        choice: Exercise - Splash H2O - Peach Ice Tea -> Peach Iced Tea (0.99)
+02:32:43   added [pack] 23963 x1 AFFSC pack 1/1: - Affinia Volume Conditioner, e - Affin 
+02:32:43        choice: Haircare - Affinia Moisture Shampoo -> Moisture Shampoo (10.0)
+02:32:43        choice: Haircare - Affinia Volume Conditioner -> Volume Conditioner (10.0)
+02:32:44   added [pack] 6277 x1 KPB2 pack 1/1: Koala Pals - Body Wash, Koala Pals - Hai 
+02:32:44        choice: Koala Pals - Body Wash -> Body Wash (10.0)
+02:32:44        choice: Koala Pals - Hair Wash -> Hair Wash (10.0)
+02:32:44   added [pack] 590 x1 F264 pack 1/1:  MelaBoost - Garden Lavender, - MelaBoos 
+02:32:44        choice: Laundry - MelaBoost - Garden Lavender -> MelaBoost - Garden Lavender (0.99)
+02:32:44        choice: Laundry - MelaBoost - Mountain Fresh -> MelaBoost - Mountain Fresh (0.99)
+02:32:44   added [pack] 219 x1 MB9X2 pack 1/1: undry - Melabrite - 96 loads 
+02:32:44   added [pack] 6111 x1 GEL pack 1/1: Pharmacy - MelaGel .4oz Disk 
+02:32:44        choice: Mela-Pharmacy - MelaGel .4oz Disk -> Disc (10.0)
+02:32:44        choice: Mela-Pharmacy - MelaGel .4oz Disk -> Disc (10.0)
+02:32:45   added [pack] 7911 x1 F650 pack 1/1: des - Lip Balm - Pina Colada, p Balm - C 
+02:32:45        choice: Sun Shades - Lip Balm - Cranberry Tangerine -> Cranberry Tangerine (0.98)
+02:32:45        choice: Sun Shades - Lip Balm - Cranberry Tangerine -> Cranberry Tangerine (0.98)
+02:32:45        choice: Sun Shades - Lip Balm - Pina Colada -> Pina Colada (0.98)
+02:32:45   added [pack] 43987 x1 TOOTH pack 1/1:  - Koala Pals - Berrylicious, hcare - C 
+02:32:45        choice: Toothcare - Classic - Fresh Mint -> Classic Fresh Mint - Fluoride-Free (0.83)
+02:32:45        choice: Toothcare - Exceed - Cinnamon -> Cinnamon - Fluoride-Free (10.0)
+02:32:45        choice: Toothcare - Koala Pals - Berrylicious -> Berrylicious +Fluoride (0.87)
+02:32:45 cart before the offers: 23 items, 135 points
+02:32:57 offers on the page: 27
+02:32:57      offer card 34050 | promo 2013704 | Save $10.00 on MelaPower Laundry Detergent 2-Pack!
+02:32:57      offer card 69235 | promo 2013741 | Save $3.00 on Riverbend Ranch Beef Tallow!
+02:32:57      offer card 39820 | promo 2013706 | Save $2.00 on Spiced Cranberry Scented Lemon Brite 2-Pack!
+02:32:57      offer card 49677 | promo 2013688 | Save $9.00 on Renew Hand Wash Refill 2-Pack!
+02:32:57      offer card 64295 | promo 2013743 | Save $7.00 on Simply Fit Trail Bars  3-Pack!
+02:32:57      offer card 39734 | promo 2013705 | Save $5.00 on Spiced Apple Sol-U-Mel and Spiced Apple Tough & Tender!
+02:32:57      offer card 59826 | promo 2013689 | Save $21.00 on Pure Long Winter Nap Relaxing Blend!
+02:32:57      offer card 6269 | promo 2013697 | Buy one Vitality Coldwater Omega-3, get one for $3.99!
+02:32:57      offer card 8068 | promo 2013693 | Save $4.00 on Pure Lavender Essential Oil!
+02:32:57      offer card 6833 | promo 2013687 | Buy one Safe & Mighty, get one for $2.99!
+02:32:57      offer card 5070 | promo 2013702 | Save $3.00 on Bath Bars 3-Pack!
+02:32:57      offer card 69327 | promo 2013698 | Buy one Activate Immune Complex, get one for $2.99!
+02:32:57      offer card 1682 | promo 2013684 | Save $20.00 on Luminex 2-Pack!
+02:32:57      offer card 6400 | promo 2013707 | Save $3.50 on Exceed Mints 5-Pack!
+02:32:57      offer card 8194 | promo 2013695 | Buy one Tub & Tile Bathroom Cleaner, get one for $2.49!
+02:32:57      offer card 4227 | promo 2013694 | Save $10.00 on MelaBrite Color Booster 2-Pack!
+02:32:57      offer card 74141 | promo 2013696 | Save $23.00 - $32.50 on Sei Bella Treatment and Moisturizer!
+02:32:57      offer card 49635 | promo 2013699 | Save $4.00 on Renew Targeted Eczema Treatment 2-Pack!
+02:32:57      offer card 49096 | promo 2013685 | Buy one Pain-A-Trate Ultra, get one for $2.49!
+02:32:57      offer card 69311 | promo 2013701 | Save $20.00 on PhloraV 2-Pack!
+02:32:57      offer card 643 | promo 2013703 | Save $8.00 on Replenex Advance with Type II Collagen!
+02:32:57      offer card 6476 | promo 2013700 | Save $10.00 on FiberWise Canister 2-Pack!
+02:32:57      offer card 74091 | promo 2013690 | Save $30.00 - $32.50 on Sei Bella Deep Marine Bundle!
+02:32:57      offer card 69294 | promo 2013880 | Save $5.00 on Vitality Iron Support!
+02:32:57      offer card 79015 | promo 2013686 | Save $3.00 on Sei Bella The Basic Collection Gentle Daily Cleanser!
+02:32:57      offer card 8246 | promo 2013691 | Buy one Vitality Calcium Complete, get one for $2.49!
+02:32:57      offer card 5520 | promo 2013692 | Buy two Sei Bella Makeup Removing Cleansing Wipes, get one FREE!
+02:33:02   added offer 79015 x1 Save $3.00 on Sei Bella The Basic Collection Gentle Dai 
+02:33:06   added offer 6833 x1 Buy one Safe & Mighty, get one for $2.99! 
+02:33:06   added offer 8194 x1 Buy one Tub & Tile Bathroom Cleaner, get one for $2.49! 
+02:33:07   added offer 34050 x1 Save $10.00 on MelaPower Laundry Detergent 2-Pack! [{"FeatureSku": "F444", "SelectedSku": "6901"}, {"FeatureSku": "F444", "SelectedSku": "6901"}]
+02:33:11   added offer 49096 x1 Buy one Pain-A-Trate Ultra, get one for $2.49! 
+02:33:11   added offer 8246 x1 Buy one Vitality Calcium Complete, get one for $2.49! 
+02:33:16   added offer 49635 x1 Save $4.00 on Renew Targeted Eczema Treatment 2-Pack! 
+02:33:16   credit  : Credit 1 -> box 'Buy with Loyalty Shopping Dollars' ticked on Exercise - Simply Fit Vanilla Greek Yogurt
+02:33:16   credit  : Credit 2 -> box 'Buy with Loyalty Shopping Dollars' ticked on Exercise - Sustain Electrolyte Tub - Raspberry Lemonade
+02:33:17 
+CART NOW: 30 items | 152 points | gross 401.89 | net 391.47 | discount 0
+02:33:17 SHEET   : 145 points count for the limit (TOTAL row: 145) + 14 points of credit items | cost of all lines 392.89
+02:33:17 CREDIT  : $10.42 of loyalty dollars used by the cart
+02:33:17 RESULT  : points DIFFER by +7 | cost DIFFER by +9.00
+02:33:17   DIFFERENCE: Renew - Body Wash 12oz: sheet 5 pts / 12.98  -  store 12 pts / 21.98
+02:33:17   AUTO-ADJUSTED: Renew - Body Wash 12oz: quantity 2 -> 1 (the store gives it 6 points per unit; the sheet expected a coupon price)
+02:33:18 CART AFTER THE ADJUSTMENT: 29 items | 146 points | gross 390.9
+02:33:28 lab: emptied the cart again: 28 lines
+
+
+############################## SUMMARY
+--- tab 7 rc=0
+     02:28:17 signed in as Antonio M | plan: 41 lines, TOTAL points 145.0 cost 393.09
+     02:28:32   SKU CORRECTED: 'Exercise - GC Control Creamy Vanilla Bean': the sheet has item 60155 (GC Control? Weight Management Shake for Speci), the name fits item 60146 (Vanilla Bean GC Control) better - used that one
+     02:29:24 RESULT  : points MATCH | cost MATCH
+     02:29:24   every line of the cart equals the sheet.
+     02:29:33 lab: emptied the cart again: 30 lines
+--- tab 8 rc=0
+     02:30:13 signed in as William Y | plan: 41 lines, TOTAL points 147.0 cost 402.47999999999996
+     02:30:14   SKU CORRECTED: 'Exercise - GC Control Creamy Vanilla Bean': the sheet has item 60155 (GC Control? Weight Management Shake for Speci), the name fits item 60146 (Vanilla Bean GC Control) better - used that one
+     02:31:24 RESULT  : points MATCH | cost MATCH
+     02:31:24   every line of the cart equals the sheet.
+     02:31:47 lab: emptied the cart again: 30 lines
+--- tab 9 rc=0
+     02:32:19 signed in as Adriana M | plan: 41 lines, TOTAL points 145.0 cost 392.88999999999993
+     02:32:38   COUPON NOT ON THIS ACCOUNT: 'Renew - Body Wash 12oz' - the sheet counts it at the coupon price (5 pts / 12.98), the store charges the normal price (run Scan Account Offers, then Generate All Orders, so the builder knows
+     02:33:17 RESULT  : points DIFFER by +7 | cost DIFFER by +9.00
+     02:33:17   DIFFERENCE: Renew - Body Wash 12oz: sheet 5 pts / 12.98  -  store 12 pts / 21.98
+     02:33:17   AUTO-ADJUSTED: Renew - Body Wash 12oz: quantity 2 -> 1 (the store gives it 6 points per unit; the sheet expected a coupon price)
+     02:33:28 lab: emptied the cart again: 28 lines
