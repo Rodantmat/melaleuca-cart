@@ -1,0 +1,22 @@
+/home/runner/work/melaleuca-cart/melaleuca-cart/local/lab_access.py:68: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  end = dt.datetime.utcnow().replace(microsecond=0) - dt.timedelta(minutes=10)
+seller id inferred from offers (votes): {'A3431QI59MY9RE': 41}
+seller: A34***
+test skus ['ME1651', 'ME1131', 'ME0287', 'ME0286', 'ME0285']
+OK   getListingsItem ME1651
+   status ['BUYABLE', 'DISCOVERABLE'] productType SKIN_CLEANING_AGENT offers [{"marketplaceId": "ATVPDKIKX0DER", "offerType": "B2C", "price": {"currency": "USD", "currencyCode": "USD", "amount": "39.99"}, "audience": {"value": "ALL", "displayName": "Sell on Amazon"}}] issues 0
+   -> {"sku": "ME1651", "status": "VALID", "submissionId": "21f9ec235e5b4191b6c34627cadb1d95", "issues": []}
+OK   PATCH VALIDATION_PREVIEW same price 39.99
+OK   featuredOfferExpectedPrice batch
+    ME1651 200 {"featuredOfferExpectedPriceResults": [{"resultStatus": "NO_COMPETING_OFFER", "currentFeaturedOffer": {"condition": "New", "price": {"shippingPrice": {"currencyCode": "USD", "amount": 0.0}, "listingPrice": {"currencyCode": "USD", "amount": 39.99}}, "offerIdentifier": {"marketplaceId": "ATVPDKIKX0DER", "asin": "B0FKZKPLXK", "sellerId": "A3431QI59MY9RE", "fulfillmentType": "AFN"}}}], "offerIdentifie
+    ME1131 200 {"featuredOfferExpectedPriceResults": [{"featuredOfferExpectedPrice": {"listingPrice": {"currencyCode": "USD", "amount": 10.03}}, "resultStatus": "VALID_FOEP", "currentFeaturedOffer": {"condition": "New", "price": {"shippingPrice": {"currencyCode": "USD", "amount": 0.0}, "listingPrice": {"currencyCode": "USD", "amount": 10.04}}, "offerIdentifier": {"marketplaceId": "ATVPDKIKX0DER", "asin": "B018C5
+    ME0287 200 {"featuredOfferExpectedPriceResults": [{"featuredOfferExpectedPrice": {"listingPrice": {"currencyCode": "USD", "amount": 8.41}}, "resultStatus": "VALID_FOEP", "currentFeaturedOffer": {"condition": "New", "price": {"shippingPrice": {"currencyCode": "USD", "amount": 0.0}, "listingPrice": {"currencyCode": "USD", "amount": 8.95}}, "offerIdentifier": {"marketplaceId": "ATVPDKIKX0DER", "asin": "B00AA68K
+    ME0286 200 {"featuredOfferExpectedPriceResults": [{"featuredOfferExpectedPrice": {"listingPrice": {"currencyCode": "USD", "amount": 13.48}}, "resultStatus": "VALID_FOEP", "currentFeaturedOffer": {"condition": "New", "price": {"shippingPrice": {"currencyCode": "USD", "amount": 0.0}, "listingPrice": {"currencyCode": "USD", "amount": 13.39}}, "offerIdentifier": {"marketplaceId": "ATVPDKIKX0DER", "asin": "B018C5
+    ME0285 200 {"featuredOfferExpectedPriceResults": [{"featuredOfferExpectedPrice": {"listingPrice": {"currencyCode": "USD", "amount": 7.81}}, "resultStatus": "VALID_FOEP", "currentFeaturedOffer": {"condition": "New", "price": {"shippingPrice": {"currencyCode": "USD", "amount": 0.0}, "listingPrice": {"currencyCode": "USD", "amount": 12.5}}, "offerIdentifier": {"marketplaceId": "ATVPDKIKX0DER", "asin": "B017JIL4
+OK   orders report 365 days ago
+    365 days back -> DONE
+OK   orders report 700 days ago
+    700 days back -> DONE
+OK   ledger summary (daily, by ASIN) 20 days
+   ledger -> DONE
+   ledger rows 2873 | "Date"	"FNSKU"	"ASIN"	"MSKU"	"Title"	"Disposition"	"Starting Warehouse Balance"	"In Transit Between Warehouses"	"Receipts"	"Customer Shipments"	"Customer Returns"	"Vendor Returns"	"Warehouse Transfer In/Out"	"Found"	"Lost"	"Damaged"	"Disposed"	"Other Events"	"Ending Warehouse Balance"	"Unknown Event
