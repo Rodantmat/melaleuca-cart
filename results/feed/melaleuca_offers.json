@@ -1,0 +1,15 @@
+{
+ "generated": "2026-10-16T00:28:21",
+ "accounts": [
+  {
+   "tab": "Antonio M",
+   "scanned": "2026-10-16T00:27:52",
+   "ok": false,
+   "port": 10007,
+   "error": "BadLogin: the site rejected the user name or password: Skip to Main Navigation Skip to main content Skip to Footer PRODUCT STORE OUR STORY R3 RIVERBEND RANCH US - EN MENU Categories Supplements Cleaning and Laundry ",
+   "error_kind": "badlogin",
+   "cart_at_end": null,
+   "mb": 1.8
+  }
+ ]
+}

@@ -1,0 +1,9 @@
+scanning 1 account(s), 1 at a time
+[tab 7 Antonio M] 00:27:52   proxy port 10007 | location: cr.us;city.losangeles,sandiego,longbeach,anaheim,irvine,santaana,riverside
+[tab 7 Antonio M] 00:28:21   sign-in page says: Invalid Username or Password. Need Help? Click Here | Invalid Username or Password. Need Help? Click Here | url: https://www.melaleuca.com/account/signin?ReturnUrl=%2fconnect%2fauthorize%2fcall
+[tab 7 Antonio M] 00:28:21   ERROR BadLogin: the site rejected the user name or password: Skip to Main Navigation Skip to main content Skip to Footer PRODUCT STORE OUR STORY R3 RIVERBEND RANCH US - EN MENU Categories Supplements Cleaning and Laundry 
+[tab 7 Antonio M] 00:28:21   cart at end: None
+[tab 7 Antonio M] 00:28:21   traffic through the proxy: about 1.8 MB (counted from the page headers, real use is a bit higher)
+[tab 7 Antonio M] 00:28:21 the user name / password of this account is refused - fix it in credentials.env (not retrying)
+[tab 7 Antonio M] -> FAILED: BadLogin: the site rejected the user name or password: Skip to Main Navigation Skip to main content Skip to Footer PRODUCT STORE OUR STORY R3 RIVERBEND RANCH US - EN MENU Categories Supplements Cleani
+[tab 7 Antonio M] accounts read: 0 of 1
