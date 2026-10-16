@@ -312,7 +312,14 @@ class Catalog:
         out = []
         if f:
             try:
-                self.s.page.goto(BASE + f["pdp"] + ("&" if "?" in f["pdp"] else "?") + "sc_lang=en-US", wait_until="domcontentloaded", timeout=60000)
+                for _k in range(3):
+                    try:
+                        self.s.page.goto(BASE + f["pdp"] + ("&" if "?" in f["pdp"] else "?") + "sc_lang=en-US", wait_until="domcontentloaded", timeout=60000)
+                        break
+                    except Exception:
+                        if _k == 2:
+                            raise
+                        self.s.page.wait_for_timeout(4000 * (_k + 1))
                 self.s.page.wait_for_timeout(2500)
                 out = parse_variants(self.s.page.content())
             except Exception as e:
@@ -335,7 +342,15 @@ class Catalog:
             npk = int(mpk.group(1))
             up, upts = up / npk, upts / npk
         hits = []
-        for k, c in ALL_CARDS.items():
+        pool = ALL_CARDS
+        if REG == "ca":
+            try:
+                us = json.load(open(os.path.join(FEED, "family_map_us.json"), encoding="utf-8")).get("cards", {}).get("v", {})
+                ca_skus = {str(x) for c in ALL_CARDS.values() for x in c.get("skus", [])}
+                pool = {k: c for k, c in us.items() if any(str(x) in ca_skus for x in c.get("skus", []))}
+            except Exception:
+                pool = ALL_CARDS
+        for k, c in pool.items():
             ps = [x for x in (c.get("pmin"), c.get("pmax")) if x]
             if any(abs(float(x) - up) < 0.006 for x in ps) and (c.get("pts") is None or abs(float(c.get("pts") or 0) - upts) < 0.51 or abs(float(c.get("ptsmax") or 0) - upts) < 0.51):
                 hits.append((name_score(L["name"], c["title"]), k, c))
@@ -619,20 +634,28 @@ class Filler:
         self.infoc = cload("info", 30)
         self.cache = {k: e["v"] for k, e in self.infoc.items()}
         self.added = []
+        self.failed = []
 
     def info(self, sku):
         sku = str(sku)
         if sku not in self.cache:
             pg = self.s.page
             try:
-                pg.goto("%s/products/%s?sc_lang=en-US" % (BASE, sku), wait_until="domcontentloaded", timeout=60000)
+                for _k in range(3):                   # a dropped connection is tried again (3x) before the item is given up
+                    try:
+                        pg.goto("%s/products/%s?sc_lang=en-US" % (BASE, sku), wait_until="domcontentloaded", timeout=60000)
+                        break
+                    except Exception:
+                        if _k == 2:
+                            raise
+                        pg.wait_for_timeout(4000 * (_k + 1))
                 pg.wait_for_timeout(2500)
                 html = pg.content()
                 inf = parse_info(html)
                 loaded = len(html) > 60000 and ('"%s"' % sku) in html
                 if not inf["conf"] and not inf["acc"]:
                     # special-offer items have no page of their own: the offer dialog reads its choices from /api/shelf?Sku=
-                    r = self.s.fetch("%s/api/shelf?Sku=%s&sc_lang=en-US&sc_site=productstoreUs" % (BASE, sku))
+                    r = self.s.fetch("%s/api/shelf?Sku=%s&sc_lang=en-US&sc_site=%s" % (BASE, sku, "productstoreCa" if REG == "ca" else "productstoreUs"))
                     if r.get("json"):
                         inf = parse_info(json.dumps(r["json"], separators=(",", ":")))
                 self.cache[sku] = inf
@@ -641,6 +664,7 @@ class Filler:
                     csave("info", self.infoc)
             except Exception as e:
                 log("  could not read page of item", sku, str(e)[:80])
+                self.failed.append(sku)
                 self.cache[sku] = {"conf": [], "acc": []}
         return self.cache[sku]
 
@@ -912,7 +936,7 @@ def run(n, dry=False, lab=False, final=True):
             # ---- 1. products and packs
             for a in acts:
                 ok = fl.post(a)
-                say("  %s [%s] %s x%d %s %s" % ("added" if ok else "FAILED", a.kind, a.sku, a.qty, a.label[:55], "" if ok else a.notes[-1:]))
+                say("  %s [%s] %s x%d %s %s" % ("added" if ok else "FAILED", a.kind, a.sku, a.qty, a.label[:55], "" if ok else a.notes[-2:]))
                 for c in a.notes:
                     if "->" in c:
                         say("       choice:", c)
@@ -984,13 +1008,14 @@ def run(n, dry=False, lab=False, final=True):
                         ok = fl.post(a, promo_type=True)
                         say("  %s offer %s x1 %s %s" % ("added" if ok else "FAILED", osku, (d.get("Title") or "")[:55], json.dumps(conf)[:100] if conf else ""))
                         if not ok:
-                            say("      ", a.notes[-1:])
+                            say("      ", a.notes[-2:])
                         acts.append(a)
             try:
                 json.dump(fl.cache, open(os.path.join(FEED, "fill_info_cache_%d.json" % n), "w", encoding="utf-8"), indent=1)
             except Exception:
                 pass
             # ---- 2b. the account credit: the box "Buy with Loyalty Shopping Dollars" on the lines the sheet marks Credit 1 / Credit 2
+            adjusted = []
             credit_rows = sorted({(str(L["type"]), L["row"]) for L in plan["lines"] if L["qty"] > 0 and str(L["type"]).lower().startswith("credit")})
             credit_done, credit_fail = set(), []
             for ctype, crow in credit_rows:
@@ -1009,6 +1034,45 @@ def run(n, dry=False, lab=False, final=True):
                         credit_fail.append("%s (row %d): the store did not accept it: %s" % (ctype, crow, str(r.get("json"))[:160]))
                 except Exception as e:
                     credit_fail.append("%s (row %d): %s" % (ctype, crow, str(e)[:100]))
+            if credit_fail and any("the product is not in the cart" not in c_ for c_ in credit_fail):
+                # the store refuses the credit on that product (e.g. 'NotLSDEligible'): the credit goes on another product of the cart that takes it,
+                # the one whose points are closest to the refused one (and at least as many, so the 150 limit still holds)
+                used_lines = {str(a_.line) for a_ in acts if any(r_ in credit_done for r_ in a_.rows) and a_.line is not None}
+                for c in list(credit_fail):
+                    m_ = re.search(r"\(row (\d+)\)", c)
+                    if not m_ or "the product is not in the cart" in c:
+                        continue
+                    crow = int(m_.group(1))
+                    want = next((L["pts"] for L in plan["lines"] if L["row"] == crow), 0.0)
+                    js_now, _sm = fl.summary()
+                    cands = []
+                    for it in cart_items(js_now):
+                        lid = str(it.get("LineId"))
+                        if lid in used_lines or str(it.get("LineType") or "").upper() == "LSD":
+                            continue
+                        ipts = f2(it.get("RawPoints"))
+                        if ipts <= 0:
+                            continue
+                        cands.append((0 if ipts >= want else 1, abs(ipts - want), lid, it))
+                    cands.sort(key=lambda x: (x[0], x[1]))
+                    moved = False
+                    for _a, _b, lid, it in cands[:8]:
+                        try:
+                            r = s.fetch(s.cart_url().replace("/api/cart?", "/api/cart/linetype?"), "POST", {"LineId": lid, "LineType": "LSD", "Quantity": int(f2(it.get("Quantity")) or 1)})
+                            res = ((r.get("json") or {}).get("Data") or {}).get("linesResults") or []
+                            if r.get("status") == 200 and (r.get("json") or {}).get("Success") and res and not res[0].get("validationItems"):
+                                used_lines.add(lid)
+                                credit_done.add(crow)
+                                credit_fail.remove(c)
+                                msg_ = "the store does not take the credit on the sheet's product (row %d); the credit went on '%s' instead" % (crow, str(it.get("Title") or it.get("Name") or lid)[:50])
+                                say("  CREDIT MOVED:", msg_)
+                                adjusted.append(msg_)
+                                moved = True
+                                break
+                        except Exception:
+                            pass
+                    if not moved:
+                        say("  (no other product of the cart takes the credit either)")
             for c in credit_fail:
                 say("  CREDIT PROBLEM:", c)
                 problems.append("credit: " + c)
@@ -1027,8 +1091,9 @@ def run(n, dry=False, lab=False, final=True):
             say("SHEET   : %.0f points count for the limit (TOTAL row: %s) + %.0f points of credit items | cost of all lines %.2f" % (
                 exp_pts, ("%.0f" % plan["total"]["pts"]) if plan["total"] else "?", credit_pts, exp_ws))
             say("CREDIT  : %s of loyalty dollars used by the cart" % ((sm.get("LoyaltyShoppingDollars") or {}).get("FormattedUsed") or "?"))
-            ok_pts, ok_cost = abs(pts - exp_pts) < 0.5, abs(net - exp_ws) < 0.05
-            say("RESULT  : points %s | cost %s" % ("MATCH" if ok_pts else "DIFFER by %+.0f" % (pts - exp_pts), "MATCH" if ok_cost else "DIFFER by %+.2f" % (net - exp_ws)))
+            cad = (REG == "ca")                    # a Canadian store charges Canadian dollars, the sheet counts US dollars: only the POINTS can be compared
+            ok_pts, ok_cost = abs(pts - exp_pts) < 0.5, (cad or abs(net - exp_ws) < 0.05)
+            say("RESULT  : points %s | cost %s" % ("MATCH" if ok_pts else "DIFFER by %+.0f" % (pts - exp_pts), ("not compared (Canadian dollars in the store, US dollars in the sheet)" if cad else ("MATCH" if ok_cost else "DIFFER by %+.2f" % (net - exp_ws)))))
             by_line = {str(it.get("LineId")): it for it in cart_items(js)}
             # actions that share a sheet row or a cart line belong together (a pack and its bottles, ...): compared as one block
             parent = list(range(len(acts)))
@@ -1057,11 +1122,11 @@ def run(n, dry=False, lab=False, final=True):
                 aw = sum(f2(by_line[l].get("RawPrice")) for l in lids if l in by_line)
                 name = " + ".join(sorted({a.label for a in aa}))[:70]
                 if missing:
-                    diffs.append("%s: NOT ADDED (%s)" % (name, (missing[0].notes[-1:] or ["?"])[0]))
-                elif abs(ap - ep) < 0.5 and aw > ew + 0.05 and any("pump" in a.label.lower() for a in aa):
+                    diffs.append("%s: NOT ADDED (%s)" % (name, " | ".join(missing[0].notes[-2:] or ["?"])[:300]))
+                elif not cad and abs(ap - ep) < 0.5 and aw > ew + 0.05 and any("pump" in a.label.lower() for a in aa):
                     pump_extra += aw - ew          # the sheet does not price the pump (0 points); the store does
                     pump_notes.append("%s: the pump costs %.2f in the store, the sheet does not count it" % (name, aw - ew))
-                elif abs(ap - ep) > 0.5 or abs(aw - ew) > 0.05:
+                elif abs(ap - ep) > 0.5 or (not cad and abs(aw - ew) > 0.05):
                     diffs.append("%s: sheet %.0f pts / %.2f  -  store %.0f pts / %.2f" % (name, ep, ew, ap, aw))
             for d in diffs:
                 say("  DIFFERENCE:", d)
@@ -1071,7 +1136,6 @@ def run(n, dry=False, lab=False, final=True):
                 say("  every line of the cart equals the sheet.")
             for nn in notes:
                 say("  NOTE:", nn)
-            adjusted = []
             if pts > 150.0001 and os.environ.get("FILL_AUTOFIT", "1") != "0":
                 # the store charges more points than the sheet expected (a coupon this account does not have): take units off the line that causes it
                 # until the cart is back under the limit (target 148, the same band as the order builder). Only a plain item with quantity 2 or more is touched.
@@ -1214,6 +1278,8 @@ def run(n, dry=False, lab=False, final=True):
                 print("  AUTO-ADJUSTED:", ad)
             for fx in FIXED_SKUS:
                 print("  SKU CORRECTED:", fx)
+            for sk_ in fl.failed:
+                problems.append("the store page of item %s could not be read (connection) - its choices may be missing, check that line" % sk_)
             for pn in problems:
                 print("  TO DO BY HAND:", pn)
             if pts > 150.0001:
@@ -1244,12 +1310,19 @@ def run(n, dry=False, lab=False, final=True):
         finally:
             try:
                 if lab and not dry:
-                    try:
-                        left = fl.clear()
-                        if left:
-                            log("lab cleanup: removed", left, "lines")
-                    except Exception as e:
-                        log("LAB CLEANUP PROBLEM - empty the cart of the test account by hand:", str(e)[:100])
+                    done_ = False
+                    for _k in range(4):
+                        try:
+                            left = fl.clear()
+                            if left:
+                                log("lab cleanup: removed", left, "lines")
+                            done_ = True
+                            break
+                        except Exception as e:
+                            log("lab cleanup attempt %d failed: %s" % (_k + 1, str(e)[:80]))
+                            time.sleep(8 * (_k + 1))
+                    if not done_:
+                        log("LAB CLEANUP PROBLEM - empty the cart of the test account by hand")
                     s.close()
             except Exception:
                 pass

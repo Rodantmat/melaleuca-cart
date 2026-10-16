@@ -151,6 +151,17 @@ class Session:
         self.page.wait_for_timeout(ms)
 
     def fetch(self, url, method="GET", body=None):
+        # a dropped connection ("Failed to fetch") on a read / delete is simply asked again (a POST is never repeated: it could have been done twice)
+        tries = 4 if method in ("GET", "DELETE") else 1
+        for k in range(tries):
+            try:
+                return self._fetch1(url, method, body)
+            except Exception as e:
+                if k == tries - 1 or "fetch" not in str(e).lower():
+                    raise
+                self.page.wait_for_timeout(2500 * (k + 1))
+
+    def _fetch1(self, url, method="GET", body=None):
         return self.page.evaluate("""async ([u, m, b]) => {
             const o = {method: m, credentials: 'include'};
             if (b) { o.headers = {'Content-Type': 'application/json'}; o.body = JSON.stringify(b); }
