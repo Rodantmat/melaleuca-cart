@@ -172,6 +172,23 @@ class Session:
             try { return {status: r.status, json: JSON.parse(t)}; } catch (e) { return {status: r.status, text: t.slice(0, 300)}; }
         }""", [url, method, body])
 
+    def _type_checked(self, el, text):
+        """type like a person, then READ BACK what the field holds: a dropped / changed key (it happens on some keyboards and slow machines) would be
+        sent as a wrong password. If the field differs, it is filled directly and checked again."""
+        el.press_sequentially(text, delay=random.randint(45, 95))
+        for _ in range(3):
+            try:
+                if el.input_value(timeout=5000) == text:
+                    return
+                el.fill("", timeout=5000)
+                el.fill(text, timeout=5000)
+                if el.input_value(timeout=5000) == text:
+                    log("  (a typed character was lost; the field was filled directly instead)")
+                    return
+            except Exception:
+                pass
+        log("  WARNING: the sign-in field does not hold exactly the text from credentials.env")
+
     def login(self):
         pg = self.page
         pg.goto(BASE + "/cart", wait_until="domcontentloaded", timeout=60000)
@@ -183,11 +200,11 @@ class Session:
             self.snap(pg, "noform")
             raise BlockedError("the sign-in form did not appear (page: %s)" % pg.url[:90])
         u.click(timeout=15000)
-        u.press_sequentially(self.acct["user"], delay=random.randint(45, 95))
+        self._type_checked(u, self.acct["user"])
         pg.wait_for_timeout(500 + random.randint(0, 600))
         w = pg.locator("input[name=password]:visible").first
         w.click(timeout=20000)
-        w.press_sequentially(self.acct["pass"], delay=random.randint(45, 95))
+        self._type_checked(w, self.acct["pass"])
         pg.wait_for_timeout(600 + random.randint(0, 800))
         pg.locator("button:visible", has_text=re.compile(r"^\s*sign in\s*$", re.I)).last.click()
         # wait until the sign-in page is left (slow proxies need more than a few seconds), or the page shows a message
