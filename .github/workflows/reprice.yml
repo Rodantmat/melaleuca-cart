@@ -35,6 +35,7 @@ jobs:
           printf '%s\n' "$CRED_ENV" > credentials.env
           MODE="${{ github.event.inputs.mode }}"; MODE="${MODE:-shadow}"
           python run.py "$MODE" 2>&1 | tee run.log
+          python analysis.py 2>&1 | tee -a run.log
           rm -f credentials.env
       - name: Save state
         if: always()

@@ -138,6 +138,8 @@ def main():
         h = L[0].split("\t")
         for l in L[1:]:
             r = dict(zip(h, l.split("\t"))); plan[r.get("sku")] = r
+    if plan:
+        open(os.path.join(STATE, "planning_latest.tsv"), "w", encoding="utf-8").write(txt)
     if not plan:
         log("no planning data -> stop (nothing decided)"); return 2
     if not seller:
@@ -150,7 +152,8 @@ def main():
     day_key = now.strftime("%Y-%m-%d")
     sk.setdefault("_day", {}); changed_today = sk["_day"].get(day_key, 0)
     for sku, row in sorted(costs.items()):
-        asin, cost = row["asin"], f(row["cost"])
+        asin = row["asin"]
+        cost = max(f(row["cost"]) or 0, f(row.get("orig_ws")) or 0) or None      # worst case: never price below what a unit could really have cost
         p = plan.get(sku)
         ov = (conf.get("overrides") or {}).get(sku, {})
         if not p or ov.get("pause"):
