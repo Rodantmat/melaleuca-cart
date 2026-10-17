@@ -7,6 +7,11 @@ import math, random, sys
 from datetime import datetime, timedelta
 import engine
 
+import json, os
+try:
+    REAL_VEL = json.load(open(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'state', 'velocities.json'))) if os.environ.get('SIM_REAL') else None
+except Exception:
+    REAL_VEL = None
 SCENARIOS = ["stable", "war", "big_seller", "gouge", "troll", "no_competitor", "demand_drop", "demand_boom", "mispriced_high", "mispriced_low"]
 
 
@@ -30,7 +35,7 @@ class World:
         self.fba = rng.uniform(3.0, 7.5)
         margin = rng.uniform(1.25, 2.6)
         self.M0 = round((self.cost + self.fba) * margin / (1 - 0.15), 2)       # where the market trades
-        self.lam0 = rng.choice([0.03, 0.08, 0.2, 0.5, 1.0, 2.0])               # units/day with the whole Buy Box at M0
+        self.lam0 = rng.choice(REAL_VEL) if REAL_VEL else rng.choice([0.03, 0.08, 0.2, 0.5, 1.0, 2.0])               # units/day with the whole Buy Box at M0
         self.e = rng.uniform(1.2, 3.2)
         self.p0 = self.M0 * (1.15 if scenario == "mispriced_high" else (0.93 if scenario == "mispriced_low" else rng.uniform(0.98, 1.04)))
         self.p0 = round(self.p0, 2)

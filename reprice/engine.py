@@ -33,10 +33,10 @@ DEFAULTS = {
     "MAX_DROP_30D": 0.20,
     "MAX_RISE_30D": 0.15,
     "MANUAL_FREEZE_DAYS": 5,
-    "DROUGHT_MIN_DAYS": 10,      # a product that sells ~1/day is in a drought after 10 days without sale
+    "DROUGHT_MIN_DAYS": 14,      # a product that sells ~1/day is in a drought after 10 days without sale
     "DROUGHT_MULT": 3.0,         # ... one that sells 1/month after 2.5 normal gaps (75 d), capped at DROUGHT_MAX
     "DROUGHT_MAX": 120,
-    "DOS_MIN_DROP": 30,          # a drought only lowers the price when there is more than 30 days of stock to move
+    "DOS_MIN_DROP": 45,          # a drought only lowers the price when there is more than 30 days of stock to move
     "DOS_HIGH": 75,              # days of supply above which stock is a surplus
     "DOS_LOW": 25,               # below this the product sells out soon -> room to raise
     "UP_MIN_UNITS_30": 4,        # evidence needed before raising
