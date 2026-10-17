@@ -33,7 +33,9 @@ jobs:
           set -o pipefail
           cd reprice
           printf '%s\n' "$CRED_ENV" > credentials.env
-          MODE="${{ github.event.inputs.mode }}"; MODE="${MODE:-shadow}"
+          MODE="${{ github.event.inputs.mode }}"
+          if [ "$MODE" = "live" ]; then export REPRICE_LIVE=1; fi   # a manual run with mode=live is an explicit decision; scheduled runs go live only if the repo variable REPRICE_LIVE=1
+          if [ -z "$MODE" ]; then if [ "$REPRICE_LIVE" = "1" ]; then MODE=live; else MODE=shadow; fi; fi
           python run.py "$MODE" 2>&1 | tee run.log
           python analysis.py 2>&1 | tee -a run.log
           rm -f credentials.env

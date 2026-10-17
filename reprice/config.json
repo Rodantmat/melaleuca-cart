@@ -1,8 +1,14 @@
 {
-  "live_enabled": false,
-  "allowlist": [],
-  "max_changes_per_run": 8,
-  "max_changes_per_day": 20,
+  "live_enabled": true,
+  "allowlist": [
+    "ME0287",
+    "ME1131",
+    "ME1429",
+    "DE-QFMC-M0RB",
+    "ME1302"
+  ],
+  "max_changes_per_run": 2,
+  "max_changes_per_day": 4,
   "overrides": {},
   "cfg": {}
 }
