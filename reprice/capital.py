@@ -21,11 +21,11 @@ def tx():
         ps = {"postedAfter": after, "marketplaceId": MK}
         if tok: ps = {"nextToken": tok}
         r = spapi.call(c, "GET", "/finances/2024-06-19/transactions", params=ps, quiet=True)
+        r = r.get("payload") or r
         for t in r.get("transactions", []):
             st = t.get("transactionStatus", "?"); a = (t.get("totalAmount") or {}).get("currencyAmount") or 0
             tot[st] = tot.get(st, 0) + a; cnt[st] = cnt.get(st, 0) + 1
             if st in ("DEFERRED", "DEFERRED_RELEASED") or st == "OPEN": pass
-        r = r.get("payload") or r
         n += len(r.get("transactions", []))
         tok = (r.get("payload") or r).get("nextToken") or r.get("nextToken")
         if not tok or n > 20000: break
