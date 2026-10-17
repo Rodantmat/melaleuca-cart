@@ -1,0 +1,983 @@
+{
+ "_day": {
+  "2026-10-17": 0
+ },
+ "05-SH42-DDII": {
+  "changes": [],
+  "last_change": null,
+  "frozen_until": null,
+  "last_applied": 64.99
+ },
+ "37-VS1C-79P5": {
+  "changes": [],
+  "last_change": null,
+  "frozen_until": null,
+  "last_applied": 79.99
+ },
+ "4K-5OF1-YPS3": {
+  "changes": [],
+  "last_change": null,
+  "frozen_until": null,
+  "last_applied": 19.99
+ },
+ "76-KHS9-9FXW": {
+  "changes": [],
+  "last_change": null,
+  "frozen_until": null,
+  "last_applied": 39.99
+ },
+ "9C-A4T7-C308": {
+  "changes": [],
+  "last_change": null,
+  "frozen_until": null,
+  "last_applied": 54.99
+ },
+ "9P-4ZS7-QV81": {
+  "changes": [],
+  "last_change": null,
+  "frozen_until": null,
+  "last_applied": 49.99
+ },
+ "DE-QFMC-M0RB": {
+  "changes": [],
+  "last_change": null,
+  "frozen_until": null,
+  "last_applied": 39.99
+ },
+ "E0-FNUP-YHBK": {
+  "changes": [],
+  "last_change": null,
+  "frozen_until": null,
+  "last_applied": 24.99
+ },
+ "GV-PN7P-3X4C": {
+  "changes": [],
+  "last_change": null,
+  "frozen_until": null,
+  "last_applied": 15.39
+ },
+ "HB-YB7V-EIA1": {
+  "changes": [],
+  "last_change": null,
+  "frozen_until": null,
+  "last_applied": 49.99
+ },
+ "I0-FUBR-S9CU": {
+  "changes": [],
+  "last_change": null,
+  "frozen_until": null,
+  "last_applied": null
+ },
+ "ME0002": {
+  "changes": [],
+  "last_change": null,
+  "frozen_until": null,
+  "last_applied": 23.89
+ },
+ "ME0003": {
+  "changes": [],
+  "last_change": null,
+  "frozen_until": null,
+  "last_applied": 6.39
+ },
+ "ME0008": {
+  "changes": [],
+  "last_change": null,
+  "frozen_until": null,
+  "last_applied": 27.39
+ },
+ "ME0009": {
+  "changes": [],
+  "last_change": null,
+  "frozen_until": null,
+  "last_applied": 24.88
+ },
+ "ME0011": {
+  "changes": [],
+  "last_change": null,
+  "frozen_until": null,
+  "last_applied": 51.99
+ },
+ "ME001502": {
+  "changes": [],
+  "last_change": null,
+  "frozen_until": null,
+  "last_applied": 64.99
+ },
+ "ME0016": {
+  "changes": [],
+  "last_change": null,
+  "frozen_until": null,
+  "last_applied": null
+ },
+ "ME0017": {
+  "changes": [],
+  "last_change": null,
+  "frozen_until": null,
+  "last_applied": 16.09
+ },
+ "ME0018": {
+  "changes": [],
+  "last_change": null,
+  "frozen_until": null,
+  "last_applied": 15.99
+ },
+ "ME0020": {
+  "changes": [],
+  "last_change": null,
+  "frozen_until": null,
+  "last_applied": 18.84
+ },
+ "ME0021": {
+  "changes": [],
+  "last_change": null,
+  "frozen_until": null,
+  "last_applied": 25.89
+ },
+ "ME0022": {
+  "changes": [],
+  "last_change": null,
+  "frozen_until": null,
+  "last_applied": 25.39
+ },
+ "ME0023": {
+  "changes": [],
+  "last_change": null,
+  "frozen_until": null,
+  "last_applied": 48.99
+ },
+ "ME0024": {
+  "changes": [],
+  "last_change": null,
+  "frozen_until": null,
+  "last_applied": 58.88
+ },
+ "ME0027": {
+  "changes": [],
+  "last_change": null,
+  "frozen_until": null,
+  "last_applied": 29.99
+ },
+ "ME0029": {
+  "changes": [],
+  "last_change": null,
+  "frozen_until": null,
+  "last_applied": 34.88
+ },
+ "ME0030": {
+  "changes": [],
+  "last_change": null,
+  "frozen_until": null,
+  "last_applied": 33.89
+ },
+ "ME0031": {
+  "changes": [],
+  "last_change": null,
+  "frozen_until": null,
+  "last_applied": 18.84
+ },
+ "ME0032": {
+  "changes": [],
+  "last_change": null,
+  "frozen_until": null,
+  "last_applied": 44.88
+ },
+ "ME0033": {
+  "changes": [],
+  "last_change": null,
+  "frozen_until": null,
+  "last_applied": 26.79
+ },
+ "ME0039": {
+  "changes": [],
+  "last_change": null,
+  "frozen_until": null,
+  "last_applied": 28.39
+ },
+ "ME0043": {
+  "changes": [],
+  "last_change": null,
+  "frozen_until": null,
+  "last_applied": 14.89
+ },
+ "ME0046": {
+  "changes": [],
+  "last_change": null,
+  "frozen_until": null,
+  "last_applied": 16.49
+ },
+ "ME0050": {
+  "changes": [],
+  "last_change": null,
+  "frozen_until": null,
+  "last_applied": 28.74
+ },
+ "ME0052": {
+  "changes": [],
+  "last_change": null,
+  "frozen_until": null,
+  "last_applied": 22.89
+ },
+ "ME0062": {
+  "changes": [],
+  "last_change": null,
+  "frozen_until": null,
+  "last_applied": 16.49
+ },
+ "ME0063": {
+  "changes": [],
+  "last_change": null,
+  "frozen_until": null,
+  "last_applied": 21.99
+ },
+ "ME0064": {
+  "changes": [],
+  "last_change": null,
+  "frozen_until": null,
+  "last_applied": 22.69
+ },
+ "ME0066": {
+  "changes": [],
+  "last_change": null,
+  "frozen_until": null,
+  "last_applied": 44.89
+ },
+ "ME0068": {
+  "changes": [],
+  "last_change": null,
+  "frozen_until": null,
+  "last_applied": 19.89
+ },
+ "ME0070": {
+  "changes": [],
+  "last_change": null,
+  "frozen_until": null,
+  "last_applied": 51.79
+ },
+ "ME0088": {
+  "changes": [],
+  "last_change": null,
+  "frozen_until": null,
+  "last_applied": 15.47
+ },
+ "ME0092": {
+  "changes": [],
+  "last_change": null,
+  "frozen_until": null,
+  "last_applied": 42.99
+ },
+ "ME0096": {
+  "changes": [],
+  "last_change": null,
+  "frozen_until": null,
+  "last_applied": 67.49
+ },
+ "ME0100": {
+  "changes": [],
+  "last_change": null,
+  "frozen_until": null,
+  "last_applied": 44.99
+ },
+ "ME0102": {
+  "changes": [],
+  "last_change": null,
+  "frozen_until": null,
+  "last_applied": 26.89
+ },
+ "ME0111": {
+  "changes": [],
+  "last_change": null,
+  "frozen_until": null,
+  "last_applied": 31.99
+ },
+ "ME0112": {
+  "changes": [],
+  "last_change": null,
+  "frozen_until": null,
+  "last_applied": 22.84
+ },
+ "ME0114": {
+  "changes": [],
+  "last_change": null,
+  "frozen_until": null,
+  "last_applied": 24.89
+ },
+ "ME0125": {
+  "changes": [],
+  "last_change": null,
+  "frozen_until": null,
+  "last_applied": 59.99
+ },
+ "ME0127": {
+  "changes": [],
+  "last_change": null,
+  "frozen_until": null,
+  "last_applied": 34.99
+ },
+ "ME0128": {
+  "changes": [],
+  "last_change": null,
+  "frozen_until": null,
+  "last_applied": 59.99
+ },
+ "ME0130": {
+  "changes": [],
+  "last_change": null,
+  "frozen_until": null,
+  "last_applied": 59.99
+ },
+ "ME0139": {
+  "changes": [],
+  "last_change": null,
+  "frozen_until": null,
+  "last_applied": 64.99
+ },
+ "ME0153": {
+  "changes": [],
+  "last_change": null,
+  "frozen_until": null,
+  "last_applied": 56.79
+ },
+ "ME0256": {
+  "changes": [],
+  "last_change": null,
+  "frozen_until": null,
+  "last_applied": 15.89
+ },
+ "ME0266": {
+  "changes": [],
+  "last_change": null,
+  "frozen_until": null,
+  "last_applied": 36.99
+ },
+ "ME0275": {
+  "changes": [],
+  "last_change": null,
+  "frozen_until": null,
+  "last_applied": 23.79
+ },
+ "ME0276": {
+  "changes": [],
+  "last_change": null,
+  "frozen_until": null,
+  "last_applied": 34.99
+ },
+ "ME0277": {
+  "changes": [],
+  "last_change": null,
+  "frozen_until": null,
+  "last_applied": 18.89
+ },
+ "ME0279": {
+  "changes": [],
+  "last_change": null,
+  "frozen_until": null,
+  "last_applied": 29.49
+ },
+ "ME0282": {
+  "changes": [],
+  "last_change": null,
+  "frozen_until": null,
+  "last_applied": 10.99
+ },
+ "ME0285": {
+  "changes": [],
+  "last_change": null,
+  "frozen_until": null,
+  "last_applied": 13.39
+ },
+ "ME0286": {
+  "changes": [],
+  "last_change": null,
+  "frozen_until": null,
+  "last_applied": 13.39
+ },
+ "ME0287": {
+  "changes": [],
+  "last_change": null,
+  "frozen_until": null,
+  "last_applied": 13.39
+ },
+ "ME0289": {
+  "changes": [],
+  "last_change": null,
+  "frozen_until": null,
+  "last_applied": 17.89
+ },
+ "ME0291": {
+  "changes": [],
+  "last_change": null,
+  "frozen_until": null,
+  "last_applied": 33.79
+ },
+ "ME0357": {
+  "changes": [],
+  "last_change": null,
+  "frozen_until": null,
+  "last_applied": 19.83
+ },
+ "ME0360": {
+  "changes": [],
+  "last_change": null,
+  "frozen_until": null,
+  "last_applied": 25.39
+ },
+ "ME0361": {
+  "changes": [],
+  "last_change": null,
+  "frozen_until": null,
+  "last_applied": 49.99
+ },
+ "ME1101": {
+  "changes": [],
+  "last_change": null,
+  "frozen_until": null,
+  "last_applied": 43.79
+ },
+ "ME1102": {
+  "changes": [],
+  "last_change": null,
+  "frozen_until": null,
+  "last_applied": 71.99
+ },
+ "ME1123": {
+  "changes": [],
+  "last_change": null,
+  "frozen_until": null,
+  "last_applied": 32.39
+ },
+ "ME1124": {
+  "changes": [],
+  "last_change": null,
+  "frozen_until": null,
+  "last_applied": 36.49
+ },
+ "ME1128": {
+  "changes": [],
+  "last_change": null,
+  "frozen_until": null,
+  "last_applied": 34.99
+ },
+ "ME1130": {
+  "changes": [],
+  "last_change": null,
+  "frozen_until": null,
+  "last_applied": 33.69
+ },
+ "ME1131": {
+  "changes": [],
+  "last_change": null,
+  "frozen_until": null,
+  "last_applied": 13.39
+ },
+ "ME1132": {
+  "changes": [],
+  "last_change": null,
+  "frozen_until": null,
+  "last_applied": 21.99
+ },
+ "ME1133": {
+  "changes": [],
+  "last_change": null,
+  "frozen_until": null,
+  "last_applied": 24.99
+ },
+ "ME1134": {
+  "changes": [],
+  "last_change": null,
+  "frozen_until": null,
+  "last_applied": 47.84
+ },
+ "ME1135": {
+  "changes": [],
+  "last_change": null,
+  "frozen_until": null,
+  "last_applied": 41.79
+ },
+ "ME1138": {
+  "changes": [],
+  "last_change": null,
+  "frozen_until": null,
+  "last_applied": 34.49
+ },
+ "ME1158": {
+  "changes": [],
+  "last_change": null,
+  "frozen_until": null,
+  "last_applied": 24.79
+ },
+ "ME1165": {
+  "changes": [],
+  "last_change": null,
+  "frozen_until": null,
+  "last_applied": 69.99
+ },
+ "ME1201": {
+  "changes": [],
+  "last_change": null,
+  "frozen_until": null,
+  "last_applied": 56.88
+ },
+ "ME1202": {
+  "changes": [],
+  "last_change": null,
+  "frozen_until": null,
+  "last_applied": 18.89
+ },
+ "ME1235": {
+  "changes": [],
+  "last_change": null,
+  "frozen_until": null,
+  "last_applied": 39.99
+ },
+ "ME1238": {
+  "changes": [],
+  "last_change": null,
+  "frozen_until": null,
+  "last_applied": 79.99
+ },
+ "ME1300": {
+  "changes": [],
+  "last_change": null,
+  "frozen_until": null,
+  "last_applied": 34.99
+ },
+ "ME1301": {
+  "changes": [],
+  "last_change": null,
+  "frozen_until": null,
+  "last_applied": 32.84
+ },
+ "ME1302": {
+  "changes": [],
+  "last_change": null,
+  "frozen_until": null,
+  "last_applied": 26.99
+ },
+ "ME1303": {
+  "changes": [],
+  "last_change": null,
+  "frozen_until": null,
+  "last_applied": 24.84
+ },
+ "ME1304": {
+  "changes": [],
+  "last_change": null,
+  "frozen_until": null,
+  "last_applied": 39.99
+ },
+ "ME1305": {
+  "changes": [],
+  "last_change": null,
+  "frozen_until": null,
+  "last_applied": 24.88
+ },
+ "ME1406": {
+  "changes": [],
+  "last_change": null,
+  "frozen_until": null,
+  "last_applied": 21.89
+ },
+ "ME1409": {
+  "changes": [],
+  "last_change": null,
+  "frozen_until": null,
+  "last_applied": 51.89
+ },
+ "ME1410": {
+  "changes": [],
+  "last_change": null,
+  "frozen_until": null,
+  "last_applied": 29.99
+ },
+ "ME1411": {
+  "changes": [],
+  "last_change": null,
+  "frozen_until": null,
+  "last_applied": 29.99
+ },
+ "ME1412": {
+  "changes": [],
+  "last_change": null,
+  "frozen_until": null,
+  "last_applied": 24.79
+ },
+ "ME1413": {
+  "changes": [],
+  "last_change": null,
+  "frozen_until": null,
+  "last_applied": 48.99
+ },
+ "ME1414": {
+  "changes": [],
+  "last_change": null,
+  "frozen_until": null,
+  "last_applied": 48.99
+ },
+ "ME1415": {
+  "changes": [],
+  "last_change": null,
+  "frozen_until": null,
+  "last_applied": 57.84
+ },
+ "ME1416": {
+  "changes": [],
+  "last_change": null,
+  "frozen_until": null,
+  "last_applied": 39.82
+ },
+ "ME1418": {
+  "changes": [],
+  "last_change": null,
+  "frozen_until": null,
+  "last_applied": 39.89
+ },
+ "ME1419": {
+  "changes": [],
+  "last_change": null,
+  "frozen_until": null,
+  "last_applied": 44.99
+ },
+ "ME1424": {
+  "changes": [],
+  "last_change": null,
+  "frozen_until": null,
+  "last_applied": 38.79
+ },
+ "ME1429": {
+  "changes": [],
+  "last_change": null,
+  "frozen_until": null,
+  "last_applied": 41.99
+ },
+ "ME1430": {
+  "changes": [],
+  "last_change": null,
+  "frozen_until": null,
+  "last_applied": 42.99
+ },
+ "ME1431": {
+  "changes": [],
+  "last_change": null,
+  "frozen_until": null,
+  "last_applied": 47.79
+ },
+ "ME1432": {
+  "changes": [],
+  "last_change": null,
+  "frozen_until": null,
+  "last_applied": 40.99
+ },
+ "ME1433": {
+  "changes": [],
+  "last_change": null,
+  "frozen_until": null,
+  "last_applied": 39.99
+ },
+ "ME1434": {
+  "changes": [],
+  "last_change": null,
+  "frozen_until": null,
+  "last_applied": 12.99
+ },
+ "ME1441": {
+  "changes": [],
+  "last_change": null,
+  "frozen_until": null,
+  "last_applied": 22.39
+ },
+ "ME1482": {
+  "changes": [],
+  "last_change": null,
+  "frozen_until": null,
+  "last_applied": 52.99
+ },
+ "ME1485": {
+  "changes": [],
+  "last_change": null,
+  "frozen_until": null,
+  "last_applied": 49.49
+ },
+ "ME1505": {
+  "changes": [],
+  "last_change": null,
+  "frozen_until": null,
+  "last_applied": null
+ },
+ "ME1507": {
+  "changes": [],
+  "last_change": null,
+  "frozen_until": null,
+  "last_applied": 49.99
+ },
+ "ME1609": {
+  "changes": [],
+  "last_change": null,
+  "frozen_until": null,
+  "last_applied": 49.99
+ },
+ "ME1621": {
+  "changes": [],
+  "last_change": null,
+  "frozen_until": null,
+  "last_applied": 29.99
+ },
+ "ME1622": {
+  "changes": [],
+  "last_change": null,
+  "frozen_until": null,
+  "last_applied": 34.99
+ },
+ "ME1623": {
+  "changes": [],
+  "last_change": null,
+  "frozen_until": null,
+  "last_applied": 24.99
+ },
+ "ME1627": {
+  "changes": [],
+  "last_change": null,
+  "frozen_until": null,
+  "last_applied": 69.99
+ },
+ "ME1628": {
+  "changes": [],
+  "last_change": null,
+  "frozen_until": null,
+  "last_applied": 23.89
+ },
+ "ME1629": {
+  "changes": [],
+  "last_change": null,
+  "frozen_until": null,
+  "last_applied": 21.49
+ },
+ "ME1635": {
+  "changes": [],
+  "last_change": null,
+  "frozen_until": null,
+  "last_applied": 42.99
+ },
+ "ME1641": {
+  "changes": [],
+  "last_change": null,
+  "frozen_until": null,
+  "last_applied": 41.99
+ },
+ "ME1645": {
+  "changes": [],
+  "last_change": null,
+  "frozen_until": null,
+  "last_applied": 133.99
+ },
+ "ME1646": {
+  "changes": [],
+  "last_change": null,
+  "frozen_until": null,
+  "last_applied": 44.79
+ },
+ "ME1647": {
+  "changes": [],
+  "last_change": null,
+  "frozen_until": null,
+  "last_applied": 33.79
+ },
+ "ME1648": {
+  "changes": [],
+  "last_change": null,
+  "frozen_until": null,
+  "last_applied": 34.79
+ },
+ "ME1649": {
+  "changes": [],
+  "last_change": null,
+  "frozen_until": null,
+  "last_applied": 32.89
+ },
+ "ME1650": {
+  "changes": [],
+  "last_change": null,
+  "frozen_until": null,
+  "last_applied": 59.99
+ },
+ "ME1651": {
+  "changes": [],
+  "last_change": null,
+  "frozen_until": null,
+  "last_applied": 39.99
+ },
+ "ME1652": {
+  "changes": [],
+  "last_change": null,
+  "frozen_until": null,
+  "last_applied": 21.99
+ },
+ "ME1653": {
+  "changes": [],
+  "last_change": null,
+  "frozen_until": null,
+  "last_applied": 12.99
+ },
+ "ME1654": {
+  "changes": [],
+  "last_change": null,
+  "frozen_until": null,
+  "last_applied": 44.99
+ },
+ "ME1655": {
+  "changes": [],
+  "last_change": null,
+  "frozen_until": null,
+  "last_applied": 31.99
+ },
+ "ME1657": {
+  "changes": [],
+  "last_change": null,
+  "frozen_until": null,
+  "last_applied": null
+ },
+ "ME1659": {
+  "changes": [],
+  "last_change": null,
+  "frozen_until": null,
+  "last_applied": 37.99
+ },
+ "ME1660": {
+  "changes": [],
+  "last_change": null,
+  "frozen_until": null,
+  "last_applied": 52.99
+ },
+ "ME1673": {
+  "changes": [],
+  "last_change": null,
+  "frozen_until": null,
+  "last_applied": 46.79
+ },
+ "ME1775": {
+  "changes": [],
+  "last_change": null,
+  "frozen_until": null,
+  "last_applied": 42.99
+ },
+ "ME1802": {
+  "changes": [],
+  "last_change": null,
+  "frozen_until": null,
+  "last_applied": 29.99
+ },
+ "ME1805": {
+  "changes": [],
+  "last_change": null,
+  "frozen_until": null,
+  "last_applied": 14.99
+ },
+ "ME1806": {
+  "changes": [],
+  "last_change": null,
+  "frozen_until": null,
+  "last_applied": null
+ },
+ "ME1810": {
+  "changes": [],
+  "last_change": null,
+  "frozen_until": null,
+  "last_applied": 29.99
+ },
+ "ME1811": {
+  "changes": [],
+  "last_change": null,
+  "frozen_until": null,
+  "last_applied": 43.49
+ },
+ "ME1812": {
+  "changes": [],
+  "last_change": null,
+  "frozen_until": null,
+  "last_applied": 36.99
+ },
+ "ME1813": {
+  "changes": [],
+  "last_change": null,
+  "frozen_until": null,
+  "last_applied": 34.99
+ },
+ "ME1814": {
+  "changes": [],
+  "last_change": null,
+  "frozen_until": null,
+  "last_applied": 19.99
+ },
+ "ME1815": {
+  "changes": [],
+  "last_change": null,
+  "frozen_until": null,
+  "last_applied": 79.99
+ },
+ "ME1819": {
+  "changes": [],
+  "last_change": null,
+  "frozen_until": null,
+  "last_applied": 84.99
+ },
+ "ME1824": {
+  "changes": [],
+  "last_change": null,
+  "frozen_until": null,
+  "last_applied": null
+ },
+ "ME1826": {
+  "changes": [],
+  "last_change": null,
+  "frozen_until": null,
+  "last_applied": null
+ },
+ "ME1827": {
+  "changes": [],
+  "last_change": null,
+  "frozen_until": null,
+  "last_applied": null
+ },
+ "ME1828": {
+  "changes": [],
+  "last_change": null,
+  "frozen_until": null,
+  "last_applied": null
+ },
+ "ME1833": {
+  "changes": [],
+  "last_change": null,
+  "frozen_until": null,
+  "last_applied": 29.99
+ },
+ "MQ-F85D-3ON7": {
+  "changes": [],
+  "last_change": null,
+  "frozen_until": null,
+  "last_applied": 24.99
+ },
+ "NI-S69F-14K1": {
+  "changes": [],
+  "last_change": null,
+  "frozen_until": null,
+  "last_applied": 23.99
+ },
+ "OI-SORQ-OAIE": {
+  "changes": [],
+  "last_change": null,
+  "frozen_until": null,
+  "last_applied": 39.99
+ },
+ "P9-9LY1-OBH4": {
+  "changes": [],
+  "last_change": null,
+  "frozen_until": null,
+  "last_applied": 25.99
+ },
+ "PQ-6D5S-MTW1": {
+  "changes": [],
+  "last_change": null,
+  "frozen_until": null,
+  "last_applied": 69.99
+ }
+}

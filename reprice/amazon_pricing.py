@@ -72,7 +72,7 @@ def summarize(body):
     return out
 
 
-def effective_price(live, plan_fo, real30, own, undercut_pct=3.0, sold_haircut=0.97):
+def effective_price(live, plan_fo, real30, own, undercut_pct=3.0, sold_haircut=0.97, q30=0):
     """The price the profit is calculated on.   Returns (price or None, source, flag)
         1. live Buy Box (weighted)            -> 'live'
         2. Buy Box of the planning report     -> 'planning'   (used when the live call has nothing for the ASIN / is not available)
@@ -90,9 +90,15 @@ def effective_price(live, plan_fo, real30, own, undercut_pct=3.0, sold_haircut=0
     if base is None:
         return None, "none", "no price"
     flag = ""
+    # your own recent sales are proof that customers also pay more than the Buy Box (your own offer wins part of the time):
+    # blend toward the price you really sold at, with a weight that grows with the units sold in 30 days (3 units 18%, 10+ units 60%, never above 60%)
+    if src != "sold" and real30 and q30 >= 3 and real30 > base:
+        w = min(0.6, 0.06 * q30)
+        base = round(base + w * (min(real30, own or real30) - base), 2)
+        flag = "sold-blend %d%%" % round(w * 100)
     low_afn = (live or {}).get("low_afn")
     if low_afn and low_afn < base * (1 - undercut_pct / 100.0):
-        base, flag = round((base + low_afn) / 2.0, 2), "undercut"
+        base, flag = round((base + low_afn) / 2.0, 2), (flag + " undercut").strip()
     if own and 0 < own < base:
         base, flag = round(own, 2), (flag + " own price lower").strip()
     if plan_fo and live and live.get("bb") and abs(live["bb"] - plan_fo) / plan_fo > 0.05:
