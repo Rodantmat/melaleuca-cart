@@ -111,6 +111,23 @@ def infer_seller(c, costs, plan):
     return ""
 
 
+def flags_ok(d):
+    """automatic raises only when the engine raised no warning about the product"""
+    return not (d.get("flags") or [])
+
+
+def norm_change(x):
+    """state record -> engine format {ts(datetime), old, new, dir, base_v}; also reads the first version (from/to/action)"""
+    y = dict(x)
+    if "old" not in y and "from" in y: y["old"] = y.pop("from")
+    if "new" not in y and "to" in y: y["new"] = y.pop("to")
+    if "dir" not in y:
+        a = y.pop("action", "")
+        y["dir"] = "up" if (y.get("new") or 0) > (y.get("old") or 0) else "down"
+    y["ts"] = dt.datetime.fromisoformat(x["ts"])
+    return y
+
+
 def listing(c, seller, sku):
     return spapi.call(c, "GET", "/listings/2021-08-01/items/%s/%s" % (seller, sku),
                       params={"marketplaceIds": MK, "includedData": "summaries,attributes,issues"}, quiet=True)
@@ -174,7 +191,7 @@ def main():
     if not seller:
         live_ok = False
 
-    out, changed_run, snaps = [], 0, []
+    out, changed_run, snaps, raised_run = [], 0, [], 0
     day_key = now.strftime("%Y-%m-%d")
     sk.setdefault("_day", {}); changed_today = sk["_day"].get(day_key, 0)
     for sku, row in sorted(costs.items()):
@@ -211,8 +228,8 @@ def main():
                 "days_since_sale": None, "aged_units": sum(f(p.get("inv-age-" + k)) or 0 for k in ("181-to-270-days", "271-to-365-days", "366-to-455-days", "456-plus-days")),
                 "bb": lv.get("bb"), "we_hold_bb": (lv.get("bb") is None) or (price is not None and price <= lv["bb"] * 1.005),
                 "low_fba": lv.get("low_afn"), "low_new": lv.get("low_new"), "foep": foep.get(sku), "hist": hh,
-                "last_change": s["last_change"] and {"ts": dt.datetime.fromisoformat(s["last_change"]["ts"]), **{k: v for k, v in s["last_change"].items() if k != "ts"}},
-                "changes": [{"ts": dt.datetime.fromisoformat(x["ts"]), **{k: v for k, v in x.items() if k != "ts"}} for x in s["changes"]],
+                "last_change": s["last_change"] and norm_change(s["last_change"]),
+                "changes": [norm_change(x) for x in s["changes"]],
                 "frozen_until": s["frozen_until"] and dt.datetime.fromisoformat(s["frozen_until"]),
                 "manual_seen": bool(s["last_applied"] and price and abs(price - s["last_applied"]) > 0.005)}
         if h:
@@ -233,7 +250,10 @@ def main():
         if s["last_applied"] is None or snap["manual_seen"]:
             s["last_applied"] = price
         if d["action"] in ("down", "up", "to_floor", "revert") and d.get("price") and price and abs(d["price"] - price) >= 0.005:
-            can = live_ok and sku in (conf.get("allowlist") or []) and po and changed_run < conf.get("max_changes_per_run", 8) and changed_today < conf.get("max_changes_per_day", 20)
+            ar = conf.get("auto_raise") or {}
+            is_up = d["action"] == "up"
+            allowed = (sku in (conf.get("allowlist") or [])) or (is_up and ar.get("enabled") is True and raised_run < ar.get("max_per_run", 4) and (flags_ok(d)))
+            can = live_ok and allowed and po and changed_run < conf.get("max_changes_per_run", 8) and changed_today < conf.get("max_changes_per_day", 20)
             if can:
                 ptype = (item.get("summaries") or [{}])[0].get("productType", "PRODUCT")
                 try:
@@ -246,8 +266,9 @@ def main():
                     chk, _ = current_price(listing(c, seller, sku))
                     if ok and chk is not None and abs(chk - d["price"]) < 0.005:
                         rec["applied"] = True; changed_run += 1; changed_today += 1
+                        if is_up: raised_run += 1
                         s["last_applied"] = d["price"]
-                        ev = {"ts": now.isoformat(), "from": price, "to": d["price"], "action": d["action"]}
+                        ev = {"ts": now.isoformat(), "old": price, "new": d["price"], "dir": "up" if d["price"] > price else "down", "base_v": d.get("base_v")}
                         s["changes"] = (s["changes"] + [ev])[-30:]; s["last_change"] = ev
                     else:
                         ok2, m2 = set_price(c, seller, sku, price, po, ptype)   # roll back

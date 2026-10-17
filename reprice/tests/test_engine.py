@@ -46,5 +46,18 @@ class T(unittest.TestCase):
         d = engine.decide(base(units_30=10, units_7=3, days_since_sale=2, on_hand=2), engine.DEFAULTS, NOW)
         self.assertNotEqual(d["action"], "down")
 
+class R(unittest.TestCase):
+    def test_changes_in_runpy_format(self):
+        import run
+        old = {"ts": "2026-10-10T10:00:00", "from": 13.39, "to": 12.59, "action": "down"}
+        new = {"ts": "2026-10-10T10:00:00", "old": 13.39, "new": 12.59, "dir": "down", "base_v": None}
+        for x in (old, new):
+            n = run.norm_change(x)
+            s = base(units_30=8, units_90=20, on_hand=3, price=12.59, last_change=n, changes=[n], low_fba=None, bb=12.59)
+            d = engine.decide(s, engine.DEFAULTS, NOW)
+            self.assertIn(d["action"], ("hold", "up", "down", "to_floor", "revert"))
+            self.assertNotIn("engine error", d.get("reason", ""))
+
+
 if __name__ == "__main__":
     unittest.main()

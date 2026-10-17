@@ -7,8 +7,12 @@
     "DE-QFMC-M0RB",
     "ME1302"
   ],
-  "max_changes_per_run": 5,
-  "max_changes_per_day": 6,
+  "max_changes_per_run": 8,
+  "max_changes_per_day": 12,
   "overrides": {},
-  "cfg": {}
+  "cfg": {},
+  "auto_raise": {
+    "enabled": true,
+    "max_per_run": 4
+  }
 }
