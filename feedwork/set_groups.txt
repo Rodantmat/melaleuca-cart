@@ -1,0 +1,5 @@
+# Mix-and-match set groups, one per line:   KEY | store item number of the pack | families or item numbers that can be mixed in it
+# The pack's item number is the number at the end of its web address (www.melaleuca.com/products/43987).
+# Families look like F2093 (the number the update puts in column BV).  Lines starting with # are ignored.
+TOOTH | 43987 | F2093, F2095, F686, F207
+DEOD | 190 | F2248, 20053, 2468
