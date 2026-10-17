@@ -58,6 +58,30 @@ def history_stats():
     return by
 
 
+def fetch_foep(c, skus, pause=31):
+    """Amazon's own 'price that would win the Featured Offer' per sku (batches of 40).  Returns {sku: price}; any failure -> missing (engine ignores it)."""
+    out = {}
+    skus = sorted(skus)
+    for i in range(0, len(skus), 40):
+        body = {"requests": [{"uri": "/products/pricing/2022-05-01/offer/featuredOfferExpectedPrice", "method": "GET", "marketplaceId": MK, "sku": k} for k in skus[i:i + 40]]}
+        try:
+            r = spapi.call(c, "POST", "/batches/products/pricing/2022-05-01/offer/featuredOfferExpectedPrice", body=body, quiet=True)
+        except Exception as e:
+            log("  foep batch failed (%s) - skipped" % str(e)[:80]); continue
+        for x in r.get("responses", []):
+            try:
+                b = x.get("body") or {}
+                sku = b.get("sku") or (x.get("request") or {}).get("sku")
+                res = (b.get("featuredOfferExpectedPriceResults") or [{}])[0]
+                if res.get("resultStatus") == "VALID_FOEP":
+                    out[sku] = float(res["featuredOfferExpectedPrice"]["listingPrice"]["amount"])
+            except Exception:
+                continue
+        if i + 40 < len(skus):
+            time.sleep(pause)
+    return out
+
+
 def infer_seller(c, costs, plan):
     """own seller id = the FBA offer whose price equals our price on most of our ASINs (cached in state/seller.txt)"""
     p = os.path.join(STATE, "seller.txt")
@@ -138,6 +162,8 @@ def main():
         h = L[0].split("\t")
         for l in L[1:]:
             r = dict(zip(h, l.split("\t"))); plan[r.get("sku")] = r
+    foep = fetch_foep(c, [k for k in costs if k in plan])
+    log("Amazon target prices (FOEP) read for %d products" % len(foep))
     if plan:
         open(os.path.join(STATE, "planning_latest.tsv"), "w", encoding="utf-8").write(txt)
     if not plan:
@@ -148,7 +174,7 @@ def main():
     if not seller:
         live_ok = False
 
-    out, changed_run = [], 0
+    out, changed_run, snaps = [], 0, []
     day_key = now.strftime("%Y-%m-%d")
     sk.setdefault("_day", {}); changed_today = sk["_day"].get(day_key, 0)
     for sku, row in sorted(costs.items()):
@@ -184,7 +210,7 @@ def main():
                 "units_7": f(p.get("units-shipped-t7")) or 0, "units_30": f(p.get("units-shipped-t30")) or 0, "units_90": f(p.get("units-shipped-t90")) or 0,
                 "days_since_sale": None, "aged_units": sum(f(p.get("inv-age-" + k)) or 0 for k in ("181-to-270-days", "271-to-365-days", "366-to-455-days", "456-plus-days")),
                 "bb": lv.get("bb"), "we_hold_bb": (lv.get("bb") is None) or (price is not None and price <= lv["bb"] * 1.005),
-                "low_fba": lv.get("low_afn"), "low_new": lv.get("low_new"), "foep": None, "hist": hh,
+                "low_fba": lv.get("low_afn"), "low_new": lv.get("low_new"), "foep": foep.get(sku), "hist": hh,
                 "last_change": s["last_change"] and {"ts": dt.datetime.fromisoformat(s["last_change"]["ts"]), **{k: v for k, v in s["last_change"].items() if k != "ts"}},
                 "changes": [{"ts": dt.datetime.fromisoformat(x["ts"]), **{k: v for k, v in x.items() if k != "ts"}} for x in s["changes"]],
                 "frozen_until": s["frozen_until"] and dt.datetime.fromisoformat(s["frozen_until"]),
@@ -231,11 +257,17 @@ def main():
             else:
                 rec["reason"] += " | SHADOW (not applied)"
         out.append(rec)
+        snaps.append([now.strftime("%Y-%m-%d %H:%M"), sku, asin, price, lv.get("bb"), lv.get("low_afn"), lv.get("low_new"), lv.get("n_offers"), foep.get(sku), snap["units_7"], snap["on_hand"]])
     sk["_day"] = {day_key: changed_today}
     json.dump(sk, open(os.path.join(STATE, "skustate.json"), "w"), indent=1, default=str)
     with open(os.path.join(STATE, "decisions.jsonl"), "a") as fh:
         for r in out:
             fh.write(json.dumps(r) + "\n")
+    sp = os.path.join(STATE, "snapshots.tsv")
+    new = not os.path.exists(sp)
+    with open(sp, "a") as fh:
+        if new: fh.write("time\tsku\tasin\town_price\tbuybox\tlow_fba\tlow_new\tn_offers\tfoep\tunits_7d\ton_hand\n")
+        for r in snaps: fh.write("\t".join("" if v is None else str(v) for v in r) + "\n")
     acts = {}
     for r in out:
         acts[r["action"]] = acts.get(r["action"], 0) + 1
