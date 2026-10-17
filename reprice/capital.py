@@ -13,6 +13,28 @@ def tryit(label, fn):
     except Exception as e:
         print(label, "FAILED:", str(e)[:300]); out.setdefault("errors", {})[label] = str(e)[:300]; return None
 
+# 0. transactions by status (held / deferred money)
+def tx():
+    after = (dt.datetime.utcnow() - dt.timedelta(days=45)).strftime("%Y-%m-%dT00:00:00Z")
+    tot, n, tok, cnt = {}, 0, None, {}
+    while True:
+        ps = {"postedAfter": after, "marketplaceId": MK}
+        if tok: ps = {"nextToken": tok}
+        r = spapi.call(c, "GET", "/finances/2024-06-19/transactions", params=ps, quiet=True)
+        for t in r.get("transactions", []):
+            st = t.get("transactionStatus", "?"); a = (t.get("totalAmount") or {}).get("currencyAmount") or 0
+            tot[st] = tot.get(st, 0) + a; cnt[st] = cnt.get(st, 0) + 1
+            if st in ("DEFERRED", "DEFERRED_RELEASED") or st == "OPEN": pass
+        n += len(r.get("transactions", []))
+        tok = (r.get("payload") or r).get("nextToken") or r.get("nextToken")
+        if not tok or n > 20000: break
+        time.sleep(0.6)
+    out["tx_by_status"] = {k: round(v, 2) for k, v in tot.items()}; out["tx_counts"] = cnt
+    print("transactions by status:", out["tx_by_status"], cnt)
+tryit("transactions", tx)
+if os.environ.get("ONLY") == "tx":
+    json.dump(out, open(os.path.join(ST, "capital_tx.json"), "w"), indent=1); sys.exit(0)
+
 # 1. settlement groups
 def groups():
     after = (dt.datetime.utcnow() - dt.timedelta(days=60)).strftime("%Y-%m-%dT00:00:00Z")

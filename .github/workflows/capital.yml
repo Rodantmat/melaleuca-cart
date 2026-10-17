@@ -19,7 +19,7 @@ jobs:
           set -o pipefail
           cd reprice
           printf '%s\n' "$CRED_ENV" > credentials.env
-          python capital.py 2>&1 | tee capital.log
+          ONLY=tx python capital.py 2>&1 | tee capital.log
           rm -f credentials.env
       - name: Save state
         if: always()
