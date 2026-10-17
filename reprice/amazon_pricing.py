@@ -34,7 +34,7 @@ def _landed(offer):
 
 def summarize(body):
     """body of one getCompetitiveSummary response -> dict of the numbers the planner needs"""
-    out = {"bb": None, "bb_top": None, "bb_fba": None, "low_new": None, "low_afn": None, "n_offers": 0, "n_afn": 0}
+    out = {"bb": None, "bb_top": None, "bb_fba": None, "low_new": None, "low_afn": None, "n_offers": 0, "n_afn": 0, "ladder": []}
     sw = w = 0.0
     top_w = -1.0
     for fo in (body or {}).get("featuredBuyingOptions") or []:
@@ -63,6 +63,7 @@ def summarize(body):
             if p is None:
                 continue
             out["n_offers"] += 1
+            out["ladder"].append([str(o.get("sellerId") or "?"), "F" if o.get("fulfillmentType") == "AFN" else "M", round(p, 2)])
             if out["low_new"] is None or p < out["low_new"]:
                 out["low_new"] = p
             if o.get("fulfillmentType") == "AFN":

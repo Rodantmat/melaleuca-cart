@@ -284,6 +284,10 @@ def main():
     with open(os.path.join(STATE, "decisions.jsonl"), "a") as fh:
         for r in out:
             fh.write(json.dumps(r) + "\n")
+    with open(os.path.join(STATE, "offers.jsonl"), "a") as fh:     # who sells what at which price, every run: the raw material for market.py
+        for a, lv_ in live.items():
+            if lv_.get("ladder"):
+                fh.write(json.dumps({"t": now.strftime("%Y-%m-%d %H:%M"), "asin": a, "bb": lv_.get("bb"), "ladder": lv_["ladder"][:15]}) + "\n")
     sp = os.path.join(STATE, "snapshots.tsv")
     new = not os.path.exists(sp)
     with open(sp, "a") as fh:

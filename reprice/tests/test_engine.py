@@ -59,5 +59,13 @@ class R(unittest.TestCase):
             self.assertNotIn("engine error", d.get("reason", ""))
 
 
+class M(unittest.TestCase):
+    def test_market(self):
+        import market
+        m = market.analyse([[['A','F',10.0],['B','F',11]],[['A','F',9.5],['B','F',11]]], own=9.0)
+        self.assertEqual(m['sellers_fba'], 2)
+        self.assertIsNone(market.analyse([]))
+
+
 if __name__ == "__main__":
     unittest.main()
