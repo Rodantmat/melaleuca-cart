@@ -206,7 +206,7 @@ def main():
         if len(sold) >= 6:
             hh = {"n": len(sold), "p_low": sold[int(.07 * (len(sold) - 1))], "p_mid": sold[len(sold) // 2], "p_high": sold[int(.95 * (len(sold) - 1))]}
         snap = {"sku": sku, "price": price, "cost": cost, "fba_fee": fba,
-                "on_hand": f(p.get("available")) or 0, "inbound": 0,
+                "on_hand": f(p.get("available")) or 0, "inbound": f(p.get("inbound-quantity")) or 0,
                 "units_7": f(p.get("units-shipped-t7")) or 0, "units_30": f(p.get("units-shipped-t30")) or 0, "units_90": f(p.get("units-shipped-t90")) or 0,
                 "days_since_sale": None, "aged_units": sum(f(p.get("inv-age-" + k)) or 0 for k in ("181-to-270-days", "271-to-365-days", "366-to-455-days", "456-plus-days")),
                 "bb": lv.get("bb"), "we_hold_bb": (lv.get("bb") is None) or (price is not None and price <= lv["bb"] * 1.005),

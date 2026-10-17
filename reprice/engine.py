@@ -37,6 +37,8 @@ DEFAULTS = {
     "DROUGHT_MULT": 3.0,         # ... one that sells 1/month after 2.5 normal gaps (75 d), capped at DROUGHT_MAX
     "DROUGHT_MAX": 120,
     "DOS_MIN_DROP": 45,          # a drought only lowers the price when there is more than 30 days of stock to move
+    "BIG_GAP": 0.08,             # market at least 8% above our price -> raise in a bigger step
+    "STEP_UP_BIG": 0.05,
     "DOS_HIGH": 75,              # days of supply above which stock is a surplus
     "DOS_LOW": 25,               # below this the product sells out soon -> room to raise
     "UP_MIN_UNITS_30": 4,        # evidence needed before raising
@@ -218,7 +220,7 @@ def decide(snap, cfg=None, now=None):
         return {"action": "down", "price": target, "reason": why, "flags": flags + (["severe"] if severe else []), "floor": floor, "ceil": ceil}
 
     # =============================================================== UP
-    if on_hand > 0 and u30 >= cfg["UP_MIN_UNITS_30"] and not in_drought and not surplus and not anomalous:
+    if (on_hand > 0 or inbound > 0) and u30 >= cfg["UP_MIN_UNITS_30"] and not in_drought and not surplus and not anomalous:
         if since_last_h < cfg["COOLDOWN_UP_H"]:
             return hold("waiting after the last change", floor=floor, ceil=ceil)
         room_ok = False
@@ -227,7 +229,13 @@ def decide(snap, cfg=None, now=None):
         if bb and we_hold is False:
             return hold("another seller owns the Buy Box - no raise", floor=floor, ceil=ceil)
         if dos <= cfg["DOS_LOW"]:                       # sells out soon: stop giving margin away
-            target = price * (1 + cfg["STEP_UP"])
+            step = cfg["STEP_UP"]
+            ref = min([x for x in (foep, bb, low_fba) if x] or [0])
+            if ref and ref >= price * (1 + cfg["BIG_GAP"]):      # the market (Amazon's own target price / Buy Box / cheapest rival) is well above us: bigger step
+                step = cfg["STEP_UP_BIG"]
+            target = price * (1 + step)
+            if foep and foep > price:                           # Amazon's own estimate of the winning price is a ceiling for the raise
+                target = min(target, foep)
             room_ok = True
         elif v >= 0.15 and dos <= cfg["DOS_HIGH"] / 2:  # healthy seller with a normal stock: test a higher price
             target = price * (1 + cfg["STEP_UP"] * 0.7)
