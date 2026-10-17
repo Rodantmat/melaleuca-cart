@@ -217,7 +217,7 @@ def decide(snap, cfg=None, now=None):
         target = _r2(target)
         if target >= price - 0.005 or price - target < min(cfg["MIN_STEP"], 0.02 * price):
             return hold("no room to lower further within the limits", floor=floor, ceil=ceil)
-        return {"action": "down", "price": target, "reason": why, "flags": flags + (["severe"] if severe else []), "floor": floor, "ceil": ceil}
+        return {"action": "down", "price": target, "reason": why, "flags": flags + (["severe"] if severe else []), "floor": floor, "ceil": ceil, "severe": bool(severe), "dss": dss, "dos": dos}
 
     # =============================================================== UP
     if (on_hand > 0 or inbound > 0) and u30 >= cfg["UP_MIN_UNITS_30"] and not in_drought and not surplus and not anomalous:

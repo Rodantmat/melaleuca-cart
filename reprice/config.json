@@ -14,5 +14,11 @@
   "auto_raise": {
     "enabled": true,
     "max_per_run": 4
+  },
+  "auto_drop": {
+    "enabled": true,
+    "max_per_run": 3,
+    "min_days_no_sale": 30,
+    "min_days_cover": 90
   }
 }

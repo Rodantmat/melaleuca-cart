@@ -191,7 +191,13 @@ def main():
     if not seller:
         live_ok = False
 
-    out, changed_run, snaps, raised_run = [], 0, [], 0
+    out, changed_run, snaps, raised_run, dropped_run = [], 0, [], 0, 0
+    pressure = {}
+    try:
+        for l in open(os.path.join(STATE, 'market.tsv')).read().splitlines()[1:]:
+            c_ = l.split('\t'); pressure[c_[0]] = c_[8]
+    except Exception:
+        pass
     day_key = now.strftime("%Y-%m-%d")
     sk.setdefault("_day", {}); changed_today = sk["_day"].get(day_key, 0)
     for sku, row in sorted(costs.items()):
@@ -239,6 +245,8 @@ def main():
             d = engine.decide(snap, cfg, now)
         except Exception as e:
             d = {"action": "hold", "reason": "engine error %r - held" % e}
+        if d["action"] == "up" and pressure.get(asin) == "HIGH":
+            d = {"action": "hold", "reason": "raise skipped: many FBA rivals and the cheapest one keeps cutting (market pressure HIGH)", "flags": ["pressure_high"]}
         np_ = d.get("price")
         if np_ is not None:
             if ov.get("min"): np_ = max(np_, float(ov["min"]))
@@ -252,7 +260,10 @@ def main():
         if d["action"] in ("down", "up", "to_floor", "revert") and d.get("price") and price and abs(d["price"] - price) >= 0.005:
             ar = conf.get("auto_raise") or {}
             is_up = d["action"] == "up"
-            allowed = (sku in (conf.get("allowlist") or [])) or (is_up and ar.get("enabled") is True and raised_run < ar.get("max_per_run", 4) and (flags_ok(d)))
+            ad = conf.get("auto_drop") or {}
+            is_down = d["action"] == "down"
+            drop_ok = is_down and ad.get("enabled") is True and dropped_run < ad.get("max_per_run", 3) and (d.get("severe") or ((d.get("dss") or 0) >= ad.get("min_days_no_sale", 30) and (d.get("dos") or 0) >= ad.get("min_days_cover", 90)))
+            allowed = (sku in (conf.get("allowlist") or [])) or (is_up and ar.get("enabled") is True and raised_run < ar.get("max_per_run", 4) and flags_ok(d)) or drop_ok
             can = live_ok and allowed and po and changed_run < conf.get("max_changes_per_run", 8) and changed_today < conf.get("max_changes_per_day", 20)
             if can:
                 ptype = (item.get("summaries") or [{}])[0].get("productType", "PRODUCT")
@@ -267,6 +278,7 @@ def main():
                     if ok and chk is not None and abs(chk - d["price"]) < 0.005:
                         rec["applied"] = True; changed_run += 1; changed_today += 1
                         if is_up: raised_run += 1
+                        if is_down: dropped_run += 1
                         s["last_applied"] = d["price"]
                         ev = {"ts": now.isoformat(), "old": price, "new": d["price"], "dir": "up" if d["price"] > price else "down", "base_v": d.get("base_v")}
                         s["changes"] = (s["changes"] + [ev])[-30:]; s["last_change"] = ev
