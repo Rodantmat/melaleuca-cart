@@ -370,6 +370,75 @@ def orders_by_asin():
     return out
 
 
+ALIAS_FILE = os.path.join(BASE, "asin_aliases.tsv")
+
+
+def load_aliases():
+    """asin_aliases.tsv (tab separated): new_asin <TAB> old_asin[,old_asin2] <TAB> note.  Lines starting with # are ignored.
+    Use it when a product was recreated under a new ASIN: the sales history of the old ASIN(s) is added to the new one."""
+    out = {}
+    if not os.path.exists(ALIAS_FILE):
+        return out
+    for ln in open(ALIAS_FILE, encoding="utf-8-sig", errors="replace").read().splitlines():
+        if not ln.strip() or ln.lstrip().startswith("#"):
+            continue
+        c = [x.strip() for x in ln.split("\t")]
+        if len(c) >= 2 and re.fullmatch(r"B[0-9A-Z]{9}", c[0]):
+            olds = [x.strip() for x in c[1].split(",") if re.fullmatch(r"B[0-9A-Z]{9}", x.strip()) and x.strip() != c[0]]
+            if olds:
+                out.setdefault(c[0], []).extend(olds)
+    return out
+
+
+def apply_aliases(ords, aliases, warnings):
+    """adds the order history of the old ASINs to the new ASIN (units, revenue, orders, last sale date).
+    Prices of the old product are NOT mixed into the new ASIN's sold-price figures (q30/rev30 stay untouched)."""
+    for new, olds in aliases.items():
+        moved = 0
+        for old in olds:
+            o = ords.get(old)
+            if not o:
+                continue
+            n = ords.setdefault(new, {"u7": 0, "u30": 0, "u60": 0, "u90": 0, "rev90": 0.0, "q30": 0, "rev30": 0.0, "o30": set(), "last": ""})
+            for k in ("u7", "u30", "u60", "u90"):
+                n[k] += o[k]
+            n["rev90"] += o["rev90"]
+            n["o30"] |= o["o30"]
+            n["last"] = max(n["last"], o["last"])
+            moved += o["u90"]
+        if moved:
+            warnings.append("sales history carried over to %s from %s: %d units in 90 days" % (new, ", ".join(olds), moved))
+
+
+def suggest_aliases(info, ords, aliases, ghosts, warnings):
+    """Never applied automatically: lists active products whose name looks like a product that disappeared but had sales."""
+    import difflib
+    covered = {o for v in aliases.values() for o in v}
+    rows = [["old_asin", "old_sku", "old_name", "units_90d", "possible_new_sku", "possible_new_asin", "possible_new_name", "name_match"]]
+    for g in ghosts:
+        gi = info[g]
+        if gi["asin"] in covered or not ords.get(gi["asin"], {}).get("u90"):
+            continue
+        gn = clean_name(first(gi["l"].get("item-name"), gi["p"].get("product-name"), gi["m"].get("product-name")) or "").lower()
+        best = []
+        for sku, i in info.items():
+            if sku in ghosts or not i["l"] or not i["asin"] or i["asin"] == gi["asin"]:
+                continue
+            nn = clean_name(first(i["l"].get("item-name"), i["p"].get("product-name")) or "").lower()
+            r = difflib.SequenceMatcher(None, gn, nn).ratio()
+            if r >= 0.5:
+                best.append((r, sku, i["asin"], nn))
+        best.sort(reverse=True)
+        for r, sku, asin, nn in best[:2]:
+            rows.append([gi["asin"], g, gn[:60], ords[gi["asin"]]["u90"], sku, asin, nn[:60], "%.0f%%" % (100 * r)])
+        if not best:
+            rows.append([gi["asin"], g, gn[:60], ords[gi["asin"]]["u90"], "", "", "(no similar active product)", ""])
+    if len(rows) > 1:
+        with open(os.path.join(FEED_DIR, "alias_suggestions.tsv"), "w", encoding="utf-8", newline="\n") as f:
+            f.write("\n".join("\t".join(str(x) for x in r) for r in rows) + "\n")
+        warnings.append("%d product(s) disappeared but had sales in the last 90 days: see feed\\alias_suggestions.tsv (if one was recreated, add it to asin_aliases.tsv)" % (len(rows) - 1))
+
+
 PLAN_COLS = ["units-shipped-t7", "units-shipped-t30", "units-shipped-t60", "units-shipped-t90",
              "sales-shipped-last-30-days", "sales-shipped-last-90-days", "days-of-supply",
              "historical-days-of-supply", "Short term historical days of supply",
@@ -488,6 +557,8 @@ def cmd_build(creds, skip_fees=False):
     if not skus:
         print("Nothing to build - no raw data found."); return 1
     ords = orders_by_asin()
+    aliases = load_aliases()
+    apply_aliases(ords, aliases, warnings)
     cache = json.load(open(FEE_CACHE)) if os.path.exists(FEE_CACHE) else {}
     for _k in [k for k, v in cache.items() if v.get("src") in ("estimate", "last_good", "override")]:
         cache.pop(_k)           # stand-ins are rebuilt every run so a real Amazon fee always replaces them
@@ -531,6 +602,7 @@ def cmd_build(creds, skip_fees=False):
         if ghosts:
             warnings.append("%d SKU(s) have no listing on Amazon any more (no stock, nothing inbound) - not priced, no fee asked: %s" %
                             (len(ghosts), ", ".join(sorted(ghosts))))
+    suggest_aliases(info, ords, aliases, ghosts, warnings)
     if not skip_fees and creds is not None:
         wanted = {s: (first(i["fo"], i["yp"]), i["fba"]) for s, i in info.items()
                   if i["asin"] and first(i["fo"], i["yp"]) and s not in ghosts}
