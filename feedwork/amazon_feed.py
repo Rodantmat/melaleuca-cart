@@ -158,6 +158,14 @@ def wait_for(creds, jobs, max_minutes=60):
             if st in ("DONE", "CANCELLED", "FATAL"):
                 done[label] = (st, r.get("reportDocumentId"))
                 print("  %-28s %s" % (label, st))
+                if st != "DONE":
+                    why = ""
+                    try:
+                        if r.get("reportDocumentId"):
+                            why = decode(download(creds, r["reportDocumentId"]))[:400].replace("\n", " | ")
+                    except Exception as e:
+                        why = "(no detail: %s)" % str(e)[:100]
+                    print("    Amazon says: %s  [reportId %s, type %s]" % (why or "(no detail given)", rid, r.get("reportType")))
         if len(done) < len(jobs):
             time.sleep(20)
     for label in jobs:
@@ -458,6 +466,21 @@ def cmd_build(creds, skip_fees=False):
         myi_rows = read_tsv(os.path.join(RAW_DIR, "fba_myi_inventory_latest.tsv"))
         synthesized = True
         warnings.append("FBA inventory report was unavailable: FBA tab rebuilt from the planning report")
+    if plan_rows and myi_rows is not None and not synthesized:
+        have = {r.get("sku") for r in myi_rows}
+        miss = [p for p in plan_rows if p.get("sku") and p.get("sku") not in have]
+        if miss:
+            extra = myi_from_planning(miss, lst_rows).split("\n", 1)[1]
+            fp = os.path.join(RAW_DIR, "fba_myi_inventory_latest.tsv")
+            with open(fp, "rb") as f:
+                body = f.read()
+            if not body.endswith(b"\n"):
+                body += b"\n"
+            with open(fp, "wb") as f:
+                f.write(body + extra.encode("utf-8"))
+            myi_rows = read_tsv(fp)
+            warnings.append("%d SKU(s) were in the planning report but missing from the FBA inventory report - added from planning: %s" %
+                            (len(miss), ", ".join(sorted(p["sku"] for p in miss))[:300]))
     plan = {r["sku"]: r for r in (plan_rows or [])}
     myi = {r["sku"]: r for r in (myi_rows or [])}
     lst = {r["seller-sku"]: r for r in (lst_rows or [])}
@@ -711,7 +734,7 @@ def cmd_pull(creds, days, only, skip_orders, skip_pricing=False):
             order_blobs.append(blob); order_stem = stem; status[label] = "OK"
     # FBA inventory report sometimes returns FATAL: retry once, then try the alternate report type
     if status.get("myi") in ("FATAL", "CANCELLED", "TIMEOUT") and (not only or "myi" in only):
-        for attempt, rtype in enumerate(("GET_FBA_MYI_UNSUPPRESSED_INVENTORY_DATA", MYI_FALLBACK_TYPE)):
+        for attempt, rtype in enumerate((MYI_FALLBACK_TYPE,)):   # the first type already failed; do not repeat it
             print("  FBA inventory report failed - retrying (%s) ..." % rtype)
             try:
                 rid = create_report(creds, rtype)
@@ -760,6 +783,37 @@ def cmd_pull(creds, days, only, skip_orders, skip_pricing=False):
     return 0 if all(v == "OK" for v in hard.values()) else 1
 
 
+class _Tee:
+    """Copies everything printed to refresh_log.txt as well (the log is kept to about 1 MB)."""
+    def __init__(self, stream, fh):
+        self.s, self.fh = stream, fh
+    def write(self, t):
+        try: self.s.write(t)
+        except Exception: pass
+        try: self.fh.write(t); self.fh.flush()
+        except Exception: pass
+        return len(t)
+    def flush(self):
+        try: self.s.flush()
+        except Exception: pass
+    def __getattr__(self, n):
+        return getattr(self.s, n)
+
+
+def start_log(cmd):
+    try:
+        path = os.path.join(BASE, "refresh_log.txt")
+        if os.path.exists(path) and os.path.getsize(path) > 1000000:
+            keep = open(path, "rb").read()[-300000:]
+            open(path, "wb").write(keep)
+        fh = open(path, "a", encoding="utf-8", errors="replace")
+        fh.write("\n==== %s | %s ====\n" % (dt.datetime.now().strftime("%Y-%m-%d %H:%M:%S"), cmd))
+        sys.stdout = _Tee(sys.stdout, fh)
+        sys.stderr = _Tee(sys.stderr, fh)
+    except Exception:
+        pass
+
+
 def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     sub = ap.add_subparsers(dest="cmd", required=True)
@@ -774,6 +828,7 @@ def main():
         if name != "pull":
             p.add_argument("--skip-fees", action="store_true", help="do not call the fee-estimate API")
     a = ap.parse_args()
+    start_log(a.cmd)
     creds = load_credentials()
     try:
         if a.cmd == "test":
