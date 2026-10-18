@@ -779,7 +779,8 @@ def cmd_pull(creds, days, only, skip_orders, skip_pricing=False):
         print("  %-14s %s" % (k, v))
     print("\nFiles are in: " + RAW_DIR)
     print("Send Claude the file raw\\headers_summary.txt (it contains no sales data).")
-    hard = {k: v for k, v in status.items() if k not in ("feeprev", "pricing")}
+    soft = ("feeprev", "pricing") + (("myi",) if status.get("planning") == "OK" else ())   # myi is rebuilt from planning if it failed
+    hard = {k: v for k, v in status.items() if k not in soft}
     return 0 if all(v == "OK" for v in hard.values()) else 1
 
 
