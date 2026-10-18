@@ -520,9 +520,20 @@ def cmd_build(creds, skip_fees=False):
             esp, src, flag = AP.effective_price(lv, i["fo_plan"], real30, i["yp"], q30=o_.get("q30", 0))
             i["live"], i["esp_src"], i["flag"], i["real30"] = lv, src, flag, real30
             i["fo"] = esp
+    # SKUs that no longer have a listing (not in the listings report) and have no stock and nothing inbound:
+    # Amazon cannot give a fee for them. They stay in the sheet (so your formulas keep working) but are marked and skipped.
+    ghosts = []
+    if lst_rows:
+        for sku, i in info.items():
+            if not i["l"] and num(i["p"].get("available"), 0) == 0 and num(i["p"].get("inbound-quantity"), 0) == 0 \
+                    and num(i["m"].get("afn-total-quantity"), 0) == 0:
+                ghosts.append(sku); i["flag"] = (i["flag"] + " NOT LISTED").strip(); i["fo"] = None; i["esp_src"] = "none"   # no listing = no price, so nothing gets bought for it
+        if ghosts:
+            warnings.append("%d SKU(s) have no listing on Amazon any more (no stock, nothing inbound) - not priced, no fee asked: %s" %
+                            (len(ghosts), ", ".join(sorted(ghosts))))
     if not skip_fees and creds is not None:
         wanted = {s: (first(i["fo"], i["yp"]), i["fba"]) for s, i in info.items()
-                  if i["asin"] and first(i["fo"], i["yp"])}
+                  if i["asin"] and first(i["fo"], i["yp"]) and s not in ghosts}
         try:
             fetch_fees(creds, wanted, cache, warnings)
         except SpApiError as e:
