@@ -1,0 +1,37 @@
+name: SKU existence check
+on:
+  workflow_dispatch:
+    inputs:
+      watch: { description: "SKUs to show in detail (space separated)", default: "ME0016 ME0048 ME0083", required: false }
+permissions:
+  contents: write
+concurrency: { group: skucheck, cancel-in-progress: false }
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+        with: { ref: main }
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - name: Fetch seller id
+        run: git fetch origin reprice-state:reprice-state 2>/dev/null && git checkout reprice-state -- reprice/state/seller.txt 2>/dev/null || true
+      - name: Check
+        env: { CRED_ENV: "${{ secrets.CREDENTIALS_ENV }}" }
+        run: |
+          set -o pipefail
+          cd reprice
+          printf '%s\n' "$CRED_ENV" > credentials.env
+          python sku_check.py ${{ github.event.inputs.watch }} 2>&1 | tee sku_check.log
+          rm -f credentials.env
+      - name: Publish
+        if: always()
+        run: |
+          git config user.name "feed-bot"; git config user.email "feed-bot@users.noreply.github.com"
+          rm -rf /tmp/so && mkdir -p /tmp/so
+          cp reprice/state/sku_check.tsv reprice/sku_check.log /tmp/so/ 2>/dev/null || true
+          git checkout --orphan sku-new
+          git rm -rf . >/dev/null 2>&1 || true
+          cp -a /tmp/so/. .
+          git add -A && git commit -qm "sku check" && git push -f origin sku-new:sku-check
