@@ -19,7 +19,7 @@ jobs:
           mkdir -p /tmp/so
           cd feedwork
           printf '%s\n' "$CRED_ENV" > credentials.txt
-          python sd_tools.py inbound inbound_test.tsv test 2>&1 | tee /tmp/so/run.log
+          for f in inbound_test.tsv inbound_test_Vancouver.tsv inbound_test_SanDiego.tsv; do echo "=== $f"; python sd_tools.py inbound $f test 2>&1 | tee -a /tmp/so/run.log; done
           rm -f credentials.txt
       - name: Publish
         if: always()
