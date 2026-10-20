@@ -355,7 +355,7 @@ def ship_from(city):
             raise RuntimeError("ship_from.json has no address for '%s'." % city)
     raise RuntimeError("ship_from.json was not found next to sd_tools.py (run INSTALL_SANDIEGO.bat again).")
 
-def send_to_amazon(path, say=print, cancel_after=False, owners=("NONE", "SELLER"), placement=True):
+def send_to_amazon(path, say=print, cancel_after=False, owners=("NONE", "SELLER"), placement=False):
     name, city, boxes, cells, exp = read_send_file(path)
     if not boxes or not cells:
         raise RuntimeError("no boxes with products were found on the Summary sheet (fill the Box columns and the weight/size rows first).")
@@ -425,16 +425,13 @@ def send_to_amazon(path, say=print, cancel_after=False, owners=("NONE", "SELLER"
         _wait(c, _api(c, "POST", INB + "/inboundPlans/%s/packingOptions" % pid), "packing options", say)
         opts = _paged(c, INB + "/inboundPlans/%s/packingOptions" % pid, "packingOptions")
         if not opts: raise RuntimeError("Amazon returned no packing option")
-        for o in opts:
-            say("   option %s: %d group(s), status %s, discounts %s, fees %s" % (o.get("packingOptionId"), len(o.get("packingGroups") or []), o.get("status"), json.dumps(o.get("discounts")), json.dumps(o.get("fees"))))
         # mixed boxes need ONE packing group: take the option with the fewest groups
         opt = sorted(opts, key=lambda o: len(o.get("packingGroups") or []))[0]
         groups = opt.get("packingGroups") or []
-        say("2/5 packing option %s with %d group(s)" % (opt.get("packingOptionId"), len(groups)))
+        say("2/5 packing option chosen (%d group(s))" % len(groups))
         gitems = {}
         for g in groups:
             git = _paged(c, INB + "/inboundPlans/%s/packingGroups/%s/items" % (pid, g), "items")
-            say("   group %s: %d products %s" % (g[:12], len(git), json.dumps(git[:2])[:400]))
             for it in git:
                 gitems[it.get("msku")] = g
         _wait(c, _api(c, "POST", INB + "/inboundPlans/%s/packingOptions/%s/confirmation" % (pid, opt["packingOptionId"])), "confirming the packing option", say)
@@ -462,7 +459,7 @@ def send_to_amazon(path, say=print, cancel_after=False, owners=("NONE", "SELLER"
         say("4/5 box contents and sizes saved (%d boxes)" % len(used))
         if placement:
             _wait(c, _api(c, "POST", INB + "/inboundPlans/%s/placementOptions" % pid), "shipment options", say)
-            say("5/5 shipment options generated - plan is ready for you at the next step")
+            say("5/5 shipment options generated")
     except Exception:
         if pid and cancel_after:
             try: _api(c, "PUT", INB + "/inboundPlans/%s/cancellation" % pid)
@@ -629,6 +626,11 @@ if __name__ == '__main__':
         except Exception as e:
             print('ERROR: ' + str(e)); sys.exit(1)
         print('DONE plan ' + str(r.get('inboundPlanId')))
+    elif len(a) == 2 and a[0] == 'cancel':
+        try:
+            _api(_credentials(), 'PUT', INB + '/inboundPlans/%s/cancellation' % a[1]); print('cancelled ' + a[1])
+        except Exception as e:
+            print('ERROR: ' + str(e)); sys.exit(1)
     elif len(a) == 3 and a[0] == 'numbers':
         print('cells:', numbers_to_tsv(a[1], a[2]))
     else:
