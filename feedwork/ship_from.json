@@ -10,23 +10,23 @@
     "phoneNumber": "9544590398"
   },
   "Vancouver": {
-    "name": "FILL",
-    "addressLine1": "FILL",
-    "addressLine2": "",
-    "city": "FILL",
-    "stateOrProvinceCode": "FILL",
-    "postalCode": "FILL",
+    "name": "Flipping Magic LLC/Rodolfo Antunes",
+    "addressLine1": "1160 haro st",
+    "addressLine2": "204",
+    "city": "Vancouver",
+    "stateOrProvinceCode": "BC",
+    "postalCode": "V6E 1G2",
     "countryCode": "CA",
-    "phoneNumber": "FILL"
+    "phoneNumber": "9544590398"
   },
   "San Diego": {
-    "name": "FILL",
-    "addressLine1": "FILL",
-    "addressLine2": "",
-    "city": "FILL",
-    "stateOrProvinceCode": "FILL",
-    "postalCode": "FILL",
+    "name": "Rodolfo Antunes de mattos",
+    "addressLine1": "13961 Campo Rd",
+    "addressLine2": "Box 57",
+    "city": "Jamul",
+    "stateOrProvinceCode": "CA",
+    "postalCode": "91935",
     "countryCode": "US",
-    "phoneNumber": "FILL"
+    "phoneNumber": "9544590398"
   }
 }

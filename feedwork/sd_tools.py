@@ -9,6 +9,11 @@ sd_tools.py - helper for the San Diego / Vancouver / Toronto AutoReport workbook
         30        : "30 Labels Sheet"  (Letter_30)
         thermal   : 25x50 Thermal Labels (50 x 25 mm, one label per page)
 
+  python sd_tools.py inbound  send.tsv  [test]
+        Send to Amazon steps 1 + 1b: creates the inbound plan (name, ship-from from ship_from.json), confirms the packing
+        option, saves the boxes (contents, weight, size) and generates the shipment options. Stops there.
+        'test' = verify what Amazon stored, then cancel the plan.
+
   python sd_tools.py numbers  file.numbers  output.tsv
         reads the first table of an Apple Numbers file and writes it as a tab separated file
         (row number, column number, type, value) so the workbook can import it.
