@@ -441,7 +441,10 @@ def send_to_amazon(path, say=print, cancel_after=False, owners=("NONE", "SELLER"
                 if b == n: its[sku] = its.get(sku, 0) + q
             gs = set(gitems.get(m) for m in its)
             if len(gs) != 1 or None in gs:
-                raise RuntimeError("Box%d mixes products that Amazon put in different packing groups (%s)." % (n, ", ".join(sorted(its))))
+                bygrp = {}
+                for m in its: bygrp.setdefault(gitems.get(m) or "?", []).append(m)
+                parts = sorted(bygrp.values(), key=len)
+                raise RuntimeError("Amazon will not accept Box%d as packed: it requires %s to be packed in separate boxes from %s (Amazon puts them in different packing groups). Move them to their own box on the Summary sheet and run again." % (n, " / ".join(", ".join(sorted(x)) for x in parts[:-1]), ", ".join(sorted(parts[-1])) if len(parts[-1]) < 6 else "the other products"))
             g = gs.pop()
             per_group.setdefault(g, []).append({
                 "contentInformationSource": "BOX_CONTENT_PROVIDED", "quantity": 1,
