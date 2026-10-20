@@ -11,9 +11,8 @@ def main():
     c = spapi.load_creds(HERE)
     items = [{"msku": "ME1303", "quantity": 3}, {"msku": "E0-FNUP-YHBK", "quantity": 2}, {"msku": "ME0018", "quantity": 1}]
     tests = [("std_letter30", {"labelType": "STANDARD_FORMAT", "pageType": "Letter_30"}),
-             ("std_bad", {"labelType": "STANDARD_FORMAT", "pageType": "XXX"}),
-             ("thermal", {"labelType": "THERMAL_PRINTING"}),
-             ("thermal_size", {"labelType": "THERMAL_PRINTING", "width": 50, "height": 25})]
+             ("thermal_50x25", {"labelType": "THERMAL_PRINTING", "width": 50, "height": 25}),
+             ("thermal_plain", {"labelType": "THERMAL_PRINTING"})]
     for name, extra in tests:
         body = {"marketplaceId": MK, "mskuQuantities": items}
         body.update(extra)
