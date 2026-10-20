@@ -299,11 +299,17 @@ def _wait(c, op, what, say):
     raise RuntimeError(what + " is taking too long at Amazon (operation " + oid + ")")
 
 def _paged(c, path, key, params=None):
-    out = []; tok = None
+    out = []; tok = None; size = 100
     for _ in range(200):
-        q = dict(params or {}); q["pageSize"] = 100
+        q = dict(params or {}); q["pageSize"] = size
         if tok: q["paginationToken"] = tok
-        r = _api(c, "GET", path, params=q)
+        try:
+            r = _api(c, "GET", path, params=q)
+        except ApiError as e:
+            m_ = re.search(r"less than or equal to (\d+)", getattr(e, "body", ""))
+            if m_ and int(m_.group(1)) < size:
+                size = int(m_.group(1)); continue
+            raise
         out += r.get(key) or []
         tok = (r.get("pagination") or {}).get("nextToken")
         if not tok: break
