@@ -181,7 +181,7 @@ def make_labels(items, out_path, kind):
     return len(flat)
 
 # ---------------------------------------------------------------- labels straight from Amazon
-import json, os, time, urllib.parse, urllib.request, urllib.error
+import re, json, os, time, urllib.parse, urllib.request, urllib.error
 SP_API = "https://sellingpartnerapi-na.amazon.com"
 LWA_URL = "https://api.amazon.com/auth/o2/token"
 MARKETPLACE = "ATVPDKIKX0DER"
@@ -257,6 +257,9 @@ def amazon_labels(items, out_path, kind):
 # ---------------------------------------------------------------- Send to Amazon: plan + boxes (Fulfillment Inbound 2024-03-20)
 INB = "/inbound/fba/2024-03-20"
 
+class ApiError(RuntimeError):
+    pass
+
 def _api(c, method, path, body=None, params=None):
     url = SP_API + path + (("?" + urllib.parse.urlencode(params)) if params else "")
     data = json.dumps(body).encode() if body is not None else None
@@ -271,7 +274,9 @@ def _api(c, method, path, body=None, params=None):
             msg = e.read().decode(errors="replace")
             if e.code in (429, 500, 502, 503, 504) and attempt < 6:
                 time.sleep(min(60, 3 * 2 ** attempt)); continue
-            raise RuntimeError("Amazon answered HTTP %s on %s %s: %s" % (e.code, method, path.replace(INB, ""), msg[:900]))
+            ex = ApiError("Amazon answered HTTP %s on %s %s: %s" % (e.code, method, path.replace(INB, ""), msg[:3000]))
+            ex.body = msg
+            raise ex
         except urllib.error.URLError as e:
             if method == "GET" and attempt < 6:
                 time.sleep(5); continue
@@ -337,7 +342,7 @@ def ship_from(city):
             raise RuntimeError("ship_from.json has no address for '%s'." % city)
     raise RuntimeError("ship_from.json was not found next to sd_tools.py (run INSTALL_SANDIEGO.bat again).")
 
-def send_to_amazon(path, say=print, cancel_after=False, owners=("SELLER", "SELLER"), placement=True):
+def send_to_amazon(path, say=print, cancel_after=False, owners=("NONE", "SELLER"), placement=True):
     name, city, boxes, cells = read_send_file(path)
     if not boxes or not cells:
         raise RuntimeError("no boxes with products were found on the Summary sheet (fill the Box columns and the weight/size rows first).")
@@ -354,10 +359,25 @@ def send_to_amazon(path, say=print, cancel_after=False, owners=("SELLER", "SELLE
     src = dict(ship_from(city))
     c = _credentials()
     say("plan '%s' | ship from %s | %d SKUs, %d units, %d boxes" % (name, city, len(totals), sum(totals.values()), len(used)))
-    items = [{"msku": m, "quantity": q, "prepOwner": owners[0], "labelOwner": owners[1]} for m, q in sorted(totals.items())]
-    body = {"destinationMarketplaces": [MARKETPLACE], "items": items, "sourceAddress": src}
-    if name: body["name"] = name
-    op = _api(c, "POST", INB + "/inboundPlans", body)
+    own = {m: {"prepOwner": owners[0], "labelOwner": owners[1]} for m in totals}
+    op = None
+    for attempt in range(6):
+        items = [dict({"msku": m, "quantity": q}, **own[m]) for m, q in sorted(totals.items())]
+        body = {"destinationMarketplaces": [MARKETPLACE], "items": items, "sourceAddress": src}
+        if name: body["name"] = name
+        try:
+            op = _api(c, "POST", INB + "/inboundPlans", body); break
+        except ApiError as e:
+            # Amazon tells, per product, which prep/label owner it accepts: take its answer and try again
+            fixed = 0
+            for m_ in re.finditer(r'(\S+) (?:does not require|requires|does not need|needs) (prepOwner|labelOwner)[^"]*?Accepted values: \[([^\]]*)\]', getattr(e, "body", "")):
+                sku_, fld, acc = m_.group(1), m_.group(2), [x.strip() for x in m_.group(3).split(",") if x.strip()]
+                if sku_ in own and acc:
+                    new = "SELLER" if "SELLER" in acc else acc[0]
+                    if own[sku_][fld] != new: own[sku_][fld] = new; fixed += 1
+            if not fixed: raise
+    if op is None: raise RuntimeError("Amazon kept refusing the product owners")
+    say("prep owners set per product (%d need prep by you)" % sum(1 for v in own.values() if v["prepOwner"] == "SELLER"))
     pid = op.get("inboundPlanId")
     say("1/5 plan created: " + str(pid))
     try:
@@ -389,7 +409,7 @@ def send_to_amazon(path, say=print, cancel_after=False, owners=("SELLER", "SELLE
                 "contentInformationSource": "BOX_CONTENT_PROVIDED", "quantity": 1,
                 "dimensions": {"length": l, "width": w, "height": h, "unitOfMeasurement": "IN"},
                 "weight": {"unit": "LB", "value": lb},
-                "items": [{"msku": m, "quantity": q, "prepOwner": owners[0], "labelOwner": owners[1]} for m, q in sorted(its.items())]})
+                "items": [dict({"msku": m, "quantity": q}, **own[m]) for m, q in sorted(its.items())]})
         pg = [{"packingGroupId": g, "boxes": bx} for g, bx in per_group.items()]
         _wait(c, _api(c, "POST", INB + "/inboundPlans/%s/packingInformation" % pid, {"packageGroupings": pg}), "box contents", say)
         say("4/5 box contents and sizes saved (%d boxes)" % len(used))
