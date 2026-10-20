@@ -414,6 +414,7 @@ def send_to_amazon(path, say=print, cancel_after=False, owners=("NONE", "SELLER"
     else:
         raise RuntimeError("Amazon kept refusing the plan")
     say("1/5 plan created: " + str(pid))
+    exps = dict((i["msku"], i["expiration"]) for i in items if i.get("expiration"))
     try:
         say("1/5 inventory accepted by Amazon")
         _wait(c, _api(c, "POST", INB + "/inboundPlans/%s/packingOptions" % pid), "packing options", say)
@@ -450,7 +451,7 @@ def send_to_amazon(path, say=print, cancel_after=False, owners=("NONE", "SELLER"
                 "contentInformationSource": "BOX_CONTENT_PROVIDED", "quantity": 1,
                 "dimensions": {"length": l, "width": w, "height": h, "unitOfMeasurement": "IN"},
                 "weight": {"unit": "LB", "value": lb},
-                "items": [dict({"msku": m, "quantity": q}, **own[m]) for m, q in sorted(its.items())]})
+                "items": [dict(dict({"msku": m, "quantity": q}, **own[m]), **({"expiration": exps[m]} if m in exps else {})) for m, q in sorted(its.items())]})
         pg = [{"packingGroupId": g, "boxes": bx} for g, bx in per_group.items()]
         _wait(c, _api(c, "POST", INB + "/inboundPlans/%s/packingInformation" % pid, {"packageGroupings": pg}), "box contents", say)
         say("4/5 box contents and sizes saved (%d boxes)" % len(used))
