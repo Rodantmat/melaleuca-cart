@@ -18,7 +18,7 @@ jobs:
           mkdir -p /tmp/so
           cd feedwork
           printf '%s\n' "$CRED_ENV" > credentials.txt
-          python sd_tools.py cancel wfb41f80a7-de10-492a-b729-92343d607040 2>&1 | tee /tmp/so/run.log
+          python sd_tools.py cancel wfc826425c-cbaf-46cd-8d96-1a4a392a0792 2>&1 | tee /tmp/so/run.log
           rm -f credentials.txt
       - name: Publish
         if: always()
