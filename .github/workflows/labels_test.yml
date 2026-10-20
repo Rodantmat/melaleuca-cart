@@ -13,19 +13,19 @@ jobs:
         with: { ref: main }
       - uses: actions/setup-python@v5
         with: { python-version: "3.12" }
-      - name: Test
+      - name: Test sd_tools.py labels (the exact script the Excel button runs)
         env: { CRED_ENV: "${{ secrets.CREDENTIALS_ENV }}" }
         run: |
-          cd reprice
-          printf '%s\n' "$CRED_ENV" > credentials.env
-          python labels_test.py 2>&1 | tee labels_test_run.log
-          rm -f credentials.env
+          mkdir -p /tmp/so
+          cd feedwork
+          printf '%s\n' "$CRED_ENV" > credentials.txt
+          python sd_tools.py labels labels_vancouver_test.tsv /tmp/so/van_30.pdf 30 2>&1 | tee /tmp/so/run.log
+          python sd_tools.py labels labels_vancouver_test.tsv /tmp/so/van_thermal.pdf thermal 2>&1 | tee -a /tmp/so/run.log
+          rm -f credentials.txt
       - name: Publish
         if: always()
         run: |
           git config user.name "feed-bot"; git config user.email "feed-bot@users.noreply.github.com"
-          rm -rf /tmp/so && mkdir -p /tmp/so
-          cp reprice/state/labels_* reprice/labels_test_run.log /tmp/so/ 2>/dev/null || true
           git checkout --orphan lab-new
           git rm -rf . >/dev/null 2>&1 || true
           cp -a /tmp/so/. .
