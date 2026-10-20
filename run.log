@@ -1,0 +1,42 @@
+plan 'TEST-DELETE-ME-SD-2026-10' | ship from Toronto | 86 SKUs, 595 units, 12 boxes
+expiration date added to 40 products that need it
+1/5 plan created: wf87f686af-e85a-4e4f-ba7c-0df6ed63ea7f
+1/5 inventory accepted by Amazon
+   option po8a5a194e-f476-4dac-9fff-9acb0c594e35: 2 group(s), status OFFERED, discounts [], fees []
+2/5 packing option po8a5a194e-f476-4dac-9fff-9acb0c594e35 with 2 group(s)
+   group pgb87e6c8b-4: 85 products [{"labelOwner": "SELLER", "msku": "ME1158", "quantity": 12, "fnsku": "X004J6AN4Z", "asin": "B0DS9JN9D7", "expiration": "2028-10-31", "prepInstructions": [{"prepType": "ITEM_LABELING", "fee": {"amount": 0, "code": "USD"}, "prepOwner": "SELLER"}, {"prepType": "ITEM_NO_PREP", "fee": {"amount": 0, "code": "USD"}, "prepOwner": "SELLER"}]}, {"labelOwner": "SELLER", "msku": "ME1135", "quantity": 8, "fnsk
+   group pg6f3394f7-5: 1 products [{"labelOwner": "SELLER", "msku": "ME0139", "quantity": 1, "fnsku": "X0033T0BP5", "asin": "B005YGOJGG", "expiration": "2028-10-31", "prepInstructions": [{"prepType": "ITEM_LABELING", "fee": {"amount": 0, "code": "USD"}, "prepOwner": "SELLER"}]}]
+3/5 packing option confirmed
+4/5 box contents and sizes saved (12 boxes)
+5/5 shipment options generated - plan is ready for you at the next step
+verify: Amazon lists 12 boxes
+test plan cancelled
+DONE plan wf87f686af-e85a-4e4f-ba7c-0df6ed63ea7f
+plan 'TEST-DELETE-ME-SD-2026-10' | ship from Vancouver | 86 SKUs, 595 units, 12 boxes
+expiration date added to 40 products that need it
+1/5 plan created: wf90de881f-e084-41dc-9679-f0378a7c0742
+1/5 inventory accepted by Amazon
+   option po7774c69a-d719-433c-8b32-6d549131abe3: 2 group(s), status OFFERED, discounts [], fees []
+2/5 packing option po7774c69a-d719-433c-8b32-6d549131abe3 with 2 group(s)
+   group pg0f0c3660-e: 85 products [{"labelOwner": "SELLER", "msku": "ME1165", "quantity": 1, "fnsku": "X004J5PDTB", "asin": "B0DRM8X54S", "expiration": "2028-10-31", "prepInstructions": [{"prepType": "ITEM_LABELING", "fee": {"amount": 0, "code": "USD"}, "prepOwner": "SELLER"}, {"prepType": "ITEM_NO_PREP", "fee": {"amount": 0, "code": "USD"}, "prepOwner": "SELLER"}]}, {"labelOwner": "SELLER", "msku": "ME1235", "quantity": 1, "fnsku
+   group pg6b25f473-c: 1 products [{"labelOwner": "SELLER", "msku": "ME0139", "quantity": 1, "fnsku": "X0033T0BP5", "asin": "B005YGOJGG", "expiration": "2028-10-31", "prepInstructions": [{"prepType": "ITEM_LABELING", "fee": {"amount": 0, "code": "USD"}, "prepOwner": "SELLER"}]}]
+3/5 packing option confirmed
+4/5 box contents and sizes saved (12 boxes)
+5/5 shipment options generated - plan is ready for you at the next step
+verify: Amazon lists 12 boxes
+test plan cancelled
+DONE plan wf90de881f-e084-41dc-9679-f0378a7c0742
+plan 'TEST-DELETE-ME-SD-2026-10' | ship from San Diego | 86 SKUs, 595 units, 12 boxes
+expiration date added to 40 products that need it
+1/5 plan created: wfdd7eed7f-59e7-42c6-8d5a-0354be8536bf
+1/5 inventory accepted by Amazon
+   option podbebfb2a-f4b8-44c4-8927-98750cbf67c5: 2 group(s), status OFFERED, discounts [], fees []
+2/5 packing option podbebfb2a-f4b8-44c4-8927-98750cbf67c5 with 2 group(s)
+   group pg17842211-5: 85 products [{"labelOwner": "SELLER", "msku": "ME0153", "quantity": 2, "fnsku": "X003ACJMT1", "asin": "B004PZRHHU", "expiration": "2028-10-31", "prepInstructions": [{"prepType": "ITEM_LABELING", "fee": {"amount": 0, "code": "USD"}, "prepOwner": "SELLER"}]}, {"labelOwner": "SELLER", "msku": "ME1813", "quantity": 4, "fnsku": "X004TDVKU9", "asin": "B0FNVM6NJ3", "prepInstructions": [{"prepType": "ITEM_LABELING", 
+   group pg76d0daed-e: 1 products [{"labelOwner": "SELLER", "msku": "ME0139", "quantity": 1, "fnsku": "X0033T0BP5", "asin": "B005YGOJGG", "expiration": "2028-10-31", "prepInstructions": [{"prepType": "ITEM_LABELING", "fee": {"amount": 0, "code": "USD"}, "prepOwner": "SELLER"}]}]
+3/5 packing option confirmed
+4/5 box contents and sizes saved (12 boxes)
+5/5 shipment options generated - plan is ready for you at the next step
+verify: Amazon lists 12 boxes
+test plan cancelled
+DONE plan wfdd7eed7f-59e7-42c6-8d5a-0354be8536bf
