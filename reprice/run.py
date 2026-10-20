@@ -116,6 +116,26 @@ def flags_ok(d):
     return not (d.get("flags") or [])
 
 
+def is_allowed(d, sku, conf, raised_run, dropped_run):
+    """(allowed, protective). allowed = this change may be written live.
+    - allowlist: anything
+    - up: auto_raise (any product) while under its per-run cap and the engine raised no warning
+    - down: auto_drop (any product) only for real droughts / severe cases, under its per-run cap
+    - revert (undo of our own failed raise) and to_floor (price below the minimum-profit floor): always, they only protect the profit"""
+    act = d.get("action")
+    ar, ad = conf.get("auto_raise") or {}, conf.get("auto_drop") or {}
+    if sku in (conf.get("allowlist") or []):
+        return True, act in ("revert", "to_floor")
+    if act in ("revert", "to_floor") and (conf.get("auto_protect", True) is True):
+        return True, True
+    if act == "up":
+        return bool(ar.get("enabled") is True and raised_run < ar.get("max_per_run", 4) and flags_ok(d)), False
+    if act == "down":
+        return bool(ad.get("enabled") is True and dropped_run < ad.get("max_per_run", 3) and (d.get("severe") or (
+            (d.get("dss") or 0) >= ad.get("min_days_no_sale", 30) and (d.get("dos") or 0) >= ad.get("min_days_cover", 90)))), False
+    return False, False
+
+
 def norm_change(x):
     """state record -> engine format {ts(datetime), old, new, dir, base_v}; also reads the first version (from/to/action)"""
     y = dict(x)
@@ -258,13 +278,10 @@ def main():
         if s["last_applied"] is None or snap["manual_seen"]:
             s["last_applied"] = price
         if d["action"] in ("down", "up", "to_floor", "revert") and d.get("price") and price and abs(d["price"] - price) >= 0.005:
-            ar = conf.get("auto_raise") or {}
-            is_up = d["action"] == "up"
-            ad = conf.get("auto_drop") or {}
-            is_down = d["action"] == "down"
-            drop_ok = is_down and ad.get("enabled") is True and dropped_run < ad.get("max_per_run", 3) and (d.get("severe") or ((d.get("dss") or 0) >= ad.get("min_days_no_sale", 30) and (d.get("dos") or 0) >= ad.get("min_days_cover", 90)))
-            allowed = (sku in (conf.get("allowlist") or [])) or (is_up and ar.get("enabled") is True and raised_run < ar.get("max_per_run", 4) and flags_ok(d)) or drop_ok
-            can = live_ok and allowed and po and changed_run < conf.get("max_changes_per_run", 8) and changed_today < conf.get("max_changes_per_day", 20)
+            is_up, is_down = d["action"] == "up", d["action"] == "down"
+            allowed, protective = is_allowed(d, sku, conf, raised_run, dropped_run)
+            # protective moves (undo a failed raise, lift a price that is below the minimum-profit floor) are never held back by the run/day caps
+            can = live_ok and allowed and po and (protective or (changed_run < conf.get("max_changes_per_run", 8) and changed_today < conf.get("max_changes_per_day", 20)))
             if can:
                 ptype = (item.get("summaries") or [{}])[0].get("productType", "PRODUCT")
                 try:

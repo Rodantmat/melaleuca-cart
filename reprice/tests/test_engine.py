@@ -67,5 +67,34 @@ class M(unittest.TestCase):
         self.assertIsNone(market.analyse([]))
 
 
+class G(unittest.TestCase):
+    def setUp(self):
+        global run
+        import run
+    """which changes may be written live"""
+    C = {"allowlist": ["A"], "auto_raise": {"enabled": True, "max_per_run": 2}, "auto_drop": {"enabled": True, "max_per_run": 1, "min_days_no_sale": 30, "min_days_cover": 90}}
+
+    def test_raise_any_product_with_cap(self):
+        up = {"action": "up", "flags": []}
+        self.assertEqual(run.is_allowed(up, "Z", self.C, 0, 0), (True, False))
+        self.assertEqual(run.is_allowed(up, "Z", self.C, 2, 0), (False, False))          # run cap reached
+        self.assertEqual(run.is_allowed({"action": "up", "flags": ["anomalous_foep"]}, "Z", self.C, 0, 0), (False, False))   # engine warning
+
+    def test_revert_and_floor_always(self):
+        for a in ("revert", "to_floor"):
+            self.assertEqual(run.is_allowed({"action": a}, "Z", self.C, 99, 99), (True, True))
+        off = dict(self.C, auto_protect=False)
+        self.assertEqual(run.is_allowed({"action": "revert"}, "Z", off, 0, 0), (False, False))
+
+    def test_drop_only_when_really_stuck(self):
+        self.assertEqual(run.is_allowed({"action": "down", "severe": False, "dss": 10, "dos": 200}, "Z", self.C, 0, 0), (False, False))
+        self.assertEqual(run.is_allowed({"action": "down", "severe": False, "dss": 40, "dos": 120}, "Z", self.C, 0, 0), (True, False))
+        self.assertEqual(run.is_allowed({"action": "down", "severe": True}, "Z", self.C, 0, 1), (False, False))      # drop cap
+        self.assertEqual(run.is_allowed({"action": "hold"}, "Z", self.C, 0, 0), (False, False))
+
+    def test_allowlist(self):
+        self.assertEqual(run.is_allowed({"action": "down"}, "A", self.C, 9, 9)[0], True)
+
+
 if __name__ == "__main__":
     unittest.main()
