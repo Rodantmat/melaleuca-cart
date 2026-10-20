@@ -1,0 +1,32 @@
+{
+  "Toronto": {
+    "name": "Flipping Magic",
+    "addressLine1": "500 Murray Ross Parkway",
+    "addressLine2": "#207",
+    "city": "North York",
+    "stateOrProvinceCode": "ON",
+    "postalCode": "M3J 2Z3",
+    "countryCode": "CA",
+    "phoneNumber": "9544590398"
+  },
+  "Vancouver": {
+    "name": "FILL",
+    "addressLine1": "FILL",
+    "addressLine2": "",
+    "city": "FILL",
+    "stateOrProvinceCode": "FILL",
+    "postalCode": "FILL",
+    "countryCode": "CA",
+    "phoneNumber": "FILL"
+  },
+  "San Diego": {
+    "name": "FILL",
+    "addressLine1": "FILL",
+    "addressLine2": "",
+    "city": "FILL",
+    "stateOrProvinceCode": "FILL",
+    "postalCode": "FILL",
+    "countryCode": "US",
+    "phoneNumber": "FILL"
+  }
+}

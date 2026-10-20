@@ -254,6 +254,163 @@ def amazon_labels(items, out_path, kind):
         written.append(path)
     return written
 
+# ---------------------------------------------------------------- Send to Amazon: plan + boxes (Fulfillment Inbound 2024-03-20)
+INB = "/inbound/fba/2024-03-20"
+
+def _api(c, method, path, body=None, params=None):
+    url = SP_API + path + (("?" + urllib.parse.urlencode(params)) if params else "")
+    data = json.dumps(body).encode() if body is not None else None
+    for attempt in range(7):
+        req = urllib.request.Request(url, data=data, method=method,
+                                     headers={"x-amz-access-token": _token(c), "Content-Type": "application/json", "User-Agent": UA})
+        try:
+            with urllib.request.urlopen(req, timeout=120) as r:
+                raw = r.read().decode()
+                return json.loads(raw) if raw else {}
+        except urllib.error.HTTPError as e:
+            msg = e.read().decode(errors="replace")
+            if e.code in (429, 500, 502, 503, 504) and attempt < 6:
+                time.sleep(min(60, 3 * 2 ** attempt)); continue
+            raise RuntimeError("Amazon answered HTTP %s on %s %s: %s" % (e.code, method, path.replace(INB, ""), msg[:900]))
+        except urllib.error.URLError as e:
+            if method == "GET" and attempt < 6:
+                time.sleep(5); continue
+            raise RuntimeError("no connection to Amazon: %s" % e)
+
+def _wait(c, op, what, say):
+    """poll an asynchronous Amazon operation until it finishes"""
+    oid = op.get("operationId")
+    if not oid:
+        raise RuntimeError("Amazon gave no operationId for " + what + ": " + json.dumps(op)[:300])
+    for i in range(120):
+        r = _api(c, "GET", INB + "/operations/" + oid)
+        st = r.get("operationStatus")
+        if st == "SUCCESS":
+            return r
+        if st == "FAILED":
+            probs = "; ".join("%s: %s %s" % (p.get("code"), p.get("message"), p.get("details") or "") for p in (r.get("operationProblems") or []))
+            raise RuntimeError(what + " failed at Amazon: " + (probs or json.dumps(r)[:500]))
+        time.sleep(2 if i < 10 else 5)
+    raise RuntimeError(what + " is taking too long at Amazon (operation " + oid + ")")
+
+def _paged(c, path, key, params=None):
+    out = []; tok = None
+    for _ in range(200):
+        q = dict(params or {}); q["pageSize"] = 100
+        if tok: q["paginationToken"] = tok
+        r = _api(c, "GET", path, params=q)
+        out += r.get(key) or []
+        tok = (r.get("pagination") or {}).get("nextToken")
+        if not tok: break
+    return out
+
+def read_send_file(path):
+    """TSV from the workbook:  NAME<TAB>text | CITY<TAB>text | BOX<TAB>n<TAB>lb<TAB>w<TAB>l<TAB>h | ITEM<TAB>sku<TAB>box<TAB>qty"""
+    name = city = ""; boxes = {}; cells = []
+    with open(path, encoding="utf-8-sig") as f:
+        for line in f:
+            p = line.rstrip("\r\n").split("\t")
+            if not p or not p[0]: continue
+            k = p[0].upper()
+            if k == "NAME" and len(p) > 1: name = p[1].strip()
+            elif k == "CITY" and len(p) > 1: city = p[1].strip()
+            elif k == "BOX" and len(p) >= 6:
+                boxes[int(float(p[1]))] = tuple(float(x) for x in p[2:6])   # lb, w, l, h
+            elif k == "ITEM" and len(p) >= 4:
+                q = int(float(p[3]))
+                if q > 0: cells.append((p[1].strip(), int(float(p[2])), q))
+    return name, city, boxes, cells
+
+def ship_from(city):
+    here = os.path.dirname(os.path.abspath(__file__))
+    for folder in (here, "C:\\AmazonFeed"):
+        fp = os.path.join(folder, "ship_from.json")
+        if os.path.exists(fp):
+            with open(fp, encoding="utf-8-sig") as f:
+                d = json.load(f)
+            for k, v in d.items():
+                if k.strip().lower() == city.strip().lower():
+                    bad = [x for x in ("name", "addressLine1", "city", "stateOrProvinceCode", "postalCode", "countryCode", "phoneNumber") if not str(v.get(x, "")).strip() or str(v.get(x)).startswith("FILL")]
+                    if bad:
+                        raise RuntimeError("ship_from.json: the address for %s is incomplete (%s). Open ship_from.json next to sd_tools.py and fill it in once." % (city, ", ".join(bad)))
+                    return v
+            raise RuntimeError("ship_from.json has no address for '%s'." % city)
+    raise RuntimeError("ship_from.json was not found next to sd_tools.py (run INSTALL_SANDIEGO.bat again).")
+
+def send_to_amazon(path, say=print, cancel_after=False, owners=("SELLER", "SELLER"), placement=True):
+    name, city, boxes, cells = read_send_file(path)
+    if not boxes or not cells:
+        raise RuntimeError("no boxes with products were found on the Summary sheet (fill the Box columns and the weight/size rows first).")
+    for n, b in sorted(boxes.items()):
+        if min(b) <= 0:
+            raise RuntimeError("Box%d is missing its weight or size (W Lbs / W Inch / L Inch / H Inch rows)." % n)
+    used = sorted(set(b for _, b, _ in cells))
+    missing = [n for n in used if n not in boxes]
+    if missing:
+        raise RuntimeError("Box%s has products but no weight/size on the Summary sheet." % ", Box".join(str(n) for n in missing))
+    totals = {}
+    for sku, b, q in cells: totals[sku] = totals.get(sku, 0) + q
+    if any(q > 10000 for q in totals.values()): raise RuntimeError("a quantity is over 10000")
+    src = dict(ship_from(city))
+    c = _credentials()
+    say("plan '%s' | ship from %s | %d SKUs, %d units, %d boxes" % (name, city, len(totals), sum(totals.values()), len(used)))
+    items = [{"msku": m, "quantity": q, "prepOwner": owners[0], "labelOwner": owners[1]} for m, q in sorted(totals.items())]
+    body = {"destinationMarketplaces": [MARKETPLACE], "items": items, "sourceAddress": src}
+    if name: body["name"] = name
+    op = _api(c, "POST", INB + "/inboundPlans", body)
+    pid = op.get("inboundPlanId")
+    say("1/5 plan created: " + str(pid))
+    try:
+        _wait(c, op, "creating the plan", say)
+        say("1/5 inventory accepted by Amazon")
+        _wait(c, _api(c, "POST", INB + "/inboundPlans/%s/packingOptions" % pid), "packing options", say)
+        opts = _paged(c, INB + "/inboundPlans/%s/packingOptions" % pid, "packingOptions")
+        if not opts: raise RuntimeError("Amazon returned no packing option")
+        opt = opts[0]
+        groups = opt.get("packingGroups") or []
+        say("2/5 packing option %s with %d group(s)" % (opt.get("packingOptionId"), len(groups)))
+        gitems = {}
+        for g in groups:
+            for it in _paged(c, INB + "/inboundPlans/%s/packingGroups/%s/items" % (pid, g), "items"):
+                gitems[it.get("msku")] = g
+        _wait(c, _api(c, "POST", INB + "/inboundPlans/%s/packingOptions/%s/confirmation" % (pid, opt["packingOptionId"])), "confirming the packing option", say)
+        say("3/5 packing option confirmed")
+        per_group = {}
+        for n in used:
+            lb, w, l, h = boxes[n]
+            its = {}
+            for sku, b, q in cells:
+                if b == n: its[sku] = its.get(sku, 0) + q
+            gs = set(gitems.get(m) for m in its)
+            if len(gs) != 1 or None in gs:
+                raise RuntimeError("Box%d mixes products that Amazon put in different packing groups (%s)." % (n, ", ".join(sorted(its))))
+            g = gs.pop()
+            per_group.setdefault(g, []).append({
+                "contentInformationSource": "BOX_CONTENT_PROVIDED", "quantity": 1,
+                "dimensions": {"length": l, "width": w, "height": h, "unitOfMeasurement": "IN"},
+                "weight": {"unit": "LB", "value": lb},
+                "items": [{"msku": m, "quantity": q, "prepOwner": owners[0], "labelOwner": owners[1]} for m, q in sorted(its.items())]})
+        pg = [{"packingGroupId": g, "boxes": bx} for g, bx in per_group.items()]
+        _wait(c, _api(c, "POST", INB + "/inboundPlans/%s/packingInformation" % pid, {"packageGroupings": pg}), "box contents", say)
+        say("4/5 box contents and sizes saved (%d boxes)" % len(used))
+        if placement:
+            _wait(c, _api(c, "POST", INB + "/inboundPlans/%s/placementOptions" % pid), "shipment options", say)
+            say("5/5 shipment options generated - plan is ready for you at the next step")
+    except Exception:
+        if pid and cancel_after:
+            try: _api(c, "PUT", INB + "/inboundPlans/%s/cancellation" % pid)
+            except Exception: pass
+        raise
+    result = {"inboundPlanId": pid}
+    if cancel_after:
+        # test mode: verify what Amazon stored, then cancel the test plan
+        chk = _paged(c, INB + "/inboundPlans/%s/boxes" % pid, "boxes")
+        say("verify: Amazon lists %d boxes" % len(chk))
+        result["boxes"] = len(chk)
+        _api(c, "PUT", INB + "/inboundPlans/%s/cancellation" % pid)
+        say("test plan cancelled")
+    return result
+
 # ---------------------------------------------------------------- Apple Numbers reader (first table only)
 def _snappy(b):
     i = 0; n = 0; shift = 0
@@ -373,14 +530,23 @@ if __name__ == '__main__':
     a = sys.argv[1:]
     if len(a) == 4 and a[0] in ('labels', 'labels_local'):
         kind = '30' if a[3] == '30' else 'thermal'
-        rows = []
+        rows = []; nlines = 0; ncols = set()
         with open(a[1], encoding='utf-8-sig') as f:
             for line in f:
+                if not line.strip(): continue
                 p = line.rstrip('\r\n').split('\t')
+                nlines += 1; ncols.add(len(p))
                 if len(p) >= 4 and p[0].strip():
                     try: q = int(float(p[3]))
                     except ValueError: continue
                     if q > 0: rows.append((p[0].strip(), p[1].strip(), p[2].strip(), q))
+        if not rows:
+            if nlines and max(ncols) < 4:
+                print('ERROR: the list from the workbook has %s columns instead of 4 (SKU, FNSKU, title, quantity). '
+                      'The workbook still has the OLD macros: close Excel and run INSTALL_SANDIEGO.bat again, then open the workbook.' % sorted(ncols))
+            else:
+                print('ERROR: no products with a SKU and a quantity were found in the list (%d lines read).' % nlines)
+            sys.exit(1)
         if a[0] == 'labels':
             try:
                 files = amazon_labels([(r[0], r[3]) for r in rows], a[2], kind)
@@ -390,6 +556,12 @@ if __name__ == '__main__':
         else:
             n = make_labels([(r[1], r[2], r[3]) for r in rows], a[2], kind)
             print('labels (drawn locally):', n)
+    elif len(a) >= 2 and a[0] == 'inbound':
+        try:
+            r = send_to_amazon(a[1], say=print, cancel_after=(len(a) > 2 and a[2] == 'test'))
+        except Exception as e:
+            print('ERROR: ' + str(e)); sys.exit(1)
+        print('DONE plan ' + str(r.get('inboundPlanId')))
     elif len(a) == 3 and a[0] == 'numbers':
         print('cells:', numbers_to_tsv(a[1], a[2]))
     else:
