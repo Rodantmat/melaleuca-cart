@@ -419,12 +419,17 @@ def send_to_amazon(path, say=print, cancel_after=False, owners=("NONE", "SELLER"
         _wait(c, _api(c, "POST", INB + "/inboundPlans/%s/packingOptions" % pid), "packing options", say)
         opts = _paged(c, INB + "/inboundPlans/%s/packingOptions" % pid, "packingOptions")
         if not opts: raise RuntimeError("Amazon returned no packing option")
-        opt = opts[0]
+        for o in opts:
+            say("   option %s: %d group(s), status %s, discounts %s, fees %s" % (o.get("packingOptionId"), len(o.get("packingGroups") or []), o.get("status"), json.dumps(o.get("discounts")), json.dumps(o.get("fees"))))
+        # mixed boxes need ONE packing group: take the option with the fewest groups
+        opt = sorted(opts, key=lambda o: len(o.get("packingGroups") or []))[0]
         groups = opt.get("packingGroups") or []
         say("2/5 packing option %s with %d group(s)" % (opt.get("packingOptionId"), len(groups)))
         gitems = {}
         for g in groups:
-            for it in _paged(c, INB + "/inboundPlans/%s/packingGroups/%s/items" % (pid, g), "items"):
+            git = _paged(c, INB + "/inboundPlans/%s/packingGroups/%s/items" % (pid, g), "items")
+            say("   group %s: %d products %s" % (g[:12], len(git), json.dumps(git[:2])[:400]))
+            for it in git:
                 gitems[it.get("msku")] = g
         _wait(c, _api(c, "POST", INB + "/inboundPlans/%s/packingOptions/%s/confirmation" % (pid, opt["packingOptionId"])), "confirming the packing option", say)
         say("3/5 packing option confirmed")
