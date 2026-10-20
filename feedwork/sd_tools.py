@@ -311,7 +311,7 @@ def _paged(c, path, key, params=None):
 
 def read_send_file(path):
     """TSV from the workbook:  NAME<TAB>text | CITY<TAB>text | BOX<TAB>n<TAB>lb<TAB>w<TAB>l<TAB>h | ITEM<TAB>sku<TAB>box<TAB>qty"""
-    name = city = ""; boxes = {}; cells = []
+    name = city = ""; boxes = {}; cells = []; exp = {}
     with open(path, encoding="utf-8-sig") as f:
         for line in f:
             p = line.rstrip("\r\n").split("\t")
@@ -321,10 +321,12 @@ def read_send_file(path):
             elif k == "CITY" and len(p) > 1: city = p[1].strip()
             elif k == "BOX" and len(p) >= 6:
                 boxes[int(float(p[1]))] = tuple(float(x) for x in p[2:6])   # lb, w, l, h
+            elif k == "EXP" and len(p) >= 2 and p[1].strip(): exp["*"] = p[1].strip()
+            elif k == "EXPSKU" and len(p) >= 3 and p[2].strip(): exp[p[1].strip()] = p[2].strip()
             elif k == "ITEM" and len(p) >= 4:
                 q = int(float(p[3]))
                 if q > 0: cells.append((p[1].strip(), int(float(p[2])), q))
-    return name, city, boxes, cells
+    return name, city, boxes, cells, exp
 
 def ship_from(city):
     here = os.path.dirname(os.path.abspath(__file__))
@@ -343,7 +345,7 @@ def ship_from(city):
     raise RuntimeError("ship_from.json was not found next to sd_tools.py (run INSTALL_SANDIEGO.bat again).")
 
 def send_to_amazon(path, say=print, cancel_after=False, owners=("NONE", "SELLER"), placement=True):
-    name, city, boxes, cells = read_send_file(path)
+    name, city, boxes, cells, exp = read_send_file(path)
     if not boxes or not cells:
         raise RuntimeError("no boxes with products were found on the Summary sheet (fill the Box columns and the weight/size rows first).")
     for n, b in sorted(boxes.items()):
@@ -360,13 +362,23 @@ def send_to_amazon(path, say=print, cancel_after=False, owners=("NONE", "SELLER"
     c = _credentials()
     say("plan '%s' | ship from %s | %d SKUs, %d units, %d boxes" % (name, city, len(totals), sum(totals.values()), len(used)))
     own = {m: {"prepOwner": owners[0], "labelOwner": owners[1]} for m in totals}
-    op = None
+    need_exp = set()
+    pid = None
     for attempt in range(6):
-        items = [dict({"msku": m, "quantity": q}, **own[m]) for m, q in sorted(totals.items())]
+        items = []
+        for m, q in sorted(totals.items()):
+            it = dict({"msku": m, "quantity": q}, **own[m])
+            if m in need_exp or m in exp:
+                d = exp.get(m) or exp.get("*")
+                if d: it["expiration"] = d
+            items.append(it)
         body = {"destinationMarketplaces": [MARKETPLACE], "items": items, "sourceAddress": src}
         if name: body["name"] = name
         try:
-            op = _api(c, "POST", INB + "/inboundPlans", body); break
+            op = _api(c, "POST", INB + "/inboundPlans", body)
+            pid = op.get("inboundPlanId")
+            _wait(c, op, "creating the plan", say)
+            break
         except ApiError as e:
             # Amazon tells, per product, which prep/label owner it accepts: take its answer and try again
             fixed = 0
@@ -376,12 +388,27 @@ def send_to_amazon(path, say=print, cancel_after=False, owners=("NONE", "SELLER"
                     new = "SELLER" if "SELLER" in acc else acc[0]
                     if own[sku_][fld] != new: own[sku_][fld] = new; fixed += 1
             if not fixed: raise
-    if op is None: raise RuntimeError("Amazon kept refusing the product owners")
-    say("prep owners set per product (%d need prep by you)" % sum(1 for v in own.values() if v["prepOwner"] == "SELLER"))
-    pid = op.get("inboundPlanId")
+        except RuntimeError as e:
+            # the plan was made but Amazon rejected products: expiration dates are asked per product
+            txt = str(e)
+            if pid:
+                try: _api(c, "PUT", INB + "/inboundPlans/%s/cancellation" % pid)
+                except Exception: pass
+                pid = None
+            ex_skus = set(re.findall(r"FBA_INB_0180[^;]*?resource '([^']+)'", txt))
+            haz = sorted(set(re.findall(r"FBA_INB_0009[^;]*?resource '([^']+)'", txt)))
+            if haz:
+                raise RuntimeError("Amazon needs dangerous-goods (hazmat) information for: %s. Complete it in Seller Central (Manage Inventory > the product > Edit) or take it off the order, then run again." % ", ".join(haz))
+            if ex_skus and not (exp.get("*") or all(x in exp for x in ex_skus)):
+                raise RuntimeError("Amazon requires an expiration date for %d products (%s). Fill the Expiration date cell on the Menu sheet and run again." % (len(ex_skus), ", ".join(sorted(ex_skus)[:8]) + ("..." if len(ex_skus) > 8 else "")))
+            if not ex_skus or (ex_skus <= need_exp and attempt > 0):
+                raise
+            need_exp |= ex_skus
+            say("expiration date added to %d products that need it" % len(ex_skus))
+    else:
+        raise RuntimeError("Amazon kept refusing the plan")
     say("1/5 plan created: " + str(pid))
     try:
-        _wait(c, op, "creating the plan", say)
         say("1/5 inventory accepted by Amazon")
         _wait(c, _api(c, "POST", INB + "/inboundPlans/%s/packingOptions" % pid), "packing options", say)
         opts = _paged(c, INB + "/inboundPlans/%s/packingOptions" % pid, "packingOptions")
