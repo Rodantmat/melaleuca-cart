@@ -63,7 +63,7 @@ def parse_dp(h):
     out["sold_by"] = dedupe(sb.group(1)) if sb else (dedupe(ss.group(1)) if ss else None)
     if out["ships_from"] and out["ships_from"].startswith("Amazon"):
         out["ships_from"] = "Amazon"
-    out["fulfil"] = ("F" if out["ships_from"] == "Amazon" else "M") if out["ships_from"] else None
+    out["fulfil"] = ("F" if out["ships_from"].startswith("Amazon") else "M") if out["ships_from"] else None
     avail = strip_tags(section(h, 'id="availability"', 1500))
     m = re.search(r"Only (\d+) left in stock", avail or strip_tags(bx))
     out["left"] = int(m.group(1)) if m else None
@@ -101,7 +101,7 @@ def parse_aod(h):
             m = re.search(r"Shipper / Seller\s+(.{2,60}?)(?:\s+(?:Seller rating|Returns|Payment|\d)|$)", t)
             sf = sb = dedupe(m.group(1)) if m else None
         return {"seller_id": sid.group(1) if sid else None, "price": float(pr.group(1) + "." + pr.group(2)) if pr else None,
-                "ships_from": sf, "sold_by": sb, "fulfil": ("F" if sf == "Amazon" else "M") if sf else None,
+                "ships_from": sf, "sold_by": sb, "fulfil": ("F" if sf.startswith("Amazon") else "M") if sf else None,
                 "ratings": int(rt.group(1).replace(",", "")) if rt else None, "pos_pct": int(rt.group(2)) if rt else None}
     out = {"pinned": None, "offers": []}
     i = h.find('id="aod-pinned-offer"')
@@ -112,6 +112,14 @@ def parse_aod(h):
         o = one(part[:30000])
         if o["price"] is not None:
             out["offers"].append(o)
+    p = out["pinned"]
+    if p and p.get("seller_id"):
+        for o in out["offers"]:                      # the pinned block carries less detail: complete it from the same seller's entry in the list
+            if o.get("seller_id") == p["seller_id"] and abs((o.get("price") or 0) - (p.get("price") or 0)) < 0.011:
+                for k in ("sold_by", "ships_from", "fulfil", "ratings", "pos_pct"):
+                    if p.get(k) is None and o.get(k) is not None:
+                        p[k] = o[k]
+                break
     return out
 
 

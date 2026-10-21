@@ -58,6 +58,63 @@ def history_stats():
     return by
 
 
+def load_ledger():
+    """daily FBA ledger (state/ledger_YYYY-MM.tsv) -> {sku: {date: sellable ending balance}}"""
+    out = {}
+    for fn in sorted(os.listdir(STATE)) if os.path.isdir(STATE) else []:
+        if not fn.startswith("ledger_"):
+            continue
+        try:
+            for r in read_tsv(os.path.join(STATE, fn)):
+                if (r.get("Disposition") or "") != "SELLABLE":
+                    continue
+                try:
+                    d = dt.datetime.strptime(r["Date"], "%m/%d/%Y").date()
+                    out.setdefault(r["MSKU"], {})[d] = float(r["Ending Warehouse Balance"])
+                except Exception:
+                    continue
+        except Exception:
+            continue
+    return out
+
+
+def load_web(max_hours=36):
+    """latest logged-out amazon.com Buy Box read per ASIN (state/webbb.jsonl, written by bb_web.py) -> {asin: record}; older than max_hours -> ignored"""
+    out = {}
+    try:
+        for l in open(os.path.join(STATE, "webbb.jsonl")):
+            try:
+                r = json.loads(l)
+                age = (now - dt.datetime.strptime(r["t"], "%Y-%m-%d %H:%M")).total_seconds() / 3600.0
+                if age <= max_hours and not r.get("err") and r.get("seller_id") and r.get("bb_price"):
+                    out[r["asin"]] = r
+            except Exception:
+                continue
+    except Exception:
+        pass
+    return out
+
+
+def stock_profile(days, today, dss=None, min_known=7):
+    """days = {date: ending balance} -> (in_stock_days_30, in_stock_days_7, out_of_stock_days_inside_the_last_dss_days)
+    Days the ledger does not cover are treated as 'in stock' (never invent an outage); fewer than min_known known days -> None (engine default)."""
+    def window(k):
+        ds = [today - dt.timedelta(days=i) for i in range(1, k + 1)]
+        known = [x for x in ds if x in days]
+        return ds, known
+    ds30, k30 = window(30)
+    ds7, k7 = window(7)
+    i30 = (round(sum(1 for x in k30 if days[x] > 0) / len(k30) * 30) if len(k30) >= min_known else None)
+    i7 = (round(sum(1 for x in k7 if days[x] > 0) / len(k7) * 7) if len(k7) >= 4 else None)
+    oos = 0
+    if dss is not None and dss > 0:
+        for i in range(1, int(dss) + 1):
+            x = today - dt.timedelta(days=i)
+            if x in days and days[x] <= 0:
+                oos += 1
+    return i30, i7, oos
+
+
 def fetch_foep(c, skus, pause=31):
     """Amazon's own 'price that would win the Featured Offer' per sku (batches of 40).  Returns {sku: price}; any failure -> missing (engine ignores it)."""
     out = {}
@@ -186,6 +243,8 @@ def main():
     log("mode=%s live_writes_allowed=%s killed=%s skus=%d" % (mode, live_ok, killed, len(costs)))
 
     hist = history_stats()
+    ledger = load_ledger()
+    web = load_web()
     sk = jload(os.path.join(STATE, "skustate.json"), {})
     # live Buy Box data
     asins = sorted({r["asin"] for r in costs.values()})
@@ -260,6 +319,16 @@ def main():
                 "manual_seen": bool(s["last_applied"] and price and abs(price - s["last_applied"]) > 0.005)}
         if h:
             snap["days_since_sale"] = (now.date() - dt.date.fromisoformat(max(d for d, _, _ in h))).days
+        led = ledger.get(sku)
+        if led:                                    # sales speed per day IN STOCK, and a drought clock that does not run while the product is out of stock
+            i30, i7, oos_d = stock_profile(led, now.date(), snap["days_since_sale"])
+            if i30: snap["in_stock_days_30"] = max(i30, 7)       # fewer than 7 days in stock: too little to judge a speed
+            if i7: snap["in_stock_days_7"] = i7
+            if snap["days_since_sale"] is not None and oos_d:
+                snap["days_since_sale"] = max(0, snap["days_since_sale"] - oos_d)
+        w_ = web.get(asin)                         # what a shopper really sees on amazon.com: if another seller owns a LOWER Buy Box, never raise towards it
+        if w_ and seller and w_["seller_id"] != seller and price and w_["bb_price"] < price - 0.005:
+            snap["we_hold_bb"] = False
         # overrides: min/max price
         try:
             d = engine.decide(snap, cfg, now)
@@ -273,6 +342,7 @@ def main():
             if ov.get("max"): np_ = min(np_, float(ov["max"]))
             d["price"] = round(np_, 2)
         rec = {"ts": now.isoformat(), "sku": sku, "asin": asin, "price": price, "bb": lv.get("bb"), "action": d["action"], "new": d.get("price"), "reason": d.get("reason"), "flags": d.get("flags"), "applied": False,
+               "web_seller": (web.get(asin) or {}).get("seller_id"), "web_price": (web.get(asin) or {}).get("bb_price"),
                "bb_seller": ((lv.get("winners") or [{}])[0]).get("seller"), "bb_type": ((lv.get("winners") or [{}])[0]).get("type"),
                "we_win": (bool(seller) and ((lv.get("winners") or [{}])[0]).get("seller") == seller) if lv.get("winners") else None}
         if d.get("freeze_days"):
