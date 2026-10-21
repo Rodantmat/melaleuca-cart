@@ -47,7 +47,7 @@ def dedupe(name):
 
 def parse_dp(h):
     """product page -> dict"""
-    out = {"captcha": bool(re.search(r"api-services-support|Robot Check|Type the characters", h, re.I)) and "productTitle" not in h}
+    out = {"captcha": bool(re.search(r"validateCaptcha|Type the characters you see|Robot Check", h, re.I)) and "productTitle" not in h}
     bx = section(h, 'id="buybox"', 14000) or section(h, 'id="desktop_buybox"', 14000)
     price = re.search(r'id="corePrice_feature_div".*?class="a-offscreen">\$([0-9,.]+)<', h, re.S) or re.search(r'class="a-offscreen">\$([0-9,.]+)<', bx)
     out["bb_price"] = float(price.group(1).replace(",", "")) if price else None
@@ -115,11 +115,12 @@ def run(max_asins=0):
         if "__" not in login: login += "__cr.us"
         kw["proxy"] = {"server": "http://%s:%s" % (u.hostname, port), "username": login, "password": urllib.parse.unquote(u.password or "")}
     asins = []
-    for l in open(os.path.join(HERE, "costs.tsv")).read().splitlines()[1:]:
-        c = l.split("\t")
-        if len(c) > 1 and c[1] not in asins: asins.append(c[1])
+    L = open(os.path.join(HERE, "costs.tsv")).read().splitlines(); hd = L[0].split("\t")
+    for l in L[1:]:
+        a_ = dict(zip(hd, l.split("\t"))).get("asin")
+        if a_ and a_ not in asins: asins.append(a_)
     if max_asins: asins = asins[:max_asins]
-    now = dt.datetime.utcnow().strftime("%Y-%m-%d %H:%M")
+    now = dt.datetime.now(dt.timezone.utc).strftime("%Y-%m-%d %H:%M")
     rows = []
     UA = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36"
     with sync_playwright() as p:
