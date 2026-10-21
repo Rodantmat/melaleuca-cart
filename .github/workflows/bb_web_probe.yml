@@ -12,12 +12,13 @@ jobs:
         with: { ref: main }
       - uses: actions/setup-python@v5
         with: { python-version: "3.12" }
+      - run: pip install playwright && playwright install --with-deps chromium && sudo apt-get install -y xvfb
       - name: Run
         env: { PROXY_URL: "${{ secrets.PROXY_URL }}" }
         run: |
           mkdir -p /tmp/so
           cd reprice
-          python bb_web_probe.py 2>&1 | tee /tmp/so/run.log
+          xvfb-run -a python bb_web_probe.py 2>&1 | tee /tmp/so/run.log
       - name: Publish
         if: always()
         run: |
