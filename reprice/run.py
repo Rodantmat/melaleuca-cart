@@ -272,7 +272,9 @@ def main():
             if ov.get("min"): np_ = max(np_, float(ov["min"]))
             if ov.get("max"): np_ = min(np_, float(ov["max"]))
             d["price"] = round(np_, 2)
-        rec = {"ts": now.isoformat(), "sku": sku, "asin": asin, "price": price, "bb": lv.get("bb"), "action": d["action"], "new": d.get("price"), "reason": d.get("reason"), "flags": d.get("flags"), "applied": False}
+        rec = {"ts": now.isoformat(), "sku": sku, "asin": asin, "price": price, "bb": lv.get("bb"), "action": d["action"], "new": d.get("price"), "reason": d.get("reason"), "flags": d.get("flags"), "applied": False,
+               "bb_seller": ((lv.get("winners") or [{}])[0]).get("seller"), "bb_type": ((lv.get("winners") or [{}])[0]).get("type"),
+               "we_win": (bool(seller) and ((lv.get("winners") or [{}])[0]).get("seller") == seller) if lv.get("winners") else None}
         if d.get("freeze_days"):
             s["frozen_until"] = (now + dt.timedelta(days=d["freeze_days"])).isoformat()
         if s["last_applied"] is None or snap["manual_seen"]:
@@ -317,6 +319,13 @@ def main():
         for a, lv_ in live.items():
             if lv_.get("ladder"):
                 fh.write(json.dumps({"t": now.strftime("%Y-%m-%d %H:%M"), "asin": a, "bb": lv_.get("bb"), "ladder": lv_["ladder"][:15]}) + "\n")
+    try:                                   # who REALLY owns the Buy Box (seller id, FBA/FBM, price, traffic weights) - the raw material for learning from the competition
+        with open(os.path.join(STATE, "bbwin.jsonl"), "a") as fh:
+            for a, lv_ in live.items():
+                if lv_.get("winners"):
+                    fh.write(json.dumps({"t": now.strftime("%Y-%m-%d %H:%M"), "asin": a, "me": seller, "win": lv_["winners"][:3], "low_afn": lv_.get("low_afn"), "n": lv_.get("n_offers")}) + "\n")
+    except Exception as e:
+        log("bbwin not saved: %r" % e)
     sp = os.path.join(STATE, "snapshots.tsv")
     new = not os.path.exists(sp)
     with open(sp, "a") as fh:

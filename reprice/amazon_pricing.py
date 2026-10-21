@@ -34,7 +34,7 @@ def _landed(offer):
 
 def summarize(body):
     """body of one getCompetitiveSummary response -> dict of the numbers the planner needs"""
-    out = {"bb": None, "bb_top": None, "bb_fba": None, "low_new": None, "low_afn": None, "n_offers": 0, "n_afn": 0, "ladder": []}
+    out = {"bb": None, "bb_top": None, "bb_fba": None, "low_new": None, "low_afn": None, "n_offers": 0, "n_afn": 0, "ladder": [], "winners": []}
     sw = w = 0.0
     top_w = -1.0
     for fo in (body or {}).get("featuredBuyingOptions") or []:
@@ -45,6 +45,11 @@ def summarize(body):
             if p is None:
                 continue
             wt = sum(float((s.get("segmentDetails") or {}).get("glanceViewWeightPercentage") or 0) for s in seg.get("featuredOfferSegments") or [])
+            seg_w = {}
+            for s_ in seg.get("featuredOfferSegments") or []:
+                k_ = s_.get("customerMembership") or "?"
+                seg_w[k_] = round(seg_w.get(k_, 0) + float((s_.get("segmentDetails") or {}).get("glanceViewWeightPercentage") or 0), 2)
+            out["winners"].append({"seller": str(seg.get("sellerId") or "?"), "type": "F" if seg.get("fulfillmentType") == "AFN" else "M", "price": round(p, 2), "w": seg_w})
             if wt <= 0:
                 wt = 1.0
             sw += p * wt

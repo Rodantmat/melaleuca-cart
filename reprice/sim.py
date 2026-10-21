@@ -12,7 +12,8 @@ try:
     REAL_VEL = json.load(open(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'state', 'velocities.json'))) if os.environ.get('SIM_REAL') else None
 except Exception:
     REAL_VEL = None
-SCENARIOS = ["stable", "war", "big_seller", "gouge", "troll", "no_competitor", "demand_drop", "demand_boom", "mispriced_high", "mispriced_low"]
+MARKET = os.environ.get("SIM_MARKET", "steep")          # steep = the original model; calibrated = share curve measured on the real store (Oct 2026 data)
+SCENARIOS = ["stable", "war", "big_seller", "gouge", "troll", "no_competitor", "demand_drop", "demand_boom", "mispriced_high", "mispriced_low", "rival_arrives"]
 
 
 def poisson(rng, lam):
@@ -43,6 +44,8 @@ class World:
         self.restock_q = max(6, int(self.lam0 * 45))
         self.pending = []                      # (arrival day, qty)
         self.comp = self.M0 * rng.uniform(0.97, 1.03)
+        self.mtype = rng.choice(["F", "M"]) if MARKET == "calibrated" else "F"      # who owns the Buy Box when we are above it
+        self.fbm_cut = rng.uniform(0.82, 0.93) if MARKET == "calibrated" else 0.9
         self.d = 0
         self.last_sale_day = 0
         self.sales = []                        # (day, units, price)
@@ -60,6 +63,8 @@ class World:
             p = self.M0 * 3.2
         elif s == "troll" and d in (50, 51):
             p = 0.01
+        elif s == "rival_arrives":                                        # a cheaper rival takes the Buy Box after a third of the period and stays
+            p = self.M0 if d < self.days * 0.35 else self.M0 * (0.80 + 0.08 * (self.lam0 % 0.2) / 0.2)
         elif s == "no_competitor":
             return None
         return round(max(0.01, p), 2)
@@ -72,9 +77,22 @@ class World:
             return 2.5
         return 1.0 + 0.15 * math.sin(d / 20.0)
 
+    @staticmethod
+    def _interp(x, pts):
+        if x <= pts[0][0]:
+            return pts[0][1]
+        for (x0, y0), (x1, y1) in zip(pts, pts[1:]):
+            if x <= x1:
+                return y0 + (y1 - y0) * (x - x0) / (x1 - x0)
+        return pts[-1][1]
+
     def share(self, p, pc):
         if pc is None:
             return 1.0
+        if MARKET == "calibrated":
+            g = (p - pc) / pc
+            s = self._interp(g, [(0.02, 1.0), (0.05, 0.5), (0.12, 0.4), (0.25, 0.2), (0.40, 0.08)])
+            return s * (0.8 if self.mtype == "M" else 1.0)
         x = (p - pc) / pc
         z = max(-50.0, min(50.0, 60 * (x - 0.015)))
         return 1.0 / (1.0 + math.exp(z))                 # equal price ~ shared box; 3-4% above -> almost nothing
@@ -105,12 +123,13 @@ def snapshot(w, price, pc, changes, last_change, pc_prev, now, day):
     hist = None
     if len(sold_p) >= 6:
         hist = {"n": len(sold_p), "p_low": sold_p[int(0.07 * (len(sold_p) - 1))], "p_mid": sold_p[len(sold_p) // 2], "p_high": sold_p[int(0.95 * (len(sold_p) - 1))]}
-    we_hold = (pc is None) or price <= pc * 1.005
-    bb = price if we_hold else pc
+    pbb = pc if (pc is None or w.mtype == "F") else round(pc * w.fbm_cut, 2)        # an FBM winner sits below the cheapest FBA offer
+    we_hold = (pbb is None) or price <= pbb * 1.005
+    bb = price if we_hold else pbb
     return {"sku": "SIM", "price": price, "cost": w.cost, "fba_fee": w.fba, "on_hand": w.stock, "inbound": sum(q for _, q in w.pending),
             "units_7": u(7), "units_30": u(30), "units_90": u(90), "in_stock_days_30": ist(30), "in_stock_days_7": ist(7),
-            "days_since_sale": day - w.last_sale_day, "aged_units": 0, "bb": bb, "we_hold_bb": we_hold, "low_fba": pc, "low_new": pc,
-            "foep": (pc * 0.995 if pc and not we_hold else None), "hist": hist, "last_change": last_change, "changes": changes}
+            "days_since_sale": day - w.last_sale_day, "aged_units": 0, "bb": bb, "we_hold_bb": we_hold, "bb_type": (w.mtype if not we_hold else None), "low_fba": pc, "low_new": pc,
+            "foep": (pbb * 0.995 if pbb and not we_hold else None), "hist": hist, "last_change": last_change, "changes": changes}
 
 
 def run(seed, scenario, days, use_engine, cfg):

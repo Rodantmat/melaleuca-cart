@@ -50,6 +50,13 @@ DEFAULTS = {
     "ANOMALY_HIGH": 2.00,
     "AGED_UNITS_URGENT": 1,      # units older than 180 days make the drought severe
     "MAX_PRICE_MULT_OVER_HIST": 1.10,   # ceiling = this x the 95th percentile of what really sold
+    # ---- MATCH: another seller owns the Buy Box, we are clearly above it, our sales fell AND we hold enough stock to be worth the margin
+    "MATCH_ENABLED": False,    # simulated: gain ~0 on the calibrated market (see sim_ab.py) -> kept OFF until real Buy Box data (bbwin.jsonl) proves otherwise
+    "MATCH_MIN_GAP": 0.05,       # we are at least 5% above the price that wins
+    "MATCH_MIN_DOS": 30,         # days of supply needed: with scarce stock it is better to keep the margin than to sell the last units cheap
+    "MATCH_MIN_STOCK": 4,
+    "MATCH_UNDERPERF": 0.70,     # 30-day sales speed below 70% of the 90-day speed
+    "MATCH_MIN_U90": 4,          # the product must have a real sales history
 }
 
 
@@ -218,6 +225,31 @@ def decide(snap, cfg=None, now=None):
         if target >= price - 0.005 or price - target < min(cfg["MIN_STEP"], 0.02 * price):
             return hold("no room to lower further within the limits", floor=floor, ceil=ceil)
         return {"action": "down", "price": target, "reason": why, "flags": flags + (["severe"] if severe else []), "floor": floor, "ceil": ceil, "severe": bool(severe), "dss": dss, "dos": dos}
+
+    # =============================================================== MATCH (win the Buy Box back, only when it pays)
+    if cfg.get("MATCH_ENABLED") and on_hand >= cfg["MATCH_MIN_STOCK"] and not anomalous and not (in_drought or surplus) and we_hold is False:
+        wtype = snap.get("bb_type")
+        ref = None
+        if wtype == "M":                       # a merchant-fulfilled winner mostly takes non-Prime shoppers: Prime customers compare us with the FBA offers
+            ref = low_fba
+        elif bb:
+            ref = bb
+        if ref and price > ref * (1 + cfg["MATCH_MIN_GAP"]) and u90 >= cfg["MATCH_MIN_U90"] and v90 > 0 and v30 < cfg["MATCH_UNDERPERF"] * v90 \
+                and dos >= cfg["MATCH_MIN_DOS"]:
+            if since_last_h < cfg["COOLDOWN_DOWN_H"]:
+                return hold("waiting after the last change (%.0f h of %d h)" % (since_last_h, cfg["COOLDOWN_DOWN_H"]), floor=floor, ceil=ceil)
+            if price <= floor + 0.005:
+                return hold("above the winner (%.2f) but already at the minimum-profit floor %.2f" % (ref, floor), floor=floor, ceil=ceil, alert="stuck_at_floor")
+            step_amt = max(cfg["MIN_STEP"], price * cfg["STEP_DOWN"])
+            target = max(ref, price - step_amt, floor)
+            c30 = [c for c in changes if (now - c["ts"]) <= timedelta(days=30)]
+            top30 = max([price] + [c["old"] for c in c30] + [c["new"] for c in c30])
+            target = _r2(max(target, top30 * (1 - cfg["MAX_DROP_30D"])))
+            if target < price - 0.005 and price - target >= min(cfg["MIN_STEP"], 0.02 * price):
+                return {"action": "down", "price": target, "match": True,
+                        "reason": "Buy Box owned by another %s seller at %.2f, we are %.0f%% above, sales at %.0f%% of the 90-day speed, %.0f days of supply: step toward it" % (
+                            "FBM" if wtype == "M" else "FBA", ref, 100 * (price / ref - 1), 100 * v30 / v90, min(dos, 999)),
+                        "flags": flags + ["match"], "floor": floor, "ceil": ceil, "severe": False, "dss": dss, "dos": dos}
 
     # =============================================================== UP
     if (on_hand > 0 or inbound > 0) and u30 >= cfg["UP_MIN_UNITS_30"] and not in_drought and not surplus and not anomalous:
