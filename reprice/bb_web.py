@@ -82,22 +82,34 @@ def parse_dp(h):
 
 
 def parse_aod(h):
-    """offers drawer -> {"pinned": offer, "offers": [offer...]}   offer = seller id, price, ships_from, sold_by"""
+    """offers drawer (ajax, ~250 KB) -> {"pinned": offer or None, "offers": [offer...]}   offer = seller id, price, ships_from, sold_by, rating count, % positive"""
+    def after(chunk, key, label):
+        i = chunk.find(key)
+        if i < 0:
+            return None
+        t = strip_tags(chunk[max(0, chunk.rfind("<", 0, i)):i + 2500])
+        m = re.search(label + r"\s+(.{2,60}?)(?:\s+(?:Sold by|Ships from|Seller rating|Returns|Payment|Gift|\d)|$)", t)
+        return dedupe(m.group(1)) if m else None
+
     def one(chunk):
         sid = re.search(r"seller=([A-Z0-9]{10,14})", chunk)
-        t = strip_tags(chunk)
+        t = strip_tags(re.sub(r"<style.*?</style>", " ", chunk, flags=re.S))
         pr = re.search(r"\$\s*([0-9]{1,4})\s*\.\s*([0-9]{2})\b", t)
-        sf = re.search(r"Ships from\s*(.{2,40}?)\s*(?:Sold by|$)", t)
-        sb = re.search(r"Sold by\s*(.{2,60}?)\s*(?:\d|Returns|Fulfilled|$)", t)
+        rt = re.search(r"\(([0-9,]+) ratings?\)\s*([0-9]+)% positive", t)
+        sf, sb = after(chunk, "aod-offer-shipsFrom", "Ships from"), after(chunk, "aod-offer-soldBy", "Sold by")
+        if not sf and not sb:
+            m = re.search(r"Shipper / Seller\s+(.{2,60}?)(?:\s+(?:Seller rating|Returns|Payment|\d)|$)", t)
+            sf = sb = dedupe(m.group(1)) if m else None
         return {"seller_id": sid.group(1) if sid else None, "price": float(pr.group(1) + "." + pr.group(2)) if pr else None,
-                "ships_from": sf.group(1).strip() if sf else None, "sold_by": sb.group(1).strip() if sb else None}
+                "ships_from": sf, "sold_by": sb, "fulfil": ("F" if sf == "Amazon" else "M") if sf else None,
+                "ratings": int(rt.group(1).replace(",", "")) if rt else None, "pos_pct": int(rt.group(2)) if rt else None}
     out = {"pinned": None, "offers": []}
     i = h.find('id="aod-pinned-offer"')
     if i >= 0:
         j = h.find('id="aod-offer-list"', i)
-        out["pinned"] = one(h[i:(j if j > i else i + 9000)])
+        out["pinned"] = one(h[i:(j if j > i else i + 30000)])
     for part in h.split('id="aod-offer"')[1:]:
-        o = one(part[:9000])
+        o = one(part[:30000])
         if o["price"] is not None:
             out["offers"].append(o)
     return out
@@ -129,35 +141,49 @@ def run(max_asins=0):
         ctx.route("**/*", lambda r: r.abort() if r.request.resource_type in ("image", "media", "font", "stylesheet") else r.continue_())   # traffic: text only
         pg = ctx.new_page()
         bytes_ = 0
+        pg.goto("https://www.amazon.com/dp/%s?th=1&psc=1" % asins[0], timeout=60000, wait_until="domcontentloaded")      # warm-up: cookies / session like a shopper
+        pg.wait_for_timeout(1500)
+        dp_budget = int(os.environ.get("DP_MAX", "25"))                      # full product pages (2 MB each) only where they add something
+        fails = 0
         for k, a in enumerate(asins):
             rec = {"t": now, "asin": a}
             try:
-                pg.goto("https://www.amazon.com/dp/%s?th=1&psc=1" % a, timeout=60000, wait_until="domcontentloaded")
-                pg.wait_for_timeout(1200)
-                h = pg.content(); bytes_ += len(h)
-                d = parse_dp(h); rec.update(d)
-                if d.get("captcha"):
-                    rec["err"] = "captcha"; print("%s captcha - stopping this run" % a); rows.append(rec); break
-                if d.get("offers_n") and d.get("seller_id") != ME:             # offers drawer only when we are not the winner (saves traffic)
-                    try:
-                        ah = pg.evaluate("""async (asin) => { const r = await fetch('/gp/product/ajax/aodAjaxMain/ref=dp_aod_NEW_mobile?asin='+asin+'&pc=dp&experienceId=aodAjaxMain', {credentials:'include'}); return r.status===200 ? await r.text() : ''; }""", a)
-                        if ah:
-                            bytes_ += len(ah); ao = parse_aod(ah); rec["aod"] = ao["offers"][:15]; rec["aod_pinned"] = ao["pinned"]
-                    except Exception as e:
-                        rec["aod_err"] = str(e)[:80]
+                ah = pg.evaluate("""async (asin) => { const r = await fetch('/gp/product/ajax/aodAjaxMain/ref=dp_aod_NEW_mobile?asin='+asin+'&pc=dp&experienceId=aodAjaxMain', {credentials:'include'}); return r.status + '|' + (r.status===200 ? await r.text() : ''); }""", a)
+                st, _, body = ah.partition("|")
+                bytes_ += len(body)
+                if st != "200":
+                    rec["err"] = "aod http %s" % st; fails += 1
+                    if fails >= 4:
+                        print("blocked (%s) - stopping this run" % st); rows.append(rec); break
+                    time.sleep(20)
+                else:
+                    fails = 0
+                    ao = parse_aod(body)
+                    pin = ao["pinned"] or {}
+                    rec.update({"bb_price": pin.get("price"), "seller_id": pin.get("seller_id"), "sold_by": pin.get("sold_by"), "ships_from": pin.get("ships_from"), "fulfil": pin.get("fulfil"),
+                                "we_win": (pin.get("seller_id") == ME) if pin.get("seller_id") else None, "offers_n": len(ao["offers"]), "aod": ao["offers"][:15]})
+                    if not pin.get("price") and not ao["offers"]:
+                        rec["note"] = "no offers (unavailable?)"
+                    elif rec.get("we_win") is False and dp_budget > 0:
+                        dp_budget -= 1
+                        pg.goto("https://www.amazon.com/dp/%s?th=1&psc=1" % a, timeout=60000, wait_until="domcontentloaded"); pg.wait_for_timeout(900)
+                        h = pg.content(); bytes_ += len(h); d = parse_dp(h)
+                        if d.get("captcha"):
+                            rec["err"] = "captcha"; print("%s captcha - stopping this run" % a); rows.append(rec); break
+                        rec.update({x: d.get(x) for x in ("left", "bought_month", "rating", "reviews", "choice")})
             except Exception as e:
                 rec["err"] = str(e)[:100]
             rows.append(rec)
             if k % 20 == 0: print("  %d/%d  price=%s seller=%s  (%.1f MB so far)" % (k + 1, len(asins), rec.get("bb_price"), rec.get("sold_by"), bytes_ / 1048576.0)); sys.stdout.flush()
-            time.sleep(random.uniform(2.0, 4.5))
+            time.sleep(random.uniform(1.5, 3.5))
         b.close()
     os.makedirs(S, exist_ok=True)
     with open(os.path.join(S, "webbb.jsonl"), "a") as fh:
         for r in rows: fh.write(json.dumps(r) + "\n")
     with open(os.path.join(S, "webbb_latest.tsv"), "w") as fh:
-        fh.write("asin\tbb_price\tseller_id\tsold_by\tships_from\tleft\toffers_n\toffers_from\tbought_month\trating\treviews\twe_win\terr\n")
+        fh.write("asin\tbb_price\tseller_id\tsold_by\tships_from\tleft\toffers_n\tbought_month\trating\treviews\twe_win\terr\n")
         for r in rows:
-            fh.write("\t".join("" if r.get(c) is None else str(r.get(c)) for c in ["asin", "bb_price", "seller_id", "sold_by", "ships_from", "left", "offers_n", "offers_from", "bought_month", "rating", "reviews", "we_win", "err"]) + "\n")
+            fh.write("\t".join("" if r.get(c) is None else str(r.get(c)) for c in ["asin", "bb_price", "seller_id", "sold_by", "ships_from", "left", "offers_n", "bought_month", "rating", "reviews", "we_win", "err"]) + "\n")
     ok = [r for r in rows if r.get("bb_price")]
     print("web Buy Box: %d ASINs read, %d with a price, we win %d, errors %d" % (len(rows), len(ok), sum(1 for r in ok if r.get("we_win")), sum(1 for r in rows if r.get("err"))))
 
