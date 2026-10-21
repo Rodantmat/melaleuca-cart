@@ -36,6 +36,8 @@ jobs:
           MODE="${{ github.event.inputs.mode }}"
           if [ -z "$MODE" ]; then MODE=live; fi   # scheduled runs are live; kill switch = reprice/config.json live_enabled=false or a KILL file; nothing manual needed
           if [ "$MODE" = "live" ]; then export REPRICE_LIVE=1; fi
+          # fresh order history first (days-since-last-sale, sold-price floor/ceiling depend on it); current month only, 2 months on the 1st-2nd
+          python history.py $([ "$(date +%d)" -le 2 ] && echo 2 || echo 1) 2>&1 | tee history.log || true
           python run.py "$MODE" 2>&1 | tee run.log
           python analysis.py 2>&1 | tee -a run.log
           python market.py 2>&1 | tee -a run.log || true
