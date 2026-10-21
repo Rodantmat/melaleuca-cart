@@ -19,7 +19,7 @@ jobs:
         with: { python-version: "3.12" }
       - run: pip install playwright && playwright install --with-deps chromium && sudo apt-get install -y xvfb
       - name: Fetch saved state
-        run: git fetch origin reprice-state:reprice-state 2>/dev/null && git checkout reprice-state -- reprice/state 2>/dev/null || true
+        run: git fetch origin reprice-state:reprice-state 2>/dev/null && git checkout reprice-state -- reprice/state reprice/run.log 2>/dev/null || git checkout reprice-state -- reprice/state 2>/dev/null || true
       - name: Scan the public pages
         env: { PROXY_URL: "${{ secrets.PROXY_URL }}" }
         run: |
@@ -29,8 +29,8 @@ jobs:
         if: always()
         run: |
           git config user.name "reprice-bot"; git config user.email "reprice-bot@users.noreply.github.com"
-          rm -rf /tmp/st && mkdir /tmp/st && mkdir -p /tmp/st/state && cp -a reprice/state/. /tmp/st/state/ && cp reprice/run_bbweb.log /tmp/st/ 2>/dev/null || true
+          rm -rf /tmp/st && mkdir /tmp/st && mkdir -p /tmp/st/state && cp -a reprice/state/. /tmp/st/state/ && cp reprice/run_bbweb.log reprice/run.log /tmp/st/ 2>/dev/null || true
           git checkout --orphan reprice-state-new
           git rm -rf . >/dev/null 2>&1 || true
-          mkdir -p reprice/state && cp -a /tmp/st/state/. reprice/state/ && cp /tmp/st/run_bbweb.log reprice/ 2>/dev/null || true
+          mkdir -p reprice/state && cp -a /tmp/st/state/. reprice/state/ && cp /tmp/st/run_bbweb.log /tmp/st/run.log reprice/ 2>/dev/null || true
           git add reprice && git commit -qm "reprice state (web bb)" && git push -f origin reprice-state-new:reprice-state
