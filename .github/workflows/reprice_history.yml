@@ -5,6 +5,7 @@ on:
       months: { description: "months of history", default: "24" }
 permissions:
   contents: write
+concurrency: { group: reprice-state, cancel-in-progress: false }
 jobs:
   history:
     runs-on: ubuntu-latest

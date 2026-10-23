@@ -43,6 +43,7 @@ jobs:
           python analysis.py 2>&1 | tee -a run.log
           python market.py 2>&1 | tee -a run.log || true
           python bb_intel.py 2>&1 | tee -a run.log || true
+          python reports.py 2>&1 | tee -a run.log || true
           rm -f credentials.env
       - name: Save state
         if: always()

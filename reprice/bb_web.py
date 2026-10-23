@@ -140,6 +140,17 @@ def run(max_asins=0):
         a_ = dict(zip(hd, l.split("\t"))).get("asin")
         if a_ and a_ not in asins: asins.append(a_)
     if max_asins: asins = asins[:max_asins]
+    prio = set()                              # products that really sell: only these get the full page (rival stock = "Only N left")
+    try:
+        sku2asin = {}
+        for l in L[1:]:
+            d_ = dict(zip(hd, l.split("\t"))); sku2asin[d_.get("sku")] = d_.get("asin")
+        SL = open(os.path.join(S, "signals.tsv")).read().splitlines(); sh = SL[0].split("\t")
+        for l in SL[1:]:
+            d_ = dict(zip(sh, l.split("\t")))
+            if float(d_.get("sold_per_month") or 0) > 0 and sku2asin.get(d_.get("sku")): prio.add(sku2asin[d_["sku"]])
+    except Exception:
+        prio = set(asins)
     now = dt.datetime.now(dt.timezone.utc).strftime("%Y-%m-%d %H:%M")
     rows = []
     UA = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36"
@@ -151,7 +162,7 @@ def run(max_asins=0):
         bytes_ = 0
         pg.goto("https://www.amazon.com/dp/%s?th=1&psc=1" % asins[0], timeout=60000, wait_until="domcontentloaded")      # warm-up: cookies / session like a shopper
         pg.wait_for_timeout(1500)
-        dp_budget = int(os.environ.get("DP_MAX", "8"))                      # full product pages (2 MB each) only where they add something
+        dp_budget = int(os.environ.get("DP_MAX", "40"))                      # full product pages (2 MB each) only where they add something
         fails = 0; pauses = 0
         for k, a in enumerate(asins):
             rec = {"t": now, "asin": a}
@@ -179,13 +190,13 @@ def run(max_asins=0):
                                 "we_win": (pin.get("seller_id") == ME) if pin.get("seller_id") else None, "offers_n": len(ao["offers"]), "aod": ao["offers"][:15]})
                     if not pin.get("price") and not ao["offers"]:
                         rec["note"] = "no offers (unavailable?)"
-                    elif rec.get("we_win") is False and dp_budget > 0:
+                    elif rec.get("we_win") is False and dp_budget > 0 and a in prio:
                         dp_budget -= 1
                         pg.goto("https://www.amazon.com/dp/%s?th=1&psc=1" % a, timeout=60000, wait_until="domcontentloaded"); pg.wait_for_timeout(900)
                         h = pg.content(); bytes_ += len(h); d = parse_dp(h)
                         if d.get("captcha"):
                             rec["err"] = "captcha"; print("%s captcha - stopping this run" % a); rows.append(rec); break
-                        rec.update({x: d.get(x) for x in ("left", "bought_month", "rating", "reviews", "choice")})
+                        rec.update({x: d.get(x) for x in ("left", "bought_month", "rating", "reviews", "choice")}); rec["left_seller"] = d.get("seller_id"); rec["dp_price"] = d.get("bb_price")
             except Exception as e:
                 rec["err"] = str(e)[:100]
             rows.append(rec)
