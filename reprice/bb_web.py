@@ -151,8 +151,8 @@ def run(max_asins=0):
         bytes_ = 0
         pg.goto("https://www.amazon.com/dp/%s?th=1&psc=1" % asins[0], timeout=60000, wait_until="domcontentloaded")      # warm-up: cookies / session like a shopper
         pg.wait_for_timeout(1500)
-        dp_budget = int(os.environ.get("DP_MAX", "25"))                      # full product pages (2 MB each) only where they add something
-        fails = 0
+        dp_budget = int(os.environ.get("DP_MAX", "8"))                      # full product pages (2 MB each) only where they add something
+        fails = 0; pauses = 0
         for k, a in enumerate(asins):
             rec = {"t": now, "asin": a}
             try:
@@ -160,10 +160,17 @@ def run(max_asins=0):
                 st, _, body = ah.partition("|")
                 bytes_ += len(body)
                 if st != "200":
-                    rec["err"] = "aod http %s" % st; fails += 1
-                    if fails >= 4:
-                        print("blocked (%s) - stopping this run" % st); rows.append(rec); break
-                    time.sleep(20)
+                    rec["err"] = "aod http %s" % st
+                    if st == "404":
+                        rec["note"] = "no such page"
+                    else:
+                        fails += 1
+                        if fails >= 4:
+                            pauses += 1
+                            if pauses > 3:
+                                print("blocked (%s) - stopping this run" % st); rows.append(rec); break
+                            print("rate limited (%s) - pausing 3 min" % st); time.sleep(180); fails = 0
+                        time.sleep(20)
                 else:
                     fails = 0
                     ao = parse_aod(body)
