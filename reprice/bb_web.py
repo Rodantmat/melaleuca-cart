@@ -193,6 +193,7 @@ def run(max_asins=0):
         for r in rows:
             fh.write("\t".join("" if r.get(c) is None else str(r.get(c)) for c in ["asin", "bb_price", "seller_id", "sold_by", "ships_from", "left", "offers_n", "bought_month", "rating", "reviews", "we_win", "err"]) + "\n")
     ok = [r for r in rows if r.get("bb_price")]
+    json.dump({"t": now, "rows": len(rows), "priced": sum(1 for r in rows if r.get("bb_price")), "errors": [r.get("err") for r in rows if r.get("err")][:5], "of": len(asins)}, open(os.path.join(S, "webbb_status.json"), "w"))
     print("web Buy Box: %d ASINs read, %d with a price, we win %d, errors %d" % (len(rows), len(ok), sum(1 for r in ok if r.get("we_win")), sum(1 for r in rows if r.get("err"))))
 
 
@@ -201,3 +202,8 @@ if __name__ == "__main__":
         run(int(sys.argv[1]) if len(sys.argv) > 1 else 0)
     except Exception as e:
         print("bb_web failed (ignored): %r" % e)
+        try:
+            os.makedirs(S, exist_ok=True)
+            json.dump({"t": dt.datetime.now(dt.timezone.utc).strftime("%Y-%m-%d %H:%M"), "failed": repr(e)[:300]}, open(os.path.join(S, "webbb_status.json"), "w"))
+        except Exception:
+            pass

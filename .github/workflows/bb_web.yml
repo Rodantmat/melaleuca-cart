@@ -24,7 +24,7 @@ jobs:
         env: { PROXY_URL: "${{ secrets.PROXY_URL }}" }
         run: |
           cd reprice
-          xvfb-run -a python bb_web.py ${{ github.event.inputs.max || '0' }} 2>&1 | tee run_bbweb.log
+          mkdir -p /tmp/lg; xvfb-run -a python bb_web.py ${{ github.event.inputs.max || '0' }} 2>&1 | tee run_bbweb.log /tmp/lg/bbweb.log
       - name: Save state
         if: always()
         run: |
@@ -34,3 +34,11 @@ jobs:
           git rm -rf . >/dev/null 2>&1 || true
           mkdir -p reprice/state && cp -a /tmp/st/state/. reprice/state/ && cp /tmp/st/run_bbweb.log /tmp/st/run.log reprice/ 2>/dev/null || true
           git add reprice && git commit -qm "reprice state (web bb)" && git push -f origin reprice-state-new:reprice-state
+      - name: Publish log
+        if: always()
+        run: |
+          git config user.name "reprice-bot"; git config user.email "reprice-bot@users.noreply.github.com"
+          git checkout --orphan bbweb-log-new 2>/dev/null || true
+          git rm -rf . >/dev/null 2>&1 || true
+          cp /tmp/lg/bbweb.log . 2>/dev/null || echo "no log" > bbweb.log
+          git add bbweb.log && git commit -qm "bb web log" && git push -f origin bbweb-log-new:bb-web-log
