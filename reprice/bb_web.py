@@ -129,11 +129,14 @@ def run(max_asins=0):
     from playwright.sync_api import sync_playwright
     raw = os.environ.get("PROXY_URL", "").strip()
     port = int(os.environ.get("AMZ_PROXY_PORT", "10090"))
-    kw = {"headless": False}
-    if raw:
-        u = urllib.parse.urlparse(raw); login = urllib.parse.unquote(u.username or "")
-        if "__" not in login: login += "__cr.us"
-        kw["proxy"] = {"server": "http://%s:%s" % (u.hostname, port), "username": login, "password": urllib.parse.unquote(u.password or "")}
+    base_port = int(os.environ.get("AMZ_PROXY_PORT", "10090"))
+    def mk_kw(port):
+        kw = {"headless": False}
+        if raw:
+            u = urllib.parse.urlparse(raw); login = urllib.parse.unquote(u.username or "")
+            if "__" not in login: login += "__cr.us"
+            kw["proxy"] = {"server": "http://%s:%s" % (u.hostname, port), "username": login, "password": urllib.parse.unquote(u.password or "")}
+        return kw
     asins = []
     L = open(os.path.join(HERE, "costs.tsv")).read().splitlines(); hd = L[0].split("\t")
     for l in L[1:]:
@@ -154,55 +157,67 @@ def run(max_asins=0):
     now = dt.datetime.now(dt.timezone.utc).strftime("%Y-%m-%d %H:%M")
     rows = []
     UA = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36"
-    with sync_playwright() as p:
-        b = p.chromium.launch(**kw)
-        ctx = b.new_context(user_agent=UA, locale="en-US", viewport={"width": 1366, "height": 900})
-        ctx.route("**/*", lambda r: r.abort() if r.request.resource_type in ("image", "media", "font", "stylesheet") else r.continue_())   # traffic: text only
-        pg = ctx.new_page()
-        bytes_ = 0
-        pg.goto("https://www.amazon.com/dp/%s?th=1&psc=1" % asins[0], timeout=60000, wait_until="domcontentloaded")      # warm-up: cookies / session like a shopper
-        pg.wait_for_timeout(1500)
-        dp_budget = int(os.environ.get("DP_MAX", "40"))                      # full product pages (2 MB each) only where they add something
-        fails = 0; pauses = 0
-        for k, a in enumerate(asins):
-            rec = {"t": now, "asin": a}
+    def session(port):
+        """one browser session on one proxy IP; returns True when Amazon blocked us (the caller then tries another IP).  Fills `rows`, skips what was already read."""
+        done = {r["asin"] for r in rows if not r.get("err") or r.get("note")}
+        todo = [a for a in asins if a not in done]
+        if not todo:
+            return False
+        with sync_playwright() as p:
+            b = p.chromium.launch(**mk_kw(port))
+            ctx = b.new_context(user_agent=UA, locale="en-US", viewport={"width": 1366, "height": 900})
+            ctx.route("**/*", lambda r: r.abort() if r.request.resource_type in ("image", "media", "font", "stylesheet") else r.continue_())   # traffic: text only
+            pg = ctx.new_page()
+            bytes_ = 0
             try:
-                ah = pg.evaluate("""async (asin) => { const r = await fetch('/gp/product/ajax/aodAjaxMain/ref=dp_aod_NEW_mobile?asin='+asin+'&pc=dp&experienceId=aodAjaxMain', {credentials:'include'}); return r.status + '|' + (r.status===200 ? await r.text() : ''); }""", a)
-                st, _, body = ah.partition("|")
-                bytes_ += len(body)
-                if st != "200":
-                    rec["err"] = "aod http %s" % st
-                    if st == "404":
-                        rec["note"] = "no such page"
-                    else:
-                        fails += 1
-                        if fails >= 4:
-                            pauses += 1
-                            if pauses > 3:
-                                print("blocked (%s) - stopping this run" % st); rows.append(rec); break
-                            print("rate limited (%s) - pausing 3 min" % st); time.sleep(180); fails = 0
-                        time.sleep(20)
-                else:
-                    fails = 0
-                    ao = parse_aod(body)
-                    pin = ao["pinned"] or {}
-                    rec.update({"bb_price": pin.get("price"), "seller_id": pin.get("seller_id"), "sold_by": pin.get("sold_by"), "ships_from": pin.get("ships_from"), "fulfil": pin.get("fulfil"),
-                                "we_win": (pin.get("seller_id") == ME) if pin.get("seller_id") else None, "offers_n": len(ao["offers"]), "aod": ao["offers"][:15]})
-                    if not pin.get("price") and not ao["offers"]:
-                        rec["note"] = "no offers (unavailable?)"
-                    elif rec.get("we_win") is False and dp_budget > 0 and a in prio:
-                        dp_budget -= 1
-                        pg.goto("https://www.amazon.com/dp/%s?th=1&psc=1" % a, timeout=60000, wait_until="domcontentloaded"); pg.wait_for_timeout(900)
-                        h = pg.content(); bytes_ += len(h); d = parse_dp(h)
-                        if d.get("captcha"):
-                            rec["err"] = "captcha"; print("%s captcha - stopping this run" % a); rows.append(rec); break
-                        rec.update({x: d.get(x) for x in ("left", "bought_month", "rating", "reviews", "choice")}); rec["left_seller"] = d.get("seller_id"); rec["dp_price"] = d.get("bb_price")
+                pg.goto("https://www.amazon.com/dp/%s?th=1&psc=1" % todo[0], timeout=60000, wait_until="domcontentloaded")      # warm-up: cookies / session like a shopper
+                pg.wait_for_timeout(1500)
             except Exception as e:
-                rec["err"] = str(e)[:100]
-            rows.append(rec)
-            if k % 20 == 0: print("  %d/%d  price=%s seller=%s  (%.1f MB so far)" % (k + 1, len(asins), rec.get("bb_price"), rec.get("sold_by"), bytes_ / 1048576.0)); sys.stdout.flush()
-            time.sleep(random.uniform(1.5, 3.5))
-        b.close()
+                print("warm-up failed: %s" % str(e)[:80])
+            dp_budget = int(os.environ.get("DP_MAX", "40"))                      # full product pages (2 MB each) only where they add something
+            fails = 0
+            for k, a in enumerate(todo):
+                rec = {"t": now, "asin": a}
+                try:
+                    ah = pg.evaluate("""async (asin) => { const r = await fetch('/gp/product/ajax/aodAjaxMain/ref=dp_aod_NEW_mobile?asin='+asin+'&pc=dp&experienceId=aodAjaxMain', {credentials:'include'}); return r.status + '|' + (r.status===200 ? await r.text() : ''); }""", a)
+                    st, _, body = ah.partition("|")
+                    bytes_ += len(body)
+                    if st == "404":
+                        rec["err"] = "aod http 404"; rec["note"] = "no such page"
+                    elif st != "200":
+                        fails += 1
+                        if fails >= 3:
+                            print("rate limited (%s) after %d ASINs - switching IP" % (st, k)); b.close(); return True
+                        time.sleep(15); continue                 # not recorded: it is read again (this session or the next)
+                    else:
+                        fails = 0
+                        ao = parse_aod(body)
+                        pin = ao["pinned"] or {}
+                        rec.update({"bb_price": pin.get("price"), "seller_id": pin.get("seller_id"), "sold_by": pin.get("sold_by"), "ships_from": pin.get("ships_from"), "fulfil": pin.get("fulfil"),
+                                    "we_win": (pin.get("seller_id") == ME) if pin.get("seller_id") else None, "offers_n": len(ao["offers"]), "aod": ao["offers"][:15]})
+                        if not pin.get("price") and not ao["offers"]:
+                            rec["note"] = "no offers (unavailable?)"
+                        elif rec.get("we_win") is False and dp_budget > 0 and a in prio:
+                            dp_budget -= 1
+                            pg.goto("https://www.amazon.com/dp/%s?th=1&psc=1" % a, timeout=60000, wait_until="domcontentloaded"); pg.wait_for_timeout(900)
+                            h = pg.content(); bytes_ += len(h); d = parse_dp(h)
+                            if d.get("captcha"):
+                                print("%s captcha - switching IP" % a); b.close(); return True
+                            rec.update({x: d.get(x) for x in ("left", "bought_month", "rating", "reviews", "choice")}); rec["left_seller"] = d.get("seller_id"); rec["dp_price"] = d.get("bb_price")
+                except Exception as e:
+                    rec["err"] = str(e)[:100]
+                rows.append(rec)
+                if k % 20 == 0: print("  %d/%d  price=%s seller=%s  (%.1f MB so far)" % (k + 1, len(todo), rec.get("bb_price"), rec.get("sold_by"), bytes_ / 1048576.0)); sys.stdout.flush()
+                time.sleep(random.uniform(1.5, 3.5))
+            b.close()
+        return False
+
+    for attempt in range(4):                       # a rate-limited IP (503) -> start again with another IP (another sticky port); what was read is kept
+        port = base_port + attempt * 11 + int(time.time()) % 7
+        print("browser session %d on proxy port %d" % (attempt + 1, port)); sys.stdout.flush()
+        if not session(port):
+            break
+        time.sleep(20)
     os.makedirs(S, exist_ok=True)
     with open(os.path.join(S, "webbb.jsonl"), "a") as fh:
         for r in rows: fh.write(json.dumps(r) + "\n")
