@@ -174,7 +174,7 @@ def run(max_asins=0):
                 pg.wait_for_timeout(1500)
             except Exception as e:
                 print("warm-up failed: %s" % str(e)[:80])
-            dp_budget = int(os.environ.get("DP_MAX", "40"))                      # full product pages (2 MB each) only where they add something
+            dp_budget = int(os.environ.get("DP_MAX", "25"))                      # full product pages (2 MB each) only where they add something
             fails = 0
             for k, a in enumerate(todo):
                 rec = {"t": now, "asin": a}
@@ -208,16 +208,16 @@ def run(max_asins=0):
                     rec["err"] = str(e)[:100]
                 rows.append(rec)
                 if k % 20 == 0: print("  %d/%d  price=%s seller=%s  (%.1f MB so far)" % (k + 1, len(todo), rec.get("bb_price"), rec.get("sold_by"), bytes_ / 1048576.0)); sys.stdout.flush()
-                time.sleep(random.uniform(1.5, 3.5))
+                time.sleep(random.uniform(4.0, 8.0))
             b.close()
         return False
 
-    for attempt in range(4):                       # a rate-limited IP (503) -> start again with another IP (another sticky port); what was read is kept
+    for attempt in range(2):                       # a rate-limited IP (503) -> start again with another IP (another sticky port); what was read is kept
         port = base_port + attempt * 11 + int(time.time()) % 7
         print("browser session %d on proxy port %d" % (attempt + 1, port)); sys.stdout.flush()
         if not session(port):
             break
-        time.sleep(20)
+        time.sleep(300)                            # let Amazon calm down before trying another IP
     os.makedirs(S, exist_ok=True)
     with open(os.path.join(S, "webbb.jsonl"), "a") as fh:
         for r in rows: fh.write(json.dumps(r) + "\n")
