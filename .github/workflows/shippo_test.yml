@@ -1,6 +1,8 @@
 name: Shippo test probe
 on:
   workflow_dispatch:
+    inputs:
+      script: { default: shippo_test.py }
 permissions:
   contents: write
 jobs:
@@ -18,7 +20,7 @@ jobs:
           CREDENTIALS_ENV: ${{ secrets.CREDENTIALS_ENV }}
         run: |
           mkdir -p /tmp/so
-          python ship/shippo_test.py 2>&1 | tee /tmp/so/run.log
+          python ship/${{ inputs.script }} 2>&1 | tee /tmp/so/run.log
       - name: Publish
         if: always()
         run: |
