@@ -1,0 +1,29 @@
+name: Shippo test probe
+on:
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  go:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with: { ref: main }
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - name: Run
+        env:
+          SHIPPO_API_KEY: ${{ secrets.SHIPPO_API_KEY }}
+          CREDENTIALS_ENV: ${{ secrets.CREDENTIALS_ENV }}
+        run: |
+          mkdir -p /tmp/so
+          python ship/shippo_test.py 2>&1 | tee /tmp/so/run.log
+      - name: Publish
+        if: always()
+        run: |
+          git config user.name "ship-bot"; git config user.email "ship-bot@users.noreply.github.com"
+          git checkout --orphan sh-new
+          git rm -rf . >/dev/null 2>&1 || true
+          cp -a /tmp/so/. .
+          git add -A && git commit -qm "shippo test" && git push -f origin sh-new:shippo-test
