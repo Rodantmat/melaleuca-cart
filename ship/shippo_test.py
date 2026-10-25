@@ -48,32 +48,39 @@ def customs(inc):
                        value_currency="USD", origin_country="US") for d, q, w, v in ITEMS]}
 
 out = {"runs": []}
+print("== carrier accounts on this account ==")
+c, ca = call("GET", "/carrier_accounts/?results=100")
+for a in ca.get("results", []):
+    print(f"  {a.get('carrier'):<22}{str(a.get('account_id'))[:34]:<36}active={a.get('active')} test={a.get('test')}")
+for a in ca.get("results", []): pass
+
 def show(x): print(json.dumps(x, indent=1)[:3000])
-for origin, frm in FROM.items():
+for pname, PARCELS_V in (("1 box", PARCELS[:1]), ("3 boxes", PARCELS)):
+  for origin, frm in FROM.items():
     for inc in ("DDU", "DDP"):
-        print(f"\n===== {origin} -> Jamul CA | incoterm {inc} =====")
-        c, cd = call("POST", "/customs/declarations/", customs(inc))
-        print("customs declaration:", c, cd.get("object_state"), [m.get("text") for m in cd.get("messages", [])][:3])
-        if c >= 300: out["runs"].append(dict(origin=origin, inc=inc, customs_error=cd)); show(cd); continue
-        c, sh = call("POST", "/shipments/", {"address_from": frm, "address_to": TO, "parcels": PARCELS,
-                                              "customs_declaration": cd["object_id"], "async": False})
-        print("shipment:", c, sh.get("status"))
-        rates = sh.get("rates", [])
-        for m in sh.get("messages", []): print("  msg:", m.get("source"), "|", (m.get("text") or "")[:160])
-        rows = []
-        for r in sorted(rates, key=lambda r: float(r["amount"])):
-            row = dict(provider=r["provider"], service=r["servicelevel"]["name"], amount=r["amount"], cur=r["currency"],
-                       days=r.get("estimated_days"), id=r["object_id"])
-            rows.append(row); print(f"  {row['provider']:<14}{row['service']:<38}{row['amount']:>9} {row['cur']}  {row['days']}d")
-        rec = dict(origin=origin, inc=inc, status=sh.get("status"), rates=rows,
-                   messages=[m.get("text") for m in sh.get("messages", [])])
-        ups = [r for r in rows if r["provider"] == "UPS"]
-        if ups and origin == "Toronto":
-            c, t = call("POST", "/transactions/", {"rate": ups[0]["id"], "label_file_type": "PDF", "async": False})
-            rec["label"] = dict(http=c, status=t.get("status"), tracking=t.get("tracking_number"),
-                                has_label=bool(t.get("label_url")), invoice_url=t.get("commercial_invoice_url"),
-                                msgs=[m.get("text") for m in t.get("messages", [])][:5])
-            print("  test label:", rec["label"])
-        out["runs"].append(rec)
+          print(f"\n===== {origin} -> Jamul CA | {pname} | incoterm {inc} =====")
+          c, cd = call("POST", "/customs/declarations/", customs(inc))
+          print("customs declaration:", c, cd.get("object_state"), [m.get("text") for m in cd.get("messages", [])][:3])
+          if c >= 300: out["runs"].append(dict(origin=origin, inc=inc, customs_error=cd)); show(cd); continue
+          c, sh = call("POST", "/shipments/", {"address_from": frm, "address_to": TO, "parcels": PARCELS_V,
+                                                "customs_declaration": cd["object_id"], "async": False})
+          print("shipment:", c, sh.get("status"))
+          rates = sh.get("rates", [])
+          for m in [m for m in sh.get("messages", []) if "Carrier account" not in (m.get("text") or "") or "canada" in (m.get("text") or "").lower()]: print("  msg:", m.get("source"), "|", (m.get("text") or "")[:160])
+          rows = []
+          for r in sorted(rates, key=lambda r: float(r["amount"])):
+              row = dict(provider=r["provider"], service=r["servicelevel"]["name"], amount=r["amount"], cur=r["currency"],
+                         days=r.get("estimated_days"), id=r["object_id"])
+              rows.append(row); print(f"  {row['provider']:<14}{row['service']:<38}{row['amount']:>9} {row['cur']}  {row['days']}d")
+          rec = dict(origin=origin, inc=inc, status=sh.get("status"), rates=rows,
+                     messages=[m.get("text") for m in sh.get("messages", [])])
+          ups = [r for r in rows if r["provider"] == "UPS"]
+          if ups and origin == "Toronto":
+              c, t = call("POST", "/transactions/", {"rate": ups[0]["id"], "label_file_type": "PDF", "async": False})
+              rec["label"] = dict(http=c, status=t.get("status"), tracking=t.get("tracking_number"),
+                                  has_label=bool(t.get("label_url")), invoice_url=t.get("commercial_invoice_url"),
+                                  msgs=[m.get("text") for m in t.get("messages", [])][:5])
+              print("  test label:", rec["label"])
+          out["runs"].append(rec)
 os.makedirs("/tmp/so", exist_ok=True)
 json.dump(out, open("/tmp/so/result.json", "w"), indent=1)
