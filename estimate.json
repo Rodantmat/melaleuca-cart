@@ -1,0 +1,18 @@
+{
+ "Toronto": {
+  "shipment": "FBA19TR55MSN",
+  "units": 108,
+  "weight_lb": 110.55529257269613,
+  "volume_in3": 6981.37248372775,
+  "missing": [],
+  "paid_usd": 132.02
+ },
+ "Vancouver": {
+  "shipment": "FBA19THVPCGY",
+  "units": 151,
+  "weight_lb": 152.2584237278098,
+  "volume_in3": 8818.425812828147,
+  "missing": [],
+  "paid_usd": 240.32
+ }
+}
