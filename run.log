@@ -1,0 +1,22 @@
+v0 shipments: 19
+{"id": "FBA19FPRJSFC", "name": "FBA STA (06/07/2026 01:21)-MIT2", "status": "CLOSED", "fc": "MIT2", "from": ["Jamul", "CA", "91935", "US"], "boxSrc": "INTERACTIVE"}
+{"id": "FBA19GSSYC27", "name": "FBA STA (06/24/2026 18:59)-HIA1", "status": "CLOSED", "fc": "HIA1", "from": ["North York", "ON", "M3J 2Z3", "CA"], "boxSrc": "INTERACTIVE"}
+{"id": "FBA19GSWQCL5", "name": "FBA STA (06/24/2026 20:29)-PSC2", "status": "CLOSED", "fc": "PSC2", "from": ["Vancouver", "BC", "V6E 1G2", "CA"], "boxSrc": "INTERACTIVE"}
+{"id": "FBA19HHMJZXX", "name": "FBA STA (07/04/2026 03:57)-PSC2", "status": "CLOSED", "fc": "PSC2", "from": ["Jamul", "CA", "91935", "US"], "boxSrc": "INTERACTIVE"}
+{"id": "FBA19JLZ5HF4", "name": "FBA STA (07/19/2026 18:04)-HEA2", "status": "CLOSED", "fc": "HEA2", "from": ["North York", "ON", "M3J 2Z3", "CA"], "boxSrc": "INTERACTIVE"}
+{"id": "FBA19JM5XVP6", "name": "FBA STA (07/19/2026 22:20)-PSC2", "status": "CLOSED", "fc": "PSC2", "from": ["Vancouver", "BC", "V6E 1G2", "CA"], "boxSrc": "INTERACTIVE"}
+{"id": "FBA19JM7915G", "name": "FBA STA (07/20/2026 00:03)-GEU2", "status": "CLOSED", "fc": "GEU2", "from": ["Jamul", "CA", "91935", "US"], "boxSrc": "INTERACTIVE"}
+{"id": "FBA19L8Z0HBN", "name": "FBA STA (08/10/2026 00:30)-HGR6", "status": "CLOSED", "fc": "HGR6", "from": ["Jamul", "CA", "91935", "US"], "boxSrc": "INTERACTIVE"}
+{"id": "FBA19M1519NV", "name": "FBA STA (08/17/2026 18:30)-HIA1", "status": "CLOSED", "fc": "HIA1", "from": ["North York", "ON", "M3J 2Z3", "CA"], "boxSrc": "INTERACTIVE"}
+{"id": "FBA19M1DJV6C", "name": "FBA STA (08/17/2026 19:45)-RYY2", "status": "CLOSED", "fc": "RYY2", "from": ["MIAMI", "FL", "33125", "US"], "boxSrc": "INTERACTIVE"}
+{"id": "FBA19MBSGKJ1", "name": "FBA STA (08/20/2026 02:23)-POC2", "status": "CLOSED", "fc": "POC2", "from": ["Vancouver", "BC", "V6E 1G2", "CA"], "boxSrc": "INTERACTIVE"}
+{"id": "FBA19P01LGML", "name": "FBA STA (09/06/2026 00:37)-GEU3", "status": "CLOSED", "fc": "GEU3", "from": ["Jamul", "CA", "91935", "US"], "boxSrc": "INTERACTIVE"}
+{"id": "FBA19P037J04", "name": "FBA STA (09/06/2026 01:09)-ABQ2", "status": "CLOSED", "fc": "ABQ2", "from": ["Jamul", "CA", "91935", "US"], "boxSrc": "INTERACTIVE"}
+{"id": "FBA19PH3X27T", "name": "FBA STA (09/10/2026 22:38)-POC3", "status": "RECEIVING", "fc": "POC3", "from": ["Vancouver", "BC", "V6E 1G2", "CA"], "boxSrc": "INTERACTIVE"}
+{"id": "FBA19QKVHXV7", "name": "FBA STA (09/21/2026 01:47)-HIA1", "status": "CLOSED", "fc": "HIA1", "from": ["North York", "ON", "M3J 2Z3", "CA"], "boxSrc": "INTERACTIVE"}
+{"id": "FBA19SWDW4F4", "name": "FBA STA (10/12/2026 23:01)-ABQ2", "status": "RECEIVING", "fc": "ABQ2", "from": ["Jamul", "CA", "91935", "US"], "boxSrc": "INTERACTIVE"}
+{"id": "FBA19SWNDFP4", "name": "FBA STA (10/13/2026 01:15)-GEU2", "status": "DELIVERED", "fc": "GEU2", "from": ["Jamul", "CA", "91935", "US"], "boxSrc": "INTERACTIVE"}
+{"id": "FBA19THVPCGY", "name": "FBA STA (10/17/2026 23:19)-HLI2", "status": "RECEIVING", "fc": "HLI2", "from": ["Vancouver", "BC", "V6E 1G2", "CA"], "boxSrc": "INTERACTIVE"}
+{"id": "FBA19TR55MSN", "name": "FBA STA (10/20/2026 01:56)-HGR6", "status": "IN_TRANSIT", "fc": "HGR6", "from": ["North York", "ON", "M3J 2Z3", "CA"], "boxSrc": "INTERACTIVE"}
+fees report: FATAL 0
+
