@@ -1,0 +1,6 @@
+/home/runner/work/melaleuca-cart/melaleuca-cart/reprice/inbound_history.py:21: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  cut = (dt.datetime.utcnow() - dt.timedelta(days=150)).isoformat()
+plans total 8
+{"plan": "wfc0634813-e79f-46bb-9319-8ca1fe675107", "name": "", "status": "ACTIVE", "created": "2026-10-13T00:53:24Z", "src": ["Jamul", "CA", "91935"], "shipments": [], "boxes": []}
+{"plan": "wf5b8bba68-1fb9-456a-b38f-29a9e4b54bd5", "name": "", "status": "ACTIVE", "created": "2026-10-13T00:52:41Z", "src": ["Jamul", "CA", "91935"], "shipments": [], "boxes": []}
+{"plan": "wfea9f4e03-42d2-4136-8db7-f5c39c72bac6", "name": "", "status": "ACTIVE", "created": "2026-08-13T02:52:46Z", "src": ["North York", "ON", "M3J 2Z3"], "shipments": [], "boxes": []}
