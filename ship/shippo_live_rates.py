@@ -1,11 +1,15 @@
 """Shippo LIVE, READ-ONLY: list carrier accounts and get rates. NEVER buys a label (no /transactions call exists in this file)."""
 import os, sys, json, re, urllib.request, urllib.error
-t = os.environ.get("SHIPPO_LIVE_TOKEN", "").strip()
+t = ""
+for k in ("SHIPPO_LIVE_TOKEN", "SHIPPO_LIVE_API_KEY", "SHIPPO_LIVE_KEY", "SHIPPO_API_KEY"):
+    v = os.environ.get(k, "").strip()
+    print(f"env {k}: {'set, ' + ('live' if v.startswith('shippo_live_') else 'test' if v.startswith('shippo_test_') else 'other') if v else 'empty'}")
+    if v.startswith("shippo_live_") and not t: t = v
 if not t:
     for line in os.environ.get("CREDENTIALS_ENV", "").splitlines():
-        m = re.match(r"\s*SHIPPO_LIVE_TOKEN\s*=\s*(\S+)", line)
+        m = re.match(r"\s*SHIPPO_\w*\s*=\s*(shippo_live_\S+)", line)
         if m: t = m.group(1).strip().strip('"\'')
-if not t or t.startswith("shippo_test_"): print("no LIVE token -> abort"); sys.exit(1)
+if not t: print("no LIVE token -> abort"); sys.exit(1)
 print("live token present, prefix ok:", t.startswith("shippo_live_"))
 def call(method, path, body=None):
     req = urllib.request.Request("https://api.goshippo.com" + path, method=method,
