@@ -17,6 +17,7 @@ jobs:
       - name: Run
         env:
           SHIPPO_API_KEY: ${{ secrets.SHIPPO_API_KEY }}
+          SHIPPO_LIVE_TOKEN: ${{ secrets.SHIPPO_LIVE_TOKEN }}
           CREDENTIALS_ENV: ${{ secrets.CREDENTIALS_ENV }}
         run: |
           mkdir -p /tmp/so
