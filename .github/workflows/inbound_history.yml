@@ -1,0 +1,30 @@
+name: Inbound history (read-only)
+on:
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  go:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with: { ref: main }
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - name: Run
+        env: { CRED_ENV: "${{ secrets.CREDENTIALS_ENV }}" }
+        run: |
+          mkdir -p /tmp/so
+          cd reprice
+          printf '%s\n' "$CRED_ENV" > credentials.env
+          python inbound_history.py 2>&1 | tee /tmp/so/run.log
+          rm -f credentials.env
+      - name: Publish
+        if: always()
+        run: |
+          git config user.name "feed-bot"; git config user.email "feed-bot@users.noreply.github.com"
+          git checkout --orphan ih-new
+          git rm -rf . >/dev/null 2>&1 || true
+          cp -a /tmp/so/. .
+          git add -A && git commit -qm "inbound history" && git push -f origin ih-new:inbound-history
