@@ -1,0 +1,64 @@
+TAB	Antonio M	7
+CREDIT	10.42
+L	2	B08TB7GFKC	Mela-Pharmacy - Vitality Vitamin D3		1	4	Credit 1		0	2799				8.39	
+L	3	B0F831D9BG	Mela-Pharmacy - Replenex Extra Strength Drink Mix		1	12	Credit 2		0	4120				22.39	
+L	4	B004P3DRR6	Ecosense - Tub and Tile - 8oz		2	3		#B004P3DRR6	2	1216		8194	Special Offers	9.48	2
+L	5	B0GWQ1VT23	Deodorant - Affinia Sweet Cream and Willow		1	1		DEOD	3	F2248				4.79	
+L	6	B0H6VKW88M	Deodorant - Alloy Antiperspirant		1	1		DEOD	3	20053				4.79	
+L	7	B0GWQ3M97S	Deodorant - Affinia Vanilla Musk and Jasmine		1	2		DEOD	3	F2248				4.79	
+L	8	B0F37XMH8Q	Ecosense - Harvest Pure - 8oz		1	2		CLEAN	3	30101				5.99	
+L	9	B00712RI3M	Ecosense - Mela-magic - 16oz		1	2		CLEAN	3	1235				5.99	
+L	10	B01N4QCNPX	Ecosense - No Work - 8oz		1	3		CLEAN	3	1214				5.99	
+L	11	B018C56968	Sun Shades - Lip Balm - Pina Colada		2	1		F650	3	F650				4.38	
+L	12	B017JIL4GY	Sun Shades - Lip Balm - Cranberry Tangerine		1	1		F650	3	F650				2.19	
+L	13	B0GB1CQ5ZP	Ecosense - Clean And Gleam - 8oz		1	3			0	5612				6.99	
+L	14	B0FXYC4WFN	Exercise - Splash H2O - Lemonade		1	2		F3771	2	F3771				5.89	
+L	15	B0FNHMZ5CS	Exercise - Splash H2O - Strawberry Kiwi		1	3		F3771	2	F3771				5.89	
+L	16	B00UU1EBOU	Toothcare - Koala Pals - Berrylicious		1	1		TOOTH	3	F207				4.25666666666667	
+L	17	B00C0L5282	Toothcare - Classic - Fresh Mint		1	2		TOOTH	3	F686				4.25666666666667	
+L	18	B0DSVBYQ7M	Toothcare - Exceed - Cinnamon		1	2		TOOTH	3	40061				4.25666666666667	
+L	19	B007136OHW	Ecosense - PreSpot - 8oz		2	5		#B007136OHW	2	30083	2211			12.98	
+L	20	B005MKA4U4	Ecosense - Diamond Brite - 25 Loads		2	7		#B005MKA4U4	2	2654	5018			15.38	
+L	21	B0F3BGH2QZ	Haircare - Affinia Volume Conditioner		1	3		AFFSC	2	20064				7.49	
+L	22	B0F3BC6Z7H	Haircare - Affinia Moisture Shampoo		1	3		AFFSC	2	20061				7.49	
+L	23	B00QSRQFVW	EcoSense - Lemon Brite - 16oz - Tropical Scented		1	1		F252	3	F252				4.14	
+L	24	B00AO4A1DS	EcoSense - Lemon Brite - 16oz - Apple Scented		1	2		F252	3	F252				4.14	
+L	25	B001TNTWC4	EcoSense - Lemon Brite - 16oz - Lemon Scented		1	2		F252	3	F252				4.14	
+L	26	B00OI5CAMO	Laundry - Melapower - Garden Lavender		2	8		#B00OI5CAMO	2	F294		34050	Special Offers	25.98	2
+L	27	B0F37YG7GZ	Ecosense - Sol U Guard		1	6			0	4020				9.39	
+L	28	B0F3B85XMK	Renew - Lotion - 1oz - Pure Lavender		1	1			0	3634				2.29	
+L	29	B095XZVBZ9	Laundry - Melasoft Dryer Sheets - Garden Lavender		1	2		F298	2	F298				5.99	
+L	30	B0F3BCWGMC	Laundry - Melasoft Dryer Sheets - Scent Free		1	3		F298	2	F298				5.99	
+L	31	B0H6L8KR8M	Laundry - MelaBoost - Garden Lavender		2	8		F264	2	F264				21.98	
+L	32	B08PSS11NS	Renew - Lotion - 20oz		1	10			0	R480H				16.99	
+L	33	B00Q5EMLIO	Mela-Pharmacy - Activate-C - Orange		2	10		ACT2	2	4545				23.48	
+L	34	B0F3BGRFBG	Laundry - MelaSoft Bottle - Clean Cotton		2	9		F296	2	F296				23.18	
+L	35	B0968SBDJ3	Toothcare - Breath-Away Mouth Rinse - 16oz		2	6		#B0968SBDJ3	2	4597	6196			14.18	
+L	36	B00NYAJ4GE	Haircare - Herbal Shampoo - 8oz		1	4			0	R1729L				7.89	
+L	37	B00OH20CSC	Laundry - Melabrite - Oxi Packs		2	7		OXI2	2	783				14.73	
+L	38	B0F3B949PC	Exercise - FiberWise Green Apple with Stevia		2	19		FIBER2	2	60143				44.98	
+TOTAL	48	383.52	145
+G	TOOTH	Tooth Polish 3-Pack	43987	3		
+G	DEOD	Antiperspirants & Deodorants 3-Pack	190	3		
+G	F252	Lemon Brite Hand Dishwashing Liquid 3-Pack	5026	3		
+G	F264	MelaBoost Laundry Fragrance Booster 2-Pack	590	2		
+G	F3771	SplasH2O Single Serve 2-Pack	63939	2		
+G	F296	MelaSoft Fabric Softener 2-Pack	2154	2		
+G	F298	MelaSoft Dryer Sheet 2-Pack	5027	2		
+G	F650	Sun Shades Lip Balm: 3-Pack	7911	3		
+G	CLEAN	EcoSense Cleaners Customizable 3/4/5-Pack	34911	3		
+G	AFFSC	Affinia Shampoo & Conditioner Bundle	23963	2	A1,B1	WITH
+G	OXI2	2-Pack: Laundry - Melabrite - Oxi Packs	1151	2	A2	OF
+G	ACT2	Activate-C Immune Complex Drink Mix 2-Pack (Orange and/or Raspberry)	5684	2	A2	WITH
+G	FIBER2	FiberWise Drink: Canister 2-Pack	63985	2	A2	OF
+M	AFFSC	B0F3BC6Z7H	A	Moisture Shampoo
+M	AFFSC	B0F3B442CK	A	Volume Shampoo
+M	AFFSC	B0FFKNTNDB	B	Moisture Conditioner
+M	AFFSC	B0F3BGH2QZ	B	Volume Conditioner
+M	OXI2	B00OH20CSC	A	
+M	ACT2	B00Q5EMLIO	A	Orange
+M	ACT2	B0F3BXSNZG	A	Raspberry
+M	FIBER2	B0F3B949PC	A	
+CLEANPACK	3	17.97	7
+CLEANPACK	4	23.46	9
+CLEANPACK	5	27.96	10
