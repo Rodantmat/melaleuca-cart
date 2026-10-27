@@ -1,0 +1,78 @@
+signed in as William Y | plan: 38 lines, TOTAL points 148.0 cost 390.28
+  variant: Exercise - Sustain Electrolyte Tub - Lemon (F2787) -> 60129  Sustain Active Hydration: Lemon Value Size (0.62)
+  variant: Laundry - Melapower - Garden Lavender (F294) -> 5546  Regular Detergent: Garden Lavender (0.86)
+  variant: Toothcare - Exceed - Mints - Wintergreen - 1.5oz (F146) -> 5121  Mints: Wintergreen (0.98)
+  variant: Exercise - Sustain Sport - Orange Splash (F2768) -> 60125  Sustain Active Hydration: Orange Packets (0.57)
+  variant: Haircare - Herbal Shampoo - 32oz (R1729H) -> 4905  only variant: Herbal Shampoo
+  variant: Mela-Pharmacy - Vitality 50+ (F711) -> 403  only variant: Prenatal
+actions: 26 | offer lines: 0 | problems: 0
+  added [single] 2799 x1 Mela-Pharmacy - Vitality Vitamin D3 
+  added [single] 60129 x1 Exercise - Sustain Electrolyte Tub - Lemon 
+  added [single] 1216 x2 Ecosense - Tub and Tile - 8oz 
+  added [single] 5612 x1 Ecosense - Clean And Gleam - 8oz 
+  added [pack] 5018 x1 2-pack: Ecosense - Diamond Brite - 25 Loads 
+  added [pack] 2211 x1 2-pack: Ecosense - PreSpot - 8oz 
+  added [single] 5546 x2 Laundry - Melapower - Garden Lavender 
+  added [single] 5121 x1 Toothcare - Exceed - Mints - Wintergreen - 1.5oz 
+  added [single] 60125 x1 Exercise - Sustain Sport - Orange Splash 
+  added [single] 4905 x1 Haircare - Herbal Shampoo - 32oz 
+  added [single] 70338 x1 Beauty - Sei Bella Facial Scrub 
+  added [single] 403 x1 Mela-Pharmacy - Vitality 50+ 
+  added [pack] 190 x1 DEOD pack 1/1: finia Sweet Cream and Willow, nia Vanill 
+       choice: Deodorant - Alloy Antiperspirant -> Alloy AP/DEO (10.0)
+       choice: Deodorant - Affinia Sweet Cream and Willow -> Affinia Sweet Cream & Willow (0.99)
+       choice: Deodorant - Affinia Vanilla Musk and Jasmine -> Vanilla Musk & Jasmine (0.99)
+  added [pack] 34911 x1 CLEAN pack 1/1: Ecosense - Mela-magic - 16oz, Ecosense  
+       choice: Ecosense - Harvest Pure - 8oz -> Harvest Pure™ Fruit And Vegetable Wash (10.0)
+       choice: Ecosense - Mela-magic - 16oz -> MelaMagic Heavy-Duty Cleaner (10.0)
+       choice: Ecosense - No Work - 8oz -> No Work Daily Shower Cleaner (10.0)
+  added [pack] 7911 x1 F650 pack 1/1: des - Lip Balm - Pina Colada, p Balm - C 
+       choice: Sun Shades - Lip Balm - Cranberry Tangerine -> Cranberry Tangerine (0.98)
+       choice: Sun Shades - Lip Balm - Cranberry Tangerine -> Cranberry Tangerine (0.98)
+       choice: Sun Shades - Lip Balm - Pina Colada -> Pina Colada (0.98)
+  added [pack] 43987 x1 TOOTH pack 1/1:  - Koala Pals - Berrylicious, hcare - C 
+       choice: Toothcare - Koala Pals - Berrylicious -> Berrylicious +Fluoride (0.87)
+       choice: Toothcare - Classic - Fresh Mint -> Classic Fresh Mint - Fluoride-Free (0.83)
+       choice: Toothcare - Exceed - Cinnamon -> Cinnamon - Fluoride-Free (10.0)
+  added [pack] 23963 x1 AFFSC pack 1/1: - Affinia Volume Conditioner, e - Affin 
+       choice: Haircare - Affinia Volume Conditioner -> Volume Conditioner (10.0)
+       choice: Haircare - Affinia Moisture Shampoo -> Moisture Shampoo (10.0)
+  added [pack] 5026 x1 F252 pack 1/1: Brite - 16oz - Apple Scented, Brite - 16 
+       choice: EcoSense - Lemon Brite - 16oz - Tropical Scented -> Tropical (0.98)
+       choice: EcoSense - Lemon Brite - 16oz - Lemon Scented -> Lemon (0.98)
+       choice: EcoSense - Lemon Brite - 16oz - Apple Scented -> Apple (0.98)
+  added [pack] 63939 x1 F3771 pack 1/1: - Splash H2O - Peach Ice Tea, cise - Sp 
+       choice: Exercise - Splash H2O - Lemonade -> Lemonade (0.98)
+       choice: Exercise - Splash H2O - Peach Ice Tea -> Peach Iced Tea (0.99)
+  added [pack] 590 x1 F264 pack 1/1:  MelaBoost - Garden Lavender 
+       choice: Laundry - MelaBoost - Garden Lavender -> MelaBoost - Garden Lavender (0.99)
+       choice: Laundry - MelaBoost - Garden Lavender -> MelaBoost - Garden Lavender (0.99)
+  added [pack] 5027 x1 F298 pack 1/1: ft Dryer Sheets - Scent Free, yer Sheets 
+       choice: Laundry - Melasoft Dryer Sheets - Garden Lavender -> Garden Lavender (0.98)
+       choice: Laundry - Melasoft Dryer Sheets - Scent Free -> Scent Free (0.98)
+  added [pack] 2154 x1 F296 pack 1/1: oft Bottle - Garden Lavender 
+       choice: Laundry - MelaSoft Bottle - Garden Lavender -> Garden Lavender (0.98)
+       choice: Laundry - MelaSoft Bottle - Garden Lavender -> Garden Lavender (0.98)
+  added [pack] 6277 x1 KPB2 pack 1/1: Koala Pals - Hair Wash 
+       choice: Koala Pals - Hair Wash -> Hair Wash (10.0)
+       choice: Koala Pals - Hair Wash -> Hair Wash (10.0)
+  added [pack] 219 x1 MB9X2 pack 1/1: undry - Melabrite - 96 loads 
+  added [pack] 5684 x1 ACT2 pack 1/1: acy - Activate-C - Raspberry 
+       choice: Mela-Pharmacy - Activate-C - Raspberry -> Activate-C Immune Complex Drink: Raspberry (10.0)
+       choice: Mela-Pharmacy - Activate-C - Raspberry -> Activate-C Immune Complex Drink: Raspberry (10.0)
+  added [pack] 43978 x1 PAIN pack 1/1: cy - Pain A Trate - Original 
+       choice: Mela-Pharmacy - Pain A Trate - Original -> Original 3 oz (10.0)
+       choice: Mela-Pharmacy - Pain A Trate - Original -> Original 3 oz (10.0)
+cart before the offers: 28 items, 178 points
+  credit  : Credit 1 -> box 'Buy with Loyalty Shopping Dollars' ticked on Mela-Pharmacy - Vitality Vitamin D3
+  credit  : Credit 2 -> box 'Buy with Loyalty Shopping Dollars' ticked on Exercise - Sustain Electrolyte Tub - Lemon
+
+CART NOW: 28 items | 163 points | gross 407.78 | net 397.36 | discount 0
+SHEET   : 148 points count for the limit (TOTAL row: 148) + 15 points of credit items | cost of all lines 390.28
+CREDIT  : $10.42 of loyalty dollars used by the cart
+RESULT  : points DIFFER by +15 | cost DIFFER by +17.50
+  DIFFERENCE: Ecosense - Tub and Tile - 8oz: sheet 3 pts / 9.48  -  store 6 pts / 13.98
+  DIFFERENCE: Laundry - Melapower - Garden Lavender: sheet 8 pts / 25.98  -  store 20 pts / 38.98
+  AUTO-ADJUSTED: Laundry - Melapower - Garden Lavender: quantity 2 -> 1 (the store gives it 10 points per unit; the sheet expected a coupon price)
+  AUTO-ADJUSTED: Ecosense - Tub and Tile - 8oz: quantity 2 -> 1 (the store gives it 3 points per unit; the sheet expected a coupon price)
+CART AFTER THE ADJUSTMENT: 26 items | 150 points | gross 381.3
