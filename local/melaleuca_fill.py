@@ -974,6 +974,16 @@ def coupon_add(s, card_no, qty, product_name):
     return True, ""
 
 
+def stale_sets(plan):
+    """sets (group keys) that the order lines use but the sheet no longer has (switched off by the pack audit, or deleted): the tab was built before the sheet changed"""
+    out = []
+    for L in plan["lines"]:
+        k = L.get("group") or ""
+        if L["qty"] > 0 and k and not k.startswith("#") and k not in plan["groups"] and k not in out:
+            out.append(k)
+    return out
+
+
 def run(n, dry=False, lab=False, final=True, audit=False):
     import melaleuca_run as mr
     import melaleuca_scan as ms
@@ -983,6 +993,17 @@ def run(n, dry=False, lab=False, final=True, audit=False):
         if a.startswith("--plan="):
             plan_path = a[7:]
     plan = load_plan(plan_path) if (not audit or os.path.exists(plan_path)) else {"tab": "", "n": n, "credit": 0, "lines": [], "total": None, "groups": {}, "members": [], "cleanpack": {}}
+    if not audit:
+        st = stale_sets(plan)
+        if st:
+            print("")
+            print("=" * 78)
+            print(" THIS ORDER IS OUT OF DATE - nothing was done in the store (no sign-in, no proxy traffic).")
+            print("   The tab still uses the set(s): %s" % ", ".join(st))
+            print("   but the sheet no longer has them (the store cannot fill them, so the pack audit switched them off).")
+            print("   Run Generate All Orders (answer YES = rebuild ALL), then press Auto-Fill Cart again.")
+            print("=" * 78)
+            return 3
     env = mr.read_env(os.path.join(HERE, "credentials.env"))
     tabs = {}
     for ln in open(os.path.join(FEED, "mel_tabs.txt"), encoding="utf-8-sig"):
