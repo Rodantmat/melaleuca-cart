@@ -1,0 +1,257 @@
+02:12:37   proxy port 10001 | location: cr.ca;city.vancouver
+02:13:16 signed in as David H | plan: 167 lines, TOTAL points 1081.0 cost 2260.95
+02:13:17   catalog from the saved copy: 81 families (no need to read the store)
+02:13:38   variant: Beauty - Sei Bella Volume Extreme Mascara - Black  (F2026) -> 8900  only variant: Volume: Black - Waterproof
+02:13:48   variant: Deodorant - Affinia Sweet Cream and Willow (F2248) -> 20087  Sweet Cream and Willow Antiperspirant & Deodorant  (0.87)
+02:13:53   variant: Deodorant - Affinia Vanilla Musk and Jasmine (F2248) -> 20088  Affinia Vanilla Musk & Jasmine Antiperspirant & Deodorant  (0.90)
+02:14:38   variant: EcoSense - Lemon Brite - 16oz - Apple Scented (F252) -> 7904  Apple Scent (0.98)
+02:14:43   variant: EcoSense - Lemon Brite - 16oz - Lemon Scented (F252) -> NOT RESOLVED: no variant of family 252 looks like 'EcoSense - Lemon Brite - 16oz - Lemon Scented' (best: Original Lemon Scent 0.49)
+02:14:43   variant: EcoSense - Lemon Brite - 16oz - Tropical Scented (F252) -> 187  Tropical Scent (0.98)
+02:14:47   variant: Ecosense - Lemon Brite - 16oz - Lavender (F252) -> NOT RESOLVED: no variant of family 252 looks like 'Ecosense - Lemon Brite - 16oz - Lavender' (best: Original Lemon Scent 0.49)
+02:14:53   name check: 'Ecosense - Mela-magic - 16oz' vs store item 1235 'MelaMagic? Heavy-Duty Cleaner' - could not find a better one, kept as the sheet says
+02:14:53   variant: Ecosense - Mela-magic - 16oz - 2-Pack () -> 30087  EcoSense Rinse Aid (price 6.99, 3 pts) x2 for the 2-pack
+02:15:14   variant: Ecosense - Rustic - 8oz - 2-Pack () -> 30087  EcoSense Rinse Aid (price 6.99, 3 pts) x2 for the 2-pack
+02:15:34   variant: Ecosense - Sol-U-Mel - Lavender - 8oz (R642L) -> NOT RESOLVED: no variant of family 642 looks like 'Ecosense - Sol-U-Mel - Lavender - 8oz' (best: Original Scent 0.00)
+02:15:34   variant: Ecosense - Sol-U-Mel - Lemon Blossom - 16oz (R642H) -> 294  Lemon Blossom (0.98)
+02:15:39   variant: Ecosense - Sol-U-Mel - Lemon Blossom - 8oz (R642L) -> 293  Lemon Blossom (0.98)
+02:15:44   variant: Ecosense - Sol-U-Mel - Lemon Blossom - 8oz with bo (R642L) -> 293  Lemon Blossom (0.98)
+02:15:44   variant: Ecosense - Sol-U-Mel - Original - 16oz (R642H) -> 130  Original Scent (0.98)
+02:15:49   variant: Ecosense - Sol-U-Mel - Original - 8oz (R642L) -> 292  Original Scent (0.98)
+02:15:58   variant: Ecosense - Tough and Tender - 8oz - 2-Pack () -> 4075  Tough & Tender? Wipes 2?Pack (price 6.99, 3 pts) x2 for the 2-pack
+02:16:14   variant: Ecosense - Tub and Tile - 8oz - 2-Pack () -> 1216  Tub & Tile? 12x Bathroom Cleaner (price 6.99, 3 pts) x2 for the 2-pack
+02:16:19   variant: Exercise - Access - Chocolate Caramel Kruncher (F11) -> 4201  Chocolate Caramel Kruncher (0.99)
+02:16:24   variant: Exercise - Access - Chocolate Raspberry Rush (F11) -> 4256  Chocolate Raspberry Rush (0.99)
+02:16:28   variant: Exercise - Access - Chocolate S'mores Spark (F11) -> NOT RESOLVED: no variant of family 11 looks like 'Exercise - Access - Chocolate S'mores Spark' (best: Chocolate Caramel Kruncher 0.09)
+02:16:28   variant: Exercise - B-Fuel - Raspberry Lemonade - 2oz (1979/2) -> NOT RESOLVED: no store product costs 2.38 with 1 points
+02:16:33   variant: Exercise - FiberWise Drink-Berry Sugar-free (F2666) -> 60141  FiberWise Drink: Berry Sugar-Free (0.99)
+02:16:44   variant: Exercise - FiberWise Orange No Sugar (F2666) -> 60140  FiberWise Drink: Orange Sugar-Free (0.66)
+02:16:58   variant: Exercise - Simply Fit Chocolate Chip Drizzle (F623) -> 1361  Chocolate Chip Drizzle (0.98)
+02:17:03   variant: Exercise - Simply Fit Vanilla Greek Yogurt (F623) -> 1300  Vanilla Greek Yogurt (0.98)
+02:17:12   variant: Exercise - Splash H2O - Peach Ice Tea (F3771) -> 60215  SplasH2O? Single Serve: Peach Iced Tea (0.77)
+02:17:17   variant: Exercise - Splash H2O - Strawberry Kiwi (F3771) -> 60213  SplasH2O? Single Serve: Strawberry Kiwi (0.81)
+02:17:21   variant: Exercise - Splash H2O - Lemonade (F3771) -> 60212  SplasH2O? Single Serve: Lemonade (0.69)
+02:17:31   variant: Exercise - Sustain Electrolyte Tub - Lemon (F2787) -> 60129  Sustain Active Hydration: Lemon Value Size (0.62)
+02:17:36   variant: Exercise - Sustain Electrolyte Tub - Raspberry Lem (F2787) -> 60132  Sustain Active Hydration: Raspberry Lemonade Value Size (0.74)
+02:17:50   variant: Exercise - Sustain Sport - Lemon (F2768) -> 60124  Sustain Active Hydration: Lemon Packets (0.57)
+02:17:54   variant: Exercise - Sustain Sport - Orange Splash  (F2768) -> 60125  Sustain Active Hydration: Orange Packets (0.57)
+02:17:59   variant: Exercise - Sustain Sport - Raspberry Lemonade (F2768) -> 60127  Sustain Active Hydration: Raspberry Lemonade Packets   (0.70)
+02:18:13   variant: Haircare - Herbal Shampoo - 32oz (R1729H) -> 4905  only variant: Herbal Shampoo
+02:18:17   variant: Haircare - Herbal Shampoo - 8oz (R1729L) -> 4117  only variant: Melaleuca? Herbal Shampoo
+02:18:26   variant: Haircare - Original Shampoo - 32oz (R289H) -> 4906  only variant: Original Shampoo
+02:18:31   variant: Haircare - Original Shampoo - 8oz (R289L) -> 4118  only variant: Melaleuca? Original Shampoo
+02:18:36   variant: Haircare - Sei Bella Argan Oil and Coconut Conditi (F3293) -> 70114  Argan Oil & Coconut Moisture Smooth Conditioner (0.62)
+02:18:41   variant: Haircare - Sei Bella Argan Oil and Coconut Shampoo (F3292) -> 5509  Argan Oil & Coconut Moisture Smooth Shampoo (0.62)
+02:18:52   variant: Laundry - MelaBoost - Garden Lavender (F264) -> 6423  Garden Lavender (0.98)
+02:18:52   variant: Laundry - MelaBoost - Island Breeze (F264) -> 6422  Island Breeze (0.98)
+02:18:57   variant: Laundry - MelaBoost - Mountain Fresh (F264) -> 6421  Mountain Fresh (0.98)
+02:19:12   variant: Laundry - Melapower - Garden Lavender (F294) -> 5546  Regular Detergent: Garden Lavender (0.86)
+02:19:18   variant: Laundry - Melapower - Island Breeze (F294) -> 6901  Regular Detergent: Island Breeze (0.86)
+02:19:23   variant: Laundry - MelaPower - Mountain Fresh (F294) -> 6902  Regular Detergent: Mountain Fresh (0.86)
+02:19:28   variant: Laundry - MelaPower - Scent Free (F294) -> 215  HE Detergent: Scent Free (0.71)
+02:19:37   variant: Laundry - MelaSoft Bottle - Clean Cotton (F296) -> 265  96 load, Clean Cotton (0.84)
+02:19:42   variant: Laundry - MelaSoft Bottle - Garden Lavender (F296) -> 268  96 load, Garden Lavender (0.84)
+02:19:47   variant: Laundry - MelaSoft Bottle - Spring Breeze (F296) -> 267  96 load, Spring Breeze (0.84)
+02:19:56   variant: Laundry - Melasoft Dryer Sheets - Clean Cotton (F298) -> 5271  Clean Cotton (0.98)
+02:20:02   variant: Laundry - Melasoft Dryer Sheets - Garden Lavender (F298) -> 9984  Garden Lavender (0.98)
+02:20:07   variant: Laundry - Melasoft Dryer Sheets - Scent Free (F298) -> 9996  Scent-Free (0.98)
+02:20:13   variant: Laundry - Melasoft Dryer Sheets - Spring Breeze (F298) -> 9317  Spring Breeze (0.98)
+02:20:53   variant: Mela-Pharmacy - Creme Delight - Peach Mango Tango  (F348) -> 3124  Peach Mango Tango (0.98)
+02:21:25   name check: 'Mela-Pharmacy - Mela-Out Magnesium' vs store item 60093 'Melaleuca Magnesium' - could not find a better one, kept as the sheet says
+02:21:40   variant: Mela-Pharmacy - Peak Performance Nutrition Pack -  (F2350) -> 63029  Peak Performance Nutrition Pack: Longevity 50+ (0.99)
+02:21:45   variant: Mela-Pharmacy - Peak Performance Nutrition Pack -  (F2350) -> 63028  Peak Performance Nutrition Pack: Men (0.99)
+02:21:50   variant: Mela-Pharmacy - Peak Performance Nutrition Pack -  (F2350) -> 63027  Peak Performance Nutrition Pack: Women (0.99)
+02:22:26   variant: Mela-Pharmacy - Vitality Essential Nutrition Pack  (F2348) -> 63023  Vitality Essential? Nutrition Longevity 50+ (0.99)
+02:22:31   variant: Mela-Pharmacy - Vitality Essential Nutrition Pack  (F2348) -> 63022  Vitality Essential? Nutrition Men (0.99)
+02:22:36   variant: Mela-Pharmacy - Vitality Essential Nutrition Pack  (F2348) -> 63021  Vitality Essential? Nutrition Women (0.99)
+02:22:50   variant: Mela-Pharmacy - Vitality 50+ (F711) -> NOT RESOLVED: no variant of family 711 looks like 'Mela-Pharmacy - Vitality 50+' (best: Women 0.00)
+02:22:50   variant: Mela-Pharmacy - Vitality Men (F711) -> 401  Men (0.98)
+02:22:55   variant: Mela-Pharmacy - Vitality Women (F711) -> 400  Women (0.98)
+02:23:17   variant: Oil - T36-c5 Melaleuca?1 Fl.oz. (R681H) -> 199  only variant: 30 mL
+02:23:22   variant: Oil - T36-C5-0.5 fl.oz. (manual) -> 50028  PURE? Eucalyptus Essential Oil - AMBIGUOUS, same price/points as 1 others, check it
+02:23:43   variant: Renew - Lotion - 1oz (manual) -> 3887  Renew? Intensive Skin Therapy: Travel Size (price 2.09, 1 pts)
+02:23:48   variant: Renew - Lotion - 20oz (R480H) -> 6600  only variant: Value Size Renew
+02:23:48   variant: Renew - Lotion - 8oz (R480L) -> 6969  only variant: 237 mL tube
+02:24:03   variant: Soap Bar - Exfoliating Bar (F55) -> 5540  Exfoliating Body Bar (0.67)
+02:24:08   variant: Soap Bar - Exfoliating Bar - Almond Vanilla (F55) -> 5540  Exfoliating Body Bar (0.66)
+02:24:12   variant: Soap Bar - Gold Bar (R683H) -> 117  only variant: Gold Bar
+02:24:17   variant: Soap Bar - Pineapple Mango Bar (F55) -> 8927  Pineapple Mango (0.98)
+02:24:21   variant: Soap Bar - Pink Grapefruit Bar (F55) -> 8928  Pink Grapefruit (0.98)
+02:24:41   variant: Sun Shades - Lip Balm - Cranberry Tangerine (F650) -> 2270  Cranberry Tangerine (0.98)
+02:24:46   variant: Sun Shades - Lip Balm - Mountain Mist (F650) -> NOT RESOLVED: no variant of family 650 looks like 'Sun Shades - Lip Balm - Mountain Mist' (best: Mountain Mint 0.49)
+02:24:46   variant: Sun Shades - Lip Balm - Pina Colada (F650) -> NOT RESOLVED: no variant of family 650 looks like 'Sun Shades - Lip Balm - Pina Colada' (best: Pi?a Colada 0.49)
+02:24:46   variant: Sun Shades - Lip Balm - Vanilla Bean (F650) -> 111  Vanilla Bean (0.98)
+02:25:00   variant: Sun Valley  - Foaming Hand Wash - Refill Bottle -  (F665) -> 7915  only variant: Foaming Hand Wash: Pomegranate Sage
+02:25:09   variant: Sun Valley - Hand Wash - Mint and Herb - 8oz with  (R669H) -> 179  Hand Wash: Mint & Herb (0.99)
+02:25:30   variant: Toothcare - Exceed - Mints - Wintergreen - 1.5oz (F146) -> 5121  Mints: Wintergreen (0.98)
+02:25:39   variant: Toothcare - Classic - Fresh Mint (F686) -> 5395  Fresh Mint Fluoride-Free (0.50)
+02:26:03   variant: Toothcare - Koala Pals - Apple (F207) -> NOT RESOLVED: no variant of family 207 looks like 'Toothcare - Koala Pals - Apple' (best: Apple - Fluoride-Free 0.40)
+02:26:03   variant: Toothcare - Koala Pals - Berrylicious (F207) -> 1297  Berrylicious +Fluoride (0.65)
+02:26:08 actions: 158 | offer lines: 0 | problems: 9
+02:26:08   PROBLEM: row 20 B001TNTWC4: no item number for 'EcoSense - Lemon Brite - 16oz - Lemon Scented' (sheet has 'F252') - add this one by hand
+02:26:08   PROBLEM: row 22 B0FBLKT4YK: no item number for 'Ecosense - Lemon Brite - 16oz - Lavender' (sheet has 'F252') - add this one by hand
+02:26:08   PROBLEM: row 41 B0FG1STDS7: no item number for 'Ecosense - Sol-U-Mel - Lavender - 8oz' (sheet has 'R642L') - add this one by hand
+02:26:08   PROBLEM: row 57 B0F3BGPMJ7: no item number for 'Exercise - Access - Chocolate S'mores Spark' (sheet has 'F11') - add this one by hand
+02:26:08   PROBLEM: row 58 B0FKZNKXN4: no item number for 'Exercise - B-Fuel - Raspberry Lemonade - 2oz' (sheet has '1979/2') - add this one by hand
+02:26:08   PROBLEM: row 129 B00AOW2M3M: no item number for 'Mela-Pharmacy - Vitality 50+' (sheet has 'F711') - add this one by hand
+02:26:08   PROBLEM: row 154 B018C5698G: no item number for 'Sun Shades - Lip Balm - Mountain Mist' (sheet has 'F650') - add this one by hand
+02:26:08   PROBLEM: row 155 B018C56968: no item number for 'Sun Shades - Lip Balm - Pina Colada' (sheet has 'F650') - add this one by hand
+02:26:08   PROBLEM: row 167 B008K15NBM: no item number for 'Toothcare - Koala Pals - Apple' (sheet has 'F207') - add this one by hand
+02:26:08   would add [single] 2965 x1 Beauty - Sei Bella Defense and Repair Treatment Serum
+02:26:08   would add [single] 70338 x1 Beauty - Sei Bella Facial Scrub
+02:26:08   would add [single] 70222 x1 Beauty - Sei Bella Gentle Daily Cleanser - 5oz
+02:26:08   would add [single] 70226 x1 Beauty - Sei Bella SPF 25 Sunscreen - 2.5 Fl oz
+02:26:08   would add [single] 8900 x1 Beauty - Sei Bella Volume Extreme Mascara - Black - 0.47oz
+02:26:08   would add [single] 20087 x1 Deodorant - Affinia Sweet Cream and Willow
+02:26:08   would add [single] 20088 x1 Deodorant - Affinia Vanilla Musk and Jasmine
+02:26:08   would add [single] 20053 x1 Deodorant - Alloy Antiperspirant
+02:26:08   would add [single] 2468 x1 Deodorant - Herbal
+02:26:08   would add [single] 5612 x1 Ecosense - Clean And Gleam - 8oz
+02:26:08   would add [single] 1212 x1 Ecosense - Clear Power Glass Cleaner - 8 oz
+02:26:08   would add [single] 1212 x1 Ecosense - Clear Power Glass Cleaner - 8oz with bottle
+02:26:08   would add [single] 3300 x1 Ecosense - Clear Power Glass Cleaner Wipes
+02:26:08   would add [single] 2654 x1 Ecosense - Diamond Brite - 25 Loads
+02:26:08   would add [single] 5018 x1 Ecosense - Diamond Brite - 25 Loads - 2-Pack
+02:26:08   would add [single] 2655 x1 Ecosense - Diamond Brite - Packs
+02:26:08   would add [single] 30101 x1 Ecosense - Harvest Pure - 8oz
+02:26:08   would add [single] 7904 x1 EcoSense - Lemon Brite - 16oz - Apple Scented
+02:26:08   would add [single] 187 x1 EcoSense - Lemon Brite - 16oz - Tropical Scented
+02:26:08   would add [single] 1235 x1 Ecosense - Mela-magic - 16oz
+02:26:08   would add [single] 30087 x2 Ecosense - Mela-magic - 16oz - 2-Pack
+02:26:08   would add [single] 1214 x1 Ecosense - No Work - 8oz
+02:26:08   would add [single] 1214 x1 Ecosense - No Work - 8oz with Bottle
+02:26:08   would add [single] 30083 x1 Ecosense - PreSpot - 8oz
+02:26:08   would add [single] 2211 x1 Ecosense - PreSpot - 8oz - 2-Pack
+02:26:08   would add [single] 30083 x1 Ecosense - Prespot - 8oz with Bottle
+02:26:08   would add [single] 7625 x1 Ecosense - Prespot Instant Stain Remover
+02:26:08   would add [single] 33022 x1 Ecosense - Prespot Instant Stain Remover - 3-Pack
+02:26:08   would add [single] 30085 x1 Ecosense - Prespot with Scrubbing Brush
+02:26:08   would add [single] 33961 x1 Ecosense - Revive - Original with Bottle
+02:26:08        choice: Ecosense - Revive - Original with Bottle -> Original Fragrance (0.49)
+02:26:08   would add [single] 30087 x1 EcoSense - Rinse Aid - 16oz
+02:26:08   would add [single] 3427 x1 Ecosense - Rustic - 8oz
+02:26:08   would add [single] 30087 x2 Ecosense - Rustic - 8oz - 2-Pack
+02:26:08   would add [single] 5680 x1 Ecosense - Safe and Mighty
+02:26:08   would add [single] 4020 x1 Ecosense - Sol U Guard
+02:26:08   would add [single] 4020 x1 Ecosense - Sol-U-Guard with Bottle
+02:26:08   would add [single] 4056 x1 Ecosense - Sol-U-Guard Wipes
+02:26:08   would add [single] 294 x1 Ecosense - Sol-U-Mel - Lemon Blossom - 16oz
+02:26:08   would add [single] 293 x1 Ecosense - Sol-U-Mel - Lemon Blossom - 8oz
+02:26:08   would add [single] 293 x1 Ecosense - Sol-U-Mel - Lemon Blossom - 8oz with bottle
+02:26:08   would add [single] 130 x1 Ecosense - Sol-U-Mel - Original - 16oz
+02:26:08   would add [single] 292 x1 Ecosense - Sol-U-Mel - Original - 8oz
+02:26:08   would add [single] 1218 x1 Ecosense - Tough and Tender - 8oz
+02:26:08   would add [single] 4075 x2 Ecosense - Tough and Tender - 8oz - 2-Pack
+02:26:08   would add [single] 1218 x1 Ecosense - Tough and Tender - 8oz with Bottle
+02:26:08   would add [single] 1218 x1 Ecosense - Tough and Tender - Lavender - 8oz
+02:26:08   would add [single] 4074 x1 Ecosense - Tough and Tender Wipes
+02:26:08   would add [single] 1216 x1 Ecosense - Tub and Tile - 8oz
+02:26:08   would add [single] 1216 x2 Ecosense - Tub and Tile - 8oz - 2-Pack
+02:26:08   would add [single] 1216 x1 Ecosense - Tub and Tile - 8oz with Bottle
+02:26:08   would add [single] 4201 x1 Exercise - Access - Chocolate Caramel Kruncher
+02:26:08   would add [single] 4256 x1 Exercise - Access - Chocolate Raspberry Rush
+02:26:08   would add [single] 60141 x1 Exercise - FiberWise Drink-Berry Sugar-free
+02:26:08   would add [single] 60143 x1 Exercise - FiberWise Green Apple with Stevia
+02:26:08   would add [single] 60140 x1 Exercise - FiberWise Orange No Sugar
+02:26:08   would add [single] 60155 x1 Exercise - GC Control Creamy Vanilla Bean
+02:26:08   would add [single] 1361 x1 Exercise - Simply Fit Chocolate Chip Drizzle
+02:26:08   would add [single] 1300 x1 Exercise - Simply Fit Vanilla Greek Yogurt
+02:26:08   would add [single] 60215 x1 Exercise - Splash H2O - Peach Ice Tea
+02:26:08   would add [single] 60213 x1 Exercise - Splash H2O - Strawberry Kiwi
+02:26:08   would add [single] 60212 x1 Exercise - Splash H2O - Lemonade
+02:26:08   would add [single] 60129 x1 Exercise - Sustain Electrolyte Tub - Lemon
+02:26:08   would add [single] 60132 x1 Exercise - Sustain Electrolyte Tub - Raspberry Lemonade
+02:26:08   would add [single] 60128 x1 Exercise - Sustain Sport - Blueberry Pomegranate
+02:26:08   would add [single] 60124 x1 Exercise - Sustain Sport - Lemon
+02:26:08   would add [single] 60125 x1 Exercise - Sustain Sport - Orange Splash 
+02:26:08   would add [single] 60127 x1 Exercise - Sustain Sport - Raspberry Lemonade
+02:26:08   would add [single] 20062 x1 Haircare - Affinia Moisture Conditioner 
+02:26:08   would add [single] 20061 x1 Haircare - Affinia Moisture Shampoo 
+02:26:08   would add [single] 20064 x1 Haircare - Affinia Volume Conditioner
+02:26:08   would add [single] 20063 x1 Haircare - Affinia Volume Shampoo
+02:26:08   would add [single] 4905 x1 Haircare - Herbal Shampoo - 32oz
+02:26:08   would add [single] 4117 x1 Haircare - Herbal Shampoo - 8oz
+02:26:08   would add [single] 4906 x1 Haircare - Original Shampoo - 32oz
+02:26:08   would add [single] 4118 x1 Haircare - Original Shampoo - 8oz
+02:26:08   would add [single] 70114 x1 Haircare - Sei Bella Argan Oil and Coconut Conditioner
+02:26:08   would add [single] 5509 x1 Haircare - Sei Bella Argan Oil and Coconut Shampoo
+02:26:08   would add [single] 4914 x1 Koala Pals - Body Wash
+02:26:08   would add [single] 4913 x1 Koala Pals - Hair Wash
+02:26:08   would add [single] 499 x1 Koala Pals - Chewable Multivitamins
+02:26:08   would add [single] 6423 x1 Laundry - MelaBoost - Garden Lavender
+02:26:08   would add [single] 6422 x1 Laundry - MelaBoost - Island Breeze
+02:26:08   would add [single] 6421 x1 Laundry - MelaBoost - Mountain Fresh
+02:26:08   would add [single] 9770 x1 Laundry - Melabrite - 96 loads
+02:26:08   would add [single] 783 x1 Laundry - Melabrite - Oxi Packs
+02:26:08   would add [single] 5546 x1 Laundry - Melapower - Garden Lavender
+02:26:08   would add [single] 6901 x1 Laundry - Melapower - Island Breeze
+02:26:08   would add [single] 6902 x1 Laundry - MelaPower - Mountain Fresh
+02:26:08   would add [single] 215 x1 Laundry - MelaPower - Scent Free
+02:26:08   would add [single] 265 x1 Laundry - MelaSoft Bottle - Clean Cotton
+02:26:08   would add [single] 268 x1 Laundry - MelaSoft Bottle - Garden Lavender
+02:26:08   would add [single] 267 x1 Laundry - MelaSoft Bottle - Spring Breeze
+02:26:08   would add [single] 5271 x1 Laundry - Melasoft Dryer Sheets - Clean Cotton
+02:26:08   would add [single] 9984 x1 Laundry - Melasoft Dryer Sheets - Garden Lavender
+02:26:08   would add [single] 9996 x1 Laundry - Melasoft Dryer Sheets - Scent Free
+02:26:08   would add [single] 9317 x1 Laundry - Melasoft Dryer Sheets - Spring Breeze
+02:26:08   would add [single] 60111 x1 Mela-Pharmacy - Activate-C - Bottle
+02:26:08   would add [single] 9961 x1 Mela-Pharmacy - Activate-C - Family Size - Orange
+02:26:08   would add [single] 4545 x1 Mela-Pharmacy - Activate-C - Orange
+02:26:08   would add [single] 4445 x1 Mela-Pharmacy - Activate-C - Raspberry
+02:26:08   would add [single] 1545 x1 Mela-Pharmacy - Coldwater Omega 3
+02:26:08   would add [single] 60225 x1 Mela-Pharmacy - Collagen Boost with Ceramides
+02:26:08   would add [single] 3124 x1 Mela-Pharmacy - Creme Delight - Peach Mango Tango - Omega 3
+02:26:08   would add [single] 60113 x1 Mela-Pharmacy - Florify Daily Probiotic
+02:26:08   would add [single] 4302 x1 Mela-Pharmacy - Good Zymes
+02:26:08   would add [single] 3847 x1 Mela-Pharmacy - MelaGel .5oz Tube
+02:26:08   would add [single] 3417 x1 Mela-Pharmacy - MelaGel .4oz Disk
+02:26:08   would add [single] 60093 x1 Mela-Pharmacy - Mela-Out Magnesium
+02:26:08   would add [single] 184 x1 Mela-Pharmacy - Pain A Trate - Original
+02:26:08   would add [single] 42999 x1 Mela-Pharmacy - Pain A Trate - Ultra
+02:26:08   would add [single] 63029 x1 Mela-Pharmacy - Peak Performance Nutrition Pack - Longevity 50+
+02:26:08   would add [single] 63028 x1 Mela-Pharmacy - Peak Performance Nutrition Pack - Men
+02:26:08   would add [single] 63027 x1 Mela-Pharmacy - Peak Performance Nutrition Pack - Women
+02:26:08   would add [single] 2155 x1 Mela-Pharmacy - Phytomega 
+02:26:08   would add [single] 2000 x1 Mela-Pharmacy - ProvexCV
+02:26:08   would add [single] 4120 x1 Mela-Pharmacy - Replenex Extra Strength Drink Mix
+02:26:08   would add [single] 1693 x1 Mela-Pharmacy - Replenex Bottle
+02:26:08   would add [single] 405 x1 Mela-Pharmacy - Vitality Calcium Complete
+02:26:08   would add [single] 63023 x1 Mela-Pharmacy - Vitality Essential Nutrition Pack - Longevity +50
+02:26:08   would add [single] 63022 x1 Mela-Pharmacy - Vitality Essential Nutrition Pack - Men
+02:26:08   would add [single] 63021 x1 Mela-Pharmacy - Vitality Essential Nutrition Pack - Women
+02:26:08   would add [single] 2799 x1 Mela-Pharmacy - Vitality Vitamin D3 
+02:26:08   would add [single] 401 x1 Mela-Pharmacy - Vitality Men
+02:26:08   would add [single] 400 x1 Mela-Pharmacy - Vitality Women
+02:26:08   would add [single] 2164 x1 Oil - Melaleuca T40-C3 Rare Quality Esse
+02:26:08   would add [single] 50041 x1 Oil - Pure - Lavender - 0.5 Fl oz
+02:26:08   would add [single] 199 x1 Oil - T36-c5 Melaleuca?1 Fl.oz.
+02:26:08   would add [single] 50028 x1 Oil - T36-C5-0.5 fl.oz.
+02:26:08   would add [single] 3620 x1 Renew - Body Wash 12oz
+02:26:08   would add [single] 2379 x1 Renew - Eczema Treatment - 1.7oz
+02:26:08   would add [single] 3840 x1 Renew - Hand Wash - Refill - 18oz Refill Bottle Only
+02:26:08   would add [single] 3748 x1 Renew - Hand Wash 8oz
+02:26:08   would add [single] 3887 x1 Renew - Lotion - 1oz
+02:26:08   would add [single] 3634 x1 Renew - Lotion - 1oz - Pure Lavender
+02:26:08   would add [single] 6600 x1 Renew - Lotion - 20oz
+02:26:08   would add [single] 6969 x1 Renew - Lotion - 8oz
+02:26:08   would add [single] 3604 x1 Renew - Lotion - 8oz - Pure Lavender
+02:26:08   would add [single] 108 x1 Renew - Bath Oil 
+02:26:08   would add [single] 5540 x1 Soap Bar - Exfoliating Bar
+02:26:08   would add [single] 5540 x1 Soap Bar - Exfoliating Bar - Almond Vanilla
+02:26:08   would add [single] 117 x1 Soap Bar - Gold Bar
+02:26:08   would add [single] 8927 x1 Soap Bar - Pineapple Mango Bar
+02:26:08   would add [single] 8928 x1 Soap Bar - Pink Grapefruit Bar
+02:26:08   would add [single] 3308 x1 Soap Bar - Platinum Bar
+02:26:08   would add [single] 1436 x1 Sun Shades - After Sun Relief Gel - 7.3oz
+02:26:08   would add [single] 2270 x1 Sun Shades - Lip Balm - Cranberry Tangerine
+02:26:08   would add [single] 111 x1 Sun Shades - Lip Balm - Vanilla Bean
+02:26:08   would add [single] 2144 x1 Sun Shades - Mineral Plus SPF 30+ Sunscreen - Coconut-Lime
+02:26:08   would add [single] 7915 x1 Sun Valley  - Foaming Hand Wash - Refill Bottle - Pomegranate Sage
+02:26:08   would add [single] 179 x1 Sun Valley - Hand Wash - Mint and Herb - 8oz with pump
+02:26:08   would add [single] 4597 x1 Toothcare - Breath-Away Mouth Rinse - 16oz
+02:26:08   would add [single] 6196 x1 Toothcare - Breath-Away Mouth Rinse - 16oz - 2-Pack
+02:26:08   would add [single] 5121 x1 Toothcare - Exceed - Mints - Wintergreen - 1.5oz
+02:26:08   would add [single] 5395 x1 Toothcare - Classic - Fresh Mint
+02:26:08   would add [single] 40061 x1 Toothcare - Exceed - Cinnamon
+02:26:08   would add [single] 42994 x1 Toothcare - Exceed - Fresh Mint
+02:26:08   would add [single] 42996 x1 Toothcare - Exceed - Spearmint with Fluoride 
+02:26:08   would add [single] 1297 x1 Toothcare - Koala Pals - Berrylicious
