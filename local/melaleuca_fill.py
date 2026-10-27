@@ -6,6 +6,7 @@ melaleuca_fill.py - fills the Melaleuca cart of one account with the order of it
 
 SAFE BY DESIGN: it never pays and never places the order. It stops on the checkout screen and leaves the browser open for you.
 """
+import unicodedata
 import os, sys, json, re, time, math, datetime, traceback
 HERE = os.path.dirname(os.path.abspath(__file__))
 FEED = os.path.join(HERE, "feed")
@@ -83,7 +84,10 @@ def load_plan(path):
 
 # ------------------------------------------------------------------------------------------------ names
 def toks(s):
-    s = (s or "").lower().replace("&", " and ").replace("™", "").replace("®", "")
+    s = (s or "").lower()
+    s = "".join(ch for ch in unicodedata.normalize("NFKD", s) if not unicodedata.combining(ch))       # Piña = Pina
+    s = s.replace("&", " and ").replace("™", "").replace("®", "")
+    s = re.sub(r"(\d+)\s*\+", r"\1plus", s)                                                    # "50+" stays a word (Vitality 50+)
     out = set()
     for w in re.split(r"[^a-z0-9]+", s):
         w = ALIAS.get(w, w)
@@ -286,6 +290,18 @@ def parse_variants(h):
     return out
 
 
+def variant_override(asin):
+    """feed\\variant_overrides.tsv  (asin <TAB> item number or NONE <TAB> note): products whose name in the sheet cannot be matched to the store's wording by itself"""
+    try:
+        for ln in open(os.path.join(FEED, "variant_overrides.tsv"), encoding="utf-8-sig").read().splitlines()[1:]:
+            p = ln.split("\t")
+            if len(p) >= 2 and asin and p[0].strip() == asin:
+                return p[1].strip(), (p[2].strip() if len(p) > 2 else "")
+    except Exception:
+        pass
+    return None
+
+
 class Catalog:
     """finds the item number of a flavour / scent / size when the sheet only knows the family (F252, R480H)"""
     def __init__(self, s):
@@ -406,6 +422,11 @@ class Catalog:
     def resolve(self, L):
         """-> (sku, why) for a plan line whose Mela ID is F#### or R####L/H"""
         mid = L["melid"]
+        ov = variant_override(L.get("asin"))
+        if ov:
+            if ov[0].upper() == "NONE":
+                return None, "the store does not sell this flavour / version (%s)" % (ov[1] or "checked against the store")
+            return ov[0], "fixed by variant_overrides.tsv: %s" % (ov[1] or "")
         m = re.fullmatch(r"([FR])(\d+)([LH]?)", mid or "")
         if not m:
             return self.resolve_manual(L)
@@ -657,6 +678,14 @@ def build_actions(plan, info, resolve_variant=None):
             add_accessories(L, inf, acts, notes)
             continue
         # plain products (also coupon lines and '#' sets without a pack product)
+        mfrac = re.fullmatch(r"(\d+)/(\d+)", L["melid"] or "")
+        if mfrac:             # "1979/2": the sheet counts ONE unit of a 2-pack (Energy Shot): the store sells only the pack, so whole packs are bought
+            pk, per = mfrac.group(1), int(mfrac.group(2))
+            npk = -(-L["qty"] // per)
+            if npk * per != L["qty"]:
+                problems.append("row %d %s: %d unit(s) needed but the store only sells packs of %d - %d pack(s) are bought, %d unit(s) too many come with them" % (L["row"], L["name"], L["qty"], per, npk, npk * per - L["qty"]))
+            acts.append(Action("single", pk, npk, label=L["name"] + " (pack of %d)" % per, rows=[L["row"]], expect_pts=L["pts"] * npk * per / max(1, L["qty"]), expect_ws=L["ws"] * npk * per / max(1, L["qty"])))
+            continue
         sku = L["melid"]
         if not NUM.match(sku or ""):
             v = resolve_variant(L) if resolve_variant else None
