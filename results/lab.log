@@ -1,0 +1,82 @@
+23:25:14   proxy port 10002 | location: cr.ca;city.vancouver
+23:25:44 signed in as Liliana O | plan: 41 lines, TOTAL points 146.0 cost 375.55
+23:25:44   catalog from the saved copy: 81 families (no need to read the store)
+23:25:54   variant: Haircare - Sei Bella Argan Oil and Coconut Conditi (F3293) -> 70114  Argan Oil & Coconut Moisture Smooth Conditioner (0.62)
+23:26:20   variant: Laundry - Melapower - Garden Lavender (F294) -> 5546  Regular Detergent: Garden Lavender (0.86)
+23:26:29   variant: Renew - Lotion - 20oz (R480H) -> 6600  only variant: Value Size Renew
+23:26:56   variant: Haircare - Herbal Shampoo - 8oz (R1729L) -> 4117  only variant: Melaleuca? Herbal Shampoo
+23:27:10   variant: Ecosense - Sol-U-Mel - Lemon Blossom - 8oz (R642L) -> 293  Lemon Blossom (0.98)
+23:31:52 actions: 28 | offer lines: 0 | problems: 1
+23:31:52   PROBLEM: group F55: SUBSTITUTED: 'Soap Bar - Exfoliating Bar - Almond Vanilla' is not a choice of this pack - the store pack has 'Exfoliating' (also used for 'Soap Bar - Exfoliating Bar'); change it by hand if you need the exact one
+23:32:01   added [single] 783 x1 Laundry - Melabrite - Oxi Packs 
+23:32:02   added [single] 70114 x1 Haircare - Sei Bella Argan Oil and Coconut Conditioner 
+23:32:02   added [single] 1216 x2 Ecosense - Tub and Tile - 8oz 
+23:32:03   added [single] 5612 x1 Ecosense - Clean And Gleam - 8oz 
+23:32:03   added [pack] 5018 x1 2-pack: Ecosense - Diamond Brite - 25 Loads 
+23:32:04   added [pack] 2211 x1 2-pack: Ecosense - PreSpot - 8oz 
+23:32:04   added [single] 5546 x2 Laundry - Melapower - Garden Lavender 
+23:32:04   added [single] 6600 x1 Renew - Lotion - 20oz 
+23:32:05   added [single] 20063 x1 Haircare - Affinia Volume Shampoo 
+23:32:05   added [single] 1218 x1 Ecosense - Tough and Tender - 8oz 
+23:32:05   added [single] 70338 x1 Beauty - Sei Bella Facial Scrub 
+23:32:06   added [single] 6196 x1 Toothcare - Breath-Away Mouth Rinse - 16oz - 2-Pack 
+23:32:06   added [single] 4117 x1 Haircare - Herbal Shampoo - 8oz 
+23:32:06   added [pack] 33022 x1 3-pack: Ecosense - Prespot Instant Stain Remover 
+23:32:07   added [single] 293 x1 Ecosense - Sol-U-Mel - Lemon Blossom - 8oz 
+23:32:07   added [pack] 34911 x1 CLEAN pack 1/1: Ecosense - Mela-magic - 16oz, Ecosense  
+23:32:07        choice: Ecosense - Harvest Pure - 8oz -> Harvest Pure? Fruit And Vegetable Wash (10.0)
+23:32:07        choice: Ecosense - Mela-magic - 16oz -> MelaMagic Heavy-Duty Cleaner (10.0)
+23:32:07        choice: Ecosense - No Work - 8oz -> No Work Daily Shower Cleaner (10.0)
+23:32:07   added [pack] 190 x1 DEOD pack 1/1: Deodorant - Herbal, finia Sweet Cream an 
+23:32:07        choice: Deodorant - Affinia Sweet Cream and Willow -> Sweet Cream & Willow Antiperspirant & Deodorant (0.9)
+23:32:07        choice: Deodorant - Alloy Antiperspirant -> Antiperspirant & Deodorant   (10.0)
+23:32:07        choice: Deodorant - Herbal -> Herbal (10.0)
+23:32:08   added [pack] 7911 x1 F650 pack 1/1: des - Lip Balm - Pina Colada, p Balm - C 
+23:32:08        choice: Sun Shades - Lip Balm - Pina Colada -> Pi?a Colada (0.98)
+23:32:08        choice: Sun Shades - Lip Balm - Pina Colada -> Pi?a Colada (0.98)
+23:32:08        choice: Sun Shades - Lip Balm - Cranberry Tangerine -> Cranberry Tangerine (0.98)
+23:32:08   added [pack] 43987 x1 TOOTH pack 1/1:  - Koala Pals - Berrylicious, hcare - C 
+23:32:08        choice: Toothcare - Koala Pals - Berrylicious -> Berrylicious +Fluoride (0.87)
+23:32:08        choice: Toothcare - Exceed - Cinnamon -> Cinnamon - Fluoride-Free (10.0)
+23:32:08        choice: Toothcare - Classic - Fresh Mint -> Classic Fresh Mint - Fluoride-Free (0.83)
+23:32:09   added [pack] 5026 x1 F252 pack 1/1: Brite - 16oz - Apple Scented, Brite - 16 
+23:32:09        choice: EcoSense - Lemon Brite - 16oz - Tropical Scented -> Tropical (0.98)
+23:32:09        choice: EcoSense - Lemon Brite - 16oz - Apple Scented -> Apple (0.98)
+23:32:09        choice: EcoSense - Lemon Brite - 16oz - Lemon Scented -> Lemon (0.98)
+23:32:09   added [pack] 5027 x1 F298 pack 1/1: ft Dryer Sheets - Scent Free, yer Sheets 
+23:32:09        choice: Laundry - Melasoft Dryer Sheets - Garden Lavender -> Garden Lavender (0.98)
+23:32:09        choice: Laundry - Melasoft Dryer Sheets - Scent Free -> Scent Free (0.98)
+23:32:12   added [pack] 590 x1 F264 pack 1/1:  MelaBoost - Garden Lavender 
+23:32:12        choice: Laundry - MelaBoost - Garden Lavender -> MelaBoost - Garden Lavender (0.99)
+23:32:12        choice: Laundry - MelaBoost - Garden Lavender -> MelaBoost - Garden Lavender (0.99)
+23:32:12   added [pack] 8911 x1 SGD2 pack 1/1: Ecosense - Sol U Guard 
+23:32:13   added [pack] 2154 x1 F296 pack 1/1: laSoft Bottle - Clean Cotton, oft Bottle 
+23:32:13        choice: Laundry - MelaSoft Bottle - Clean Cotton -> Clean Cotton (0.98)
+23:32:13        choice: Laundry - MelaSoft Bottle - Garden Lavender -> Garden Lavender (0.98)
+23:32:13   added [pack] 6111 x1 GEL pack 1/1: Pharmacy - MelaGel .4oz Disk 
+23:32:13        choice: Mela-Pharmacy - MelaGel .4oz Disk -> Disc (10.0)
+23:32:13        choice: Mela-Pharmacy - MelaGel .4oz Disk -> Disc (10.0)
+23:32:13   added [pack] 5048 x1 F55 pack 1/1: Soap Bar - Exfoliating Bar, ap Bar - Pink 
+23:32:13        choice: Soap Bar - Pink Grapefruit Bar -> Pink Grapefruit (0.98)
+23:32:13        choice: Soap Bar - Exfoliating Bar -> Exfoliating (0.98)
+23:32:13        choice: Soap Bar - Exfoliating Bar - Almond Vanilla -> Exfoliating (0.98)
+23:32:14   added [pack] 4075 x1 TTW2 pack 1/1: nse - Tough and Tender Wipes 
+23:32:14   added [pack] 43978 x1 PAIN pack 1/1: cy - Pain A Trate - Original 
+23:32:14        choice: Mela-Pharmacy - Pain A Trate - Original -> Original 85 g (10.0)
+23:32:14        choice: Mela-Pharmacy - Pain A Trate - Original -> Original 85 g (10.0)
+23:32:15 cart before the offers: 30 items, 175 points
+23:32:15   credit  : Credit 1 -> box 'Buy with Loyalty Shopping Dollars' ticked on Laundry - Melabrite - Oxi Packs
+23:32:15   credit  : Credit 2 -> box 'Buy with Loyalty Shopping Dollars' ticked on Haircare - Sei Bella Argan Oil and Coconut Conditioner
+23:32:16 
+CART NOW: 30 items | 161 points | gross 512.24 | net 499.12 | discount 0
+23:32:16 SHEET   : 146 points count for the limit (TOTAL row: 146) + 14 points of credit items | cost of all lines 375.55
+23:32:16 CREDIT  : $13.12 of loyalty dollars used by the cart
+23:32:16 RESULT  : points DIFFER by +15 | cost not compared (Canadian dollars in the store, US dollars in the sheet)
+23:32:16   DIFFERENCE: Ecosense - Tub and Tile - 8oz: sheet 3 pts / 9.48  -  store 6 pts / 18.98
+23:32:16   DIFFERENCE: Laundry - Melapower - Garden Lavender: sheet 8 pts / 25.98  -  store 20 pts / 49.18
+23:32:17   AUTO-ADJUSTED: Laundry - Melapower - Garden Lavender: quantity 2 -> 1 (the store gives it 10 points per unit; the sheet expected a coupon price)
+23:32:19   AUTO-ADJUSTED: Ecosense - Tub and Tile - 8oz: quantity 2 -> 1 (the store gives it 3 points per unit; the sheet expected a coupon price)
+23:32:19 CART AFTER THE ADJUSTMENT: 28 items | 148 points | gross 478.16
+23:33:23 page: https://ca.melaleuca.com/checkout/promo-page
+23:33:56 page: https://ca.melaleuca.com/checkout
+23:34:34 lab: emptied the cart again: 28 lines
