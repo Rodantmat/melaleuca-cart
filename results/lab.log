@@ -1,0 +1,85 @@
+04:31:53   proxy port 10006 | location: cr.us;city.losangeles,sandiego,longbeach,anaheim,irvine,santaana,riverside
+04:33:22 signed in as Rudy A | plan: 167 lines, TOTAL points 1081.0 cost 2260.95
+04:33:23   catalog from the saved copy: 83 families (no need to read the store)
+04:35:52   variant: Beauty - Sei Bella Volume Extreme Mascara - Black  (F2026) -> 8900  only variant: Volume: Black - Waterproof
+04:36:33   variant: Deodorant - Affinia Sweet Cream and Willow (F2248) -> 20087  Sweet Cream and Willow Antiperspirant & Deodorant  (0.87)
+04:36:47   variant: Deodorant - Affinia Vanilla Musk and Jasmine (F2248) -> 20088  Affinia Vanilla Musk & Jasmine Antiperspirant & Deodorant  (0.90)
+04:38:20   variant: EcoSense - Lemon Brite - 16oz - Apple Scented (F252) -> 7904  Apple Scent  (0.98)
+04:38:26   variant: EcoSense - Lemon Brite - 16oz - Lemon Scented (F252) -> 2854  fixed by variant_overrides.tsv: Lemon Brite "Lemon Scented" = the store's "Original Lemon Scent"
+04:38:31   variant: EcoSense - Lemon Brite - 16oz - Tropical Scented (F252) -> 187  Tropical Scent (0.98)
+04:38:37   variant: Ecosense - Lemon Brite - 16oz - Lavender (F252) -> NOT RESOLVED: the store does not sell this flavour / version (Lemon Brite Lavender: not in the store (only Tropical, Original Lemon, Apple))
+04:38:45   name check: 'Ecosense - Mela-magic - 16oz' vs store item 1235 'MelaMagic? Heavy-Duty Cleaner' - could not find a better one, kept as the sheet says
+04:38:45   variant: Ecosense - Mela-magic - 16oz - 2-Pack () -> 30087  EcoSense Rinse Aid (price 6.99, 3 pts) x2 for the 2-pack
+04:40:45   variant: Ecosense - Rustic - 8oz - 2-Pack () -> 30087  EcoSense Rinse Aid (price 6.99, 3 pts) x2 for the 2-pack
+04:41:45   variant: Ecosense - Sol-U-Mel - Lavender - 8oz (R642L) -> NOT RESOLVED: the store does not sell this flavour / version (Sol-U-Mel Lavender 8oz: not in the store (only Original and Lemon Blossom))
+04:41:57   variant: Ecosense - Sol-U-Mel - Lemon Blossom - 16oz (R642H) -> 294  Lemon Blossom (0.98)
+04:42:12   variant: Ecosense - Sol-U-Mel - Lemon Blossom - 8oz (R642L) -> 293  Lemon Blossom (0.98)
+04:42:22   variant: Ecosense - Sol-U-Mel - Lemon Blossom - 8oz with bo (R642L) -> 293  Lemon Blossom (0.98)
+04:42:22   variant: Ecosense - Sol-U-Mel - Original - 16oz (R642H) -> 130  Original Scent (0.98)
+04:42:39   variant: Ecosense - Sol-U-Mel - Original - 8oz (R642L) -> 292  Original Scent (0.98)
+04:42:53   variant: Ecosense - Tough and Tender - 8oz - 2-Pack () -> 4075  Tough & Tender? Wipes 2?Pack (price 6.99, 3 pts) x2 for the 2-pack
+04:43:12   variant: Ecosense - Tub and Tile - 8oz - 2-Pack () -> 1216  Tub & Tile? 12x Bathroom Cleaner (price 6.99, 3 pts) x2 for the 2-pack
+04:43:18   variant: Exercise - Access - Chocolate Caramel Kruncher (F11) -> 4201  Chocolate Caramel Kruncher (0.99)
+04:43:25   variant: Exercise - Access - Chocolate Raspberry Rush (F11) -> 4256  Chocolate Raspberry Rush (0.99)
+04:43:31   variant: Exercise - Access - Chocolate S'mores Spark (F11) -> NOT RESOLVED: the store does not sell this flavour / version (Access Chocolate S'mores Spark: not in the store)
+04:43:37   variant: Exercise - FiberWise Drink-Berry Sugar-free (F2666) -> 60141  FiberWise Drink: Berry Sugar-Free (0.99)
+04:43:50   variant: Exercise - FiberWise Orange No Sugar (F2666) -> 60140  FiberWise Drink: Orange Sugar-Free (0.66)
+04:44:12   SKU CORRECTED: 'Exercise - GC Control Creamy Vanilla Bean': the sheet has item 60155 (GC Control? Weight Management Shake for Speci), the name fits item 60146 (Vanilla Bean GC Control) better - used that one
+04:44:18   variant: Exercise - Simply Fit Chocolate Chip Drizzle (F623) -> 1361  Chocolate Chip Drizzle (0.98)
+04:44:26   variant: Exercise - Simply Fit Vanilla Greek Yogurt (F623) -> 1300  Vanilla Greek Yogurt (0.98)
+04:44:37   variant: Exercise - Splash H2O - Peach Ice Tea (F3771) -> 60215  SplasH2O? Single Serve: Peach Iced Tea (0.77)
+04:44:42   variant: Exercise - Splash H2O - Strawberry Kiwi (F3771) -> 60213  SplasH2O? Single Serve: Strawberry Kiwi (0.81)
+04:44:48   variant: Exercise - Splash H2O - Lemonade (F3771) -> 60212  SplasH2O? Single Serve: Lemonade (0.69)
+04:45:07   variant: Exercise - Sustain Electrolyte Tub - Lemon (F2787) -> 60129  Sustain Active Hydration: Lemon Value Size (0.62)
+04:45:12   variant: Exercise - Sustain Electrolyte Tub - Raspberry Lem (F2787) -> 60132  Sustain Active Hydration: Raspberry Lemonade Value Size (0.74)
+04:45:34   variant: Exercise - Sustain Sport - Lemon (F2768) -> 60124  Sustain Active Hydration: Lemon Packets (0.57)
+04:45:34   variant: Exercise - Sustain Sport - Orange Splash  (F2768) -> 60125  Sustain Active Hydration: Orange Packets (0.57)
+04:45:40   variant: Exercise - Sustain Sport - Raspberry Lemonade (F2768) -> 60127  Sustain Active Hydration: Raspberry Lemonade Packets   (0.70)
+04:46:26   variant: Haircare - Herbal Shampoo - 32oz (R1729H) -> 4905  only variant: Herbal Shampoo
+04:46:51   variant: Haircare - Herbal Shampoo - 8oz (R1729L) -> 4117  only variant: Melaleuca Herbal Shampoo
+04:47:05   variant: Haircare - Original Shampoo - 32oz (R289H) -> 4906  only variant: Original Shampoo
+04:47:12   variant: Haircare - Original Shampoo - 8oz (R289L) -> 4118  only variant: Melaleuca? Original Shampoo
+04:47:23   variant: Haircare - Sei Bella Argan Oil and Coconut Conditi (F3293) -> 70114  Argan Oil & Coconut Moisture Smooth Conditioner (0.62)
+04:47:55   variant: Haircare - Sei Bella Argan Oil and Coconut Shampoo (F3292) -> 5509  Argan Oil & Coconut Moisture Smooth Shampoo (0.62)
+04:49:29   variant: Laundry - MelaBoost - Garden Lavender (F264) -> 6423  Garden Lavender (0.98)
+04:49:56   variant: Laundry - MelaBoost - Island Breeze (F264) -> 6422  Island Breeze (0.98)
+04:50:30   variant: Laundry - MelaBoost - Mountain Fresh (F264) -> 6421  MelaBoost? Mountain Fresh (0.99)
+04:52:58   variant: Laundry - Melapower - Garden Lavender (F294) -> 5546  Regular Detergent: Garden Lavender (0.86)
+04:53:11   variant: Laundry - Melapower - Island Breeze (F294) -> 6901  Regular Detergent: Island Breeze (0.86)
+04:53:23   variant: Laundry - MelaPower - Mountain Fresh (F294) -> 6902  Regular Detergent: Mountain Fresh (0.86)
+04:53:33   variant: Laundry - MelaPower - Scent Free (F294) -> 215  HE Detergent: Scent Free (0.71)
+04:53:46   variant: Laundry - MelaSoft Bottle - Clean Cotton (F296) -> 265  96 load, Clean Cotton (0.84)
+04:53:58   variant: Laundry - MelaSoft Bottle - Garden Lavender (F296) -> 268  96 load, Garden Lavender (0.84)
+04:54:14   variant: Laundry - MelaSoft Bottle - Spring Breeze (F296) -> 267  96 load, Spring Breeze (0.84)
+04:54:42   variant: Laundry - Melasoft Dryer Sheets - Clean Cotton (F298) -> 5271  Clean Cotton  (0.98)
+04:54:50   variant: Laundry - Melasoft Dryer Sheets - Garden Lavender (F298) -> 9984  Garden Lavender (0.98)
+04:55:05   variant: Laundry - Melasoft Dryer Sheets - Scent Free (F298) -> 9996  Scent-Free (0.98)
+04:55:16   variant: Laundry - Melasoft Dryer Sheets - Spring Breeze (F298) -> 9317  Spring Breeze (0.98)
+04:56:22   variant: Mela-Pharmacy - Creme Delight - Peach Mango Tango  (F348) -> 3124  Peach Mango Tango (0.98)
+04:58:18   variant: Mela-Pharmacy - Peak Performance Nutrition Pack -  (F2350) -> 63029  Peak Performance Nutrition Pack: Longevity 50+ (0.99)
+04:58:23   variant: Mela-Pharmacy - Peak Performance Nutrition Pack -  (F2350) -> 63028  Peak Performance Nutrition Pack: Men (0.99)
+04:58:29   variant: Mela-Pharmacy - Peak Performance Nutrition Pack -  (F2350) -> 63027  Peak Performance Nutrition Pack: Women (0.99)
+05:00:31   variant: Mela-Pharmacy - Vitality Essential Nutrition Pack  (F2348) -> 63023  Vitality Essential Nutrition Longevity 50+ (0.67)
+05:01:14   variant: Mela-Pharmacy - Vitality Essential Nutrition Pack  (F2348) -> 63022  Vitality Essential Nutrition Men (0.99)
+05:02:09   variant: Mela-Pharmacy - Vitality Essential Nutrition Pack  (F2348) -> 63021  Vitality Essential? Nutrition Pack: Women (0.99)
+05:03:35   variant: Mela-Pharmacy - Vitality 50+ (F711) -> 403  only variant: Prenatal
+05:04:07   variant: Mela-Pharmacy - Vitality Men (F711) -> 403  only variant: Prenatal
+05:04:07   variant: Mela-Pharmacy - Vitality Women (F711) -> 403  only variant: Prenatal
+05:05:43   variant: Oil - T36-c5 Melaleuca?1 Fl.oz. (R681H) -> 199  only variant: 1 fl.oz.
+05:06:37   variant: Oil - T36-C5-0.5 fl.oz. (manual) -> 50028  PURE? Eucalyptus Essential Oil - AMBIGUOUS, same price/points as 1 others, check it
+05:10:21   variant: Renew - Lotion - 1oz (manual) -> 3887  Renew? Intensive Skin Therapy: Travel Size (price 2.09, 1 pts)
+05:12:46   variant: Renew - Lotion - 20oz (R480H) -> 6600  only variant: Value Size Renew
+05:13:28   variant: Renew - Lotion - 8oz (R480L) -> 6969  only variant: 8 oz tube
+05:15:41   variant: Soap Bar - Exfoliating Bar (F55) -> 5540  Exfoliating Body Bar (0.67)
+05:16:30   variant: Soap Bar - Exfoliating Bar - Almond Vanilla (F55) -> 5540  Exfoliating Body Bar (0.66)
+05:17:18   variant: Soap Bar - Gold Bar (R683H) -> 117  only variant: Gold Bar
+05:17:53   variant: Soap Bar - Pineapple Mango Bar (F55) -> 8927  Pineapple Mango (0.98)
+05:18:06   variant: Soap Bar - Pink Grapefruit Bar (F55) -> 8928  Pink Grapefruit (0.98)
+05:18:42   variant: Sun Shades - Lip Balm - Cranberry Tangerine (F650) -> 2270  Cranberry Tangerine (0.98)
+05:18:49   variant: Sun Shades - Lip Balm - Mountain Mist (F650) -> 107  fixed by variant_overrides.tsv: sheet says Mountain Mist, the store calls it Mountain Mint
+05:18:55   variant: Sun Shades - Lip Balm - Pina Colada (F650) -> 109  Pi?a Colada (0.98)
+05:19:01   variant: Sun Shades - Lip Balm - Vanilla Bean (F650) -> 111  Vanilla Bean (0.98)
+05:19:17   variant: Sun Valley  - Foaming Hand Wash - Refill Bottle -  (F665) -> 7915  only variant: Foaming Hand Wash: Pomegranate Sage
+05:19:28   variant: Sun Valley - Hand Wash - Mint and Herb - 8oz with  (R669H) -> 179  Hand Wash: Mint & Herb (0.99)
+05:19:54   variant: Toothcare - Exceed - Mints - Wintergreen - 1.5oz (F146) -> 5121  Mints: Wintergreen (0.98)
+05:20:06   variant: Toothcare - Classic - Fresh Mint (F686) -> 5395  Fresh Mint Fluoride-Free (0.50)
