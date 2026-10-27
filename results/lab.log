@@ -1,0 +1,1810 @@
+02:30:36   proxy port 10006 | location: cr.us;city.losangeles,sandiego,longbeach,anaheim,irvine,santaana,riverside
+02:31:37 signed in as Rudy A | plan: 167 lines, TOTAL points 1081.0 cost 2260.95
+02:31:38   catalog from the saved copy: 83 families (no need to read the store)
+02:32:27   variant: Beauty - Sei Bella Volume Extreme Mascara - Black  (F2026) -> 8900  only variant: Volume: Black - Waterproof
+02:32:38   variant: Deodorant - Affinia Sweet Cream and Willow (F2248) -> 20087  Sweet Cream and Willow Antiperspirant & Deodorant  (0.87)
+02:32:49   variant: Deodorant - Affinia Vanilla Musk and Jasmine (F2248) -> 20088  Affinia Vanilla Musk & Jasmine Antiperspirant & Deodorant  (0.90)
+02:34:22   variant: EcoSense - Lemon Brite - 16oz - Apple Scented (F252) -> 7904  Apple Scent  (0.98)
+02:34:32   variant: EcoSense - Lemon Brite - 16oz - Lemon Scented (F252) -> 2854  fixed by variant_overrides.tsv: Lemon Brite "Lemon Scented" = the store's "Original Lemon Scent"
+02:34:40   variant: EcoSense - Lemon Brite - 16oz - Tropical Scented (F252) -> 187  Tropical Scent (0.98)
+02:34:49   variant: Ecosense - Lemon Brite - 16oz - Lavender (F252) -> NOT RESOLVED: the store does not sell this flavour / version (Lemon Brite Lavender: not in the store (only Tropical, Original Lemon, Apple))
+02:35:00   name check: 'Ecosense - Mela-magic - 16oz' vs store item 1235 'MelaMagic? Heavy-Duty Cleaner' - could not find a better one, kept as the sheet says
+02:35:00   variant: Ecosense - Mela-magic - 16oz - 2-Pack () -> 30087  EcoSense Rinse Aid (price 6.99, 3 pts) x2 for the 2-pack
+02:35:31   variant: Ecosense - Rustic - 8oz - 2-Pack () -> 30087  EcoSense Rinse Aid (price 6.99, 3 pts) x2 for the 2-pack
+02:35:41   variant: Ecosense - Sol-U-Mel - Lavender - 8oz (R642L) -> NOT RESOLVED: the store does not sell this flavour / version (Sol-U-Mel Lavender 8oz: not in the store (only Original and Lemon Blossom))
+02:35:49   variant: Ecosense - Sol-U-Mel - Lemon Blossom - 16oz (R642H) -> 294  Lemon Blossom (0.98)
+02:35:49   variant: Ecosense - Sol-U-Mel - Lemon Blossom - 8oz (R642L) -> 293  Lemon Blossom (0.98)
+02:35:49   variant: Ecosense - Sol-U-Mel - Lemon Blossom - 8oz with bo (R642L) -> 293  Lemon Blossom (0.98)
+02:35:49   variant: Ecosense - Sol-U-Mel - Original - 16oz (R642H) -> 130  Original Scent (0.98)
+02:35:49   variant: Ecosense - Sol-U-Mel - Original - 8oz (R642L) -> 292  Original Scent (0.98)
+02:35:49   variant: Ecosense - Tough and Tender - 8oz - 2-Pack () -> 4075  Tough & Tender? Wipes 2?Pack (price 6.99, 3 pts) x2 for the 2-pack
+02:36:10   variant: Ecosense - Tub and Tile - 8oz - 2-Pack () -> 1216  Tub & Tile? 12x Bathroom Cleaner (price 6.99, 3 pts) x2 for the 2-pack
+02:36:20   variant: Exercise - Access - Chocolate Caramel Kruncher (F11) -> 4201  Chocolate Caramel Kruncher (0.99)
+02:36:29   variant: Exercise - Access - Chocolate Raspberry Rush (F11) -> 4256  Chocolate Raspberry Rush (0.99)
+02:36:38   variant: Exercise - Access - Chocolate S'mores Spark (F11) -> NOT RESOLVED: the store does not sell this flavour / version (Access Chocolate S'mores Spark: not in the store)
+02:36:47   variant: Exercise - FiberWise Drink-Berry Sugar-free (F2666) -> 60141  FiberWise Drink: Berry Sugar-Free (0.99)
+02:36:47   variant: Exercise - FiberWise Orange No Sugar (F2666) -> 60140  FiberWise Drink: Orange Sugar-Free (0.66)
+02:36:57   SKU CORRECTED: 'Exercise - GC Control Creamy Vanilla Bean': the sheet has item 60155 (GC Control? Weight Management Shake for Speci), the name fits item 60146 (Vanilla Bean GC Control) better - used that one
+02:37:07   variant: Exercise - Simply Fit Chocolate Chip Drizzle (F623) -> 1361  Chocolate Chip Drizzle (0.98)
+02:37:07   variant: Exercise - Simply Fit Vanilla Greek Yogurt (F623) -> 1300  Vanilla Greek Yogurt (0.98)
+02:37:15   variant: Exercise - Splash H2O - Peach Ice Tea (F3771) -> 60215  SplasH2O? Single Serve: Peach Iced Tea (0.77)
+02:37:15   variant: Exercise - Splash H2O - Strawberry Kiwi (F3771) -> 60213  SplasH2O? Single Serve: Strawberry Kiwi (0.81)
+02:37:15   variant: Exercise - Splash H2O - Lemonade (F3771) -> 60212  SplasH2O? Single Serve: Lemonade (0.69)
+02:37:23   variant: Exercise - Sustain Electrolyte Tub - Lemon (F2787) -> 60129  Sustain Active Hydration: Lemon Value Size (0.62)
+02:37:23   variant: Exercise - Sustain Electrolyte Tub - Raspberry Lem (F2787) -> 60132  Sustain Active Hydration: Raspberry Lemonade Value Size (0.74)
+02:37:41   variant: Exercise - Sustain Sport - Lemon (F2768) -> 60124  Sustain Active Hydration: Lemon Packets (0.57)
+02:37:41   variant: Exercise - Sustain Sport - Orange Splash  (F2768) -> 60125  Sustain Active Hydration: Orange Packets (0.57)
+02:37:41   variant: Exercise - Sustain Sport - Raspberry Lemonade (F2768) -> 60127  Sustain Active Hydration: Raspberry Lemonade Packets   (0.70)
+02:37:59   variant: Haircare - Herbal Shampoo - 32oz (R1729H) -> 4905  only variant: Herbal Shampoo
+02:37:59   variant: Haircare - Herbal Shampoo - 8oz (R1729L) -> 4117  only variant: Melaleuca Herbal Shampoo
+02:38:06   variant: Haircare - Original Shampoo - 32oz (R289H) -> 4906  only variant: Original Shampoo
+02:38:06   variant: Haircare - Original Shampoo - 8oz (R289L) -> 4118  only variant: Melaleuca? Original Shampoo
+02:38:15   variant: Haircare - Sei Bella Argan Oil and Coconut Conditi (F3293) -> 70114  Argan Oil & Coconut Moisture Smooth Conditioner (0.62)
+02:38:23   variant: Haircare - Sei Bella Argan Oil and Coconut Shampoo (F3292) -> 5509  Argan Oil & Coconut Moisture Smooth Shampoo (0.62)
+02:38:51   variant: Laundry - MelaBoost - Garden Lavender (F264) -> 6423  Garden Lavender (0.98)
+02:38:51   variant: Laundry - MelaBoost - Island Breeze (F264) -> 6422  Island Breeze (0.98)
+02:38:51   variant: Laundry - MelaBoost - Mountain Fresh (F264) -> 6421  MelaBoost? Mountain Fresh (0.99)
+02:39:11   variant: Laundry - Melapower - Garden Lavender (F294) -> 5546  Regular Detergent: Garden Lavender (0.86)
+02:39:20   variant: Laundry - Melapower - Island Breeze (F294) -> 6901  Regular Detergent: Island Breeze (0.86)
+02:39:30   variant: Laundry - MelaPower - Mountain Fresh (F294) -> 6902  Regular Detergent: Mountain Fresh (0.86)
+02:39:40   variant: Laundry - MelaPower - Scent Free (F294) -> 215  HE Detergent: Scent Free (0.71)
+02:40:02   variant: Laundry - MelaSoft Bottle - Clean Cotton (F296) -> 265  96 load, Clean Cotton (0.84)
+02:40:12   variant: Laundry - MelaSoft Bottle - Garden Lavender (F296) -> 268  96 load, Garden Lavender (0.84)
+02:40:20   variant: Laundry - MelaSoft Bottle - Spring Breeze (F296) -> 267  96 load, Spring Breeze (0.84)
+02:40:38   variant: Laundry - Melasoft Dryer Sheets - Clean Cotton (F298) -> 5271  Clean Cotton  (0.98)
+02:40:46   variant: Laundry - Melasoft Dryer Sheets - Garden Lavender (F298) -> 9984  Garden Lavender (0.98)
+02:40:55   variant: Laundry - Melasoft Dryer Sheets - Scent Free (F298) -> 9996  Scent-Free (0.98)
+02:41:04   variant: Laundry - Melasoft Dryer Sheets - Spring Breeze (F298) -> 9317  Spring Breeze (0.98)
+02:42:19   variant: Mela-Pharmacy - Creme Delight - Peach Mango Tango  (F348) -> 3124  Peach Mango Tango (0.98)
+02:43:37   variant: Mela-Pharmacy - Peak Performance Nutrition Pack -  (F2350) -> 63029  Peak Performance Nutrition Pack: Longevity 50+ (0.99)
+02:43:48   variant: Mela-Pharmacy - Peak Performance Nutrition Pack -  (F2350) -> 63028  Peak Performance Nutrition Pack: Men (0.99)
+02:43:58   variant: Mela-Pharmacy - Peak Performance Nutrition Pack -  (F2350) -> 63027  Peak Performance Nutrition Pack: Women (0.99)
+02:44:51   variant: Mela-Pharmacy - Vitality Essential Nutrition Pack  (F2348) -> 63023  Vitality Essential Nutrition Longevity 50+ (0.67)
+02:45:01   variant: Mela-Pharmacy - Vitality Essential Nutrition Pack  (F2348) -> 63022  Vitality Essential Nutrition Men (0.99)
+02:45:10   variant: Mela-Pharmacy - Vitality Essential Nutrition Pack  (F2348) -> 63021  Vitality Essential? Nutrition Pack: Women (0.99)
+02:45:31   variant: Mela-Pharmacy - Vitality 50+ (F711) -> 403  only variant: Prenatal
+02:45:31   variant: Mela-Pharmacy - Vitality Men (F711) -> 403  only variant: Prenatal
+02:45:31   variant: Mela-Pharmacy - Vitality Women (F711) -> 403  only variant: Prenatal
+02:45:59   variant: Oil - T36-c5 Melaleuca?1 Fl.oz. (R681H) -> 199  only variant: 1 fl.oz.
+02:46:08   variant: Oil - T36-C5-0.5 fl.oz. (manual) -> 50028  PURE? Eucalyptus Essential Oil - AMBIGUOUS, same price/points as 1 others, check it
+02:47:24   variant: Renew - Lotion - 1oz (manual) -> 3887  Renew? Intensive Skin Therapy: Travel Size (price 2.09, 1 pts)
+02:47:33   variant: Renew - Lotion - 20oz (R480H) -> 6600  only variant: Value Size Renew
+02:47:33   variant: Renew - Lotion - 8oz (R480L) -> 6969  only variant: 8 oz tube
+02:48:02   variant: Soap Bar - Exfoliating Bar (F55) -> 5540  Exfoliating Body Bar (0.67)
+02:48:10   variant: Soap Bar - Exfoliating Bar - Almond Vanilla (F55) -> 5540  Exfoliating Body Bar (0.66)
+02:48:18   variant: Soap Bar - Gold Bar (R683H) -> 117  only variant: Gold Bar
+02:48:27   variant: Soap Bar - Pineapple Mango Bar (F55) -> 8927  Pineapple Mango (0.98)
+02:48:36   variant: Soap Bar - Pink Grapefruit Bar (F55) -> 8928  Pink Grapefruit (0.98)
+02:49:11   variant: Sun Shades - Lip Balm - Cranberry Tangerine (F650) -> 2270  Cranberry Tangerine (0.98)
+02:49:19   variant: Sun Shades - Lip Balm - Mountain Mist (F650) -> 107  fixed by variant_overrides.tsv: sheet says Mountain Mist, the store calls it Mountain Mint
+02:49:28   variant: Sun Shades - Lip Balm - Pina Colada (F650) -> 109  Pi?a Colada (0.98)
+02:49:38   variant: Sun Shades - Lip Balm - Vanilla Bean (F650) -> 111  Vanilla Bean (0.98)
+02:50:04   variant: Sun Valley  - Foaming Hand Wash - Refill Bottle -  (F665) -> 7915  only variant: Foaming Hand Wash: Pomegranate Sage
+02:50:20   variant: Sun Valley - Hand Wash - Mint and Herb - 8oz with  (R669H) -> 179  Hand Wash: Mint & Herb (0.99)
+02:50:40   variant: Toothcare - Exceed - Mints - Wintergreen - 1.5oz (F146) -> 5121  Mints: Wintergreen (0.98)
+02:50:56   variant: Toothcare - Classic - Fresh Mint (F686) -> 5395  Fresh Mint Fluoride-Free (0.50)
+02:51:44   variant: Toothcare - Koala Pals - Apple (F207) -> 4910  fixed by variant_overrides.tsv: Koala Pals Apple = "Apple - Fluoride-Free"
+02:52:00   variant: Toothcare - Koala Pals - Berrylicious (F207) -> 1297  Berrylicious +Fluoride (0.65)
+02:52:00 actions: 164 | offer lines: 0 | problems: 4
+02:52:00   PROBLEM: row 22 B0FBLKT4YK: no item number for 'Ecosense - Lemon Brite - 16oz - Lavender' (sheet has 'F252') - add this one by hand
+02:52:00   PROBLEM: row 41 B0FG1STDS7: no item number for 'Ecosense - Sol-U-Mel - Lavender - 8oz' (sheet has 'R642L') - add this one by hand
+02:52:00   PROBLEM: row 57 B0F3BGPMJ7: no item number for 'Exercise - Access - Chocolate S'mores Spark' (sheet has 'F11') - add this one by hand
+02:52:00   PROBLEM: row 58 Exercise - B-Fuel - Raspberry Lemonade - 2oz: 1 unit(s) needed but the store only sells packs of 2 - 1 pack(s) are bought, 1 unit(s) too many come with them
+02:52:00   would add [single] 2965 x1 Beauty - Sei Bella Defense and Repair Treatment Serum
+02:52:00   would add [single] 70338 x1 Beauty - Sei Bella Facial Scrub
+02:52:00   would add [single] 70222 x1 Beauty - Sei Bella Gentle Daily Cleanser - 5oz
+02:52:00   would add [single] 70226 x1 Beauty - Sei Bella SPF 25 Sunscreen - 2.5 Fl oz
+02:52:00   would add [single] 8900 x1 Beauty - Sei Bella Volume Extreme Mascara - Black - 0.47oz
+02:52:00   would add [single] 20087 x1 Deodorant - Affinia Sweet Cream and Willow
+02:52:00   would add [single] 20088 x1 Deodorant - Affinia Vanilla Musk and Jasmine
+02:52:00   would add [single] 20053 x1 Deodorant - Alloy Antiperspirant
+02:52:00   would add [single] 2468 x1 Deodorant - Herbal
+02:52:00   would add [single] 5612 x1 Ecosense - Clean And Gleam - 8oz
+02:52:00   would add [single] 1212 x1 Ecosense - Clear Power Glass Cleaner - 8 oz
+02:52:00   would add [single] 1212 x1 Ecosense - Clear Power Glass Cleaner - 8oz with bottle
+02:52:00   would add [single] 3300 x1 Ecosense - Clear Power Glass Cleaner Wipes
+02:52:00   would add [single] 2654 x1 Ecosense - Diamond Brite - 25 Loads
+02:52:00   would add [single] 5018 x1 Ecosense - Diamond Brite - 25 Loads - 2-Pack
+02:52:00   would add [single] 2655 x1 Ecosense - Diamond Brite - Packs
+02:52:00   would add [single] 30101 x1 Ecosense - Harvest Pure - 8oz
+02:52:00   would add [single] 7904 x1 EcoSense - Lemon Brite - 16oz - Apple Scented
+02:52:00   would add [single] 2854 x1 EcoSense - Lemon Brite - 16oz - Lemon Scented
+02:52:00   would add [single] 187 x1 EcoSense - Lemon Brite - 16oz - Tropical Scented
+02:52:00   would add [single] 1235 x1 Ecosense - Mela-magic - 16oz
+02:52:00   would add [single] 30087 x2 Ecosense - Mela-magic - 16oz - 2-Pack
+02:52:00   would add [single] 1214 x1 Ecosense - No Work - 8oz
+02:52:00   would add [single] 1214 x1 Ecosense - No Work - 8oz with Bottle
+02:52:00   would add [single] 30083 x1 Ecosense - PreSpot - 8oz
+02:52:00   would add [single] 2211 x1 Ecosense - PreSpot - 8oz - 2-Pack
+02:52:00   would add [single] 30083 x1 Ecosense - Prespot - 8oz with Bottle
+02:52:00   would add [single] 7625 x1 Ecosense - Prespot Instant Stain Remover
+02:52:00   would add [single] 33022 x1 Ecosense - Prespot Instant Stain Remover - 3-Pack
+02:52:00   would add [single] 30085 x1 Ecosense - Prespot with Scrubbing Brush
+02:52:00   would add [single] 33961 x1 Ecosense - Revive - Original with Bottle
+02:52:00        choice: Ecosense - Revive - Original with Bottle -> Original Fragrance (0.49)
+02:52:00   would add [single] 30087 x1 EcoSense - Rinse Aid - 16oz
+02:52:00   would add [single] 3427 x1 Ecosense - Rustic - 8oz
+02:52:00   would add [single] 30087 x2 Ecosense - Rustic - 8oz - 2-Pack
+02:52:00   would add [single] 5680 x1 Ecosense - Safe and Mighty
+02:52:00   would add [single] 4020 x1 Ecosense - Sol U Guard
+02:52:00   would add [single] 4020 x1 Ecosense - Sol-U-Guard with Bottle
+02:52:00   would add [single] 4056 x1 Ecosense - Sol-U-Guard Wipes
+02:52:00   would add [single] 294 x1 Ecosense - Sol-U-Mel - Lemon Blossom - 16oz
+02:52:00   would add [single] 293 x1 Ecosense - Sol-U-Mel - Lemon Blossom - 8oz
+02:52:00   would add [single] 293 x1 Ecosense - Sol-U-Mel - Lemon Blossom - 8oz with bottle
+02:52:00   would add [single] 130 x1 Ecosense - Sol-U-Mel - Original - 16oz
+02:52:00   would add [single] 292 x1 Ecosense - Sol-U-Mel - Original - 8oz
+02:52:00   would add [single] 1218 x1 Ecosense - Tough and Tender - 8oz
+02:52:00   would add [single] 4075 x2 Ecosense - Tough and Tender - 8oz - 2-Pack
+02:52:00   would add [single] 1218 x1 Ecosense - Tough and Tender - 8oz with Bottle
+02:52:00   would add [single] 1218 x1 Ecosense - Tough and Tender - Lavender - 8oz
+02:52:00   would add [single] 4074 x1 Ecosense - Tough and Tender Wipes
+02:52:00   would add [single] 1216 x1 Ecosense - Tub and Tile - 8oz
+02:52:00   would add [single] 1216 x2 Ecosense - Tub and Tile - 8oz - 2-Pack
+02:52:00   would add [single] 1216 x1 Ecosense - Tub and Tile - 8oz with Bottle
+02:52:00   would add [single] 4201 x1 Exercise - Access - Chocolate Caramel Kruncher
+02:52:00   would add [single] 4256 x1 Exercise - Access - Chocolate Raspberry Rush
+02:52:00   would add [single] 1979 x1 Exercise - B-Fuel - Raspberry Lemonade - 2oz (pack of 2)
+02:52:00   would add [single] 60141 x1 Exercise - FiberWise Drink-Berry Sugar-free
+02:52:00   would add [single] 60143 x1 Exercise - FiberWise Green Apple with Stevia
+02:52:00   would add [single] 60140 x1 Exercise - FiberWise Orange No Sugar
+02:52:00   would add [single] 60146 x1 Exercise - GC Control Creamy Vanilla Bean
+02:52:00   would add [single] 1361 x1 Exercise - Simply Fit Chocolate Chip Drizzle
+02:52:00   would add [single] 1300 x1 Exercise - Simply Fit Vanilla Greek Yogurt
+02:52:00   would add [single] 60215 x1 Exercise - Splash H2O - Peach Ice Tea
+02:52:00   would add [single] 60213 x1 Exercise - Splash H2O - Strawberry Kiwi
+02:52:00   would add [single] 60212 x1 Exercise - Splash H2O - Lemonade
+02:52:00   would add [single] 60129 x1 Exercise - Sustain Electrolyte Tub - Lemon
+02:52:00   would add [single] 60132 x1 Exercise - Sustain Electrolyte Tub - Raspberry Lemonade
+02:52:00   would add [single] 60128 x1 Exercise - Sustain Sport - Blueberry Pomegranate
+02:52:00   would add [single] 60124 x1 Exercise - Sustain Sport - Lemon
+02:52:00   would add [single] 60125 x1 Exercise - Sustain Sport - Orange Splash 
+02:52:00   would add [single] 60127 x1 Exercise - Sustain Sport - Raspberry Lemonade
+02:52:00   would add [single] 20062 x1 Haircare - Affinia Moisture Conditioner 
+02:52:00   would add [single] 20061 x1 Haircare - Affinia Moisture Shampoo 
+02:52:00   would add [single] 20064 x1 Haircare - Affinia Volume Conditioner
+02:52:00   would add [single] 20063 x1 Haircare - Affinia Volume Shampoo
+02:52:00   would add [single] 4905 x1 Haircare - Herbal Shampoo - 32oz
+02:52:00   would add [single] 4117 x1 Haircare - Herbal Shampoo - 8oz
+02:52:00   would add [single] 4906 x1 Haircare - Original Shampoo - 32oz
+02:52:00   would add [single] 4118 x1 Haircare - Original Shampoo - 8oz
+02:52:00   would add [single] 70114 x1 Haircare - Sei Bella Argan Oil and Coconut Conditioner
+02:52:00   would add [single] 5509 x1 Haircare - Sei Bella Argan Oil and Coconut Shampoo
+02:52:00   would add [single] 4914 x1 Koala Pals - Body Wash
+02:52:00   would add [single] 4913 x1 Koala Pals - Hair Wash
+02:52:00   would add [single] 499 x1 Koala Pals - Chewable Multivitamins
+02:52:00   would add [single] 6423 x1 Laundry - MelaBoost - Garden Lavender
+02:52:00   would add [single] 6422 x1 Laundry - MelaBoost - Island Breeze
+02:52:00   would add [single] 6421 x1 Laundry - MelaBoost - Mountain Fresh
+02:52:00   would add [single] 9770 x1 Laundry - Melabrite - 96 loads
+02:52:00   would add [single] 783 x1 Laundry - Melabrite - Oxi Packs
+02:52:00   would add [single] 5546 x1 Laundry - Melapower - Garden Lavender
+02:52:00   would add [single] 6901 x1 Laundry - Melapower - Island Breeze
+02:52:00   would add [single] 6902 x1 Laundry - MelaPower - Mountain Fresh
+02:52:00   would add [single] 215 x1 Laundry - MelaPower - Scent Free
+02:52:00   would add [single] 265 x1 Laundry - MelaSoft Bottle - Clean Cotton
+02:52:00   would add [single] 268 x1 Laundry - MelaSoft Bottle - Garden Lavender
+02:52:00   would add [single] 267 x1 Laundry - MelaSoft Bottle - Spring Breeze
+02:52:00   would add [single] 5271 x1 Laundry - Melasoft Dryer Sheets - Clean Cotton
+02:52:00   would add [single] 9984 x1 Laundry - Melasoft Dryer Sheets - Garden Lavender
+02:52:00   would add [single] 9996 x1 Laundry - Melasoft Dryer Sheets - Scent Free
+02:52:00   would add [single] 9317 x1 Laundry - Melasoft Dryer Sheets - Spring Breeze
+02:52:00   would add [single] 60111 x1 Mela-Pharmacy - Activate-C - Bottle
+02:52:00   would add [single] 9961 x1 Mela-Pharmacy - Activate-C - Family Size - Orange
+02:52:00   would add [single] 4545 x1 Mela-Pharmacy - Activate-C - Orange
+02:52:00   would add [single] 4445 x1 Mela-Pharmacy - Activate-C - Raspberry
+02:52:00   would add [single] 1545 x1 Mela-Pharmacy - Coldwater Omega 3
+02:52:00   would add [single] 60225 x1 Mela-Pharmacy - Collagen Boost with Ceramides
+02:52:00   would add [single] 3124 x1 Mela-Pharmacy - Creme Delight - Peach Mango Tango - Omega 3
+02:52:00   would add [single] 60113 x1 Mela-Pharmacy - Florify Daily Probiotic
+02:52:00   would add [single] 4302 x1 Mela-Pharmacy - Good Zymes
+02:52:00   would add [single] 3847 x1 Mela-Pharmacy - MelaGel .5oz Tube
+02:52:00   would add [single] 3417 x1 Mela-Pharmacy - MelaGel .4oz Disk
+02:52:00   would add [single] 60093 x1 Mela-Pharmacy - Mela-Out Magnesium
+02:52:00   would add [single] 184 x1 Mela-Pharmacy - Pain A Trate - Original
+02:52:00   would add [single] 42999 x1 Mela-Pharmacy - Pain A Trate - Ultra
+02:52:00   would add [single] 63029 x1 Mela-Pharmacy - Peak Performance Nutrition Pack - Longevity 50+
+02:52:00   would add [single] 63028 x1 Mela-Pharmacy - Peak Performance Nutrition Pack - Men
+02:52:00   would add [single] 63027 x1 Mela-Pharmacy - Peak Performance Nutrition Pack - Women
+02:52:00   would add [single] 2155 x1 Mela-Pharmacy - Phytomega 
+02:52:00   would add [single] 2000 x1 Mela-Pharmacy - ProvexCV
+02:52:00   would add [single] 4120 x1 Mela-Pharmacy - Replenex Extra Strength Drink Mix
+02:52:00   would add [single] 1693 x1 Mela-Pharmacy - Replenex Bottle
+02:52:00   would add [single] 405 x1 Mela-Pharmacy - Vitality Calcium Complete
+02:52:00   would add [single] 63023 x1 Mela-Pharmacy - Vitality Essential Nutrition Pack - Longevity +50
+02:52:00   would add [single] 63022 x1 Mela-Pharmacy - Vitality Essential Nutrition Pack - Men
+02:52:00   would add [single] 63021 x1 Mela-Pharmacy - Vitality Essential Nutrition Pack - Women
+02:52:00   would add [single] 2799 x1 Mela-Pharmacy - Vitality Vitamin D3 
+02:52:00   would add [single] 403 x1 Mela-Pharmacy - Vitality 50+
+02:52:00   would add [single] 403 x1 Mela-Pharmacy - Vitality Men
+02:52:00   would add [single] 403 x1 Mela-Pharmacy - Vitality Women
+02:52:00   would add [single] 2164 x1 Oil - Melaleuca T40-C3 Rare Quality Esse
+02:52:00   would add [single] 50041 x1 Oil - Pure - Lavender - 0.5 Fl oz
+02:52:00   would add [single] 199 x1 Oil - T36-c5 Melaleuca?1 Fl.oz.
+02:52:00   would add [single] 50028 x1 Oil - T36-C5-0.5 fl.oz.
+02:52:00   would add [single] 3620 x1 Renew - Body Wash 12oz
+02:52:00   would add [single] 2379 x1 Renew - Eczema Treatment - 1.7oz
+02:52:00   would add [single] 3840 x1 Renew - Hand Wash - Refill - 18oz Refill Bottle Only
+02:52:00   would add [single] 3748 x1 Renew - Hand Wash 8oz
+02:52:00   would add [single] 3887 x1 Renew - Lotion - 1oz
+02:52:00   would add [single] 3634 x1 Renew - Lotion - 1oz - Pure Lavender
+02:52:00   would add [single] 6600 x1 Renew - Lotion - 20oz
+02:52:00   would add [single] 6969 x1 Renew - Lotion - 8oz
+02:52:00   would add [single] 3604 x1 Renew - Lotion - 8oz - Pure Lavender
+02:52:00   would add [single] 108 x1 Renew - Bath Oil 
+02:52:00   would add [single] 5540 x1 Soap Bar - Exfoliating Bar
+02:52:00   would add [single] 5540 x1 Soap Bar - Exfoliating Bar - Almond Vanilla
+02:52:00   would add [single] 117 x1 Soap Bar - Gold Bar
+02:52:00   would add [single] 8927 x1 Soap Bar - Pineapple Mango Bar
+02:52:00   would add [single] 8928 x1 Soap Bar - Pink Grapefruit Bar
+02:52:00   would add [single] 3308 x1 Soap Bar - Platinum Bar
+02:52:00   would add [single] 1436 x1 Sun Shades - After Sun Relief Gel - 7.3oz
+02:52:00   would add [single] 2270 x1 Sun Shades - Lip Balm - Cranberry Tangerine
+02:52:00   would add [single] 107 x1 Sun Shades - Lip Balm - Mountain Mist
+02:52:00   would add [single] 109 x1 Sun Shades - Lip Balm - Pina Colada
+02:52:00   would add [single] 111 x1 Sun Shades - Lip Balm - Vanilla Bean
+02:52:00   would add [single] 2144 x1 Sun Shades - Mineral Plus SPF 30+ Sunscreen - Coconut-Lime
+02:52:00   would add [single] 7915 x1 Sun Valley  - Foaming Hand Wash - Refill Bottle - Pomegranate Sage
+02:52:00   would add [single] 179 x1 Sun Valley - Hand Wash - Mint and Herb - 8oz with pump
+02:52:00   would add [single] 4597 x1 Toothcare - Breath-Away Mouth Rinse - 16oz
+02:52:00   would add [single] 6196 x1 Toothcare - Breath-Away Mouth Rinse - 16oz - 2-Pack
+02:52:00   would add [single] 5121 x1 Toothcare - Exceed - Mints - Wintergreen - 1.5oz
+02:52:00   would add [single] 5395 x1 Toothcare - Classic - Fresh Mint
+02:52:00   would add [single] 40061 x1 Toothcare - Exceed - Cinnamon
+02:52:00   would add [single] 42994 x1 Toothcare - Exceed - Fresh Mint
+02:52:00   would add [single] 42996 x1 Toothcare - Exceed - Spearmint with Fluoride 
+02:52:00   would add [single] 4910 x1 Toothcare - Koala Pals - Apple
+02:52:00   would add [single] 1297 x1 Toothcare - Koala Pals - Berrylicious
+pipe closed by peer or os.write(pipe, data) raised exception.
+pipe closed by peer or os.write(pipe, data) raised exception.
+pipe closed by peer or os.write(pipe, data) raised exception.
+pipe closed by peer or os.write(pipe, data) raised exception.
+pipe closed by peer or os.write(pipe, data) raised exception.
+pipe closed by peer or os.write(pipe, data) raised exception.
+pipe closed by peer or os.write(pipe, data) raised exception.
+pipe closed by peer or os.write(pipe, data) raised exception.
+pipe closed by peer or os.write(pipe, data) raised exception.
+pipe closed by peer or os.write(pipe, data) raised exception.
+pipe closed by peer or os.write(pipe, data) raised exception.
+pipe closed by peer or os.write(pipe, data) raised exception.
+pipe closed by peer or os.write(pipe, data) raised exception.
+pipe closed by peer or os.write(pipe, data) raised exception.
+pipe closed by peer or os.write(pipe, data) raised exception.
+pipe closed by peer or os.write(pipe, data) raised exception.
+pipe closed by peer or os.write(pipe, data) raised exception.
+pipe closed by peer or os.write(pipe, data) raised exception.
+pipe closed by peer or os.write(pipe, data) raised exception.
+pipe closed by peer or os.write(pipe, data) raised exception.
+pipe closed by peer or os.write(pipe, data) raised exception.
+pipe closed by peer or os.write(pipe, data) raised exception.
+pipe closed by peer or os.write(pipe, data) raised exception.
+Exception in callback Connection.dispatch.<locals>._done_callback(<Task cancell...ntext.py:252>>) at /opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_connection.py:546
+handle: <Handle Connection.dispatch.<locals>._done_callback(<Task cancell...ntext.py:252>>) at /opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_connection.py:546>
+Traceback (most recent call last):
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/asyncio/events.py", line 88, in _run
+    self._context.run(self._callback, *self._args)
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_connection.py", line 547, in _done_callback
+    exc = future.exception()
+          ^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_browser_context.py", line 267, in _on_route
+    handled = await route_handler.handle(route)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_helper.py", line 443, in handle
+    return await self._handle_internal(route)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_helper.py", line 479, in _handle_internal
+    await handler_finished_future
+asyncio.exceptions.CancelledError
+Exception in callback wait_for_future.<locals>.resume(<Task cancell...twork.py:407>>) at /opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_greenlets.py:67
+handle: <Handle wait_for_future.<locals>.resume(<Task cancell...twork.py:407>>) at /opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_greenlets.py:67>
+Traceback (most recent call last):
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/asyncio/events.py", line 88, in _run
+    self._context.run(self._callback, *self._args)
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_greenlets.py", line 68, in resume
+    g_self.switch()
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_helper.py", line 470, in _handler
+    self.handler(route, route.request)  # type: ignore
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_impl_to_api_mapping.py", line 140, in wrapper_func
+    return handler(
+           ^^^^^^^^
+  File "/home/runner/work/melaleuca-cart/melaleuca-cart/local/melaleuca_scan.py", line 110, in _route
+    return route.abort()
+           ^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/sync_api/_generated.py", line 22430, in abort
+    self._sync(self._impl_obj.abort(errorCode=error_code))
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_sync_base.py", line 111, in _sync
+    return task.result()
+           ^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_network.py", line 408, in abort
+    await self._handle_route(
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_network.py", line 504, in _handle_route
+    await callback()
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_network.py", line 599, in _race_with_page_close
+    await asyncio.wait(
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/asyncio/tasks.py", line 464, in wait
+    return await _wait(fs, timeout, return_when, loop)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/asyncio/tasks.py", line 550, in _wait
+    await waiter
+asyncio.exceptions.CancelledError
+Exception in callback wait_for_future.<locals>.resume(<Task cancell...twork.py:407>>) at /opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_greenlets.py:67
+handle: <Handle wait_for_future.<locals>.resume(<Task cancell...twork.py:407>>) at /opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_greenlets.py:67>
+Traceback (most recent call last):
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/asyncio/events.py", line 88, in _run
+    self._context.run(self._callback, *self._args)
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_greenlets.py", line 68, in resume
+    g_self.switch()
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_helper.py", line 470, in _handler
+    self.handler(route, route.request)  # type: ignore
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_impl_to_api_mapping.py", line 140, in wrapper_func
+    return handler(
+           ^^^^^^^^
+  File "/home/runner/work/melaleuca-cart/melaleuca-cart/local/melaleuca_scan.py", line 110, in _route
+    return route.abort()
+           ^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/sync_api/_generated.py", line 22430, in abort
+    self._sync(self._impl_obj.abort(errorCode=error_code))
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_sync_base.py", line 111, in _sync
+    return task.result()
+           ^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_network.py", line 408, in abort
+    await self._handle_route(
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_network.py", line 504, in _handle_route
+    await callback()
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_network.py", line 599, in _race_with_page_close
+    await asyncio.wait(
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/asyncio/tasks.py", line 464, in wait
+    return await _wait(fs, timeout, return_when, loop)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/asyncio/tasks.py", line 550, in _wait
+    await waiter
+asyncio.exceptions.CancelledError
+Exception in callback Connection.dispatch.<locals>._done_callback(<Task cancell...ntext.py:252>>) at /opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_connection.py:546
+handle: <Handle Connection.dispatch.<locals>._done_callback(<Task cancell...ntext.py:252>>) at /opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_connection.py:546>
+Traceback (most recent call last):
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/asyncio/events.py", line 88, in _run
+    self._context.run(self._callback, *self._args)
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_connection.py", line 547, in _done_callback
+    exc = future.exception()
+          ^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_browser_context.py", line 267, in _on_route
+    handled = await route_handler.handle(route)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_helper.py", line 443, in handle
+    return await self._handle_internal(route)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_helper.py", line 479, in _handle_internal
+    await handler_finished_future
+asyncio.exceptions.CancelledError
+Exception in callback wait_for_future.<locals>.resume(<Task cancell...twork.py:407>>) at /opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_greenlets.py:67
+handle: <Handle wait_for_future.<locals>.resume(<Task cancell...twork.py:407>>) at /opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_greenlets.py:67>
+Traceback (most recent call last):
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/asyncio/events.py", line 88, in _run
+    self._context.run(self._callback, *self._args)
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_greenlets.py", line 68, in resume
+    g_self.switch()
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_helper.py", line 470, in _handler
+    self.handler(route, route.request)  # type: ignore
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_impl_to_api_mapping.py", line 140, in wrapper_func
+    return handler(
+           ^^^^^^^^
+  File "/home/runner/work/melaleuca-cart/melaleuca-cart/local/melaleuca_scan.py", line 110, in _route
+    return route.abort()
+           ^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/sync_api/_generated.py", line 22430, in abort
+    self._sync(self._impl_obj.abort(errorCode=error_code))
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_sync_base.py", line 111, in _sync
+    return task.result()
+           ^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_network.py", line 408, in abort
+    await self._handle_route(
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_network.py", line 504, in _handle_route
+    await callback()
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_network.py", line 599, in _race_with_page_close
+    await asyncio.wait(
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/asyncio/tasks.py", line 464, in wait
+    return await _wait(fs, timeout, return_when, loop)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/asyncio/tasks.py", line 550, in _wait
+    await waiter
+asyncio.exceptions.CancelledError
+Exception in callback wait_for_future.<locals>.resume(<Task cancell...twork.py:545>>) at /opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_greenlets.py:67
+handle: <Handle wait_for_future.<locals>.resume(<Task cancell...twork.py:545>>) at /opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_greenlets.py:67>
+Traceback (most recent call last):
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/asyncio/events.py", line 88, in _run
+    self._context.run(self._callback, *self._args)
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_greenlets.py", line 68, in resume
+    g_self.switch()
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_helper.py", line 470, in _handler
+    self.handler(route, route.request)  # type: ignore
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_impl_to_api_mapping.py", line 140, in wrapper_func
+    return handler(
+           ^^^^^^^^
+  File "/home/runner/work/melaleuca-cart/melaleuca-cart/local/melaleuca_scan.py", line 111, in _route
+    return route.continue_()
+           ^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/sync_api/_generated.py", line 22486, in continue_
+    self._sync(
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_sync_base.py", line 111, in _sync
+    return task.result()
+           ^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_network.py", line 558, in continue_
+    return await self._handle_route(_inner)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_network.py", line 504, in _handle_route
+    await callback()
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_network.py", line 556, in _inner
+    await self._inner_continue(False)
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_network.py", line 562, in _inner_continue
+    await self._race_with_page_close(
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_network.py", line 599, in _race_with_page_close
+    await asyncio.wait(
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/asyncio/tasks.py", line 464, in wait
+    return await _wait(fs, timeout, return_when, loop)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/asyncio/tasks.py", line 550, in _wait
+    await waiter
+asyncio.exceptions.CancelledError
+Exception in callback Connection.dispatch.<locals>._done_callback(<Task cancell...ntext.py:252>>) at /opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_connection.py:546
+handle: <Handle Connection.dispatch.<locals>._done_callback(<Task cancell...ntext.py:252>>) at /opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_connection.py:546>
+Traceback (most recent call last):
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/asyncio/events.py", line 88, in _run
+    self._context.run(self._callback, *self._args)
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_connection.py", line 547, in _done_callback
+    exc = future.exception()
+          ^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_browser_context.py", line 267, in _on_route
+    handled = await route_handler.handle(route)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_helper.py", line 443, in handle
+    return await self._handle_internal(route)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_helper.py", line 479, in _handle_internal
+    await handler_finished_future
+asyncio.exceptions.CancelledError
+Exception in callback wait_for_future.<locals>.resume(<Task cancell...twork.py:407>>) at /opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_greenlets.py:67
+handle: <Handle wait_for_future.<locals>.resume(<Task cancell...twork.py:407>>) at /opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_greenlets.py:67>
+Traceback (most recent call last):
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/asyncio/events.py", line 88, in _run
+    self._context.run(self._callback, *self._args)
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_greenlets.py", line 68, in resume
+    g_self.switch()
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_helper.py", line 470, in _handler
+    self.handler(route, route.request)  # type: ignore
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_impl_to_api_mapping.py", line 140, in wrapper_func
+    return handler(
+           ^^^^^^^^
+  File "/home/runner/work/melaleuca-cart/melaleuca-cart/local/melaleuca_scan.py", line 110, in _route
+    return route.abort()
+           ^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/sync_api/_generated.py", line 22430, in abort
+    self._sync(self._impl_obj.abort(errorCode=error_code))
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_sync_base.py", line 111, in _sync
+    return task.result()
+           ^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_network.py", line 408, in abort
+    await self._handle_route(
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_network.py", line 504, in _handle_route
+    await callback()
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_network.py", line 599, in _race_with_page_close
+    await asyncio.wait(
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/asyncio/tasks.py", line 464, in wait
+    return await _wait(fs, timeout, return_when, loop)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/asyncio/tasks.py", line 550, in _wait
+    await waiter
+asyncio.exceptions.CancelledError
+Exception in callback wait_for_future.<locals>.resume(<Task cancell...twork.py:545>>) at /opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_greenlets.py:67
+handle: <Handle wait_for_future.<locals>.resume(<Task cancell...twork.py:545>>) at /opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_greenlets.py:67>
+Traceback (most recent call last):
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/asyncio/events.py", line 88, in _run
+    self._context.run(self._callback, *self._args)
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_greenlets.py", line 68, in resume
+    g_self.switch()
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_helper.py", line 470, in _handler
+    self.handler(route, route.request)  # type: ignore
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_impl_to_api_mapping.py", line 140, in wrapper_func
+    return handler(
+           ^^^^^^^^
+  File "/home/runner/work/melaleuca-cart/melaleuca-cart/local/melaleuca_scan.py", line 111, in _route
+    return route.continue_()
+           ^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/sync_api/_generated.py", line 22486, in continue_
+    self._sync(
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_sync_base.py", line 111, in _sync
+    return task.result()
+           ^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_network.py", line 558, in continue_
+    return await self._handle_route(_inner)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_network.py", line 504, in _handle_route
+    await callback()
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_network.py", line 556, in _inner
+    await self._inner_continue(False)
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_network.py", line 562, in _inner_continue
+    await self._race_with_page_close(
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_network.py", line 599, in _race_with_page_close
+    await asyncio.wait(
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/asyncio/tasks.py", line 464, in wait
+    return await _wait(fs, timeout, return_when, loop)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/asyncio/tasks.py", line 550, in _wait
+    await waiter
+asyncio.exceptions.CancelledError
+Exception in callback wait_for_future.<locals>.resume(<Task cancell...twork.py:407>>) at /opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_greenlets.py:67
+handle: <Handle wait_for_future.<locals>.resume(<Task cancell...twork.py:407>>) at /opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_greenlets.py:67>
+Traceback (most recent call last):
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/asyncio/events.py", line 88, in _run
+    self._context.run(self._callback, *self._args)
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_greenlets.py", line 68, in resume
+    g_self.switch()
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_helper.py", line 470, in _handler
+    self.handler(route, route.request)  # type: ignore
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_impl_to_api_mapping.py", line 140, in wrapper_func
+    return handler(
+           ^^^^^^^^
+  File "/home/runner/work/melaleuca-cart/melaleuca-cart/local/melaleuca_scan.py", line 110, in _route
+    return route.abort()
+           ^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/sync_api/_generated.py", line 22430, in abort
+    self._sync(self._impl_obj.abort(errorCode=error_code))
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_sync_base.py", line 111, in _sync
+    return task.result()
+           ^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_network.py", line 408, in abort
+    await self._handle_route(
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_network.py", line 504, in _handle_route
+    await callback()
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_network.py", line 599, in _race_with_page_close
+    await asyncio.wait(
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/asyncio/tasks.py", line 464, in wait
+    return await _wait(fs, timeout, return_when, loop)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/asyncio/tasks.py", line 550, in _wait
+    await waiter
+asyncio.exceptions.CancelledError
+Exception in callback Connection.dispatch.<locals>._done_callback(<Task cancell...ntext.py:252>>) at /opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_connection.py:546
+handle: <Handle Connection.dispatch.<locals>._done_callback(<Task cancell...ntext.py:252>>) at /opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_connection.py:546>
+Traceback (most recent call last):
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/asyncio/events.py", line 88, in _run
+    self._context.run(self._callback, *self._args)
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_connection.py", line 547, in _done_callback
+    exc = future.exception()
+          ^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_browser_context.py", line 267, in _on_route
+    handled = await route_handler.handle(route)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_helper.py", line 443, in handle
+    return await self._handle_internal(route)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_helper.py", line 479, in _handle_internal
+    await handler_finished_future
+asyncio.exceptions.CancelledError
+Exception in callback Connection.dispatch.<locals>._done_callback(<Task cancell...ntext.py:252>>) at /opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_connection.py:546
+handle: <Handle Connection.dispatch.<locals>._done_callback(<Task cancell...ntext.py:252>>) at /opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_connection.py:546>
+Traceback (most recent call last):
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/asyncio/events.py", line 88, in _run
+    self._context.run(self._callback, *self._args)
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_connection.py", line 547, in _done_callback
+    exc = future.exception()
+          ^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_browser_context.py", line 267, in _on_route
+    handled = await route_handler.handle(route)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_helper.py", line 443, in handle
+    return await self._handle_internal(route)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_helper.py", line 479, in _handle_internal
+    await handler_finished_future
+asyncio.exceptions.CancelledError
+Exception in callback wait_for_future.<locals>.resume(<Task cancell...twork.py:545>>) at /opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_greenlets.py:67
+handle: <Handle wait_for_future.<locals>.resume(<Task cancell...twork.py:545>>) at /opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_greenlets.py:67>
+Traceback (most recent call last):
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/asyncio/events.py", line 88, in _run
+    self._context.run(self._callback, *self._args)
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_greenlets.py", line 68, in resume
+    g_self.switch()
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_helper.py", line 470, in _handler
+    self.handler(route, route.request)  # type: ignore
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_impl_to_api_mapping.py", line 140, in wrapper_func
+    return handler(
+           ^^^^^^^^
+  File "/home/runner/work/melaleuca-cart/melaleuca-cart/local/melaleuca_scan.py", line 111, in _route
+    return route.continue_()
+           ^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/sync_api/_generated.py", line 22486, in continue_
+    self._sync(
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_sync_base.py", line 111, in _sync
+    return task.result()
+           ^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_network.py", line 558, in continue_
+    return await self._handle_route(_inner)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_network.py", line 504, in _handle_route
+    await callback()
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_network.py", line 556, in _inner
+    await self._inner_continue(False)
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_network.py", line 562, in _inner_continue
+    await self._race_with_page_close(
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_network.py", line 599, in _race_with_page_close
+    await asyncio.wait(
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/asyncio/tasks.py", line 464, in wait
+    return await _wait(fs, timeout, return_when, loop)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/asyncio/tasks.py", line 550, in _wait
+    await waiter
+asyncio.exceptions.CancelledError
+Exception in callback Connection.dispatch.<locals>._done_callback(<Task cancell...ntext.py:252>>) at /opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_connection.py:546
+handle: <Handle Connection.dispatch.<locals>._done_callback(<Task cancell...ntext.py:252>>) at /opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_connection.py:546>
+Traceback (most recent call last):
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/asyncio/events.py", line 88, in _run
+    self._context.run(self._callback, *self._args)
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_connection.py", line 547, in _done_callback
+    exc = future.exception()
+          ^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_browser_context.py", line 267, in _on_route
+    handled = await route_handler.handle(route)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_helper.py", line 443, in handle
+    return await self._handle_internal(route)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_helper.py", line 479, in _handle_internal
+    await handler_finished_future
+asyncio.exceptions.CancelledError
+Exception in callback Connection.dispatch.<locals>._done_callback(<Task cancell...ntext.py:252>>) at /opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_connection.py:546
+handle: <Handle Connection.dispatch.<locals>._done_callback(<Task cancell...ntext.py:252>>) at /opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_connection.py:546>
+Traceback (most recent call last):
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/asyncio/events.py", line 88, in _run
+    self._context.run(self._callback, *self._args)
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_connection.py", line 547, in _done_callback
+    exc = future.exception()
+          ^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_browser_context.py", line 267, in _on_route
+    handled = await route_handler.handle(route)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_helper.py", line 443, in handle
+    return await self._handle_internal(route)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_helper.py", line 479, in _handle_internal
+    await handler_finished_future
+asyncio.exceptions.CancelledError
+Exception in callback wait_for_future.<locals>.resume(<Task cancell...twork.py:407>>) at /opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_greenlets.py:67
+handle: <Handle wait_for_future.<locals>.resume(<Task cancell...twork.py:407>>) at /opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_greenlets.py:67>
+Traceback (most recent call last):
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/asyncio/events.py", line 88, in _run
+    self._context.run(self._callback, *self._args)
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_greenlets.py", line 68, in resume
+    g_self.switch()
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_helper.py", line 470, in _handler
+    self.handler(route, route.request)  # type: ignore
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_impl_to_api_mapping.py", line 140, in wrapper_func
+    return handler(
+           ^^^^^^^^
+  File "/home/runner/work/melaleuca-cart/melaleuca-cart/local/melaleuca_scan.py", line 110, in _route
+    return route.abort()
+           ^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/sync_api/_generated.py", line 22430, in abort
+    self._sync(self._impl_obj.abort(errorCode=error_code))
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_sync_base.py", line 111, in _sync
+    return task.result()
+           ^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_network.py", line 408, in abort
+    await self._handle_route(
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_network.py", line 504, in _handle_route
+    await callback()
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_network.py", line 599, in _race_with_page_close
+    await asyncio.wait(
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/asyncio/tasks.py", line 464, in wait
+    return await _wait(fs, timeout, return_when, loop)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/asyncio/tasks.py", line 550, in _wait
+    await waiter
+asyncio.exceptions.CancelledError
+Exception in callback wait_for_future.<locals>.resume(<Task cancell...twork.py:407>>) at /opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_greenlets.py:67
+handle: <Handle wait_for_future.<locals>.resume(<Task cancell...twork.py:407>>) at /opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_greenlets.py:67>
+Traceback (most recent call last):
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/asyncio/events.py", line 88, in _run
+    self._context.run(self._callback, *self._args)
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_greenlets.py", line 68, in resume
+    g_self.switch()
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_helper.py", line 470, in _handler
+    self.handler(route, route.request)  # type: ignore
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_impl_to_api_mapping.py", line 140, in wrapper_func
+    return handler(
+           ^^^^^^^^
+  File "/home/runner/work/melaleuca-cart/melaleuca-cart/local/melaleuca_scan.py", line 110, in _route
+    return route.abort()
+           ^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/sync_api/_generated.py", line 22430, in abort
+    self._sync(self._impl_obj.abort(errorCode=error_code))
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_sync_base.py", line 111, in _sync
+    return task.result()
+           ^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_network.py", line 408, in abort
+    await self._handle_route(
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_network.py", line 504, in _handle_route
+    await callback()
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_network.py", line 599, in _race_with_page_close
+    await asyncio.wait(
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/asyncio/tasks.py", line 464, in wait
+    return await _wait(fs, timeout, return_when, loop)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/asyncio/tasks.py", line 550, in _wait
+    await waiter
+asyncio.exceptions.CancelledError
+Exception in callback wait_for_future.<locals>.resume(<Task cancell...twork.py:407>>) at /opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_greenlets.py:67
+handle: <Handle wait_for_future.<locals>.resume(<Task cancell...twork.py:407>>) at /opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_greenlets.py:67>
+Traceback (most recent call last):
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/asyncio/events.py", line 88, in _run
+    self._context.run(self._callback, *self._args)
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_greenlets.py", line 68, in resume
+    g_self.switch()
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_helper.py", line 470, in _handler
+    self.handler(route, route.request)  # type: ignore
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_impl_to_api_mapping.py", line 140, in wrapper_func
+    return handler(
+           ^^^^^^^^
+  File "/home/runner/work/melaleuca-cart/melaleuca-cart/local/melaleuca_scan.py", line 110, in _route
+    return route.abort()
+           ^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/sync_api/_generated.py", line 22430, in abort
+    self._sync(self._impl_obj.abort(errorCode=error_code))
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_sync_base.py", line 111, in _sync
+    return task.result()
+           ^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_network.py", line 408, in abort
+    await self._handle_route(
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_network.py", line 504, in _handle_route
+    await callback()
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_network.py", line 599, in _race_with_page_close
+    await asyncio.wait(
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/asyncio/tasks.py", line 464, in wait
+    return await _wait(fs, timeout, return_when, loop)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/asyncio/tasks.py", line 550, in _wait
+    await waiter
+asyncio.exceptions.CancelledError
+Exception in callback Connection.dispatch.<locals>._done_callback(<Task cancell...ntext.py:252>>) at /opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_connection.py:546
+handle: <Handle Connection.dispatch.<locals>._done_callback(<Task cancell...ntext.py:252>>) at /opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_connection.py:546>
+Traceback (most recent call last):
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/asyncio/events.py", line 88, in _run
+    self._context.run(self._callback, *self._args)
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_connection.py", line 547, in _done_callback
+    exc = future.exception()
+          ^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_browser_context.py", line 267, in _on_route
+    handled = await route_handler.handle(route)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_helper.py", line 443, in handle
+    return await self._handle_internal(route)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_helper.py", line 479, in _handle_internal
+    await handler_finished_future
+asyncio.exceptions.CancelledError
+Exception in callback wait_for_future.<locals>.resume(<Task cancell...twork.py:545>>) at /opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_greenlets.py:67
+handle: <Handle wait_for_future.<locals>.resume(<Task cancell...twork.py:545>>) at /opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_greenlets.py:67>
+Traceback (most recent call last):
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/asyncio/events.py", line 88, in _run
+    self._context.run(self._callback, *self._args)
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_greenlets.py", line 68, in resume
+    g_self.switch()
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_helper.py", line 470, in _handler
+    self.handler(route, route.request)  # type: ignore
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_impl_to_api_mapping.py", line 140, in wrapper_func
+    return handler(
+           ^^^^^^^^
+  File "/home/runner/work/melaleuca-cart/melaleuca-cart/local/melaleuca_scan.py", line 111, in _route
+    return route.continue_()
+           ^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/sync_api/_generated.py", line 22486, in continue_
+    self._sync(
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_sync_base.py", line 111, in _sync
+    return task.result()
+           ^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_network.py", line 558, in continue_
+    return await self._handle_route(_inner)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_network.py", line 504, in _handle_route
+    await callback()
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_network.py", line 556, in _inner
+    await self._inner_continue(False)
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_network.py", line 562, in _inner_continue
+    await self._race_with_page_close(
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_network.py", line 599, in _race_with_page_close
+    await asyncio.wait(
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/asyncio/tasks.py", line 464, in wait
+    return await _wait(fs, timeout, return_when, loop)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/asyncio/tasks.py", line 550, in _wait
+    await waiter
+asyncio.exceptions.CancelledError
+Exception in callback Connection.dispatch.<locals>._done_callback(<Task cancell...ntext.py:252>>) at /opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_connection.py:546
+handle: <Handle Connection.dispatch.<locals>._done_callback(<Task cancell...ntext.py:252>>) at /opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_connection.py:546>
+Traceback (most recent call last):
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/asyncio/events.py", line 88, in _run
+    self._context.run(self._callback, *self._args)
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_connection.py", line 547, in _done_callback
+    exc = future.exception()
+          ^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_browser_context.py", line 267, in _on_route
+    handled = await route_handler.handle(route)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_helper.py", line 443, in handle
+    return await self._handle_internal(route)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_helper.py", line 479, in _handle_internal
+    await handler_finished_future
+asyncio.exceptions.CancelledError
+Exception in callback Connection.dispatch.<locals>._done_callback(<Task cancell...ntext.py:252>>) at /opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_connection.py:546
+handle: <Handle Connection.dispatch.<locals>._done_callback(<Task cancell...ntext.py:252>>) at /opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_connection.py:546>
+Traceback (most recent call last):
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/asyncio/events.py", line 88, in _run
+    self._context.run(self._callback, *self._args)
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_connection.py", line 547, in _done_callback
+    exc = future.exception()
+          ^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_browser_context.py", line 267, in _on_route
+    handled = await route_handler.handle(route)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_helper.py", line 443, in handle
+    return await self._handle_internal(route)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_helper.py", line 479, in _handle_internal
+    await handler_finished_future
+asyncio.exceptions.CancelledError
+Exception in callback Connection.dispatch.<locals>._done_callback(<Task cancell...ntext.py:252>>) at /opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_connection.py:546
+handle: <Handle Connection.dispatch.<locals>._done_callback(<Task cancell...ntext.py:252>>) at /opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_connection.py:546>
+Traceback (most recent call last):
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/asyncio/events.py", line 88, in _run
+    self._context.run(self._callback, *self._args)
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_connection.py", line 547, in _done_callback
+    exc = future.exception()
+          ^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_browser_context.py", line 267, in _on_route
+    handled = await route_handler.handle(route)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_helper.py", line 443, in handle
+    return await self._handle_internal(route)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_helper.py", line 479, in _handle_internal
+    await handler_finished_future
+asyncio.exceptions.CancelledError
+Exception in callback wait_for_future.<locals>.resume(<Task cancell...twork.py:407>>) at /opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_greenlets.py:67
+handle: <Handle wait_for_future.<locals>.resume(<Task cancell...twork.py:407>>) at /opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_greenlets.py:67>
+Traceback (most recent call last):
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/asyncio/events.py", line 88, in _run
+    self._context.run(self._callback, *self._args)
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_greenlets.py", line 68, in resume
+    g_self.switch()
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_helper.py", line 470, in _handler
+    self.handler(route, route.request)  # type: ignore
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_impl_to_api_mapping.py", line 140, in wrapper_func
+    return handler(
+           ^^^^^^^^
+  File "/home/runner/work/melaleuca-cart/melaleuca-cart/local/melaleuca_scan.py", line 110, in _route
+    return route.abort()
+           ^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/sync_api/_generated.py", line 22430, in abort
+    self._sync(self._impl_obj.abort(errorCode=error_code))
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_sync_base.py", line 111, in _sync
+    return task.result()
+           ^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_network.py", line 408, in abort
+    await self._handle_route(
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_network.py", line 504, in _handle_route
+    await callback()
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_network.py", line 599, in _race_with_page_close
+    await asyncio.wait(
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/asyncio/tasks.py", line 464, in wait
+    return await _wait(fs, timeout, return_when, loop)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/asyncio/tasks.py", line 550, in _wait
+    await waiter
+asyncio.exceptions.CancelledError
+Exception in callback Connection.dispatch.<locals>._done_callback(<Task cancell...ntext.py:252>>) at /opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_connection.py:546
+handle: <Handle Connection.dispatch.<locals>._done_callback(<Task cancell...ntext.py:252>>) at /opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_connection.py:546>
+Traceback (most recent call last):
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/asyncio/events.py", line 88, in _run
+    self._context.run(self._callback, *self._args)
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_connection.py", line 547, in _done_callback
+    exc = future.exception()
+          ^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_browser_context.py", line 267, in _on_route
+    handled = await route_handler.handle(route)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_helper.py", line 443, in handle
+    return await self._handle_internal(route)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_helper.py", line 479, in _handle_internal
+    await handler_finished_future
+asyncio.exceptions.CancelledError
+Exception in callback Connection.dispatch.<locals>._done_callback(<Task cancell...ntext.py:252>>) at /opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_connection.py:546
+handle: <Handle Connection.dispatch.<locals>._done_callback(<Task cancell...ntext.py:252>>) at /opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_connection.py:546>
+Traceback (most recent call last):
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/asyncio/events.py", line 88, in _run
+    self._context.run(self._callback, *self._args)
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_connection.py", line 547, in _done_callback
+    exc = future.exception()
+          ^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_browser_context.py", line 267, in _on_route
+    handled = await route_handler.handle(route)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_helper.py", line 443, in handle
+    return await self._handle_internal(route)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_helper.py", line 479, in _handle_internal
+    await handler_finished_future
+asyncio.exceptions.CancelledError
+Exception in callback wait_for_future.<locals>.resume(<Task cancell...twork.py:545>>) at /opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_greenlets.py:67
+handle: <Handle wait_for_future.<locals>.resume(<Task cancell...twork.py:545>>) at /opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_greenlets.py:67>
+Traceback (most recent call last):
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/asyncio/events.py", line 88, in _run
+    self._context.run(self._callback, *self._args)
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_greenlets.py", line 68, in resume
+    g_self.switch()
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_helper.py", line 470, in _handler
+    self.handler(route, route.request)  # type: ignore
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_impl_to_api_mapping.py", line 140, in wrapper_func
+    return handler(
+           ^^^^^^^^
+  File "/home/runner/work/melaleuca-cart/melaleuca-cart/local/melaleuca_scan.py", line 111, in _route
+    return route.continue_()
+           ^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/sync_api/_generated.py", line 22486, in continue_
+    self._sync(
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_sync_base.py", line 111, in _sync
+    return task.result()
+           ^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_network.py", line 558, in continue_
+    return await self._handle_route(_inner)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_network.py", line 504, in _handle_route
+    await callback()
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_network.py", line 556, in _inner
+    await self._inner_continue(False)
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_network.py", line 562, in _inner_continue
+    await self._race_with_page_close(
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_network.py", line 599, in _race_with_page_close
+    await asyncio.wait(
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/asyncio/tasks.py", line 464, in wait
+    return await _wait(fs, timeout, return_when, loop)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/asyncio/tasks.py", line 550, in _wait
+    await waiter
+asyncio.exceptions.CancelledError
+Exception in callback Connection.dispatch.<locals>._done_callback(<Task cancell...ntext.py:252>>) at /opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_connection.py:546
+handle: <Handle Connection.dispatch.<locals>._done_callback(<Task cancell...ntext.py:252>>) at /opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_connection.py:546>
+Traceback (most recent call last):
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/asyncio/events.py", line 88, in _run
+    self._context.run(self._callback, *self._args)
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_connection.py", line 547, in _done_callback
+    exc = future.exception()
+          ^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_browser_context.py", line 267, in _on_route
+    handled = await route_handler.handle(route)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_helper.py", line 443, in handle
+    return await self._handle_internal(route)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_helper.py", line 479, in _handle_internal
+    await handler_finished_future
+asyncio.exceptions.CancelledError
+Exception in callback Connection.dispatch.<locals>._done_callback(<Task cancell...ntext.py:252>>) at /opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_connection.py:546
+handle: <Handle Connection.dispatch.<locals>._done_callback(<Task cancell...ntext.py:252>>) at /opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_connection.py:546>
+Traceback (most recent call last):
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/asyncio/events.py", line 88, in _run
+    self._context.run(self._callback, *self._args)
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_connection.py", line 547, in _done_callback
+    exc = future.exception()
+          ^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_browser_context.py", line 267, in _on_route
+    handled = await route_handler.handle(route)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_helper.py", line 443, in handle
+    return await self._handle_internal(route)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_helper.py", line 479, in _handle_internal
+    await handler_finished_future
+asyncio.exceptions.CancelledError
+Exception in callback wait_for_future.<locals>.resume(<Task cancell...twork.py:545>>) at /opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_greenlets.py:67
+handle: <Handle wait_for_future.<locals>.resume(<Task cancell...twork.py:545>>) at /opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_greenlets.py:67>
+Traceback (most recent call last):
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/asyncio/events.py", line 88, in _run
+    self._context.run(self._callback, *self._args)
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_greenlets.py", line 68, in resume
+    g_self.switch()
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_helper.py", line 470, in _handler
+    self.handler(route, route.request)  # type: ignore
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_impl_to_api_mapping.py", line 140, in wrapper_func
+    return handler(
+           ^^^^^^^^
+  File "/home/runner/work/melaleuca-cart/melaleuca-cart/local/melaleuca_scan.py", line 111, in _route
+    return route.continue_()
+           ^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/sync_api/_generated.py", line 22486, in continue_
+    self._sync(
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_sync_base.py", line 111, in _sync
+    return task.result()
+           ^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_network.py", line 558, in continue_
+    return await self._handle_route(_inner)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_network.py", line 504, in _handle_route
+    await callback()
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_network.py", line 556, in _inner
+    await self._inner_continue(False)
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_network.py", line 562, in _inner_continue
+    await self._race_with_page_close(
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_network.py", line 599, in _race_with_page_close
+    await asyncio.wait(
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/asyncio/tasks.py", line 464, in wait
+    return await _wait(fs, timeout, return_when, loop)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/asyncio/tasks.py", line 550, in _wait
+    await waiter
+asyncio.exceptions.CancelledError
+Exception in callback Connection.dispatch.<locals>._done_callback(<Task cancell...ntext.py:252>>) at /opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_connection.py:546
+handle: <Handle Connection.dispatch.<locals>._done_callback(<Task cancell...ntext.py:252>>) at /opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_connection.py:546>
+Traceback (most recent call last):
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/asyncio/events.py", line 88, in _run
+    self._context.run(self._callback, *self._args)
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_connection.py", line 547, in _done_callback
+    exc = future.exception()
+          ^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_browser_context.py", line 267, in _on_route
+    handled = await route_handler.handle(route)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_helper.py", line 443, in handle
+    return await self._handle_internal(route)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_helper.py", line 479, in _handle_internal
+    await handler_finished_future
+asyncio.exceptions.CancelledError
+Exception in callback wait_for_future.<locals>.resume(<Task cancell...twork.py:407>>) at /opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_greenlets.py:67
+handle: <Handle wait_for_future.<locals>.resume(<Task cancell...twork.py:407>>) at /opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_greenlets.py:67>
+Traceback (most recent call last):
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/asyncio/events.py", line 88, in _run
+    self._context.run(self._callback, *self._args)
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_greenlets.py", line 68, in resume
+    g_self.switch()
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_helper.py", line 470, in _handler
+    self.handler(route, route.request)  # type: ignore
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_impl_to_api_mapping.py", line 140, in wrapper_func
+    return handler(
+           ^^^^^^^^
+  File "/home/runner/work/melaleuca-cart/melaleuca-cart/local/melaleuca_scan.py", line 110, in _route
+    return route.abort()
+           ^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/sync_api/_generated.py", line 22430, in abort
+    self._sync(self._impl_obj.abort(errorCode=error_code))
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_sync_base.py", line 111, in _sync
+    return task.result()
+           ^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_network.py", line 408, in abort
+    await self._handle_route(
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_network.py", line 504, in _handle_route
+    await callback()
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_network.py", line 599, in _race_with_page_close
+    await asyncio.wait(
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/asyncio/tasks.py", line 464, in wait
+    return await _wait(fs, timeout, return_when, loop)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/asyncio/tasks.py", line 550, in _wait
+    await waiter
+asyncio.exceptions.CancelledError
+Exception in callback wait_for_future.<locals>.resume(<Task cancell...twork.py:407>>) at /opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_greenlets.py:67
+handle: <Handle wait_for_future.<locals>.resume(<Task cancell...twork.py:407>>) at /opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_greenlets.py:67>
+Traceback (most recent call last):
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/asyncio/events.py", line 88, in _run
+    self._context.run(self._callback, *self._args)
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_greenlets.py", line 68, in resume
+    g_self.switch()
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_helper.py", line 470, in _handler
+    self.handler(route, route.request)  # type: ignore
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_impl_to_api_mapping.py", line 140, in wrapper_func
+    return handler(
+           ^^^^^^^^
+  File "/home/runner/work/melaleuca-cart/melaleuca-cart/local/melaleuca_scan.py", line 110, in _route
+    return route.abort()
+           ^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/sync_api/_generated.py", line 22430, in abort
+    self._sync(self._impl_obj.abort(errorCode=error_code))
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_sync_base.py", line 111, in _sync
+    return task.result()
+           ^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_network.py", line 408, in abort
+    await self._handle_route(
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_network.py", line 504, in _handle_route
+    await callback()
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_network.py", line 599, in _race_with_page_close
+    await asyncio.wait(
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/asyncio/tasks.py", line 464, in wait
+    return await _wait(fs, timeout, return_when, loop)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/asyncio/tasks.py", line 550, in _wait
+    await waiter
+asyncio.exceptions.CancelledError
+Exception in callback wait_for_future.<locals>.resume(<Task cancell...twork.py:407>>) at /opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_greenlets.py:67
+handle: <Handle wait_for_future.<locals>.resume(<Task cancell...twork.py:407>>) at /opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_greenlets.py:67>
+Traceback (most recent call last):
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/asyncio/events.py", line 88, in _run
+    self._context.run(self._callback, *self._args)
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_greenlets.py", line 68, in resume
+    g_self.switch()
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_helper.py", line 470, in _handler
+    self.handler(route, route.request)  # type: ignore
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_impl_to_api_mapping.py", line 140, in wrapper_func
+    return handler(
+           ^^^^^^^^
+  File "/home/runner/work/melaleuca-cart/melaleuca-cart/local/melaleuca_scan.py", line 110, in _route
+    return route.abort()
+           ^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/sync_api/_generated.py", line 22430, in abort
+    self._sync(self._impl_obj.abort(errorCode=error_code))
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_sync_base.py", line 111, in _sync
+    return task.result()
+           ^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_network.py", line 408, in abort
+    await self._handle_route(
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_network.py", line 504, in _handle_route
+    await callback()
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_network.py", line 599, in _race_with_page_close
+    await asyncio.wait(
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/asyncio/tasks.py", line 464, in wait
+    return await _wait(fs, timeout, return_when, loop)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/asyncio/tasks.py", line 550, in _wait
+    await waiter
+asyncio.exceptions.CancelledError
+Exception in callback Connection.dispatch.<locals>._done_callback(<Task cancell...ntext.py:252>>) at /opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_connection.py:546
+handle: <Handle Connection.dispatch.<locals>._done_callback(<Task cancell...ntext.py:252>>) at /opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_connection.py:546>
+Traceback (most recent call last):
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/asyncio/events.py", line 88, in _run
+    self._context.run(self._callback, *self._args)
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_connection.py", line 547, in _done_callback
+    exc = future.exception()
+          ^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_browser_context.py", line 267, in _on_route
+    handled = await route_handler.handle(route)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_helper.py", line 443, in handle
+    return await self._handle_internal(route)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_helper.py", line 479, in _handle_internal
+    await handler_finished_future
+asyncio.exceptions.CancelledError
+Exception in callback wait_for_future.<locals>.resume(<Task cancell...twork.py:407>>) at /opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_greenlets.py:67
+handle: <Handle wait_for_future.<locals>.resume(<Task cancell...twork.py:407>>) at /opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_greenlets.py:67>
+Traceback (most recent call last):
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/asyncio/events.py", line 88, in _run
+    self._context.run(self._callback, *self._args)
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_greenlets.py", line 68, in resume
+    g_self.switch()
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_helper.py", line 470, in _handler
+    self.handler(route, route.request)  # type: ignore
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_impl_to_api_mapping.py", line 140, in wrapper_func
+    return handler(
+           ^^^^^^^^
+  File "/home/runner/work/melaleuca-cart/melaleuca-cart/local/melaleuca_scan.py", line 110, in _route
+    return route.abort()
+           ^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/sync_api/_generated.py", line 22430, in abort
+    self._sync(self._impl_obj.abort(errorCode=error_code))
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_sync_base.py", line 111, in _sync
+    return task.result()
+           ^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_network.py", line 408, in abort
+    await self._handle_route(
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_network.py", line 504, in _handle_route
+    await callback()
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_network.py", line 599, in _race_with_page_close
+    await asyncio.wait(
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/asyncio/tasks.py", line 464, in wait
+    return await _wait(fs, timeout, return_when, loop)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/asyncio/tasks.py", line 550, in _wait
+    await waiter
+asyncio.exceptions.CancelledError
+Exception in callback wait_for_future.<locals>.resume(<Task cancell...twork.py:545>>) at /opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_greenlets.py:67
+handle: <Handle wait_for_future.<locals>.resume(<Task cancell...twork.py:545>>) at /opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_greenlets.py:67>
+Traceback (most recent call last):
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/asyncio/events.py", line 88, in _run
+    self._context.run(self._callback, *self._args)
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_greenlets.py", line 68, in resume
+    g_self.switch()
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_helper.py", line 470, in _handler
+    self.handler(route, route.request)  # type: ignore
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_impl_to_api_mapping.py", line 140, in wrapper_func
+    return handler(
+           ^^^^^^^^
+  File "/home/runner/work/melaleuca-cart/melaleuca-cart/local/melaleuca_scan.py", line 111, in _route
+    return route.continue_()
+           ^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/sync_api/_generated.py", line 22486, in continue_
+    self._sync(
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_sync_base.py", line 111, in _sync
+    return task.result()
+           ^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_network.py", line 558, in continue_
+    return await self._handle_route(_inner)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_network.py", line 504, in _handle_route
+    await callback()
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_network.py", line 556, in _inner
+    await self._inner_continue(False)
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_network.py", line 562, in _inner_continue
+    await self._race_with_page_close(
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_network.py", line 599, in _race_with_page_close
+    await asyncio.wait(
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/asyncio/tasks.py", line 464, in wait
+    return await _wait(fs, timeout, return_when, loop)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/asyncio/tasks.py", line 550, in _wait
+    await waiter
+asyncio.exceptions.CancelledError
+Exception in callback Connection.dispatch.<locals>._done_callback(<Task cancell...ntext.py:252>>) at /opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_connection.py:546
+handle: <Handle Connection.dispatch.<locals>._done_callback(<Task cancell...ntext.py:252>>) at /opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_connection.py:546>
+Traceback (most recent call last):
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/asyncio/events.py", line 88, in _run
+    self._context.run(self._callback, *self._args)
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_connection.py", line 547, in _done_callback
+    exc = future.exception()
+          ^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_browser_context.py", line 267, in _on_route
+    handled = await route_handler.handle(route)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_helper.py", line 443, in handle
+    return await self._handle_internal(route)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_helper.py", line 479, in _handle_internal
+    await handler_finished_future
+asyncio.exceptions.CancelledError
+Exception in callback Connection.dispatch.<locals>._done_callback(<Task cancell...ntext.py:252>>) at /opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_connection.py:546
+handle: <Handle Connection.dispatch.<locals>._done_callback(<Task cancell...ntext.py:252>>) at /opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_connection.py:546>
+Traceback (most recent call last):
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/asyncio/events.py", line 88, in _run
+    self._context.run(self._callback, *self._args)
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_connection.py", line 547, in _done_callback
+    exc = future.exception()
+          ^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_browser_context.py", line 267, in _on_route
+    handled = await route_handler.handle(route)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_helper.py", line 443, in handle
+    return await self._handle_internal(route)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_helper.py", line 479, in _handle_internal
+    await handler_finished_future
+asyncio.exceptions.CancelledError
+Exception in callback Connection.dispatch.<locals>._done_callback(<Task cancell...ntext.py:252>>) at /opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_connection.py:546
+handle: <Handle Connection.dispatch.<locals>._done_callback(<Task cancell...ntext.py:252>>) at /opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_connection.py:546>
+Traceback (most recent call last):
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/asyncio/events.py", line 88, in _run
+    self._context.run(self._callback, *self._args)
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_connection.py", line 547, in _done_callback
+    exc = future.exception()
+          ^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_browser_context.py", line 267, in _on_route
+    handled = await route_handler.handle(route)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_helper.py", line 443, in handle
+    return await self._handle_internal(route)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_helper.py", line 479, in _handle_internal
+    await handler_finished_future
+asyncio.exceptions.CancelledError
+Exception in callback wait_for_future.<locals>.resume(<Task cancell...twork.py:407>>) at /opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_greenlets.py:67
+handle: <Handle wait_for_future.<locals>.resume(<Task cancell...twork.py:407>>) at /opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_greenlets.py:67>
+Traceback (most recent call last):
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/asyncio/events.py", line 88, in _run
+    self._context.run(self._callback, *self._args)
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_greenlets.py", line 68, in resume
+    g_self.switch()
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_helper.py", line 470, in _handler
+    self.handler(route, route.request)  # type: ignore
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_impl_to_api_mapping.py", line 140, in wrapper_func
+    return handler(
+           ^^^^^^^^
+  File "/home/runner/work/melaleuca-cart/melaleuca-cart/local/melaleuca_scan.py", line 110, in _route
+    return route.abort()
+           ^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/sync_api/_generated.py", line 22430, in abort
+    self._sync(self._impl_obj.abort(errorCode=error_code))
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_sync_base.py", line 111, in _sync
+    return task.result()
+           ^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_network.py", line 408, in abort
+    await self._handle_route(
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_network.py", line 504, in _handle_route
+    await callback()
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_network.py", line 599, in _race_with_page_close
+    await asyncio.wait(
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/asyncio/tasks.py", line 464, in wait
+    return await _wait(fs, timeout, return_when, loop)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/asyncio/tasks.py", line 550, in _wait
+    await waiter
+asyncio.exceptions.CancelledError
+Exception in callback wait_for_future.<locals>.resume(<Task cancell...twork.py:545>>) at /opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_greenlets.py:67
+handle: <Handle wait_for_future.<locals>.resume(<Task cancell...twork.py:545>>) at /opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_greenlets.py:67>
+Traceback (most recent call last):
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/asyncio/events.py", line 88, in _run
+    self._context.run(self._callback, *self._args)
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_greenlets.py", line 68, in resume
+    g_self.switch()
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_helper.py", line 470, in _handler
+    self.handler(route, route.request)  # type: ignore
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_impl_to_api_mapping.py", line 140, in wrapper_func
+    return handler(
+           ^^^^^^^^
+  File "/home/runner/work/melaleuca-cart/melaleuca-cart/local/melaleuca_scan.py", line 111, in _route
+    return route.continue_()
+           ^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/sync_api/_generated.py", line 22486, in continue_
+    self._sync(
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_sync_base.py", line 111, in _sync
+    return task.result()
+           ^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_network.py", line 558, in continue_
+    return await self._handle_route(_inner)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_network.py", line 504, in _handle_route
+    await callback()
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_network.py", line 556, in _inner
+    await self._inner_continue(False)
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_network.py", line 562, in _inner_continue
+    await self._race_with_page_close(
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_network.py", line 599, in _race_with_page_close
+    await asyncio.wait(
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/asyncio/tasks.py", line 464, in wait
+    return await _wait(fs, timeout, return_when, loop)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/asyncio/tasks.py", line 550, in _wait
+    await waiter
+asyncio.exceptions.CancelledError
+Exception in callback wait_for_future.<locals>.resume(<Task cancell...twork.py:407>>) at /opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_greenlets.py:67
+handle: <Handle wait_for_future.<locals>.resume(<Task cancell...twork.py:407>>) at /opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_greenlets.py:67>
+Traceback (most recent call last):
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/asyncio/events.py", line 88, in _run
+    self._context.run(self._callback, *self._args)
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_greenlets.py", line 68, in resume
+    g_self.switch()
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_helper.py", line 470, in _handler
+    self.handler(route, route.request)  # type: ignore
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_impl_to_api_mapping.py", line 140, in wrapper_func
+    return handler(
+           ^^^^^^^^
+  File "/home/runner/work/melaleuca-cart/melaleuca-cart/local/melaleuca_scan.py", line 110, in _route
+    return route.abort()
+           ^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/sync_api/_generated.py", line 22430, in abort
+    self._sync(self._impl_obj.abort(errorCode=error_code))
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_sync_base.py", line 111, in _sync
+    return task.result()
+           ^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_network.py", line 408, in abort
+    await self._handle_route(
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_network.py", line 504, in _handle_route
+    await callback()
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_network.py", line 599, in _race_with_page_close
+    await asyncio.wait(
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/asyncio/tasks.py", line 464, in wait
+    return await _wait(fs, timeout, return_when, loop)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/asyncio/tasks.py", line 550, in _wait
+    await waiter
+asyncio.exceptions.CancelledError
+Exception in callback wait_for_future.<locals>.resume(<Task cancell...twork.py:545>>) at /opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_greenlets.py:67
+handle: <Handle wait_for_future.<locals>.resume(<Task cancell...twork.py:545>>) at /opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_greenlets.py:67>
+Traceback (most recent call last):
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/asyncio/events.py", line 88, in _run
+    self._context.run(self._callback, *self._args)
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_greenlets.py", line 68, in resume
+    g_self.switch()
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_helper.py", line 470, in _handler
+    self.handler(route, route.request)  # type: ignore
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_impl_to_api_mapping.py", line 140, in wrapper_func
+    return handler(
+           ^^^^^^^^
+  File "/home/runner/work/melaleuca-cart/melaleuca-cart/local/melaleuca_scan.py", line 111, in _route
+    return route.continue_()
+           ^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/sync_api/_generated.py", line 22486, in continue_
+    self._sync(
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_sync_base.py", line 111, in _sync
+    return task.result()
+           ^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_network.py", line 558, in continue_
+    return await self._handle_route(_inner)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_network.py", line 504, in _handle_route
+    await callback()
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_network.py", line 556, in _inner
+    await self._inner_continue(False)
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_network.py", line 562, in _inner_continue
+    await self._race_with_page_close(
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_network.py", line 599, in _race_with_page_close
+    await asyncio.wait(
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/asyncio/tasks.py", line 464, in wait
+    return await _wait(fs, timeout, return_when, loop)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/asyncio/tasks.py", line 550, in _wait
+    await waiter
+asyncio.exceptions.CancelledError
+Exception in callback Connection.dispatch.<locals>._done_callback(<Task cancell...ntext.py:252>>) at /opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_connection.py:546
+handle: <Handle Connection.dispatch.<locals>._done_callback(<Task cancell...ntext.py:252>>) at /opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_connection.py:546>
+Traceback (most recent call last):
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/asyncio/events.py", line 88, in _run
+    self._context.run(self._callback, *self._args)
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_connection.py", line 547, in _done_callback
+    exc = future.exception()
+          ^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_browser_context.py", line 267, in _on_route
+    handled = await route_handler.handle(route)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_helper.py", line 443, in handle
+    return await self._handle_internal(route)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_helper.py", line 479, in _handle_internal
+    await handler_finished_future
+asyncio.exceptions.CancelledError
+Exception in callback Connection.dispatch.<locals>._done_callback(<Task cancell...ntext.py:252>>) at /opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_connection.py:546
+handle: <Handle Connection.dispatch.<locals>._done_callback(<Task cancell...ntext.py:252>>) at /opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_connection.py:546>
+Traceback (most recent call last):
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/asyncio/events.py", line 88, in _run
+    self._context.run(self._callback, *self._args)
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_connection.py", line 547, in _done_callback
+    exc = future.exception()
+          ^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_browser_context.py", line 267, in _on_route
+    handled = await route_handler.handle(route)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_helper.py", line 443, in handle
+    return await self._handle_internal(route)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_helper.py", line 479, in _handle_internal
+    await handler_finished_future
+asyncio.exceptions.CancelledError
+Exception in callback wait_for_future.<locals>.resume(<Task cancell...twork.py:407>>) at /opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_greenlets.py:67
+handle: <Handle wait_for_future.<locals>.resume(<Task cancell...twork.py:407>>) at /opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_greenlets.py:67>
+Traceback (most recent call last):
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/asyncio/events.py", line 88, in _run
+    self._context.run(self._callback, *self._args)
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_greenlets.py", line 68, in resume
+    g_self.switch()
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_helper.py", line 470, in _handler
+    self.handler(route, route.request)  # type: ignore
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_impl_to_api_mapping.py", line 140, in wrapper_func
+    return handler(
+           ^^^^^^^^
+  File "/home/runner/work/melaleuca-cart/melaleuca-cart/local/melaleuca_scan.py", line 110, in _route
+    return route.abort()
+           ^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/sync_api/_generated.py", line 22430, in abort
+    self._sync(self._impl_obj.abort(errorCode=error_code))
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_sync_base.py", line 111, in _sync
+    return task.result()
+           ^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_network.py", line 408, in abort
+    await self._handle_route(
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_network.py", line 504, in _handle_route
+    await callback()
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_network.py", line 599, in _race_with_page_close
+    await asyncio.wait(
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/asyncio/tasks.py", line 464, in wait
+    return await _wait(fs, timeout, return_when, loop)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/asyncio/tasks.py", line 550, in _wait
+    await waiter
+asyncio.exceptions.CancelledError
+Exception in callback Connection.dispatch.<locals>._done_callback(<Task cancell...ntext.py:252>>) at /opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_connection.py:546
+handle: <Handle Connection.dispatch.<locals>._done_callback(<Task cancell...ntext.py:252>>) at /opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_connection.py:546>
+Traceback (most recent call last):
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/asyncio/events.py", line 88, in _run
+    self._context.run(self._callback, *self._args)
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_connection.py", line 547, in _done_callback
+    exc = future.exception()
+          ^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_browser_context.py", line 267, in _on_route
+    handled = await route_handler.handle(route)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_helper.py", line 443, in handle
+    return await self._handle_internal(route)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_helper.py", line 479, in _handle_internal
+    await handler_finished_future
+asyncio.exceptions.CancelledError
+Exception in callback Connection.dispatch.<locals>._done_callback(<Task cancell...ntext.py:252>>) at /opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_connection.py:546
+handle: <Handle Connection.dispatch.<locals>._done_callback(<Task cancell...ntext.py:252>>) at /opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_connection.py:546>
+Traceback (most recent call last):
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/asyncio/events.py", line 88, in _run
+    self._context.run(self._callback, *self._args)
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_connection.py", line 547, in _done_callback
+    exc = future.exception()
+          ^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_browser_context.py", line 267, in _on_route
+    handled = await route_handler.handle(route)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_helper.py", line 443, in handle
+    return await self._handle_internal(route)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_helper.py", line 479, in _handle_internal
+    await handler_finished_future
+asyncio.exceptions.CancelledError
+Exception in callback Connection.dispatch.<locals>._done_callback(<Task cancell...ntext.py:252>>) at /opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_connection.py:546
+handle: <Handle Connection.dispatch.<locals>._done_callback(<Task cancell...ntext.py:252>>) at /opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_connection.py:546>
+Traceback (most recent call last):
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/asyncio/events.py", line 88, in _run
+    self._context.run(self._callback, *self._args)
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_connection.py", line 547, in _done_callback
+    exc = future.exception()
+          ^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_browser_context.py", line 267, in _on_route
+    handled = await route_handler.handle(route)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_helper.py", line 443, in handle
+    return await self._handle_internal(route)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_helper.py", line 479, in _handle_internal
+    await handler_finished_future
+asyncio.exceptions.CancelledError
+Exception in callback wait_for_future.<locals>.resume(<Task cancell...twork.py:407>>) at /opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_greenlets.py:67
+handle: <Handle wait_for_future.<locals>.resume(<Task cancell...twork.py:407>>) at /opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_greenlets.py:67>
+Traceback (most recent call last):
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/asyncio/events.py", line 88, in _run
+    self._context.run(self._callback, *self._args)
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_greenlets.py", line 68, in resume
+    g_self.switch()
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_helper.py", line 470, in _handler
+    self.handler(route, route.request)  # type: ignore
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_impl_to_api_mapping.py", line 140, in wrapper_func
+    return handler(
+           ^^^^^^^^
+  File "/home/runner/work/melaleuca-cart/melaleuca-cart/local/melaleuca_scan.py", line 110, in _route
+    return route.abort()
+           ^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/sync_api/_generated.py", line 22430, in abort
+    self._sync(self._impl_obj.abort(errorCode=error_code))
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_sync_base.py", line 111, in _sync
+    return task.result()
+           ^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_network.py", line 408, in abort
+    await self._handle_route(
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_network.py", line 504, in _handle_route
+    await callback()
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_network.py", line 599, in _race_with_page_close
+    await asyncio.wait(
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/asyncio/tasks.py", line 464, in wait
+    return await _wait(fs, timeout, return_when, loop)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/asyncio/tasks.py", line 550, in _wait
+    await waiter
+asyncio.exceptions.CancelledError
+Exception in callback Connection.dispatch.<locals>._done_callback(<Task cancell...ntext.py:252>>) at /opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_connection.py:546
+handle: <Handle Connection.dispatch.<locals>._done_callback(<Task cancell...ntext.py:252>>) at /opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_connection.py:546>
+Traceback (most recent call last):
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/asyncio/events.py", line 88, in _run
+    self._context.run(self._callback, *self._args)
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_connection.py", line 547, in _done_callback
+    exc = future.exception()
+          ^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_browser_context.py", line 267, in _on_route
+    handled = await route_handler.handle(route)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_helper.py", line 443, in handle
+    return await self._handle_internal(route)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_helper.py", line 479, in _handle_internal
+    await handler_finished_future
+asyncio.exceptions.CancelledError
+Exception in callback wait_for_future.<locals>.resume(<Task cancell...twork.py:407>>) at /opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_greenlets.py:67
+handle: <Handle wait_for_future.<locals>.resume(<Task cancell...twork.py:407>>) at /opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_greenlets.py:67>
+Traceback (most recent call last):
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/asyncio/events.py", line 88, in _run
+    self._context.run(self._callback, *self._args)
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_greenlets.py", line 68, in resume
+    g_self.switch()
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_helper.py", line 470, in _handler
+    self.handler(route, route.request)  # type: ignore
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_impl_to_api_mapping.py", line 140, in wrapper_func
+    return handler(
+           ^^^^^^^^
+  File "/home/runner/work/melaleuca-cart/melaleuca-cart/local/melaleuca_scan.py", line 110, in _route
+    return route.abort()
+           ^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/sync_api/_generated.py", line 22430, in abort
+    self._sync(self._impl_obj.abort(errorCode=error_code))
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_sync_base.py", line 111, in _sync
+    return task.result()
+           ^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_network.py", line 408, in abort
+    await self._handle_route(
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_network.py", line 504, in _handle_route
+    await callback()
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_network.py", line 599, in _race_with_page_close
+    await asyncio.wait(
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/asyncio/tasks.py", line 464, in wait
+    return await _wait(fs, timeout, return_when, loop)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/asyncio/tasks.py", line 550, in _wait
+    await waiter
+asyncio.exceptions.CancelledError
+Exception in callback Connection.dispatch.<locals>._done_callback(<Task cancell...ntext.py:252>>) at /opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_connection.py:546
+handle: <Handle Connection.dispatch.<locals>._done_callback(<Task cancell...ntext.py:252>>) at /opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_connection.py:546>
+Traceback (most recent call last):
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/asyncio/events.py", line 88, in _run
+    self._context.run(self._callback, *self._args)
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_connection.py", line 547, in _done_callback
+    exc = future.exception()
+          ^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_browser_context.py", line 267, in _on_route
+    handled = await route_handler.handle(route)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_helper.py", line 443, in handle
+    return await self._handle_internal(route)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_helper.py", line 479, in _handle_internal
+    await handler_finished_future
+asyncio.exceptions.CancelledError
+Task was destroyed but it is pending!
+task: <Task cancelling name='Task-69109' coro=<Channel.send() running at /opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_connection.py:78> wait_for=<Future finished result=None>>
+Future exception was never retrieved
+future: <Future finished exception=TargetClosedError('Target page, context or browser has been closed')>
+playwright._impl._errors.TargetClosedError: Target page, context or browser has been closed
+Task was destroyed but it is pending!
+task: <Task cancelling name='Task-69112' coro=<Channel.send() running at /opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_connection.py:78> wait_for=<Future finished result=None>>
+Future exception was never retrieved
+future: <Future finished exception=TargetClosedError('Target page, context or browser has been closed')>
+playwright._impl._errors.TargetClosedError: Target page, context or browser has been closed
+Task was destroyed but it is pending!
+task: <Task cancelling name='Task-69115' coro=<Channel.send() running at /opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_connection.py:78> wait_for=<Future finished result=None>>
+Future exception was never retrieved
+future: <Future finished exception=TargetClosedError('Target page, context or browser has been closed')>
+playwright._impl._errors.TargetClosedError: Target page, context or browser has been closed
+Task was destroyed but it is pending!
+task: <Task cancelling name='Task-69118' coro=<Channel.send() running at /opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_connection.py:78> wait_for=<Future finished result=None>>
+Future exception was never retrieved
+future: <Future finished exception=TargetClosedError('Target page, context or browser has been closed')>
+playwright._impl._errors.TargetClosedError: Target page, context or browser has been closed
+Task was destroyed but it is pending!
+task: <Task cancelling name='Task-69121' coro=<Channel.send() running at /opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_connection.py:78> wait_for=<Future finished result=None>>
+Future exception was never retrieved
+future: <Future finished exception=TargetClosedError('Target page, context or browser has been closed')>
+playwright._impl._errors.TargetClosedError: Target page, context or browser has been closed
+Task was destroyed but it is pending!
+task: <Task cancelling name='Task-69124' coro=<Channel.send() running at /opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_connection.py:78> wait_for=<Future finished result=None>>
+Future exception was never retrieved
+future: <Future finished exception=TargetClosedError('Target page, context or browser has been closed')>
+playwright._impl._errors.TargetClosedError: Target page, context or browser has been closed
+Task was destroyed but it is pending!
+task: <Task cancelling name='Task-69127' coro=<Channel.send() running at /opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_connection.py:78> wait_for=<Future finished result=None>>
+Future exception was never retrieved
+future: <Future finished exception=TargetClosedError('Target page, context or browser has been closed')>
+playwright._impl._errors.TargetClosedError: Target page, context or browser has been closed
+Task was destroyed but it is pending!
+task: <Task cancelling name='Task-69130' coro=<Channel.send() running at /opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_connection.py:78> wait_for=<Future finished result=None>>
+Future exception was never retrieved
+future: <Future finished exception=TargetClosedError('Target page, context or browser has been closed')>
+playwright._impl._errors.TargetClosedError: Target page, context or browser has been closed
+Task was destroyed but it is pending!
+task: <Task cancelling name='Task-69133' coro=<Channel.send() running at /opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_connection.py:78> wait_for=<Future finished result=None>>
+Future exception was never retrieved
+future: <Future finished exception=TargetClosedError('Target page, context or browser has been closed')>
+playwright._impl._errors.TargetClosedError: Target page, context or browser has been closed
+Task was destroyed but it is pending!
+task: <Task cancelling name='Task-69136' coro=<Channel.send() running at /opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_connection.py:78> wait_for=<Future finished result=None>>
+Future exception was never retrieved
+future: <Future finished exception=TargetClosedError('Target page, context or browser has been closed')>
+playwright._impl._errors.TargetClosedError: Target page, context or browser has been closed
+Task was destroyed but it is pending!
+task: <Task cancelling name='Task-69139' coro=<Channel.send() running at /opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_connection.py:78> wait_for=<Future finished result=None>>
+Future exception was never retrieved
+future: <Future finished exception=TargetClosedError('Target page, context or browser has been closed')>
+playwright._impl._errors.TargetClosedError: Target page, context or browser has been closed
+Task was destroyed but it is pending!
+task: <Task cancelling name='Task-69142' coro=<Channel.send() running at /opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_connection.py:78> wait_for=<Future finished result=None>>
+Future exception was never retrieved
+future: <Future finished exception=TargetClosedError('Target page, context or browser has been closed')>
+playwright._impl._errors.TargetClosedError: Target page, context or browser has been closed
+Task was destroyed but it is pending!
+task: <Task cancelling name='Task-69145' coro=<Channel.send() running at /opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_connection.py:78> wait_for=<Future finished result=None>>
+Future exception was never retrieved
+future: <Future finished exception=TargetClosedError('Target page, context or browser has been closed')>
+playwright._impl._errors.TargetClosedError: Target page, context or browser has been closed
+Task was destroyed but it is pending!
+task: <Task cancelling name='Task-69148' coro=<Channel.send() running at /opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_connection.py:78> wait_for=<Future finished result=None>>
+Future exception was never retrieved
+future: <Future finished exception=TargetClosedError('Target page, context or browser has been closed')>
+playwright._impl._errors.TargetClosedError: Target page, context or browser has been closed
+Task was destroyed but it is pending!
+task: <Task cancelling name='Task-69151' coro=<Channel.send() running at /opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_connection.py:78> wait_for=<Future finished result=None>>
+Future exception was never retrieved
+future: <Future finished exception=TargetClosedError('Target page, context or browser has been closed')>
+playwright._impl._errors.TargetClosedError: Target page, context or browser has been closed
+Task was destroyed but it is pending!
+task: <Task cancelling name='Task-69154' coro=<Channel.send() running at /opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_connection.py:78> wait_for=<Future finished result=None>>
+Future exception was never retrieved
+future: <Future finished exception=TargetClosedError('Target page, context or browser has been closed')>
+playwright._impl._errors.TargetClosedError: Target page, context or browser has been closed
+Task was destroyed but it is pending!
+task: <Task cancelling name='Task-69157' coro=<Channel.send() running at /opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_connection.py:78> wait_for=<Future finished result=None>>
+Future exception was never retrieved
+future: <Future finished exception=TargetClosedError('Target page, context or browser has been closed')>
+playwright._impl._errors.TargetClosedError: Target page, context or browser has been closed
+Task was destroyed but it is pending!
+task: <Task cancelling name='Task-69160' coro=<Channel.send() running at /opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_connection.py:78> wait_for=<Future finished result=None>>
+Future exception was never retrieved
+future: <Future finished exception=TargetClosedError('Target page, context or browser has been closed')>
+playwright._impl._errors.TargetClosedError: Target page, context or browser has been closed
+Task was destroyed but it is pending!
+task: <Task cancelling name='Task-69163' coro=<Channel.send() running at /opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_connection.py:78> wait_for=<Future finished result=None>>
+Future exception was never retrieved
+future: <Future finished exception=TargetClosedError('Target page, context or browser has been closed')>
+playwright._impl._errors.TargetClosedError: Target page, context or browser has been closed
+Task was destroyed but it is pending!
+task: <Task cancelling name='Task-69166' coro=<Channel.send() running at /opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_connection.py:78> wait_for=<Future finished result=None>>
+Future exception was never retrieved
+future: <Future finished exception=TargetClosedError('Target page, context or browser has been closed')>
+playwright._impl._errors.TargetClosedError: Target page, context or browser has been closed
+Task was destroyed but it is pending!
+task: <Task cancelling name='Task-69169' coro=<Channel.send() running at /opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_connection.py:78> wait_for=<Future finished result=None>>
+Future exception was never retrieved
+future: <Future finished exception=TargetClosedError('Target page, context or browser has been closed')>
+playwright._impl._errors.TargetClosedError: Target page, context or browser has been closed
+Task was destroyed but it is pending!
+task: <Task cancelling name='Task-69172' coro=<Channel.send() running at /opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_connection.py:78> wait_for=<Future finished result=None>>
+Future exception was never retrieved
+future: <Future finished exception=TargetClosedError('Target page, context or browser has been closed')>
+playwright._impl._errors.TargetClosedError: Target page, context or browser has been closed
+Task was destroyed but it is pending!
+task: <Task cancelling name='Task-69175' coro=<Channel.send() running at /opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_connection.py:78> wait_for=<Future finished result=None>>
+Future exception was never retrieved
+future: <Future finished exception=TargetClosedError('Target page, context or browser has been closed')>
+playwright._impl._errors.TargetClosedError: Target page, context or browser has been closed
+Task was destroyed but it is pending!
+task: <Task cancelling name='Task-69178' coro=<Channel.send() running at /opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_connection.py:78> wait_for=<Future finished result=None>>
+Future exception was never retrieved
+future: <Future finished exception=TargetClosedError('Target page, context or browser has been closed')>
+playwright._impl._errors.TargetClosedError: Target page, context or browser has been closed
+Task was destroyed but it is pending!
+task: <Task cancelling name='Task-69181' coro=<Channel.send() running at /opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_connection.py:78> wait_for=<Future finished result=None>>
+Future exception was never retrieved
+future: <Future finished exception=TargetClosedError('Target page, context or browser has been closed')>
+playwright._impl._errors.TargetClosedError: Target page, context or browser has been closed
+Task was destroyed but it is pending!
+task: <Task cancelling name='Task-69184' coro=<Channel.send() running at /opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_connection.py:78> wait_for=<Future finished result=None>>
+Future exception was never retrieved
+future: <Future finished exception=TargetClosedError('Target page, context or browser has been closed')>
+playwright._impl._errors.TargetClosedError: Target page, context or browser has been closed
+Task was destroyed but it is pending!
+task: <Task cancelling name='Task-69187' coro=<Channel.send() running at /opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_connection.py:78> wait_for=<Future finished result=None>>
+Future exception was never retrieved
+future: <Future finished exception=TargetClosedError('Target page, context or browser has been closed')>
+playwright._impl._errors.TargetClosedError: Target page, context or browser has been closed
