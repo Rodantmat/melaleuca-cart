@@ -1,0 +1,87 @@
+signed in as David H | plan: 43 lines, TOTAL points 147.0 cost 368.52
+cart had 45 lines (162 points) - emptying it first
+cart emptied
+  variant: Haircare - Sei Bella Argan Oil and Coconut Conditi (F3293) -> 70114  Argan Oil & Coconut Moisture Smooth Conditioner (0.62)
+  variant: Renew - Lotion - 20oz (R480H) -> 6600  only variant: Value Size Renew
+  variant: Laundry - MelaBoost - Garden Lavender (F264) -> 6423  Garden Lavender (0.98)
+  variant: Haircare - Herbal Shampoo - 8oz (R1729L) -> 4117  only variant: Melaleuca® Herbal Shampoo
+  variant: Beauty - Sei Bella Volume Extreme Mascara - Black  (F2026) -> 8900  only variant: Volume: Black - Waterproof
+actions: 29 | offer lines: 0 | problems: 1
+  PROBLEM: group F55: SUBSTITUTED: 'Soap Bar - Exfoliating Bar - Almond Vanilla' is not a choice of this pack - the store pack has 'Exfoliating' (also used for 'Soap Bar - Exfoliating Bar'); change it by hand if you need the exact one
+  added [single] 4056 x1 Ecosense - Sol-U-Guard Wipes 
+  added [single] 70114 x1 Haircare - Sei Bella Argan Oil and Coconut Conditioner 
+  added [single] 6600 x2 Renew - Lotion - 20oz 
+  added [single] 5612 x2 Ecosense - Clean And Gleam - 8oz 
+  added [single] 6423 x2 Laundry - MelaBoost - Garden Lavender 
+  added [single] 4913 x2 Koala Pals - Hair Wash 
+  added [pack] 2211 x1 2-pack: Ecosense - PreSpot - 8oz 
+  added [pack] 5018 x1 2-pack: Ecosense - Diamond Brite - 25 Loads 
+  added [single] 1218 x2 Ecosense - Tough and Tender - 8oz 
+  added [single] 3620 x2 Renew - Body Wash 12oz 
+  added [single] 4117 x2 Haircare - Herbal Shampoo - 8oz 
+  added [single] 20063 x1 Haircare - Affinia Volume Shampoo 
+  added [single] 3634 x1 Renew - Lotion - 1oz - Pure Lavender 
+  added [single] 4020 x1 Ecosense - Sol U Guard 
+  added [single] 3748 x1 Renew - Hand Wash 8oz 
+  added [single] 3427 x1 Ecosense - Rustic - 8oz 
+  added [single] 70338 x1 Beauty - Sei Bella Facial Scrub 
+  added [pack] 6196 x1 2-pack: Toothcare - Breath-Away Mouth Rinse - 16oz 
+  added [single] 8900 x1 Beauty - Sei Bella Volume Extreme Mascara - Black - 0.4 
+  added [single] 184 x1 Mela-Pharmacy - Pain A Trate - Original 
+  added [pack] 190 x1 DEOD pack 1/1: finia Sweet Cream and Willow, nia Vanill 
+       choice: Deodorant - Alloy Antiperspirant -> Antiperspirant & Deodorant   (10.0)
+       choice: Deodorant - Affinia Vanilla Musk and Jasmine -> Vanilla Musk & Jasmine Antiperspirant & Deodorant (0.9)
+       choice: Deodorant - Affinia Sweet Cream and Willow -> Sweet Cream & Willow Antiperspirant & Deodorant (0.9)
+  added [pack] 34911 x1 CLEAN pack 1/1: Ecosense - Mela-magic - 16oz, cosense - 
+       choice: Ecosense - Harvest Pure - 8oz -> Harvest Pure™ Fruit And Vegetable Wash (10.0)
+       choice: Ecosense - Tub and Tile - 8oz -> Tub & Tile 6x Bathroom Cleaner (10.0)
+       choice: Ecosense - Mela-magic - 16oz -> MelaMagic Heavy-Duty Cleaner (10.0)
+  added [pack] 7911 x1 F650 pack 1/1: des - Lip Balm - Pina Colada, p Balm - C 
+       choice: Sun Shades - Lip Balm - Pina Colada -> Piña Colada (0.98)
+       choice: Sun Shades - Lip Balm - Pina Colada -> Piña Colada (0.98)
+       choice: Sun Shades - Lip Balm - Cranberry Tangerine -> Cranberry Tangerine (0.98)
+  added [pack] 43987 x1 TOOTH pack 1/1:  - Koala Pals - Berrylicious, hcare - C 
+       choice: Toothcare - Koala Pals - Berrylicious -> Berrylicious +Fluoride (0.87)
+       choice: Toothcare - Classic - Fresh Mint -> Classic Fresh Mint - Fluoride-Free (0.83)
+       choice: Toothcare - Exceed - Cinnamon -> Cinnamon - Fluoride-Free (10.0)
+  added [pack] 5026 x1 F252 pack 1/1: Brite - 16oz - Apple Scented, Brite - 16 
+       choice: EcoSense - Lemon Brite - 16oz - Tropical Scented -> Tropical (0.98)
+       choice: EcoSense - Lemon Brite - 16oz - Lemon Scented -> Lemon (0.98)
+       choice: EcoSense - Lemon Brite - 16oz - Apple Scented -> Apple (0.98)
+  added [pack] 34906 x1 LVAL3 pack 1/1:  Melapower - Garden Lavender, laSoft Bo 
+       choice: Laundry - Melabrite - 96 loads -> Liquid (10.0)
+       choice: Laundry - Melapower - Garden Lavender -> Garden Lavender Regular (0.98)
+       choice: Laundry - MelaSoft Bottle - Clean Cotton -> Melasoft - Liquid 96 load Clean Cotton (0.66)
+  added [pack] 5027 x1 F298 pack 1/1: ft Dryer Sheets - Scent Free, yer Sheets 
+       choice: Laundry - Melasoft Dryer Sheets - Garden Lavender -> Garden Lavender (0.98)
+       choice: Laundry - Melasoft Dryer Sheets - Scent Free -> Scent Free (0.98)
+  added [pack] 6111 x1 GEL pack 1/1: Pharmacy - MelaGel .4oz Disk 
+       choice: Mela-Pharmacy - MelaGel .4oz Disk -> Disc (10.0)
+       choice: Mela-Pharmacy - MelaGel .4oz Disk -> Disc (10.0)
+  added [pack] 5048 x1 F55 pack 1/1: Soap Bar - Exfoliating Bar, ap Bar - Pink 
+       choice: Soap Bar - Exfoliating Bar -> Exfoliating (0.98)
+       choice: Soap Bar - Pink Grapefruit Bar -> Pink Grapefruit (0.98)
+       choice: Soap Bar - Exfoliating Bar - Almond Vanilla -> Exfoliating (0.98)
+cart before the offers: 36 items, 195 points
+  credit  : Credit 1 -> box 'Buy with Loyalty Shopping Dollars' ticked on Ecosense - Sol-U-Guard Wipes
+  credit  : Credit 2 -> box 'Buy with Loyalty Shopping Dollars' ticked on Haircare - Sei Bella Argan Oil and Coconut Conditioner
+
+CART NOW: 36 items | 182 points | gross 549.66 | net 536.54 | discount 0
+SHEET   : 147 points count for the limit (TOTAL row: 147) + 13 points of credit items | cost of all lines 368.52
+CREDIT  : $13.12 of loyalty dollars used by the cart
+RESULT  : points DIFFER by +35 | cost not compared (Canadian dollars in the store, US dollars in the sheet)
+  DIFFERENCE: Renew - Lotion - 20oz: sheet 9 pts / 19.98  -  store 20 pts / 44.58
+  DIFFERENCE: Ecosense - Clean And Gleam - 8oz: sheet 4 pts / 9.23  -  store 6 pts / 18.98
+  DIFFERENCE: Laundry - MelaBoost - Garden Lavender: sheet 4 pts / 15.98  -  store 10 pts / 30.58
+  DIFFERENCE: Koala Pals - Hair Wash: sheet 3 pts / 7.68  -  store 6 pts / 13.98
+  DIFFERENCE: Ecosense - Tough and Tender - 8oz: sheet 4 pts / 9.23  -  store 6 pts / 18.98
+  DIFFERENCE: Renew - Body Wash 12oz: sheet 5 pts / 12.98  -  store 12 pts / 28.58
+  DIFFERENCE: Haircare - Herbal Shampoo - 8oz: sheet 4 pts / 10.78  -  store 8 pts / 21.38
+  AUTO-ADJUSTED: Renew - Lotion - 20oz: quantity 2 -> 1 (the store gives it 10 points per unit; the sheet expected a coupon price)
+  AUTO-ADJUSTED: Renew - Body Wash 12oz: quantity 2 -> 1 (the store gives it 6 points per unit; the sheet expected a coupon price)
+  AUTO-ADJUSTED: Laundry - MelaBoost - Garden Lavender: quantity 2 -> 1 (the store gives it 5 points per unit; the sheet expected a coupon price)
+  AUTO-ADJUSTED: Haircare - Herbal Shampoo - 8oz: quantity 2 -> 1 (the store gives it 4 points per unit; the sheet expected a coupon price)
+  AUTO-ADJUSTED: Koala Pals - Hair Wash: quantity 2 -> 1 (the store gives it 3 points per unit; the sheet expected a coupon price)
+  AUTO-ADJUSTED: Ecosense - Clean And Gleam - 8oz: quantity 2 -> 1 (the store gives it 3 points per unit; the sheet expected a coupon price)
+  AUTO-ADJUSTED: Ecosense - Tough and Tender - 8oz: quantity 2 -> 1 (the store gives it 3 points per unit; the sheet expected a coupon price)
+CART AFTER THE ADJUSTMENT: 29 items | 148 points | gross 461.13

@@ -1,0 +1,781 @@
+{
+ "4056": {
+  "conf": [],
+  "acc": []
+ },
+ "70114": {
+  "conf": [
+   {
+    "type": "Facet",
+    "title": "Conditioner",
+    "sku": null,
+    "feature": null,
+    "req": 0,
+    "choices": [
+     {
+      "title": "Argan Oil & Coconut Moisture Smooth",
+      "sku": "70114",
+      "refiner": "660-3644"
+     },
+     {
+      "title": "Olive Fruit & Almond Protein Strength",
+      "sku": "70116",
+      "refiner": "660-3645"
+     },
+     {
+      "title": "Rice & Amaranth Full Volume",
+      "sku": "70115",
+      "refiner": "660-3648"
+     }
+    ]
+   }
+  ],
+  "acc": []
+ },
+ "6600": {
+  "conf": [
+   {
+    "type": "Facet",
+    "title": "Size",
+    "sku": null,
+    "feature": null,
+    "req": 0,
+    "choices": [
+     {
+      "title": "237 mL tube",
+      "sku": "6969",
+      "refiner": "542-3165"
+     },
+     {
+      "title": "591 mL bottle",
+      "sku": "6600",
+      "refiner": "542-3167"
+     }
+    ]
+   }
+  ],
+  "acc": [
+   {
+    "sku": "6601",
+    "title": "Renew\u00ae Pump for 20 fl oz (optional)",
+    "price": 1.59,
+    "pts": 0.0
+   }
+  ]
+ },
+ "5612": {
+  "conf": [],
+  "acc": [
+   {
+    "sku": "5605",
+    "title": "Clean & Gleam\u2122 Spray Mop + 3 Mop Pads",
+    "price": 44.59,
+    "pts": 0.0
+   }
+  ]
+ },
+ "6423": {
+  "conf": [
+   {
+    "type": "Facet",
+    "title": "Scent",
+    "sku": null,
+    "feature": null,
+    "req": 0,
+    "choices": [
+     {
+      "title": "MelaBoost - Garden Lavender",
+      "sku": "6423",
+      "refiner": "723-3909"
+     },
+     {
+      "title": "MelaBoost - Mountain Fresh",
+      "sku": "6421",
+      "refiner": "723-3910"
+     },
+     {
+      "title": "MelaBoost - Island Breeze",
+      "sku": "6422",
+      "refiner": "723-3908"
+     }
+    ]
+   }
+  ],
+  "acc": [
+   {
+    "sku": "4848",
+    "title": "EcoSense\u00ae Drain-Back Cap",
+    "price": 1.59,
+    "pts": 0.0
+   },
+   {
+    "sku": "924",
+    "title": "32 fl. oz. Reusable Laundry Pump",
+    "price": 2.99,
+    "pts": 0.0
+   }
+  ]
+ },
+ "4913": {
+  "conf": [],
+  "acc": []
+ },
+ "2211": {
+  "conf": [],
+  "acc": [
+   {
+    "sku": "33001",
+    "title": "PreSpot\u2122 4x Mixing Spray Bottle",
+    "price": 2.29,
+    "pts": 0.0
+   }
+  ]
+ },
+ "5018": {
+  "conf": [],
+  "acc": []
+ },
+ "1218": {
+  "conf": [],
+  "acc": [
+   {
+    "sku": "1219",
+    "title": "Tough & Tender\u00ae Mixing Spray Bottle",
+    "price": 2.29,
+    "pts": 0.0
+   }
+  ]
+ },
+ "3620": {
+  "conf": [],
+  "acc": []
+ },
+ "4117": {
+  "conf": [
+   {
+    "type": "Facet",
+    "title": "Shampoo",
+    "sku": null,
+    "feature": null,
+    "req": 0,
+    "choices": [
+     {
+      "title": "Herbal 237 mL",
+      "sku": "4117",
+      "refiner": "600-3823"
+     },
+     {
+      "title": "Herbal 946 mL",
+      "sku": "4905",
+      "refiner": "600-3824"
+     }
+    ]
+   },
+   {
+    "type": "Static",
+    "title": "",
+    "sku": "5905",
+    "feature": null,
+    "req": 0,
+    "choices": []
+   }
+  ],
+  "acc": [
+   {
+    "sku": "4889",
+    "title": "32 oz. Shampoo & Conditioner Pump",
+    "price": 1.59,
+    "pts": 0.0
+   }
+  ]
+ },
+ "20063": {
+  "conf": [],
+  "acc": [
+   {
+    "sku": "20065",
+    "title": "Affinia Shampoo & Conditioner Pump",
+    "price": 1.59,
+    "pts": 0.0
+   }
+  ]
+ },
+ "3634": {
+  "conf": [],
+  "acc": []
+ },
+ "4020": {
+  "conf": [],
+  "acc": [
+   {
+    "sku": "8901",
+    "title": "Sol\u2013U\u2013Guard Botanical\u00ae 2x Spray Bottle",
+    "price": 2.29,
+    "pts": 0.0
+   }
+  ]
+ },
+ "3748": {
+  "conf": [],
+  "acc": [
+   {
+    "sku": "3774",
+    "title": "Renew Hand Wash Pump",
+    "price": 1.59,
+    "pts": 0.0
+   }
+  ]
+ },
+ "3427": {
+  "conf": [],
+  "acc": [
+   {
+    "sku": "8682",
+    "title": "Reusable Rustic Touch Furniture Polish Sprayer",
+    "price": 1.59,
+    "pts": 0.0
+   }
+  ]
+ },
+ "70338": {
+  "conf": [],
+  "acc": []
+ },
+ "6196": {
+  "conf": [],
+  "acc": []
+ },
+ "8900": {
+  "conf": [
+   {
+    "type": "Facet",
+    "title": "Mascara",
+    "sku": null,
+    "feature": null,
+    "req": 0,
+    "choices": [
+     {
+      "title": "Volume Extreme Mascara - Black",
+      "sku": null,
+      "refiner": "715-4349"
+     },
+     {
+      "title": "Volume Extreme Waterproof Mascara - Black",
+      "sku": "8900",
+      "refiner": "715-4345"
+     }
+    ]
+   }
+  ],
+  "acc": []
+ },
+ "184": {
+  "conf": [],
+  "acc": []
+ },
+ "190": {
+  "conf": [
+   {
+    "type": "FSKU",
+    "title": "Deodorant",
+    "sku": null,
+    "feature": "F576",
+    "req": 3,
+    "choices": [
+     {
+      "title": "Sweet Cream & Willow Antiperspirant & Deodorant",
+      "sku": "20087",
+      "refiner": "1053-5683"
+     },
+     {
+      "title": "Vanilla Musk & Jasmine Antiperspirant & Deodorant",
+      "sku": "20088",
+      "refiner": "1053-5684"
+     },
+     {
+      "title": "Antiperspirant & Deodorant  ",
+      "sku": "20053",
+      "refiner": "1053-5749"
+     },
+     {
+      "title": "Herbal",
+      "sku": "2468",
+      "refiner": "1053-5213"
+     },
+     {
+      "title": "Alloy Deodorant",
+      "sku": "20121",
+      "refiner": "1053-5847"
+     }
+    ]
+   }
+  ],
+  "acc": []
+ },
+ "34911": {
+  "conf": [
+   {
+    "type": "FSKU",
+    "title": "Select cleaners",
+    "sku": null,
+    "feature": "F1577",
+    "req": 3,
+    "choices": [
+     {
+      "title": "Clean & Gleam Floor Cleaner",
+      "sku": "5612",
+      "refiner": "903-6325"
+     },
+     {
+      "title": "Clear Power Glass Cleaner",
+      "sku": "1212",
+      "refiner": "903-4649"
+     },
+     {
+      "title": "MelaMagic Heavy-Duty Cleaner",
+      "sku": "1235",
+      "refiner": "903-4653"
+     },
+     {
+      "title": "No Work Daily Shower Cleaner",
+      "sku": "1214",
+      "refiner": "903-4650"
+     },
+     {
+      "title": "Rustic Touch Furniture Polish",
+      "sku": "3427",
+      "refiner": "903-4651"
+     },
+     {
+      "title": "Safe & Mighty Toilet Bowl Cleaner",
+      "sku": "5680",
+      "refiner": "903-4645"
+     },
+     {
+      "title": "Tough & Tender All-Purpose Cleaner ",
+      "sku": "1218",
+      "refiner": "903-4646"
+     },
+     {
+      "title": "Tub & Tile 6x Bathroom Cleaner",
+      "sku": "1216",
+      "refiner": "903-4648"
+     },
+     {
+      "title": "Harvest Pure\u2122 Fruit And Vegetable Wash",
+      "sku": "30101",
+      "refiner": "903-6525"
+     }
+    ]
+   }
+  ],
+  "acc": [
+   {
+    "sku": "1219",
+    "title": "Tough & Tender\u00ae Mixing Spray Bottle",
+    "price": 2.29,
+    "pts": 0.0
+   },
+   {
+    "sku": "1217",
+    "title": "Tub & Tile\u2122 Mixing Spray Bottle",
+    "price": 2.29,
+    "pts": 0.0
+   },
+   {
+    "sku": "1215",
+    "title": "No Work\u00ae Mixing Spray Bottle",
+    "price": 2.29,
+    "pts": 0.0
+   },
+   {
+    "sku": "1213",
+    "title": "Clear Power\u2122 Mixing Spray Bottle",
+    "price": 2.29,
+    "pts": 0.0
+   },
+   {
+    "sku": "7188",
+    "title": "Microfiber Cleaning Cloths 2-Pack",
+    "price": 9.49,
+    "pts": 3.0
+   },
+   {
+    "sku": "5605",
+    "title": "Clean & Gleam\u2122 Spray Mop + 3 Mop Pads",
+    "price": 44.59,
+    "pts": 0.0
+   },
+   {
+    "sku": "8682",
+    "title": "Reusable Rustic Touch Furniture Polish Sprayer",
+    "price": 1.59,
+    "pts": 0.0
+   }
+  ]
+ },
+ "7911": {
+  "conf": [
+   {
+    "type": "FSKU",
+    "title": "Flavour",
+    "sku": null,
+    "feature": "F361",
+    "req": 3,
+    "choices": [
+     {
+      "title": "Cranberry Tangerine",
+      "sku": "2270",
+      "refiner": "523-3001"
+     },
+     {
+      "title": "Pi\u00f1a Colada",
+      "sku": "109",
+      "refiner": "523-3002"
+     },
+     {
+      "title": "Vanilla Bean",
+      "sku": "111",
+      "refiner": "523-3004"
+     },
+     {
+      "title": "Mountain Mint",
+      "sku": "107",
+      "refiner": "523-3003"
+     }
+    ]
+   }
+  ],
+  "acc": []
+ },
+ "43987": {
+  "conf": [
+   {
+    "type": "FSKU",
+    "title": "Flavour",
+    "sku": null,
+    "feature": "F2200",
+    "req": 3,
+    "choices": [
+     {
+      "title": "Apple - Fluoride-Free",
+      "sku": "4910",
+      "refiner": "1130-3810"
+     },
+     {
+      "title": "Berrylicious +Fluoride",
+      "sku": "1297",
+      "refiner": "1130-3811"
+     },
+     {
+      "title": "Exceed Fresh Mint - Fluoride-Free",
+      "sku": "42994",
+      "refiner": "1130-5521"
+     },
+     {
+      "title": "Spearmint +Fluoride",
+      "sku": "42996",
+      "refiner": "1130-5522"
+     },
+     {
+      "title": "Peppermint +Fluoride",
+      "sku": "42997",
+      "refiner": "1130-5690"
+     },
+     {
+      "title": "Classic Fresh Mint - Fluoride-Free",
+      "sku": "5395",
+      "refiner": "1130-6038"
+     },
+     {
+      "title": "Cool Mint with Fluoride",
+      "sku": "5780",
+      "refiner": "1130-6040"
+     },
+     {
+      "title": "Cinnamon - Fluoride-Free",
+      "sku": "40061",
+      "refiner": "1130-6628"
+     }
+    ]
+   }
+  ],
+  "acc": []
+ },
+ "5026": {
+  "conf": [
+   {
+    "type": "FSKU",
+    "title": "Scent",
+    "sku": null,
+    "feature": "F750",
+    "req": 3,
+    "choices": [
+     {
+      "title": "Apple",
+      "sku": "7904",
+      "refiner": "622-3321"
+     },
+     {
+      "title": "Tropical",
+      "sku": "187",
+      "refiner": "622-3322"
+     },
+     {
+      "title": "Lemon",
+      "sku": "2854",
+      "refiner": "622-3320"
+     }
+    ]
+   }
+  ],
+  "acc": []
+ },
+ "34906": {
+  "conf": [
+   {
+    "type": "FSKU",
+    "title": "MelaBrite",
+    "sku": null,
+    "feature": "F1036",
+    "req": 1,
+    "choices": [
+     {
+      "title": "Liquid",
+      "sku": "9770",
+      "refiner": "792-4194"
+     },
+     {
+      "title": "Packs",
+      "sku": "1151",
+      "refiner": "792-4195"
+     }
+    ]
+   },
+   {
+    "type": "FSKU",
+    "title": "MelaSoft or MelaBoost",
+    "sku": null,
+    "feature": "F1547",
+    "req": 1,
+    "choices": [
+     {
+      "title": "MelaBoost - Garden Lavender",
+      "sku": "6423",
+      "refiner": "1286-3909"
+     },
+     {
+      "title": "MelaBoost - Island Breeze",
+      "sku": "6422",
+      "refiner": "1286-3908"
+     },
+     {
+      "title": "MelaBoost - Mountain Fresh",
+      "sku": "6421",
+      "refiner": "1286-3910"
+     },
+     {
+      "title": "Melasoft - Liquid 96 load Clean Cotton",
+      "sku": "265",
+      "refiner": "1286-4228"
+     },
+     {
+      "title": "Melasoft - Liquid 96 load Garden Lavender",
+      "sku": "268",
+      "refiner": "1286-4229"
+     },
+     {
+      "title": "Melasoft - Liquid 96 load Spring Breeze",
+      "sku": "267",
+      "refiner": "1286-4230"
+     },
+     {
+      "title": "Dryer Sheets 2 Pack Clean Cotton",
+      "sku": null,
+      "refiner": "1286-4224"
+     },
+     {
+      "title": "Dryer Sheets 2 Pack Garden Lavender",
+      "sku": null,
+      "refiner": "1286-4226"
+     },
+     {
+      "title": "Dryer Sheets 2 Pack Scent Free",
+      "sku": null,
+      "refiner": "1286-4227"
+     },
+     {
+      "title": "Dryer Sheets 2 Pack Spring Breeze",
+      "sku": null,
+      "refiner": "1286-4225"
+     }
+    ]
+   },
+   {
+    "type": "FSKU",
+    "title": "Scent",
+    "sku": null,
+    "feature": "F444",
+    "req": 1,
+    "choices": [
+     {
+      "title": "Garden Lavender Regular",
+      "sku": "5546",
+      "refiner": "604-3213"
+     },
+     {
+      "title": "Island Breeze Regular",
+      "sku": "6901",
+      "refiner": "604-3219"
+     },
+     {
+      "title": "Mountain Fresh Regular",
+      "sku": "6902",
+      "refiner": "604-3217"
+     },
+     {
+      "title": "Scent Free Regular",
+      "sku": "3441",
+      "refiner": "604-3215"
+     },
+     {
+      "title": "Garden Lavender HE",
+      "sku": "5547",
+      "refiner": "604-3214"
+     },
+     {
+      "title": "Island Breeze HE",
+      "sku": "6903",
+      "refiner": "604-3220"
+     },
+     {
+      "title": "Mountain Fresh HE",
+      "sku": "6904",
+      "refiner": "604-3218"
+     },
+     {
+      "title": "Scent Free HE",
+      "sku": "215",
+      "refiner": "604-3216"
+     }
+    ]
+   }
+  ],
+  "acc": [
+   {
+    "sku": "924",
+    "title": "32 fl. oz. Reusable Laundry Pump",
+    "price": 2.99,
+    "pts": 0.0
+   },
+   {
+    "sku": "4848",
+    "title": "EcoSense\u00ae Drain-Back Cap",
+    "price": 1.59,
+    "pts": 0.0
+   }
+  ]
+ },
+ "5027": {
+  "conf": [
+   {
+    "type": "FSKU",
+    "title": "Fragrance",
+    "sku": null,
+    "feature": "F1755",
+    "req": 2,
+    "choices": [
+     {
+      "title": "Garden Lavender",
+      "sku": "9984",
+      "refiner": "726-3918"
+     },
+     {
+      "title": "Clean Cotton",
+      "sku": "5271",
+      "refiner": "726-3917"
+     },
+     {
+      "title": "Scent Free",
+      "sku": "9996",
+      "refiner": "726-3921"
+     },
+     {
+      "title": "Spring Breeze",
+      "sku": "9317",
+      "refiner": "726-3919"
+     }
+    ]
+   }
+  ],
+  "acc": []
+ },
+ "6111": {
+  "conf": [
+   {
+    "type": "FSKU",
+    "title": "Product",
+    "sku": null,
+    "feature": "F123",
+    "req": 2,
+    "choices": [
+     {
+      "title": "Tube",
+      "sku": "3847",
+      "refiner": "776-4095"
+     },
+     {
+      "title": "Disc",
+      "sku": "3417",
+      "refiner": "776-4094"
+     }
+    ]
+   }
+  ],
+  "acc": []
+ },
+ "5048": {
+  "conf": [
+   {
+    "type": "FSKU",
+    "title": "Fragrance",
+    "sku": null,
+    "feature": "F028",
+    "req": 3,
+    "choices": [
+     {
+      "title": "Pineapple Mango",
+      "sku": "8927",
+      "refiner": "691-3786"
+     },
+     {
+      "title": "Pink Grapefruit",
+      "sku": "8928",
+      "refiner": "691-3787"
+     },
+     {
+      "title": "Platinum",
+      "sku": "3308",
+      "refiner": "691-3790"
+     },
+     {
+      "title": "The Gold Bar",
+      "sku": "117",
+      "refiner": "691-3807"
+     },
+     {
+      "title": "Alloy",
+      "sku": "20049",
+      "refiner": "691-5719"
+     },
+     {
+      "title": "Exfoliating",
+      "sku": "5540",
+      "refiner": "691-3789"
+     }
+    ]
+   }
+  ],
+  "acc": []
+ }
+}
