@@ -9,7 +9,7 @@ melaleuca_run.py - one command for the whole account scan (Excel starts it from 
   python melaleuca_run.py            all accounts that have a user + password
   python melaleuca_run.py --only 7   just coloured tab number 7
 """
-import os, sys, json, subprocess, traceback, datetime, pathlib
+import os, sys, json, subprocess, traceback, datetime, pathlib, time
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 FEED = os.path.join(HERE, "feed")
@@ -83,6 +83,7 @@ def scan_one(job):
     ports = ([saved] if saved else ([base + n] if base else [None])) + ([base + n + 100 * k for k in range(1, 40)] if base else [None] * 40)
     tries = int(cfg.get("max_tries", 8))
     res = None
+    bad_n = 0
     with sync_playwright() as p:
         for attempt in range(1, tries + 1):
             port = ports[attempt - 1] if attempt - 1 < len(ports) else None
@@ -102,8 +103,21 @@ def scan_one(job):
                 except Exception:
                     pass
                 break
+            if (not res.get("ok")) and res.get("error_kind") != "badlogin" and any(k in str(res.get("error") or "") for k in ("ERR_PROXY", "ERR_TUNNEL", "ERR_CONNECTION")) and attempt < tries:
+                pause = min(90, 15 * attempt)       # the proxy service refused the connection: wait instead of burning every port in a few seconds
+                ms.log("the proxy service refused the connection - waiting %d s before the next IP" % pause)
+                time.sleep(pause)
             if res.get("error_kind") == "badlogin":
-                ms.log("the user name / password of this account is refused - fix it in credentials.env (not retrying)")
+                # the store often answers "Invalid Username or Password" to an IP / browser it does not like (a human check in disguise): the same
+                # account signs in fine at other times. So it is tried again on a fresh IP and the other browser, with a longer pause each time
+                # (like the cart filler does); only after several refusals in a row is the password treated as really wrong.
+                bad_n += 1
+                if bad_n <= 4 and attempt < tries:
+                    pause = 20 + 20 * bad_n
+                    ms.log("sign-in refused (%d of 4) - trying again on a fresh connection and browser in %d s (the same account signs in fine at other times)" % (bad_n, pause))
+                    time.sleep(pause)
+                    continue
+                ms.log("the user name / password of this account was refused on %d fresh connections in a row - check MELA_USER_%d / MELA_PASS_%d in credentials.env" % (bad_n, n, n))
                 break
     print("-> " + ("ok" if res.get("ok") else "FAILED: " + str(res.get("error") or res.get("note"))[:200]))
     return res

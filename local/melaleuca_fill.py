@@ -155,6 +155,37 @@ def parse_info(h):
 
 
 def assign_choices(units, conf):
+    """units = [(name, melid)] ; conf = the slots of a pack ('Choose' slots + FIXED contents). Returns (configurations list for the cart, problems, choices).
+    Some Canadian packs differ from the US ones: they hold FIXED products you cannot change (e.g. the Cleaning Wipes 5-Pack = Sol-U-Guard + MelaMagic +
+    Tough & Tender fixed, and only 2 free choices). A unit of the plan that the pack already holds as a fixed product is covered by it and does not use a
+    free choice; whatever the pack holds that the plan did not ask for is reported, because it ends up in the cart."""
+    statics = [c for c in conf if c.get("type") == "Static" and (c.get("title") or "").strip() and not any(w in c["title"].lower() for w in ACC_WORDS)]
+    has_free = any(c.get("type") == "FSKU" for c in conf)
+    covered, extra = set(), []
+    if statics and has_free:
+        for c in statics:
+            best = None
+            for ui, (nm, mel) in enumerate(units):
+                if ui in covered:
+                    continue
+                sc = 10.0 if (mel and NUM.match(mel) and str(c.get("sku")) == mel) else name_score(nm, c.get("title") or "")
+                if sc >= 0.6 and (best is None or sc > best[0]):
+                    best = (sc, ui)
+            if best:
+                covered.add(best[1])
+            else:
+                extra.append(c.get("title") or str(c.get("sku")))
+    if not covered and not extra:
+        return _assign_choices(units, conf)
+    rest = [u for ui, u in enumerate(units) if ui not in covered]
+    out, problems, chosen = _assign_choices(rest, conf)
+    if extra:
+        problems.append("this store's pack also holds FIXED products that are not in the plan: %s - they come with the pack and cannot be changed (the plan has %d unit(s) of the pack, the store gives those instead)" % (", ".join(extra), len(units)))
+    chosen = chosen + [(units[ui][0], "(fixed in the pack)", 1.0) for ui in sorted(covered)]
+    return out, problems, chosen
+
+
+def _assign_choices(units, conf):
     """units = [(name, melid)] ; conf = the 'Choose' slots of a pack. Returns (configurations list for the cart, problems)"""
     fs = [c for c in conf if c["type"] == "FSKU"]
     cap = [c["req"] for c in fs]
@@ -479,6 +510,120 @@ def check_single(L, sku, info):
     return sku
 
 
+ACC_WORDS = ("bottle", "sprayer", "pump", "brush", "mop", "dispenser")
+AUDIT = []          # packs found unusable for the plan during this run: (pack, reason) -> feed\\pack_audit_fill_<region>.tsv
+
+
+def pack_mismatch(inf, units):
+    """'' when the store pack can hold exactly the products of the plan, else the reason. A pack holds its FREE choices (req) plus FIXED products; the plan's
+    units must be exactly those: free capacity + fixed (non accessory) products == units, and every fixed product must be one of the plan's products."""
+    conf = inf.get("conf") or []
+    free = sum(int(c.get("req") or 0) for c in conf if c.get("type") == "FSKU")
+    fixed = [c for c in conf if c.get("type") == "Static" and (c.get("title") or "").strip() and not any(w in c["title"].lower() for w in ACC_WORDS)]
+    if not free and not fixed:
+        return ""
+    if free + len(fixed) != len(units):
+        return "the store pack holds %d free choice(s) + %d fixed product(s) but the sheet puts %d products in it" % (free, len(fixed), len(units))
+    for c in fixed:
+        if not any((m and NUM.match(m) and str(c.get("sku")) == m) or name_score(nm, c.get("title") or "") >= 0.6 for nm, m in units):
+            return "the store pack holds the fixed product '%s' that is not among the sheet's products" % c.get("title")
+    return ""
+
+
+def note_audit(pack, reason):
+    if not any(a[0] == str(pack) for a in AUDIT):
+        AUDIT.append((str(pack), reason))
+
+
+def write_audit(replace=False):
+    """pack audit file: the workbook (Sync_Canada_Points) switches off the sheet sets that use these packs, so the next order is built without them"""
+    path = os.path.join(FEED, "pack_audit_fill_%s.tsv" % REG)
+    if replace:                      # a full audit is authoritative: packs that are fine now are removed again
+        with open(path, "w", encoding="utf-8", newline="") as f:
+            f.write("pack\treason\r\n")
+            for a in AUDIT:
+                f.write("%s\t%s\r\n" % a)
+        return
+    if not AUDIT:
+        return
+    have = set()
+    try:
+        have = {ln.split("\t")[0] for ln in open(path, encoding="utf-8").read().splitlines()[1:]}
+    except Exception:
+        pass
+    new = [a for a in AUDIT if a[0] not in have]
+    if not new and os.path.exists(path):
+        return
+    with open(path, "a", encoding="utf-8", newline="") as f:
+        if f.tell() == 0:
+            f.write("pack\treason\r\n")
+        for a in new:
+            f.write("%s\t%s\r\n" % a)
+
+
+def audit_pack(inf, size):
+    """reason a store pack cannot serve a sheet set of `size` units ('' = fine). Fixed (non accessory) products next to free choices = a 'mixed' pack, which can never be
+    'any of these products'; free slots that do not add up to the set size are a different pack than the sheet thinks."""
+    conf = inf.get("conf") or []
+    free = sum(int(c.get("req") or 0) for c in conf if c.get("type") == "FSKU")
+    fixed = [c.get("title") for c in conf if c.get("type") == "Static" and (c.get("title") or "").strip() and not any(w in c["title"].lower() for w in ACC_WORDS)]
+    if free and fixed:
+        return "fixed contents (%s) next to %d free choice(s)" % ("; ".join(fixed), free)
+    if free and size and free != size:
+        return "%d free choice(s) but the sheet set has %d units" % (free, size)
+    if fixed and size and len(fixed) != size:
+        return "%d fixed product(s) but the sheet set has %d units" % (len(fixed), size)
+    return ""
+
+
+def do_audit(fl, say):
+    """reads (once, text only - pictures are blocked) every pack the sheet uses and checks its structure: feed\\pack_audit_fill_<region>.tsv + pack_audit_report_<region>.txt"""
+    packs = {}
+    try:
+        for ln in open(os.path.join(FEED, "mel_groups_in.tsv"), encoding="utf-8-sig").read().splitlines()[1:]:
+            p = ln.split("\t")
+            if len(p) >= 3 and NUM.match(p[1].strip()):
+                packs.setdefault(p[1].strip(), []).append((p[0], int(f2(p[2]))))
+    except Exception as e:
+        say("mel_groups_in.tsv not readable:", e)
+    for n, sku in CLEAN_PACKS.items():
+        packs.setdefault(sku, []).append(("CLEAN", n))
+    say("pack audit (%s store): %d packs" % (REG.upper(), len(packs)))
+    lines, bad = [], 0
+    try:
+        known = {str(x) for c in ((cload("family_map", 3650).get("cards") or {}).get("v") or {}).values() for x in c.get("skus", [])}
+    except Exception:
+        known = set()
+    for sku, uses in sorted(packs.items(), key=lambda t: int(t[0])):
+        if known and sku not in known and not all(re.match(r"^F\d+$", u[0]) for u in uses):
+            reason = "this item number is not in the %s store's catalog (discontinued / not sold there)" % REG.upper()
+            lines.append("%s\tBAD\t%s\t-\t%s" % (sku, ",".join("%s(%d)" % u for u in uses), reason))
+            bad += 1
+            note_audit(sku, reason)
+            say("  PACK %s used by %s CANNOT BE USED: %s" % (sku, ",".join(u[0] for u in uses), reason))
+            continue
+        inf = fl.info(sku)
+        if not inf.get("conf") and not inf.get("acc") and sku in fl.failed:
+            lines.append("%s\tNOT READ\t%s" % (sku, ",".join(u[0] for u in uses)))
+            say("  %s: page not read (%s)" % (sku, ",".join(u[0] for u in uses)))
+            continue
+        reasons = [audit_pack(inf, u[1]) for u in uses]
+        reason = next((r for r in reasons if r), "")
+        conf = inf.get("conf") or []
+        desc = "free %d / fixed %d" % (sum(int(c.get("req") or 0) for c in conf if c.get("type") == "FSKU"), len([c for c in conf if c.get("type") == "Static" and (c.get("title") or "").strip()]))
+        lines.append("%s\t%s\t%s\t%s\t%s" % (sku, "BAD" if reason else "ok", ",".join("%s(%d)" % u for u in uses), desc, reason))
+        if reason:
+            bad += 1
+            note_audit(sku, reason)
+            say("  PACK %s used by %s CANNOT BE USED AS PLANNED: %s" % (sku, ",".join(u[0] for u in uses), reason))
+        else:
+            say("  pack %s ok (%s; %s)" % (sku, ",".join(u[0] for u in uses), desc))
+    write_audit(replace=True)
+    with open(os.path.join(FEED, "pack_audit_report_%s.txt" % REG), "w", encoding="utf-8") as f:
+        f.write("pack\tresult\tused by\tstructure\treason\n" + "\n".join(lines) + "\n")
+    say("pack audit done: %d pack(s) cannot be used as planned%s" % (bad, " - run Generate All Orders: the workbook switches those sets off" if bad else ""))
+
+
 def build_actions(plan, info, resolve_variant=None):
     """info(sku) -> {'conf','acc'} of a pack page. Returns (actions, offer_lines, problems, notes)"""
     acts, offers, problems, notes = [], [], [], []
@@ -565,6 +710,20 @@ def build_actions(plan, info, resolve_variant=None):
         npk = len(units) // n
         inf = info(pack) or {"conf": [], "acc": []}
         has_choice = any(c["type"] == "FSKU" for c in inf["conf"])
+        bad = pack_mismatch(inf, [(L["name"], L["melid"]) for L in units[:n]]) if units else ""
+        if bad:
+            # the store pack cannot hold what the sheet says: do NOT fill a different pack - the products go in one by one (own packs / singles) and the pack is audited
+            problems.append("group %s: PACK %s CANNOT BE USED - %s. The products were added one by one instead (their points may differ from the sheet: run Generate All Orders again, the workbook now switches this set off)." % (key, pack, bad))
+            note_audit(pack, bad)
+            for L in ls:
+                sku = L["melid"]
+                if not NUM.match(sku or ""):
+                    sku = resolve_variant(L) if resolve_variant else None
+                if not sku:
+                    problems.append("row %d %s: no item number (group %s pack unusable)" % (L["row"], L["name"], key))
+                    continue
+                acts.append(Action("single", sku, L["qty"], label=L["name"], rows=[L["row"]], expect_pts=L["pts"], expect_ws=L["ws"]))
+            continue
         for i in range(npk):
             chunk = units[i * n:(i + 1) * n]
             if has_choice:
@@ -786,7 +945,7 @@ def coupon_add(s, card_no, qty, product_name):
     return True, ""
 
 
-def run(n, dry=False, lab=False, final=True):
+def run(n, dry=False, lab=False, final=True, audit=False):
     import melaleuca_run as mr
     import melaleuca_scan as ms
     from playwright.sync_api import sync_playwright
@@ -794,7 +953,7 @@ def run(n, dry=False, lab=False, final=True):
     for a in sys.argv:
         if a.startswith("--plan="):
             plan_path = a[7:]
-    plan = load_plan(plan_path)
+    plan = load_plan(plan_path) if (not audit or os.path.exists(plan_path)) else {"tab": "", "n": n, "credit": 0, "lines": [], "total": None, "groups": {}, "members": [], "cleanpack": {}}
     env = mr.read_env(os.path.join(HERE, "credentials.env"))
     tabs = {}
     for ln in open(os.path.join(FEED, "mel_tabs.txt"), encoding="utf-8-sig"):
@@ -867,10 +1026,19 @@ def run(n, dry=False, lab=False, final=True):
                 except Exception:
                     pass
                 s = None
+                if re.search(r"ERR_PROXY|ERR_TUNNEL|ERR_CONNECTION|ERR_TIMED_OUT|ERR_NAME_NOT", str(e)) and attempt < 8:
+                    # the PROXY SERVICE (not the store) refused or dropped the connection: trying 7 more ports within 10 seconds only repeats it. Wait, then try again.
+                    pause = min(90, 15 * attempt)
+                    log("the proxy service refused the connection (not the store) - waiting %d s, then trying again on another port" % pause)
+                    time.sleep(pause)
         if s is None:
             raise RuntimeError("could not sign in")
         fl = Filler(s)
         try:
+            if audit:
+                say("signed in as", name, "- pack audit (no cart is touched)")
+                do_audit(fl, say)
+                return 0
             say("signed in as", name, "| plan:", len(plan["lines"]), "lines, TOTAL points", plan["total"]["pts"] if plan["total"] else "?", "cost", plan["total"]["ws"] if plan["total"] else "?")
             js, sm = fl.summary()
             items = cart_items(js)
@@ -898,6 +1066,7 @@ def run(n, dry=False, lab=False, final=True):
                 say("  variant: %s (%s) -> %s" % (L["name"][:50], L["melid"], ("%s  %s" % (sku, why)) if sku else "NOT RESOLVED: " + why))
                 return sku
             acts, offers, problems, notes = build_actions(plan, fl.info, rv)
+            write_audit()
             say("actions:", len(acts), "| offer lines:", len(offers), "| problems:", len(problems))
             for pr in problems:
                 say("  PROBLEM:", pr)
@@ -1247,8 +1416,11 @@ def run(n, dry=False, lab=False, final=True):
             say("THE CART IS FILLED. Opening your browser window on the checkout screen now (about 20-40 seconds) ...")
             v = None
             try:
-                vcfg = dict(cfg, headless=False, fast=False, early_route=False, proxy=(cfg.get("proxy") if env.get("FINAL_PROXY", "1").strip().lower() not in ("0", "false", "no") else ""))        # default: the window keeps the account's own proxy IP (never your own IP); FINAL_PROXY=0 in credentials.env = your own connection
+                _light = env.get("FINAL_IMAGES", "0").strip().lower() not in ("1", "true", "yes")      # default: the checkout window loads NO pictures / videos / fonts / trackers through the proxy (they cost credits and are not needed to pay)
+                vcfg = dict(cfg, headless=False, fast=_light, early_route=_light, proxy=(cfg.get("proxy") if env.get("FINAL_PROXY", "1").strip().lower() not in ("0", "false", "no") else ""))        # default: the window keeps the account's own proxy IP (never your own IP); FINAL_PROXY=0 in credentials.env = your own connection
                 v = ms.Session(p, a2, an, vcfg, port)
+                if _light:
+                    v.ctx.route("**/*", v._route)          # also after the cookies are copied (no sign-in = the sign-in code that sets this up is not run)
                 try:                                           # same proxy IP + the cookies of the hidden window = already signed in, no second login
                     v.ctx.add_cookies(s.ctx.storage_state().get("cookies", []))
                 except Exception as e:
@@ -1337,7 +1509,7 @@ if __name__ == "__main__":
         pass
     n = int(sys.argv[1])
     try:
-        rc = run(n, dry="--dry" in sys.argv, lab="--lab" in sys.argv, final="--nofinal" not in sys.argv)
+        rc = run(n, dry="--dry" in sys.argv, lab="--lab" in sys.argv, final="--nofinal" not in sys.argv, audit="--audit" in sys.argv)
     except Exception:
         traceback.print_exc()
         rc = 1
