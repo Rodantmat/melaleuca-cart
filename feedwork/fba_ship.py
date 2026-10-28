@@ -36,27 +36,69 @@ def region_of(state):
 
 
 # ---------------------------------------------------------------- placement option choice
-def choose_option(origin, options):
-    """options: [{id, fee, shipments:[{state, warehouse, ...}]}].  Returns (chosen_or_None, tier, ranking_notes)."""
+# state centroids (lat, lon) - only used to compare how far two options are from the shipping origin
+CENT = {"AL": (32.8, -86.8), "AR": (34.9, -92.4), "AZ": (34.3, -111.7), "CA": (37.2, -119.5), "CO": (39.0, -105.5), "CT": (41.6, -72.7),
+        "DC": (38.9, -77.0), "DE": (39.0, -75.5), "FL": (28.6, -82.4), "GA": (32.7, -83.4), "IA": (42.1, -93.5), "ID": (44.4, -114.6),
+        "IL": (40.0, -89.2), "IN": (39.9, -86.3), "KS": (38.5, -98.4), "KY": (37.5, -85.3), "LA": (31.1, -92.0), "MA": (42.3, -71.8),
+        "MD": (39.0, -76.8), "ME": (45.4, -69.2), "MI": (44.3, -85.4), "MN": (46.3, -94.3), "MO": (38.4, -92.5), "MS": (32.7, -89.7),
+        "MT": (47.0, -109.6), "NC": (35.6, -79.4), "ND": (47.5, -100.5), "NE": (41.5, -99.8), "NH": (43.7, -71.6), "NJ": (40.2, -74.7),
+        "NM": (34.4, -106.1), "NV": (39.3, -116.6), "NY": (42.9, -75.5), "OH": (40.3, -82.8), "OK": (35.6, -97.5), "OR": (43.9, -120.6),
+        "PA": (40.9, -77.8), "RI": (41.7, -71.5), "SC": (33.9, -80.9), "SD": (44.4, -100.2), "TN": (35.9, -86.4), "TX": (31.5, -99.3),
+        "UT": (39.3, -111.7), "VA": (37.5, -78.9), "VT": (44.1, -72.7), "WA": (47.4, -120.6), "WI": (44.6, -89.9), "WV": (38.6, -80.6),
+        "WY": (43.0, -107.5), "AK": (64.0, -152.0), "HI": (20.8, -156.3)}
+ORIGIN_LL = {"toronto": (43.77, -79.41), "vancouver": (49.28, -123.12)}
+CLOSER_MARGIN = 0.05            # Central must be at least 5% closer than the target region to count as "closer"
+
+
+def _km(a, b):
+    import math
+    la1, lo1, la2, lo2 = map(math.radians, (a[0], a[1], b[0], b[1]))
+    h = math.sin((la2 - la1) / 2) ** 2 + math.cos(la1) * math.cos(la2) * math.sin((lo2 - lo1) / 2) ** 2
+    return 12742 * math.asin(math.sqrt(h))
+
+
+def distance_km(origin, option):
+    """average distance origin -> destination states of an option, weighted by the weight of each shipment"""
+    o = ORIGIN_LL[origin.strip().lower()]
+    tot = w = 0.0
+    for s in option["shipments"]:
+        ll = CENT.get((s["state"] or "").upper())
+        if not ll: raise RuntimeError("unknown destination state %r (%s)" % (s["state"], s.get("warehouse")))
+        wt = sum(float(b["weight"]["value"]) * int(b.get("quantity", 1)) for b in s.get("boxes", [])) or 1.0
+        tot += _km(o, ll) * wt; w += wt
+    return tot / w
+
+
+def candidates(origin, options):
+    """Returns (region_option, central_option, notes).  region_option = cheapest-fee option made only of the target region
+    (or target+Central if none is pure); central_option = cheapest-fee option made only of Central.  Either can be None."""
     target = TARGET_REGION.get(origin.strip().lower())
     if not target:
         raise RuntimeError("unknown origin '%s' (expected Toronto or Vancouver)" % origin)
-    tiers = []
+    pure, mixed, central, notes = [], [], [], []
     for o in options:
         regs = [region_of(s["state"]) for s in o["shipments"]]
-        if regs and all(r == target for r in regs): t = 1
-        elif regs and all(r == "CENTRAL" for r in regs): t = 2
-        elif regs and all(r in (target, "CENTRAL") for r in regs): t = 3
-        else: t = 9
-        tiers.append((t, o["fee"], o, regs))
-    tiers.sort(key=lambda x: (x[0], x[1]))
-    notes = ["%s fee %.2f  %s  -> %s" % (o["id"][:8], o["fee"], "+".join("%s(%s)" % (s["warehouse"], r) for s, r in zip(o["shipments"], regs)),
-                                         {1: "all %s" % target, 2: "all CENTRAL (fallback)", 3: "mixed %s/CENTRAL" % target, 9: "not acceptable"}[t])
-             for t, _, o, regs in tiers]
-    best = tiers[0]
-    if best[0] == 9:
-        return None, 9, notes
-    return best[2], best[0], notes
+        kind = ("pure" if regs and all(r == target for r in regs) else "central" if regs and all(r == "CENTRAL" for r in regs)
+                else "mixed" if regs and all(r in (target, "CENTRAL") for r in regs) else "no")
+        {"pure": pure, "central": central, "mixed": mixed}.get(kind, []).append(o)
+        notes.append("%s fee %.2f  %s  -> %s" % (o["id"][:8], o["fee"], "+".join("%s(%s)" % (s["warehouse"], r) for s, r in zip(o["shipments"], regs)),
+                                                  {"pure": "all " + target, "central": "all CENTRAL", "mixed": "mixed " + target + "/CENTRAL", "no": "outside region"}[kind]))
+    cheapest = lambda l: min(l, key=lambda o: o["fee"]) if l else None
+    return (cheapest(pure) or cheapest(mixed)), cheapest(central), notes
+
+
+def decide(origin, region_opt, region_total, central_opt, central_total):
+    """your rule: ship to the closest location; if Central is not closer than the target region, take Central only when it is cheaper
+    (placement fee + UPS).  Returns (option, reason)."""
+    if region_opt and not central_opt: return region_opt, "only the target region is available"
+    if central_opt and not region_opt: return central_opt, "target region not available, Central used"
+    if not region_opt: return None, "no option in the target region or Central"
+    dr, dc = distance_km(origin, region_opt), distance_km(origin, central_opt)
+    if dc < dr * (1 - CLOSER_MARGIN):
+        return central_opt, "Central is closer (%.0f km vs %.0f km)" % (dc, dr)
+    if central_total < region_total:
+        return central_opt, "Central is not closer (%.0f km vs %.0f km) but cheaper ($%.2f vs $%.2f)" % (dc, dr, central_total, region_total)
+    return region_opt, "target region is as close or closer (%.0f km vs %.0f km) and Central is not cheaper ($%.2f vs $%.2f)" % (dr, dc, region_total, central_total)
 
 
 # ---------------------------------------------------------------- Amazon side
@@ -181,70 +223,104 @@ def history_average(origin):
 
 
 # ---------------------------------------------------------------- stage 1
+def to_address(sh):
+    a = sh["address"]
+    return {"name": "Amazon Receiving", "company": "Amazon.com Services LLC - " + str(sh["warehouse"]), "street1": a.get("addressLine1", ""),
+            "street2": a.get("addressLine2", ""), "city": a.get("city", ""), "state": a.get("stateOrProvinceCode", ""),
+            "zip": a.get("postalCode", ""), "country": a.get("countryCode", "US"), "phone": AMAZON_PHONE, "email": "flippingmagic.sales@gmail.com"}
+
+
+def customs_for(sh, cats, test, parcels):
+    counts = customs_items(sh, cats, test)
+    total_lb = sum(float(p["weight"]) for p in parcels); units = sum(counts.values())
+    items = []
+    for cat, q in counts.items():
+        desc, tn = HTS[cat]
+        items.append({"description": desc, "quantity": q, "net_weight": "%.2f" % max(0.01, total_lb * 0.9 * q / units), "mass_unit": "lb",
+                      "value_amount": "%.2f" % (DECLARED[cat] * q), "value_currency": "USD", "origin_country": "US", "tariff_number": tn})
+    return {"contents_type": "MERCHANDISE", "contents_explanation": "Household cleaning and personal care products", "non_delivery_option": "RETURN",
+            "certify": True, "certify_signer": "Rodolfo Antunes", "incoterm": "DDU", "items": items}, counts, total_lb, units
+
+
+def parcels_of(sh):
+    return [{"length": str(b["dimensions"]["length"]), "width": str(b["dimensions"]["width"]), "height": str(b["dimensions"]["height"]), "distance_unit": "in",
+             "weight": str(b["weight"]["value"]), "mass_unit": "lb"} for b in sh["boxes"] for _ in range(int(b.get("quantity", 1)))]
+
+
+def rate_option(sp, accounts, frm, option, cats, test, usd_per_cad):
+    """Shippo quote (no purchase) for every Amazon shipment of an option"""
+    legs = []
+    for sh in option["shipments"]:
+        to = to_address(sh); parcels = parcels_of(sh)
+        customs, counts, total_lb, units = customs_for(sh, cats, test, parcels)
+        rate = sp.rates(frm, to, parcels, customs, accounts)
+        if not rate: raise RuntimeError("Shippo returned no UPS rate for %s (%s)" % (sh["warehouse"], to["zip"]))
+        amt = float(rate["amount"]); cur = rate["currency"]
+        legs.append({"shipmentId": sh["shipmentId"], "warehouse": sh["warehouse"], "address": sh["address"], "boxes": len(parcels), "lb": total_lb,
+                     "units": units, "counts": counts, "service": rate["servicelevel"]["name"], "rate_id": rate["object_id"],
+                     "shippo_shipment": rate["_shipment"], "shippo_account": rate["_account"], "amount": amt, "currency": cur,
+                     "usd": round(amt * (usd_per_cad if cur == "CAD" else 1.0), 2), "estimated_days": rate.get("estimated_days")})
+    return legs
+
+
 def prepare(path, test=False, say=print):
     name, origin, boxes, cells, exp = S.read_send_file(path)
     cats = read_categories(path)
     c = S._credentials()
     r = S.send_to_amazon(path, say=say, cancel_after=False, placement=True)
     pid = r["inboundPlanId"]
+    keep = False
     try:
         options = amazon_options(c, pid)
         if not options: raise RuntimeError("Amazon returned no placement option")
-        chosen, tier, notes = choose_option(origin, options)
+        reg, cen, notes = candidates(origin, options)
         for n in notes: say("   option " + n)
-        if not chosen:
+        if not reg and not cen:
             raise RuntimeError("no placement option is in the %s / Central region. Options Amazon gave:\n   %s" % (TARGET_REGION[origin.lower()].title(), "\n   ".join(notes)))
         sp = Shippo(); accounts = sp.ups_accounts()
         if not accounts: raise RuntimeError("no active UPS account in Shippo")
         frm = ship_from_addr(origin)
         usd_per_cad, fx_src = fx_usd_per_cad()
-        legs = []
-        for sh in chosen["shipments"]:
-            a = sh["address"]
-            to = {"name": "Amazon Receiving", "company": "Amazon.com Services LLC - " + str(sh["warehouse"]), "street1": a.get("addressLine1", ""),
-                  "street2": a.get("addressLine2", ""), "city": a.get("city", ""), "state": a.get("stateOrProvinceCode", ""),
-                  "zip": a.get("postalCode", ""), "country": a.get("countryCode", "US"), "phone": AMAZON_PHONE, "email": "flippingmagic.sales@gmail.com"}
-            parcels = [{"length": str(b["dimensions"]["length"]), "width": str(b["dimensions"]["width"]), "height": str(b["dimensions"]["height"]), "distance_unit": "in",
-                        "weight": str(b["weight"]["value"]), "mass_unit": "lb"} for b in sh["boxes"] for _ in range(int(b.get("quantity", 1)))]
-            counts = customs_items(sh, cats, test)
-            total_lb = sum(float(p["weight"]) for p in parcels); units = sum(counts.values())
-            items = []
-            for cat, q in counts.items():
-                desc, tn = HTS[cat]
-                items.append({"description": desc, "quantity": q, "net_weight": "%.2f" % max(0.01, total_lb * 0.9 * q / units), "mass_unit": "lb",
-                              "value_amount": "%.2f" % (DECLARED[cat] * q), "value_currency": "USD", "origin_country": "US", "tariff_number": tn})
-            customs = {"contents_type": "MERCHANDISE", "contents_explanation": "Household cleaning and personal care products", "non_delivery_option": "RETURN",
-                       "certify": True, "certify_signer": "Rodolfo Antunes", "incoterm": "DDU", "items": items}
-            rate = sp.rates(frm, to, parcels, customs, accounts)
-            if not rate: raise RuntimeError("Shippo returned no UPS rate for %s (%s)" % (sh["warehouse"], to["zip"]))
-            cad_or_usd = float(rate["amount"]); cur = rate["currency"]
-            usd = cad_or_usd * (usd_per_cad if cur == "CAD" else 1.0)
-            legs.append({"shipmentId": sh["shipmentId"], "warehouse": sh["warehouse"], "address": a, "boxes": len(parcels), "lb": total_lb,
-                         "units": units, "counts": counts, "service": rate["servicelevel"]["name"], "rate_id": rate["object_id"],
-                         "shippo_shipment": rate["_shipment"], "shippo_account": rate["_account"],
-                         "amount": cad_or_usd, "currency": cur, "usd": round(usd, 2), "estimated_days": rate.get("estimated_days")})
+        quotes = {}
+        for key, opt in (("region", reg), ("central", cen)):
+            if opt: quotes[key] = rate_option(sp, accounts, frm, opt, cats, test, usd_per_cad)
+        tot = lambda k: quotes[k] and (reg if k == "region" else cen)["fee"] + sum(l["usd"] for l in quotes[k])
+        chosen, why = decide(origin, reg, tot("region") if reg else None, cen, tot("central") if cen else None)
+        legs = quotes["region" if chosen is reg else "central"]
+        say("   decision: " + why)
         fee = chosen["fee"]; ups_usd = round(sum(l["usd"] for l in legs), 2)
         avg, n = history_average(origin)
         warn = ""
         if avg and n >= 3 and ups_usd > avg * (1 + MAX_OVER_AVERAGE):
             warn = "UPS cost is %.0f%% above the average of your last %d %s shipments ($%.2f)" % ((ups_usd / avg - 1) * 100, n, origin, avg)
-        state = {"origin": origin, "name": name, "planId": pid, "placementOptionId": chosen["id"], "tier": tier, "feeUSD": fee,
+        state = {"origin": origin, "name": name, "planId": pid, "placementOptionId": chosen["id"], "why": why, "feeUSD": fee,
                  "legs": legs, "upsUSD": ups_usd, "fx": {"usd_per_cad": usd_per_cad, "source": fx_src}, "warning": warn,
-                 "expires": chosen["expires"], "created": time.strftime("%Y-%m-%dT%H:%M:%S")}
+                 "expires": chosen["expires"], "created": time.strftime("%Y-%m-%dT%H:%M:%S"),
+                 "sendFile": os.path.abspath(path), "test": bool(test)}
         out = os.path.splitext(path)[0] + "_stage1.json"
         json.dump(state, open(out, "w"), indent=1)
         msg = "Amazon FBA Placement Fees: $%.2f\nUPS Shipment Cost: $%.2f  (approx. USD; Shippo quotes %s)\n" % (
             fee, ups_usd, " + ".join("%.2f %s" % (l["amount"], l["currency"]) for l in legs))
         msg += "Ships to: " + ", ".join("%s (%s, %s)" % (l["warehouse"], l["address"].get("city"), l["address"].get("stateOrProvinceCode")) for l in legs)
+        msg += "\nWhy: " + why
         if warn: msg += "\nNOTE: " + warn
         msg += "\n\nComplete Shipment?"
         say("\n" + msg)
         say("(state saved: %s; FX %s %.4f)" % (out, fx_src, usd_per_cad))
+        keep = not test
         return state
     finally:
-        if test:
-            try: S._api(c, "PUT", S.INB + "/inboundPlans/%s/cancellation" % pid); say("test plan cancelled: " + pid)
+        if test or not keep:      # a test run, or any failure: never leave an open plan behind
+            try: S._api(c, "PUT", S.INB + "/inboundPlans/%s/cancellation" % pid); say("plan cancelled: " + pid)
             except Exception as e: say("CANCEL FAILED %s %s" % (pid, str(e)[:200]))
+
+
+def cancel(state_path, say=print):
+    """No: cancel the Amazon plan, nothing was bought"""
+    st = json.load(open(state_path)); c = S._credentials()
+    S._api(c, "PUT", S.INB + "/inboundPlans/%s/cancellation" % st["planId"])
+    say("Amazon plan %s cancelled. Nothing was bought." % st["planId"])
+    os.replace(state_path, state_path + ".cancelled")
 
 
 if __name__ == "__main__":
