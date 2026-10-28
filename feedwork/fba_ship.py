@@ -305,6 +305,7 @@ def prepare(path, test=False, say=print):
         msg += "\nWhy: " + why
         if warn: msg += "\nNOTE: " + warn
         msg += "\n\nComplete Shipment?"
+        open(os.path.splitext(path)[0] + "_message.txt", "w", encoding="utf-8").write(msg)
         say("\n" + msg)
         say("(state saved: %s; FX %s %.4f)" % (out, fx_src, usd_per_cad))
         keep = not test
