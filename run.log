@@ -1,0 +1,24 @@
+plans: 8
+  2026-10-13 ACTIVE  wfc0634813-e79f-46bb-9319-8ca1fe675107
+  2026-10-13 ACTIVE  wf5b8bba68-1fb9-456a-b38f-29a9e4b54bd5
+  2026-08-13 ACTIVE  wfea9f4e03-42d2-4136-8db7-f5c39c72bac6
+  2025-08-09 ACTIVE  wf30aff120-3e68-479e-a76f-7b8d83e55dbd
+  2025-07-23 ACTIVE  wf55006b57-c338-462e-b8e2-5b61ec0eefb4
+  2025-04-01 ACTIVE  wf72fd8185-dac2-4561-b3c5-bafcd38d4202
+  2021-07-29 ACTIVE  wf41cfbdae-87ba-4ec4-b7be-6486b039e9ff
+  2021-06-19 ACTIVE  wf808ee9fb-e387-4a3f-9404-0afe7afad216
+ERR plan wf30aff120-3e68-479e-a76f-7b8d83e55dbd Amazon answered HTTP 400 on GET /inboundPlans/wf30aff120-3e68-479e-a76f-7b8d83e55dbd: {
+  "errors": [
+    {
+      "code": "BadRequest",
+      "message
+ERR plan wf55006b57-c338-462e-b8e2-5b61ec0eefb4 Amazon answered HTTP 400 on GET /inboundPlans/wf55006b57-c338-462e-b8e2-5b61ec0eefb4: {
+  "errors": [
+    {
+      "code": "BadRequest",
+      "message
+ERR plan wf72fd8185-dac2-4561-b3c5-bafcd38d4202 Amazon answered HTTP 400 on GET /inboundPlans/wf72fd8185-dac2-4561-b3c5-bafcd38d4202: {
+  "errors": [
+    {
+      "code": "BadRequest",
+      "message
