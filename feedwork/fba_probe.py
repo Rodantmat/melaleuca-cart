@@ -29,6 +29,14 @@ try:
             except Exception as e:
                 print("shipment", sid, "ERR", str(e)[:400])
         break_after = False
+    # can boxes/items per shipment be read BEFORE confirming?
+    for sid in sorted(seen)[:2]:
+        for sub, key in (("boxes", "boxes"), ("items", "items")):
+            try:
+                got = S._paged(c, INB + "/inboundPlans/%s/shipments/%s/%s" % (pid, sid, sub), key)
+                print("PRECONFIRM", sub, sid, "->", len(got), json.dumps(got[:2])[:700])
+            except Exception as e:
+                print("PRECONFIRM", sub, sid, "ERR", str(e)[:300])
     # transportation options for the first option (generation only, not a purchase)
     o = opts[0] if opts else None
     if o:

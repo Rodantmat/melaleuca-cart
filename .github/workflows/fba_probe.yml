@@ -17,7 +17,7 @@ jobs:
           mkdir -p /tmp/so
           cd feedwork
           printf '%s\n' "$CRED_ENV" > credentials.txt
-          for f in inbound_test.tsv inbound_test_Vancouver.tsv; do echo "=== $f"; python fba_probe.py $f 2>&1 | tee -a /tmp/so/run.log; done
+          for f in inbound_test.tsv; do echo "=== $f"; python fba_probe.py $f 2>&1 | tee -a /tmp/so/run.log; done
           rm -f credentials.txt
       - name: Publish
         if: always()
