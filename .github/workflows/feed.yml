@@ -15,6 +15,12 @@ jobs:
         with: { ref: main }
       - uses: actions/setup-python@v5
         with: { python-version: "3.12" }
+      - name: Fetch order and stock history (for the true-demand columns)
+        run: |
+          git fetch origin reprice-state:reprice-state 2>/dev/null && git checkout reprice-state -- reprice/state 2>/dev/null || true
+          mkdir -p feedwork/state
+          cp reprice/state/orders_*.tsv reprice/state/ledger_*.tsv feedwork/state/ 2>/dev/null || true
+          ls feedwork/state | wc -l
       - name: Build the feed
         env: { CRED_ENV: "${{ secrets.CREDENTIALS_ENV }}" }
         run: |

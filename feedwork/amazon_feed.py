@@ -664,6 +664,20 @@ def cmd_build(creds, skip_fees=False):
         ["ord_units_7", "ord_units_30", "ord_units_60", "ord_units_90", "ord_sales_90",
          "ord_orders_30", "ord_last_sale_date", "fee_total", "fee_fba", "fee_price_used",
          "bb_live", "bb_report", "low_new", "low_fba", "offers_n", "real_price_30", "price_used", "price_src", "price_flag"]
+    # true demand (corrected for out-of-stock days) - needs the order/ledger history that reprice/history.py keeps; absent = columns stay empty
+    dem_sold, dem_stock = {}, {}
+    try:
+        import demand as _dem
+        sd = os.environ.get("DEMAND_STATE") or os.path.join(BASE, "state")
+        if os.path.isdir(sd):
+            dem_sold, dem_stock = _dem.load(sd)
+            print("demand history: %d products with orders, %d with a stock ledger" % (len(dem_sold), len(dem_stock)))
+        else:
+            warnings.append("demand history folder not found (%s) - dem_* columns are empty" % sd)
+        plan_hdr += _dem.COLS
+    except Exception as e:
+        _dem = None
+        warnings.append("demand columns skipped: %s" % str(e)[:120])
     audit = []
     for sku in skus:
         i = info[sku]; p, m, l = i["p"], i["m"], i["l"]
@@ -721,6 +735,9 @@ def cmd_build(creds, skip_fees=False):
         extra = [_f(lv.get("bb")), _f(i.get("fo_plan")), _f(lv.get("low_new")), _f(lv.get("low_afn")), lv.get("n_offers", ""),
                  _f(i.get("real30")), _f(i.get("fo")), i.get("esp_src", ""), i.get("flag", "")]
         row += extra
+        if _dem:
+            dm = _dem.one(dem_sold.get(sku, {}), dem_stock.get(sku, {}), today, avail if i["fba"] else None, inbound) if (sku in dem_sold or sku in dem_stock) else {}
+            row += [dm.get(c, "") for c in _dem.COLS]
         plan_lines.append("\t".join(str(x) for x in row))
         if i["fba"]:
             audit.append([i["asin"], sku, name[:60], _f(i["yp"]), _f(i.get("fo_plan")), _f(lv.get("bb")), _f(lv.get("low_new")), _f(lv.get("low_afn")),
