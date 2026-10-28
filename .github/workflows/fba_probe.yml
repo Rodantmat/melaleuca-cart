@@ -1,0 +1,29 @@
+name: FBA placement probe (read only, cancels test plan)
+on: { workflow_dispatch: {} }
+permissions: { contents: write }
+concurrency: { group: fbaprobe, cancel-in-progress: false }
+jobs:
+  go:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with: { ref: main }
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - name: Probe (Toronto + Vancouver test plans)
+        env: { CRED_ENV: "${{ secrets.CREDENTIALS_ENV }}" }
+        run: |
+          mkdir -p /tmp/so
+          cd feedwork
+          printf '%s\n' "$CRED_ENV" > credentials.txt
+          for f in inbound_test.tsv inbound_test_Vancouver.tsv; do echo "=== $f"; python fba_probe.py $f 2>&1 | tee -a /tmp/so/run.log; done
+          rm -f credentials.txt
+      - name: Publish
+        if: always()
+        run: |
+          git config user.name "feed-bot"; git config user.email "feed-bot@users.noreply.github.com"
+          git checkout --orphan fp-new
+          git rm -rf . >/dev/null 2>&1 || true
+          cp -a /tmp/so/. .
+          git add -A && git commit -qm "fba probe" && git push -f origin fp-new:fba-probe
