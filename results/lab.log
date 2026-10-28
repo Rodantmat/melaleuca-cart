@@ -1,0 +1,102 @@
+02:02:57   proxy port 10002 | location: cr.ca;city.vancouver
+02:03:38 signed in as Liliana O | plan: 38 lines, TOTAL points 145.0 cost 371.76
+02:03:39   catalog from the saved copy: 81 families (no need to read the store)
+02:04:04   variant: Renew - Lotion - 20oz (R480H) -> 6600  only variant: Value Size Renew
+02:04:19   variant: Haircare - Herbal Shampoo - 32oz (R1729H) -> 4905  only variant: Herbal Shampoo
+02:04:28   variant: Ecosense - Tough and Tender - 8oz - 2-Pack () -> 4075  Tough & Tender? Wipes 2?Pack (price 6.99, 3 pts) x2 for the 2-pack
+02:04:38   variant: Beauty - Sei Bella Volume Extreme Mascara - Black  (F2026) -> 8900  only variant: Volume: Black - Waterproof
+02:05:44 actions: 25 | offer lines: 3 | problems: 0
+02:05:45   added [single] 783 x1 Laundry - Melabrite - Oxi Packs 
+02:05:45   added [single] 5018 x1 Ecosense - Diamond Brite - 25 Loads - 2-Pack 
+02:05:45   added [single] 5612 x1 Ecosense - Clean And Gleam - 8oz 
+02:05:46   added [pack] 2211 x1 2-pack: Ecosense - PreSpot - 8oz 
+02:05:46   added [single] 6600 x1 Renew - Lotion - 20oz 
+02:05:47   added [single] 3634 x1 Renew - Lotion - 1oz - Pure Lavender 
+02:05:47   added [single] 4905 x1 Haircare - Herbal Shampoo - 32oz 
+02:05:47   added [single] 4889 x1 32 oz. Shampoo & Conditioner Pump for Haircare - Herbal 
+02:05:48   added [single] 6196 x1 Toothcare - Breath-Away Mouth Rinse - 16oz - 2-Pack 
+02:05:48   added [single] 4075 x2 Ecosense - Tough and Tender - 8oz - 2-Pack 
+02:05:48   added [single] 8900 x1 Beauty - Sei Bella Volume Extreme Mascara - Black - 0.4 
+02:05:49   added [pack] 34911 x1 CLEAN pack 1/1:  - No Work - 8oz with Bottle, Ecosense  
+02:05:49        choice: Ecosense - Harvest Pure - 8oz -> Harvest Pure? Fruit And Vegetable Wash (10.0)
+02:05:49        choice: Ecosense - Mela-magic - 16oz -> MelaMagic Heavy-Duty Cleaner (10.0)
+02:05:49        choice: Ecosense - No Work - 8oz with Bottle -> No Work Daily Shower Cleaner (10.0)
+02:05:49   added [single] 1215 x1 No Work? Mixing Spray Bottle for Ecosense - No Work - 8 
+02:05:50   added [pack] 7911 x1 F650 pack 1/1: des - Lip Balm - Pina Colada, p Balm - C 
+02:05:50        choice: Sun Shades - Lip Balm - Cranberry Tangerine -> Cranberry Tangerine (0.98)
+02:05:50        choice: Sun Shades - Lip Balm - Cranberry Tangerine -> Cranberry Tangerine (0.98)
+02:05:50        choice: Sun Shades - Lip Balm - Pina Colada -> Pi?a Colada (0.98)
+02:05:50   added [pack] 190 x1 DEOD pack 1/1: finia Sweet Cream and Willow, nia Vanill 
+02:05:50        choice: Deodorant - Alloy Antiperspirant -> Antiperspirant & Deodorant   (10.0)
+02:05:50        choice: Deodorant - Affinia Vanilla Musk and Jasmine -> Vanilla Musk & Jasmine Antiperspirant & Deodorant (0.9)
+02:05:50        choice: Deodorant - Affinia Sweet Cream and Willow -> Sweet Cream & Willow Antiperspirant & Deodorant (0.9)
+02:05:50   added [pack] 43987 x1 TOOTH pack 1/1:  - Koala Pals - Berrylicious, hcare - C 
+02:05:50        choice: Toothcare - Koala Pals - Berrylicious -> Berrylicious +Fluoride (0.87)
+02:05:50        choice: Toothcare - Classic - Fresh Mint -> Classic Fresh Mint - Fluoride-Free (0.83)
+02:05:50        choice: Toothcare - Exceed - Cinnamon -> Cinnamon - Fluoride-Free (10.0)
+02:05:51   added [pack] 23963 x1 AFFSC pack 1/1: - Affinia Volume Conditioner, e - Affin 
+02:05:51        choice: Haircare - Affinia Moisture Shampoo -> Moisture Shampoo (10.0)
+02:05:51        choice: Haircare - Affinia Volume Conditioner -> Volume Conditioner (10.0)
+02:05:51   added [pack] 5026 x1 F252 pack 1/1: Brite - 16oz - Apple Scented, Brite - 16 
+02:05:51        choice: EcoSense - Lemon Brite - 16oz - Tropical Scented -> Tropical (0.98)
+02:05:51        choice: EcoSense - Lemon Brite - 16oz - Apple Scented -> Apple (0.98)
+02:05:51        choice: EcoSense - Lemon Brite - 16oz - Lemon Scented -> Lemon (0.98)
+02:05:54   added [pack] 2154 x1 F296 pack 1/1: laSoft Bottle - Clean Cotton, oft Bottle 
+02:05:54        choice: Laundry - MelaSoft Bottle - Clean Cotton -> Clean Cotton (0.98)
+02:05:54        choice: Laundry - MelaSoft Bottle - Garden Lavender -> Garden Lavender (0.98)
+02:05:55   added [pack] 5027 x1 F298 pack 1/1: ft Dryer Sheets - Scent Free, yer Sheets 
+02:05:55        choice: Laundry - Melasoft Dryer Sheets - Garden Lavender -> Garden Lavender (0.98)
+02:05:55        choice: Laundry - Melasoft Dryer Sheets - Scent Free -> Scent Free (0.98)
+02:05:55   added [pack] 590 x1 F264 pack 1/1:  MelaBoost - Garden Lavender 
+02:05:55        choice: Laundry - MelaBoost - Garden Lavender -> MelaBoost - Garden Lavender (0.99)
+02:05:55        choice: Laundry - MelaBoost - Garden Lavender -> MelaBoost - Garden Lavender (0.99)
+02:05:56   added [pack] 8911 x1 SGD2 pack 1/1: Ecosense - Sol U Guard 
+02:05:56   added [pack] 6277 x1 KPB2 pack 1/1: Koala Pals - Hair Wash 
+02:05:56        choice: Koala Pals - Hair Wash -> Hair Wash (10.0)
+02:05:56        choice: Koala Pals - Hair Wash -> Hair Wash (10.0)
+02:05:56   added [pack] 43978 x1 PAIN pack 1/1: cy - Pain A Trate - Original 
+02:05:56        choice: Mela-Pharmacy - Pain A Trate - Original -> Original 85 g (10.0)
+02:05:56        choice: Mela-Pharmacy - Pain A Trate - Original -> Original 85 g (10.0)
+02:05:57   added [pack] 4075 x1 TTW2 pack 1/1: nse - Tough and Tender Wipes 
+02:05:57 cart before the offers: 26 items, 138 points
+02:06:21 offers on the page: 26
+02:06:21      offer card 34050 | promo 2013704 | Save $12.00 on MelaPower Laundry Detergent 2-Pack!
+02:06:21      offer card 39820 | promo 2013706 | Save $3.00 on Spiced Cranberry Scented Lemon Brite 2-Pack!
+02:06:21      offer card 49677 | promo 2013688 | Save $11.00 on Renew Hand Wash Refill 2-Pack!
+02:06:21      offer card 64295 | promo 2013743 | Save $8.00 on Simply Fit Trail Bars  3-Pack!
+02:06:21      offer card 39734 | promo 2013705 | Save $6.00 on Spiced Apple Sol-U-Mel and Spiced Apple Tough & Tender!
+02:06:21      offer card 59826 | promo 2013689 | Save $26.00 on Pure Long Winter Nap Relaxing Blend!
+02:06:21      offer card 6269 | promo 2013697 | Buy one Vitality Coldwater Omega-3, get one for $4.99!
+02:06:21      offer card 8068 | promo 2013693 | Save $5.00 on Pure Lavender Essential Oil!
+02:06:21      offer card 6833 | promo 2013687 | Buy one Safe & Mighty, get one for $3.74!
+02:06:21      offer card 5070 | promo 2013702 | Save $4.00 on Bath Bars 3-Pack!
+02:06:21      offer card 69327 | promo 2013698 | Buy one Activate Immune Complex, get one for $3.74!
+02:06:21      offer card 1682 | promo 2013684 | Save $25.00 on Luminex 2-Pack!
+02:06:21      offer card 69823 | promo 2013707 | Save $15.00 on Florify for Kids Probiotic 2-Pack!
+02:06:21      offer card 8194 | promo 2013695 | Buy one Tub & Tile Bathroom Cleaner, get one for $3.24!
+02:06:21      offer card 4227 | promo 2013694 | Save $13.00 on MelaBrite Colour Booster 2-Pack!
+02:06:21      offer card 74141 | promo 2013696 | Save $29.00 - $41.50 on Sei Bella Treatment and Moisturizer!
+02:06:21      offer card 49635 | promo 2013699 | Save $5.00 on Renew Targeted Eczema Treatment 2-Pack!
+02:06:21      offer card 49096 | promo 2013685 | Buy one Pain-A-Trate Ultra, get one for $2.99!
+02:06:21      offer card 69311 | promo 2013701 | Save $26.00 on Vitality FloraV 2-Pack!
+02:06:21      offer card 643 | promo 2013703 | Save $10.00 on Replenex Advance with Type II Collagen!
+02:06:21      offer card 6476 | promo 2013700 | Save $13.00 on FiberWise Canister 2-Pack!
+02:06:21      offer card 74091 | promo 2013690 | Save $38.00 - $43.00 on Sei Bella Deep Marine Bundle!
+02:06:21      offer card 69294 | promo 2013880 | Save $6.50 on Vitality Iron Support!
+02:06:21      offer card 79015 | promo 2013686 | Save $4.00 on Sei Bella The Basic Collection Gentle Daily Cleanser!
+02:06:21      offer card 74042 | promo 2013691 | Save $26.00 on Sei Bella Perfume!
+02:06:21      offer card 5520 | promo 2013692 | Buy two Sei Bella Makeup Removing Cleansing Wipes, get one FREE!
+02:06:27   added offer 8194 x1 Buy one Tub & Tile Bathroom Cleaner, get one for $3.24! 
+02:06:32   added offer 34050 x1 Save $12.00 on MelaPower Laundry Detergent 2-Pack! [{"FeatureSku": "F444", "SelectedSku": "5546"}, {"FeatureSku": "F444", "SelectedSku": "5546"}]
+02:06:38   added offer 49677 x1 Save $11.00 on Renew Hand Wash Refill 2-Pack! 
+02:06:39   credit  : Credit 1 -> box 'Buy with Loyalty Shopping Dollars' ticked on Laundry - Melabrite - Oxi Packs
+02:06:42   credit  : Credit 2 -> box 'Buy with Loyalty Shopping Dollars' ticked on Ecosense - Diamond Brite - 25 Loads - 2-Pack
+02:06:42 
+CART NOW: 29 items | 145 points | gross 487.43 | net 474.31 | discount 0
+02:06:42 SHEET   : 145 points count for the limit (TOTAL row: 145) + 11 points of credit items | cost of all lines 371.76
+02:06:42 CREDIT  : $13.12 of loyalty dollars used by the cart
+02:06:42 RESULT  : points MATCH | cost not compared (Canadian dollars in the store, US dollars in the sheet)
+02:06:42   every line of the cart equals the sheet.
+02:07:11 page: https://ca.melaleuca.com/checkout/promo-page
+02:07:25 page: https://ca.melaleuca.com/checkout
+02:07:37 lab: emptied the cart again: 27 lines
