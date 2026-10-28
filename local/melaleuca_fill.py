@@ -108,6 +108,10 @@ def weights_for(titles):
     return {w: 1.0 / n for w, n in df.items()}
 
 
+# the sheet lists these twice under different names, the store has one product (letters only, lower case)
+SAME_PRODUCT = {"soapbarexfoliatingbar": ("soapbarexfoliatingbaralmondvanilla",), "soapbarexfoliatingbaralmondvanilla": ("soapbarexfoliatingbar",)}
+
+
 def name_score(product_name, choice_title, weights=None):
     a, b = toks(product_name), toks(choice_title)
     if not b or not a:
@@ -234,6 +238,8 @@ def _assign_choices(units, conf):
     for (ci, title), names in bychoice.items():
         dist = sorted(set(names), key=lambda x: (len(toks(x)), x))
         for other in dist[1:]:
+            if re.sub(r"[^a-z]", "", other.lower()) in SAME_PRODUCT.get(re.sub(r"[^a-z]", "", dist[0].lower()), ()):
+                continue                    # the same product under two names in the sheet (e.g. Exfoliating = Almond Vanilla): not a substitution
             problems.append("SUBSTITUTED: '%s' is not a choice of this pack - the store pack has '%s' (also used for '%s'); change it by hand if you need the exact one" % (other, title, dist[0]))
     per = {}
     for ui, (ci, ch, sc) in got.items():
@@ -994,6 +1000,14 @@ def run(n, dry=False, lab=False, final=True, audit=False):
             plan_path = a[7:]
     plan = load_plan(plan_path) if (not audit or os.path.exists(plan_path)) else {"tab": "", "n": n, "credit": 0, "lines": [], "total": None, "groups": {}, "members": [], "cleanpack": {}}
     if not audit:
+        tp = plan["total"]["pts"] if plan["total"] else 0
+        if tp > 150:
+            print("")
+            print("=" * 78)
+            print(" THIS TAB HAS %.0f POINTS - OVER THE 150 LIMIT. Nothing was done in the store (no sign-in, no proxy traffic)." % tp)
+            print("   The tab's own TOTAL is already above 150, so the cart could never be placed. Rebuild the tab / fix the offer points first.")
+            print("=" * 78)
+            return 4
         st = stale_sets(plan)
         if st:
             print("")
