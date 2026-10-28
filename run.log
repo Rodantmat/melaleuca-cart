@@ -1,0 +1,123 @@
+env SHIPPO_LIVE_TOKEN: set, live
+env SHIPPO_LIVE_API_KEY: empty
+env SHIPPO_LIVE_KEY: empty
+env SHIPPO_API_KEY: set, test
+live token present, prefix ok: True
+carrier accounts http 200
+  canada_post  id 33933c02 active=True test=False account_id=shi*** country=- shippo_managed=True
+  chronopost   id 06cdbbac active=True test=False account_id=shi*** country=- shippo_managed=True
+  colissimo    id 5e0b0e67 active=True test=False account_id=shi*** country=- shippo_managed=True
+  couriersplease id 780c59eb active=True test=False account_id=shi*** country=- shippo_managed=True
+  correos      id 3f49dbf8 active=True test=False account_id=shi*** country=- shippo_managed=True
+  deutsche_post id 820bfd24 active=True test=False account_id=shi*** country=- shippo_managed=True
+  dhl_express  id 12c004f0 active=True test=False account_id=shi*** country=- shippo_managed=True
+  dpd_de       id 0f3b03e1 active=True test=False account_id=shi*** country=- shippo_managed=True
+  dpd_uk       id 62dd6e32 active=True test=False account_id=shi*** country=- shippo_managed=True
+  fedex        id 70089ce6 active=True test=False account_id=shi*** country=- shippo_managed=True
+  hermes_uk    id 31eaec69 active=True test=False account_id=shi*** country=- shippo_managed=True
+  lso          id c15b2c13 active=True test=False account_id=shi*** country=- shippo_managed=True
+  ups          id 7ac2ad68 active=True test=False account_id=shi*** country=- shippo_managed=True
+  ups          id 291d6503 active=True test=False account_id=shi*** country=- shippo_managed=True
+  usps         id 0c142261 active=True test=False account_id=shi*** country=- shippo_managed=True
+
+=== Toronto -> US | 3 boxes 60 lb | DDU | canada_post 33933c02 | http 201 | 0 rates
+   msg: Carrier account shippo_canada_post_master doesn't support one or more shipment options
+
+=== Toronto -> US | 3 boxes 60 lb | DDU | chronopost 06cdbbac | http 201 | 0 rates
+   msg: Carrier account shippo_chronopost_account doesn't support one or more shipment options
+
+=== Toronto -> US | 3 boxes 60 lb | DDU | colissimo 5e0b0e67 | http 201 | 0 rates
+   msg: Carrier account shippo_colissimo_account doesn't support one or more shipment options
+
+=== Toronto -> US | 3 boxes 60 lb | DDU | couriersplease 780c59eb | http 201 | 0 rates
+   msg: Carrier account COURIERSPLEASE_SHIPPO_TIER_1 doesn't support one or more shipment options
+
+=== Toronto -> US | 3 boxes 60 lb | DDU | correos 3f49dbf8 | http 201 | 0 rates
+   msg: Carrier account shippo_correos_account doesn't support one or more shipment options
+
+=== Toronto -> US | 3 boxes 60 lb | DDU | deutsche_post 820bfd24 | http 201 | 0 rates
+   msg: Carrier account shippo_deutsche_post_account doesn't support one or more shipment options
+
+=== Toronto -> US | 3 boxes 60 lb | DDU | dhl_express 12c004f0 | http 201 | 0 rates
+   msg: Shippo's DHL Express master account doesn't support shipments from outside of the US
+
+=== Toronto -> US | 3 boxes 60 lb | DDU | dpd_de 0f3b03e1 | http 201 | 0 rates
+   msg: Carrier account shippo_dpd_de_account doesn't support one or more shipment options
+
+=== Toronto -> US | 3 boxes 60 lb | DDU | dpd_uk 62dd6e32 | http 201 | 0 rates
+   msg: Carrier account shippo_dpd_uk_account doesn't support one or more shipment options
+
+=== Toronto -> US | 3 boxes 60 lb | DDU | fedex 70089ce6 | http 201 | 0 rates
+   msg: Your account is restricted from using this carrier.
+
+=== Toronto -> US | 3 boxes 60 lb | DDU | hermes_uk 31eaec69 | http 201 | 0 rates
+   msg: Carrier account shippo_hermes_uk_account doesn't support one or more shipment options
+
+=== Toronto -> US | 3 boxes 60 lb | DDU | lso c15b2c13 | http 201 | 0 rates
+   msg: Carrier account shippo_lso_account doesn't support one or more shipment options
+
+=== Toronto -> US | 3 boxes 60 lb | DDU | ups 7ac2ad68 | http 201 | 0 rates
+   msg: Shipment origin is out of service area for UPS Master account from US
+   msg: Shipment origin is out of service area for UPS Master account from US
+
+=== Toronto -> US | 3 boxes 60 lb | DDU | ups 291d6503 | http 201 | 6 rates
+   Standard®                            104.23 CAD  5d  provider UPS
+   Worldwide Expedited™                 171.57 CAD  2d  provider UPS
+   3 Day Select®                        194.34 CAD  3d  provider UPS
+   Worldwide Express Saver®             254.06 CAD  1d  provider UPS
+   Worldwide Express™                   266.34 CAD  1d  provider UPS
+   Worldwide Express Plus™              370.08 CAD  1d  provider UPS
+
+=== Toronto -> US | 3 boxes 60 lb | DDU | usps 0c142261 | http 201 | 0 rates
+   msg: Carrier account shippo_usps_master doesn't support one or more shipment options
+
+=== Vancouver -> US | 3 boxes 60 lb | DDU | canada_post 33933c02 | http 201 | 0 rates
+   msg: Carrier account shippo_canada_post_master doesn't support one or more shipment options
+
+=== Vancouver -> US | 3 boxes 60 lb | DDU | chronopost 06cdbbac | http 201 | 0 rates
+   msg: Carrier account shippo_chronopost_account doesn't support one or more shipment options
+
+=== Vancouver -> US | 3 boxes 60 lb | DDU | colissimo 5e0b0e67 | http 201 | 0 rates
+   msg: Carrier account shippo_colissimo_account doesn't support one or more shipment options
+
+=== Vancouver -> US | 3 boxes 60 lb | DDU | couriersplease 780c59eb | http 201 | 0 rates
+   msg: Carrier account COURIERSPLEASE_SHIPPO_TIER_1 doesn't support one or more shipment options
+
+=== Vancouver -> US | 3 boxes 60 lb | DDU | correos 3f49dbf8 | http 201 | 0 rates
+   msg: Carrier account shippo_correos_account doesn't support one or more shipment options
+
+=== Vancouver -> US | 3 boxes 60 lb | DDU | deutsche_post 820bfd24 | http 201 | 0 rates
+   msg: Carrier account shippo_deutsche_post_account doesn't support one or more shipment options
+
+=== Vancouver -> US | 3 boxes 60 lb | DDU | dhl_express 12c004f0 | http 201 | 0 rates
+   msg: Shippo's DHL Express master account doesn't support shipments from outside of the US
+
+=== Vancouver -> US | 3 boxes 60 lb | DDU | dpd_de 0f3b03e1 | http 201 | 0 rates
+   msg: Carrier account shippo_dpd_de_account doesn't support one or more shipment options
+
+=== Vancouver -> US | 3 boxes 60 lb | DDU | dpd_uk 62dd6e32 | http 201 | 0 rates
+   msg: Carrier account shippo_dpd_uk_account doesn't support one or more shipment options
+
+=== Vancouver -> US | 3 boxes 60 lb | DDU | fedex 70089ce6 | http 201 | 0 rates
+   msg: Your account is restricted from using this carrier.
+
+=== Vancouver -> US | 3 boxes 60 lb | DDU | hermes_uk 31eaec69 | http 201 | 0 rates
+   msg: Carrier account shippo_hermes_uk_account doesn't support one or more shipment options
+
+=== Vancouver -> US | 3 boxes 60 lb | DDU | lso c15b2c13 | http 201 | 0 rates
+   msg: Carrier account shippo_lso_account doesn't support one or more shipment options
+
+=== Vancouver -> US | 3 boxes 60 lb | DDU | ups 7ac2ad68 | http 201 | 0 rates
+   msg: Shipment origin is out of service area for UPS Master account from US
+   msg: Shipment origin is out of service area for UPS Master account from US
+
+=== Vancouver -> US | 3 boxes 60 lb | DDU | ups 291d6503 | http 201 | 6 rates
+   Standard®                             92.72 CAD  4d  provider UPS
+   Worldwide Expedited™                 170.50 CAD  2d  provider UPS
+   3 Day Select®                        192.98 CAD  3d  provider UPS
+   Worldwide Express Saver®             252.96 CAD  1d  provider UPS
+   Worldwide Express™                   265.15 CAD  1d  provider UPS
+   Worldwide Express Plus™              368.36 CAD  1d  provider UPS
+
+=== Vancouver -> US | 3 boxes 60 lb | DDU | usps 0c142261 | http 201 | 0 rates
+   msg: Carrier account shippo_usps_master doesn't support one or more shipment options
