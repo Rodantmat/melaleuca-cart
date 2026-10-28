@@ -58,11 +58,13 @@ def main():
     n = int(sys.argv[1]) if len(sys.argv) > 1 else 24
     c = spapi.load_creds(HERE)
     os.makedirs(STATE, exist_ok=True)
-    wins = month_windows(n)
+    wins = month_windows(max(n, 12))                        # always look 12 months back for MISSING ledger months (a failed month used to stay missing for ever)
     for k, (s, e) in enumerate(wins):
         recent = k >= len(wins) - 2
         for kind, fn in (("orders", pull_orders), ("ledger", pull_ledger)):
             if kind == "ledger" and k < len(wins) - 12:      # the ledger only reaches back about a year
+                continue
+            if kind == "orders" and k < len(wins) - n:       # orders: only the months asked for
                 continue
             path = os.path.join(STATE, "%s_%s.tsv" % (kind, s.strftime("%Y-%m")))
             if os.path.exists(path) and not recent:
