@@ -1,0 +1,30 @@
+name: FBA stage 1 test (plans are cancelled, nothing bought)
+on: { workflow_dispatch: {} }
+permissions: { contents: write }
+concurrency: { group: fbastage1, cancel-in-progress: false }
+jobs:
+  go:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with: { ref: main }
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - name: Stage 1 on the Toronto and Vancouver test files
+        env: { CRED_ENV: "${{ secrets.CREDENTIALS_ENV }}", CREDENTIALS_ENV: "${{ secrets.CREDENTIALS_ENV }}", SHIPPO_LIVE_TOKEN: "${{ secrets.SHIPPO_LIVE_TOKEN }}" }
+        run: |
+          mkdir -p /tmp/so
+          cd feedwork
+          printf '%s\n' "$CRED_ENV" > credentials.txt
+          for f in inbound_test.tsv inbound_test_Vancouver.tsv; do echo "=== $f"; python fba_ship.py prepare $f --test 2>&1 | tee -a /tmp/so/run.log; done
+          cp *_stage1.json /tmp/so/ 2>/dev/null || true
+          rm -f credentials.txt
+      - name: Publish
+        if: always()
+        run: |
+          git config user.name "feed-bot"; git config user.email "feed-bot@users.noreply.github.com"
+          git checkout --orphan s1-new
+          git rm -rf . >/dev/null 2>&1 || true
+          cp -a /tmp/so/. .
+          git add -A && git commit -qm "stage1 test" && git push -f origin s1-new:fba-stage1
