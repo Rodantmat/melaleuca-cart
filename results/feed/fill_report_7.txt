@@ -1,0 +1,102 @@
+signed in as Antonio M | plan: 40 lines, TOTAL points 146.0 cost 384.94
+  variant: Renew - Lotion - 20oz (R480H) -> 6600  only variant: Value Size Renew
+  variant: Toothcare - Exceed - Mints - Wintergreen - 1.5oz (F146) -> 5121  Mints: Wintergreen (0.98)
+  variant: Exercise - Sustain Sport - Orange Splash (F2768) -> 60125  Sustain Active Hydration: Orange Packets (0.57)
+  variant: Mela-Pharmacy - Vitality Women (F711) -> 403  only variant: Prenatal
+  variant: Ecosense - Sol-U-Mel - Lemon Blossom - 8oz with bo (R642L) -> 293  Lemon Blossom (0.98)
+  variant: Exercise - FiberWise Orange No Sugar (F2666) -> 60140  FiberWise Drink: Orange Sugar-Free (0.66)
+actions: 27 | offer lines: 2 | problems: 0
+  added [single] 2799 x1 Mela-Pharmacy - Vitality Vitamin D3 
+  added [single] 4120 x1 Mela-Pharmacy - Replenex Extra Strength Drink Mix 
+  added [single] 5612 x1 Ecosense - Clean And Gleam - 8oz 
+  added [pack] 2211 x1 2-pack: Ecosense - PreSpot - 8oz 
+  added [pack] 5018 x1 2-pack: Ecosense - Diamond Brite - 25 Loads 
+  added [single] 6600 x1 Renew - Lotion - 20oz 
+  added [single] 3427 x1 Ecosense - Rustic - 8oz 
+  added [single] 5121 x1 Toothcare - Exceed - Mints - Wintergreen - 1.5oz 
+  added [single] 1218 x1 Ecosense - Tough and Tender - 8oz 
+  added [single] 60125 x1 Exercise - Sustain Sport - Orange Splash 
+  added [single] 403 x1 Mela-Pharmacy - Vitality Women 
+  added [single] 293 x1 Ecosense - Sol-U-Mel - Lemon Blossom - 8oz with bottle 
+  added [single] 1209 x1 Sol-U-Mel® Mixing Spray Bottle for Ecosense - Sol-U-Mel 
+  added [single] 60140 x1 Exercise - FiberWise Orange No Sugar 
+  added [pack] 34911 x1 CLEAN pack 1/1:  - No Work - 8oz with Bottle, Ecosense  
+       choice: Ecosense - Harvest Pure - 8oz -> Harvest Pure™ Fruit And Vegetable Wash (10.0)
+       choice: Ecosense - Mela-magic - 16oz -> MelaMagic Heavy-Duty Cleaner (10.0)
+       choice: Ecosense - No Work - 8oz with Bottle -> No Work Daily Shower Cleaner (10.0)
+  added [single] 1215 x1 No Work® Mixing Spray Bottle for Ecosense - No Work - 8 
+  added [pack] 190 x1 DEOD pack 1/1: finia Sweet Cream and Willow, nia Vanill 
+       choice: Deodorant - Affinia Sweet Cream and Willow -> Affinia Sweet Cream & Willow (0.99)
+       choice: Deodorant - Affinia Vanilla Musk and Jasmine -> Vanilla Musk & Jasmine (0.99)
+       choice: Deodorant - Alloy Antiperspirant -> Alloy AP/DEO (10.0)
+  added [pack] 7911 x1 F650 pack 1/1: des - Lip Balm - Pina Colada, p Balm - C 
+       choice: Sun Shades - Lip Balm - Pina Colada -> Pina Colada (0.98)
+       choice: Sun Shades - Lip Balm - Pina Colada -> Pina Colada (0.98)
+       choice: Sun Shades - Lip Balm - Cranberry Tangerine -> Cranberry Tangerine (0.98)
+  added [pack] 43987 x1 TOOTH pack 1/1:  - Koala Pals - Berrylicious, hcare - C 
+       choice: Toothcare - Koala Pals - Berrylicious -> Berrylicious +Fluoride (0.87)
+       choice: Toothcare - Exceed - Cinnamon -> Cinnamon - Fluoride-Free (10.0)
+       choice: Toothcare - Classic - Fresh Mint -> Classic Fresh Mint - Fluoride-Free (0.83)
+  added [pack] 23963 x1 AFFSC pack 1/1: - Affinia Volume Conditioner, e - Affin 
+       choice: Haircare - Affinia Volume Conditioner -> Volume Conditioner (10.0)
+       choice: Haircare - Affinia Moisture Shampoo -> Moisture Shampoo (10.0)
+  added [pack] 63939 x1 F3771 pack 1/1: - Splash H2O - Peach Ice Tea, cise - Sp 
+       choice: Exercise - Splash H2O - Lemonade -> Lemonade (0.98)
+       choice: Exercise - Splash H2O - Peach Ice Tea -> Peach Iced Tea (0.99)
+  added [pack] 5027 x1 F298 pack 1/1: ft Dryer Sheets - Scent Free, yer Sheets 
+       choice: Laundry - Melasoft Dryer Sheets - Garden Lavender -> Garden Lavender (0.98)
+       choice: Laundry - Melasoft Dryer Sheets - Scent Free -> Scent Free (0.98)
+  added [pack] 5026 x1 F252 pack 1/1: Brite - 16oz - Apple Scented, Brite - 16 
+       choice: EcoSense - Lemon Brite - 16oz - Tropical Scented -> Tropical (0.98)
+       choice: EcoSense - Lemon Brite - 16oz - Lemon Scented -> Lemon (0.98)
+       choice: EcoSense - Lemon Brite - 16oz - Apple Scented -> Apple (0.98)
+  added [pack] 590 x1 F264 pack 1/1:  MelaBoost - Garden Lavender 
+       choice: Laundry - MelaBoost - Garden Lavender -> MelaBoost - Garden Lavender (0.99)
+       choice: Laundry - MelaBoost - Garden Lavender -> MelaBoost - Garden Lavender (0.99)
+  added [pack] 8911 x1 SGD2 pack 1/1: Ecosense - Sol U Guard 
+  added [pack] 2154 x1 F296 pack 1/1: laSoft Bottle - Clean Cotton 
+       choice: Laundry - MelaSoft Bottle - Clean Cotton -> Clean Cotton (0.98)
+       choice: Laundry - MelaSoft Bottle - Clean Cotton -> Clean Cotton (0.98)
+  added [pack] 5048 x1 F55 pack 1/1: Soap Bar - Exfoliating Bar, ap Bar - Pink 
+       choice: Soap Bar - Pink Grapefruit Bar -> Pink Grapefruit (0.98)
+       choice: Soap Bar - Pink Grapefruit Bar -> Pink Grapefruit (0.98)
+       choice: Soap Bar - Exfoliating Bar -> Exfoliating (0.98)
+cart before the offers: 27 items, 151 points
+offers on the page: 27
+     offer card 34050 | promo 2013704 | Ahorre $10.00 al compar dos detergentes para la ropa MelaPower
+     offer card 69235 | promo 2013741 | Ahorre $3.00 en la manteca de res Riverbend Ranch!
+     offer card 39820 | promo 2013706 | Ahorre $2.00 al comprar dos botellas de Lemon Brite con aroma a arándanos rojos 
+     offer card 49677 | promo 2013688 | Ahorre $9.00 al comprar dos repuestos del jabón de manos Renew
+     offer card 64295 | promo 2013743 | Ahorre $7.00 al comprar 3 cajas de barras de frutos secos Simply Fit!
+     offer card 39734 | promo 2013705 | Ahorre $5.00 al comprar un Sol-U-Mel de manzana y canela y un Tough & Tender de 
+     offer card 59826 | promo 2013689 | Ahorre $21.00 en el conjunto para preparar la mezcla Pure Long Winter Nap
+     offer card 6269 | promo 2013697 | Compre un frasco de Vitality Coldwater Omega-3 y llévese otro frasco por solo $3
+     offer card 8068 | promo 2013693 | Ahorre $4.00 en el aceite Pure de lavanda
+     offer card 6833 | promo 2013687 | Compre un Safe & Mighty y llévese otro por $2.99
+     offer card 5070 | promo 2013702 | Ahorre $3.00 al comprar tres barras de aseo personal
+     offer card 69327 | promo 2013698 | Compre un frasco de Activate Immune Complex y llévese otro por $2.99
+     offer card 1682 | promo 2013684 | Ahorre $20.00 al comprar dos frascos de Luminex
+     offer card 69823 | promo 2013707 | Ahorre $12.00 al comprar dos cajas de Florify para niños
+     offer card 8194 | promo 2013695 | Compre un limpiador de baño Tub & Tile y llévese otro por $2.49
+     offer card 4227 | promo 2013694 | Ahorre $10.00 al comprar dos abrillantador de ropa MelaBrite
+     offer card 74141 | promo 2013696 | Ahorre entre $23.00 y $32.50 en un tratamiento y un humectante Sei Bella
+     offer card 49635 | promo 2013699 | Ahorre $4.00 al comprar dos tubos de crema para el eczema Renew
+     offer card 49096 | promo 2013685 | Compre un Pain-A-Trate Ultra y llévese otro por $2.49
+     offer card 69311 | promo 2013701 | Ahorre $20.00 al comprar dos PhloraV
+     offer card 8669 | promo 2013703 | Ahorre $5.00 al comprar tres jabones líquidos Sun Valley (Dispenadores se venden
+     offer card 6476 | promo 2013700 | Ahorre $10.00 al comprar dos bebidas FiberWise
+     offer card 74091 | promo 2013690 | Ahorra entre $30.00 y $32.50 en la colección esencial de Deep Marine
+     offer card 69294 | promo 2013880 | Ahorre $5.00 en el suplemento de hierro Vitality!
+     offer card 79015 | promo 2013686 | Ahorre $3.00 en el limpiador facial suave de uso diario The Basic Collection de 
+     offer card 8246 | promo 2013691 | Compre un frasco de Vitality Calcium Complete y llévese otro por $2.49
+     offer card 5520 | promo 2013692 | Compre dos paquetes de toallitas desmaquillantes Sei Bella y llévese otro GRATIS
+  added offer 8194 x1 Compre un limpiador de baño Tub & Tile y llévese otro p 
+  added offer 34050 x1 Ahorre $10.00 al compar dos detergentes para la ropa Me [{"FeatureSku": "F444", "SelectedSku": "5546"}, {"FeatureSku": "F444", "SelectedSku": "5546"}]
+  credit  : Credit 1 -> box 'Buy with Loyalty Shopping Dollars' ticked on Mela-Pharmacy - Vitality Vitamin D3
+  credit  : Credit 2 -> box 'Buy with Loyalty Shopping Dollars' ticked on Mela-Pharmacy - Replenex Extra Strength Drink Mix
+
+CART NOW: 29 items | 146 points | gross 384.94 | net 374.52 | discount 0
+SHEET   : 146 points count for the limit (TOTAL row: 146) + 16 points of credit items | cost of all lines 384.94
+CREDIT  : $10.42 of loyalty dollars used by the cart
+RESULT  : points MATCH | cost MATCH
+  every line of the cart equals the sheet.
