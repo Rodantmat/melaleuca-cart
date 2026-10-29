@@ -125,6 +125,25 @@ def name_score(product_name, choice_title, weights=None):
     return got / tot * 0.97 + 0.03 * len(a & b) / len(a)
 
 
+GENERIC = {"ecosense", "melaleuca", "sei", "bella", "beauty", "mela", "pharmacy", "haircare", "laundry", "toothcare", "exercise", "renew", "sun", "shades", "vitality", "for", "life"}
+
+
+def name_covered(sheet_name, store_title):
+    """True when every distinguishing word of the store title is also in the sheet name (so 'Wipes 2-Pack' does not pass for 'Tough and Tender 8oz 2-Pack')"""
+    a, b = toks(sheet_name), toks(store_title)
+    return bool(b) and not (b - a - GENERIC)
+
+
+LABELS = {"he", "regular", "detergent", "original", "packets", "packet", "pack"}
+
+
+def name_conflict(sheet_name, version_name, labels=False):
+    """the words of the store version that the sheet name does not have ('waterproof', 'prenatal'); [] when the version fits the name.
+    labels=True also ignores structural label words (HE / Regular detergent ...) that sheet names never carry"""
+    a, b = toks(sheet_name), toks(version_name)
+    return sorted(b - a - GENERIC - (LABELS if labels else set())) if b else []
+
+
 # ------------------------------------------------------------------------------------------------ store pages
 def grab_json_list(h, key):
     i = h.find('"%s":[{' % key)
@@ -409,30 +428,34 @@ class Catalog:
                 hits.append((name_score(L["name"], c["title"]), k, c))
         hits.sort(key=lambda t: -t[0])
         if not hits:
-            return None, "no store product costs %.2f with %.0f points" % (up, upts)
-        if len(hits) == 1 or hits[0][0] > hits[1][0] + 0.001:
-            sc, k, c = hits[0]
-            if sc > 0.0 or len(hits) == 1:
-                if len(c["skus"]) > 1:
-                    return None, "card '%s' has several versions: pick by hand" % c["title"]
-                if npk > 1:
-                    L["qty"] = q * npk
-                return c["skus"][0], "%s (price %.2f, %.0f pts)%s" % (c["title"], up, upts, (" x%d for the %d-pack" % (npk, npk)) if npk > 1 else "")
-        elif all(len(h[2]["skus"]) == 1 for h in hits[:2]):
-            # nothing in the name tells them apart (e.g. a credit oil 'T36-C5'): same price and points, so the totals are identical - take the first, say so
-            c = hits[0][2]
-            L.setdefault("warn", []).append("CHECK: '%s' has no name in the store; took '%s' (same price and points as %s)" % (L["name"], c["title"], "; ".join(h[2]["title"] for h in hits[1:3])))
-            return c["skus"][0], "%s - AMBIGUOUS, same price/points as %d others, check it" % (c["title"], len(hits) - 1)
-        return None, "several store products cost %.2f with %.0f points: %s" % (up, upts, "; ".join(h[2]["title"] for h in hits[:3]))
+            return None, "no store product costs %.2f with %.0f points - NO PRODUCT NUMBER on the sheet row: add this one by hand (or put its item number in feed\\variant_overrides.tsv)" % (up, upts)
+        # a row without a product number is never guessed: the store product must cost the same, have the same points AND carry no word the sheet name lacks
+        good = [h for h in hits if name_covered(L["name"], h[2]["title"])]
+        if len(good) == 1 and len(good[0][2]["skus"]) == 1:
+            sc, k, c = good[0]
+            if npk > 1:
+                L["qty"] = q * npk
+            return c["skus"][0], "%s (price %.2f, %.0f pts)%s" % (c["title"], up, upts, (" x%d for the %d-pack" % (npk, npk)) if npk > 1 else "")
+        if not good:
+            return None, "NO PRODUCT NUMBER on the sheet row and the store products with the same price/points (%s) have other names: add this one by hand" % "; ".join(h[2]["title"] for h in hits[:3])
+        return None, "NO PRODUCT NUMBER on the sheet row and %d store products fit price/points/name (%s): add this one by hand" % (len(good), "; ".join(h[2]["title"] for h in good[:3]))
 
     def resolve(self, L):
-        """-> (sku, why) for a plan line whose Mela ID is F#### or R####L/H"""
+        """-> (sku, why) for a plan line whose Mela ID is F#### or R####L/H (or has none).
+        Order of trust: 1. feed\\variant_overrides.tsv  2. the NAME of the sheet row against the names of the store's versions.
+        A version the store lists as sold out is NEVER swapped for another one (that is how 'Black' became 'Black - Waterproof' and '50+' became 'Prenatal'):
+        the named version is used (and the store says if it cannot be added), or the line is reported."""
         mid = L["melid"]
         ov = variant_override(L.get("asin"))
         if ov:
             if ov[0].upper() == "NONE":
                 return None, "the store does not sell this flavour / version (%s)" % (ov[1] or "checked against the store")
-            return ov[0], "fixed by variant_overrides.tsv: %s" % (ov[1] or "")
+            mm = re.fullmatch(r"(\d+)\s*[xX]\s*(\d+)", ov[0].strip())
+            osku, mult = (mm.group(1), int(mm.group(2))) if mm else (ov[0].strip(), 1)
+            if mult > 1 and not L.get("_mult_done"):         # 'Tough & Tender 2-Pack' = 2 x item 1218: the sheet counts 1 unit of the 2-pack, the store sells the single
+                L["qty"] = L["qty"] * mult
+                L["_mult_done"] = True
+            return osku, "fixed by variant_overrides.tsv%s: %s" % ((" (x%d units)" % mult) if mult > 1 else "", ov[1] or "")
         m = re.fullmatch(r"([FR])(\d+)([LH]?)", mid or "")
         if not m:
             return self.resolve_manual(L)
@@ -444,7 +467,7 @@ class Catalog:
             self.crawl([fid])
             if fid not in self.fam:
                 return None, "family %s not found in the store" % fid
-        vs = [v for v in self.variants(fid) if not v["sold"]] or self.variants(fid)
+        vs = self.variants(fid)
         if not vs:
             return None, "family %s not found in the store" % fid
         if m.group(1) == "R":
@@ -455,14 +478,29 @@ class Catalog:
                 vs = vs2 or vs
         wv = weights_for([v["name"] for v in vs])
         sc = sorted(((name_score(L["name"], v["name"], wv), v) for v in vs), key=lambda t: -t[0])
+        sold_note = "  - NOTE: the store lists this version as sold out / off sale at the moment; it is tried anyway and NOT replaced by another version"
         if len(vs) == 1:
-            return vs[0]["sku"], "only variant: " + vs[0]["name"]
+            VARNAME[vs[0]["sku"]] = vs[0]["name"]
+            return vs[0]["sku"], "only variant: " + vs[0]["name"] + (sold_note if vs[0]["sold"] else "")
         best = sc[0]
+        if best[1]["sold"] and best[0] >= 0.5 and name_conflict(L["name"], best[1]["name"]):
+            # the best-named version is sold out AND the sheet name does not fully identify it (e.g. 'MelaPower - Scent Free' fits Regular and HE alike):
+            # then, as before, the version that can be bought is used. When the name DOES identify it ('Black', '50+') it is kept and never swapped (see above).
+            live = [t for t in sc if not t[1]["sold"]]
+            if live:
+                sc = live
+                best = sc[0]
         if best[0] < 0.5:
             return None, "no variant of family %s looks like '%s' (best: %s %.2f)" % (fid, L["name"], best[1]["name"], best[0])
-        if len(sc) > 1 and sc[1][0] >= best[0] - 0.001:
-            return None, "ambiguous: '%s' fits %s and %s equally" % (L["name"], best[1]["name"], sc[1][1]["name"])
-        return best[1]["sku"], "%s (%.2f)" % (best[1]["name"], best[0])
+        ties = [t for t in sc if t[0] >= best[0] - 0.001]
+        if len(ties) > 1:
+            live = [t for t in ties if not t[1]["sold"]]          # same name score: the one that can be bought wins
+            if len(live) == 1:
+                best = live[0]
+            else:
+                return None, "ambiguous: '%s' fits %s and %s equally" % (L["name"], ties[0][1]["name"], ties[1][1]["name"])
+        VARNAME[best[1]["sku"]] = best[1]["name"]
+        return best[1]["sku"], "%s (%.2f)%s" % (best[1]["name"], best[0], sold_note if best[1]["sold"] else "")
 
 
 # ------------------------------------------------------------------------------------------------ the plan -> cart actions
@@ -475,6 +513,8 @@ class Action:
 
 
 FIXED_SKUS = []          # item numbers the sheet had wrong, corrected by name: shown in the final box
+VARNAME = {}             # item number -> the store's name of the version that was chosen for a sheet row (for the name check)
+NAMEWARN = []            # rows whose chosen store version carries a distinguishing word the sheet name does not have (e.g. "Waterproof", "Prenatal")
 IGN_TAIL = {"bottle", "loads", "load", "count", "ct", "ounce", "with"}
 
 
@@ -1128,8 +1168,15 @@ def run(n, dry=False, lab=False, final=True, audit=False):
             def rv(L):
                 sku, why = cat.resolve(L)
                 say("  variant: %s (%s) -> %s" % (L["name"][:50], L["melid"], ("%s  %s" % (sku, why)) if sku else "NOT RESOLVED: " + why))
+                if sku and str(sku) in VARNAME and not variant_override(L.get("asin")):
+                    cf = name_conflict(L["name"], VARNAME[str(sku)], True)
+                    if cf:
+                        msg = "CHECK THE NAME of row %d: the sheet says '%s', the store version used is '%s' (word(s) not in the sheet name: %s)" % (L["row"], L["name"][:60], VARNAME[str(sku)], ", ".join(cf))
+                        NAMEWARN.append(msg)
+                        say("  " + msg)
                 return sku
             acts, offers, problems, notes = build_actions(plan, fl.info, rv)
+            problems.extend(NAMEWARN)
             write_audit()
             say("actions:", len(acts), "| offer lines:", len(offers), "| problems:", len(problems))
             for pr in problems:
