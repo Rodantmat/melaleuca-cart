@@ -1,0 +1,74 @@
+{
+ "origin": "Toronto",
+ "name": "TEST-DELETE-ME-SD-2026-10",
+ "planId": "wff2db5083-2287-4ff9-9236-d3c2e7912ddf",
+ "placementOptionId": "pl6dfd912f-42ac-49c3-ae85-06b3c811f4e7",
+ "why": "only the target region is available",
+ "feeUSD": 157.32,
+ "legs": [
+  {
+   "shipmentId": "sh6060eea1-da04-49ba-8447-650e58e80a7a",
+   "warehouse": "RYY2",
+   "address": {
+    "city": "White",
+    "countryCode": "US",
+    "postalCode": "30184",
+    "name": "Amazon.com Services LLC",
+    "addressLine1": "1250 Cassville White Road",
+    "stateOrProvinceCode": "GA"
+   },
+   "boxes": 11,
+   "lb": 377.8,
+   "units": 594,
+   "counts": {
+    "Bar": 234,
+    "Cleaner": 161,
+    "Lotion": 199
+   },
+   "service": "Standard\u00ae",
+   "rate_id": "b8ff829e904e41ce82235212b02a0c83",
+   "shippo_shipment": "d3dba67f4995486398834cc94d6f9e4f",
+   "shippo_account": "291d65038fa24611b6e4848076c080e9",
+   "amount": 438.96,
+   "currency": "CAD",
+   "usd": 312.76,
+   "estimated_days": 3
+  },
+  {
+   "shipmentId": "sh99f00f60-ba02-4a2a-9c2d-954c69e496a8",
+   "warehouse": "CMH7",
+   "address": {
+    "city": "NEW ALBANY",
+    "countryCode": "US",
+    "postalCode": "43054-7762",
+    "name": "CMH7",
+    "addressLine1": "1245 BEECH RD SW",
+    "stateOrProvinceCode": "OH"
+   },
+   "boxes": 1,
+   "lb": 3.2,
+   "units": 1,
+   "counts": {
+    "Cleaner": 1
+   },
+   "service": "Standard\u00ae",
+   "rate_id": "e919cf6a59ad463584e526a61071bce5",
+   "shippo_shipment": "ac12fd48734a44978fda3a56a70e9588",
+   "shippo_account": "291d65038fa24611b6e4848076c080e9",
+   "amount": 20.78,
+   "currency": "CAD",
+   "usd": 14.81,
+   "estimated_days": 2
+  }
+ ],
+ "upsUSD": 327.57,
+ "fx": {
+  "usd_per_cad": 0.7125,
+  "source": "Bank of Canada 2026-10-28"
+ },
+ "warning": "",
+ "expires": "2026-11-01T04:53:28.713Z",
+ "created": "2026-10-29T04:54:00",
+ "sendFile": "/home/runner/work/melaleuca-cart/melaleuca-cart/feedwork/inbound_test.tsv",
+ "test": true
+}

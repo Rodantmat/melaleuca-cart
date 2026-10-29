@@ -1,0 +1,74 @@
+{
+ "origin": "Vancouver",
+ "name": "TEST-DELETE-ME-SD-2026-10",
+ "planId": "wf73aaaa8f-90c8-43a6-9124-fed73e924c44",
+ "placementOptionId": "plbe0f3c92-93c2-4116-8ad1-c004b5ca36fa",
+ "why": "Central is not closer (3311 km vs 1923 km) but cheaper ($611.03 vs $633.54)",
+ "feeUSD": 209.03,
+ "legs": [
+  {
+   "shipmentId": "sh3769333d-b5ff-43f8-98a8-98748596dc34",
+   "warehouse": "MEM2",
+   "address": {
+    "city": "BYHALIA",
+    "countryCode": "US",
+    "postalCode": "38611-2306",
+    "name": "MEM2",
+    "addressLine1": "191 NORFOLK SOUTHERN WAY",
+    "stateOrProvinceCode": "MS"
+   },
+   "boxes": 1,
+   "lb": 3.2,
+   "units": 1,
+   "counts": {
+    "Cleaner": 1
+   },
+   "service": "Standard\u00ae",
+   "rate_id": "59510e38a3f64b859fa83ea86f1b25c0",
+   "shippo_shipment": "717dfa7beb9041ada3c6c1821924f9bd",
+   "shippo_account": "291d65038fa24611b6e4848076c080e9",
+   "amount": 23.59,
+   "currency": "CAD",
+   "usd": 16.81,
+   "estimated_days": 5
+  },
+  {
+   "shipmentId": "sh3fa5f447-23ff-420f-adc7-bd4d7c8e9805",
+   "warehouse": "BNA6",
+   "address": {
+    "city": "CLARKSVILLE",
+    "countryCode": "US",
+    "postalCode": "37040-5502",
+    "name": "BNA6",
+    "addressLine1": "3875 GUTHRIE HWY",
+    "stateOrProvinceCode": "TN"
+   },
+   "boxes": 11,
+   "lb": 377.8,
+   "units": 594,
+   "counts": {
+    "Lotion": 199,
+    "Cleaner": 161,
+    "Bar": 234
+   },
+   "service": "Standard\u00ae",
+   "rate_id": "704211e2d6894db294589aa978592182",
+   "shippo_shipment": "f459e4cdf2e444f6b2aaefadbfdc502e",
+   "shippo_account": "291d65038fa24611b6e4848076c080e9",
+   "amount": 540.62,
+   "currency": "CAD",
+   "usd": 385.19,
+   "estimated_days": 5
+  }
+ ],
+ "upsUSD": 402.0,
+ "fx": {
+  "usd_per_cad": 0.7125,
+  "source": "Bank of Canada 2026-10-28"
+ },
+ "warning": "",
+ "expires": "2026-11-01T04:55:02.137Z",
+ "created": "2026-10-29T04:55:35",
+ "sendFile": "/home/runner/work/melaleuca-cart/melaleuca-cart/feedwork/inbound_test_Vancouver.tsv",
+ "test": true
+}

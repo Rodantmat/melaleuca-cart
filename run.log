@@ -1,0 +1,42 @@
+plan 'TEST-DELETE-ME-SD-2026-10' | ship from Toronto | 86 SKUs, 595 units, 12 boxes
+expiration date added to 40 products that need it
+1/5 plan created: wff2db5083-2287-4ff9-9236-d3c2e7912ddf
+1/5 inventory accepted by Amazon
+2/5 packing option chosen (2 group(s))
+3/5 packing option confirmed
+4/5 box contents and sizes saved (12 boxes)
+5/5 shipment options generated
+   option pl519aa2 fee 209.15  CMH7(EAST)+BNA6(CENTRAL)  -> mixed EAST/CENTRAL
+   option pl6dfd91 fee 157.32  RYY2(EAST)+CMH7(EAST)  -> all EAST
+   option plbf4d06 fee 250.76  CMH7(EAST)+TCY2(WEST)  -> outside region
+   decision: only the target region is available
+
+Amazon FBA Placement Fees: $157.32
+UPS Shipment Cost: $327.57  (approx. USD; Shippo quotes 438.96 CAD + 20.78 CAD)
+Ships to: RYY2 (White, GA), CMH7 (NEW ALBANY, OH)
+Why: only the target region is available
+
+Complete Shipment?
+(state saved: inbound_test_stage1.json; FX Bank of Canada 2026-10-28 0.7125)
+plan cancelled: wff2db5083-2287-4ff9-9236-d3c2e7912ddf
+plan 'TEST-DELETE-ME-SD-2026-10' | ship from Vancouver | 86 SKUs, 595 units, 12 boxes
+expiration date added to 40 products that need it
+1/5 plan created: wf73aaaa8f-90c8-43a6-9124-fed73e924c44
+1/5 inventory accepted by Amazon
+2/5 packing option chosen (2 group(s))
+3/5 packing option confirmed
+4/5 box contents and sizes saved (12 boxes)
+5/5 shipment options generated
+   option pl4844a1 fee 250.64  MEM2(CENTRAL)+GEU2(WEST)  -> mixed WEST/CENTRAL
+   option pl8be5a1 fee 157.20  HIA1(EAST)+MEM2(CENTRAL)  -> outside region
+   option plbe0f3c fee 209.03  MEM2(CENTRAL)+BNA6(CENTRAL)  -> all CENTRAL
+   decision: Central is not closer (3311 km vs 1923 km) but cheaper ($611.03 vs $633.54)
+
+Amazon FBA Placement Fees: $209.03
+UPS Shipment Cost: $402.00  (approx. USD; Shippo quotes 23.59 CAD + 540.62 CAD)
+Ships to: MEM2 (BYHALIA, MS), BNA6 (CLARKSVILLE, TN)
+Why: Central is not closer (3311 km vs 1923 km) but cheaper ($611.03 vs $633.54)
+
+Complete Shipment?
+(state saved: inbound_test_Vancouver_stage1.json; FX Bank of Canada 2026-10-28 0.7125)
+plan cancelled: wf73aaaa8f-90c8-43a6-9124-fed73e924c44
