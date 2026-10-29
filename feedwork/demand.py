@@ -112,9 +112,48 @@ def compute(state_dir, today=None, current=None, inbound=None):
     return out
 
 
+# ------------------------------------------------------------------ compact copy of the history (what the PC downloads)
+def export_compact(state_dir, today=None, days=100):
+    """-> dict with the last `days` days of sales and in/out-of-stock days per SKU (about 200 KB), written daily by the cloud feed so that
+    the PC can compute the same demand columns without the big order / ledger files."""
+    today = today or dt.date.today()
+    since = today - dt.timedelta(days=days)
+    sold, stock = load(state_dir)
+    out = {"generated": today.isoformat(), "days": days, "sold": {}, "stock": {}}
+    for sku, byd in sold.items():
+        m = {d.isoformat(): q for d, q in byd.items() if d >= since}
+        if m: out["sold"][sku] = m
+    for sku, byd in stock.items():
+        ins = sorted(d.isoformat() for d, v in byd.items() if v and d >= since)
+        outs = sorted(d.isoformat() for d, v in byd.items() if (not v) and d >= since)
+        if ins or outs: out["stock"][sku] = {"in": ins, "out": outs}
+    return out
+
+
+def load_compact(obj):
+    """inverse of export_compact -> (sold {sku: {date: units}}, stock {sku: {date: bool}})"""
+    if isinstance(obj, (str, bytes, os.PathLike)):
+        import json
+        with open(obj, encoding="utf-8") as f: obj = json.load(f)
+    sold = {sku: {dt.date.fromisoformat(d): int(q) for d, q in m.items()} for sku, m in (obj.get("sold") or {}).items()}
+    stock = {}
+    for sku, e in (obj.get("stock") or {}).items():
+        m = {}
+        for d in e.get("in", []): m[dt.date.fromisoformat(d)] = True
+        for d in e.get("out", []): m[dt.date.fromisoformat(d)] = False
+        stock[sku] = m
+    return sold, stock
+
+
 COLS = ["dem_rate", "dem_naive", "dem_instock_90", "dem_out_now", "dem_urgent", "dem_cover_days"]
 
 if __name__ == "__main__":
+    if len(sys.argv) > 3 and sys.argv[1] == "export":          # python demand.py export <state dir> <out.json>
+        import json
+        o = export_compact(sys.argv[2])
+        json.dump(o, open(sys.argv[3], "w", encoding="utf-8"), separators=(",", ":"))
+        print("exported %d products with sales, %d with stock days -> %s" % (len(o["sold"]), len(o["stock"]), sys.argv[3]))
+        sys.exit(0)
     st = sys.argv[1] if len(sys.argv) > 1 else "."
     res = compute(st)
     rows = sorted(res.items(), key=lambda kv: -(kv[1]["dem_rate"] - kv[1]["dem_naive"]))

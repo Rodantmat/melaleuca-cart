@@ -36,6 +36,8 @@ jobs:
           rm -rf /tmp/fo && mkdir -p /tmp/fo/feed
           cp feedwork/feed/*.tsv feedwork/feed/feed_status.json feedwork/feed/fees_good.json /tmp/fo/feed/ 2>/dev/null || true
           cp feedwork/feed_run.log /tmp/fo/ 2>/dev/null || true
+          # compact order + stock-day history for the PC (it downloads this file, ~150 KB, to compute the same true-demand columns)
+          python feedwork/demand.py export feedwork/state /tmp/fo/demand_hist.json || true
           git checkout --orphan feed-new
           git rm -rf . >/dev/null 2>&1 || true
           cp -a /tmp/fo/. . 

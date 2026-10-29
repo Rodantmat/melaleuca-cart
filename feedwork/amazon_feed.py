@@ -512,6 +512,43 @@ def fee_preview_fallback(cache, info, warnings):
         warnings.append("%d fee(s) came from the Fee Preview report (at your price, not the Buy Box price)" % used)
 
 
+
+def glob_any(folder, pattern):
+    import glob
+    return glob.glob(os.path.join(folder, pattern))
+
+
+DEMAND_URL = "https://raw.githubusercontent.com/Rodantmat/melaleuca-cart/feed-latest/demand_hist.json"
+
+
+def fetch_demand_hist(creds=None):
+    """-> (path of a usable demand_hist.json or None, why).  Downloads it when the local copy is older than 6 hours; keeps using an older copy (up to 5 days) when the download fails.
+    credentials.txt may hold DEMAND_URL= (another address) and GITHUB_TOKEN= (only if the repository is ever made private)."""
+    path = os.path.join(FEED_DIR, "demand_hist.json")
+    age = (time.time() - os.path.getmtime(path)) / 3600.0 if os.path.exists(path) else None
+    if age is not None and age < 6:
+        return path, "copy from %.1f h ago" % age
+    url = (creds or {}).get("DEMAND_URL") or DEMAND_URL
+    hdr = {"User-Agent": UA}
+    tok = (creds or {}).get("GITHUB_TOKEN")
+    if tok:
+        hdr["Authorization"] = "Bearer " + tok
+    try:
+        req = urllib.request.Request(url, headers=hdr)
+        with urllib.request.urlopen(req, timeout=60) as r:
+            data = r.read()
+        obj = json.loads(data.decode("utf-8"))
+        if not isinstance(obj, dict) or "sold" not in obj:
+            raise ValueError("not a demand file")
+        os.makedirs(FEED_DIR, exist_ok=True)
+        with open(path, "wb") as f:
+            f.write(data)
+        return path, "downloaded, history up to %s" % obj.get("generated", "?")
+    except Exception as e:
+        if age is not None and age < 24 * 5:
+            return path, "download failed (%s), using the copy from %.0f h ago" % (str(e)[:60], age)
+        return None, "download failed: %s" % str(e)[:80]
+
 def cmd_build(creds, skip_fees=False):
     os.makedirs(FEED_DIR, exist_ok=True)
     warnings = []
@@ -664,16 +701,25 @@ def cmd_build(creds, skip_fees=False):
         ["ord_units_7", "ord_units_30", "ord_units_60", "ord_units_90", "ord_sales_90",
          "ord_orders_30", "ord_last_sale_date", "fee_total", "fee_fba", "fee_price_used",
          "bb_live", "bb_report", "low_new", "low_fba", "offers_n", "real_price_30", "price_used", "price_src", "price_flag"]
-    # true demand (corrected for out-of-stock days) - needs the order/ledger history that reprice/history.py keeps; absent = columns stay empty
+    # true demand (corrected for out-of-stock days).  Sources, in this order:
+    #   1. a folder with the order/ledger history (the cloud feed: env DEMAND_STATE or ./state)
+    #   2. the compact copy the cloud feed publishes every day (feed\\demand_hist.json) - downloaded here, 150 KB, no sign-in needed
+    # absent / failed = the dem_* columns stay empty and the workbook plans with the old sales speed (never an error)
     dem_sold, dem_stock = {}, {}
+    _dem = None
     try:
         import demand as _dem
         sd = os.environ.get("DEMAND_STATE") or os.path.join(BASE, "state")
-        if os.path.isdir(sd):
+        if os.path.isdir(sd) and glob_any(sd, "orders_*.tsv"):
             dem_sold, dem_stock = _dem.load(sd)
-            print("demand history: %d products with orders, %d with a stock ledger" % (len(dem_sold), len(dem_stock)))
+            print("demand history: %d products with orders, %d with a stock ledger (folder %s)" % (len(dem_sold), len(dem_stock), sd))
         else:
-            warnings.append("demand history folder not found (%s) - dem_* columns are empty" % sd)
+            hp, why = fetch_demand_hist(creds)
+            if hp:
+                dem_sold, dem_stock = _dem.load_compact(hp)
+                print("demand history: %d products with orders, %d with a stock ledger (%s)" % (len(dem_sold), len(dem_stock), why))
+            else:
+                warnings.append("demand history not available (%s) - dem_* columns are empty, the workbook uses the old sales speed" % why)
         plan_hdr += _dem.COLS
     except Exception as e:
         _dem = None
