@@ -1,0 +1,29 @@
+04:39:39   proxy port 10007 | location: cr.us;city.losangeles,sandiego,longbeach,anaheim,irvine,santaana,riverside
+04:41:13 signed in as Antonio M | plan: 8 lines, TOTAL points 46.0 cost 96.75
+04:41:28   catalog from the saved copy: 83 families (no need to read the store)
+04:41:28   variant: Beauty - Sei Bella Volume Extreme Mascara - Black  (F2026) -> 9077  fixed by variant_overrides.tsv: Mascara Volume Extreme = regular "Volume: Black" (decided by the owner; NOT the Waterproof version)
+04:41:47   variant: Mela-Pharmacy - Vitality 50+ (F711) -> 402  fixed by variant_overrides.tsv: Vitality 50+ = "50+" (never Prenatal)
+04:42:27   variant: Ecosense - Tough and Tender - 8oz - 2-Pack () -> 1218  fixed by variant_overrides.tsv (x2 units): Tough and Tender 8oz 2-Pack = 2 x item 1218 (T&T 12x All-Purpose Cleaner), not the Wipes 2-Pack
+04:43:20   variant: Oil - T36-C5-0.5 fl.oz. (manual) -> 3650  fixed by variant_overrides.tsv: T36-C5 oil 0.5 fl.oz. = Melaleuca "T36-C5 Melaleuca Oil" 0.5 fl.oz. (NOT Pure Eucalyptus)
+04:44:01   variant: Renew - Lotion - 1oz (manual) -> 3887  fixed by variant_overrides.tsv: Renew Lotion 1oz = Renew Intensive Skin Therapy: Travel Size
+04:45:36   variant: Haircare - Herbal Shampoo - 32oz (R1729H) -> 4905  only variant: Herbal Shampoo  - NOTE: the store lists this version as sold out / off sale at the moment; it is tried anyway and NOT replaced by another version
+04:47:08   variant: Ecosense - Mela-magic - 16oz - 2-Pack () -> 1235  fixed by variant_overrides.tsv (x2 units): Mela-Magic 16oz 2-Pack = 2 x item 1235
+04:48:37 actions: 10 | offer lines: 0 | problems: 0
+04:48:37   added [single] 9077 x1 Beauty - Sei Bella Volume Extreme Mascara - Black - 0.4 
+04:48:38   added [single] 402 x1 Mela-Pharmacy - Vitality 50+ 
+04:48:39   added [single] 1218 x2 Ecosense - Tough and Tender - 8oz - 2-Pack 
+04:48:39   added [single] 3650 x1 Oil - T36-C5-0.5 fl.oz. 
+04:48:40   added [single] 3887 x1 Renew - Lotion - 1oz 
+04:48:41   added [single] 4905 x1 Haircare - Herbal Shampoo - 32oz 
+04:48:41   added [single] 4889 x1 32 oz. Shampoo & Conditioner Pump for Haircare - Herbal 
+04:48:42   added [single] 3748 x1 Renew - Hand Wash 8oz 
+04:48:43   added [single] 3774 x1 Renew Hand Wash Pump for Renew - Hand Wash 8oz 
+04:48:43   added [single] 1235 x2 Ecosense - Mela-magic - 16oz - 2-Pack 
+04:48:45 cart before the offers: 12 items, 46 points
+04:48:45 
+CART NOW: 12 items | 46 points | gross 96.75 | net 96.75 | discount 0
+04:48:45 SHEET   : 46 points count for the limit (TOTAL row: 46) + 0 points of credit items | cost of all lines 96.75
+04:48:45 CREDIT  : $0.00 of loyalty dollars used by the cart
+04:48:45 RESULT  : points MATCH | cost MATCH
+04:48:45   every line of the cart equals the sheet.
+04:49:56 lab: emptied the cart again: 10 lines
