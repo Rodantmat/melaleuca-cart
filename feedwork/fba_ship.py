@@ -275,8 +275,12 @@ def prepare(path, test=False, say=print):
         if not options: raise RuntimeError("Amazon returned no placement option")
         reg, cen, notes = candidates(origin, options)
         for n in notes: say("   option " + n)
+        fallback = False
         if not reg and not cen:
-            raise RuntimeError("no placement option is in the %s / Central region. Options Amazon gave:\n   %s" % (TARGET_REGION[origin.lower()].title(), "\n   ".join(notes)))
+            # Amazon offered nothing in the target region or Central: do not stop - take the option that is closest to the origin
+            # (fee as tie-break) and say so clearly in the message; the YES / NO box is still the decision of the owner.
+            reg = min(options, key=lambda o: (round(distance_km(origin, o)), o["fee"]))
+            fallback = True
         sp = Shippo(); accounts = sp.ups_accounts()
         if not accounts: raise RuntimeError("no active UPS account in Shippo")
         frm = ship_from_addr(origin)
@@ -286,6 +290,9 @@ def prepare(path, test=False, say=print):
             if opt: quotes[key] = rate_option(sp, accounts, frm, opt, cats, test, usd_per_cad)
         tot = lambda k: quotes[k] and (reg if k == "region" else cen)["fee"] + sum(l["usd"] for l in quotes[k])
         chosen, why = decide(origin, reg, tot("region") if reg else None, cen, tot("central") if cen else None)
+        if fallback:
+            why = ("Amazon offered NO %s or Central option for this plan; the closest one it offered is used (%.0f km) - check the destinations before saying YES"
+                   % (TARGET_REGION[origin.lower()].title(), distance_km(origin, reg)))
         legs = quotes["region" if chosen is reg else "central"]
         say("   decision: " + why)
         fee = chosen["fee"]; ups_usd = round(sum(l["usd"] for l in legs), 2)
