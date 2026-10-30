@@ -140,7 +140,7 @@ def _browser():
 def web_status(carrier, n):
     """last resort for carriers Shippo cannot read without an own carrier account (FedEx, USPS ...): opens the public tracking page (text only) and reads the words.
     Less exact than an API: the detail line says so."""
-    out = _empty("read from the carrier website")
+    out = _empty("no status readable on the carrier website - open the tracking link")
     try:
         _PWLOCK.acquire()
         _browser()
@@ -202,6 +202,8 @@ def lookup(carrier, n, token):
     out["status"] = st
     out["status_text"] = STATUS_TXT.get(st, st.title())
     out["detail"] = (ts.get("status_details") or "")[:160]
+    if st == "TRANSIT" and out["detail"].lower().startswith("order processed"):    # UPS: label made, package not picked up yet
+        st = out["status"] = "PRE_TRANSIT"; out["status_text"] = STATUS_TXT[st]
     loc = ts.get("location") or {}
     out["location"] = ", ".join(x for x in (loc.get("city"), loc.get("state")) if x)
     out["last_update"] = ts.get("status_date") or ""
