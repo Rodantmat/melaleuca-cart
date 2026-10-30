@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Melaleuca orders - tracking</title>
+<style>
+:root{--bg:#f6f7f9;--card:#fff;--ink:#1c2430;--mute:#667085;--line:#e3e7ee;--accent:#1f6feb;--ok:#0f7b3f;--okbg:#e0f5e8;--tr:#0b57c4;--trbg:#e3eefc;--pre:#8a5a00;--prebg:#fdf1d6;--bad:#b42318;--badbg:#fde4e1;--none:#475467;--nonebg:#eceff3}
+@media (prefers-color-scheme:dark){:root{--bg:#10151c;--card:#171e28;--ink:#e6eaf0;--mute:#97a3b6;--line:#2a3442;--accent:#5b9dff;--ok:#5fd68c;--okbg:#12301f;--tr:#7db3ff;--trbg:#14284a;--pre:#f2c35c;--prebg:#3a2d0c;--bad:#ff8a7f;--badbg:#411a16;--none:#b2bccb;--nonebg:#232c39}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.4 system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
+.wrap{max-width:1180px;margin:0 auto;padding:16px}
+h1{font-size:20px;margin:0 0 2px}
+.sub{color:var(--mute);font-size:13px}
+.bar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:14px 0}
+button{font:inherit;border:1px solid var(--line);background:var(--card);color:var(--ink);padding:9px 14px;border-radius:8px;cursor:pointer}
+button.primary{background:var(--accent);border-color:var(--accent);color:#fff;font-weight:600}
+button:disabled{opacity:.55;cursor:default}
+input[type=search]{font:inherit;padding:9px 12px;border:1px solid var(--line);border-radius:8px;background:var(--card);color:var(--ink);flex:1;min-width:160px}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin:6px 0 12px}
+.chip{border:1px solid var(--line);border-radius:999px;padding:4px 11px;font-size:13px;background:var(--card);cursor:pointer;user-select:none}
+.chip.on{outline:2px solid var(--accent)}
+.msg{padding:10px 12px;border-radius:8px;background:var(--prebg);color:var(--pre);margin:8px 0;font-size:14px}
+.msg.bad{background:var(--badbg);color:var(--bad)}
+table{width:100%;border-collapse:collapse;background:var(--card);border:1px solid var(--line);border-radius:10px;overflow:hidden}
+th,td{padding:9px 10px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-size:12px;text-transform:uppercase;letter-spacing:.04em;color:var(--mute);background:var(--bg);cursor:pointer;white-space:nowrap}
+tr:last-child td{border-bottom:0}
+a{color:var(--accent);text-decoration:none;word-break:break-all} a:hover{text-decoration:underline}
+.pill{display:inline-block;padding:2px 9px;border-radius:999px;font-size:12.5px;font-weight:600;white-space:nowrap}
+.s-DELIVERED{background:var(--okbg);color:var(--ok)} .s-TRANSIT{background:var(--trbg);color:var(--tr)} .s-PRE_TRANSIT{background:var(--prebg);color:var(--pre)}
+.s-FAILURE,.s-RETURNED{background:var(--badbg);color:var(--bad)} .s-NONE,.s-UNKNOWN{background:var(--nonebg);color:var(--none)}
+.car{font-size:12px;color:var(--mute)} .det{font-size:12.5px;color:var(--mute)}
+.num{font-variant-numeric:tabular-nums}
+dialog{border:1px solid var(--line);border-radius:12px;background:var(--card);color:var(--ink);max-width:440px;width:92%}
+dialog input{width:100%;font:inherit;padding:9px;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--ink);margin:10px 0}
+@media (max-width:720px){
+ table,thead,tbody,tr,td{display:block;width:100%} thead{display:none}
+ tr{background:var(--card);border:1px solid var(--line);border-radius:10px;margin-bottom:10px;padding:6px 4px}
+ td{border:0;padding:4px 10px} td[data-l]::before{content:attr(data-l) ": ";color:var(--mute);font-size:12px}
+ table{border:0;background:none}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1 id="ttl">Melaleuca orders - tracking</h1>
+  <div class="sub" id="sub">Loading...</div>
+  <div class="bar" id="bar"></div>
+  <div id="notes"></div>
+  <div class="chips" id="chips"></div>
+  <table id="tbl"><thead><tr>
+    <th data-k="name">Name</th><th data-k="city">City</th><th data-k="order_date">Ordered</th><th data-k="tracking">Tracking number</th><th data-k="status">Status</th><th data-k="eta">Delivery ETA</th>
+  </tr></thead><tbody id="body"></tbody></table>
+</div>
+<dialog id="dlg"><form method="dialog"><b>GitHub token</b>
+  <div class="sub" style="margin-top:4px">Needed once for the refresh buttons. It is saved only in this browser.</div>
+  <input id="pat" type="password" placeholder="github_pat_..." autocomplete="off">
+  <div style="display:flex;gap:8px;justify-content:flex-end"><button value="cancel">Cancel</button><button class="primary" value="ok" id="patok">Save</button></div></form></dialog>
+<script>
+const VIEW="main", REPO="Rodantmat/status-trigger", EMBED="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";
+let DATA=null, FILTER="", SORT=["name",1], CHIP="";
+const $=id=>document.getElementById(id);
+const MON=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"], DOW=["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
+function parse(s){const m=/^(\d{4})-(\d\d)-(\d\d)(?:[T ](\d\d):(\d\d))?/.exec(s||"");return m?{y:+m[1],mo:+m[2]-1,d:+m[3],h:m[4]!==undefined?+m[4]:null,mi:m[5]!==undefined?+m[5]:null}:null}
+function fmt(s,withDow){const p=parse(s);if(!p)return"";const dt=new Date(Date.UTC(p.y,p.mo,p.d));let t=(withDow?DOW[dt.getUTCDay()]+" ":"")+MON[p.mo]+" "+p.d;
+  if(p.h!==null&&!(p.h===0&&p.mi===0)){const ap=p.h>=12?"PM":"AM",h=p.h%12||12;t+=", "+h+":"+String(p.mi).padStart(2,"0")+" "+ap}return t}
+const TZ={main:"America/Los_Angeles",toronto:"America/Toronto",vancouver:"America/Vancouver"};
+function fmtTZ(iso,reg,dow){ // carrier times are UTC: shown in the time zone of the delivery address; a midnight result means "date only"
+  if(!iso||!/T\d\d:\d\d/.test(iso))return fmt(iso,dow);
+  try{const d=new Date(iso);if(isNaN(d))return fmt(iso,dow);
+    const f=new Intl.DateTimeFormat("en-US",{timeZone:TZ[VIEW],weekday:"short",month:"short",day:"numeric",hour:"numeric",minute:"2-digit",hour12:true,hourCycle:"h12"}).formatToParts(d);
+    const g=t=>(f.find(p=>p.type===t)||{}).value||"";const hh=new Intl.DateTimeFormat("en-US",{timeZone:TZ[VIEW],hour:"2-digit",minute:"2-digit",hour12:false}).format(d);
+    const date=(dow?g("weekday")+" ":"")+g("month")+" "+g("day");
+    return (hh==="24:00"||hh==="00:00")?date:date+", "+g("hour")+":"+g("minute")+" "+g("dayPeriod");
+  }catch(e){return fmt(iso,dow)}}
+const TZNAME={main:"Pacific time",toronto:"Toronto time",vancouver:"Vancouver time"};
+function ago(iso){if(!iso)return"never";const s=(Date.now()-Date.parse(iso))/1000;if(s<90)return"just now";if(s<3600)return Math.round(s/60)+" min ago";if(s<86400)return Math.round(s/3600)+" h ago";return Math.round(s/86400)+" d ago"}
+function esc(x){return String(x==null?"":x).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]))}
+const LBL={DELIVERED:"Delivered",TRANSIT:"In transit",PRE_TRANSIT:"Label created",FAILURE:"Problem",RETURNED:"Returned",NONE:"Not shipped",UNKNOWN:"No info"};
+function skey(r){return r.status||"UNKNOWN"}
+function etaText(r){if(r.status==="DELIVERED")return r.delivered_at?"Delivered "+fmtTZ(r.delivered_at,r.region,true):"Delivered";if(r.eta)return fmtTZ(r.eta,r.region,true);return r.status==="NONE"?"":"-"}
+function render(){
+  if(!DATA)return;
+  const rows=DATA.rows.slice();
+  $("ttl").textContent=VIEW==="main"?"Melaleuca orders - tracking":(VIEW==="toronto"?"Toronto - tracking":"Vancouver - tracking");
+  const mn=DATA.month?new Date(Date.UTC(+DATA.month.slice(0,4),+DATA.month.slice(5,7)-1,1)).toLocaleString("en-US",{month:"long",year:"numeric",timeZone:"UTC"}):"";
+  $("sub").innerHTML=esc(mn)+" orders &middot; "+rows.length+" packages &middot; delivery status checked "+ago(DATA.generated_status)+" &middot; times in "+TZNAME[VIEW]+(VIEW==="main"?" &middot; orders read "+ago(DATA.generated_full):"");
+  const cnt={};rows.forEach(r=>cnt[skey(r)]=(cnt[skey(r)]||0)+1);
+  $("chips").innerHTML=`<span class="chip ${CHIP===""?"on":""}" data-c="">All ${rows.length}</span>`+["DELIVERED","TRANSIT","PRE_TRANSIT","FAILURE","RETURNED","UNKNOWN","NONE"].filter(k=>cnt[k]).map(k=>`<span class="chip ${CHIP===k?"on":""}" data-c="${k}">${LBL[k]} ${cnt[k]}</span>`).join("");
+  document.querySelectorAll(".chip").forEach(c=>c.onclick=()=>{CHIP=c.dataset.c;render()});
+  let notes="";
+  if(DATA.failed_accounts&&DATA.failed_accounts.length)notes+=`<div class="msg bad">Could not read the account(s): ${esc(DATA.failed_accounts.join(", "))}. Their last known rows are shown. Try the full refresh again.</div>`;
+  $("notes").innerHTML=notes+($("notes").dataset.run?`<div class="msg">${$("notes").dataset.run}</div>`:"");
+  const q=FILTER.toLowerCase();
+  let list=rows.filter(r=>(!CHIP||skey(r)===CHIP)&&(!q||[r.name,r.city,r.state,r.tracking,r.order_no,r.carrier_name,r.status_text,r.account].join(" ").toLowerCase().includes(q)));
+  const [k,dir]=SORT;list.sort((a,b)=>{const x=(k==="status"?skey(a):a[k])||"",y=(k==="status"?skey(b):b[k])||"";return (x>y?1:x<y?-1:0)*dir||((a.name+a.order_date+a.tracking)>(b.name+b.order_date+b.tracking)?1:-1)});
+  $("body").innerHTML=list.map(r=>`<tr>
+   <td data-l="Name"><b>${esc(r.name)}</b></td>
+   <td data-l="City">${esc(r.city)}${r.state?", "+esc(r.state):""}</td>
+   <td data-l="Ordered" class="num">${esc(fmt(r.order_date,false))}</td>
+   <td data-l="Tracking">${r.tracking?`<a href="${esc(r.link)}" target="_blank" rel="noopener">${esc(r.tracking)}</a><div class="car">${esc(r.carrier_name)}</div>`:'<span class="det">no tracking number yet</span>'}</td>
+   <td data-l="Status"><span class="pill s-${skey(r)}">${esc(r.status_text||LBL[skey(r)])}</span>${r.detail&&r.status!=="NONE"?`<div class="det">${esc(r.detail)}${r.location?" &middot; "+esc(r.location):""}</div>`:""}</td>
+   <td data-l="Delivery ETA" class="num">${esc(etaText(r))}</td></tr>`).join("")||`<tr><td colspan="6">Nothing matches.</td></tr>`;
+}
+async function load(){
+  try{const r=await fetch("data.json?t="+Date.now(),{cache:"no-store"});DATA=await r.json();render();return DATA}
+  catch(e){$("sub").textContent="Could not load the data ("+e+")"}
+}
+document.querySelectorAll("th").forEach(h=>h.onclick=()=>{const k=h.dataset.k;SORT=SORT[0]===k?[k,-SORT[1]]:[k,1];render()});
+// search box + (main page only) the two refresh buttons
+const bar=$("bar");
+bar.innerHTML=`<input type="search" id="q" placeholder="Search name, city, tracking number...">`+(VIEW==="main"?`<button class="primary" id="bfull">Full refresh</button><button id="bstat">Delivery status refresh</button>`:`<button id="breload">Reload</button>`);
+$("q").oninput=e=>{FILTER=e.target.value;render()};
+if(VIEW!=="main")$("breload").onclick=load;
+function getPat(force){return new Promise(res=>{if(EMBED&&EMBED.indexOf("__")!==0&&!force)return res(EMBED);let t=null;try{t=localStorage.getItem("gh_pat")}catch(e){}
+  if(t&&!force)return res(t);const d=$("dlg");$("pat").value="";d.onclose=()=>{const v=$("pat").value.trim();if(d.returnValue==="ok"&&v){try{localStorage.setItem("gh_pat",v)}catch(e){}res(v)}else res(null)};d.showModal()})}
+let busy=false;
+async function refresh(kind){
+  if(busy)return;const wf="go.yml",key=kind==="full"?"generated_full":"generated_status";
+  let pat=await getPat(false);if(!pat)return;
+  const set=t=>{$("notes").dataset.run=t;render()};
+  async function go(){return fetch(`https://api.github.com/repos/${REPO}/actions/workflows/${wf}/dispatches`,{method:"POST",headers:{Authorization:"Bearer "+pat,Accept:"application/vnd.github+json","X-GitHub-Api-Version":"2022-11-28"},body:JSON.stringify({ref:"main",inputs:{kind:kind}})})}
+  let r=await go();
+  if(!(EMBED&&EMBED.indexOf("__")!==0)&&(r.status===401||r.status===403||r.status===404)){pat=await getPat(true);if(!pat)return;r=await go()}
+  if(r.status!==204){set("Could not start the refresh (GitHub answered "+r.status+"). The refresh token may have expired.");return}
+  busy=true;$("bfull").disabled=$("bstat").disabled=true;const before=DATA?DATA[key]:null,t0=Date.now(),max=(kind==="full"?45:12)*60000;
+  const tick=setInterval(async()=>{
+    const el=Math.round((Date.now()-t0)/1000),mm=Math.floor(el/60),ss=String(el%60).padStart(2,"0");
+    set((kind==="full"?"Full refresh running (reads all 17 accounts, about 10-20 min)":"Delivery status refresh running (about 1-2 min)")+" - "+mm+":"+ss);
+    try{const j=await (await fetch("data.json?t="+Date.now(),{cache:"no-store"})).json();
+      if(j[key]!==before){clearInterval(tick);DATA=j;busy=false;$("bfull").disabled=$("bstat").disabled=false;set("");return}}catch(e){}
+    if(Date.now()-t0>max){clearInterval(tick);busy=false;$("bfull").disabled=$("bstat").disabled=false;set("Still no new data. Look at the Actions tab of the repository to see if the run failed.")}
+  },10000);
+}
+if(VIEW==="main"){$("bfull").onclick=()=>refresh("full");$("bstat").onclick=()=>refresh("quick")}
+load();setInterval(()=>{if(!busy)load()},300000);
+</script>
+</body>
+</html>
