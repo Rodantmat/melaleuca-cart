@@ -1,5 +1,8 @@
 name: Status page - FULL refresh (orders + tracking + carrier status)
-on: { workflow_dispatch: {} }
+on:
+  workflow_dispatch:
+    inputs:
+      dry: { description: "test run: print a summary, publish nothing", default: "false" }
 permissions: { contents: write }
 concurrency: { group: status, cancel-in-progress: false }
 jobs:
@@ -53,8 +56,10 @@ jobs:
         env:
           STATUS_SALT: ${{ secrets.STATUS_SALT }}
           SHIPPO_LIVE_TOKEN: ${{ secrets.SHIPPO_LIVE_TOKEN }}
-        run: python status/build.py full --in out --site site
+        run: |
+          if [ "${{ github.event.inputs.dry }}" = "true" ]; then python status/build.py full --in out --site site --dry; else python status/build.py full --in out --site site; fi
       - name: Publish
+        if: github.event.inputs.dry != 'true'
         run: |
           cd site
           git config user.name "status-bot"; git config user.email "status-bot@users.noreply.github.com"

@@ -101,9 +101,10 @@ def load_prev(site):
 
 def main():
     mode = sys.argv[1]
+    dry = "--dry" in sys.argv
     arg = lambda k, d=None: sys.argv[sys.argv.index(k) + 1] if k in sys.argv else d
     site = arg("--site"); template = os.path.join(HERE, "site", "index.html")
-    prev = load_prev(site)
+    prev = None if dry else load_prev(site)
     if mode == "full":
         accts = [json.load(open(f, encoding="utf-8")) for f in sorted(glob.glob(os.path.join(arg("--in"), "acct_*.json")))]
         failed = [a["tab"] for a in accts if not a.get("ok")]
@@ -129,6 +130,20 @@ def main():
         print("status: %d packages looked up" % n)
     rows.sort(key=lambda r: (r["name"].lower(), r["order_date"], r["tracking"]))
     print("status counts:", counts(rows))
+    if "--dry" in sys.argv:                      # test run: nothing is written, only a summary WITHOUT names / tracking numbers is printed
+        cc = {}
+        for r in rows: cc[r["carrier"] or "-"] = cc.get(r["carrier"] or "-", 0) + 1
+        print("carriers:", cc)
+        print("rows per region:", {g: sum(1 for r in rows if r["region"] == g) for g in ("US", "Toronto", "Vancouver")})
+        print("accounts with rows:", len({r["account"] for r in rows}), "| rows without tracking:", sum(1 for r in rows if not r["tracking"]))
+        seen = set()
+        for r in rows:
+            k = (r["status"], bool(r["eta"]))
+            if r["tracking"] and k not in seen and len(seen) < 8:
+                seen.add(k)
+                print("  sample:", r["carrier"], r["tracking"][:4] + "..." + r["tracking"][-3:], "|", r["status"], "|", r["status_text"], "|", r["detail"][:80], "| loc:", r["location"], "| eta:", r["eta"], "| delivered:", r["delivered_at"], "| last:", r["last_update"])
+        print("cities:", sorted({(r["city"], r["state"]) for r in rows}))
+        return
     write_site(site, data, template)
 
 
