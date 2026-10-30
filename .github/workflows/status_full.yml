@@ -65,7 +65,7 @@ jobs:
           PAGE_PAT: ${{ secrets.PAGE_PAT }}
           SHIPPO_LIVE_TOKEN: ${{ secrets.SHIPPO_LIVE_TOKEN }}
         run: |
-          if [ "${{ github.event.inputs.dry }}" = "true" ]; then python status/build.py full --in out --site site --dry; else python status/build.py full --in out --site site; fi
+          if [ "${{ github.event.inputs.dry }}" = "true" ]; then python status/build.py full --in out --site site --dry 2>&1 | tee /tmp/dry.txt; ls out >> /tmp/dry.txt; python3 -c "import json,glob;[print(a['tab'][:1]+'*', a['ok'], len(a['orders']), a['error'][:100]) for a in map(lambda f:json.load(open(f)),sorted(glob.glob('out/acct_*.json')))]" >> /tmp/dry.txt; else python status/build.py full --in out --site site; fi
       - name: Publish
         if: github.event.inputs.dry != 'true'
         run: |
@@ -74,3 +74,11 @@ jobs:
           git add -A
           git diff --cached --quiet || git commit -qm "status $(date -u +%F_%H%M)"
           git push origin HEAD:status-site
+      - name: Publish the test summary (no names, no tracking numbers)
+        if: github.event.inputs.dry == 'true'
+        run: |
+          git config user.name "status-bot"; git config user.email "status-bot@users.noreply.github.com"
+          git checkout --orphan dry-new
+          git rm -rf . >/dev/null 2>&1 || true
+          cp /tmp/dry.txt dry.txt
+          git add dry.txt && git commit -qm "dry run" && git push -f origin dry-new:status-dry
