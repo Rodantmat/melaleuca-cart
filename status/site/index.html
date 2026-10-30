@@ -54,10 +54,7 @@ dialog input{width:100%;font:inherit;padding:9px;border:1px solid var(--line);bo
   <div class="chips" id="chips"></div>
   <div class="cards" id="cards"></div>
 </div>
-<dialog id="dlg"><form method="dialog"><b>GitHub token</b>
-  <div class="sub" style="margin-top:4px">Needed once for the refresh buttons. It is saved only in this browser.</div>
-  <input id="pat" type="password" placeholder="github_pat_..." autocomplete="off">
-  <div style="display:flex;gap:8px;justify-content:flex-end"><button value="cancel">Cancel</button><button class="primary" value="ok" id="patok">Save</button></div></form></dialog>
+
 <script>
 const VIEW="__VIEW__", REPO="Rodantmat/status-trigger", EMBED="__PAGE_PAT__";
 let DATA=null, FILTER="", SORT="name", CHIP="";
@@ -129,17 +126,19 @@ const bar=$("bar");
 bar.innerHTML=`<input type="search" id="q" placeholder="Search name, city, tracking number..."><select id="srt"><option value="name">Sort: name</option><option value="eta">Sort: soonest delivery</option></select>`+(VIEW==="main"?`<button class="primary" id="bfull">Full refresh</button><button id="bstat">Delivery status refresh</button>`:`<button id="breload">Reload</button>`);
 $("q").oninput=e=>{FILTER=e.target.value;render()};$("srt").onchange=e=>{SORT=e.target.value;render()};
 if(VIEW!=="main")$("breload").onclick=load;
-function getPat(force){return new Promise(res=>{if(EMBED&&EMBED.indexOf("__")!==0&&!force)return res(EMBED);let t=null;try{t=localStorage.getItem("gh_pat")}catch(e){}
-  if(t&&!force)return res(t);const d=$("dlg");$("pat").value="";d.onclose=()=>{const v=$("pat").value.trim();if(d.returnValue==="ok"&&v){try{localStorage.setItem("gh_pat",v)}catch(e){}res(v)}else res(null)};d.showModal()})}
+async function getPat(){ // the refresh token is stored encrypted in this page; the key is in the link after the # sign
+  try{const m=/[#&]k=([0-9a-f]{64})/.exec(location.hash);if(!EMBED||EMBED.indexOf("__")===0||!m)return null;
+    const raw=Uint8Array.from(atob(EMBED),c=>c.charCodeAt(0)),key=await crypto.subtle.importKey("raw",Uint8Array.from(m[1].match(/../g).map(h=>parseInt(h,16))),"AES-GCM",false,["decrypt"]);
+    return new TextDecoder().decode(await crypto.subtle.decrypt({name:"AES-GCM",iv:raw.slice(0,12)},key,raw.slice(12)))}catch(e){return null}}
 let busy=false;
 async function refresh(kind){
   if(busy)return;const wf="go.yml",key=kind==="full"?"generated_full":"generated_status";
-  let pat=await getPat(false);if(!pat)return;
+  let pat=await getPat();if(!pat){set("The refresh buttons need the full link (the one that ends with #k=...). Ask for it again.");return}
   const set=t=>{$("notes").dataset.run=t;render()};
   async function go(){return fetch(`https://api.github.com/repos/${REPO}/actions/workflows/${wf}/dispatches`,{method:"POST",headers:{Authorization:"Bearer "+pat,Accept:"application/vnd.github+json","X-GitHub-Api-Version":"2022-11-28"},body:JSON.stringify({ref:"main",inputs:{kind:kind}})})}
   let r=await go();
-  if(!(EMBED&&EMBED.indexOf("__")!==0)&&(r.status===401||r.status===403||r.status===404)){pat=await getPat(true);if(!pat)return;r=await go()}
-  if(r.status!==204){set("Could not start the refresh (GitHub answered "+r.status+"). The refresh token may have expired.");return}
+  
+  if(r.status!==204){set("Could not start the refresh (GitHub answered "+r.status+"). The refresh token may have expired - tell Rodolfo.");return}
   busy=true;$("bfull").disabled=$("bstat").disabled=true;const before=DATA?DATA[key]:null,t0=Date.now(),max=(kind==="full"?45:12)*60000;
   const tick=setInterval(async()=>{
     const el=Math.round((Date.now()-t0)/1000),mm=Math.floor(el/60),ss=String(el%60).padStart(2,"0");

@@ -59,6 +59,7 @@ jobs:
           pattern: "acct-*"
           path: out
           merge-multiple: true
+      - run: pip install cryptography
       - name: Build the pages
         env:
           STATUS_SALT: ${{ secrets.STATUS_SALT }}
