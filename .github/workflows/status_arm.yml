@@ -1,0 +1,44 @@
+name: Status pages - arm accounts (an order was placed)
+on:
+  workflow_dispatch:
+    inputs:
+      accounts:
+        description: "account numbers, like 7 or 1,2,3 - or all"
+        required: true
+      month:
+        description: "optional batch month YYYY-MM (default: the month of today)"
+        required: false
+permissions:
+  contents: write
+concurrency:
+  group: status-arm
+  cancel-in-progress: false
+jobs:
+  arm:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: status-state
+      - name: Queue the accounts
+        env:
+          ACCTS: ${{ github.event.inputs.accounts }}
+          MONTH: ${{ github.event.inputs.month }}
+        run: |
+          python3 - <<'PY'
+          import json, os, re, time
+          a = os.environ["ACCTS"].strip().replace(" ", "")
+          m = os.environ.get("MONTH", "").strip()
+          assert re.fullmatch(r"all|\d+(,\d+)*", a), "bad accounts"
+          assert not m or re.fullmatch(r"\d{4}-\d\d", m), "bad month"
+          os.makedirs("queue", exist_ok=True)
+          q = {"accounts": ["all"] if a == "all" else [int(x) for x in a.split(",")], "at": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()), "month": m or None}
+          json.dump(q, open("queue/%s_%s.json" % (time.strftime("%Y%m%dT%H%M%S", time.gmtime()), os.environ.get("GITHUB_RUN_ID", "0")), "w"))
+          print("queued:", q)
+          PY
+      - name: Save
+        run: |
+          git config user.name "status-bot"; git config user.email "status-bot@users.noreply.github.com"
+          git add -A
+          for i in 1 2 3; do git commit -qm "arm" ; git push origin HEAD:status-state && break; git pull -q --rebase origin status-state; done

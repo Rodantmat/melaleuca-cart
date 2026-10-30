@@ -1,0 +1,129 @@
+name: Status pages - automatic updates
+on:
+  schedule:
+    - cron: "*/15 * * * *"
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: "auto | all (read all 17 accounts now) | status (check every carrier now)"
+        default: "auto"
+permissions:
+  contents: write
+concurrency:
+  group: status-auto
+  cancel-in-progress: false
+jobs:
+  plan:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    outputs:
+      scrape: ${{ steps.p.outputs.scrape }}
+      any: ${{ steps.p.outputs.any }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/checkout@v4
+        with:
+          ref: status-site
+          path: site
+      - uses: actions/checkout@v4
+        with:
+          ref: status-state
+          path: state
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: What is due now?
+        id: p
+        env:
+          STATUS_SALT: ${{ secrets.STATUS_SALT }}
+          MODE: ${{ github.event.inputs.mode || 'auto' }}
+        run: python status/auto.py plan --site site --state state --mode "$MODE"
+  scrape:
+    needs: plan
+    if: needs.plan.outputs.scrape != '[]'
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    strategy:
+      fail-fast: false
+      max-parallel: 6
+      matrix:
+        acct: ${{ fromJSON(needs.plan.outputs.scrape) }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install playwright && playwright install --with-deps chromium && sudo apt-get install -y xvfb
+      - name: Read the order history of one account (text only, through the proxy)
+        env:
+          PROXY_URL: ${{ secrets.PROXY_URL }}
+          CRED_ENV: ${{ secrets.CREDENTIALS_ENV }}
+          PYTHONUTF8: "0"
+          PYTHONCOERCECLOCALE: "0"
+          LC_ALL: "C"
+          PYTHONIOENCODING: "ascii:replace"
+        run: |
+          cd local
+          printf '%s\n' "$CRED_ENV" > credentials.env
+          grep -q '^PROXY_URL=' credentials.env || printf 'PROXY_URL=%s\n' "$PROXY_URL" >> credentials.env
+          grep -q '^STICKY_BASE=' credentials.env || printf 'STICKY_BASE=10000\n' >> credentials.env
+          cd ../status
+          xvfb-run -a python scrape.py ${{ matrix.acct }} --out ../out
+          rm -f ../local/credentials.env
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: "acct-${{ matrix.acct }}"
+          path: out/acct_${{ matrix.acct }}.json
+          retention-days: 1
+          if-no-files-found: ignore
+  publish:
+    needs: [plan, scrape]
+    if: always() && needs.plan.result == 'success' && needs.plan.outputs.any == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/checkout@v4
+        with:
+          ref: status-site
+          path: site
+      - uses: actions/checkout@v4
+        with:
+          ref: status-state
+          path: state
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - uses: actions/download-artifact@v4
+        continue-on-error: true
+        with:
+          pattern: "acct-*"
+          path: out
+          merge-multiple: true
+      - name: Apply (accounts read, carrier status, state, pages)
+        env:
+          STATUS_SALT: ${{ secrets.STATUS_SALT }}
+          SHIPPO_LIVE_TOKEN: ${{ secrets.SHIPPO_LIVE_TOKEN }}
+          MODE: ${{ github.event.inputs.mode || 'auto' }}
+        run: |
+          mkdir -p out
+          python status/auto.py publish --site site --state state --in out --mode "$MODE"
+      - name: Publish pages and state
+        run: |
+          for d in site state; do
+            ( cd $d
+              git config user.name "status-bot"; git config user.email "status-bot@users.noreply.github.com"
+              git add -A
+              if ! git diff --cached --quiet; then
+                git commit -qm "status $(date -u +%F_%H%M)"
+                b=$(git rev-parse --abbrev-ref HEAD)
+                for i in 1 2 3; do git push origin HEAD:$b && break; git pull -q --rebase origin $b; done
+              fi )
+          done
