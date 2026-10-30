@@ -19,6 +19,7 @@ for an in [int(x) for x in sys.argv[1:]]:
     for o in r["orders"]:
         for p in o["packages"]:
             if not p["n"].startswith("1Z"): nums.append((p["n"], p["href"]))
+    if nums: break
 print("non-UPS packages found:", len(nums), "| hosts:", sorted({re.sub(r'https?://([^/]+)/.*', r'\1', h) for _, h in nums}))
 if nums:
     n, href = nums[0]

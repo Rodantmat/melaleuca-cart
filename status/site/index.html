@@ -66,17 +66,27 @@ const MON=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","De
 function parse(s){const m=/^(\d{4})-(\d\d)-(\d\d)(?:[T ](\d\d):(\d\d))?/.exec(s||"");return m?{y:+m[1],mo:+m[2]-1,d:+m[3],h:m[4]!==undefined?+m[4]:null,mi:m[5]!==undefined?+m[5]:null}:null}
 function fmt(s,withDow){const p=parse(s);if(!p)return"";const dt=new Date(Date.UTC(p.y,p.mo,p.d));let t=(withDow?DOW[dt.getUTCDay()]+" ":"")+MON[p.mo]+" "+p.d;
   if(p.h!==null&&!(p.h===0&&p.mi===0)){const ap=p.h>=12?"PM":"AM",h=p.h%12||12;t+=", "+h+":"+String(p.mi).padStart(2,"0")+" "+ap}return t}
+const TZ={main:"America/Los_Angeles",toronto:"America/Toronto",vancouver:"America/Vancouver"};
+function fmtTZ(iso,reg,dow){ // carrier times are UTC: shown in the time zone of the delivery address; a midnight result means "date only"
+  if(!iso||!/T\d\d:\d\d/.test(iso))return fmt(iso,dow);
+  try{const d=new Date(iso);if(isNaN(d))return fmt(iso,dow);
+    const f=new Intl.DateTimeFormat("en-US",{timeZone:TZ[VIEW],weekday:"short",month:"short",day:"numeric",hour:"numeric",minute:"2-digit",hour12:true,hourCycle:"h12"}).formatToParts(d);
+    const g=t=>(f.find(p=>p.type===t)||{}).value||"";const hh=new Intl.DateTimeFormat("en-US",{timeZone:TZ[VIEW],hour:"2-digit",minute:"2-digit",hour12:false}).format(d);
+    const date=(dow?g("weekday")+" ":"")+g("month")+" "+g("day");
+    return (hh==="24:00"||hh==="00:00")?date:date+", "+g("hour")+":"+g("minute")+" "+g("dayPeriod");
+  }catch(e){return fmt(iso,dow)}}
+const TZNAME={main:"Pacific time",toronto:"Toronto time",vancouver:"Vancouver time"};
 function ago(iso){if(!iso)return"never";const s=(Date.now()-Date.parse(iso))/1000;if(s<90)return"just now";if(s<3600)return Math.round(s/60)+" min ago";if(s<86400)return Math.round(s/3600)+" h ago";return Math.round(s/86400)+" d ago"}
 function esc(x){return String(x==null?"":x).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]))}
 const LBL={DELIVERED:"Delivered",TRANSIT:"In transit",PRE_TRANSIT:"Label created",FAILURE:"Problem",RETURNED:"Returned",NONE:"Not shipped",UNKNOWN:"No info"};
 function skey(r){return r.status||"UNKNOWN"}
-function etaText(r){if(r.status==="DELIVERED")return r.delivered_at?"Delivered "+fmt(r.delivered_at,true):"Delivered";if(r.eta)return fmt(r.eta,true);return r.status==="NONE"?"":"-"}
+function etaText(r){if(r.status==="DELIVERED")return r.delivered_at?"Delivered "+fmtTZ(r.delivered_at,r.region,true):"Delivered";if(r.eta)return fmtTZ(r.eta,r.region,true);return r.status==="NONE"?"":"-"}
 function render(){
   if(!DATA)return;
   const rows=DATA.rows.slice();
   $("ttl").textContent=VIEW==="main"?"Melaleuca orders - tracking":(VIEW==="toronto"?"Toronto - tracking":"Vancouver - tracking");
   const mn=DATA.month?new Date(Date.UTC(+DATA.month.slice(0,4),+DATA.month.slice(5,7)-1,1)).toLocaleString("en-US",{month:"long",year:"numeric",timeZone:"UTC"}):"";
-  $("sub").innerHTML=esc(mn)+" orders &middot; "+rows.length+" packages &middot; delivery status checked "+ago(DATA.generated_status)+(VIEW==="main"?" &middot; orders read "+ago(DATA.generated_full):"");
+  $("sub").innerHTML=esc(mn)+" orders &middot; "+rows.length+" packages &middot; delivery status checked "+ago(DATA.generated_status)+" &middot; times in "+TZNAME[VIEW]+(VIEW==="main"?" &middot; orders read "+ago(DATA.generated_full):"");
   const cnt={};rows.forEach(r=>cnt[skey(r)]=(cnt[skey(r)]||0)+1);
   $("chips").innerHTML=`<span class="chip ${CHIP===""?"on":""}" data-c="">All ${rows.length}</span>`+["DELIVERED","TRANSIT","PRE_TRANSIT","FAILURE","RETURNED","UNKNOWN","NONE"].filter(k=>cnt[k]).map(k=>`<span class="chip ${CHIP===k?"on":""}" data-c="${k}">${LBL[k]} ${cnt[k]}</span>`).join("");
   document.querySelectorAll(".chip").forEach(c=>c.onclick=()=>{CHIP=c.dataset.c;render()});
