@@ -68,7 +68,11 @@ def scrape(an, days=50, log=print):
                 cards = pg.evaluate(JS)
                 if cards: break
             if not cards:
-                res["error"] = "order history showed no orders"
+                try:
+                    body = re.sub(r"\d", "#", re.sub(r"\s+", " ", pg.inner_text("body"))[:160])
+                except Exception:
+                    body = "?"
+                res["error"] = "order history showed no orders | url %s | %s" % (re.sub(r"\d", "#", pg.url)[:80], body)
                 return res
             since = dt.date.today() - dt.timedelta(days=days)
             for c in cards:
