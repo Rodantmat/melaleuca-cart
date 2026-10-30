@@ -56,7 +56,7 @@ dialog input{width:100%;font:inherit;padding:9px;border:1px solid var(--line);bo
 </div>
 
 <script>
-const VIEW="main", REPO="Rodantmat/status-trigger", EMBED="";
+const VIEW="main";
 let DATA=null, FILTER="", SORT="name", CHIP="";
 const $=id=>document.getElementById(id);
 const MON=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"], DOW=["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
@@ -90,7 +90,7 @@ function render(){
   $("chips").innerHTML=`<span class="chip ${CHIP===""?"on":""}" data-c="">All ${rows.length}</span>`+["DELIVERED","TRANSIT","PRE_TRANSIT","FAILURE","RETURNED","UNKNOWN","NONE"].filter(k=>cnt[k]).map(k=>`<span class="chip ${CHIP===k?"on":""}" data-c="${k}">${LBL[k]} ${cnt[k]}</span>`).join("");
   document.querySelectorAll(".chip").forEach(c=>c.onclick=()=>{CHIP=c.dataset.c;render()});
   let notes="";
-  if(DATA.failed_accounts&&DATA.failed_accounts.length)notes+=`<div class="msg bad">Could not read the account(s): ${esc(DATA.failed_accounts.join(", "))}. Their last known rows are shown. Try the full refresh again.</div>`;
+  if(DATA.failed_accounts&&DATA.failed_accounts.length)notes+=`<div class="msg bad">Could not read the account(s): ${esc(DATA.failed_accounts.join(", "))}. Their last known rows are shown. It will be retried automatically.</div>`;
   $("notes").innerHTML=notes+($("notes").dataset.run?`<div class="msg">${$("notes").dataset.run}</div>`:"");
   const q=FILTER.toLowerCase(), groups={};
   rows.forEach(r=>{(groups[r.account]=groups[r.account]||[]).push(r)});
@@ -123,33 +123,10 @@ async function load(){
 }
 // search box + (main page only) the two refresh buttons
 const bar=$("bar");
-bar.innerHTML=`<input type="search" id="q" placeholder="Search name, city, tracking number..."><select id="srt"><option value="name">Sort: name</option><option value="eta">Sort: soonest delivery</option></select>`+(VIEW==="main"?`<button class="primary" id="bfull">Full refresh</button><button id="bstat">Delivery status refresh</button>`:`<button id="breload">Reload</button>`);
+bar.innerHTML=`<input type="search" id="q" placeholder="Search name, city, tracking number..."><select id="srt"><option value="name">Sort: name</option><option value="eta">Sort: soonest delivery</option></select>`+`<button id="breload">Reload</button>`;
 $("q").oninput=e=>{FILTER=e.target.value;render()};$("srt").onchange=e=>{SORT=e.target.value;render()};
-if(VIEW!=="main")$("breload").onclick=load;
-async function getPat(){ // the refresh token is stored encrypted in this page; the key is in the link after the # sign
-  try{const m=/[#&]k=([0-9a-f]{64})/.exec(location.hash);if(!EMBED||EMBED.indexOf("__")===0||!m)return null;
-    const raw=Uint8Array.from(atob(EMBED),c=>c.charCodeAt(0)),key=await crypto.subtle.importKey("raw",Uint8Array.from(m[1].match(/../g).map(h=>parseInt(h,16))),"AES-GCM",false,["decrypt"]);
-    return new TextDecoder().decode(await crypto.subtle.decrypt({name:"AES-GCM",iv:raw.slice(0,12)},key,raw.slice(12)))}catch(e){return null}}
-let busy=false;
-async function refresh(kind){
-  if(busy)return;const wf="go.yml",key=kind==="full"?"generated_full":"generated_status";
-  let pat=await getPat();if(!pat){set("The refresh buttons need the full link (the one that ends with #k=...). Ask for it again.");return}
-  const set=t=>{$("notes").dataset.run=t;render()};
-  async function go(){return fetch(`https://api.github.com/repos/${REPO}/actions/workflows/${wf}/dispatches`,{method:"POST",headers:{Authorization:"Bearer "+pat,Accept:"application/vnd.github+json","X-GitHub-Api-Version":"2022-11-28"},body:JSON.stringify({ref:"main",inputs:{kind:kind}})})}
-  let r=await go();
-  
-  if(r.status!==204){set("Could not start the refresh (GitHub answered "+r.status+"). The refresh token may have expired - tell Rodolfo.");return}
-  busy=true;$("bfull").disabled=$("bstat").disabled=true;const before=DATA?DATA[key]:null,t0=Date.now(),max=(kind==="full"?45:12)*60000;
-  const tick=setInterval(async()=>{
-    const el=Math.round((Date.now()-t0)/1000),mm=Math.floor(el/60),ss=String(el%60).padStart(2,"0");
-    set((kind==="full"?"Full refresh running (reads all 17 accounts, about 10-20 min)":"Delivery status refresh running (about 1-2 min)")+" - "+mm+":"+ss);
-    try{const j=await (await fetch("data.json?t="+Date.now(),{cache:"no-store"})).json();
-      if(j[key]!==before){clearInterval(tick);DATA=j;busy=false;$("bfull").disabled=$("bstat").disabled=false;set("");return}}catch(e){}
-    if(Date.now()-t0>max){clearInterval(tick);busy=false;$("bfull").disabled=$("bstat").disabled=false;set("Still no new data. Look at the Actions tab of the repository to see if the run failed.")}
-  },10000);
-}
-if(VIEW==="main"){$("bfull").onclick=()=>refresh("full");$("bstat").onclick=()=>refresh("quick")}
-load();setInterval(()=>{if(!busy)load()},300000);
+$("breload").onclick=load;
+load();setInterval(load,300000);
 </script>
 </body>
 </html>
