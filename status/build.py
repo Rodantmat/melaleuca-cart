@@ -102,6 +102,8 @@ def write_site(site, data, template):
         if view != "main": d.pop("failed_accounts", None)
         folder = os.path.join(site, token(view)); os.makedirs(folder, exist_ok=True); keep.add(os.path.basename(folder))
         with open(os.path.join(folder, "data.json"), "w", encoding="utf-8") as f: json.dump(d, f, separators=(",", ":"))
+        for fn in ("apple-touch-icon.png", "icon-192.png", "icon-512.png", "favicon-32.png", "manifest.webmanifest"):
+            shutil.copyfile(os.path.join(os.path.dirname(template), fn), os.path.join(folder, fn))
         with open(os.path.join(folder, "index.html"), "w", encoding="utf-8") as f:
             f.write(html.replace("__PAGE_PAT__", sealed if view == "main" else "").replace("__VIEW__", view).replace("__TITLE__", {"main": "Melaleuca orders - tracking", "toronto": "Toronto - tracking", "vancouver": "Vancouver - tracking"}[view]))
     for x in os.listdir(site):                            # folders of older salts / views are removed
