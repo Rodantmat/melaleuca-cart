@@ -103,7 +103,12 @@ def main():
     if "--days" in sys.argv: days = int(sys.argv[sys.argv.index("--days") + 1]); args = [a for a in args if a != str(days)]
     an = int(args[0])
     os.makedirs(out, exist_ok=True)
-    r = scrape(an, days, log=lambda *a: print(time.strftime("%H:%M:%S"), *a, flush=True))
+    lg = lambda *a: print(time.strftime("%H:%M:%S"), *a, flush=True)
+    r = scrape(an, days, log=lg)
+    if not r["ok"]:                      # a bad sign-in / empty page happens now and then: one more complete try on a fresh connection
+        lg("first try failed (%s) - trying once more" % r["error"][:90]); time.sleep(20)
+        r2 = scrape(an, days, log=lg)
+        r = r2 if r2["ok"] else r
     with open(os.path.join(out, "acct_%d.json" % an), "w", encoding="utf-8") as f: json.dump(r, f)
     print("ok" if r["ok"] else "FAILED: " + r["error"])
 

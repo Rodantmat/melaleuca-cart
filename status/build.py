@@ -134,6 +134,10 @@ def main():
         cc = {}
         for r in rows: cc[r["carrier"] or "-"] = cc.get(r["carrier"] or "-", 0) + 1
         print("carriers:", cc)
+        cs = {}
+        for r in rows: cs[(r["carrier"] or "-", r["status"] or "-")] = cs.get((r["carrier"] or "-", r["status"] or "-"), 0) + 1
+        print("carrier/status:", {"%s/%s" % k: v for k, v in sorted(cs.items())})
+        print("unknown reasons:", sorted({r["detail"][:90] for r in rows if r["tracking"] and r["status"] in ("UNKNOWN", "")}))
         print("rows per region:", {g: sum(1 for r in rows if r["region"] == g) for g in ("US", "Toronto", "Vancouver")})
         print("accounts with rows:", len({r["account"] for r in rows}), "| rows without tracking:", sum(1 for r in rows if not r["tracking"]))
         seen = set()
