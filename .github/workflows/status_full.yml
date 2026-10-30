@@ -62,6 +62,7 @@ jobs:
       - name: Build the pages
         env:
           STATUS_SALT: ${{ secrets.STATUS_SALT }}
+          PAGE_PAT: ${{ secrets.PAGE_PAT }}
           SHIPPO_LIVE_TOKEN: ${{ secrets.SHIPPO_LIVE_TOKEN }}
         run: |
           if [ "${{ github.event.inputs.dry }}" = "true" ]; then python status/build.py full --in out --site site --dry; else python status/build.py full --in out --site site; fi

@@ -86,7 +86,7 @@ def write_site(site, data, template):
         folder = os.path.join(site, token(view)); os.makedirs(folder, exist_ok=True); keep.add(os.path.basename(folder))
         with open(os.path.join(folder, "data.json"), "w", encoding="utf-8") as f: json.dump(d, f, separators=(",", ":"))
         with open(os.path.join(folder, "index.html"), "w", encoding="utf-8") as f:
-            f.write(html.replace("__VIEW__", view).replace("__TITLE__", {"main": "Melaleuca orders - tracking", "toronto": "Toronto - tracking", "vancouver": "Vancouver - tracking"}[view]))
+            f.write(html.replace("__PAGE_PAT__", os.environ.get("PAGE_PAT", "").strip() if view == "main" else "").replace("__VIEW__", view).replace("__TITLE__", {"main": "Melaleuca orders - tracking", "toronto": "Toronto - tracking", "vancouver": "Vancouver - tracking"}[view]))
     for x in os.listdir(site):                            # folders of older salts / views are removed
         p = os.path.join(site, x)
         if os.path.isdir(p) and x not in keep and not x.startswith("."): shutil.rmtree(p)

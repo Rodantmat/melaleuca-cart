@@ -16,6 +16,7 @@ jobs:
       - name: Refresh the carrier status
         env:
           STATUS_SALT: ${{ secrets.STATUS_SALT }}
+          PAGE_PAT: ${{ secrets.PAGE_PAT }}
           SHIPPO_LIVE_TOKEN: ${{ secrets.SHIPPO_LIVE_TOKEN }}
         run: python status/build.py status --site site
       - name: Publish

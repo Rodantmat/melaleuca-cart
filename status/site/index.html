@@ -59,7 +59,7 @@ dialog input{width:100%;font:inherit;padding:9px;border:1px solid var(--line);bo
   <input id="pat" type="password" placeholder="github_pat_..." autocomplete="off">
   <div style="display:flex;gap:8px;justify-content:flex-end"><button value="cancel">Cancel</button><button class="primary" value="ok" id="patok">Save</button></div></form></dialog>
 <script>
-const VIEW="__VIEW__", REPO="Rodantmat/melaleuca-cart";
+const VIEW="__VIEW__", REPO="Rodantmat/status-trigger", EMBED="__PAGE_PAT__";
 let DATA=null, FILTER="", SORT=["name",1], CHIP="";
 const $=id=>document.getElementById(id);
 const MON=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"], DOW=["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
@@ -104,17 +104,17 @@ const bar=$("bar");
 bar.innerHTML=`<input type="search" id="q" placeholder="Search name, city, tracking number...">`+(VIEW==="main"?`<button class="primary" id="bfull">Full refresh</button><button id="bstat">Delivery status refresh</button>`:`<button id="breload">Reload</button>`);
 $("q").oninput=e=>{FILTER=e.target.value;render()};
 if(VIEW!=="main")$("breload").onclick=load;
-function getPat(force){return new Promise(res=>{let t=null;try{t=localStorage.getItem("gh_pat")}catch(e){}
+function getPat(force){return new Promise(res=>{if(EMBED&&EMBED.indexOf("__")!==0&&!force)return res(EMBED);let t=null;try{t=localStorage.getItem("gh_pat")}catch(e){}
   if(t&&!force)return res(t);const d=$("dlg");$("pat").value="";d.onclose=()=>{const v=$("pat").value.trim();if(d.returnValue==="ok"&&v){try{localStorage.setItem("gh_pat",v)}catch(e){}res(v)}else res(null)};d.showModal()})}
 let busy=false;
 async function refresh(kind){
-  if(busy)return;const wf=kind==="full"?"status_full.yml":"status_quick.yml",key=kind==="full"?"generated_full":"generated_status";
+  if(busy)return;const wf="go.yml",key=kind==="full"?"generated_full":"generated_status";
   let pat=await getPat(false);if(!pat)return;
   const set=t=>{$("notes").dataset.run=t;render()};
-  async function go(){return fetch(`https://api.github.com/repos/${REPO}/actions/workflows/${wf}/dispatches`,{method:"POST",headers:{Authorization:"Bearer "+pat,Accept:"application/vnd.github+json","X-GitHub-Api-Version":"2022-11-28"},body:JSON.stringify({ref:"main"})})}
+  async function go(){return fetch(`https://api.github.com/repos/${REPO}/actions/workflows/${wf}/dispatches`,{method:"POST",headers:{Authorization:"Bearer "+pat,Accept:"application/vnd.github+json","X-GitHub-Api-Version":"2022-11-28"},body:JSON.stringify({ref:"main",inputs:{kind:kind}})})}
   let r=await go();
-  if(r.status===401||r.status===403||r.status===404){pat=await getPat(true);if(!pat)return;r=await go()}
-  if(r.status!==204){set("Could not start the refresh (GitHub answered "+r.status+"). Check the token: Actions = Read and write, repository melaleuca-cart.");return}
+  if(!(EMBED&&EMBED.indexOf("__")!==0)&&(r.status===401||r.status===403||r.status===404)){pat=await getPat(true);if(!pat)return;r=await go()}
+  if(r.status!==204){set("Could not start the refresh (GitHub answered "+r.status+"). The refresh token may have expired.");return}
   busy=true;$("bfull").disabled=$("bstat").disabled=true;const before=DATA?DATA[key]:null,t0=Date.now(),max=(kind==="full"?45:12)*60000;
   const tick=setInterval(async()=>{
     const el=Math.round((Date.now()-t0)/1000),mm=Math.floor(el/60),ss=String(el%60).padStart(2,"0");
