@@ -17,16 +17,23 @@ h1{font-size:20px;margin:0 0 2px}
 button{font:inherit;border:1px solid var(--line);background:var(--card);color:var(--ink);padding:9px 14px;border-radius:8px;cursor:pointer}
 button.primary{background:var(--accent);border-color:var(--accent);color:#fff;font-weight:600}
 button:disabled{opacity:.55;cursor:default}
+select{font:inherit;padding:9px 10px;border:1px solid var(--line);border-radius:8px;background:var(--card);color:var(--ink)}
 input[type=search]{font:inherit;padding:9px 12px;border:1px solid var(--line);border-radius:8px;background:var(--card);color:var(--ink);flex:1;min-width:160px}
 .chips{display:flex;flex-wrap:wrap;gap:6px;margin:6px 0 12px}
 .chip{border:1px solid var(--line);border-radius:999px;padding:4px 11px;font-size:13px;background:var(--card);cursor:pointer;user-select:none}
 .chip.on{outline:2px solid var(--accent)}
 .msg{padding:10px 12px;border-radius:8px;background:var(--prebg);color:var(--pre);margin:8px 0;font-size:14px}
 .msg.bad{background:var(--badbg);color:var(--bad)}
-table{width:100%;border-collapse:collapse;background:var(--card);border:1px solid var(--line);border-radius:10px;overflow:hidden}
-th,td{padding:9px 10px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}
-th{font-size:12px;text-transform:uppercase;letter-spacing:.04em;color:var(--mute);background:var(--bg);cursor:pointer;white-space:nowrap}
-tr:last-child td{border-bottom:0}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(440px,1fr));gap:12px;align-items:start}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:hidden}
+.ch{display:flex;justify-content:space-between;gap:10px;align-items:flex-start;padding:11px 14px;background:var(--bg);border-bottom:1px solid var(--line)}
+.ch b{font-size:16px} .ch .loc{color:var(--mute);font-size:13px}
+.ch .nx{font-size:12.5px;color:var(--mute);text-align:right;white-space:nowrap}
+.oh{padding:6px 14px 0;font-size:12px;color:var(--mute);text-transform:uppercase;letter-spacing:.04em}
+.pk{display:grid;grid-template-columns:1fr auto;gap:2px 12px;padding:9px 14px;border-bottom:1px solid var(--line)}
+.pk:last-child{border-bottom:0}
+.pk .eta{grid-column:1 / -1;font-size:13.5px}
+.pk .st{text-align:right}
 a{color:var(--accent);text-decoration:none;word-break:break-all} a:hover{text-decoration:underline}
 .pill{display:inline-block;padding:2px 9px;border-radius:999px;font-size:12.5px;font-weight:600;white-space:nowrap}
 .s-DELIVERED{background:var(--okbg);color:var(--ok)} .s-TRANSIT{background:var(--trbg);color:var(--tr)} .s-PRE_TRANSIT{background:var(--prebg);color:var(--pre)}
@@ -35,12 +42,7 @@ a{color:var(--accent);text-decoration:none;word-break:break-all} a:hover{text-de
 .num{font-variant-numeric:tabular-nums}
 dialog{border:1px solid var(--line);border-radius:12px;background:var(--card);color:var(--ink);max-width:440px;width:92%}
 dialog input{width:100%;font:inherit;padding:9px;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--ink);margin:10px 0}
-@media (max-width:720px){
- table,thead,tbody,tr,td{display:block;width:100%} thead{display:none}
- tr{background:var(--card);border:1px solid var(--line);border-radius:10px;margin-bottom:10px;padding:6px 4px}
- td{border:0;padding:4px 10px} td[data-l]::before{content:attr(data-l) ": ";color:var(--mute);font-size:12px}
- table{border:0;background:none}
-}
+@media (max-width:520px){.cards{grid-template-columns:1fr}.wrap{padding:10px}}
 </style>
 </head>
 <body>
@@ -50,9 +52,7 @@ dialog input{width:100%;font:inherit;padding:9px;border:1px solid var(--line);bo
   <div class="bar" id="bar"></div>
   <div id="notes"></div>
   <div class="chips" id="chips"></div>
-  <table id="tbl"><thead><tr>
-    <th data-k="name">Name</th><th data-k="city">City</th><th data-k="order_date">Ordered</th><th data-k="tracking">Tracking number</th><th data-k="status">Status</th><th data-k="eta">Delivery ETA</th>
-  </tr></thead><tbody id="body"></tbody></table>
+  <div class="cards" id="cards"></div>
 </div>
 <dialog id="dlg"><form method="dialog"><b>GitHub token</b>
   <div class="sub" style="margin-top:4px">Needed once for the refresh buttons. It is saved only in this browser.</div>
@@ -60,7 +60,7 @@ dialog input{width:100%;font:inherit;padding:9px;border:1px solid var(--line);bo
   <div style="display:flex;gap:8px;justify-content:flex-end"><button value="cancel">Cancel</button><button class="primary" value="ok" id="patok">Save</button></div></form></dialog>
 <script>
 const VIEW="__VIEW__", REPO="Rodantmat/status-trigger", EMBED="__PAGE_PAT__";
-let DATA=null, FILTER="", SORT=["name",1], CHIP="";
+let DATA=null, FILTER="", SORT="name", CHIP="";
 const $=id=>document.getElementById(id);
 const MON=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"], DOW=["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
 function parse(s){const m=/^(\d{4})-(\d\d)-(\d\d)(?:[T ](\d\d):(\d\d))?/.exec(s||"");return m?{y:+m[1],mo:+m[2]-1,d:+m[3],h:m[4]!==undefined?+m[4]:null,mi:m[5]!==undefined?+m[5]:null}:null}
@@ -80,39 +80,54 @@ function ago(iso){if(!iso)return"never";const s=(Date.now()-Date.parse(iso))/100
 function esc(x){return String(x==null?"":x).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]))}
 const LBL={DELIVERED:"Delivered",TRANSIT:"In transit",PRE_TRANSIT:"Label created",FAILURE:"Problem",RETURNED:"Returned",NONE:"Not shipped",UNKNOWN:"No info"};
 function skey(r){return r.status||"UNKNOWN"}
-function etaText(r){if(r.status==="DELIVERED")return r.delivered_at?"Delivered "+fmtTZ(r.delivered_at,r.region,true):"Delivered";if(r.eta)return fmtTZ(r.eta,r.region,true);return r.status==="NONE"?"":"-"}
+function etaText(r){if(r.status==="DELIVERED")return r.delivered_at?"Delivered "+fmtTZ(r.delivered_at,r.region,true):"Delivered";if(r.eta)return "ETA "+fmtTZ(r.eta,r.region,true);return r.status==="NONE"?"":"ETA not available yet"}
+function etaMs(r){if(!r.eta||r.status==="DELIVERED")return Infinity;const t=Date.parse(/T\d\d:\d\d/.test(r.eta)?r.eta:r.eta+"T12:00:00Z");return isNaN(t)?Infinity:t}
 function render(){
   if(!DATA)return;
   const rows=DATA.rows.slice();
   $("ttl").textContent=VIEW==="main"?"Melaleuca orders - tracking":(VIEW==="toronto"?"Toronto - tracking":"Vancouver - tracking");
   const mn=DATA.month?new Date(Date.UTC(+DATA.month.slice(0,4),+DATA.month.slice(5,7)-1,1)).toLocaleString("en-US",{month:"long",year:"numeric",timeZone:"UTC"}):"";
-  $("sub").innerHTML=esc(mn)+" orders &middot; "+rows.length+" packages &middot; delivery status checked "+ago(DATA.generated_status)+" &middot; times in "+TZNAME[VIEW]+(VIEW==="main"?" &middot; orders read "+ago(DATA.generated_full):"");
+  const people=new Set(rows.map(r=>r.account)).size;
+  $("sub").innerHTML=esc(mn)+" orders &middot; "+people+" people &middot; "+rows.length+" packages &middot; delivery status checked "+ago(DATA.generated_status)+(VIEW==="main"?" &middot; orders read "+ago(DATA.generated_full):"")+" &middot; times in "+TZNAME[VIEW];
   const cnt={};rows.forEach(r=>cnt[skey(r)]=(cnt[skey(r)]||0)+1);
   $("chips").innerHTML=`<span class="chip ${CHIP===""?"on":""}" data-c="">All ${rows.length}</span>`+["DELIVERED","TRANSIT","PRE_TRANSIT","FAILURE","RETURNED","UNKNOWN","NONE"].filter(k=>cnt[k]).map(k=>`<span class="chip ${CHIP===k?"on":""}" data-c="${k}">${LBL[k]} ${cnt[k]}</span>`).join("");
   document.querySelectorAll(".chip").forEach(c=>c.onclick=()=>{CHIP=c.dataset.c;render()});
   let notes="";
   if(DATA.failed_accounts&&DATA.failed_accounts.length)notes+=`<div class="msg bad">Could not read the account(s): ${esc(DATA.failed_accounts.join(", "))}. Their last known rows are shown. Try the full refresh again.</div>`;
   $("notes").innerHTML=notes+($("notes").dataset.run?`<div class="msg">${$("notes").dataset.run}</div>`:"");
-  const q=FILTER.toLowerCase();
-  let list=rows.filter(r=>(!CHIP||skey(r)===CHIP)&&(!q||[r.name,r.city,r.state,r.tracking,r.order_no,r.carrier_name,r.status_text,r.account].join(" ").toLowerCase().includes(q)));
-  const [k,dir]=SORT;list.sort((a,b)=>{const x=(k==="status"?skey(a):a[k])||"",y=(k==="status"?skey(b):b[k])||"";return (x>y?1:x<y?-1:0)*dir||((a.name+a.order_date+a.tracking)>(b.name+b.order_date+b.tracking)?1:-1)});
-  $("body").innerHTML=list.map(r=>`<tr>
-   <td data-l="Name"><b>${esc(r.name)}</b></td>
-   <td data-l="City">${esc(r.city)}${r.state?", "+esc(r.state):""}</td>
-   <td data-l="Ordered" class="num">${esc(fmt(r.order_date,false))}</td>
-   <td data-l="Tracking">${r.tracking?`<a href="${esc(r.link)}" target="_blank" rel="noopener">${esc(r.tracking)}</a><div class="car">${esc(r.carrier_name)}</div>`:'<span class="det">no tracking number yet</span>'}</td>
-   <td data-l="Status"><span class="pill s-${skey(r)}">${esc(r.status_text||LBL[skey(r)])}</span>${r.detail&&r.status!=="NONE"?`<div class="det">${esc(r.detail)}${r.location?" &middot; "+esc(r.location):""}</div>`:""}</td>
-   <td data-l="Delivery ETA" class="num">${esc(etaText(r))}</td></tr>`).join("")||`<tr><td colspan="6">Nothing matches.</td></tr>`;
+  const q=FILTER.toLowerCase(), groups={};
+  rows.forEach(r=>{(groups[r.account]=groups[r.account]||[]).push(r)});
+  let cards=Object.values(groups).map(all=>{
+    const head=(all[0].name+" "+all[0].city+" "+all[0].state+" "+all[0].account).toLowerCase();
+    const personHit=q&&head.includes(q);
+    const list=all.filter(r=>(!CHIP||skey(r)===CHIP)&&(!q||personHit||[r.tracking,r.order_no,r.carrier_name,r.status_text,r.detail].join(" ").toLowerCase().includes(q)));
+    return {all,list};
+  }).filter(g=>g.list.length);
+  const best=g=>Math.min(...g.all.map(etaMs));
+  cards.sort((a,b)=>SORT==="eta"?(best(a)-best(b))||(a.all[0].name>b.all[0].name?1:-1):(a.all[0].name.toLowerCase()>b.all[0].name.toLowerCase()?1:-1));
+  $("cards").innerHTML=cards.map(g=>{
+    const f=g.all[0], tot=g.all.filter(r=>r.tracking).length, dl=g.all.filter(r=>r.status==="DELIVERED").length, nxt=best(g);
+    let sum="";
+    if(tot&&dl===tot)sum=`<span class="pill s-DELIVERED">All delivered</span>`;
+    else if(tot)sum=`<span class="pill s-${dl?"TRANSIT":"UNKNOWN"}">${dl} of ${tot} delivered</span>`+(isFinite(nxt)?`<div class="nx">next ETA ${esc(fmtTZ(new Date(nxt).toISOString(),f.region,true))}</div>`:"");
+    const orders=[...new Set(g.list.map(r=>r.order_no))];
+    const body=orders.map(o=>{const rs=g.list.filter(r=>r.order_no===o);
+      return (orders.length>1?`<div class="oh">Order ${esc(fmt(rs[0].order_date,false))}</div>`:"")+rs.map(r=>`<div class="pk">
+        <div>${r.tracking?`<a href="${esc(r.link)}" target="_blank" rel="noopener" class="num">${esc(r.tracking)}</a> <span class="car">${esc(r.carrier_name)}</span>`:`<span class="det">no tracking number yet</span>`}</div>
+        <div class="st"><span class="pill s-${skey(r)}">${esc(r.status_text||LBL[skey(r)])}</span></div>
+        ${r.detail&&r.status!=="NONE"?`<div class="det" style="grid-column:1 / -1">${esc(r.detail)}${r.location?" &middot; "+esc(r.location):""}</div>`:""}
+        ${etaText(r)?`<div class="eta num">${esc(etaText(r))}</div>`:""}</div>`).join("")}).join("");
+    const od=[...new Set(g.all.map(r=>r.order_date))].sort().map(d=>fmt(d,false)).join(", ");
+    return `<section class="card"><div class="ch"><div><b>${esc(f.name)}</b><div class="loc">${esc(f.city)}${f.state?", "+esc(f.state):""} &middot; ordered ${esc(od)}</div></div><div style="text-align:right">${sum}</div></div>${body}</section>`}).join("")||`<div class="msg">Nothing matches.</div>`;
 }
 async function load(){
   try{const r=await fetch("data.json?t="+Date.now(),{cache:"no-store"});DATA=await r.json();render();return DATA}
   catch(e){$("sub").textContent="Could not load the data ("+e+")"}
 }
-document.querySelectorAll("th").forEach(h=>h.onclick=()=>{const k=h.dataset.k;SORT=SORT[0]===k?[k,-SORT[1]]:[k,1];render()});
 // search box + (main page only) the two refresh buttons
 const bar=$("bar");
-bar.innerHTML=`<input type="search" id="q" placeholder="Search name, city, tracking number...">`+(VIEW==="main"?`<button class="primary" id="bfull">Full refresh</button><button id="bstat">Delivery status refresh</button>`:`<button id="breload">Reload</button>`);
-$("q").oninput=e=>{FILTER=e.target.value;render()};
+bar.innerHTML=`<input type="search" id="q" placeholder="Search name, city, tracking number..."><select id="srt"><option value="name">Sort: name</option><option value="eta">Sort: soonest delivery</option></select>`+(VIEW==="main"?`<button class="primary" id="bfull">Full refresh</button><button id="bstat">Delivery status refresh</button>`:`<button id="breload">Reload</button>`);
+$("q").oninput=e=>{FILTER=e.target.value;render()};$("srt").onchange=e=>{SORT=e.target.value;render()};
 if(VIEW!=="main")$("breload").onclick=load;
 function getPat(force){return new Promise(res=>{if(EMBED&&EMBED.indexOf("__")!==0&&!force)return res(EMBED);let t=null;try{t=localStorage.getItem("gh_pat")}catch(e){}
   if(t&&!force)return res(t);const d=$("dlg");$("pat").value="";d.onclose=()=>{const v=$("pat").value.trim();if(d.returnValue==="ok"&&v){try{localStorage.setItem("gh_pat",v)}catch(e){}res(v)}else res(null)};d.showModal()})}

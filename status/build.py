@@ -3,7 +3,7 @@
   python build.py status --site SITE_DIR                               same tracking numbers as before, only the carrier status is refreshed (fast)
 Pages: <SITE>/<token>/index.html + data.json for  main / toronto / vancouver.  token = HMAC(STATUS_SALT, view): not guessable, not stored in the repo.
 Environment: STATUS_SALT (secret), SHIPPO_LIVE_TOKEN (secret)."""
-import concurrent.futures as cf, datetime as dt, glob, hashlib, hmac, json, os, shutil, sys, time
+import concurrent.futures as cf, datetime as dt, glob, hashlib, hmac, json, os, re, shutil, sys, time
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
 import carriers as C
@@ -42,10 +42,12 @@ def rows_from(accts, month):
         reg = {"vancouver": "Vancouver", "toronto": "Toronto"}.get(a["region"], "US")
         for o in a["orders"]:
             if o["date"][:7] != month: continue
-            base = {"account": a["tab"], "region": reg, "name": title(o.get("name")) or a["tab"], "city": title(o.get("city")), "state": (o.get("state") or "").upper(),
+            nm = title(o.get("name"))
+            if not nm or re.match(r"^\s*c/o\b", nm.lower()): nm = a["tab"]          # "C/o Rodolfo A" is a delivery note, not the person: the tab name is used
+            base = {"account": a["tab"], "region": reg, "name": nm, "city": title(o.get("city")), "state": (o.get("state") or "").upper(),
                     "order_date": o["date"], "order_no": o["number"], "order_status": o.get("status", "")}
             if not o["packages"]:
-                rows.append(dict(base, tracking="", carrier="", carrier_name="", link="", status="NONE", status_text=o.get("status") or "Not shipped yet",
+                rows.append(dict(base, tracking="", carrier="", carrier_name="", link="", status="NONE", status_text=("Shipped - tracking number not posted yet" if (o.get("status") or "").lower() == "shipped" else (o.get("status") or "Not shipped yet")),
                                  detail="no tracking number yet", location="", eta="", delivered_at="", last_update="", checked=""))
                 continue
             for p in o["packages"]:

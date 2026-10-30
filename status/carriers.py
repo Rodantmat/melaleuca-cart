@@ -103,7 +103,7 @@ def ontrac(n):
     low = desc.lower()
     deliv = pk.get("UtcDeliveryDateTime") or ""
     if deliv or re.search(r"\bdelivered\b", low): status = "DELIVERED"
-    elif not evs or re.search(r"label|order placed|information|created|pre-?ship", low): status = "PRE_TRANSIT"
+    elif not evs or re.search(r"label|order placed|information|created|pre-?ship|not yet received", low): status = "PRE_TRANSIT"
     else: status = "TRANSIT"
     out.update(status=status, status_text=("Out for delivery" if re.search(r"out for delivery", low) and status == "TRANSIT" else STATUS_TXT[status]),
                detail=desc[:160], location=", ".join(x for x in (str(city).title(), str(st)) if x), last_update=_utc(str(last.get("UtcEventDateTime") or "")))
