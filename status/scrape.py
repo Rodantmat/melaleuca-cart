@@ -83,6 +83,11 @@ def scrape(an, days=50, log=print):
                 r = s.fetch("/api/receipt/%s?sc_lang=%s&sc_site=%s" % (c["number"], "en-CA" if ca else "en-US", "productstoreCa" if ca else "productstoreUs"))
                 dd = (r.get("json") or {}).get("Data") or {}
                 a = dd.get("ShipToAddress") or {}
+                seen = {p["n"] for p in o["packages"]}
+                for pi in (dd.get("PackageInformation") or []):          # the receipt lists the packages (with carrier) even when the order-history card shows none yet
+                    n = str(pi.get("TrackingNumber") or "").strip()
+                    if n and n not in seen:
+                        o["packages"].append({"n": n, "href": ((pi.get("TrackingUrl") or "") + " " + (pi.get("Carrier") or "")).strip()}); seen.add(n)
                 o.update(status=dd.get("OrderStatusLabel") or dd.get("OrderStatus") or "", name=dd.get("ShipToName") or "",
                          city=a.get("City") or "", state=a.get("State") or "", country=a.get("Country") or "")
                 res["orders"].append(o)
