@@ -1,0 +1,222 @@
+Generated 20261031_1617  (column names and row counts only, no data)
+
+== fba_inventory_planning  |  178 rows  |  99 columns
+    1  snapshot-date
+    2  sku
+    3  fnsku
+    4  asin
+    5  product-name
+    6  condition
+    7  available
+    8  fc-transfer
+    9  pending-removal-quantity
+   10  inv-age-0-to-90-days
+   11  inv-age-91-to-180-days
+   12  inv-age-181-to-270-days
+   13  inv-age-271-to-365-days
+   14  inv-age-366-to-455-days
+   15  inv-age-456-plus-days
+   16  currency
+   17  units-shipped-t7
+   18  units-shipped-t30
+   19  units-shipped-t60
+   20  units-shipped-t90
+   21  alert
+   22  your-price
+   23  sales-price
+   24  lowest-price-new-plus-shipping
+   25  lowest-price-used
+   26  recommended-action
+   27  DEPRECATED healthy-inventory-level
+   28  recommended-sales-price
+   29  recommended-sale-duration-days
+   30  recommended-removal-quantity
+   31  estimated-cost-savings-of-recommended-actions
+   32  sell-through
+   33  item-volume
+   34  volume-unit-measurement
+   35  storage-type
+   36  storage-volume
+   37  marketplace
+   38  product-group
+   39  sales-rank
+   40  days-of-supply
+   41  estimated-excess-quantity
+   42  weeks-of-cover-t30
+   43  weeks-of-cover-t90
+   44  featuredoffer-price
+   45  sales-shipped-last-7-days
+   46  sales-shipped-last-30-days
+   47  sales-shipped-last-60-days
+   48  sales-shipped-last-90-days
+   49  inv-age-0-to-30-days
+   50  inv-age-31-to-60-days
+   51  inv-age-61-to-90-days
+   52  inv-age-181-to-330-days
+   53  inv-age-331-to-365-days
+   54  estimated-storage-cost-next-month
+   55  inbound-quantity
+   56  inbound-working
+   57  inbound-shipped
+   58  inbound-received
+   59  no-sale-last-6-months
+   60  Total Reserved Quantity
+   61  unfulfillable-quantity
+   62  quantity-to-be-charged-ais-181-210-days
+   63  estimated-ais-181-210-days
+   64  quantity-to-be-charged-ais-211-240-days
+   65  estimated-ais-211-240-days
+   66  quantity-to-be-charged-ais-241-270-days
+   67  estimated-ais-241-270-days
+   68  quantity-to-be-charged-ais-271-300-days
+   69  estimated-ais-271-300-days
+   70  quantity-to-be-charged-ais-301-330-days
+   71  estimated-ais-301-330-days
+   72  quantity-to-be-charged-ais-331-365-days
+   73  estimated-ais-331-365-days
+   74  quantity-to-be-charged-ais-366-455-days
+   75  estimated-ais-366-455-days
+   76  quantity-to-be-charged-ais-456-plus-days
+   77  estimated-ais-456-plus-days
+   78  historical-days-of-supply
+   79  fba-minimum-inventory-level
+   80  fba-inventory-level-health-status
+   81  Recommended ship-in quantity
+   82  Recommended ship-in date
+   83  Last updated date for Historical Days of Supply
+   84  Exempted from Low-Inventory-Level fee?
+   85  Low-Inventory-Level fee applied in current week?
+   86  Short term historical days of supply
+   87  Long term historical days of supply
+   88  Inventory age snapshot date
+   89  Inventory Supply at FBA
+   90  Reserved FC Processing
+   91  Reserved Customer Order
+   92  Reserved Staging
+   93  Total Days of Supply (including units from open shipments)
+   94  supplier
+   95  is-seasonal-in-next-3-months
+   96  season-name
+   97  season-start-date
+   98  season-end-date
+   99  Fulfillment Service and Programs
+
+== fba_myi_inventory  |  161 rows  |  24 columns
+    1  sku
+    2  fnsku
+    3  asin
+    4  product-name
+    5  condition
+    6  your-price
+    7  mfn-listing-exists
+    8  mfn-fulfillable-quantity
+    9  afn-listing-exists
+   10  afn-warehouse-quantity
+   11  afn-fulfillable-quantity
+   12  afn-unsellable-quantity
+   13  afn-reserved-quantity
+   14  afn-total-quantity
+   15  per-unit-volume
+   16  afn-inbound-working-quantity
+   17  afn-inbound-shipped-quantity
+   18  afn-inbound-receiving-quantity
+   19  afn-researching-quantity
+   20  afn-reserved-future-supply
+   21  afn-future-supply-buyable
+   22  afn-fc-transfer-quantity
+   23  afn-onhand-buyable-quantity
+   24  store
+
+== merchant_listings  |  177 rows  |  29 columns
+    1  item-name
+    2  item-description
+    3  listing-id
+    4  seller-sku
+    5  price
+    6  quantity
+    7  open-date
+    8  image-url
+    9  item-is-marketplace
+   10  product-id-type
+   11  zshop-shipping-fee
+   12  item-note
+   13  item-condition
+   14  zshop-category1
+   15  zshop-browse-path
+   16  zshop-storefront-feature
+   17  asin1
+   18  asin2
+   19  asin3
+   20  will-ship-internationally
+   21  expedited-shipping
+   22  zshop-boldface
+   23  product-id
+   24  bid-for-featured-placement
+   25  add-delete
+   26  pending-quantity
+   27  fulfillment-channel
+   28  merchant-shipping-group
+   29  status
+
+== fba_fee_preview  |  125 rows  |  31 columns
+    1  sku
+    2  fnsku
+    3  asin
+    4  amazon-store
+    5  product-name
+    6  product-group
+    7  brand
+    8  fulfilled-by
+    9  your-price
+   10  sales-price
+   11  longest-side
+   12  median-side
+   13  shortest-side
+   14  length-and-girth
+   15  unit-of-dimension
+   16  item-package-weight
+   17  unit-of-weight
+   18  product-size-tier
+   19  currency
+   20  estimated-fee-total
+   21  estimated-referral-fee-per-unit
+   22  estimated-variable-closing-fee
+   23  estimated-order-handling-fee-per-order
+   24  estimated-pick-pack-fee-per-unit
+   25  estimated-weight-handling-fee-per-unit
+   26  expected-fulfillment-fee-per-unit
+   27  estimated-future-fee (Current Selling on Amazon + Future Fulfillment fees)
+   28  estimated-future-order-handling-fee-per-order
+   29  estimated-future-pick-pack-fee-per-unit
+   30  estimated-future-weight-handling-fee-per-unit
+   31  expected-future-fulfillment-fee-per-unit
+
+== orders_90d  |  2426 rows  |  27 columns
+    1  amazon-order-id
+    2  purchase-date
+    3  last-updated-date
+    4  order-status
+    5  fulfillment-channel
+    6  sales-channel
+    7  order-channel
+    8  ship-service-level
+    9  product-name
+   10  sku
+   11  asin
+   12  item-status
+   13  quantity
+   14  currency
+   15  item-price
+   16  item-tax
+   17  shipping-price
+   18  shipping-tax
+   19  gift-wrap-price
+   20  gift-wrap-tax
+   21  item-promotion-discount
+   22  ship-promotion-discount
+   23  promotion-ids
+   24  is-business-order
+   25  price-designation
+   26  signature-confirmation-recommended
+   27  order-item-id
+

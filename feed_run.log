@@ -1,0 +1,52 @@
+Requesting reports ...
+Waiting for Amazon to build them (usually 1-10 minutes) ...
+  planning                     DONE
+  myi                          DONE
+  listings                     DONE
+  feeprev                      DONE
+  orders_00                    DONE
+  orders_01                    DONE
+  orders_02                    DONE
+  orders_03                    DONE
+Reading the live Buy Box price of 182 ASINs (about 4 minutes) ...
+  live Buy Box prices: 20 of 182 ASINs read
+  (Amazon busy / rate limit, HTTP 429 - waiting 5s)
+  live Buy Box prices: 40 of 182 ASINs read
+  live Buy Box prices: 60 of 182 ASINs read
+  live Buy Box prices: 80 of 182 ASINs read
+  live Buy Box prices: 100 of 182 ASINs read
+  live Buy Box prices: 120 of 182 ASINs read
+  live Buy Box prices: 140 of 182 ASINs read
+  live Buy Box prices: 160 of 182 ASINs read
+  live Buy Box prices: 180 of 182 ASINs read
+  live Buy Box prices: 182 of 182 ASINs read
+  live prices: 182 ASINs
+
+Summary
+  planning       OK
+  myi            OK
+  listings       OK
+  feeprev        OK
+  orders_00      OK
+  orders_01      OK
+  orders_02      OK
+  orders_03      OK
+  pricing        OK
+
+Files are in: /home/runner/work/melaleuca-cart/melaleuca-cart/feedwork/raw
+Send Claude the file raw\headers_summary.txt (it contains no sales data).
+Asking Amazon for fee estimates on 169 products ...
+demand history: 208 products with orders, 181 with a stock ledger (folder /home/runner/work/melaleuca-cart/melaleuca-cart/feedwork/state)
+
+Built feed files in: /home/runner/work/melaleuca-cart/melaleuca-cart/feedwork/feed
+  Inventory rows: 182 | FBA rows: 178 | fees known: 180
+  note: 17 SKU(s) were in the planning report but missing from the FBA inventory report - added from planning: ME0016, ME0048, ME0083, ME0090, ME0139, ME1130, ME1201, ME1252, ME1407, ME1490, ME1645, ME1660, ME1806, ME1824, ME1826, ME1827, ME1828
+  note: sales history carried over to B0HF3N73XB from B007134WGC: 7 units in 90 days
+  note: 4 SKU(s) have no listing on Amazon any more (no stock, nothing inbound) - not priced, no fee asked: ME0048, ME0083, ME1407, ME1490
+  note: 1 product(s) disappeared but had sales in the last 90 days: see feed\alias_suggestions.tsv (if one was recreated, add it to asin_aliases.tsv)
+  note: incomplete fee (no FBA fee) for 9P-4ZS7-QV81 - not used
+  note: no fee for ME0016: {'Type': 'Sender', 'Code': 'InvalidParameterValue', 'Message': 'No ASIN found fo
+  note: incomplete fee (no FBA fee) for ME1660 - not used
+  note: 1 fee(s) came from the Fee Preview report (at your price, not the Buy Box price)
+  note: 9 fee(s) are the last known complete fee (Amazon gave none/incomplete today): GF-Y56X-CX1Z, HN-7OON-4N0S, ME1505, ME1657, ME1806, ME1824, ME1826, ME1827, ME1828
+  note: 2 fee(s) are ESTIMATES (15% referral + typical FBA fee) until Amazon gives a real one: ME0016, ME1660
