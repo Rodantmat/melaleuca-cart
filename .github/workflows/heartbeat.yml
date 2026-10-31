@@ -1,0 +1,51 @@
+name: Heartbeat (keeps the status pages and reprice on time)
+# GitHub's own cron is late and patchy. This job stays alive for ~5h40m, starts the status update every
+# 15 minutes and the reprice at its 3 daily slots, then starts the next heartbeat. The hourly cron below
+# only restarts the chain if it ever breaks (concurrency keeps a single heartbeat alive).
+on:
+  schedule:
+    - cron: "5 * * * *"
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: write
+concurrency:
+  group: heartbeat
+  cancel-in-progress: false
+jobs:
+  beat:
+    runs-on: ubuntu-latest
+    timeout-minutes: 355
+    steps:
+      - name: Beat
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
+        shell: bash
+        run: |
+          start=$(date +%s); end=$((start+20400))
+          last_status=0
+          while :; do
+            now=$(date +%s)
+            # status update every 15 min, unless one is already queued or running
+            if [ $((now-last_status)) -ge 870 ]; then
+              busy=$(gh api "repos/$REPO/actions/workflows/status_auto.yml/runs?per_page=5" -q '[.workflow_runs[]|select(.status!="completed")]|length' 2>/dev/null || echo 0)
+              if [ "${busy:-0}" = "0" ]; then
+                gh api -X POST "repos/$REPO/actions/workflows/status_auto.yml/dispatches" -f ref=main -f inputs[mode]=auto >/dev/null 2>&1 && echo "status dispatched $(date -u +%H:%M)" || echo "status dispatch failed"
+              fi
+              last_status=$now
+            fi
+            # reprice slots (UTC): the first beat after 07:17 / 13:17 / 19:17, once per slot
+            hm=$(date -u +%H%M); h=$((10#${hm:0:2})); m=$((10#${hm:2:2})); mins=$((h*60+m))
+            for slot in 437 797 1157; do
+              if [ $mins -ge $slot ] && [ $mins -lt $((slot+20)) ]; then
+                recent=$(gh api "repos/$REPO/actions/workflows/reprice.yml/runs?per_page=3" -q "[.workflow_runs[]|select((.created_at|fromdateiso8601) > $((now-10800)))]|length" 2>/dev/null || echo 0)
+                if [ "${recent:-0}" = "0" ]; then
+                  gh api -X POST "repos/$REPO/actions/workflows/reprice.yml/dispatches" -f ref=main >/dev/null 2>&1 && echo "reprice dispatched $(date -u +%H:%M)" || echo "reprice dispatch failed"
+                fi
+              fi
+            done
+            [ $(date +%s) -ge $end ] && break
+            sleep 60
+          done
+          gh api -X POST "repos/$REPO/actions/workflows/heartbeat.yml/dispatches" -f ref=main >/dev/null && echo "next heartbeat started"
