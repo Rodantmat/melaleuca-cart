@@ -1,0 +1,6 @@
+browser session 1 on proxy port 10095
+  1/167  price=None seller=None  (0.0 MB so far)
+rate limited (503) after 17 ASINs - switching IP
+browser session 2 on proxy port 10107
+rate limited (503) after 2 ASINs - switching IP
+web Buy Box: 13 ASINs read, 8 with a price, we win 7, errors 0
