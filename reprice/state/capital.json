@@ -1,0 +1,668 @@
+{
+ "ts": "2026-10-17T01:52:39.139912",
+ "groups": [
+  {
+   "FinancialEventGroupId": "rmzHpaLKjC9Lfzn4Z4SebuisD3y0V3ornx6AWhrbYa0",
+   "ProcessingStatus": "Open",
+   "FundTransferStatus": null,
+   "OriginalTotal": {
+    "CurrencyCode": "USD",
+    "CurrencyAmount": 0.0
+   },
+   "ConvertedTotal": null,
+   "BeginningBalance": {
+    "CurrencyCode": "USD",
+    "CurrencyAmount": 0.0
+   },
+   "FinancialEventGroupStart": "2026-09-17T08:23:26Z",
+   "FinancialEventGroupEnd": null,
+   "FundTransferDate": null
+  },
+  {
+   "FinancialEventGroupId": "qqTXAHCt0eOvk1V8p3_aFXH-BirnrHoHYj7kU6WUSE8",
+   "ProcessingStatus": "Closed",
+   "FundTransferStatus": "Succeeded",
+   "OriginalTotal": {
+    "CurrencyCode": "USD",
+    "CurrencyAmount": 8.42
+   },
+   "ConvertedTotal": null,
+   "BeginningBalance": {
+    "CurrencyCode": "USD",
+    "CurrencyAmount": 0.0
+   },
+   "FinancialEventGroupStart": "2026-09-03T08:23:29Z",
+   "FinancialEventGroupEnd": "2026-09-17T08:23:26Z",
+   "FundTransferDate": "2026-09-17T08:23:26Z"
+  },
+  {
+   "FinancialEventGroupId": "XvvA5AHzdWyzaDFU1A-vk3syITiRTjQyVh80OtFwv18",
+   "ProcessingStatus": "Closed",
+   "FundTransferStatus": "Succeeded",
+   "OriginalTotal": {
+    "CurrencyCode": "USD",
+    "CurrencyAmount": 22.69
+   },
+   "ConvertedTotal": null,
+   "BeginningBalance": {
+    "CurrencyCode": "USD",
+    "CurrencyAmount": 0.0
+   },
+   "FinancialEventGroupStart": "2026-08-20T08:24:52Z",
+   "FinancialEventGroupEnd": "2026-09-03T08:23:29Z",
+   "FundTransferDate": "2026-09-03T08:23:29Z"
+  },
+  {
+   "FinancialEventGroupId": "2lKF4DMUZKT463gKUQYAJpzIxl7JWkL5n_7HKvgHW7k",
+   "ProcessingStatus": "Closed",
+   "FundTransferStatus": "Succeeded",
+   "OriginalTotal": {
+    "CurrencyCode": "USD",
+    "CurrencyAmount": 51.91
+   },
+   "ConvertedTotal": null,
+   "BeginningBalance": {
+    "CurrencyCode": "USD",
+    "CurrencyAmount": 0.0
+   },
+   "FinancialEventGroupStart": "2026-08-06T08:21:30Z",
+   "FinancialEventGroupEnd": "2026-08-20T08:24:52Z",
+   "FundTransferDate": "2026-08-20T08:24:52Z"
+  },
+  {
+   "FinancialEventGroupId": "srz4NprYwZaVOnfPFrqF5hLaUlr2UgixHKUTNcWxkxo",
+   "ProcessingStatus": "Open",
+   "FundTransferStatus": null,
+   "OriginalTotal": {
+    "CurrencyCode": "USD",
+    "CurrencyAmount": 103.2
+   },
+   "ConvertedTotal": null,
+   "BeginningBalance": {
+    "CurrencyCode": "USD",
+    "CurrencyAmount": 0.0
+   },
+   "FinancialEventGroupStart": "2026-10-16T16:22:19Z",
+   "FinancialEventGroupEnd": null,
+   "FundTransferDate": null
+  },
+  {
+   "FinancialEventGroupId": "Z9MaciLh0-NiOJy4tSDleNwm81PklXWgyQ1LUdMQrbc",
+   "ProcessingStatus": "Closed",
+   "FundTransferStatus": "Processing",
+   "OriginalTotal": {
+    "CurrencyCode": "USD",
+    "CurrencyAmount": 542.12
+   },
+   "ConvertedTotal": null,
+   "BeginningBalance": {
+    "CurrencyCode": "USD",
+    "CurrencyAmount": 0.0
+   },
+   "FinancialEventGroupStart": "2026-10-15T15:52:06Z",
+   "FinancialEventGroupEnd": "2026-10-16T16:22:19Z",
+   "FundTransferDate": "2026-10-16T16:22:26Z"
+  },
+  {
+   "FinancialEventGroupId": "2AhTp2l7b05bLOXl-e1sQRCpzgSratUjZTGqpsHVvFg",
+   "ProcessingStatus": "Closed",
+   "FundTransferStatus": "Succeeded",
+   "OriginalTotal": {
+    "CurrencyCode": "USD",
+    "CurrencyAmount": 961.8
+   },
+   "ConvertedTotal": null,
+   "BeginningBalance": {
+    "CurrencyCode": "USD",
+    "CurrencyAmount": 0.0
+   },
+   "FinancialEventGroupStart": "2026-10-13T15:49:30Z",
+   "FinancialEventGroupEnd": "2026-10-15T15:52:06Z",
+   "FundTransferDate": "2026-10-15T15:52:06Z"
+  },
+  {
+   "FinancialEventGroupId": "ny7u3u9FPJ9nly0CFHZQNVTmwCfCFpA-PZViHaK0-ME",
+   "ProcessingStatus": "Closed",
+   "FundTransferStatus": "Succeeded",
+   "OriginalTotal": {
+    "CurrencyCode": "USD",
+    "CurrencyAmount": 1925.19
+   },
+   "ConvertedTotal": null,
+   "BeginningBalance": {
+    "CurrencyCode": "USD",
+    "CurrencyAmount": 0.0
+   },
+   "FinancialEventGroupStart": "2026-10-09T22:13:33Z",
+   "FinancialEventGroupEnd": "2026-10-13T15:49:30Z",
+   "FundTransferDate": "2026-10-13T15:49:30Z"
+  },
+  {
+   "FinancialEventGroupId": "scS2hqGUeoHY2-2-kfTFfowzjdp0vfmcNaiwI2X3k6k",
+   "ProcessingStatus": "Closed",
+   "FundTransferStatus": "Succeeded",
+   "OriginalTotal": {
+    "CurrencyCode": "USD",
+    "CurrencyAmount": 772.83
+   },
+   "ConvertedTotal": null,
+   "BeginningBalance": {
+    "CurrencyCode": "USD",
+    "CurrencyAmount": 0.0
+   },
+   "FinancialEventGroupStart": "2026-10-08T22:03:38Z",
+   "FinancialEventGroupEnd": "2026-10-09T22:13:33Z",
+   "FundTransferDate": "2026-10-09T22:13:33Z"
+  },
+  {
+   "FinancialEventGroupId": "WLRZcJ1fDIu9izOzq6-N9Qhp60jRAJJc4liMCUin82M",
+   "ProcessingStatus": "Closed",
+   "FundTransferStatus": "Succeeded",
+   "OriginalTotal": {
+    "CurrencyCode": "USD",
+    "CurrencyAmount": 847.96
+   },
+   "ConvertedTotal": null,
+   "BeginningBalance": {
+    "CurrencyCode": "USD",
+    "CurrencyAmount": 0.0
+   },
+   "FinancialEventGroupStart": "2026-10-07T19:38:15Z",
+   "FinancialEventGroupEnd": "2026-10-08T22:03:38Z",
+   "FundTransferDate": "2026-10-08T22:03:38Z"
+  },
+  {
+   "FinancialEventGroupId": "i1Rnc0dh0RjL_AcERRa31-DYrIoi5E7njIxdcJLMmTs",
+   "ProcessingStatus": "Closed",
+   "FundTransferStatus": "Succeeded",
+   "OriginalTotal": {
+    "CurrencyCode": "USD",
+    "CurrencyAmount": 879.57
+   },
+   "ConvertedTotal": null,
+   "BeginningBalance": {
+    "CurrencyCode": "USD",
+    "CurrencyAmount": 0.0
+   },
+   "FinancialEventGroupStart": "2026-10-06T18:23:39Z",
+   "FinancialEventGroupEnd": "2026-10-07T19:38:15Z",
+   "FundTransferDate": "2026-10-07T19:38:15Z"
+  },
+  {
+   "FinancialEventGroupId": "ywKW6CxkgDd_NERjKe31msZrHSjz0GexEcVoGL3Di1M",
+   "ProcessingStatus": "Closed",
+   "FundTransferStatus": "Succeeded",
+   "OriginalTotal": {
+    "CurrencyCode": "USD",
+    "CurrencyAmount": 794.96
+   },
+   "ConvertedTotal": null,
+   "BeginningBalance": {
+    "CurrencyCode": "USD",
+    "CurrencyAmount": 0.0
+   },
+   "FinancialEventGroupStart": "2026-10-05T15:35:26Z",
+   "FinancialEventGroupEnd": "2026-10-06T18:23:39Z",
+   "FundTransferDate": "2026-10-06T18:23:39Z"
+  },
+  {
+   "FinancialEventGroupId": "zwLHjSPEoENNNGYn6Aagym6lPPvaKYTasaeiIxgJGMA",
+   "ProcessingStatus": "Closed",
+   "FundTransferStatus": "Succeeded",
+   "OriginalTotal": {
+    "CurrencyCode": "USD",
+    "CurrencyAmount": 2514.13
+   },
+   "ConvertedTotal": null,
+   "BeginningBalance": {
+    "CurrencyCode": "USD",
+    "CurrencyAmount": 0.0
+   },
+   "FinancialEventGroupStart": "2026-10-02T19:21:41Z",
+   "FinancialEventGroupEnd": "2026-10-05T15:35:26Z",
+   "FundTransferDate": "2026-10-05T15:35:26Z"
+  },
+  {
+   "FinancialEventGroupId": "_Nkr0al272UVtD1hPKZjQt4xvV5_M7PvwQu0rKOQMtM",
+   "ProcessingStatus": "Closed",
+   "FundTransferStatus": "Succeeded",
+   "OriginalTotal": {
+    "CurrencyCode": "USD",
+    "CurrencyAmount": 702.14
+   },
+   "ConvertedTotal": null,
+   "BeginningBalance": {
+    "CurrencyCode": "USD",
+    "CurrencyAmount": 0.0
+   },
+   "FinancialEventGroupStart": "2026-10-01T18:51:32Z",
+   "FinancialEventGroupEnd": "2026-10-02T19:21:41Z",
+   "FundTransferDate": "2026-10-02T19:21:41Z"
+  },
+  {
+   "FinancialEventGroupId": "ki-nYfh9-7fxGXObEziRtz1jvkswYensZRsZKqYl7KY",
+   "ProcessingStatus": "Closed",
+   "FundTransferStatus": "Succeeded",
+   "OriginalTotal": {
+    "CurrencyCode": "USD",
+    "CurrencyAmount": 893.17
+   },
+   "ConvertedTotal": null,
+   "BeginningBalance": {
+    "CurrencyCode": "USD",
+    "CurrencyAmount": 0.0
+   },
+   "FinancialEventGroupStart": "2026-09-30T18:09:54Z",
+   "FinancialEventGroupEnd": "2026-10-01T18:51:32Z",
+   "FundTransferDate": "2026-10-01T18:51:32Z"
+  },
+  {
+   "FinancialEventGroupId": "eCDzbo_utQ8G_-koT7Duh5gj2kLtCo_kKut00_wp8_k",
+   "ProcessingStatus": "Closed",
+   "FundTransferStatus": "Succeeded",
+   "OriginalTotal": {
+    "CurrencyCode": "USD",
+    "CurrencyAmount": 949.63
+   },
+   "ConvertedTotal": null,
+   "BeginningBalance": {
+    "CurrencyCode": "USD",
+    "CurrencyAmount": 0.0
+   },
+   "FinancialEventGroupStart": "2026-09-29T15:59:50Z",
+   "FinancialEventGroupEnd": "2026-09-30T18:09:54Z",
+   "FundTransferDate": "2026-09-30T18:09:54Z"
+  },
+  {
+   "FinancialEventGroupId": "F0MIjSIsy-qn36WHvAiyG3hon_R2y6KkpPu3w1RH148",
+   "ProcessingStatus": "Closed",
+   "FundTransferStatus": "Succeeded",
+   "OriginalTotal": {
+    "CurrencyCode": "USD",
+    "CurrencyAmount": 564.07
+   },
+   "ConvertedTotal": null,
+   "BeginningBalance": {
+    "CurrencyCode": "USD",
+    "CurrencyAmount": 0.0
+   },
+   "FinancialEventGroupStart": "2026-09-28T15:56:48Z",
+   "FinancialEventGroupEnd": "2026-09-29T15:59:50Z",
+   "FundTransferDate": "2026-09-29T15:59:50Z"
+  },
+  {
+   "FinancialEventGroupId": "Tb7qy_YmVEuLUsBImvkSmFuriE_s56tanJhhxpC1hho",
+   "ProcessingStatus": "Closed",
+   "FundTransferStatus": "Succeeded",
+   "OriginalTotal": {
+    "CurrencyCode": "USD",
+    "CurrencyAmount": 1534.78
+   },
+   "ConvertedTotal": null,
+   "BeginningBalance": {
+    "CurrencyCode": "USD",
+    "CurrencyAmount": 0.0
+   },
+   "FinancialEventGroupStart": "2026-09-25T17:33:05Z",
+   "FinancialEventGroupEnd": "2026-09-28T15:56:48Z",
+   "FundTransferDate": "2026-09-28T15:56:48Z"
+  },
+  {
+   "FinancialEventGroupId": "RVcSxlngA73Na7AyjCzJ0EpYDDy9nDRrGK2qJzaet1U",
+   "ProcessingStatus": "Closed",
+   "FundTransferStatus": "Succeeded",
+   "OriginalTotal": {
+    "CurrencyCode": "USD",
+    "CurrencyAmount": 532.36
+   },
+   "ConvertedTotal": null,
+   "BeginningBalance": {
+    "CurrencyCode": "USD",
+    "CurrencyAmount": 0.0
+   },
+   "FinancialEventGroupStart": "2026-09-24T15:40:34Z",
+   "FinancialEventGroupEnd": "2026-09-25T17:33:05Z",
+   "FundTransferDate": "2026-09-25T17:33:05Z"
+  },
+  {
+   "FinancialEventGroupId": "HG-zcpMyk7ylqUVrfbNSv3GKbcZ1jfvpaRJQKUiTUM4",
+   "ProcessingStatus": "Closed",
+   "FundTransferStatus": "Succeeded",
+   "OriginalTotal": {
+    "CurrencyCode": "USD",
+    "CurrencyAmount": 1116.79
+   },
+   "ConvertedTotal": null,
+   "BeginningBalance": {
+    "CurrencyCode": "USD",
+    "CurrencyAmount": 0.0
+   },
+   "FinancialEventGroupStart": "2026-09-22T19:19:59Z",
+   "FinancialEventGroupEnd": "2026-09-24T15:40:34Z",
+   "FundTransferDate": "2026-09-24T15:40:34Z"
+  },
+  {
+   "FinancialEventGroupId": "CFeWXrpPCGu89BDSuP1HKanYXf8ePXM3kQa46PvdvUg",
+   "ProcessingStatus": "Closed",
+   "FundTransferStatus": "Succeeded",
+   "OriginalTotal": {
+    "CurrencyCode": "USD",
+    "CurrencyAmount": 830.61
+   },
+   "ConvertedTotal": null,
+   "BeginningBalance": {
+    "CurrencyCode": "USD",
+    "CurrencyAmount": 0.0
+   },
+   "FinancialEventGroupStart": "2026-09-21T16:20:25Z",
+   "FinancialEventGroupEnd": "2026-09-22T19:19:59Z",
+   "FundTransferDate": "2026-09-22T19:19:59Z"
+  },
+  {
+   "FinancialEventGroupId": "TZUu88IX_-ZHcqueOsCUUhtLlPhwFduTi-Pol58TFy0",
+   "ProcessingStatus": "Closed",
+   "FundTransferStatus": "Succeeded",
+   "OriginalTotal": {
+    "CurrencyCode": "USD",
+    "CurrencyAmount": 2142.48
+   },
+   "ConvertedTotal": null,
+   "BeginningBalance": {
+    "CurrencyCode": "USD",
+    "CurrencyAmount": 0.0
+   },
+   "FinancialEventGroupStart": "2026-09-18T15:39:34Z",
+   "FinancialEventGroupEnd": "2026-09-21T16:20:25Z",
+   "FundTransferDate": "2026-09-21T16:20:25Z"
+  },
+  {
+   "FinancialEventGroupId": "f7NwFFk3Wm--sOU3m0d6aMb_62EyWKnIYlZPKeVBgqg",
+   "ProcessingStatus": "Closed",
+   "FundTransferStatus": "Succeeded",
+   "OriginalTotal": {
+    "CurrencyCode": "USD",
+    "CurrencyAmount": 1557.68
+   },
+   "ConvertedTotal": null,
+   "BeginningBalance": {
+    "CurrencyCode": "USD",
+    "CurrencyAmount": 0.0
+   },
+   "FinancialEventGroupStart": "2026-09-16T22:55:22Z",
+   "FinancialEventGroupEnd": "2026-09-18T15:39:34Z",
+   "FundTransferDate": "2026-09-18T15:39:34Z"
+  },
+  {
+   "FinancialEventGroupId": "YWqavSYrEgW-MRdA0UqoHZ39m4WlWKftzpmuKqfsnkw",
+   "ProcessingStatus": "Closed",
+   "FundTransferStatus": "Succeeded",
+   "OriginalTotal": {
+    "CurrencyCode": "USD",
+    "CurrencyAmount": 1473.67
+   },
+   "ConvertedTotal": null,
+   "BeginningBalance": {
+    "CurrencyCode": "USD",
+    "CurrencyAmount": 0.0
+   },
+   "FinancialEventGroupStart": "2026-09-14T15:34:08Z",
+   "FinancialEventGroupEnd": "2026-09-16T22:55:22Z",
+   "FundTransferDate": "2026-09-16T22:55:22Z"
+  },
+  {
+   "FinancialEventGroupId": "SdKEwRCRz1uV4Esa_p4gzmJUZOp_az6BiJ6pLfv4-vA",
+   "ProcessingStatus": "Closed",
+   "FundTransferStatus": "Succeeded",
+   "OriginalTotal": {
+    "CurrencyCode": "USD",
+    "CurrencyAmount": 3518.63
+   },
+   "ConvertedTotal": null,
+   "BeginningBalance": {
+    "CurrencyCode": "USD",
+    "CurrencyAmount": 0.0
+   },
+   "FinancialEventGroupStart": "2026-09-10T20:41:56Z",
+   "FinancialEventGroupEnd": "2026-09-14T15:34:08Z",
+   "FundTransferDate": "2026-09-14T15:34:08Z"
+  },
+  {
+   "FinancialEventGroupId": "0fsD4aUQ4tZ9o303o8gJEGWzWY52cyouTp_A23n_UNY",
+   "ProcessingStatus": "Closed",
+   "FundTransferStatus": "Succeeded",
+   "OriginalTotal": {
+    "CurrencyCode": "USD",
+    "CurrencyAmount": 728.65
+   },
+   "ConvertedTotal": null,
+   "BeginningBalance": {
+    "CurrencyCode": "USD",
+    "CurrencyAmount": 0.0
+   },
+   "FinancialEventGroupStart": "2026-09-09T17:34:39Z",
+   "FinancialEventGroupEnd": "2026-09-10T20:41:56Z",
+   "FundTransferDate": "2026-09-10T20:41:56Z"
+  },
+  {
+   "FinancialEventGroupId": "egPqoVV9pNEq1jBE74nfC6CUSaOp_IOuyfSlBkfl5ok",
+   "ProcessingStatus": "Closed",
+   "FundTransferStatus": "Succeeded",
+   "OriginalTotal": {
+    "CurrencyCode": "USD",
+    "CurrencyAmount": 906.65
+   },
+   "ConvertedTotal": null,
+   "BeginningBalance": {
+    "CurrencyCode": "USD",
+    "CurrencyAmount": 0.0
+   },
+   "FinancialEventGroupStart": "2026-09-08T17:01:08Z",
+   "FinancialEventGroupEnd": "2026-09-09T17:34:39Z",
+   "FundTransferDate": "2026-09-09T17:34:39Z"
+  },
+  {
+   "FinancialEventGroupId": "8bofvA7DoB2gJZkS8kDourcFq5s-ay6dNLXTEEysU8c",
+   "ProcessingStatus": "Closed",
+   "FundTransferStatus": "Succeeded",
+   "OriginalTotal": {
+    "CurrencyCode": "USD",
+    "CurrencyAmount": 1463.02
+   },
+   "ConvertedTotal": null,
+   "BeginningBalance": {
+    "CurrencyCode": "USD",
+    "CurrencyAmount": 0.0
+   },
+   "FinancialEventGroupStart": "2026-09-04T21:33:26Z",
+   "FinancialEventGroupEnd": "2026-09-08T17:01:08Z",
+   "FundTransferDate": "2026-09-08T17:01:08Z"
+  },
+  {
+   "FinancialEventGroupId": "NGTQS6ejTdpwZUYBuqigYOQyvsZfOxm5GWieAq4R69c",
+   "ProcessingStatus": "Closed",
+   "FundTransferStatus": "Succeeded",
+   "OriginalTotal": {
+    "CurrencyCode": "USD",
+    "CurrencyAmount": 319.42
+   },
+   "ConvertedTotal": null,
+   "BeginningBalance": {
+    "CurrencyCode": "USD",
+    "CurrencyAmount": 0.0
+   },
+   "FinancialEventGroupStart": "2026-09-03T20:32:04Z",
+   "FinancialEventGroupEnd": "2026-09-04T21:33:26Z",
+   "FundTransferDate": "2026-09-04T21:33:26Z"
+  },
+  {
+   "FinancialEventGroupId": "f5WJ6JY_UMFfZ0qQrFLuz9by4eGhLj8K4cOhswcS6ms",
+   "ProcessingStatus": "Closed",
+   "FundTransferStatus": "Succeeded",
+   "OriginalTotal": {
+    "CurrencyCode": "USD",
+    "CurrencyAmount": 328.69
+   },
+   "ConvertedTotal": null,
+   "BeginningBalance": {
+    "CurrencyCode": "USD",
+    "CurrencyAmount": 0.0
+   },
+   "FinancialEventGroupStart": "2026-09-02T19:24:13Z",
+   "FinancialEventGroupEnd": "2026-09-03T20:32:04Z",
+   "FundTransferDate": "2026-09-03T20:32:04Z"
+  },
+  {
+   "FinancialEventGroupId": "DNfNadODvakkdNVo_v4DUMQFl58jpipmkhZQAFfwNjA",
+   "ProcessingStatus": "Closed",
+   "FundTransferStatus": "Succeeded",
+   "OriginalTotal": {
+    "CurrencyCode": "USD",
+    "CurrencyAmount": 397.32
+   },
+   "ConvertedTotal": null,
+   "BeginningBalance": {
+    "CurrencyCode": "USD",
+    "CurrencyAmount": 0.0
+   },
+   "FinancialEventGroupStart": "2026-09-01T18:59:01Z",
+   "FinancialEventGroupEnd": "2026-09-02T19:24:13Z",
+   "FundTransferDate": "2026-09-02T19:24:13Z"
+  },
+  {
+   "FinancialEventGroupId": "1zNmPH3aIe4kn54qnuKgVxiMMl5yF30E65KdOvzI8Us",
+   "ProcessingStatus": "Closed",
+   "FundTransferStatus": "Succeeded",
+   "OriginalTotal": {
+    "CurrencyCode": "USD",
+    "CurrencyAmount": 501.82
+   },
+   "ConvertedTotal": null,
+   "BeginningBalance": {
+    "CurrencyCode": "USD",
+    "CurrencyAmount": 0.0
+   },
+   "FinancialEventGroupStart": "2026-08-31T17:51:59Z",
+   "FinancialEventGroupEnd": "2026-09-01T18:59:01Z",
+   "FundTransferDate": "2026-09-01T18:59:01Z"
+  },
+  {
+   "FinancialEventGroupId": "9FMjIhcj5eEOhbUfcFPZtoJjXjPa0GIMWxBzvF3w6eo",
+   "ProcessingStatus": "Closed",
+   "FundTransferStatus": "Succeeded",
+   "OriginalTotal": {
+    "CurrencyCode": "USD",
+    "CurrencyAmount": 1385.22
+   },
+   "ConvertedTotal": null,
+   "BeginningBalance": {
+    "CurrencyCode": "USD",
+    "CurrencyAmount": 0.0
+   },
+   "FinancialEventGroupStart": "2026-08-27T23:35:02Z",
+   "FinancialEventGroupEnd": "2026-08-31T17:51:59Z",
+   "FundTransferDate": "2026-08-31T17:51:59Z"
+  },
+  {
+   "FinancialEventGroupId": "HpCXHyAKg_qPf4Df1vY7dEJVvmnjdrAtJ5WTBiXbJPs",
+   "ProcessingStatus": "Closed",
+   "FundTransferStatus": "Succeeded",
+   "OriginalTotal": {
+    "CurrencyCode": "USD",
+    "CurrencyAmount": 1305.05
+   },
+   "ConvertedTotal": null,
+   "BeginningBalance": {
+    "CurrencyCode": "USD",
+    "CurrencyAmount": 0.0
+   },
+   "FinancialEventGroupStart": "2026-08-25T19:52:27Z",
+   "FinancialEventGroupEnd": "2026-08-27T23:35:02Z",
+   "FundTransferDate": "2026-08-27T23:35:02Z"
+  },
+  {
+   "FinancialEventGroupId": "uVLpf7Q_EnxILIg3iFzfeIDIexNg8ljGRrqkydAs6bY",
+   "ProcessingStatus": "Closed",
+   "FundTransferStatus": "Succeeded",
+   "OriginalTotal": {
+    "CurrencyCode": "USD",
+    "CurrencyAmount": 802.12
+   },
+   "ConvertedTotal": null,
+   "BeginningBalance": {
+    "CurrencyCode": "USD",
+    "CurrencyAmount": 0.0
+   },
+   "FinancialEventGroupStart": "2026-08-24T16:44:52Z",
+   "FinancialEventGroupEnd": "2026-08-25T19:52:27Z",
+   "FundTransferDate": "2026-08-25T19:52:27Z"
+  },
+  {
+   "FinancialEventGroupId": "SYyzOoXlHtd1kTP_ZwNAxnogpT641L6ZTpcpyS9YDio",
+   "ProcessingStatus": "Closed",
+   "FundTransferStatus": "Succeeded",
+   "OriginalTotal": {
+    "CurrencyCode": "USD",
+    "CurrencyAmount": 2559.6
+   },
+   "ConvertedTotal": null,
+   "BeginningBalance": {
+    "CurrencyCode": "USD",
+    "CurrencyAmount": 0.0
+   },
+   "FinancialEventGroupStart": "2026-08-21T00:30:05Z",
+   "FinancialEventGroupEnd": "2026-08-24T16:44:52Z",
+   "FundTransferDate": "2026-08-24T16:44:52Z"
+  },
+  {
+   "FinancialEventGroupId": "RlqocIqnerfl702zoJ6U-yW4Vx1cw--dwqJPoZ7HR9o",
+   "ProcessingStatus": "Closed",
+   "FundTransferStatus": "Succeeded",
+   "OriginalTotal": {
+    "CurrencyCode": "USD",
+    "CurrencyAmount": 733.89
+   },
+   "ConvertedTotal": null,
+   "BeginningBalance": {
+    "CurrencyCode": "USD",
+    "CurrencyAmount": 0.0
+   },
+   "FinancialEventGroupStart": "2026-08-19T19:33:29Z",
+   "FinancialEventGroupEnd": "2026-08-21T00:30:05Z",
+   "FundTransferDate": "2026-08-21T00:30:05Z"
+  },
+  {
+   "FinancialEventGroupId": "FsDNPrnpDs_wBYti4y2-KqU8lBSEgsOnFJEcZG6jDqM",
+   "ProcessingStatus": "Closed",
+   "FundTransferStatus": "Succeeded",
+   "OriginalTotal": {
+    "CurrencyCode": "USD",
+    "CurrencyAmount": 766.76
+   },
+   "ConvertedTotal": null,
+   "BeginningBalance": {
+    "CurrencyCode": "USD",
+    "CurrencyAmount": 0.0
+   },
+   "FinancialEventGroupStart": "2026-08-18T17:12:22Z",
+   "FinancialEventGroupEnd": "2026-08-19T19:33:29Z",
+   "FundTransferDate": "2026-08-19T19:33:29Z"
+  },
+  {
+   "FinancialEventGroupId": "BDdcJXMgy6q2764YeF6OluiO7oj8pCF-pkMBhb4AHkE",
+   "ProcessingStatus": "Closed",
+   "FundTransferStatus": "Succeeded",
+   "OriginalTotal": {
+    "CurrencyCode": "USD",
+    "CurrencyAmount": 1061.05
+   },
+   "ConvertedTotal": null,
+   "BeginningBalance": {
+    "CurrencyCode": "USD",
+    "CurrencyAmount": 0.0
+   },
+   "FinancialEventGroupStart": "2026-08-17T15:56:09Z",
+   "FinancialEventGroupEnd": "2026-08-18T17:12:22Z",
+   "FundTransferDate": "2026-08-18T17:12:22Z"
+  }
+ ]
+}
