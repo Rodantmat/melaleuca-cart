@@ -57,11 +57,11 @@
   },
   "7": {
    "tab": "Antonio M",
-   "mode": "waiting",
+   "mode": "idle",
    "armed": "2026-10-30T22:53:11Z",
-   "next_scrape": "2026-10-31T13:00:00Z",
+   "next_scrape": "",
    "tries": 0,
-   "note": "",
+   "note": "all delivered 2026-10-31T13:11:40Z",
    "last_error": ""
   },
   "8": {
@@ -155,5 +155,5 @@
    "last_error": ""
   }
  },
- "updated": "2026-10-31T12:55:03Z"
+ "updated": "2026-10-31T13:11:40Z"
 }
