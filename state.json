@@ -84,11 +84,11 @@
   },
   "10": {
    "tab": "Liz C",
-   "mode": "tracking",
+   "mode": "idle",
    "armed": "",
    "next_scrape": "",
    "tries": 0,
-   "note": "",
+   "note": "all delivered 2026-10-31T21:21:31Z",
    "last_error": ""
   },
   "11": {
@@ -138,22 +138,22 @@
   },
   "16": {
    "tab": "Dyorgenes O",
-   "mode": "tracking",
+   "mode": "idle",
    "armed": "",
    "next_scrape": "",
    "tries": 0,
-   "note": "",
+   "note": "all delivered 2026-10-31T21:21:31Z",
    "last_error": ""
   },
   "17": {
    "tab": "Alfonso L",
-   "mode": "tracking",
+   "mode": "idle",
    "armed": "",
    "next_scrape": "",
    "tries": 0,
-   "note": "",
+   "note": "all delivered 2026-10-31T21:21:31Z",
    "last_error": ""
   }
  },
- "updated": "2026-10-31T21:06:34Z"
+ "updated": "2026-10-31T21:21:31Z"
 }
