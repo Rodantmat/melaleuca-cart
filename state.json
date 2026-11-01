@@ -66,20 +66,20 @@
   },
   "8": {
    "tab": "William Y",
-   "mode": "tracking",
+   "mode": "idle",
    "armed": "",
    "next_scrape": "",
    "tries": 0,
-   "note": "",
+   "note": "all delivered 2026-11-01T01:17:07Z",
    "last_error": ""
   },
   "9": {
    "tab": "Adriana M",
-   "mode": "tracking",
+   "mode": "idle",
    "armed": "",
    "next_scrape": "",
    "tries": 0,
-   "note": "",
+   "note": "all delivered 2026-11-01T01:17:07Z",
    "last_error": ""
   },
   "10": {
@@ -102,11 +102,11 @@
   },
   "12": {
    "tab": "Jonathan A",
-   "mode": "tracking",
+   "mode": "idle",
    "armed": "",
    "next_scrape": "",
    "tries": 0,
-   "note": "",
+   "note": "all delivered 2026-11-01T01:17:07Z",
    "last_error": ""
   },
   "13": {
@@ -120,11 +120,11 @@
   },
   "14": {
    "tab": "Juan R",
-   "mode": "tracking",
+   "mode": "idle",
    "armed": "",
    "next_scrape": "",
    "tries": 0,
-   "note": "",
+   "note": "all delivered 2026-11-01T01:17:07Z",
    "last_error": ""
   },
   "15": {
@@ -155,5 +155,5 @@
    "last_error": ""
   }
  },
- "updated": "2026-11-01T01:02:06Z"
+ "updated": "2026-11-01T01:17:07Z"
 }
