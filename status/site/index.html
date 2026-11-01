@@ -108,7 +108,8 @@ function render(){
     return {all,list};
   }).filter(g=>g.list.length);
   const best=g=>Math.min(...g.all.map(etaMs));
-  cards.sort((a,b)=>SORT==="eta"?(best(a)-best(b))||(a.all[0].name>b.all[0].name?1:-1):(a.all[0].name.toLowerCase()>b.all[0].name.toLowerCase()?1:-1));
+  const RG=c=>({"US":0,"Vancouver":1,"Toronto":2})[c.all[0].region]??3;
+  cards.sort((a,b)=>SORT==="eta"?(best(a)-best(b))||(a.all[0].name>b.all[0].name?1:-1):(RG(a)-RG(b))||(a.all[0].name.toLowerCase()>b.all[0].name.toLowerCase()?1:-1));
   $("cards").innerHTML=cards.map(g=>{
     const f=g.all[0], tot=g.all.filter(r=>r.tracking).length, dl=g.all.filter(r=>r.status==="DELIVERED").length, nxt=best(g);
     let sum="";
@@ -130,7 +131,7 @@ async function load(){
 }
 // search box + (main page only) the two refresh buttons
 const bar=$("bar");
-bar.innerHTML=`<input type="search" id="q" placeholder="Search name, city, tracking number..."><select id="srt"><option value="name">Sort: name</option><option value="eta">Sort: soonest delivery</option></select>`+`<button id="breload">Reload</button>`;
+bar.innerHTML=`<input type="search" id="q" placeholder="Search name, city, tracking number..."><select id="srt"><option value="name">Sort: San Diego, Vancouver, Toronto</option><option value="eta">Sort: soonest delivery</option></select>`+`<button id="breload">Reload</button>`;
 $("q").oninput=e=>{FILTER=e.target.value;render()};$("srt").onchange=e=>{SORT=e.target.value;render()};
 $("breload").onclick=load;
 load();setInterval(load,300000);
