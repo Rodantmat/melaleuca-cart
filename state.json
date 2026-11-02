@@ -39,11 +39,11 @@
   },
   "5": {
    "tab": "Alexandra S",
-   "mode": "tracking",
+   "mode": "idle",
    "armed": "",
    "next_scrape": "",
    "tries": 0,
-   "note": "",
+   "note": "all delivered 2026-11-02T19:06:38Z",
    "last_error": ""
   },
   "6": {
@@ -155,5 +155,5 @@
    "last_error": ""
   }
  },
- "updated": "2026-11-02T18:50:14Z"
+ "updated": "2026-11-02T19:06:38Z"
 }
