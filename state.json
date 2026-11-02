@@ -93,11 +93,11 @@
   },
   "11": {
    "tab": "Karina G",
-   "mode": "tracking",
+   "mode": "idle",
    "armed": "",
    "next_scrape": "",
    "tries": 0,
-   "note": "",
+   "note": "all delivered 2026-11-02T23:00:24Z",
    "last_error": ""
   },
   "12": {
@@ -155,5 +155,5 @@
    "last_error": ""
   }
  },
- "updated": "2026-11-02T22:45:23Z"
+ "updated": "2026-11-02T23:00:24Z"
 }
