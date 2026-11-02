@@ -21,11 +21,11 @@
   },
   "3": {
    "tab": "Liliana C",
-   "mode": "tracking",
+   "mode": "idle",
    "armed": "",
    "next_scrape": "",
    "tries": 0,
-   "note": "",
+   "note": "all delivered 2026-11-02T23:15:28Z",
    "last_error": ""
   },
   "4": {
@@ -111,11 +111,11 @@
   },
   "13": {
    "tab": "Jessica M",
-   "mode": "tracking",
+   "mode": "idle",
    "armed": "",
    "next_scrape": "",
    "tries": 0,
-   "note": "",
+   "note": "all delivered 2026-11-02T23:15:28Z",
    "last_error": ""
   },
   "14": {
@@ -155,5 +155,5 @@
    "last_error": ""
   }
  },
- "updated": "2026-11-02T23:00:24Z"
+ "updated": "2026-11-02T23:15:28Z"
 }
