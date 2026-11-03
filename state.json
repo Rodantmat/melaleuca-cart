@@ -129,11 +129,11 @@
   },
   "15": {
    "tab": "Abel P",
-   "mode": "tracking",
+   "mode": "idle",
    "armed": "",
    "next_scrape": "",
    "tries": 0,
-   "note": "",
+   "note": "all delivered 2026-11-03T08:52:08Z",
    "last_error": ""
   },
   "16": {
@@ -155,5 +155,5 @@
    "last_error": ""
   }
  },
- "updated": "2026-11-03T06:56:32Z"
+ "updated": "2026-11-03T08:52:08Z"
 }
