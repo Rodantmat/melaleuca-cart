@@ -48,11 +48,11 @@
   },
   "6": {
    "tab": "Rudy A",
-   "mode": "tracking",
+   "mode": "idle",
    "armed": "",
    "next_scrape": "",
    "tries": 0,
-   "note": "",
+   "note": "all delivered 2026-11-03T02:55:59Z",
    "last_error": ""
   },
   "7": {
@@ -155,5 +155,5 @@
    "last_error": ""
   }
  },
- "updated": "2026-11-03T02:40:59Z"
+ "updated": "2026-11-03T02:55:59Z"
 }
