@@ -4,7 +4,7 @@ on:
     inputs:
       max: { description: "max ASINs (0 = all)", default: "0" }
   schedule:
-    - cron: "37 9 * * *"
+    - cron: "37 9 * * *"   # the heartbeat starts the scans (06:30 / 12:30 / 18:30 UTC); this daily one is only a fallback
 permissions:
   contents: write
 concurrency: { group: reprice-state, cancel-in-progress: false }

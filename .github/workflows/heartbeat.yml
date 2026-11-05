@@ -45,6 +45,15 @@ jobs:
                 fi
               fi
             done
+            # web Buy Box scan slots (UTC): the first beat after 06:30 / 12:30 / 18:30, ~45 min before each reprice slot, once per slot (cheap: ~10 MB, HTML only)
+            for slot in 390 750 1110; do
+              if [ $mins -ge $slot ] && [ $mins -lt $((slot+20)) ]; then
+                recent=$(gh api "repos/$REPO/actions/workflows/bb_web.yml/runs?per_page=3" -q "[.workflow_runs[]|select((.created_at|fromdateiso8601) > $((now-10800)))]|length" 2>/dev/null || echo 0)
+                if [ "${recent:-0}" = "0" ]; then
+                  gh api -X POST "repos/$REPO/actions/workflows/bb_web.yml/dispatches" -f ref=main >/dev/null 2>&1 && echo "web scan dispatched $(date -u +%H:%M)" || echo "web scan dispatch failed"
+                fi
+              fi
+            done
             [ $(date +%s) -ge $end ] && break
             sleep 60
           done
