@@ -156,17 +156,26 @@ def run(max_asins=0):
         prio = set(asins)
     now = dt.datetime.now(dt.timezone.utc).strftime("%Y-%m-%d %H:%M")
     rows = []
+    wire = {"bytes": 0, "n": 0}                         # what the proxy really carries (compressed, on the wire): tallied from every finished request
+    CHUNK = int(os.environ.get("AMZ_CHUNK", "30"))      # products per browser session / proxy IP: Amazon cuts an IP after ~110 requests, so we leave long before
+    BLOCK_PAUSE = int(os.environ.get("AMZ_BLOCK_PAUSE", "25"))
     UA = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36"
     def session(port):
         """one browser session on one proxy IP; returns True when Amazon blocked us (the caller then tries another IP).  Fills `rows`, skips what was already read."""
         done = {r["asin"] for r in rows if not r.get("err") or r.get("note")}
-        todo = [a for a in asins if a not in done]
+        todo = [a for a in asins if a not in done][:CHUNK]
         if not todo:
             return False
         with sync_playwright() as p:
             b = p.chromium.launch(**mk_kw(port))
             ctx = b.new_context(user_agent=UA, locale="en-US", viewport={"width": 1366, "height": 900})
             ctx.route("**/*", lambda r: r.abort() if r.request.resource_type in ("image", "media", "font", "stylesheet") else r.continue_())   # traffic: text only
+            def _fin(rq):
+                try:
+                    sz = rq.sizes(); wire["bytes"] += (sz.get("responseBodySize") or 0) + (sz.get("responseHeadersSize") or 0) + (sz.get("requestBodySize") or 0) + (sz.get("requestHeadersSize") or 0); wire["n"] += 1
+                except Exception:
+                    pass
+            ctx.on("requestfinished", _fin)
             pg = ctx.new_page()
             bytes_ = 0
             try:
@@ -174,7 +183,7 @@ def run(max_asins=0):
                 pg.wait_for_timeout(1500)
             except Exception as e:
                 print("warm-up failed: %s" % str(e)[:80])
-            dp_budget = int(os.environ.get("DP_MAX", "25"))                      # full product pages (2 MB each) only where they add something
+            dp_budget = int(os.environ.get("DP_MAX", "10"))                      # full product pages (2 MB each) only where they add something
             fails = 0
             for k, a in enumerate(todo):
                 rec = {"t": now, "asin": a}
@@ -212,12 +221,19 @@ def run(max_asins=0):
             b.close()
         return False
 
-    for attempt in range(2):                       # a rate-limited IP (503) -> start again with another IP (another sticky port); what was read is kept
-        port = base_port + attempt * 11 + int(time.time()) % 7
-        print("browser session %d on proxy port %d" % (attempt + 1, port)); sys.stdout.flush()
-        if not session(port):
+    blocked_in_a_row = 0
+    for attempt in range(10):                      # short sessions, each on its own proxy IP (another sticky port); what was read is kept, the rest is read by the next session
+        done_ = {r["asin"] for r in rows if not r.get("err") or r.get("note")}
+        if not [a for a in asins if a not in done_]:
             break
-        time.sleep(300)                            # let Amazon calm down before trying another IP
+        port = base_port + attempt * 11 + int(time.time()) % 7
+        print("browser session %d on proxy port %d  (%d of %d products read so far, wire %.1f MB)" % (attempt + 1, port, len(done_), len(asins), wire["bytes"] / 1048576.0)); sys.stdout.flush()
+        blocked = session(port)
+        blocked_in_a_row = blocked_in_a_row + 1 if blocked else 0
+        if blocked_in_a_row >= 3:
+            print("three blocked sessions in a row - stopping for today (partial scan kept)"); break
+        time.sleep(BLOCK_PAUSE if blocked else 6)
+    print("proxy traffic on the wire: %.1f MB in %d requests" % (wire["bytes"] / 1048576.0, wire["n"]))
     os.makedirs(S, exist_ok=True)
     with open(os.path.join(S, "webbb.jsonl"), "a") as fh:
         for r in rows: fh.write(json.dumps(r) + "\n")
@@ -226,7 +242,7 @@ def run(max_asins=0):
         for r in rows:
             fh.write("\t".join("" if r.get(c) is None else str(r.get(c)) for c in ["asin", "bb_price", "seller_id", "sold_by", "ships_from", "left", "offers_n", "bought_month", "rating", "reviews", "we_win", "err"]) + "\n")
     ok = [r for r in rows if r.get("bb_price")]
-    json.dump({"t": now, "rows": len(rows), "priced": sum(1 for r in rows if r.get("bb_price")), "errors": [r.get("err") for r in rows if r.get("err")][:5], "of": len(asins)}, open(os.path.join(S, "webbb_status.json"), "w"))
+    json.dump({"t": now, "rows": len(rows), "priced": sum(1 for r in rows if r.get("bb_price")), "errors": [r.get("err") for r in rows if r.get("err")][:5], "of": len(asins), "wire_mb": round(wire["bytes"] / 1048576.0, 1), "wire_requests": wire["n"]}, open(os.path.join(S, "webbb_status.json"), "w"))
     print("web Buy Box: %d ASINs read, %d with a price, we win %d, errors %d" % (len(rows), len(ok), sum(1 for r in ok if r.get("we_win")), sum(1 for r in rows if r.get("err"))))
 
 

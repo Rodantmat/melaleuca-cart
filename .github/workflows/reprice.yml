@@ -22,6 +22,8 @@ jobs:
           cd reprice
           python tests/test_engine.py
           python tests/test_run_helpers.py
+          python tests/test_owner_rules.py
+          python tests/test_run_pipeline.py
           python sim.py 25 200 11 | tail -3
           python sim.py 25 200 12 | tail -3
       - name: Fetch saved state

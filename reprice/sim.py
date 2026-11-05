@@ -125,11 +125,14 @@ def snapshot(w, price, pc, changes, last_change, pc_prev, now, day):
         hist = {"n": len(sold_p), "p_low": sold_p[int(0.07 * (len(sold_p) - 1))], "p_mid": sold_p[len(sold_p) // 2], "p_high": sold_p[int(0.95 * (len(sold_p) - 1))]}
     pbb = pc if (pc is None or w.mtype == "F") else round(pc * w.fbm_cut, 2)        # an FBM winner sits below the cheapest FBA offer
     we_hold = (pbb is None) or price <= pbb * 1.005
+    if w.stock <= 0 and pbb:                                   # out of stock our offer is not live: the Buy Box shown is the rival's
+        we_hold = False
     bb = price if we_hold else pbb
     return {"sku": "SIM", "price": price, "cost": w.cost, "fba_fee": w.fba, "on_hand": w.stock, "inbound": sum(q for _, q in w.pending),
             "units_7": u(7), "units_30": u(30), "units_90": u(90), "in_stock_days_30": ist(30), "in_stock_days_7": ist(7),
             "days_since_sale": day - w.last_sale_day, "aged_units": 0, "bb": bb, "we_hold_bb": we_hold, "bb_type": (w.mtype if not we_hold else None), "low_fba": pc, "low_new": pc,
-            "foep": (pbb * 0.995 if pbb and not we_hold else None), "hist": hist, "last_change": last_change, "changes": changes}
+            "foep": (pbb * 0.995 if pbb and not we_hold else None), "hist": hist, "last_change": last_change, "changes": changes,
+            "n_rivals": (0 if w.scn == "no_competitor" else 1)}
 
 
 def run(seed, scenario, days, use_engine, cfg):
@@ -174,12 +177,16 @@ def run(seed, scenario, days, use_engine, cfg):
                     viol.append(("S1 below safety floor", scenario, seed, day, price, newp, safety))
                 if dec["action"] == "down" and newp < floor - 0.005 and "severe" not in dec["flags"]:
                     viol.append(("S1 below floor (not severe)", scenario, seed, day, price, newp, floor))
-                if ceil and dec["action"] == "up" and newp > ceil + 0.005:
-                    viol.append(("S1 above ceiling", scenario, seed, day, price, newp, ceil))
+                ceil_lim = ceil * (cfg["CEIL_MULT_ALONE"] if (dec.get("alone") or dec.get("zero_stock")) else 1.0) if ceil else None
+                if ceil_lim and dec["action"] == "up" and newp > ceil_lim + 0.005:
+                    viol.append(("S1 above ceiling", scenario, seed, day, price, newp, ceil_lim))
                 if dec["action"] == "down" and (price - newp) > price * (cfg["STEP_DOWN_MAX"]) + 0.011 and (price - newp) > cfg["MIN_STEP"] + 0.011:
                     viol.append(("S2 step down too big", scenario, seed, day, price, newp))
-                if dec["action"] == "up" and (newp - price) > price * cfg["STEP_UP"] + 0.011 and (newp - price) > cfg["MIN_STEP"] + 0.011:
+                lim_up = cfg["STEP_UP_ALONE"] if dec.get("alone") else cfg["STEP_UP"]
+                if dec["action"] == "up" and not dec.get("zero_stock") and (newp - price) > price * lim_up + 0.011 and (newp - price) > cfg["MIN_STEP"] + 0.011:
                     viol.append(("S2 step up too big", scenario, seed, day, price, newp))
+                if dec.get("zero_stock") and newp > snap["bb"] - cfg["UNDER_BB"] + 0.005:
+                    viol.append(("ZS above rival box minus margin", scenario, seed, day, price, newp, snap["bb"]))
                 if dec["action"] == "down" and snap["on_hand"] <= 0:
                     viol.append(("S6 lowered with no stock", scenario, seed, day, price, newp))
                 n14 = sum(1 for c in changes if (now - c["ts"]) <= timedelta(days=14))

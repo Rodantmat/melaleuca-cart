@@ -19,13 +19,24 @@ from datetime import datetime, timedelta
 
 DEFAULTS = {
     "REF_RATE": 0.15,            # referral fee used to size the floor (conservative: the highest Amazon charges for these categories)
-    "MIN_ABS_PROFIT": 0.75,      # $ per unit, never less
-    "MIN_ROI": 0.10,             # and never less than 10% of the unit cost
+    "MIN_ABS_PROFIT": 0.75,      # $ per unit, never less (normal floor)
+    "MIN_ROI": 0.20,             # OWNER 2026-11-04: floor = 20% profit on top of what he pays (cost), after fees
+    "SLOW1_DAYS": 90, "SLOW1_ROI": 0.10,   # OWNER: no sale for 90 days -> may go down to 10% profit
+    "SLOW2_DAYS": 120, "SLOW2_ROI": 0.05, # ... and to 5% profit; never lower (never lose money)
+    "SLOW_MIN_ABS": 0.25,        # $ per unit minimum on the slow tiers
+    "HIST_OFF_DAYS": 30,         # the history floor stops protecting the price once a product has not sold for 30 days
     "HIST_MIN_UNITS": 6,         # units needed in the last 365 days before the history is trusted
     "HIST_FLOOR_PCT": 0.07,      # the history floor = this percentile of the unit prices that really sold
     "STEP_DOWN": 0.03,           # normal step down (3% of the price)
-    "STEP_DOWN_MAX": 0.06,       # severe drought / aged stock
-    "STEP_UP": 0.03,
+    "STEP_DOWN_MAX": 0.04,       # severe drought / aged stock (OWNER: drops very mild and gradual)
+    "STEP_UP": 0.05,             # OWNER: raise aggressively, drop gradually
+    "STEP_UP_ALONE": 0.08,       # nobody else sells it: big steps (example: 25 -> 39.99), each checked by the 7-day sales test
+    "MAX_RISE_30D_ALONE": 0.30,
+    "CEIL_MULT_ALONE": 1.60,
+    "COOLDOWN_UP_ALONE_H": 72,
+    "ZERO_STOCK_FOLLOW": True,
+    "MAX_RISE_ZERO_STOCK": 0.60,   # nothing to sell now, so a big move costs no sales: follow the rival box up to this far in 30 days
+    "UNDER_BB": 0.03,            # zero stock: raise to this many dollars under the rival Buy Box price
     "MIN_STEP": 0.10,            # $ - smaller moves are not worth a price change
     "COOLDOWN_DOWN_H": 48,
     "COOLDOWN_UP_H": 96,
@@ -35,10 +46,10 @@ DEFAULTS = {
     "MANUAL_FREEZE_DAYS": 5,
     "DROUGHT_MIN_DAYS": 14,      # a product that sells ~1/day is in a drought after 10 days without sale
     "DROUGHT_MULT": 3.0,         # ... one that sells 1/month after 2.5 normal gaps (75 d), capped at DROUGHT_MAX
-    "DROUGHT_MAX": 120,
+    "DROUGHT_MAX": 30,           # OWNER: no sale for 30 days -> start lowering (gently)
     "DOS_MIN_DROP": 45,          # a drought only lowers the price when there is more than 30 days of stock to move
     "BIG_GAP": 0.08,             # market at least 8% above our price -> raise in a bigger step
-    "STEP_UP_BIG": 0.05,
+    "STEP_UP_BIG": 0.10,
     "DOS_HIGH": 75,              # days of supply above which stock is a surplus
     "DOS_LOW": 25,               # below this the product sells out soon -> room to raise
     "UP_MIN_UNITS_30": 4,        # evidence needed before raising
@@ -80,25 +91,47 @@ def _f(x, d=None):
         return d
 
 
-def floors(snap, cfg):
-    """(safety_floor, floor, ceiling).  safety = cost + fees + minimum profit  (never crossed);  floor = max(safety, history floor)."""
+def _roi_for(snap, cfg):
+    """profit rate the floor protects: 20% normally; 10% / 5% only for stock that has not sold for 90 / 120 days"""
+    dss = _f(snap.get("days_since_sale"))
+    on_hand = _f(snap.get("on_hand"), 0.0)
+    if dss is not None and on_hand > 0:
+        if dss >= cfg["SLOW2_DAYS"]:
+            return cfg["SLOW2_ROI"], cfg["SLOW_MIN_ABS"]
+        if dss >= cfg["SLOW1_DAYS"]:
+            return cfg["SLOW1_ROI"], cfg["SLOW_MIN_ABS"]
+    return cfg["MIN_ROI"], cfg["MIN_ABS_PROFIT"]
+
+
+def _price_for_profit(cost, fba, fixed, prof, r):
+    return (cost + fba + fixed + prof) / (1.0 - r)
+
+
+def floors(snap, cfg, with_hist=True):
+    """(hard_floor, floor, ceiling).
+       hard_floor = the lowest price ever allowed = cost + fees + the slowest-tier profit (5%): never lose money, any price below it is lifted.
+       floor      = cost + fees + 20% of cost (10% / 5% for stock unsold 90 / 120 days); the history floor (7th percentile of past sold prices) also
+                    protects the price, but only while the product still sells (not after HIST_OFF_DAYS without a sale)."""
     cost = _f(snap.get("cost"))
     if not cost or cost <= 0:
         return None, None, None
     fba = _f(snap.get("fba_fee"), 0.0)
     fixed = _f(snap.get("fee_fixed"), 0.0)            # closing fees etc.
-    prof = max(cfg["MIN_ABS_PROFIT"], cfg["MIN_ROI"] * cost)
     r = cfg["REF_RATE"]
-    safety = (cost + fba + fixed + prof) / (1.0 - r)
+    hard = _price_for_profit(cost, fba, fixed, max(cfg["SLOW_MIN_ABS"], cfg["SLOW2_ROI"] * cost), r)
+    roi, ab = _roi_for(snap, cfg)
+    normal = _price_for_profit(cost, fba, fixed, max(ab, roi * cost), r)
+    normal = max(normal, hard)
     hist_floor = None
     hp = snap.get("hist") or {}
-    if hp.get("n", 0) >= cfg["HIST_MIN_UNITS"] and _f(hp.get("p_low")):
+    dss = _f(snap.get("days_since_sale"))
+    if with_hist and hp.get("n", 0) >= cfg["HIST_MIN_UNITS"] and _f(hp.get("p_low")) and not (dss is not None and dss >= cfg["HIST_OFF_DAYS"] and _f(snap.get("on_hand"), 0.0) > 0):
         hist_floor = hp["p_low"]
-    floor = max(safety, hist_floor) if hist_floor else safety
+    floor = max(normal, hist_floor) if hist_floor else normal
     ceil = None
     if hp.get("n", 0) >= cfg["HIST_MIN_UNITS"] and _f(hp.get("p_high")):
         ceil = hp["p_high"] * cfg["MAX_PRICE_MULT_OVER_HIST"]
-    return _r2(safety), _r2(floor), (_r2(ceil) if ceil else None)
+    return _r2(hard), _r2(floor), (_r2(ceil) if ceil else None)
 
 
 def _hours_since(ts, now):
@@ -199,7 +232,7 @@ def decide(snap, cfg=None, now=None):
         if since_last_h < cfg["COOLDOWN_DOWN_H"]:
             return hold("waiting after the last change (%.0f h of %d h)" % (since_last_h, cfg["COOLDOWN_DOWN_H"]), floor=floor, ceil=ceil)
         deep = severe
-        lowest_allowed = safety if deep else floor
+        lowest_allowed = floors(snap, cfg, with_hist=False)[1] if deep else floor      # severe cases may cross the history floor, never the profit floor of their tier
         if price <= lowest_allowed + 0.005:
             flags.append("at_floor")
             return hold("at the minimum-profit floor %.2f while stock sits (%s) - consider removal / bundle" % (lowest_allowed, "severe" if deep else "drought"), floor=floor, ceil=ceil, alert="stuck_at_floor")
@@ -224,7 +257,8 @@ def decide(snap, cfg=None, now=None):
         target = _r2(target)
         if target >= price - 0.005 or price - target < min(cfg["MIN_STEP"], 0.02 * price):
             return hold("no room to lower further within the limits", floor=floor, ceil=ceil)
-        return {"action": "down", "price": target, "reason": why, "flags": flags + (["severe"] if severe else []), "floor": floor, "ceil": ceil, "severe": bool(severe), "dss": dss, "dos": dos}
+        return {"action": "down", "price": target, "reason": why, "flags": flags + (["severe"] if severe else []), "floor": floor, "ceil": ceil, "severe": bool(severe), "dss": dss, "dos": dos,
+                "impact": round(on_hand * (_f(snap.get("cost"), 0.0) or 0.0) * (2.0 if severe else 1.0), 2)}
 
     # =============================================================== MATCH (win the Buy Box back, only when it pays)
     if cfg.get("MATCH_ENABLED") and on_hand >= cfg["MATCH_MIN_STOCK"] and not anomalous and not (in_drought or surplus) and we_hold is False:
@@ -251,6 +285,20 @@ def decide(snap, cfg=None, now=None):
                             "FBM" if wtype == "M" else "FBA", ref, 100 * (price / ref - 1), 100 * v30 / v90, min(dos, 999)),
                         "flags": flags + ["match"], "floor": floor, "ceil": ceil, "severe": False, "dss": dss, "dos": dos}
 
+    # =============================================================== ZERO STOCK: price follows the rival Buy Box, so the next units sell high
+    # OWNER 2026-11-04: "if there's zero available, but the prices on the buy box are higher, raise the price close to the buy box prices, or a little bit under"
+    if cfg.get("ZERO_STOCK_FOLLOW", True) and on_hand <= 0 and u90 >= 1 and bb and not anomalous and bb > price + cfg["MIN_STEP"]:
+        if since_last_h >= cfg["COOLDOWN_UP_H"]:
+            target = bb - cfg["UNDER_BB"]
+            if ceil:
+                target = min(target, ceil * cfg["CEIL_MULT_ALONE"])
+            c30 = [c for c in changes if (now - c["ts"]) <= timedelta(days=30)]
+            base_ = min([price] + [c["old"] for c in c30])
+            target = _r2(min(target, base_ * (1 + cfg["MAX_RISE_ZERO_STOCK"])))
+            if target >= price + cfg["MIN_STEP"] - 1e-9:
+                return {"action": "up", "price": target, "reason": "no stock, rival Buy Box at %.2f: price follows it (%.2f) so the next units sell higher" % (bb, target),
+                        "flags": flags, "base_v": None, "floor": floor, "ceil": ceil, "zero_stock": True, "impact": round(max(u90 / 3.0, 1.0) * (target - price), 2)}
+
     # =============================================================== UP
     if (on_hand > 0 or inbound > 0) and u30 >= cfg["UP_MIN_UNITS_30"] and not in_drought and not surplus and not anomalous:
         if since_last_h < cfg["COOLDOWN_UP_H"]:
@@ -258,9 +306,18 @@ def decide(snap, cfg=None, now=None):
         room_ok = False
         target = None
         comp = low_fba or None
-        if bb and we_hold is False:
+        n_riv = snap.get("n_rivals")                   # sellers other than us with a New offer (Amazon offers list + the web page); None = unknown
+        alone = (n_riv is not None and n_riv == 0)
+        if alone:
+            comp = None
+        if bb and we_hold is False and not alone:
             return hold("another seller owns the Buy Box - no raise", floor=floor, ceil=ceil)
-        if dos <= cfg["DOS_LOW"]:                       # sells out soon: stop giving margin away
+        if alone and dos > 0:                           # nobody else sells it: raise hard, the 7-day sales test undoes a mistake
+            if since_last_h < cfg["COOLDOWN_UP_ALONE_H"]:
+                return hold("waiting after the last change", floor=floor, ceil=ceil)
+            target = price * (1 + cfg["STEP_UP_ALONE"])
+            room_ok = True
+        elif dos <= cfg["DOS_LOW"]:                       # sells out soon: stop giving margin away
             step = cfg["STEP_UP"]
             ref = min([x for x in (foep, bb, low_fba) if x] or [0])
             if ref and ref >= price * (1 + cfg["BIG_GAP"]):      # the market (Amazon's own target price / Buy Box / cheapest rival) is well above us: bigger step
@@ -279,15 +336,15 @@ def decide(snap, cfg=None, now=None):
                     return hold("competitor too close above - no raise", floor=floor, ceil=ceil)
                 target = min(target, comp - 0.01)
             if top:
-                target = min(target, top)
+                target = min(target, top * (cfg["CEIL_MULT_ALONE"] if alone else 1.0))
             c30 = [c for c in changes if (now - c["ts"]) <= timedelta(days=30)]
             if c30:
                 base = min(c["old"] for c in c30)
-                target = min(target, base * (1 + cfg["MAX_RISE_30D"]))
+                target = min(target, base * (1 + (cfg["MAX_RISE_30D_ALONE"] if alone else cfg["MAX_RISE_30D"])))
             target = _r2(target)
             if target >= price + cfg["MIN_STEP"] - 1e-9:
-                return {"action": "up", "price": target, "reason": "sells well (%.2f/day, %.0f days of supply, Buy Box held): test %.2f" % (v, min(dos, 999), target),
-                        "flags": flags, "base_v": v, "floor": floor, "ceil": ceil}
+                return {"action": "up", "price": target, "reason": ("alone on the listing, sells %.2f/day: test %.2f" % (v, target)) if alone else "sells well (%.2f/day, %.0f days of supply, Buy Box held): test %.2f" % (v, min(dos, 999), target),
+                        "flags": flags, "base_v": v, "floor": floor, "ceil": ceil, "alone": bool(alone), "impact": round(max(v, v90) * 30 * (target - price), 2)}
     if price > (ceil or 1e9) + 0.005:
         return hold("price above the ceiling %.2f (history) - watch" % ceil, floor=floor, ceil=ceil, alert="above_ceiling")
     return hold("steady (%.2f/day, %.0f days of supply, last sale %.0f d ago)" % (v, min(dos, 999), dss), floor=floor, ceil=ceil)

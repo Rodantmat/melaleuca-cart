@@ -95,6 +95,15 @@ def load_web(max_hours=36):
     return out
 
 
+def rival_count(lv, w_, seller):
+    """sellers other than us with a New offer, from BOTH views (Amazon offers list and the logged-out page); None when either view is missing -> never 'alone' on thin evidence"""
+    if not seller or not lv or not lv.get("n_offers") or not w_ or w_.get("aod") is None:
+        return None
+    sp = sum(1 for x in (lv.get("ladder") or []) if x and x[0] != seller)
+    wb = sum(1 for o in w_["aod"] if o.get("seller_id") and o["seller_id"] != seller)
+    return max(sp, wb)
+
+
 def stock_profile(days, today, dss=None, min_known=7):
     """days = {date: ending balance} -> (in_stock_days_30, in_stock_days_7, out_of_stock_days_inside_the_last_dss_days)
     Days the ledger does not cover are treated as 'in stock' (never invent an outage); fewer than min_known known days -> None (engine default)."""
@@ -271,6 +280,7 @@ def main():
         live_ok = False
 
     out, changed_run, snaps, raised_run, dropped_run = [], 0, [], 0, 0
+    queue = []
     pressure = {}
     try:
         for l in open(os.path.join(STATE, 'market.tsv')).read().splitlines()[1:]:
@@ -312,7 +322,7 @@ def main():
                 "units_7": f(p.get("units-shipped-t7")) or 0, "units_30": f(p.get("units-shipped-t30")) or 0, "units_90": f(p.get("units-shipped-t90")) or 0,
                 "days_since_sale": None, "aged_units": sum(f(p.get("inv-age-" + k)) or 0 for k in ("181-to-270-days", "271-to-365-days", "366-to-455-days", "456-plus-days")),
                 "bb": lv.get("bb"), "we_hold_bb": (lv.get("bb") is None) or (price is not None and price <= lv["bb"] * 1.005),
-                "low_fba": lv.get("low_afn"), "low_new": lv.get("low_new"), "foep": foep.get(sku), "hist": hh,
+                "low_fba": lv.get("low_afn"), "low_new": lv.get("low_new"), "foep": foep.get(sku), "hist": hh, "n_rivals": rival_count(lv, web.get(asin), seller),
                 "last_change": s["last_change"] and norm_change(s["last_change"]),
                 "changes": [norm_change(x) for x in s["changes"]],
                 "frozen_until": s["frozen_until"] and dt.datetime.fromisoformat(s["frozen_until"]),
@@ -341,7 +351,7 @@ def main():
             if ov.get("min"): np_ = max(np_, float(ov["min"]))
             if ov.get("max"): np_ = min(np_, float(ov["max"]))
             d["price"] = round(np_, 2)
-        rec = {"ts": now.isoformat(), "sku": sku, "asin": asin, "price": price, "bb": lv.get("bb"), "action": d["action"], "new": d.get("price"), "reason": d.get("reason"), "flags": d.get("flags"), "applied": False,
+        rec = {"ts": now.isoformat(), "sku": sku, "asin": asin, "price": price, "bb": lv.get("bb"), "action": d["action"], "new": d.get("price"), "reason": d.get("reason"), "flags": d.get("flags"), "applied": False, "impact": d.get("impact"),
                "web_seller": (web.get(asin) or {}).get("seller_id"), "web_price": (web.get(asin) or {}).get("bb_price"),
                "bb_seller": ((lv.get("winners") or [{}])[0]).get("seller"), "bb_type": ((lv.get("winners") or [{}])[0]).get("type"),
                "we_win": (bool(seller) and ((lv.get("winners") or [{}])[0]).get("seller") == seller) if lv.get("winners") else None}
@@ -350,36 +360,42 @@ def main():
         if s["last_applied"] is None or snap["manual_seen"]:
             s["last_applied"] = price
         if d["action"] in ("down", "up", "to_floor", "revert") and d.get("price") and price and abs(d["price"] - price) >= 0.005:
-            is_up, is_down = d["action"] == "up", d["action"] == "down"
-            allowed, protective = is_allowed(d, sku, conf, raised_run, dropped_run)
-            # protective moves (undo a failed raise, lift a price that is below the minimum-profit floor) are never held back by the run/day caps
-            can = live_ok and allowed and po and (protective or (changed_run < conf.get("max_changes_per_run", 8) and changed_today < conf.get("max_changes_per_day", 20)))
-            if can:
-                ptype = (item.get("summaries") or [{}])[0].get("productType", "PRODUCT")
-                try:
-                    cur2, _ = current_price(listing(c, seller, sku))
-                except spapi.SpError:
-                    cur2 = None
-                if cur2 is not None and abs(cur2 - price) < 0.005:
-                    ok, msg = set_price(c, seller, sku, d["price"], po, ptype)
-                    time.sleep(8)
-                    chk, _ = current_price(listing(c, seller, sku))
-                    if ok and chk is not None and abs(chk - d["price"]) < 0.005:
-                        rec["applied"] = True; changed_run += 1; changed_today += 1
-                        if is_up: raised_run += 1
-                        if is_down: dropped_run += 1
-                        s["last_applied"] = d["price"]
-                        ev = {"ts": now.isoformat(), "old": price, "new": d["price"], "dir": "up" if d["price"] > price else "down", "base_v": d.get("base_v")}
-                        s["changes"] = (s["changes"] + [ev])[-30:]; s["last_change"] = ev
-                    else:
-                        ok2, m2 = set_price(c, seller, sku, price, po, ptype)   # roll back
-                        rec["reason"] += " | WRITE NOT CONFIRMED, rolled back (%s)" % ("ok" if ok2 else m2)
-                else:
-                    rec["reason"] += " | price changed meanwhile - skipped"
-            else:
-                rec["reason"] += " | SHADOW (not applied)"
+            # OWNER 2026-11-04: when the caps bind, the changes that matter most for the money go first (not product-code order); applied after the loop
+            queue.append({"impact": float(d.get("impact") or 0.0), "protective": d["action"] in ("revert", "to_floor"), "sku": sku, "d": d, "price": price, "po": po, "item": item, "s": s, "rec": rec})
         out.append(rec)
         snaps.append([now.strftime("%Y-%m-%d %H:%M"), sku, asin, price, lv.get("bb"), lv.get("low_afn"), lv.get("low_new"), lv.get("n_offers"), foep.get(sku), snap["units_7"], snap["on_hand"]])
+    # ---- apply: protective moves first, then by money impact (largest first); caps and every write check stay exactly as before
+    queue.sort(key=lambda q: (not q["protective"], -q["impact"], q["sku"]))
+    for it in queue:
+        sku, d, price, po, item, s, rec = it["sku"], it["d"], it["price"], it["po"], it["item"], it["s"], it["rec"]
+        is_up, is_down = d["action"] == "up", d["action"] == "down"
+        allowed, protective = is_allowed(d, sku, conf, raised_run, dropped_run)
+        # protective moves (undo a failed raise, lift a price that is below the minimum-profit floor) are never held back by the run/day caps
+        can = live_ok and allowed and po and (protective or (changed_run < conf.get("max_changes_per_run", 8) and changed_today < conf.get("max_changes_per_day", 20)))
+        if can:
+            ptype = (item.get("summaries") or [{}])[0].get("productType", "PRODUCT")
+            try:
+                cur2, _ = current_price(listing(c, seller, sku))
+            except spapi.SpError:
+                cur2 = None
+            if cur2 is not None and abs(cur2 - price) < 0.005:
+                ok, msg = set_price(c, seller, sku, d["price"], po, ptype)
+                time.sleep(8)
+                chk, _ = current_price(listing(c, seller, sku))
+                if ok and chk is not None and abs(chk - d["price"]) < 0.005:
+                    rec["applied"] = True; changed_run += 1; changed_today += 1
+                    if is_up: raised_run += 1
+                    if is_down: dropped_run += 1
+                    s["last_applied"] = d["price"]
+                    ev = {"ts": now.isoformat(), "old": price, "new": d["price"], "dir": "up" if d["price"] > price else "down", "base_v": d.get("base_v")}
+                    s["changes"] = (s["changes"] + [ev])[-30:]; s["last_change"] = ev
+                else:
+                    ok2, m2 = set_price(c, seller, sku, price, po, ptype)   # roll back
+                    rec["reason"] += " | WRITE NOT CONFIRMED, rolled back (%s)" % ("ok" if ok2 else m2)
+            else:
+                rec["reason"] += " | price changed meanwhile - skipped"
+        else:
+            rec["reason"] += " | SHADOW (not applied)" if not (live_ok and allowed) else " | waiting: run/day cap reached (lower money impact)"
     sk["_day"] = {day_key: changed_today}
     json.dump(sk, open(os.path.join(STATE, "skustate.json"), "w"), indent=1, default=str)
     with open(os.path.join(STATE, "decisions.jsonl"), "a") as fh:

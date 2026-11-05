@@ -19,7 +19,7 @@
     "enabled": true,
     "max_per_run": 6,
     "min_days_no_sale": 30,
-    "min_days_cover": 90
+    "min_days_cover": 45
   },
   "auto_protect": true
 }
