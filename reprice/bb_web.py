@@ -156,7 +156,7 @@ def run(max_asins=0):
         prio = set(asins)
     now = dt.datetime.now(dt.timezone.utc).strftime("%Y-%m-%d %H:%M")
     rows = []
-    wire = {"bytes": 0, "n": 0}                         # what the proxy really carries (compressed, on the wire): tallied from every finished request
+    wire = {"bytes": 0, "n": 0, "by": {}}                         # what the proxy really carries (compressed, on the wire): tallied from every finished request
     CHUNK = int(os.environ.get("AMZ_CHUNK", "30"))      # products per browser session / proxy IP: Amazon cuts an IP after ~110 requests, so we leave long before
     BLOCK_PAUSE = int(os.environ.get("AMZ_BLOCK_PAUSE", "25"))
     UA = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36"
@@ -169,10 +169,17 @@ def run(max_asins=0):
         with sync_playwright() as p:
             b = p.chromium.launch(**mk_kw(port))
             ctx = b.new_context(user_agent=UA, locale="en-US", viewport={"width": 1366, "height": 900})
-            ctx.route("**/*", lambda r: r.abort() if r.request.resource_type in ("image", "media", "font", "stylesheet") else r.continue_())   # traffic: text only
+            def _gate(r):                      # traffic: the page HTML and our own offers call only - no scripts, styles, images, trackers, ads, iframes (the 60-product test of 2026-11-05 moved 83 MB / 3,151 requests with scripts allowed)
+                rq = r.request
+                try:
+                    ok = (rq.resource_type == "document" and rq.frame.parent_frame is None) or rq.resource_type == "fetch"
+                except Exception:
+                    ok = False
+                return r.continue_() if ok else r.abort()
+            ctx.route("**/*", _gate)
             def _fin(rq):
                 try:
-                    sz = rq.sizes(); wire["bytes"] += (sz.get("responseBodySize") or 0) + (sz.get("responseHeadersSize") or 0) + (sz.get("requestBodySize") or 0) + (sz.get("requestHeadersSize") or 0); wire["n"] += 1
+                    sz = rq.sizes(); wire["bytes"] += (sz.get("responseBodySize") or 0) + (sz.get("responseHeadersSize") or 0) + (sz.get("requestBodySize") or 0) + (sz.get("requestHeadersSize") or 0); wire["n"] += 1; wire["by"][rq.resource_type] = wire["by"].get(rq.resource_type, 0) + (sz.get("responseBodySize") or 0) + (sz.get("responseHeadersSize") or 0)
                 except Exception:
                     pass
             ctx.on("requestfinished", _fin)
@@ -233,7 +240,7 @@ def run(max_asins=0):
         if blocked_in_a_row >= 3:
             print("three blocked sessions in a row - stopping for today (partial scan kept)"); break
         time.sleep(BLOCK_PAUSE if blocked else 6)
-    print("proxy traffic on the wire: %.1f MB in %d requests" % (wire["bytes"] / 1048576.0, wire["n"]))
+    print("proxy traffic on the wire: %.1f MB in %d requests; by type: %s" % (wire["bytes"] / 1048576.0, wire["n"], {k: round(v / 1048576.0, 1) for k, v in wire["by"].items()}))
     os.makedirs(S, exist_ok=True)
     with open(os.path.join(S, "webbb.jsonl"), "a") as fh:
         for r in rows: fh.write(json.dumps(r) + "\n")
