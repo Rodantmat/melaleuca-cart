@@ -12,11 +12,11 @@
   },
   "2": {
    "tab": "Liliana O",
-   "mode": "tracking",
+   "mode": "idle",
    "armed": "",
    "next_scrape": "",
    "tries": 0,
-   "note": "",
+   "note": "all delivered 2026-11-05T00:50:58Z",
    "last_error": ""
   },
   "3": {
@@ -155,5 +155,5 @@
    "last_error": ""
   }
  },
- "updated": "2026-11-05T00:35:51Z"
+ "updated": "2026-11-05T00:50:58Z"
 }
