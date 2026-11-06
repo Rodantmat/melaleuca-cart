@@ -197,7 +197,7 @@ def is_allowed(d, sku, conf, raised_run, dropped_run):
     if act == "up":
         return bool(ar.get("enabled") is True and raised_run < ar.get("max_per_run", 4) and flags_ok(d)), False
     if act == "down":
-        return bool(ad.get("enabled") is True and dropped_run < ad.get("max_per_run", 3) and (d.get("severe") or (
+        return bool(ad.get("enabled") is True and dropped_run < ad.get("max_per_run", 3) and (d.get("severe") or d.get("no_box") or (
             (d.get("dss") or 0) >= ad.get("min_days_no_sale", 30) and (d.get("dos") or 0) >= ad.get("min_days_cover", 90)))), False
     return False, False
 
@@ -287,6 +287,15 @@ def main():
             c_ = l.split('\t'); pressure[c_[0]] = c_[8]
     except Exception:
         pass
+    listing_alerts = []
+    rival_hint = {}                           # OWNER 2026-11-04 "wait for a cheap rival's units to sell": Buy Box owner with few units left (bb_stock.tsv, written by reports.py after the last scan)
+    try:
+        for l in open(os.path.join(STATE, 'bb_stock.tsv')).read().splitlines()[1:]:
+            c_ = l.split('\t')
+            if len(c_) > 15 and c_[14] == "WAIT":
+                rival_hint[c_[1]] = {"left": c_[7], "eta": c_[10], "why": c_[15]}
+    except Exception:
+        pass
     day_key = now.strftime("%Y-%m-%d")
     sk.setdefault("_day", {}); changed_today = sk["_day"].get(day_key, 0)
     for sku, row in sorted(costs.items()):
@@ -308,6 +317,11 @@ def main():
                 continue                      # no such listing (closed / renamed sku): never touch
             raise
         price, po = current_price(item)
+        try:
+            lstat = list(((item.get("summaries") or [{}])[0]).get("status") or [])
+        except Exception:
+            lstat = []
+        lissue = "; ".join(str(x.get("message") or x.get("code") or "")[:90] for x in (item.get("issues") or [])[:2]) if isinstance(item, dict) else ""
         if price is None:
             price = f(p.get("your-price"))
         lv = live.get(asin) or {}
@@ -336,6 +350,16 @@ def main():
             if i7: snap["in_stock_days_7"] = i7
             if snap["days_since_sale"] is not None and oos_d:
                 snap["days_since_sale"] = max(0, snap["days_since_sale"] - oos_d)
+        rh = rival_hint.get(sku)                    # a rival Buy Box owner about to sell out: price drops wait (at most RIVAL_WAIT_MAX_DAYS in a row, so a rival who keeps restocking cannot hold us forever)
+        if rh:
+            since = s.setdefault("rw_since", now.isoformat())
+            if (now - dt.datetime.fromisoformat(since)).total_seconds() <= engine.DEFAULTS["RIVAL_WAIT_MAX_DAYS"] * 86400:
+                snap["rival_wait"] = rh
+        else:
+            s.pop("rw_since", None)
+        snap["no_box"] = bool(lv and lv.get("n_offers") and lv.get("bb") is None and "BUYABLE" in lstat and snap["on_hand"] > 0)
+        if snap["on_hand"] > 0 and lstat and "BUYABLE" not in lstat:     # stock that cannot be bought: listing not buyable (suppressed / inactive) - the owner has to look in Seller Central
+            listing_alerts.append([sku, asin, snap["on_hand"], ",".join(lstat), lissue])
         w_ = web.get(asin)                         # what a shopper really sees on amazon.com: if another seller owns a LOWER Buy Box, never raise towards it
         if w_ and seller and w_["seller_id"] != seller and price and w_["bb_price"] < price - 0.005:
             snap["we_hold_bb"] = False
@@ -397,6 +421,9 @@ def main():
         else:
             rec["reason"] += " | SHADOW (not applied)" if not (live_ok and allowed) else " | waiting: run/day cap reached (lower money impact)"
     sk["_day"] = {day_key: changed_today}
+    with open(os.path.join(STATE, "listing_alert.tsv"), "w") as fh:
+        fh.write("sku\tasin\tunits_in_stock\tlisting_status\tissue\n")
+        for r in listing_alerts: fh.write("\t".join(str(x) for x in r) + "\n")
     json.dump(sk, open(os.path.join(STATE, "skustate.json"), "w"), indent=1, default=str)
     with open(os.path.join(STATE, "decisions.jsonl"), "a") as fh:
         for r in out:

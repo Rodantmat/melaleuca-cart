@@ -37,6 +37,8 @@ DEFAULTS = {
     "ZERO_STOCK_FOLLOW": True,
     "MAX_RISE_ZERO_STOCK": 0.60,   # nothing to sell now, so a big move costs no sales: follow the rival box up to this far in 30 days
     "UNDER_BB": 0.03,            # zero stock: raise to this many dollars under the rival Buy Box price
+    "RIVAL_WAIT_MAX_DAYS": 10,   # OWNER: wait for a cheap rival's last units to sell - but never longer than this in a row
+    "NO_BOX_STEP": 0.12,         # in stock, nobody else sells it, Amazon shows NO Buy Box and our price is above the history ceiling (price suppression): step down this much per change toward the ceiling
     "MIN_STEP": 0.10,            # $ - smaller moves are not worth a price change
     "COOLDOWN_DOWN_H": 48,
     "COOLDOWN_UP_H": 96,
@@ -231,6 +233,9 @@ def decide(snap, cfg=None, now=None):
     if on_hand > 0 and (in_drought or surplus):
         if since_last_h < cfg["COOLDOWN_DOWN_H"]:
             return hold("waiting after the last change (%.0f h of %d h)" % (since_last_h, cfg["COOLDOWN_DOWN_H"]), floor=floor, ceil=ceil)
+        if snap.get("rival_wait") and dss < cfg["SLOW1_DAYS"]:        # the Buy Box owner is nearly sold out: his box (and his low price) disappears by itself - keep our margin
+            rw = snap["rival_wait"]
+            return hold("waiting for the Buy Box owner's last units (%s)" % (rw.get("why") or "few left"), floor=floor, ceil=ceil)
         deep = severe
         lowest_allowed = floors(snap, cfg, with_hist=False)[1] if deep else floor      # severe cases may cross the history floor, never the profit floor of their tier
         if price <= lowest_allowed + 0.005:
@@ -345,6 +350,15 @@ def decide(snap, cfg=None, now=None):
             if target >= price + cfg["MIN_STEP"] - 1e-9:
                 return {"action": "up", "price": target, "reason": ("alone on the listing, sells %.2f/day: test %.2f" % (v, target)) if alone else "sells well (%.2f/day, %.0f days of supply, Buy Box held): test %.2f" % (v, min(dos, 999), target),
                         "flags": flags, "base_v": v, "floor": floor, "ceil": ceil, "alone": bool(alone), "impact": round(max(v, v90) * 30 * (target - price), 2)}
+    if price > (ceil or 1e9) + 0.005 and snap.get("no_box") and on_hand > 0 and not anomalous:
+        # Amazon shows no Buy Box at all (we are the only offer and the price is far above what ever sold): units can't sell. Step toward the ceiling, never below the profit floor.
+        if since_last_h < cfg["COOLDOWN_DOWN_H"]:
+            return hold("no Buy Box at %.2f (above the %.2f ceiling) - waiting after the last change (%.0f h of %d h)" % (price, ceil, since_last_h, cfg["COOLDOWN_DOWN_H"]), floor=floor, ceil=ceil)
+        target = _r2(max(price * (1 - cfg["NO_BOX_STEP"]), ceil, floor))
+        if target < price - 0.005:
+            return {"action": "down", "price": target, "reason": "no Buy Box shown (only offer, price %.2f is above the %.2f ceiling): step toward the ceiling so the stock can sell" % (price, ceil),
+                    "flags": flags + ["no_box"], "floor": floor, "ceil": ceil, "severe": False, "dss": dss, "dos": dos, "no_box": True,
+                    "impact": round(on_hand * (_f(snap.get("cost"), 0.0) or 0.0) * 2.0, 2)}
     if price > (ceil or 1e9) + 0.005:
         return hold("price above the ceiling %.2f (history) - watch" % ceil, floor=floor, ceil=ceil, alert="above_ceiling")
     return hold("steady (%.2f/day, %.0f days of supply, last sale %.0f d ago)" % (v, min(dos, 999), dss), floor=floor, ceil=ceil)

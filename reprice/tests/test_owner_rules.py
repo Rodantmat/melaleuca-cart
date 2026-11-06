@@ -100,6 +100,42 @@ class Raises(unittest.TestCase):
             self.assertFalse(d.get("alone"))
 
 
+class RivalWait(unittest.TestCase):
+    def _s(self, **kw):
+        return base(price=30.0, cost=5.0, fba_fee=2.0, on_hand=40, units_30=0, units_90=3, days_since_sale=35, low_fba=None, bb=25.0, we_hold_bb=False, **kw)
+
+    def test_drop_waits_while_the_cheap_box_owner_is_nearly_sold_out(self):
+        self.assertEqual(engine.decide(self._s(), CFG, NOW)["action"], "down")
+        d = engine.decide(dict(self._s(), rival_wait={"left": "1", "eta": "2", "why": "owner has 1 left"}), CFG, NOW)
+        self.assertEqual(d["action"], "hold")
+        self.assertIn("Buy Box owner", d["reason"])
+
+    def test_wait_never_applies_to_the_slow_tiers_or_protective_moves(self):
+        rw = {"left": "1", "eta": "2", "why": "x"}
+        d = engine.decide(dict(self._s(), days_since_sale=95, rival_wait=rw), CFG, NOW)
+        self.assertEqual(d["action"], "down")
+        d = engine.decide(dict(self._s(), price=2.0, rival_wait=rw), CFG, NOW)       # below the hard floor: always lifted
+        self.assertEqual(d["action"], "to_floor")
+
+
+class NoBox(unittest.TestCase):
+    def _s(self, **kw):
+        return base(price=72.0, cost=22.0, fba_fee=4.0, on_hand=1, units_90=2, days_since_sale=40, bb=None, we_hold_bb=True, n_rivals=0, no_box=True,
+                    hist={"n": 12, "p_low": 38.0, "p_mid": 44.0, "p_high": 48.0}, **kw)
+
+    def test_no_buy_box_above_ceiling_steps_down_toward_ceiling(self):
+        d = engine.decide(self._s(), CFG, NOW)
+        self.assertEqual(d["action"], "down")
+        self.assertTrue(d.get("no_box"))
+        hard, floor, ceil = engine.floors(self._s(), CFG)
+        self.assertGreaterEqual(d["price"], max(ceil, floor) - 0.011)
+        self.assertLess(d["price"], 72.0)
+
+    def test_without_the_no_box_flag_it_only_watches(self):
+        d = engine.decide(dict(self._s(), no_box=False), CFG, NOW)
+        self.assertEqual(d["action"], "hold")
+
+
 class Properties(unittest.TestCase):
     def test_random_snapshots_never_break_the_floor_or_caps(self):
         bad = []
