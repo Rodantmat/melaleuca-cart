@@ -1,0 +1,71 @@
+SUMMARY [
+ {
+  "marketplaceId": "ATVPDKIKX0DER",
+  "asin": "B00TP98T0A",
+  "productType": "SNACK_FOOD_BAR",
+  "conditionType": "new_new",
+  "status": [
+   "DISCOVERABLE"
+  ],
+  "fnSku": "X004IISZIF",
+  "itemName": "Simply Fit Chewy Snack bars, Chocolate Chip Drizzle",
+  "createdDate": "2024-12-26T21:08:19.614Z",
+  "lastUpdatedDate": "2025-02-13T19:28:30.325Z",
+  "mainImage": {
+   "link": "https://m.media-amazon.com/images/I/41tQzGSRT3L.jpg",
+   "height": 225,
+   "width": 225
+  }
+ }
+]
+ISSUES [
+ {
+  "code": "18503",
+  "message": "This product has other listing limitations.",
+  "severity": "ERROR",
+  "categories": [
+   "QUALIFICATION_REQUIRED",
+   "LISTING"
+  ],
+  "enforcements": {
+   "actions": [
+    {
+     "action": "LISTING_SUPPRESSED"
+    }
+   ],
+   "exemption": {
+    "status": "NOT_EXEMPT"
+   }
+  }
+ },
+ {
+  "code": "99016",
+  "message": "A maximum of 1 occurrence(s) is/are allowed for the attribute Generic Keyword but it currently occurs 19 times.",
+  "severity": "ERROR",
+  "attributeNames": [
+   "generic_keyword"
+  ],
+  "categories": [
+   "INVALID_ATTRIBUTE",
+   "PRODUCT"
+  ]
+ }
+]
+OFFERS [{"marketplaceId": "ATVPDKIKX0DER", "offerType": "B2C", "price": {"currency": "USD", "currencyCode": "USD", "amount": "34.99"}, "audience": {"value": "ALL", "displayName": "Sell on Amazon"}}]
+RESTRICTIONS {
+ "restrictions": [
+  {
+   "marketplaceId": "ATVPDKIKX0DER",
+   "conditionType": "new_new",
+   "reasons": [
+    {
+     "reasonCode": "NOT_ELIGIBLE",
+     "message": "This product has other listing limitations.",
+     "links": []
+    }
+   ]
+  }
+ ]
+}
+ATTRIBUTE NAMES ['condition_type', 'fulfillment_availability', 'merchant_shipping_group', 'merchant_suggested_asin', 'purchasable_offer']
+GENERIC_KEYWORD null
