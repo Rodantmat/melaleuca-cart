@@ -1,0 +1,38 @@
+name: Listing fix (one SKU)
+on:
+  workflow_dispatch:
+    inputs:
+      sku: { description: "SKU", default: "ME1128", required: true }
+      fix: { description: "none | preview | apply", default: "none", required: false }
+permissions:
+  contents: write
+concurrency: { group: listingfix, cancel-in-progress: false }
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+        with: { ref: main }
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - name: Fetch seller id
+        run: git fetch origin reprice-state:reprice-state 2>/dev/null && git checkout reprice-state -- reprice/state/seller.txt 2>/dev/null || true
+      - name: Check
+        env: { CRED_ENV: "${{ secrets.CREDENTIALS_ENV }}" }
+        run: |
+          set -o pipefail
+          cd reprice
+          printf '%s\n' "$CRED_ENV" > credentials.env
+          FIX=${{ github.event.inputs.fix }} python listing_fix.py ${{ github.event.inputs.sku }} 2>&1 | tee listing_fix.log
+          rm -f credentials.env
+      - name: Publish
+        if: always()
+        run: |
+          git config user.name "feed-bot"; git config user.email "feed-bot@users.noreply.github.com"
+          rm -rf /tmp/so && mkdir -p /tmp/so
+          cp reprice/listing_fix.log /tmp/so/ 2>/dev/null || true
+          git checkout --orphan lf-new
+          git rm -rf . >/dev/null 2>&1 || true
+          cp -a /tmp/so/. .
+          git add -A && git commit -qm "listing fix" && git push -f origin lf-new:listing-fix
