@@ -13,6 +13,12 @@ def main():
     print("SUMMARY", json.dumps(it.get("summaries"), indent=1)[:900])
     print("ISSUES", json.dumps(it.get("issues"), indent=1)[:3500])
     print("OFFERS", json.dumps(it.get("offers"))[:500])
+    try:
+        asin = ((it.get("summaries") or [{}])[0]).get("asin")
+        rs = spapi.call(c, "GET", "/listings/2021-08-01/restrictions", params={"asin": asin, "conditionType": "new_new", "sellerId": seller, "marketplaceIds": MK, "reasonLocale": "en_US"}, quiet=True)
+        print("RESTRICTIONS", json.dumps(rs, indent=1)[:2500])
+    except Exception as e:
+        print("RESTRICTIONS call failed:", str(e)[:300])
     at = it.get("attributes") or {}
     print("ATTRIBUTE NAMES", sorted(at))
     gk = at.get("generic_keyword")
