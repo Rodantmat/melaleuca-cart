@@ -29,6 +29,10 @@ jobs:
           printf '%s\n' "$CRED_ENV" > credentials.txt
           python amazon_feed.py refresh 2>&1 | tee feed_run.log
           rm -f credentials.txt
+      - name: Journal this run (permanent run history on branch ops-log)
+        if: always()
+        env: { GH_TOKEN: "${{ github.token }}" }
+        run: python reprice/opslog.py feed "${{ job.status }}" feedwork/feed_run.log 'Built feed files' 'Inventory rows' 'incomplete fee' || true
       - name: Publish to branch feed-latest
         if: always()
         run: |

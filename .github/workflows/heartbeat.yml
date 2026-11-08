@@ -7,7 +7,7 @@ on:
     - cron: "5 * * * *"
   workflow_dispatch:
 permissions:
-  contents: read
+  contents: write
   actions: write
 concurrency:
   group: heartbeat
@@ -17,12 +17,15 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 355
     steps:
+      - uses: actions/checkout@v4
+        with: { ref: main }
       - name: Beat
         env:
           GH_TOKEN: ${{ github.token }}
           REPO: ${{ github.repository }}
         shell: bash
         run: |
+          exec > >(tee -a /tmp/hb.log) 2>&1
           start=$(date +%s); end=$((start+20400))
           last_status=0
           while :; do
@@ -58,3 +61,7 @@ jobs:
             sleep 60
           done
           gh api -X POST "repos/$REPO/actions/workflows/heartbeat.yml/dispatches" -f ref=main >/dev/null && echo "next heartbeat started"
+      - name: Journal this run (permanent run history on branch ops-log)
+        if: always()
+        env: { GH_TOKEN: "${{ github.token }}" }
+        run: python3 reprice/opslog.py heartbeat "${{ job.status }}" /tmp/hb.log 'dispatched' 'dispatch failed' 'next heartbeat' 'HTTP' || true
