@@ -1,4 +1,4 @@
-# 2026-11-09T13:29:26Z  reprice  success  run 42624223155
+# 2026-11-09T17:40:26Z  reprice  success  run 42665204595
 /home/runner/work/melaleuca-cart/melaleuca-cart/reprice/run.py:14: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
   now = dt.datetime.utcnow()
 mode=live live_writes_allowed=True killed=False skus=167
@@ -11,27 +11,28 @@ mode=live live_writes_allowed=True killed=False skus=167
   live Buy Box prices: 120 of 167 ASINs read
   live Buy Box prices: 140 of 167 ASINs read
   live Buy Box prices: 160 of 167 ASINs read
+  (Amazon 429 on /batches/products/pricing/2022-05-01/items/competi - waiting 4s)
   live Buy Box prices: 167 of 167 ASINs read
-Amazon target prices (FOEP) read for 56 products
+Amazon target prices (FOEP) read for 57 products
 seller id found
-decided 152 products: {'hold': 139, 'up': 10, 'down': 3} ; applied this run: 10
-  76-KHS9-9FXW up 43.19 -> 45.35  alone on the listing, sells 0.47/day: test 45.35
-  9C-A4T7-C308 up 57.74 -> 60.63  alone on the listing, sells 0.18/day: test 60.63
-  ME001502 up 70.19 -> 73.7  alone on the listing, sells 0.13/day: test 73.70
+decided 151 products: {'hold': 138, 'down': 4, 'up': 9} ; applied this run: 10
+  9P-4ZS7-QV81 down 47.04 -> 45.63  drought/surplus: 54 days without sale (limit 30), 180 days of supply
+  E0-FNUP-YHBK up 27.03 -> 28.38  alone on the listing, sells 0.36/day: test 28.38
   ME0017 down 16.09 -> 15.61  drought/surplus: 2 days without sale (limit 30), 81 days of supply | SHADOW (not applied)
-  ME0029 up 36.62 -> 38.45  alone on the listing, sells 0.48/day: test 38.45
   ME0063 down 21.99 -> 21.33  drought/surplus: 13 days without sale (limit 30), 90 days of supply | SHADOW (not applied)
-  ME0276 down 31.93 -> 30.97  drought/surplus: 12 days without sale (limit 30), 390 days of supply | SHADOW (not applied)
-  ME0286 up 13.39 -> 14.06  alone on the listing, sells 0.63/day: test 14.06
-  ME1165 up 75.59 -> 81.64  alone on the listing, sells 0.42/day: test 81.64
-  ME1303 up 28.96 -> 31.28  alone on the listing, sells 0.38/day: test 31.28
-  ME1433 up 43.19 -> 45.35  alone on the listing, sells 0.41/day: test 45.35
-  ME1802 up 32.39 -> 34.98  alone on the listing, sells 0.30/day: test 34.98
-  ME1815 up 83.99 -> 88.19  alone on the listing, sells 0.22/day: test 88.19
-units to sell 1335 | cost paid 8905 | at your listed prices 35665 | net payout base 26010 | net payout conservative 25447
-Counter({'OK': 86, 'BUY MORE': 55, 'BUY': 20, 'BUY LESS': 7, 'STOP buying': 7, 'STOP buying - no sales 90d': 2})
+  ME0276 down 31.93 -> 30.97  drought/surplus: 12 days without sale (limit 30), 360 days of supply | SHADOW (not applied)
+  ME0289 up 19.35 -> 20.32  alone on the listing, sells 0.43/day: test 20.32
+  ME1414 up 52.91 -> 57.14  alone on the listing, sells 0.13/day: test 57.14
+  ME1635 up 46.43 -> 50.14  alone on the listing, sells 0.20/day: test 50.14
+  ME1651 up 41.99 -> 44.09  alone on the listing, sells 0.17/day: test 44.09
+  ME1833 up 32.39 -> 34.98  alone on the listing, sells 0.17/day: test 34.98
+  MQ-F85D-3ON7 up 26.99 -> 28.34  alone on the listing, sells 0.39/day: test 28.34
+  OI-SORQ-OAIE up 43.25 -> 45.41  alone on the listing, sells 0.20/day: test 45.41
+  P9-9LY1-OBH4 up 28.07 -> 30.32  alone on the listing, sells 0.32/day: test 30.32
+units to sell 1330 | cost paid 8849 | at your listed prices 35683 | net payout base 25767 | net payout conservative 25204
+Counter({'OK': 86, 'BUY MORE': 55, 'BUY': 19, 'BUY LESS': 7, 'STOP buying': 7, 'STOP buying - no sales 90d': 2})
 market depth for 155 products: {'MEDIUM': 48, 'HIGH': 13, 'LOW': 94}
-bb intel: 154 ASINs, we own the box in 43% of web scans; API vs web: {('same seller', 'same price'): 106, ('different seller', 'different price'): 41, ('same seller', 'different price'): 6, ('different seller', 'same price'): 1}
+bb intel: 154 ASINs, we own the box in 43% of web scans; API vs web: {('same seller', 'different price'): 15, ('same seller', 'same price'): 95, ('different seller', 'different price'): 42, ('different seller', 'same price'): 2}
 /home/runner/work/melaleuca-cart/melaleuca-cart/reprice/reports.py:54: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
   now = dt.datetime.utcnow()
-reports: rival stock hints {'WAIT': 9, 'DROP-CANDIDATE': 1, 'WATCH': 4, 'HOLD': 65} | restock alerts 39 (profit at risk $2488/month) | rival alerts 50 | outcomes 118
+reports: rival stock hints {'WAIT': 9, 'DROP-CANDIDATE': 1, 'WATCH': 4, 'HOLD': 65} | restock alerts 39 (profit at risk $2661/month) | rival alerts 50 | outcomes 118
