@@ -13,7 +13,14 @@ def pesticide_patches(at):
         return [d]
     desc = (at.get("product_description") or [{}])[0].get("value", "")
     desc = desc.replace("Toilet Bowl Cleaning & Deodorizing", "Toilet Bowl Cleaning")
-    P = [("cleaning_agent_formulation", t("descaler", False)),
+    desc = desc.replace("this cleaner targets and breaks down tough", "this cleaner helps remove tough").replace("a pleasant, fresh essential oil scent", "a pleasant fresh fragrance")
+    bl = []
+    for b in at.get("bullet_point") or []:
+        v = b.get("value", "")
+        if v.startswith("NATURAL FRESH SCENT"):
+            v = "FRESH FRAGRANCE: Lightly scented for a pleasant, fresh fragrance in your bathroom after every flush."
+        bl.append({"value": v, "language_tag": "en_US", "marketplace_id": MK})
+    P = [("bullet_point", bl), ("cleaning_agent_formulation", t("descaler", False)),
          ("liquid_contents_description", t("Toilet bowl cleaning gel", False)),
          ("recommended_uses_for_product", t("Toilet bowl cleaner")),
          ("product_description", t(desc))]
