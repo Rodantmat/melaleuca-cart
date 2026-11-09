@@ -42,6 +42,7 @@ DEFAULTS = {
     "RIVAL_FLOOD_STEP": 0.05,    # OWNER 2026-11-09: a cheaper rival with a big stock will not run out soon - step toward his price (never below our floor) instead of waiting for him
     "RIVAL_FLOOD_MIN_DOS": 25,   # ... but only with more than this many days of our own stock to move (with scarce stock keep the margin)
     "RIVAL_RAISE_STEP": 0.10,    # OWNER 2026-11-09: the Buy Box owner is nearly sold out - raise decently now so the price is already higher when he is gone
+    "RIVAL_RAISE_CONFIRM_H": 6,  # ... and only when the low-stock reading held for at least this long (two scans), a single reading can be a glitch or a restock
     "RIVAL_RAISE_MAX_ETA": 14,   # ... when he is gone within this many days (or has 3 units or fewer)
     "MIN_STEP": 0.10,            # $ - smaller moves are not worth a price change
     "COOLDOWN_DOWN_H": 48,
@@ -316,7 +317,8 @@ def decide(snap, cfg=None, now=None):
     if rw and on_hand > 0 and not anomalous and not (in_drought or surplus):
         eta_, left_ = _f(rw.get("eta")), _f(rw.get("left"))
         soon = (eta_ is not None and eta_ <= cfg["RIVAL_RAISE_MAX_ETA"]) or (left_ is not None and left_ <= 3)
-        if soon and since_last_h >= cfg["COOLDOWN_UP_H"] and not unsold_raise:
+        confirmed = (_f(rw.get("seen_h"), 0.0) or 0.0) >= cfg["RIVAL_RAISE_CONFIRM_H"]
+        if soon and confirmed and since_last_h >= cfg["COOLDOWN_UP_H"] and not unsold_raise:
             np_ = _f(rw.get("next_price"))                 # cheapest other seller above the owner: never go above him (he would take the Buy Box when the owner is gone)
             target = price * (1 + cfg["RIVAL_RAISE_STEP"])
             if np_ and np_ > price:

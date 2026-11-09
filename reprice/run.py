@@ -357,7 +357,7 @@ def main():
         if rh:
             since = s.setdefault("rw_since", now.isoformat())
             if (now - dt.datetime.fromisoformat(since)).total_seconds() <= engine.DEFAULTS["RIVAL_WAIT_MAX_DAYS"] * 86400:
-                snap["rival_wait"] = rh
+                snap["rival_wait"] = dict(rh, seen_h=(now - dt.datetime.fromisoformat(since)).total_seconds() / 3600.0)
         else:
             s.pop("rw_since", None)
         if rival_flood.get(sku):

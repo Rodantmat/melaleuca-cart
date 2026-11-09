@@ -149,12 +149,17 @@ class RivalStockPricing(unittest.TestCase):
         self.assertEqual(d["action"], "hold")
 
     def test_nearly_sold_out_rival_raises_ahead_below_the_next_seller(self):
-        rw = {"left": "2", "eta": "3", "why": "owner has 2 left", "next_price": "32.0"}
+        rw = {"left": "2", "eta": "3", "why": "owner has 2 left", "next_price": "32.0", "seen_h": 12}
         d = engine.decide(dict(self._s(), rival_wait=rw, on_hand=10, units_30=6, units_90=18), CFG, NOW)     # a normal stock (not a surplus)
         self.assertEqual(d["action"], "up")
         self.assertTrue(d.get("rival_raise"))
         self.assertLessEqual(d["price"], 31.99 + 1e-9)
         self.assertGreater(d["price"], 30.0)
+
+    def test_raise_ahead_needs_the_low_stock_reading_to_hold_for_two_scans(self):
+        rw = {"left": "2", "eta": "3", "why": "x", "next_price": "32.0", "seen_h": 0}
+        d = engine.decide(dict(self._s(), rival_wait=rw, on_hand=10, units_30=6, units_90=18), CFG, NOW)
+        self.assertNotEqual(d.get("rival_raise"), True)
 
     def test_raise_ahead_needs_a_soon_empty_rival(self):
         rw = {"left": "15", "eta": "40", "why": "x", "next_price": "40"}
