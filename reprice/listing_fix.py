@@ -13,7 +13,7 @@ def pesticide_patches(at):
         return [d]
     desc = (at.get("product_description") or [{}])[0].get("value", "")
     desc = desc.replace("Toilet Bowl Cleaning & Deodorizing", "Toilet Bowl Cleaning")
-    P = [("cleaning_agent_formulation", t("gel", False)),
+    P = [("cleaning_agent_formulation", t("descaler", False)),
          ("liquid_contents_description", t("Toilet bowl cleaning gel", False)),
          ("recommended_uses_for_product", t("Toilet bowl cleaner")),
          ("product_description", t(desc))]
