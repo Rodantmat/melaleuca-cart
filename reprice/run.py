@@ -197,7 +197,7 @@ def is_allowed(d, sku, conf, raised_run, dropped_run):
     if act == "up":
         return bool(ar.get("enabled") is True and raised_run < ar.get("max_per_run", 4) and flags_ok(d)), False
     if act == "down":
-        return bool(ad.get("enabled") is True and dropped_run < ad.get("max_per_run", 3) and (d.get("severe") or d.get("no_box") or (
+        return bool(ad.get("enabled") is True and dropped_run < ad.get("max_per_run", 3) and (d.get("severe") or d.get("no_box") or d.get("rival_flood") or (
             (d.get("dss") or 0) >= ad.get("min_days_no_sale", 30) and (d.get("dos") or 0) >= ad.get("min_days_cover", 90)))), False
     return False, False
 
@@ -288,12 +288,15 @@ def main():
     except Exception:
         pass
     listing_alerts = []
+    rival_flood = {}
     rival_hint = {}                           # OWNER 2026-11-04 "wait for a cheap rival's units to sell": Buy Box owner with few units left (bb_stock.tsv, written by reports.py after the last scan)
     try:
         for l in open(os.path.join(STATE, 'bb_stock.tsv')).read().splitlines()[1:]:
             c_ = l.split('\t')
             if len(c_) > 15 and c_[14] == "WAIT":
-                rival_hint[c_[1]] = {"left": c_[7], "eta": c_[10], "why": c_[15]}
+                rival_hint[c_[1]] = {"left": c_[7], "eta": c_[10], "why": c_[15], "next_price": c_[16] if len(c_) > 16 else ""}
+            elif len(c_) > 15 and c_[14] == "DROP-CANDIDATE":
+                rival_flood[c_[1]] = {"price": c_[4], "gap": c_[6], "why": c_[15]}
     except Exception:
         pass
     day_key = now.strftime("%Y-%m-%d")
@@ -357,6 +360,8 @@ def main():
                 snap["rival_wait"] = rh
         else:
             s.pop("rw_since", None)
+        if rival_flood.get(sku):
+            snap["rival_flood"] = rival_flood[sku]
         snap["no_box"] = bool(lv and lv.get("n_offers") and lv.get("bb") is None and "BUYABLE" in lstat and snap["on_hand"] > 0)
         if snap["on_hand"] > 0 and lstat and "BUYABLE" not in lstat:     # stock that cannot be bought: listing not buyable (suppressed / inactive) - the owner has to look in Seller Central
             listing_alerts.append([sku, asin, snap["on_hand"], ",".join(lstat), lissue])

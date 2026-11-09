@@ -39,6 +39,10 @@ DEFAULTS = {
     "UNDER_BB": 0.03,            # zero stock: raise to this many dollars under the rival Buy Box price
     "RIVAL_WAIT_MAX_DAYS": 10,   # OWNER: wait for a cheap rival's last units to sell - but never longer than this in a row
     "NO_BOX_STEP": 0.12,         # in stock, nobody else sells it, Amazon shows NO Buy Box and our price is above the history ceiling (price suppression): step down this much per change toward the ceiling
+    "RIVAL_FLOOD_STEP": 0.05,    # OWNER 2026-11-09: a cheaper rival with a big stock will not run out soon - step toward his price (never below our floor) instead of waiting for him
+    "RIVAL_FLOOD_MIN_DOS": 25,   # ... but only with more than this many days of our own stock to move (with scarce stock keep the margin)
+    "RIVAL_RAISE_STEP": 0.10,    # OWNER 2026-11-09: the Buy Box owner is nearly sold out - raise decently now so the price is already higher when he is gone
+    "RIVAL_RAISE_MAX_ETA": 14,   # ... when he is gone within this many days (or has 3 units or fewer)
     "MIN_STEP": 0.10,            # $ - smaller moves are not worth a price change
     "COOLDOWN_DOWN_H": 48,
     "COOLDOWN_UP_H": 96,
@@ -262,7 +266,7 @@ def decide(snap, cfg=None, now=None):
         target = _r2(target)
         if target >= price - 0.005 or price - target < min(cfg["MIN_STEP"], 0.02 * price):
             return hold("no room to lower further within the limits", floor=floor, ceil=ceil)
-        return {"action": "down", "price": target, "reason": why, "flags": flags + (["severe"] if severe else []), "floor": floor, "ceil": ceil, "severe": bool(severe), "dss": dss, "dos": dos,
+        return {"action": "down", "price": target, "reason": why, "flags": flags + (["severe"] if severe else []), "floor": floor, "ceil": ceil, "severe": bool(severe), "dss": dss, "dos": dos, "rival_flood": bool(snap.get("rival_flood")),
                 "impact": round(on_hand * (_f(snap.get("cost"), 0.0) or 0.0) * (2.0 if severe else 1.0), 2)}
 
     # =============================================================== MATCH (win the Buy Box back, only when it pays)
@@ -304,10 +308,56 @@ def decide(snap, cfg=None, now=None):
                 return {"action": "up", "price": target, "reason": "no stock, rival Buy Box at %.2f: price follows it (%.2f) so the next units sell higher" % (bb, target),
                         "flags": flags, "base_v": None, "floor": floor, "ceil": ceil, "zero_stock": True, "impact": round(max(u90 / 3.0, 1.0) * (target - price), 2)}
 
+    # OWNER 2026-11-09 (no stacked raises): after a raise, the next raise waits until something sold at the new price
+    unsold_raise = bool(lc and lc.get("dir") == "up" and since_last_h < 1e8 and dss * 24 >= since_last_h)
+
+    # =============================================================== RIVAL NEARLY SOLD OUT: raise decently now, so the price is already up when he is gone
+    rw = snap.get("rival_wait")
+    if rw and on_hand > 0 and not anomalous and not (in_drought or surplus):
+        eta_, left_ = _f(rw.get("eta")), _f(rw.get("left"))
+        soon = (eta_ is not None and eta_ <= cfg["RIVAL_RAISE_MAX_ETA"]) or (left_ is not None and left_ <= 3)
+        if soon and since_last_h >= cfg["COOLDOWN_UP_H"] and not unsold_raise:
+            np_ = _f(rw.get("next_price"))                 # cheapest other seller above the owner: never go above him (he would take the Buy Box when the owner is gone)
+            target = price * (1 + cfg["RIVAL_RAISE_STEP"])
+            if np_ and np_ > price:
+                target = min(target, np_ - 0.01)
+            if ceil:
+                target = min(target, ceil)
+            c30 = [c for c in changes if (now - c["ts"]) <= timedelta(days=30)]
+            if c30:
+                target = min(target, min(c["old"] for c in c30) * (1 + cfg["MAX_RISE_30D"]))
+            target = _r2(target)
+            if target >= price + cfg["MIN_STEP"] - 1e-9:
+                return {"action": "up", "price": target, "reason": "Buy Box owner nearly sold out (%s): raise ahead of it to %.2f%s" % (rw.get("why") or "few left", target, (", below the next seller at %.2f" % np_) if np_ else ""),
+                        "flags": flags + ["rival_low"], "base_v": v, "floor": floor, "ceil": ceil, "rival_raise": True,
+                        "impact": round(max(v, v90, 0.05) * 30 * (target - price), 2)}
+
+    # =============================================================== RIVAL WITH A BIG STOCK AND A LOWER PRICE: step toward him, never below the floor
+    rf = snap.get("rival_flood")
+    if rf and on_hand > 0 and not anomalous and not (in_drought or surplus) and dos >= cfg["RIVAL_FLOOD_MIN_DOS"] and we_hold is not True:
+        if since_last_h < cfg["COOLDOWN_DOWN_H"]:
+            return hold("waiting after the last change (%.0f h of %d h)" % (since_last_h, cfg["COOLDOWN_DOWN_H"]), floor=floor, ceil=ceil)
+        if price <= floor + 0.005:
+            return hold("rival with a big stock is cheaper but we are at the minimum-profit floor %.2f" % floor, floor=floor, ceil=ceil, alert="stuck_at_floor")
+        rp = _f(rf.get("price"))
+        step_amt = max(cfg["MIN_STEP"], price * cfg["RIVAL_FLOOD_STEP"])
+        target = max(price - step_amt, floor)
+        if rp and rp < price:
+            target = max(target, rp)
+        c30 = [c for c in changes if (now - c["ts"]) <= timedelta(days=30)]
+        top30 = max([price] + [c["old"] for c in c30] + [c["new"] for c in c30])
+        target = _r2(max(target, top30 * (1 - cfg["MAX_DROP_30D"])))
+        if target < price - 0.005 and price - target >= min(cfg["MIN_STEP"], 0.02 * price):
+            return {"action": "down", "price": target, "reason": "rival Buy Box owner is cheaper and has a big stock (%s): step toward his price %s, %.0f days of our supply" % (rf.get("why") or "plenty", ("%.2f" % rp) if rp else "", min(dos, 999)),
+                    "flags": flags + ["rival_flood"], "floor": floor, "ceil": ceil, "severe": False, "dss": dss, "dos": dos, "rival_flood": True,
+                    "impact": round(on_hand * (_f(snap.get("cost"), 0.0) or 0.0), 2)}
+
     # =============================================================== UP
     if (on_hand > 0 or inbound > 0) and u30 >= cfg["UP_MIN_UNITS_30"] and not in_drought and not surplus and not anomalous:
         if since_last_h < cfg["COOLDOWN_UP_H"]:
             return hold("waiting after the last change", floor=floor, ceil=ceil)
+        if unsold_raise:
+            return hold("the last raise to %.2f has not sold yet - waiting for a sale before the next step" % price, floor=floor, ceil=ceil)
         room_ok = False
         target = None
         comp = low_fba or None

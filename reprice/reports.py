@@ -82,13 +82,14 @@ def main():
         if on_hand <= 5: hint, why = "HOLD", "we have %d units: keep the margin" % on_hand
         elif left is not None and (left <= 3 or (eta is not None and eta <= 10)):
             hint, why = "WAIT", "owner has %s left%s" % (left, (", gone in ~%.0f days" % eta) if eta else "")
-        elif sold_m > 0 and cover and cover >= 45 and gap is not None and gap > 5 and (left is None or left >= 10 or (eta is not None and eta > 30)):
+        elif sold_m > 0 and cover and cover >= 30 and gap is not None and gap > 5 and (left is None or left >= 10 or (eta is not None and eta > 30)):
             hint, why = "DROP-CANDIDATE", "owner has %s, we have %.0f days of cover and are %.0f%% above the box" % ("plenty" if left is None else left, cover, gap)
         else: hint, why = "WATCH", ""
+        nxt = [o["price"] for o in (lr.get("aod") or []) if o.get("price") and o.get("seller_id") not in (me, lr["seller_id"]) and lr.get("bb_price") and o["price"] > lr["bb_price"] + 0.005]
         rows.append([a, sku, lr.get("sold_by") or lr["seller_id"], lr.get("fulfil"), lr["bb_price"], own, "%.1f" % gap if gap is not None else "", left if left is not None else "20+/none",
-                     len(s), "%.2f" % rate if rate is not None else "", eta if eta is not None else "", on_hand, sold_m, cover, hint, why])
+                     len(s), "%.2f" % rate if rate is not None else "", eta if eta is not None else "", on_hand, sold_m, cover, hint, why, min(nxt) if nxt else ""])
     rows.sort(key=lambda r: ({"WAIT": 0, "DROP-CANDIDATE": 1, "WATCH": 2, "HOLD": 3}[r[14]], -(r[12] or 0)))
-    write("bb_stock.tsv", ["asin", "sku", "box_owner", "type", "box_price", "our_price", "our_gap_pct", "owner_left", "reads", "owner_sales_per_day", "owner_days_to_zero", "our_stock", "our_sold_per_month", "our_cover_days", "hint", "why"], rows)
+    write("bb_stock.tsv", ["asin", "sku", "box_owner", "type", "box_price", "our_price", "our_gap_pct", "owner_left", "reads", "owner_sales_per_day", "owner_days_to_zero", "our_stock", "our_sold_per_month", "our_cover_days", "hint", "why", "next_price"], rows)
     hc = collections.Counter(r[14] for r in rows)
 
     # ---------------------------------------------------------------- 2. restock alert

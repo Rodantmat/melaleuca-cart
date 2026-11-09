@@ -118,6 +118,60 @@ class RivalWait(unittest.TestCase):
         self.assertEqual(d["action"], "to_floor")
 
 
+class RivalStockPricing(unittest.TestCase):
+    """OWNER 2026-11-09: big-stock cheaper rival -> step toward him (floor respected); nearly sold-out rival -> raise ahead; no stacked raises."""
+    def _s(self, **kw):
+        return base(price=30.0, cost=5.0, fba_fee=2.0, on_hand=40, units_30=3, units_90=9, days_since_sale=6, low_fba=None, bb=25.0, we_hold_bb=False, **kw)
+
+    def test_big_stock_cheaper_rival_steps_toward_him_but_not_below_floor(self):
+        d = engine.decide(dict(self._s(), rival_flood={"price": "25.0", "gap": "20", "why": "owner has plenty"}), CFG, NOW)
+        self.assertEqual(d["action"], "down")
+        self.assertTrue(d.get("rival_flood"))
+        self.assertLess(d["price"], 30.0)
+        self.assertGreaterEqual(d["price"], 25.0)
+        self.assertGreaterEqual(d["price"], engine.floors(self._s(), CFG)[1] - 0.011)
+        self.assertGreaterEqual(d["price"], 30.0 * 0.94)           # gradual: about one 5% step
+
+    def test_flood_never_goes_below_floor(self):
+        s = dict(self._s(), price=9.2, bb=5.0, rival_flood={"price": "5.0", "gap": "80", "why": "plenty"}, cost=7.0, fba_fee=1.0)
+        d = engine.decide(s, CFG, NOW)
+        fl = engine.floors(s, CFG)[1]
+        if d["action"] == "down":
+            self.assertGreaterEqual(d["price"], fl - 0.011)
+
+    def test_flood_waits_with_scarce_own_stock_and_after_a_recent_change(self):
+        rf = {"price": "25.0", "gap": "20", "why": "plenty"}
+        d = engine.decide(dict(self._s(), on_hand=3, rival_flood=rf), CFG, NOW)       # 3 units / 0.1 per day = 30 days -> still ok; make it scarce
+        d = engine.decide(dict(self._s(), on_hand=1, units_30=3, rival_flood=rf), CFG, NOW)
+        self.assertEqual(d["action"], "hold")
+        lc = {"ts": NOW - timedelta(hours=10), "old": 31.5, "new": 30.0, "dir": "down", "base_v": 0.1}
+        d = engine.decide(dict(self._s(), rival_flood=rf, last_change=lc, changes=[lc]), CFG, NOW)
+        self.assertEqual(d["action"], "hold")
+
+    def test_nearly_sold_out_rival_raises_ahead_below_the_next_seller(self):
+        rw = {"left": "2", "eta": "3", "why": "owner has 2 left", "next_price": "32.0"}
+        d = engine.decide(dict(self._s(), rival_wait=rw, on_hand=10, units_30=6, units_90=18), CFG, NOW)     # a normal stock (not a surplus)
+        self.assertEqual(d["action"], "up")
+        self.assertTrue(d.get("rival_raise"))
+        self.assertLessEqual(d["price"], 31.99 + 1e-9)
+        self.assertGreater(d["price"], 30.0)
+
+    def test_raise_ahead_needs_a_soon_empty_rival(self):
+        rw = {"left": "15", "eta": "40", "why": "x", "next_price": "40"}
+        d = engine.decide(dict(self._s(), rival_wait=rw), CFG, NOW)
+        self.assertNotEqual(d.get("rival_raise"), True)
+
+    def test_no_stacked_raises_until_a_sale_at_the_new_price(self):
+        lc = {"ts": NOW - timedelta(days=5), "old": 36.0, "new": 38.0, "dir": "up", "base_v": 0.4}
+        s = base(price=38.0, cost=10.0, fba_fee=3.0, on_hand=20, units_30=8, units_90=20, days_since_sale=8, bb=38.0, we_hold_bb=True, n_rivals=0,
+                 last_change=lc, changes=[lc], hist={"n": 20, "p_low": 30.0, "p_mid": 36.0, "p_high": 50.0})
+        d = engine.decide(s, CFG, NOW)
+        self.assertEqual(d["action"], "hold")
+        self.assertIn("not sold yet", d["reason"])
+        d = engine.decide(dict(s, days_since_sale=1), CFG, NOW)                    # sold after the raise -> the next step may go
+        self.assertNotIn("not sold yet", d["reason"])
+
+
 class NoBox(unittest.TestCase):
     def _s(self, **kw):
         return base(price=72.0, cost=22.0, fba_fee=4.0, on_hand=1, units_90=2, days_since_sale=40, bb=None, we_hold_bb=True, n_rivals=0, no_box=True,
