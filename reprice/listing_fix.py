@@ -39,6 +39,15 @@ def main():
     print("ALL_ATTRIBUTES", json.dumps(at, ensure_ascii=False)[:20000])
     gk = at.get("generic_keyword")
     print("GENERIC_KEYWORD", json.dumps(gk, indent=1)[:2500])
+    if mode == "schema":
+        d = spapi.call(c, "GET", "/definitions/2020-09-01/productTypes/CLEANING_AGENT", params={"marketplaceIds": MK, "requirements": "LISTING", "locale": "en_US"}, quiet=True)
+        link = ((d.get("schema") or {}).get("link") or {}).get("resource")
+        print("SCHEMA LINK", link)
+        import urllib.request
+        sc = json.loads(urllib.request.urlopen(link, timeout=60).read().decode())
+        prop = sc.get("properties", {}).get("cleaning_agent_formulation", {})
+        print("FORMULATION_SCHEMA", json.dumps(prop)[:3000])
+        return
     if mode in ("pest_preview", "pest_apply"):
         ptype = ((it.get("summaries") or [{}])[0]).get("productType") or "PRODUCT"
         body = {"productType": ptype, "patches": pesticide_patches(at)}
