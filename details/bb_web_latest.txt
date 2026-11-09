@@ -1,20 +1,14 @@
-# 2026-11-08T22:58:26Z  bb_web  success  run 42531030477
-browser session 1 on proxy port 10091  (0 of 167 products read so far, wire 0.0 MB)
+# 2026-11-09T06:39:57Z  bb_web  success  run 42573436389
+browser session 1 on proxy port 10092  (0 of 167 products read so far, wire 0.0 MB)
   1/30  price=54.99 seller=Qmax Brands  (1.4 MB so far)
-  21/30  price=None seller=None  (8.6 MB so far)
-browser session 2 on proxy port 10103  (30 of 167 products read so far, wire 3.9 MB)
-  1/30  price=28.0 seller=Matscorner  (2.0 MB so far)
-  21/30  price=24.2 seller=aboutcare00  (15.2 MB so far)
-browser session 3 on proxy port 10115  (60 of 167 products read so far, wire 7.9 MB)
-  1/30  price=64.99 seller=Flipping Magic  (0.0 MB so far)
-  21/30  price=None seller=None  (13.1 MB so far)
-browser session 4 on proxy port 10123  (90 of 167 products read so far, wire 11.3 MB)
-  1/30  price=53.95 seller=HEALING DREAM  (1.4 MB so far)
-  21/30  price=15.49 seller=aboutcare00  (15.9 MB so far)
-browser session 5 on proxy port 10136  (120 of 167 products read so far, wire 14.8 MB)
-  1/30  price=70.19 seller=Flipping Magic  (0.0 MB so far)
-  21/30  price=61.99 seller=POLORETAIL  (15.7 MB so far)
-browser session 6 on proxy port 10145  (150 of 167 products read so far, wire 18.6 MB)
-  1/17  price=24.0 seller=Lamoure INC  (1.5 MB so far)
-proxy traffic on the wire: 22.1 MB in 249 requests; by type: {'document': 20.2, 'fetch': 1.7}
-web Buy Box: 167 ASINs read, 133 with a price, we win 53, errors 3
+  21/30  price=None seller=None  (9.8 MB so far)
+browser session 2 on proxy port 10102  (30 of 167 products read so far, wire 3.8 MB)
+  1/30  price=28.0 seller=Matscorner  (1.9 MB so far)
+rate limited (503) after 13 ASINs - switching IP
+browser session 3 on proxy port 10117  (41 of 167 products read so far, wire 5.5 MB)
+rate limited (503) after 5 ASINs - switching IP
+browser session 4 on proxy port 10129  (42 of 167 products read so far, wire 5.8 MB)
+rate limited (503) after 4 ASINs - switching IP
+three blocked sessions in a row - stopping for today (partial scan kept)
+proxy traffic on the wire: 6.2 MB in 75 requests; by type: {'document': 5.7, 'fetch': 0.4}
+web Buy Box: 43 ASINs read, 34 with a price, we win 15, errors 0
