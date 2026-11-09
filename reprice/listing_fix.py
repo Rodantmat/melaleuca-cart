@@ -5,6 +5,21 @@ import spapi
 HERE = os.path.dirname(os.path.abspath(__file__)); MK = "ATVPDKIKX0DER"
 
 
+def pesticide_patches(at):
+    """Remove pesticide-type wording (disinfectant / deodorizing) from the text-type attributes."""
+    def t(v, lang=True):
+        d = {"value": v, "marketplace_id": MK}
+        if lang: d["language_tag"] = "en_US"
+        return [d]
+    desc = (at.get("product_description") or [{}])[0].get("value", "")
+    desc = desc.replace("Toilet Bowl Cleaning & Deodorizing", "Toilet Bowl Cleaning")
+    P = [("cleaning_agent_formulation", t("gel", False)),
+         ("liquid_contents_description", t("Toilet bowl cleaning gel", False)),
+         ("recommended_uses_for_product", t("Toilet bowl cleaner")),
+         ("product_description", t(desc))]
+    return [{"op": "replace", "path": "/attributes/" + k, "value": v} for k, v in P]
+
+
 def main():
     sku = sys.argv[1]; mode = os.environ.get("FIX", "none")
     c = spapi.load_creds(HERE); seller = c.get("SELLER_ID") or open(os.path.join(HERE, "state", "seller.txt")).read().strip()
@@ -24,6 +39,15 @@ def main():
     print("ALL_ATTRIBUTES", json.dumps(at, ensure_ascii=False)[:20000])
     gk = at.get("generic_keyword")
     print("GENERIC_KEYWORD", json.dumps(gk, indent=1)[:2500])
+    if mode in ("pest_preview", "pest_apply"):
+        ptype = ((it.get("summaries") or [{}])[0]).get("productType") or "PRODUCT"
+        body = {"productType": ptype, "patches": pesticide_patches(at)}
+        print("PROPOSED PATCH", json.dumps(body, ensure_ascii=False)[:3000])
+        v = spapi.call(c, "PATCH", path, params={"marketplaceIds": MK, "mode": "VALIDATION_PREVIEW"}, body=body)
+        print("VALIDATION", json.dumps(v)[:3000])
+        if mode == "pest_apply" and v.get("status") == "VALID" and not any(i.get("severity") == "ERROR" for i in v.get("issues", [])):
+            r = spapi.call(c, "PATCH", path, params={"marketplaceIds": MK}, body=body)
+            print("APPLIED", json.dumps(r)[:1500])
     if mode in ("preview", "apply") and isinstance(gk, list) and len(gk) > 1:
         ptype = ((it.get("summaries") or [{}])[0]).get("productType") or "PRODUCT"
         keep = [x for x in gk if x.get("marketplace_id") == MK][:1] or gk[:1]
