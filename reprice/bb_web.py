@@ -157,6 +157,11 @@ def run(max_asins=0):
     now = dt.datetime.now(dt.timezone.utc).strftime("%Y-%m-%d %H:%M")
     rows = []
     wire = {"bytes": 0, "n": 0, "by": {}}                         # what the proxy really carries (compressed, on the wire): tallied from every finished request
+    rv_env = os.environ.get("RIVAL_READ", "auto").strip().lower()
+    rival_on = rv_env in ("1", "yes", "true") or (rv_env == "auto" and dt.datetime.now(dt.timezone.utc).hour == 12)    # auto: only the 12:30 UTC scan, so once a day
+    rival_budget = [int(os.environ.get("RIVAL_MAX", "60"))]                    # page reads per scan (about 130 KB each on the wire)
+    RIVAL_PER_ASIN = int(os.environ.get("RIVAL_PER_ASIN", "2"))
+    print("rival stock reads: %s (budget %d)" % ("ON" if rival_on else "off", rival_budget[0]))
     CHUNK = int(os.environ.get("AMZ_CHUNK", "30"))      # products per browser session / proxy IP: Amazon cuts an IP after ~110 requests, so we leave long before
     BLOCK_PAUSE = int(os.environ.get("AMZ_BLOCK_PAUSE", "25"))
     UA = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36"
@@ -222,6 +227,26 @@ def run(max_asins=0):
                             rec.update({x: d.get(x) for x in ("left", "bought_month", "rating", "reviews", "choice")}); rec["left_seller"] = d.get("seller_id"); rec["dp_price"] = d.get("bb_price")
                 except Exception as e:
                     rec["err"] = str(e)[:100]
+                try:                                     # RIVAL STOCK (once a day): the cheaper sellers that do NOT hold the box - their own page view (?m=seller) shows their 'Only N left'
+                    if rival_on and not rec.get("err") and rec.get("we_win") is False and a in prio and rival_budget[0] > 0:
+                        mine = [o["price"] for o in (rec.get("aod") or []) if o.get("seller_id") == ME and o.get("price")]
+                        ref = min(mine) if mine else None
+                        cands = sorted([o for o in (rec.get("aod") or []) if o.get("seller_id") and o["seller_id"] not in (ME, rec.get("seller_id")) and o.get("price")
+                                        and (ref is None or o["price"] < ref - 0.005)], key=lambda o: o["price"])[:RIVAL_PER_ASIN]
+                        rv = []
+                        for o in cands:
+                            if rival_budget[0] <= 0: break
+                            rival_budget[0] -= 1
+                            pg.goto("https://www.amazon.com/dp/%s?m=%s&th=1&psc=1" % (a, o["seller_id"]), timeout=60000, wait_until="domcontentloaded"); pg.wait_for_timeout(900)
+                            h = pg.content(); bytes_ += len(h); d = parse_dp(h)
+                            if d.get("captcha"):
+                                print("%s captcha (rival read) - switching IP" % a); rows.append(rec); b.close(); return True
+                            rv.append({"seller_id": o["seller_id"], "name": o.get("sold_by"), "price": o["price"], "shown_seller": d.get("seller_id"), "shown_price": d.get("bb_price"),
+                                       "left": d.get("left") if d.get("seller_id") == o["seller_id"] else None, "match": d.get("seller_id") == o["seller_id"]})
+                            time.sleep(random.uniform(3.0, 6.0))
+                        if rv: rec["rivals"] = rv
+                except Exception as e:
+                    print("rival read failed for %s: %s" % (a, str(e)[:80]))
                 rows.append(rec)
                 if k % 20 == 0: print("  %d/%d  price=%s seller=%s  (%.1f MB so far)" % (k + 1, len(todo), rec.get("bb_price"), rec.get("sold_by"), bytes_ / 1048576.0)); sys.stdout.flush()
                 time.sleep(random.uniform(4.0, 8.0))

@@ -3,6 +3,7 @@ on:
   workflow_dispatch:
     inputs:
       max: { description: "max ASINs (0 = all)", default: "0" }
+      rivals: { description: "read cheaper rivals' stock: auto (12:30 UTC scan only) / 1 / 0", default: "auto" }
   schedule:
     - cron: "37 9 * * *"   # the heartbeat starts the scans (06:30 / 12:30 / 18:30 UTC); this daily one is only a fallback
 permissions:
@@ -21,14 +22,14 @@ jobs:
       - name: Fetch saved state
         run: git fetch origin reprice-state:reprice-state 2>/dev/null && git checkout reprice-state -- reprice/state reprice/run.log 2>/dev/null || git checkout reprice-state -- reprice/state 2>/dev/null || true
       - name: Scan the public pages
-        env: { PROXY_URL: "${{ secrets.PROXY_URL }}" }
+        env: { PROXY_URL: "${{ secrets.PROXY_URL }}", RIVAL_READ: "${{ github.event.inputs.rivals || 'auto' }}" }
         run: |
           cd reprice
           mkdir -p /tmp/lg; xvfb-run -a python bb_web.py ${{ github.event.inputs.max || '0' }} 2>&1 | tee run_bbweb.log /tmp/lg/bbweb.log
       - name: Journal this run (permanent run history on branch ops-log)
         if: always()
         env: { GH_TOKEN: "${{ github.token }}" }
-        run: python reprice/opslog.py bb_web "${{ job.status }}" reprice/run_bbweb.log 'MB so far' 'web Buy Box:' || true
+        run: python reprice/opslog.py bb_web "${{ job.status }}" reprice/run_bbweb.log 'MB so far' 'web Buy Box:' 'rival stock reads' 'proxy traffic' || true
       - name: Save state
         if: always()
         run: |
