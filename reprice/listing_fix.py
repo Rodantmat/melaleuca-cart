@@ -21,6 +21,7 @@ def main():
         print("RESTRICTIONS call failed:", str(e)[:300])
     at = it.get("attributes") or {}
     print("ATTRIBUTE NAMES", sorted(at))
+    print("ALL_ATTRIBUTES", json.dumps(at, ensure_ascii=False)[:20000])
     gk = at.get("generic_keyword")
     print("GENERIC_KEYWORD", json.dumps(gk, indent=1)[:2500])
     if mode in ("preview", "apply") and isinstance(gk, list) and len(gk) > 1:
