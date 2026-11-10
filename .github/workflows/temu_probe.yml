@@ -8,6 +8,7 @@ on:
       query: { description: "search word to test", default: "dog shirt" }
       vpn:   { description: "1 = go out through Proton VPN (free data), 0 = plain runner IP", default: "1" }
       proxy: { description: "1 = paid proxy (counts GB) - only if asked", default: "0" }
+      engine: { description: "pw = Playwright, uc = stealth Chrome (SeleniumBase UC)", default: "pw" }
 permissions:
   contents: read
 concurrency: { group: temu-probe, cancel-in-progress: true }
@@ -20,6 +21,9 @@ jobs:
       - uses: actions/setup-python@v5
         with: { python-version: "3.12" }
       - run: pip install playwright && playwright install --with-deps chromium && sudo apt-get install -y xvfb
+      - name: Stealth Chrome deps
+        if: github.event.inputs.engine == 'uc'
+        run: pip install seleniumbase && (sbase get chromedriver || true)
       - name: Connect Proton VPN (WireGuard)
         if: github.event.inputs.vpn == '1'
         env: { WG: "${{ secrets.PROTON_WG_CONF }}" }
@@ -37,7 +41,8 @@ jobs:
           TEMU_QUERY: ${{ github.event.inputs.query }}
           TEMU_PROXY: ${{ github.event.inputs.proxy }}
           PROXY_URL: ${{ github.event.inputs.proxy == '1' && secrets.PROXY_URL || '' }}
-        run: xvfb-run -a python temu/temu_probe.py
+        run: |
+          if [ "${{ github.event.inputs.engine }}" = "uc" ]; then python temu/temu_probe_uc.py; else xvfb-run -a python temu/temu_probe.py; fi
       - name: Disconnect VPN
         if: always() && github.event.inputs.vpn == '1'
         run: sudo wg-quick down proton 2>/dev/null || true
