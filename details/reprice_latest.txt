@@ -1,4 +1,4 @@
-# 2026-11-10T15:45:38Z  reprice  success  run 42846093570
+# 2026-11-10T19:26:30Z  reprice  success  run 42883704161
 /home/runner/work/melaleuca-cart/melaleuca-cart/reprice/run.py:14: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
   now = dt.datetime.utcnow()
 mode=live live_writes_allowed=True killed=False skus=167
@@ -12,21 +12,18 @@ mode=live live_writes_allowed=True killed=False skus=167
   live Buy Box prices: 140 of 167 ASINs read
   live Buy Box prices: 160 of 167 ASINs read
   live Buy Box prices: 167 of 167 ASINs read
-Amazon target prices (FOEP) read for 60 products
+Amazon target prices (FOEP) read for 59 products
 seller id found
-decided 151 products: {'hold': 143, 'down': 8} ; applied this run: 3
+decided 151 products: {'hold': 146, 'down': 5} ; applied this run: 0
   ME0017 down 16.09 -> 15.61  drought/surplus: 3 days without sale (limit 30), 84 days of supply | SHADOW (not applied)
-  ME0027 down 29.99 -> 29.09  drought/surplus: 29 days without sale (limit 25), 155 days of supply; market price 28.06
   ME0063 down 21.99 -> 21.33  drought/surplus: 14 days without sale (limit 30), 90 days of supply | SHADOW (not applied)
-  ME0096 down 67.49 -> 64.12  rival Buy Box owner is cheaper and has a big stock (a cheaper seller (59.99) has plenty of stock, we have 52 d
-  ME0276 down 31.93 -> 30.97  drought/surplus: 1 days without sale (limit 30), 300 days of supply | SHADOW (not applied)
-  ME0357 down 19.83 -> 19.24  drought/surplus: 23 days without sale (limit 22), 105 days of supply; market price 17.98 | SHADOW (not applied
-  ME1419 down 44.99 -> 43.64  drought/surplus: 7 days without sale (limit 30), 90 days of supply | SHADOW (not applied)
-  ME1431 down 47.79 -> 46.36  drought/surplus: 3 days without sale (limit 30), 90 days of supply; market price 43.65
-units to sell 1280 | cost paid 8468 | at your listed prices 35587 | net payout base 24681 | net payout conservative 24220
-Counter({'OK': 85, 'BUY MORE': 58, 'BUY': 18, 'BUY LESS': 7, 'STOP buying': 5, 'STOP buying - no sales 90d': 1})
-market depth for 155 products: {'MEDIUM': 46, 'HIGH': 15, 'LOW': 94}
-bb intel: 154 ASINs, we own the box in 43% of web scans; API vs web: {('same seller', 'same price'): 112, ('different seller', 'different price'): 32, ('different seller', 'same price'): 3, ('same seller', 'different price'): 7}
+  ME0276 down 31.93 -> 30.97  drought/surplus: 1 days without sale (limit 30), 100 days of supply | SHADOW (not applied)
+  ME0357 down 19.83 -> 19.24  drought/surplus: 23 days without sale (limit 30), 210 days of supply; market price 17.99 | SHADOW (not applied
+  ME1419 down 44.99 -> 43.64  drought/surplus: 7 days without sale (limit 30), 135 days of supply | SHADOW (not applied)
+units to sell 1283 | cost paid 8549 | at your listed prices 35781 | net payout base 24738 | net payout conservative 24283
+Counter({'OK': 82, 'BUY MORE': 59, 'BUY': 18, 'BUY LESS': 9, 'STOP buying': 5, 'STOP buying - no sales 90d': 1})
+market depth for 155 products: {'MEDIUM': 47, 'HIGH': 14, 'LOW': 94}
+bb intel: 154 ASINs, we own the box in 43% of web scans; API vs web: {('same seller', 'same price'): 117, ('different seller', 'different price'): 30, ('same seller', 'different price'): 5, ('different seller', 'same price'): 2}
 /home/runner/work/melaleuca-cart/melaleuca-cart/reprice/reports.py:54: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
   now = dt.datetime.utcnow()
-reports: rival stock hints {'WAIT': 2, 'DROP-CANDIDATE': 6, 'WATCH': 2, 'HOLD': 51} | restock alerts 42 (profit at risk $2827/month) | rival alerts 42 | outcomes 139
+reports: rival stock hints {'WAIT': 4, 'DROP-CANDIDATE': 4, 'WATCH': 3, 'HOLD': 61} | restock alerts 42 (profit at risk $2816/month) | rival alerts 41 | outcomes 139
