@@ -1,0 +1,41 @@
+name: Temu bridge (search / product / best sellers -> JSON on branch temu-data)
+# Free: plain GitHub runner IP, no proxy, no VPN, no browser, no images, no login.
+# Results: branch temu-data -> temu/latest.json and temu/runs/<UTC time>.json
+on:
+  workflow_dispatch:
+    inputs:
+      search: { description: "keywords, separated by |", default: "" }
+      ids:    { description: "goods ids, comma separated", default: "" }
+      best:   { description: "1 = also pull best sellers", default: "0" }
+permissions:
+  contents: write
+concurrency: { group: temu-bridge, cancel-in-progress: false }
+jobs:
+  pull:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - run: pip install "curl_cffi>=0.7"
+      - name: Pull from Temu
+        env:
+          Q: ${{ github.event.inputs.search }}
+          IDS: ${{ github.event.inputs.ids }}
+          BEST: ${{ github.event.inputs.best }}
+        run: |
+          ARGS=""; [ "$BEST" = "1" ] && ARGS="--best"
+          python temu/temu_bridge.py --search "$Q" --ids "$IDS" $ARGS --out /tmp/temu_out.json 2>&1 | tee /tmp/temu_run.log
+          { echo '```'; cat /tmp/temu_run.log; echo '```'; } >> "$GITHUB_STEP_SUMMARY"
+      - name: Save results to branch temu-data
+        if: always()
+        run: |
+          [ -f /tmp/temu_out.json ] || exit 0
+          TS=$(date -u +%Y%m%dT%H%M%SZ)
+          git config user.name "temu-bot"; git config user.email "temu-bot@users.noreply.github.com"
+          git fetch origin temu-data:temu-data 2>/dev/null && git checkout temu-data || { git checkout --orphan temu-data; git rm -rf . >/dev/null 2>&1 || true; }
+          mkdir -p temu/runs
+          cp /tmp/temu_out.json temu/latest.json; cp /tmp/temu_out.json "temu/runs/$TS.json"; cp /tmp/temu_run.log temu/latest.log
+          git add temu/latest.json temu/latest.log "temu/runs/$TS.json"
+          git commit -qm "temu pull $TS" && git push origin temu-data
