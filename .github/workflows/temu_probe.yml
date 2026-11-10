@@ -27,7 +27,7 @@ jobs:
           if [ -z "$WG" ]; then echo "::error::secret PROTON_WG_CONF is missing - add the Proton WireGuard .conf as a repo secret"; exit 1; fi
           sudo apt-get install -y wireguard-tools openresolv >/dev/null
           echo "before VPN: $(curl -s https://ipinfo.io/json | python3 -c 'import sys,json;d=json.load(sys.stdin);print(d.get("ip"),d.get("org"),d.get("city"))')"
-          printf '%s\n' "$WG" | sudo tee /etc/wireguard/proton.conf >/dev/null && sudo chmod 600 /etc/wireguard/proton.conf
+          printf '%s\n' "$WG" | sed -e 's#, *::/0##' | sudo tee /etc/wireguard/proton.conf >/dev/null && sudo chmod 600 /etc/wireguard/proton.conf
           sudo wg-quick up proton
           sleep 3
           echo "after VPN:  $(curl -s --max-time 20 https://ipinfo.io/json | python3 -c 'import sys,json;d=json.load(sys.stdin);print(d.get("ip"),d.get("org"),d.get("city"))')"
