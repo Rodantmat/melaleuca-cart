@@ -1,5 +1,7 @@
 # Temu bridge
 
+> **Status 2026-11-10 (about 20:30 UTC): BLOCKED.** It worked for about an hour (3 searches of 40 products each, plus product prices). After that Temu stopped putting product data in the HTML for crawler requests from cloud IPs (GitHub runner and Cloudflare WARP tested), and in the normal shopper homepage too. The code is kept in case the route reopens. Don't rotate more disguises: Temu closed this deliberately.
+
 Products and prices from Temu with **no login, no proxy, no VPN, no browser and no images**. It runs on a plain GitHub runner and costs nothing.
 
 ## How it works
