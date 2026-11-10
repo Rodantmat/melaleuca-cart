@@ -1,0 +1,26 @@
+name: Temu probe (logged out, no commit)
+# Can a cloud runner read Temu products + prices? Images/video/fonts/CSS always blocked.
+# Proxy OFF by default (runner IP, no GB used). Set proxy=1 only when the runner IP is proven blocked.
+on:
+  workflow_dispatch:
+    inputs:
+      query: { description: "search word to test", default: "dog shirt" }
+      proxy: { description: "1 = use the paid proxy (counts GB), 0 = runner IP only", default: "0" }
+permissions:
+  contents: read
+concurrency: { group: temu-probe, cancel-in-progress: true }
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - run: pip install playwright && playwright install --with-deps chromium && sudo apt-get install -y xvfb
+      - name: Run the probe
+        env:
+          TEMU_QUERY: ${{ github.event.inputs.query }}
+          TEMU_PROXY: ${{ github.event.inputs.proxy }}
+          PROXY_URL: ${{ github.event.inputs.proxy == '1' && secrets.PROXY_URL || '' }}
+        run: xvfb-run -a python temu/temu_probe.py
