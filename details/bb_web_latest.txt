@@ -1,10 +1,21 @@
-# 2026-11-10T00:03:24Z  bb_web  success  run 42723883758
-rival stock reads: ON (budget 60)
-browser session 1 on proxy port 10092  (0 of 60 products read so far, wire 0.0 MB)
+# 2026-11-10T06:54:12Z  bb_web  success  run 42769020527
+rival stock reads: off (budget 80)
+browser session 1 on proxy port 10090  (0 of 167 products read so far, wire 0.0 MB)
   1/30  price=59.99 seller=Qmax Brands  (1.6 MB so far)
-  21/30  price=None seller=None  (22.0 MB so far)
-browser session 2 on proxy port 10106  (30 of 60 products read so far, wire 9.3 MB)
-  1/30  price=28.0 seller=Matscorner  (5.2 MB so far)
-  21/30  price=24.2 seller=aboutcare00  (31.2 MB so far)
-proxy traffic on the wire: 17.5 MB in 113 requests; by type: {'document': 16.8, 'fetch': 0.6}
-web Buy Box: 60 ASINs read, 44 with a price, we win 20, errors 0
+  21/30  price=None seller=None  (14.1 MB so far)
+browser session 2 on proxy port 10105  (30 of 167 products read so far, wire 4.5 MB)
+  1/30  price=18.0 seller=None  (1.8 MB so far)
+  21/30  price=24.2 seller=aboutcare00  (12.1 MB so far)
+browser session 3 on proxy port 10115  (60 of 167 products read so far, wire 8.2 MB)
+  1/30  price=64.99 seller=Flipping Magic  (0.0 MB so far)
+  21/30  price=None seller=None  (12.9 MB so far)
+browser session 4 on proxy port 10128  (90 of 167 products read so far, wire 11.4 MB)
+  1/30  price=53.95 seller=MEGA SAVINGS  (1.5 MB so far)
+  21/30  price=15.49 seller=aboutcare00  (16.3 MB so far)
+browser session 5 on proxy port 10135  (120 of 167 products read so far, wire 15.0 MB)
+  1/30  price=None seller=None  (0.0 MB so far)
+  21/30  price=59.99 seller=None  (19.5 MB so far)
+browser session 6 on proxy port 10150  (150 of 167 products read so far, wire 19.8 MB)
+  1/17  price=24.0 seller=Lamoure INC  (1.5 MB so far)
+proxy traffic on the wire: 23.3 MB in 243 requests; by type: {'document': 21.3, 'fetch': 1.7}
+web Buy Box: 167 ASINs read, 129 with a price, we win 53, errors 3
