@@ -61,6 +61,9 @@ def main():
         last_row[r["asin"]] = r
         if r.get("left") is not None and r.get("left_seller"):
             series[(r["asin"], r["left_seller"])].append((tparse(r["t"]), r["left"]))
+    rv_last = {}                                                            # newest read WITH cheaper-rival stock per product (taken once a day, so up to 36 h old counts)
+    for r in web:
+        if r.get("rivals") and not r.get("err"): rv_last[r["asin"]] = r
     rows = []
     for a, lr in last_row.items():
         if lr.get("we_win") or not lr.get("seller_id"): continue
@@ -78,18 +81,25 @@ def main():
             rate = (seg[0][1] - seg[-1][1]) / days
             if rate > 0.05 and seg[-1][1] > 0: eta = round(seg[-1][1] / rate, 1)
         gap = (own / lr["bb_price"] - 1) * 100 if own and lr.get("bb_price") else None
+        plenty_px = None                                                    # a cheaper seller (not the box owner) with plenty of stock: waiting for the box owner to sell out will not help us
+        rr = rv_last.get(a)
+        if rr and own and (now - tparse(rr["t"])).total_seconds() <= 36 * 3600:
+            pl = [v["price"] for v in rr["rivals"] if v.get("match") and v.get("price") and v["price"] < own and (v.get("left") is None or v["left"] >= 10)]
+            if pl: plenty_px = min(pl)
         # hints (proposal, not wired to the repricer)
         if on_hand <= 5: hint, why = "HOLD", "we have %d units: keep the margin" % on_hand
-        elif left is not None and (left <= 3 or (eta is not None and eta <= 10)):
+        elif plenty_px is None and left is not None and (left <= 3 or (eta is not None and eta <= 10)):
             hint, why = "WAIT", "owner has %s left%s" % (left, (", gone in ~%.0f days" % eta) if eta else "")
+        elif plenty_px is not None and sold_m > 0 and cover and cover >= 30 and (own / plenty_px - 1) * 100 > 5:
+            hint, why = "DROP-CANDIDATE", "a cheaper seller (%.2f) has plenty of stock, we have %.0f days of cover" % (plenty_px, cover)
         elif sold_m > 0 and cover and cover >= 30 and gap is not None and gap > 5 and (left is None or left >= 10 or (eta is not None and eta > 30)):
             hint, why = "DROP-CANDIDATE", "owner has %s, we have %.0f days of cover and are %.0f%% above the box" % ("plenty" if left is None else left, cover, gap)
         else: hint, why = "WATCH", ""
         nxt = [o["price"] for o in (lr.get("aod") or []) if o.get("price") and o.get("seller_id") not in (me, lr["seller_id"]) and lr.get("bb_price") and o["price"] > lr["bb_price"] + 0.005]
         rows.append([a, sku, lr.get("sold_by") or lr["seller_id"], lr.get("fulfil"), lr["bb_price"], own, "%.1f" % gap if gap is not None else "", left if left is not None else "20+/none",
-                     len(s), "%.2f" % rate if rate is not None else "", eta if eta is not None else "", on_hand, sold_m, cover, hint, why, min(nxt) if nxt else ""])
+                     len(s), "%.2f" % rate if rate is not None else "", eta if eta is not None else "", on_hand, sold_m, cover, hint, why, min(nxt) if nxt else "", plenty_px if plenty_px else ""])
     rows.sort(key=lambda r: ({"WAIT": 0, "DROP-CANDIDATE": 1, "WATCH": 2, "HOLD": 3}[r[14]], -(r[12] or 0)))
-    write("bb_stock.tsv", ["asin", "sku", "box_owner", "type", "box_price", "our_price", "our_gap_pct", "owner_left", "reads", "owner_sales_per_day", "owner_days_to_zero", "our_stock", "our_sold_per_month", "our_cover_days", "hint", "why", "next_price"], rows)
+    write("bb_stock.tsv", ["asin", "sku", "box_owner", "type", "box_price", "our_price", "our_gap_pct", "owner_left", "reads", "owner_sales_per_day", "owner_days_to_zero", "our_stock", "our_sold_per_month", "our_cover_days", "hint", "why", "next_price", "cheap_plenty_price"], rows)
     hc = collections.Counter(r[14] for r in rows)
 
     # ---------------------------------------------------------------- 2. restock alert

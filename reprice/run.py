@@ -296,7 +296,7 @@ def main():
             if len(c_) > 15 and c_[14] == "WAIT":
                 rival_hint[c_[1]] = {"left": c_[7], "eta": c_[10], "why": c_[15], "next_price": c_[16] if len(c_) > 16 else ""}
             elif len(c_) > 15 and c_[14] == "DROP-CANDIDATE":
-                rival_flood[c_[1]] = {"price": c_[4], "gap": c_[6], "why": c_[15]}
+                rival_flood[c_[1]] = {"price": (c_[17] if len(c_) > 17 and c_[17] else c_[4]), "gap": c_[6], "why": c_[15]}
     except Exception:
         pass
     day_key = now.strftime("%Y-%m-%d")

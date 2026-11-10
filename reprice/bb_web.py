@@ -159,7 +159,7 @@ def run(max_asins=0):
     wire = {"bytes": 0, "n": 0, "by": {}}                         # what the proxy really carries (compressed, on the wire): tallied from every finished request
     rv_env = os.environ.get("RIVAL_READ", "auto").strip().lower()
     rival_on = rv_env in ("1", "yes", "true") or (rv_env == "auto" and dt.datetime.now(dt.timezone.utc).hour == 12)    # auto: only the 12:30 UTC scan, so once a day
-    rival_budget = [int(os.environ.get("RIVAL_MAX", "40"))]                    # page reads per scan (about 130 KB each on the wire)
+    rival_budget = [int(os.environ.get("RIVAL_MAX", "80"))]                    # page reads per scan (about 130 KB each on the wire)
     RIVAL_PER_ASIN = int(os.environ.get("RIVAL_PER_ASIN", "2"))
     print("rival stock reads: %s (budget %d)" % ("ON" if rival_on else "off", rival_budget[0]))
     CHUNK = int(os.environ.get("AMZ_CHUNK", "30"))      # products per browser session / proxy IP: Amazon cuts an IP after ~110 requests, so we leave long before
