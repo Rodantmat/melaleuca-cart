@@ -73,6 +73,8 @@ def visit(pg, label, url, scrolls=0, wait=6):
 def main():
     from playwright.sync_api import sync_playwright
     kw = {"headless": False}
+    if os.environ.get("TEMU_SOCKS"):
+        kw["proxy"] = {"server": os.environ["TEMU_SOCKS"].replace("socks5h://", "socks5://")}
     if USE_PROXY:
         raw = os.environ.get("PROXY_URL", "").strip()
         if not raw:
