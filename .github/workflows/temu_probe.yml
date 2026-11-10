@@ -1,11 +1,13 @@
 name: Temu probe (logged out, no commit)
 # Can a cloud runner read Temu products + prices? Images/video/fonts/CSS always blocked.
-# Proxy OFF by default (runner IP, no GB used). Set proxy=1 only when the runner IP is proven blocked.
+# Network: Proton VPN (WireGuard, secret PROTON_WG_CONF) by default - no per-GB cost.
+# The paid proxy is never used unless proxy=1 is asked for explicitly.
 on:
   workflow_dispatch:
     inputs:
       query: { description: "search word to test", default: "dog shirt" }
-      proxy: { description: "1 = use the paid proxy (counts GB), 0 = runner IP only", default: "0" }
+      vpn:   { description: "1 = go out through Proton VPN (free data), 0 = plain runner IP", default: "1" }
+      proxy: { description: "1 = paid proxy (counts GB) - only if asked", default: "0" }
 permissions:
   contents: read
 concurrency: { group: temu-probe, cancel-in-progress: true }
@@ -18,9 +20,23 @@ jobs:
       - uses: actions/setup-python@v5
         with: { python-version: "3.12" }
       - run: pip install playwright && playwright install --with-deps chromium && sudo apt-get install -y xvfb
+      - name: Connect Proton VPN (WireGuard)
+        if: github.event.inputs.vpn == '1'
+        env: { WG: "${{ secrets.PROTON_WG_CONF }}" }
+        run: |
+          if [ -z "$WG" ]; then echo "::error::secret PROTON_WG_CONF is missing - add the Proton WireGuard .conf as a repo secret"; exit 1; fi
+          sudo apt-get install -y wireguard-tools openresolv >/dev/null
+          echo "before VPN: $(curl -s https://ipinfo.io/json | python3 -c 'import sys,json;d=json.load(sys.stdin);print(d.get("ip"),d.get("org"),d.get("city"))')"
+          printf '%s\n' "$WG" | sudo tee /etc/wireguard/proton.conf >/dev/null && sudo chmod 600 /etc/wireguard/proton.conf
+          sudo wg-quick up proton
+          sleep 3
+          echo "after VPN:  $(curl -s --max-time 20 https://ipinfo.io/json | python3 -c 'import sys,json;d=json.load(sys.stdin);print(d.get("ip"),d.get("org"),d.get("city"))')"
       - name: Run the probe
         env:
           TEMU_QUERY: ${{ github.event.inputs.query }}
           TEMU_PROXY: ${{ github.event.inputs.proxy }}
           PROXY_URL: ${{ github.event.inputs.proxy == '1' && secrets.PROXY_URL || '' }}
         run: xvfb-run -a python temu/temu_probe.py
+      - name: Disconnect VPN
+        if: always() && github.event.inputs.vpn == '1'
+        run: sudo wg-quick down proton 2>/dev/null || true
