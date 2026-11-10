@@ -5,7 +5,7 @@ with that client header returns the same public data a shopper sees. Runs on a p
 
   search(query)      -> ~40 products for a keyword (Temu's own search, first page)
   product(goods_id)  -> one product: title, price, currency, stock, rating, reviews, images (urls only)
-  best_sellers()     -> Temu best-seller channel (~40)
+  best_sellers()     -> Temu best-seller channel (~40) - UNRELIABLE (page sometimes renders empty), not used by default
 
 CLI:  python temu/temu_bridge.py --search "dog shirt|cat mug" --ids 603242230592430,601102364449217 --best --out temu/out/latest.json
 """
@@ -161,6 +161,8 @@ def product(gid):
         m = re.search(r'product:price:amount"\s+content="([^"]+)"', html)
         if m:
             rec["price"] = _num(m.group(1))
+    if rec.get("price") is None:
+        rec["note"] = "no price block on this product page (some big-ticket items) - use the price from search results"
     if not rec.get("title"):
         m = re.search(r'<meta property="og:title" content="([^"]+)"', html)
         rec["title"] = m.group(1).replace(" - Temu", "") if m else None
