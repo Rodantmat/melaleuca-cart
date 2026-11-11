@@ -4,7 +4,7 @@ name: Temu deals -> Amazon profit (read-only on Amazon)
 on:
   workflow_dispatch:
     inputs:
-      search:   { description: "Temu keywords separated by |, 'default' = generic household/kitchen/organizer set, empty = last saved Temu pull", default: "default" }
+      search:   { description: "chunk:N/M = part N of M of temu/keywords.txt (~110 generic keywords), or keywords separated by |, or empty = last saved Temu pull", default: "chunk:1/4" }
       roi_min:  { description: "min ROI to flag (0.30 = 30%)", default: "0.30" }
       max_temu: { description: "max Temu price to consider", default: "25" }
       wholesale_factor: { description: "est. Alibaba unit price = Temu price x this", default: "0.60" }
@@ -16,7 +16,7 @@ concurrency: { group: temu-bridge, cancel-in-progress: false }
 jobs:
   deals:
     runs-on: ubuntu-latest
-    timeout-minutes: 180
+    timeout-minutes: 240
     steps:
       - uses: actions/checkout@v4
         with: { ref: main }
@@ -42,11 +42,11 @@ jobs:
       - name: Save to temu-data
         if: always()
         run: |
-          [ -f /tmp/deals/deals_latest.json ] || exit 0
+          ls /tmp/deals/deals_*.json >/dev/null 2>&1 || exit 0
           TS=$(date -u +%Y%m%dT%H%MZ)
           git config user.name "temu-bot"; git config user.email "temu-bot@users.noreply.github.com"
           git checkout -q -B temu-data origin/temu-data
           mkdir -p temu/deals
-          cp /tmp/deals/deals_latest.csv /tmp/deals/deals_latest.json /tmp/deals/run.log temu/deals/
-          cp /tmp/deals/deals_latest.csv "temu/deals/deals_$TS.csv"
+          cp /tmp/deals/deals_*.csv /tmp/deals/deals_*.json temu/deals/
+          cp /tmp/deals/run.log "temu/deals/run_$TS.log"
           git add temu/deals && git commit -qm "deals $TS" && git push -q origin temu-data

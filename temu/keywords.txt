@@ -1,0 +1,113 @@
+# category | Temu search keyword   (generic, no brands; avoids Amazon's new $1M-insurance groups: electric appliances,
+# lithium batteries, children's, ingestible/cosmetic, fire/heating, safety gear - those get flagged if they slip in)
+kitchen | vegetable chopper
+kitchen | garlic press
+kitchen | silicone spatula set
+kitchen | measuring cups and spoons
+kitchen | manual can opener
+kitchen | oil sprayer bottle
+kitchen | silicone ice cube tray
+kitchen | herb scissors
+kitchen | pot lid holder
+kitchen | dish drying rack
+kitchen | sink caddy sponge holder
+kitchen | silicone stretch lids
+kitchen | reusable food storage bags
+kitchen | jar opener
+kitchen | mandoline slicer
+kitchen | kitchen sink strainer
+kitchen | magnetic knife strip
+kitchen | silicone baking mat
+kitchen | splatter screen
+kitchen | egg separator
+organization | drawer organizer
+organization | fridge organizer bins
+organization | spice rack organizer
+organization | under sink organizer
+organization | pantry storage containers
+organization | closet organizer hanging
+organization | shoe rack organizer
+organization | over the door organizer
+organization | cable management box
+organization | stackable storage bins
+organization | wall mounted shelf
+organization | lazy susan turntable
+organization | velvet hangers
+organization | vacuum storage bags
+organization | bed riser
+cleaning | grout cleaning brush
+cleaning | microfiber cleaning cloths
+cleaning | lint roller pet hair remover
+cleaning | squeegee
+cleaning | scrub brush with handle
+cleaning | drain hair catcher
+cleaning | toilet brush holder
+cleaning | window cleaning tool
+cleaning | dust brush for blinds
+bathroom | shower caddy
+bathroom | toothbrush holder
+bathroom | soap dispenser
+bathroom | bathroom counter organizer
+bathroom | towel hooks adhesive
+bathroom | shower curtain hooks
+laundry | clothes drying rack
+laundry | laundry basket collapsible
+laundry | mesh laundry bags
+laundry | sock organizer
+home | door draft stopper
+home | furniture pads felt
+home | cord cover
+home | adhesive wall hooks
+home | key holder wall
+home | doorstop
+home | curtain tie backs
+pet | pet grooming brush
+pet | collapsible dog bowl
+pet | dog poop bag holder
+pet | cat scratcher cardboard
+pet | pet hair remover roller
+pet | litter mat
+pet | slow feeder dog bowl
+car | car seat gap filler
+car | car trash can
+car | car phone mount
+car | trunk organizer
+car | car sun shade
+car | ice scraper
+office | desk organizer
+office | monitor stand riser
+office | laptop stand
+office | cable clips
+office | drawer label maker tape
+office | bookends
+travel | packing cubes
+travel | toiletry bag
+travel | luggage tags
+travel | passport holder
+travel | travel bottles silicone
+garden | plant labels
+garden | garden kneeler pad
+garden | plant support stakes
+garden | hose nozzle
+garden | bird feeder
+garden | self watering spikes
+tools | stud finder
+tools | magnetic wristband
+tools | picture hanging kit
+tools | tape measure
+tools | utility knife
+fitness | resistance bands
+fitness | yoga blocks
+fitness | jump rope
+fitness | ab roller
+fitness | foam roller
+fitness | grip strengthener
+crafts | embroidery kit
+crafts | glue gun sticks
+crafts | craft storage box
+crafts | sewing kit
+accessories | claw hair clips
+accessories | jewelry organizer
+accessories | sunglasses case
+accessories | watch band
+accessories | phone lanyard
