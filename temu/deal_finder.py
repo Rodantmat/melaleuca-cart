@@ -35,7 +35,7 @@ EXCLUDE = re.compile(r"\b(t-?shirts?|tees?|hoodies?|sweatshirts?|jumpsuit|mugs?|
                      r"stanley|yeti|owala|lego|sanrio|minecraft|bluey|jesus|christian)\b", re.I)
 # extra Amazon paperwork even with liability insurance: CPC (children's), hazmat review (lithium), ingestible/cosmetic rules
 RISK = re.compile(r"\b(lithium|li-ion|batter(y|ies) included|baby|infant|toddler|kids?|children|toys?|"
-                  r"supplement|edible|cosmetic|serum|cream|lotion|helmet|life jacket|smoke detector|carbon monoxide)\b", re.I)
+                  r"rechargeable|usb[- ]?c charging|power bank|supplement|edible|cosmetic|serum|cream|lotion|helmet|life jacket|smoke detector|carbon monoxide)\b", re.I)
 PER_KW = int(os.environ.get("PER_KW", "20"))                       # first N Temu results per keyword (Temu's own ranking)
 
 
@@ -498,7 +498,7 @@ def main():
         cost = round(sprice * (1 + TAX) + INBOUND, 2)
         wf = WHOLESALE_F_ALI if it.get("source") == "aliexpress" else WHOLESALE_F
         wcost = round(sprice * wf + FREIGHT + INBOUND, 2)
-        rec = {"kind": "MARKET", "source": it.get("source", "temu"), "source_sold": it.get("sold"), "source_rating": it.get("rating"), "cat": it.get("cat"), "kw": it.get("kw"), "risk_flag": (RISK.search(it["title"]) or [None])[0],
+        rec = {"kind": "MARKET", "source": it.get("source", "temu"), "source_sold": it.get("sold"), "source_rating": it.get("rating"), "cat": it.get("cat"), "kw": it.get("kw"), "risk_flag": (RISK.search(it["title"] + " " + x["title"]) or [None])[0],
                "temu_title": it["title"][:120], "temu_price": it["price"], "landed_cost": cost, "wholesale_cost_est": wcost, "temu_url": it["url"], "temu_id": it["goods_id"],
                "pack_src": sq, "pack_amz": aq, "pack_ratio": round(ratio, 2), "match_conf": "PHOTO MATCH" if m["photo_matches"] else "TITLE MATCH", "photo_matches": m["photo_matches"],
                "listings": m["listings"], "abandoned_listings": len(m["aband"]), "sellers": m["sellers"], "multi_listing_sellers": m["multi_listing_sellers"],

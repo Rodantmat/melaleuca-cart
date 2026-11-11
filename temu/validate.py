@@ -26,6 +26,15 @@ def attrs(t):
     return d
 
 
+_MAT = ("glass", "plastic", "stainless", "silicone", "bamboo", "wood", "ceramic", "aluminum", "metal", "cotton", "velvet", "leather")
+
+
+def mat_conflict(t1, t2):
+    a = {m for m in _MAT if m in (t1 or "").lower()}
+    b = {m for m in _MAT if m in (t2 or "").lower()}
+    return ["material %s vs %s" % (sorted(a), sorted(b))] if a and b and not (a & b) else []
+
+
 def attr_conflict(t1, t2):
     """Units both titles state (e.g. 16oz vs 32oz, 90L vs 60L) whose values never come within 15% of each other."""
     a, b = attrs(t1), attrs(t2)
@@ -38,7 +47,7 @@ def attr_conflict(t1, t2):
 
 def grade_market(r):
     why = []
-    conf = attr_conflict(r.get("temu_title"), r.get("ref_title"))
+    conf = attr_conflict(r.get("temu_title"), r.get("ref_title")) + mat_conflict(r.get("temu_title"), r.get("ref_title"))
     if conf:
         why.append("attribute mismatch: " + "; ".join(conf))
     ratio = r.get("pack_ratio") or 1.0
@@ -61,8 +70,12 @@ def restricted(c, asin):
         j = spapi.call(c, "GET", "/listings/2021-08-01/restrictions", params={"asin": asin, "sellerId": sid, "marketplaceIds": spapi.MARKETPLACE,
                                                                            "conditionType": "new_new", "reasonLocale": "en_US"}, quiet=True, tries=3)
         return bool(j.get("restrictions"))
-    except Exception:
+    except Exception as e:
+        ERR[str(e)[:60].split(":")[0]] = ERR.get(str(e)[:60].split(":")[0], 0) + 1
         return None
+
+
+ERR = {}
 
 
 def run(c, rows, abrows, pool, page_details):
@@ -76,7 +89,11 @@ def run(c, rows, abrows, pool, page_details):
         asins += [r["ref_asin"]] + top
     asins = list(dict.fromkeys(asins))
     pages = page_details(asins) if asins else {}
-    print("  validation: %d candidates, %d product pages" % (len(cand), len(pages)))
+    errs = {}
+    for d in pages.values():
+        k = d.get("err") or ("no reviews field" if d.get("reviews") is None else "ok")
+        errs[k] = errs.get(k, 0) + 1
+    print("  validation: %d candidates, %d product pages: %s" % (len(cand), len(pages), errs))
     for r in cand:
         tops = sorted((a for a in (r.get("asins") or "").split() if a in pool), key=lambda a: -(pool[a].get("est_sales") or 0))[:2]
         ds = [pages.get(a) or {} for a in dict.fromkeys([r["ref_asin"]] + tops)]
@@ -86,6 +103,7 @@ def run(c, rows, abrows, pool, page_details):
         r["ref_bought_month"] = (pages.get(r["ref_asin"]) or {}).get("bought_month")
         r["gated"] = restricted(c, r["ref_asin"])
         time.sleep(0.4)
+    print("  validation: restriction check errors: %s, seller id present: %s" % (ERR or "none", bool(c.get("SELLER_ID"))))
     for r in rows:
         why = list(r.get("why_not") or [])
         if r["grade"] != "C":
