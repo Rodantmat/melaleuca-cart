@@ -299,6 +299,21 @@ def page_details(asins):
     return out
 
 
+_PACK = re.compile(r"(?:(\d{1,3})(?:\s*/\s*\d{1,3})*\s*[- ]?(?:pack|packs|pcs|pc|pieces|piece|count|ct|sets?|pairs?)\b|(?:pack|set|lot|bundle) of\s*(\d{1,3}))", re.I)
+
+
+def pack_qty(title):
+    """Units in the title ('120 Pack', '2-Pack', '10/20/50 Pack' -> first = smallest variant, 'Set of 4'); None if not stated."""
+    m = _PACK.search(title or "")
+    if not m:
+        return None
+    n = int(m.group(1) or m.group(2))
+    return n if 1 <= n <= 500 else None
+
+
+UNIT_CAP = float(os.environ.get("UNIT_CAP", "300"))   # a new seller is never assumed to move more than this per month
+
+
 def fee_guess(price):
     return round(max(0.30, 0.15 * price) + (3.22 if price < 10 else 3.86), 2)   # referral + small/large-standard FBA guess
 
@@ -475,12 +490,16 @@ def main():
     rows = []
     for m in markets:
         it, x = m["it"], pool[m["ref"]]
-        cost = round(it["price"] * (1 + TAX) + INBOUND, 2)
+        sq, aq = pack_qty(it["title"]), pack_qty(x["title"])
+        ratio = (aq / sq) if (sq and aq) else (aq if (aq and aq > 1 and not sq) else 1.0)   # source units needed per Amazon listing
+        ratio = max(0.1, min(ratio, 12.0))
+        sprice = it["price"] * ratio
+        cost = round(sprice * (1 + TAX) + INBOUND, 2)
         wf = WHOLESALE_F_ALI if it.get("source") == "aliexpress" else WHOLESALE_F
-        wcost = round(it["price"] * wf + FREIGHT + INBOUND, 2)
+        wcost = round(sprice * wf + FREIGHT + INBOUND, 2)
         rec = {"kind": "MARKET", "source": it.get("source", "temu"), "source_sold": it.get("sold"), "source_rating": it.get("rating"), "cat": it.get("cat"), "kw": it.get("kw"), "risk_flag": (RISK.search(it["title"]) or [None])[0],
                "temu_title": it["title"][:120], "temu_price": it["price"], "landed_cost": cost, "wholesale_cost_est": wcost, "temu_url": it["url"], "temu_id": it["goods_id"],
-               "match_conf": "PHOTO MATCH" if m["photo_matches"] else "TITLE MATCH", "photo_matches": m["photo_matches"],
+               "pack_src": sq, "pack_amz": aq, "pack_ratio": round(ratio, 2), "match_conf": "PHOTO MATCH" if m["photo_matches"] else "TITLE MATCH", "photo_matches": m["photo_matches"],
                "listings": m["listings"], "abandoned_listings": len(m["aband"]), "sellers": m["sellers"], "multi_listing_sellers": m["multi_listing_sellers"],
                "max_listings_one_seller": m["max_listings_one_seller"], "amazon_sells": m["amazon_sells"], "market_sales_month": m["market_sales"],
                "amz_price": m["price"], "ref_asin": m["ref"], "ref_title": x["title"][:120], "ref_rank": x.get("rank"), "rank_cat": x.get("rank_cat"),
@@ -495,7 +514,7 @@ def main():
             share = min(SHARE_CAP, SHARE_HAIRCUT / (m["listings"] + 1)) if m["listings"] else 0
             if m["amazon_sells"]:
                 share *= 0.5
-            units = round(m["market_sales"] * share, 1)
+            units = round(min(UNIT_CAP, m["market_sales"] * share), 1)
             rec.update({"profit_wholesale": round(pw, 2), "roi_wholesale": round(pw / wcost, 2), "profit_temu": round(p, 2), "roi_temu": round(p / cost, 2),
                         "ppc_per_unit": round(ppc, 2), "profit_unit_after_ads": round(pw - ppc, 2), "your_share": round(share, 3), "your_units_month": units,
                         "profit_month": round(units * (pw - ppc), 0), "profit_12m": round(units * (pw - ppc) * 12 * YEAR_FACTOR, 0),
