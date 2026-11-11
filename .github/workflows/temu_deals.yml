@@ -1,0 +1,48 @@
+name: Temu deals -> Amazon profit (read-only on Amazon)
+# Temu items (live paced search, or the last saved Temu pull) -> Amazon match, live offers, fees, profit/ROI, abandoned listings.
+# Results: branch temu-data -> temu/deals/deals_latest.csv|json (+ dated copy). Nothing is listed or changed on Amazon.
+on:
+  workflow_dispatch:
+    inputs:
+      search:   { description: "Temu keywords, separated by | (empty = use the last saved Temu pull)", default: "" }
+      roi_min:  { description: "min ROI to flag (0.30 = 30%)", default: "0.30" }
+      max_temu: { description: "max Temu price to consider", default: "25" }
+permissions:
+  contents: write
+  actions: write
+concurrency: { group: temu-bridge, cancel-in-progress: false }
+jobs:
+  deals:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+        with: { ref: main }
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - run: pip install -q "curl_cffi>=0.7"
+      - name: Last saved Temu pull
+        run: git fetch -q origin temu-data && git show origin/temu-data:temu/latest.json > /tmp/temu_last.json || echo '{}' > /tmp/temu_last.json
+      - name: Find deals
+        env:
+          CRED_ENV: ${{ secrets.CREDENTIALS_ENV }}
+          Q: ${{ github.event.inputs.search }}
+          ROI_MIN: ${{ github.event.inputs.roi_min }}
+          MAX_TEMU_PRICE: ${{ github.event.inputs.max_temu }}
+        run: |
+          mkdir -p /tmp/deals; printf '%s\n' "$CRED_ENV" > reprice/credentials.env
+          if [ -n "$Q" ]; then ARGS=(--search "$Q"); else ARGS=(--from-json /tmp/temu_last.json); fi
+          python temu/deal_finder.py "${ARGS[@]}" --out /tmp/deals 2>&1 | tee /tmp/deals/run.log || true
+          rm -f reprice/credentials.env
+          { echo '```'; tail -70 /tmp/deals/run.log; echo '```'; } >> "$GITHUB_STEP_SUMMARY"
+      - name: Save to temu-data
+        if: always()
+        run: |
+          [ -f /tmp/deals/deals_latest.json ] || exit 0
+          TS=$(date -u +%Y%m%dT%H%MZ)
+          git config user.name "temu-bot"; git config user.email "temu-bot@users.noreply.github.com"
+          git checkout -q -B temu-data origin/temu-data
+          mkdir -p temu/deals
+          cp /tmp/deals/deals_latest.csv /tmp/deals/deals_latest.json /tmp/deals/run.log temu/deals/
+          cp /tmp/deals/deals_latest.csv "temu/deals/deals_$TS.csv"
+          git add temu/deals && git commit -qm "deals $TS" && git push -q origin temu-data
