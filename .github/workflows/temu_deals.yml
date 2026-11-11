@@ -1,6 +1,7 @@
 name: Temu deals -> Amazon profit (read-only on Amazon)
 # Temu items (live paced search, or the last saved Temu pull) -> Amazon match, live offers, fees, profit/ROI, abandoned listings.
-# Results: branch temu-data -> temu/deals/deals_latest.csv|json (+ dated copy). Nothing is listed or changed on Amazon.
+# Results go ONLY to the private Postgres (schema deals). This repo is public: the log shows counts, never products, prices or ASINs.
+# Nothing is listed or changed on Amazon.
 on:
   workflow_dispatch:
     inputs:
@@ -24,7 +25,7 @@ jobs:
         with: { ref: main }
       - uses: actions/setup-python@v5
         with: { python-version: "3.12" }
-      - run: pip install -q "curl_cffi>=0.7" imagehash pillow
+      - run: pip install -q "curl_cffi>=0.7" imagehash pillow "psycopg[binary]"
       - name: Last saved Temu pull
         run: git fetch -q origin temu-data && git show origin/temu-data:temu/latest.json > /tmp/temu_last.json || echo '{}' > /tmp/temu_last.json
       - name: Find deals
@@ -42,17 +43,23 @@ jobs:
         run: |
           mkdir -p /tmp/deals; printf '%s\n' "$CRED_ENV" > reprice/credentials.env
           if [ -n "$Q" ] && [ "$Q" != "saved" ]; then ARGS=(--search "$Q"); else ARGS=(--from-json /tmp/temu_last.json); fi
-          python temu/deal_finder.py "${ARGS[@]}" --out /tmp/deals 2>&1 | tee /tmp/deals/run.log || true
+          # full output stays private: only count lines reach the public log
+          python temu/deal_finder.py "${ARGS[@]}" --out /tmp/deals > /tmp/deals/run.log 2>&1 || true
           rm -f reprice/credentials.env
-          { echo '```'; tail -70 /tmp/deals/run.log; echo '```'; } >> "$GITHUB_STEP_SUMMARY"
-      - name: Save to temu-data
+          grep -E "^(Temu items to check|AliExpress keywords|Amazon listings found|Temu items with a real|RESULT:)|apify .*status|product pages read|offers read: [0-9]+00/|Traceback|Error" /tmp/deals/run.log | sed -E 's/\$[0-9][0-9.,]*/$x/g' || true
+      - name: Store in private Postgres
         if: always()
-        run: |
-          ls /tmp/deals/deals_*.json >/dev/null 2>&1 || exit 0
-          TS=$(date -u +%Y%m%dT%H%MZ)
-          git config user.name "temu-bot"; git config user.email "temu-bot@users.noreply.github.com"
-          git checkout -q -B temu-data origin/temu-data
-          mkdir -p temu/deals
-          cp /tmp/deals/deals_*.csv /tmp/deals/deals_*.json /tmp/deals/abandoned_*.csv temu/deals/ 2>/dev/null || true
-          cp /tmp/deals/run.log "temu/deals/run_$TS.log"
-          git add temu/deals && git commit -qm "deals $TS" && for i in 1 2 3 4 5; do git push -q origin temu-data && break; git pull -q --rebase origin temu-data; sleep 3; done
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+          RUN_ID: ${{ github.run_id }}
+          CHUNK: ${{ github.event.inputs.search }}
+          SOURCE: ${{ github.event.inputs.source }}
+          ROI_MIN: ${{ github.event.inputs.roi_min }}
+          MAX_TEMU_PRICE: ${{ github.event.inputs.max_temu }}
+          WHOLESALE_FACTOR: ${{ github.event.inputs.wholesale_factor }}
+          FREIGHT_PER_UNIT: ${{ github.event.inputs.freight }}
+          PER_KW: ${{ github.event.inputs.per_kw }}
+        run: python temu/deals_to_pg.py /tmp/deals
+      - name: Wipe local copies
+        if: always()
+        run: rm -rf /tmp/deals
