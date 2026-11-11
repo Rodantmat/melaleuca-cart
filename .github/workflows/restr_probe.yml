@@ -1,0 +1,14 @@
+name: Restrictions probe
+on: { workflow_dispatch: { inputs: { asins: { description: "ASINs separated by space", default: "B0G267G383 B0C74MCRK5 B0DGTK4N1J B0CNK5SYCY" } } } }
+permissions: { contents: read }
+jobs:
+  p:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - env: { CRED_ENV: "${{ secrets.CREDENTIALS_ENV }}" }
+        run: |
+          printf '%s\n' "$CRED_ENV" > reprice/credentials.env
+          python temu/restr_probe.py ${{ github.event.inputs.asins }}
+          rm -f reprice/credentials.env
