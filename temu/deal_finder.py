@@ -171,7 +171,8 @@ def fees_batch(c, pairs):
             r = spapi.call(c, "POST", "/products/fees/v0/feesEstimate", body=body, quiet=True, tries=4)
             for x in (r if isinstance(r, list) else r.get("payload") or []):
                 fr = x.get("FeesEstimateResult") or x
-                ident = ((fr.get("FeesEstimateIdentifier") or {}).get("IdValue"))
+                fid = fr.get("FeesEstimateIdentifier") or {}
+                ident = fid.get("SellerInputIdentifier") or fid.get("IdValue")
                 tot = (((fr.get("FeesEstimate") or {}).get("TotalFeesEstimate") or {}).get("Amount"))
                 if ident and tot is not None:
                     res[ident] = float(tot)
@@ -250,7 +251,7 @@ def offers_batch(c, asins):
     return out
 
 
-DP_MAX = int(os.environ.get("DP_MAX", "15"))        # public product pages per run (reviews, 'bought in past month'); ~2 MB each
+DP_MAX = int(os.environ.get("DP_MAX", "30"))        # public product pages per run (reviews, 'bought in past month'); ~2 MB each
 REV_MIN = int(os.environ.get("REV_MIN", "5"))
 
 
@@ -549,6 +550,10 @@ def main():
                         "profit_unit": round(pw, 2), "roi_wholesale": round(pw / wcost, 2), "profit_month": round(units * pw, 0)})
         abrows.append(rec)
 
+    import validate
+    rows, abrows = validate.run(c, rows, abrows, pool, page_details)
+    print("  verdicts: markets GO %d / WATCH %d; abandoned GO %d / WATCH %d" % (sum(r["verdict"] == "GO" for r in rows), sum(r["verdict"] == "WATCH" for r in rows),
+          sum(x["verdict"] == "GO" for x in abrows), sum(x["verdict"] == "WATCH" for x in abrows)))
     rows.sort(key=lambda r: (-(r.get("profit_month") if r.get("profit_month") is not None else -1e9), -(r.get("roi_wholesale") or -9)))
     abrows.sort(key=lambda r: (-(r.get("reviews") or 0), r.get("rank") or 9e9))
     os.makedirs(a.out, exist_ok=True)
