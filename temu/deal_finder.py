@@ -176,7 +176,9 @@ SALES_BANDS = {
     "other":                  [(50, 12000), (550, 4500), (3000, 1500), (15000, 350), (62500, 70), (250000, 12), (1000000, 2)],
 }
 SHARE_HAIRCUT = float(os.environ.get("SHARE_HAIRCUT", "0.8"))      # you rarely get a full equal Buy Box share at first
-YEAR_FACTOR = float(os.environ.get("YEAR_FACTOR", "0.75"))        # 12-month = 12 x monthly x this (price erosion, new rivals, seasonality)
+YEAR_FACTOR = float(os.environ.get("YEAR_FACTOR", "0.75"))
+NEW_LISTING_SHARE = float(os.environ.get("NEW_LISTING_SHARE", "0.10"))  # own new listing vs a 1-seller (brand) listing: ~10% of its sales after launch
+PPC_PCT = float(os.environ.get("PPC_PCT", "0.15"))                      # ad spend per unit on an own listing, as share of price        # 12-month = 12 x monthly x this (price erosion, new rivals, seasonality)
 
 
 def est_monthly_sales(rank, cat):
@@ -326,29 +328,37 @@ def main():
         x["est_sales_month"] = ms
         if ms is None:
             continue
-        if x.get("status") == "ABANDONED":
-            share = 1.0
+        n_off = x.get("offers") or 0
+        if x.get("status") == "ABANDONED" or n_off == 0:
+            mode, share, ppc = "JOIN abandoned listing", 1.0, 0.0
+        elif n_off == 1:
+            # one seller = usually the brand's own private-label listing: joining it invites brand complaints,
+            # so the realistic path is your OWN generic listing competing in search (with ads)
+            mode, share, ppc = "OWN listing (1-seller brand)", NEW_LISTING_SHARE, PPC_PCT * (x.get("amz_price") or 0)
         else:
-            share = SHARE_HAIRCUT / ((x.get("fba_offers") or x.get("offers") or 1) + 1)
+            mode, share, ppc = "JOIN listing (%d sellers)" % n_off, SHARE_HAIRCUT / ((x.get("fba_offers") or n_off) + 1), 0.0
             if x.get("amazon_sells"):
                 share *= 0.3                      # Amazon retail keeps most of the Buy Box
+        x["path"] = mode
+        x["ppc_per_unit"] = round(ppc, 2)
         x["your_share"] = round(share, 2)
         x["your_units_month"] = round(ms * share, 1)
         if x.get("profit_wholesale") is not None:
-            x["profit_month_wholesale"] = round(x["your_units_month"] * x["profit_wholesale"], 0)
+            pu = x["profit_wholesale"] - ppc
+            x["profit_unit_after_ads"] = round(pu, 2)
+            x["profit_month_wholesale"] = round(x["your_units_month"] * pu, 0)
             x["profit_12m_wholesale"] = round(x["profit_month_wholesale"] * 12 * YEAR_FACTOR, 0)
             x["capital_2months"] = round(x["your_units_month"] * 2 * x["wholesale_cost_est"], 0)
-        x["competition"] = ("ABANDONED" if x.get("status") == "ABANDONED" else
-                            "AMAZON SELLS" if x.get("amazon_sells") else
-                            "LOW" if (x.get("offers") or 0) <= 2 else "MEDIUM" if (x.get("offers") or 0) <= 6 else "HIGH")
+        x["competition"] = ("ABANDONED" if mode.startswith("JOIN abandoned") else "AMAZON SELLS" if x.get("amazon_sells") else
+                            "1 brand seller" if n_off == 1 else "LOW" if n_off <= 3 else "MEDIUM" if n_off <= 8 else "HIGH")
     out.sort(key=lambda x: (-(x.get("profit_month_wholesale") or -1e9), -(x.get("roi_wholesale") or -9)))
     os.makedirs(a.out, exist_ok=True)
     stamp = datetime.now(timezone.utc).strftime("%Y%m%dT%H%MZ")
     tag = a.search.replace(":", "").replace("/", "of") if a.search.startswith("chunk:") else "latest"
     json.dump({"run_at": stamp, "params": {"tax": TAX, "inbound": INBOUND, "roi_min": ROI_MIN, "max_temu": MAX_TEMU, "sim_min": SIM_MIN}, "rows": out},
               open(os.path.join(a.out, "deals_%s.json" % tag), "w"), indent=1)
-    cols = ["status", "profit_month_wholesale", "profit_12m_wholesale", "est_sales_month", "your_share", "your_units_month", "competition",
-            "amazon_sells", "capital_2months", "roi_wholesale", "profit_wholesale", "wholesale_cost_est", "roi", "profit", "temu_price", "landed_cost", "amz_price", "fees", "fees_src", "breakeven_price", "target_price", "target_price_wholesale", "list_price",
+    cols = ["status", "path", "profit_month_wholesale", "profit_12m_wholesale", "est_sales_month", "your_share", "your_units_month", "competition",
+            "amazon_sells", "capital_2months", "roi_wholesale", "profit_wholesale", "ppc_per_unit", "profit_unit_after_ads", "wholesale_cost_est", "roi", "profit", "temu_price", "landed_cost", "amz_price", "fees", "fees_src", "breakeven_price", "target_price", "target_price_wholesale", "list_price",
             "offers", "fba_offers", "sales_rank", "rank_cat", "sub_rank", "sub_cat", "match_conf", "img_dist", "match", "risk_flag", "cat", "kw", "temu_title", "amz_title", "brand", "asin", "amz_url", "temu_url", "temu_id"]
     with open(os.path.join(a.out, "deals_%s.csv" % tag), "w", newline="") as f:
         w = csv.DictWriter(f, fieldnames=cols, extrasaction="ignore"); w.writeheader(); w.writerows(out)
@@ -357,14 +367,14 @@ def main():
     ab = [x for x in out if x.get("status") == "ABANDONED"]
     print("\nRESULT: %d generic Temu items, %d matched rows, %d with positive ROI at est. wholesale (%d confident matches), %d abandoned listings" % (
         len(items), sum(1 for x in out if x.get("asin")), len(pos), len(conf), len(ab)))
-    print("Assumptions: wholesale = Temu x %.2f + $%.2f freight/duties + $%.2f inbound; sales from BSR bands (+/-50%%); your share = %.0f%% of an equal Buy Box split (30%% of that if Amazon sells); 12 m = 12 x month x %.2f" % (
-        WHOLESALE_F, FREIGHT, INBOUND, SHARE_HAIRCUT * 100, YEAR_FACTOR))
-    hdr = "  %-11s %7s %8s %6s %6s %-12s %6s %6s %6s %6s %5s %8s  %s"
+    print("Assumptions: wholesale = Temu x %.2f + $%.2f freight/duties + $%.2f inbound; sales from BSR bands (+/-50%%); JOIN = %.0f%% of an equal Buy Box split (30%% of that if Amazon sells); OWN listing = %.0f%% of the matched listing's sales minus ads at %.0f%% of price; 12 m = 12 x month x %.2f" % (
+        WHOLESALE_F, FREIGHT, INBOUND, SHARE_HAIRCUT * 100, NEW_LISTING_SHARE * 100, PPC_PCT * 100, YEAR_FACTOR))
+    hdr = "  %-11s %-14s %7s %8s %6s %6s %-14s %6s %6s %6s %6s %5s %8s  %s"
     print("\nALL POSITIVE-ROI PRODUCTS (best projected monthly profit first):")
-    print(hdr % ("match", "$/month", "$/12m", "sold/m", "you/m", "competition", "ROIw", "+$/u", "temu", "amz", "offr", "rank", "Temu item | Amazon listing"))
+    print(hdr % ("match", "path", "$/month", "$/12m", "sold/m", "you/m", "competition", "ROIw", "+$/u", "temu", "amz", "offr", "rank", "Temu item | Amazon listing"))
     for x in pos:
-        print(hdr % ((x.get("match_conf") or "")[:11], x.get("profit_month_wholesale", "-"), x.get("profit_12m_wholesale", "-"), x.get("est_sales_month") or "-",
-                     x.get("your_units_month") or "-", (x.get("competition") or "-")[:12], "%.0f%%" % (x["roi_wholesale"] * 100), "%.2f" % x["profit_wholesale"],
+        print(hdr % ((x.get("match_conf") or "")[:11], (x.get("path") or "-")[:14], x.get("profit_month_wholesale", "-"), x.get("profit_12m_wholesale", "-"), x.get("est_sales_month") or "-",
+                     x.get("your_units_month") or "-", (x.get("competition") or "-")[:14], "%.0f%%" % (x["roi_wholesale"] * 100), "%.2f" % x.get("profit_unit_after_ads", x["profit_wholesale"]),
                      x["temu_price"], x.get("amz_price"), x.get("offers"), x.get("sales_rank") or "-",
                      ("[%s] " % x["risk_flag"] if x.get("risk_flag") else "") + x["temu_title"][:38] + " | " + x["amz_title"][:38]))
     print("\nABANDONED LISTINGS (no offers) - price you need on Amazon (at Temu cost / at est. wholesale):")
