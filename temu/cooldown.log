@@ -1,0 +1,11 @@
+{"phase": "start", "utc": "05:17:32", "min": 0.0}
+{"phase": "burst", "req": 1, "goods": 40, "utc": "05:17:33", "min": 0.0}
+{"phase": "burst", "req": 2, "goods": 40, "utc": "05:17:36", "min": 0.1}
+{"phase": "burst", "req": 3, "goods": 0, "utc": "05:17:39", "min": 0.1}
+{"phase": "burst", "req": 4, "goods": 0, "utc": "05:17:42", "min": 0.2}
+{"phase": "BLOCKED", "trip_at_request": 3, "secs_to_trip": 10, "utc": "05:17:42", "min": 0.2}
+{"phase": "probe", "n": 1, "goods": 0, "blocked_min": 3.0, "utc": "05:20:44", "min": 3.2}
+{"phase": "probe", "n": 2, "goods": 0, "blocked_min": 6.1, "utc": "05:23:46", "min": 6.2}
+{"phase": "probe", "n": 3, "goods": 0, "blocked_min": 9.1, "utc": "05:26:47", "min": 9.2}
+{"phase": "probe", "n": 4, "goods": 0, "blocked_min": 12.1, "utc": "05:29:48", "min": 12.3}
+{"phase": "probe", "n": 5, "goods": 0, "blocked_min": 15.1, "utc": "05:32:50", "min": 15.3}
