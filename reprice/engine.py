@@ -354,6 +354,12 @@ def decide(snap, cfg=None, now=None):
                     "flags": flags + ["rival_flood"], "floor": floor, "ceil": ceil, "severe": False, "dss": dss, "dos": dos, "rival_flood": True,
                     "impact": round(on_hand * (_f(snap.get("cost"), 0.0) or 0.0), 2)}
 
+    flood_note = ""
+    if rf and not (on_hand > 0 and not anomalous and not (in_drought or surplus) and dos >= cfg["RIVAL_FLOOD_MIN_DOS"] and we_hold is not True):
+        flood_note = " [big-stock rival seen but no drop: %s]" % ", ".join(x for x in (
+            "no stock" if not on_hand > 0 else "", "price anomaly" if anomalous else "", "drought/surplus rule decides" if (in_drought or surplus) else "",
+            ("only %.0f days of supply (needs %d)" % (min(dos, 999), cfg["RIVAL_FLOOD_MIN_DOS"])) if dos < cfg["RIVAL_FLOOD_MIN_DOS"] else "", "we hold the box" if we_hold is True else "") if x)
+
     # =============================================================== UP
     if (on_hand > 0 or inbound > 0) and u30 >= cfg["UP_MIN_UNITS_30"] and not in_drought and not surplus and not anomalous:
         if since_last_h < cfg["COOLDOWN_UP_H"]:
@@ -368,7 +374,7 @@ def decide(snap, cfg=None, now=None):
         if alone:
             comp = None
         if bb and we_hold is False and not alone:
-            return hold("another seller owns the Buy Box - no raise", floor=floor, ceil=ceil)
+            return hold("another seller owns the Buy Box - no raise" + flood_note, floor=floor, ceil=ceil)
         if alone and dos > 0:                           # nobody else sells it: raise hard, the 7-day sales test undoes a mistake
             if since_last_h < cfg["COOLDOWN_UP_ALONE_H"]:
                 return hold("waiting after the last change", floor=floor, ceil=ceil)
