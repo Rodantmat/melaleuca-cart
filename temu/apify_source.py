@@ -42,9 +42,14 @@ def _num(x):
 
 
 def ali_search(queries, max_items=60):
-    items, run = run_actor(ACT_ALI, {"searchQueries": queries, "maxItems": max_items * len(queries), "country": "US", "currency": "USD",
-                                     "sortBy": "default", "scrapeDetails": False, "includeReviews": False,
-                                     "proxy": {"useApifyProxy": True, "apifyProxyGroups": ["RESIDENTIAL"]}})
+    """The actor stops at 100 rows per run, so queries go in small groups (group x max_items <= 100)."""
+    g = max(1, 100 // max(1, max_items))
+    items, run = [], None
+    for i in range(0, len(queries), g):
+        part, run = run_actor(ACT_ALI, {"searchQueries": queries[i:i + g], "maxItems": min(100, max_items * len(queries[i:i + g])), "country": "US", "currency": "USD",
+                                        "sortBy": "default", "scrapeDetails": False, "includeReviews": False,
+                                        "proxy": {"useApifyProxy": True, "apifyProxyGroups": ["RESIDENTIAL"]}})
+        items += part
     out = []
     for r in items:
         pid = str(r.get("productId") or "")

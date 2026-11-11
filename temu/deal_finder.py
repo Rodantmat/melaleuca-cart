@@ -26,6 +26,7 @@ ROI_MIN = float(os.environ.get("ROI_MIN", "0.30"))
 MAX_TEMU = float(os.environ.get("MAX_TEMU_PRICE", "25"))
 SIM_MIN = float(os.environ.get("SIM_MIN", "0.30"))
 WHOLESALE_F = float(os.environ.get("WHOLESALE_FACTOR", "0.60"))    # Alibaba unit price ~ Temu price x this
+WHOLESALE_F_ALI = float(os.environ.get("WHOLESALE_FACTOR_ALI", "0.85"))  # AliExpress is already near factory price
 FREIGHT = float(os.environ.get("FREIGHT_PER_UNIT", "1.00"))         # Alibaba freight + duties per unit (estimate)
 # generic products only: no printed apparel / POD-style items, no brands, characters or licences
 EXCLUDE = re.compile(r"\b(t-?shirts?|tees?|hoodies?|sweatshirts?|jumpsuit|mugs?|tumblers?|posters?|canvas|wall art|metal sign|signs?|stickers?|"
@@ -273,6 +274,13 @@ def page_details(asins):
                 if use_proxy:
                     mb += len(r.content) / 1048576.0
                 d = bb_web.parse_dp(r.text)
+                inter = ("productTitle" not in r.text) and not d.get("captcha")
+                if inter and attempt == 0:
+                    print("  amazon page %s: no product body (%d KB, title %r)" % (a, len(r.content) // 1024, (re.search(r"<title>(.*?)</title>", r.text, re.S) or [None, ""])[1][:60]))
+                    if not use_proxy and px:
+                        use_proxy = True
+                    time.sleep(4)
+                    continue
                 if d.get("captcha") or r.status_code != 200:
                     if not use_proxy and px:
                         use_proxy = True
@@ -281,6 +289,7 @@ def page_details(asins):
                     out[a] = {"err": "captcha/%s" % r.status_code}
                     break
                 out[a] = {k: d.get(k) for k in ("reviews", "rating", "bought_month", "unavailable", "offers_n", "bb_price")}
+                out[a]["page_kb"] = len(r.content) // 1024
                 break
             except Exception as e:
                 out[a] = {"err": str(e)[:80]}
@@ -347,7 +356,7 @@ def main():
                 print("Temu blocked (%s) - continuing with what was pulled" % temu_bridge.STATS["closed"]); break
     seen, items = set(), []
     for it in temu:
-        if it["goods_id"] in seen or not it.get("price") or it["price"] > MAX_TEMU or EXCLUDE.search(it.get("title") or ""):
+        if it["goods_id"] in seen or not it.get("price") or it["price"] < 1.0 or it["price"] > MAX_TEMU or EXCLUDE.search(it.get("title") or ""):
             continue
         seen.add(it["goods_id"]); items.append(it)
     print("Temu items to check: %d generic (price <= $%.0f), keywords: %d" % (len(items), MAX_TEMU, len(kws)))
@@ -456,7 +465,8 @@ def main():
     for m in markets:
         it, x = m["it"], pool[m["ref"]]
         cost = round(it["price"] * (1 + TAX) + INBOUND, 2)
-        wcost = round(it["price"] * WHOLESALE_F + FREIGHT + INBOUND, 2)
+        wf = WHOLESALE_F_ALI if it.get("source") == "aliexpress" else WHOLESALE_F
+        wcost = round(it["price"] * wf + FREIGHT + INBOUND, 2)
         rec = {"kind": "MARKET", "source": it.get("source", "temu"), "source_sold": it.get("sold"), "source_rating": it.get("rating"), "cat": it.get("cat"), "kw": it.get("kw"), "risk_flag": (RISK.search(it["title"]) or [None])[0],
                "temu_title": it["title"][:120], "temu_price": it["price"], "landed_cost": cost, "wholesale_cost_est": wcost, "temu_url": it["url"], "temu_id": it["goods_id"],
                "match_conf": "PHOTO MATCH" if m["photo_matches"] else "TITLE MATCH", "photo_matches": m["photo_matches"],
