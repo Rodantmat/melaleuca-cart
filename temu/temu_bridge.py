@@ -95,7 +95,7 @@ def norm_goods(g):
         "sold": g.get("salesTip") or g.get("salesNum"),
         "rating": cm.get("goodsScore"),
         "reviews": cm.get("commentNumTips"),
-        "image": g.get("hdThumbUrl") or g.get("thumbUrl") or g.get("image"),
+        "image": g.get("hdThumbUrl") or g.get("thumbUrl") or ((g.get("image") or {}).get("url") if isinstance(g.get("image"), dict) else g.get("image")),
         "url": "%s/-g-%s.html" % (BASE, gid),
     }
 

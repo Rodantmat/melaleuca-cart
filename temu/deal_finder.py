@@ -70,13 +70,50 @@ def sim(a, b):
     return len(A & B) / float(len(A | B)) ** 0.5 / float(min(len(A), len(B))) ** 0.5   # cosine-like overlap
 
 
+BIG_BRANDS = re.compile(r"^(apple|samsung|google|amazon|amazon basics|anker|oxo|ninja|keurig|cuisinart|kitchenaid|hamilton beach|black\+decker|"
+                        r"dyson|shark|bissell|rubbermaid|tupperware|pyrex|lodge|zojirushi|instant pot|instant|nespresso|breville|stanley|yeti|"
+                        r"owala|simple modern|hydro flask|kong|petsafe|chewy|3m|command|scotch|sharpie|lego|disney|nike|adidas|under armour|"
+                        r"otterbox|spigen|belkin|logitech|bose|sony|jbl|philips|braun|conair|revlon|dash|chefman|magic bullet|nutribullet)$", re.I)
+IMG_OK = int(os.environ.get("IMG_MAX_DIST", "12"))      # perceptual-hash distance (0 = identical photo, <=12 = same product photo)
+RATIO_MAX = float(os.environ.get("PRICE_RATIO_MAX", "8"))  # Amazon price above 8x Temu = probably a different product -> CHECK
+_hash_cache = {}
+
+
+def img_hash(url):
+    if isinstance(url, dict):
+        url = url.get("url")
+    if not url:
+        return None
+    url = url.replace("\\u002F", "/")
+    if url in _hash_cache:
+        return _hash_cache[url]
+    h = None
+    try:
+        import io, imagehash
+        from PIL import Image
+        from curl_cffi import requests as cr
+        u = url if "kwcdn" not in url else url.split("?")[0] + "?imageView2/2/w/500/q/70/format/webp"
+        r = cr.get(u, impersonate="chrome", timeout=25)
+        if r.status_code == 200:
+            h = imagehash.phash(Image.open(io.BytesIO(r.content)).convert("RGB"))
+    except Exception as e:
+        print("  img ERR %s" % str(e)[:80])
+    _hash_cache[url] = h
+    return h
+
+
+def img_dist(a, b):
+    ha, hb = img_hash(a), img_hash(b)
+    return (ha - hb) if (ha is not None and hb is not None) else None
+
+
 def query_for(title):
     return " ".join(toks(title)[:7])
 
 
 def catalog_search(c, q):
     try:
-        r = spapi.call(c, "GET", "/catalog/2022-04-01/items", params={"keywords": q, "marketplaceIds": MK, "includedData": "summaries,salesRanks,attributes", "pageSize": 10}, quiet=True, tries=4)
+        r = spapi.call(c, "GET", "/catalog/2022-04-01/items", params={"keywords": q, "marketplaceIds": MK, "includedData": "summaries,salesRanks,attributes,images", "pageSize": 10}, quiet=True, tries=4)
     except Exception as e:
         print("  catalog ERR %s" % str(e)[:120]); return []
     out = []
@@ -93,7 +130,13 @@ def catalog_search(c, q):
                 lp = float(x.get("value_with_tax") or x.get("value")); break
             except Exception:
                 pass
-        out.append({"asin": it.get("asin"), "title": sm.get("itemName") or "", "brand": sm.get("brand") or sm.get("brandName"),
+        img = None
+        for grp in it.get("images") or []:
+            cand = [x for x in grp.get("images") or [] if x.get("variant") == "MAIN"]
+            cand.sort(key=lambda x: abs((x.get("width") or 0) - 500))
+            if cand:
+                img = cand[0].get("link"); break
+        out.append({"asin": it.get("asin"), "image": img, "title": sm.get("itemName") or "", "brand": sm.get("brand") or sm.get("brandName"),
                     "rank": rank[0] if rank else None, "rank_cat": rank[1] if rank else None, "list_price": lp})
     return out
 
@@ -161,7 +204,12 @@ def main():
         cands = catalog_search(c, q)
         for cd in cands:
             cd["sim"] = round(sim(it["title"], cd["title"]), 2)
-        cands = sorted([x for x in cands if x["sim"] >= SIM_MIN], key=lambda x: -x["sim"])[:a.per_item]
+        cands = [x for x in cands if x["sim"] >= SIM_MIN and not BIG_BRANDS.match((x.get("brand") or "").strip())]
+        cands = sorted(cands, key=lambda x: -x["sim"])[:3]
+        for cd in cands:                         # same product photo? (generic items usually reuse the factory photos)
+            cd["img_dist"] = img_dist(it.get("image"), cd.get("image"))
+            cd["score"] = cd["sim"] + (0.6 if (cd["img_dist"] is not None and cd["img_dist"] <= IMG_OK) else 0)
+        cands = sorted(cands, key=lambda x: -x["score"])[:a.per_item]
         if not cands:
             rows.append({"temu": it, "amz": None})
         for cd in cands:
@@ -204,7 +252,12 @@ def main():
         fixed = fee - 0.15 * r["fee_price"]          # FBA + other fixed fees; referral ~15% scales with price
         be = round((cost + fixed) / 0.85, 2)
         target = round((cost * (1 + ROI_MIN) + fixed) / 0.85, 2)
-        rec.update({"status": r["status"], "asin": m["asin"], "amz_title": m["title"][:120], "brand": m.get("brand"), "match": m["sim"],
+        strong = (m.get("img_dist") is not None and m["img_dist"] <= IMG_OK) or m["sim"] >= 0.55
+        ratio = (r["amz_price"] / t["price"]) if (r["amz_price"] and t["price"]) else None
+        conf = "PHOTO MATCH" if (m.get("img_dist") is not None and m["img_dist"] <= IMG_OK) else ("TITLE MATCH" if strong else "WEAK - check")
+        if ratio and ratio > RATIO_MAX:
+            conf = "CHECK - Amazon %.0fx Temu" % ratio
+        rec.update({"status": r["status"], "match_conf": conf, "img_dist": m.get("img_dist"), "asin": m["asin"], "amz_title": m["title"][:120], "brand": m.get("brand"), "match": m["sim"],
                     "sales_rank": m.get("rank"), "rank_cat": m.get("rank_cat"), "amz_price": r["amz_price"], "list_price": m.get("list_price"),
                     "offers": L.get("n_offers", 0), "fba_offers": L.get("n_afn", 0), "fees": round(fee, 2), "fees_src": fee_src,
                     "breakeven_price": be, "target_price": target, "amz_url": "https://www.amazon.com/dp/" + m["asin"]})
@@ -223,17 +276,19 @@ def main():
     json.dump({"run_at": stamp, "params": {"tax": TAX, "inbound": INBOUND, "roi_min": ROI_MIN, "max_temu": MAX_TEMU, "sim_min": SIM_MIN}, "rows": out},
               open(os.path.join(a.out, "deals_%s.json" % tag), "w"), indent=1)
     cols = ["status", "roi_wholesale", "profit_wholesale", "wholesale_cost_est", "roi", "profit", "temu_price", "landed_cost", "amz_price", "fees", "fees_src", "breakeven_price", "target_price", "target_price_wholesale", "list_price",
-            "offers", "fba_offers", "sales_rank", "rank_cat", "match", "risk_flag", "cat", "kw", "temu_title", "amz_title", "brand", "asin", "amz_url", "temu_url", "temu_id"]
+            "offers", "fba_offers", "sales_rank", "rank_cat", "match_conf", "img_dist", "match", "risk_flag", "cat", "kw", "temu_title", "amz_title", "brand", "asin", "amz_url", "temu_url", "temu_id"]
     with open(os.path.join(a.out, "deals_%s.csv" % tag), "w", newline="") as f:
         w = csv.DictWriter(f, fieldnames=cols, extrasaction="ignore"); w.writeheader(); w.writerows(out)
-    good = [x for x in out if (x.get("roi_wholesale") or -1) >= ROI_MIN]
+    good = [x for x in out if (x.get("roi_wholesale") or -1) >= ROI_MIN and x.get("match_conf") in ("PHOTO MATCH", "TITLE MATCH")]
+    check = [x for x in out if (x.get("roi_wholesale") or -1) >= ROI_MIN and x not in good]
     ab = [x for x in out if x.get("status") == "ABANDONED"]
     print("\nRESULT: %d generic Temu items, %d matched rows, %d profitable at est. wholesale (ROI >= %.0f%%), %d of them also at Temu price, %d abandoned listings" % (
         len(items), sum(1 for x in out if x.get("asin")), len(good), ROI_MIN * 100, sum(1 for x in good if (x.get("roi") or -1) >= ROI_MIN), len(ab)))
-    print("\nTOP PROFITABLE (competitive listings) - ROI at est. Alibaba cost / at Temu price:")
+    print("(+ %d more profitable-looking rows with weak/odd matches -> CSV, match_conf column)" % len(check))
+    print("\nTOP PROFITABLE (confident matches) - ROI at est. Alibaba cost / at Temu price:")
     for x in good[:25]:
         print("  ROIw %4.0f%% (+$%-5.2f) ROItemu %4.0f%%  temu $%-6.2f -> amz $%-6.2f fees $%-5.2f offers %-2s rank %-8s match %.2f  %s | %s" % (
-            x["roi_wholesale"] * 100, x["profit_wholesale"], x["roi"] * 100, x["temu_price"], x["amz_price"], x["fees"], x["offers"], x.get("sales_rank") or "-", x["match"], ("[%s] " % x["risk_flag"] if x.get("risk_flag") else "") + x["temu_title"][:42], x["amz_title"][:42]))
+            x["roi_wholesale"] * 100, x["profit_wholesale"], x["roi"] * 100, x["temu_price"], x["amz_price"], x["fees"], x["offers"], x.get("sales_rank") or "-", x["match"], ("[%s] " % x["match_conf"][:5]) + ("[%s] " % x["risk_flag"] if x.get("risk_flag") else "") + x["temu_title"][:40], x["amz_title"][:40]))
     print("\nABANDONED LISTINGS (no offers) - price you need on Amazon (at Temu cost / at est. wholesale):")
     for x in sorted(ab, key=lambda x: (x.get("sales_rank") or 9e9))[:20]:
         print("  temu $%-6.2f -> target $%-6.2f / $%-6.2f list $%-6s rank %-8s brand %-12s match %.2f  %s | %s" % (

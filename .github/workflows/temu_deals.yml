@@ -22,7 +22,7 @@ jobs:
         with: { ref: main }
       - uses: actions/setup-python@v5
         with: { python-version: "3.12" }
-      - run: pip install -q "curl_cffi>=0.7"
+      - run: pip install -q "curl_cffi>=0.7" imagehash pillow
       - name: Last saved Temu pull
         run: git fetch -q origin temu-data && git show origin/temu-data:temu/latest.json > /tmp/temu_last.json || echo '{}' > /tmp/temu_last.json
       - name: Find deals
@@ -49,4 +49,4 @@ jobs:
           mkdir -p temu/deals
           cp /tmp/deals/deals_*.csv /tmp/deals/deals_*.json temu/deals/
           cp /tmp/deals/run.log "temu/deals/run_$TS.log"
-          git add temu/deals && git commit -qm "deals $TS" && git push -q origin temu-data
+          git add temu/deals && git commit -qm "deals $TS" && for i in 1 2 3 4 5; do git push -q origin temu-data && break; git pull -q --rebase origin temu-data; sleep 3; done

@@ -39,7 +39,7 @@ jobs:
           mkdir -p temu/runs
           cp /tmp/temu_out.json temu/latest.json; cp /tmp/temu_out.json "temu/runs/$TS.json"; cp /tmp/temu_run.log temu/latest.log
           git add temu/latest.json temu/latest.log "temu/runs/$TS.json"
-          git commit -qm "temu pull $TS" && git push origin temu-data
+          git commit -qm "temu pull $TS" && for i in 1 2 3 4 5; do git push -q origin temu-data && break; git pull -q --rebase origin temu-data; sleep 3; done
       - name: If Temu blocked this run, start the 10-minute cooldown probe
         if: always()
         env: { GH_TOKEN: "${{ github.token }}" }
