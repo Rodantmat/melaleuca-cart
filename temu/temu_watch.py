@@ -24,7 +24,7 @@ def check():
 
 def save(msg):
     if os.environ.get("WATCH_PUSH") == "1":
-        subprocess.run("git add %s && git commit -qm '%s' && git push -q origin temu-data" % (sys.argv[1], msg), shell=True)
+        subprocess.run("git add %s && git commit -qm '%s' && (git push -q origin temu-data || (git pull -q --rebase origin temu-data && git push -q origin temu-data))" % (sys.argv[1], msg), shell=True)
 
 
 if os.environ.get("WATCH_LOOP") == "1":

@@ -20,7 +20,7 @@ def log(d):
 
 
 def push(msg):
-    subprocess.run("git add %s && git commit -qm '%s' && git push -q origin temu-data" % (LOG, msg), shell=True)
+    subprocess.run("git add %s && git commit -qm '%s' && (git push -q origin temu-data || (git pull -q --rebase origin temu-data && git push -q origin temu-data))" % (LOG, msg), shell=True)
 
 
 def ask(i):

@@ -1,6 +1,5 @@
-name: Temu watch (hourly 2-request check, stops itself after 2026-11-12 20:00 UTC)
+name: Temu watch (2-request check; loop=1 re-checks every 10 min until Temu reopens)
 on:
-  schedule: [{ cron: "17 * * * *" }]
   workflow_dispatch:
     inputs:
       loop: { description: "1 = re-check every 10 min until Temu reopens (max 5.5 h)", default: "0" }
