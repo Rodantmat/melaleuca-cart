@@ -335,6 +335,7 @@ def decide(snap, cfg=None, now=None):
                         "impact": round(max(v, v90, 0.05) * 30 * (target - price), 2)}
 
     # =============================================================== RIVAL WITH A BIG STOCK AND A LOWER PRICE: step toward him, never below the floor
+    flood_note = ""
     rf = snap.get("rival_flood")
     if rf and on_hand > 0 and not anomalous and not (in_drought or surplus) and dos >= cfg["RIVAL_FLOOD_MIN_DOS"] and we_hold is not True:
         if since_last_h < cfg["COOLDOWN_DOWN_H"]:
@@ -349,13 +350,13 @@ def decide(snap, cfg=None, now=None):
         c30 = [c for c in changes if (now - c["ts"]) <= timedelta(days=30)]
         top30 = max([price] + [c["old"] for c in c30] + [c["new"] for c in c30])
         target = _r2(max(target, top30 * (1 - cfg["MAX_DROP_30D"])))
+        flood_note = " [big-stock rival: no step - target %.2f vs price %.2f, floor %.2f, 30-day drop limit %.2f]" % (target, price, floor, top30 * (1 - cfg["MAX_DROP_30D"]))
         if target < price - 0.005 and price - target >= min(cfg["MIN_STEP"], 0.02 * price):
             return {"action": "down", "price": target, "reason": "rival Buy Box owner is cheaper and has a big stock (%s): step toward his price %s, %.0f days of our supply" % (rf.get("why") or "plenty", ("%.2f" % rp) if rp else "", min(dos, 999)),
                     "flags": flags + ["rival_flood"], "floor": floor, "ceil": ceil, "severe": False, "dss": dss, "dos": dos, "rival_flood": True,
                     "impact": round(on_hand * (_f(snap.get("cost"), 0.0) or 0.0), 2)}
 
-    flood_note = ""
-    if rf and not (on_hand > 0 and not anomalous and not (in_drought or surplus) and dos >= cfg["RIVAL_FLOOD_MIN_DOS"] and we_hold is not True):
+    if rf and not flood_note and not (on_hand > 0 and not anomalous and not (in_drought or surplus) and dos >= cfg["RIVAL_FLOOD_MIN_DOS"] and we_hold is not True):
         flood_note = " [big-stock rival seen but no drop: %s]" % ", ".join(x for x in (
             "no stock" if not on_hand > 0 else "", "price anomaly" if anomalous else "", "drought/surplus rule decides" if (in_drought or surplus) else "",
             ("only %.0f days of supply (needs %d)" % (min(dos, 999), cfg["RIVAL_FLOOD_MIN_DOS"])) if dos < cfg["RIVAL_FLOOD_MIN_DOS"] else "", "we hold the box" if we_hold is True else "") if x)
