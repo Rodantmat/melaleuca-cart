@@ -251,7 +251,7 @@ def offers_batch(c, asins):
     return out
 
 
-DP_MAX = int(os.environ.get("DP_MAX", "30"))        # public product pages per run (reviews, 'bought in past month'); ~2 MB each
+DP_MAX = int(os.environ.get("DP_MAX", "0"))        # public product pages per run (reviews, 'bought in past month'); ~2 MB each
 REV_MIN = int(os.environ.get("REV_MIN", "5"))
 
 

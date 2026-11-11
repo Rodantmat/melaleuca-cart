@@ -50,6 +50,7 @@ jobs:
         run: git fetch -q origin temu-data && git show origin/temu-data:temu/latest.json > /tmp/temu_last.json || echo '{}' > /tmp/temu_last.json
       - name: Find deals
         env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
           CRED_ENV: ${{ secrets.CREDENTIALS_ENV }}
           PROXY_URL: ${{ secrets.PROXY_URL }}
           ALIEXPRESS_APP_KEY: ${{ secrets.ALIEXPRESS_APP_KEY }}
@@ -68,7 +69,7 @@ jobs:
           # full output stays private: only count lines reach the public log
           python temu/deal_finder.py "${ARGS[@]}" --out /tmp/deals > /tmp/deals/run.log 2>&1 || true
           rm -f reprice/credentials.env
-          grep -E "^(Temu items to check|AliExpress keywords|Amazon listings found|Temu items with a real|RESULT:)|apify .*status|official affiliate API|ali_api|validation:|verdicts:|chunk for this run|product pages read|offers read: [0-9]+00/|Traceback|Error" /tmp/deals/run.log | sed -E 's/\$[0-9][0-9.,]*/$x/g' || true
+          grep -E "^(Temu items to check|AliExpress keywords|Amazon listings found|Temu items with a real|RESULT:)|apify .*status|official affiliate API|reviews:|review cache|apify amazon|amazon actor|apify .*amazon|ali_api|validation:|verdicts:|chunk for this run|product pages read|offers read: [0-9]+00/|Traceback|Error" /tmp/deals/run.log | sed -E 's/\$[0-9][0-9.,]*/$x/g' || true
       - name: Store in private Postgres
         if: always()
         env:

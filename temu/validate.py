@@ -61,9 +61,53 @@ def grade_market(r):
     return ("A" if r.get("match_conf") == "PHOTO MATCH" else "B"), why
 
 
+AMZ_MAX = int(os.environ.get("APIFY_AMZ_MAX", "10"))     # paid Apify lookups per run (~$0.007 each; the free plan has $5/month) - results cached 7 days
+
+
+def _seller_id(c):
+    if c.get("SELLER_ID"):
+        return c["SELLER_ID"]
+    try:
+        m = re.search(r'ME\s*=\s*"(A[0-9A-Z]{10,})"', open(os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "reprice", "bb_intel.py")).read())
+        return m.group(1) if m else None
+    except Exception:
+        return None
+
+
+def review_info(asins):
+    """{asin: {rating, reviews}} from the 7-day cache in Postgres, then Apify for up to AMZ_MAX missing ones (priority order of `asins`)."""
+    out, miss = {}, []
+    url = os.environ.get("DATABASE_URL", "")
+    cx = None
+    try:
+        import psycopg
+        cx = psycopg.connect(url) if url else None
+        if cx:
+            cx.execute("create table if not exists deals.asin_cache (asin text primary key, fetched_at timestamptz default now(), rating numeric, reviews int)")
+            for a, r, n in cx.execute("select asin, rating, reviews from deals.asin_cache where asin = any(%s) and fetched_at > now() - interval '7 days'", (list(asins),)).fetchall():
+                out[a] = {"rating": float(r) if r is not None else None, "reviews": n}
+    except Exception as e:
+        print("  review cache unavailable:", str(e)[:80])
+    miss = [a for a in asins if a not in out][:AMZ_MAX]
+    if miss and os.environ.get("APIFY_TOKEN"):
+        try:
+            import apify_source
+            got = apify_source.amazon_info(miss)
+            for a, d in got.items():
+                out[a] = d
+                if cx:
+                    cx.execute("insert into deals.asin_cache(asin, rating, reviews) values (%s,%s,%s) on conflict (asin) do update set fetched_at=now(), rating=excluded.rating, reviews=excluded.reviews", (a, d.get("rating"), d.get("reviews")))
+            if cx:
+                cx.commit()
+        except Exception as e:
+            print("  apify amazon lookup failed:", str(e)[:100])
+    print("  reviews: %d cached/fetched of %d wanted (paid lookups capped at %d)" % (len(out), len(asins), AMZ_MAX))
+    return out
+
+
 def restricted(c, asin):
     """True = gated / approval needed, False = can list as new, None = could not check."""
-    sid = c.get("SELLER_ID")
+    sid = _seller_id(c)
     if not sid:
         return None
     try:
@@ -88,12 +132,12 @@ def run(c, rows, abrows, pool, page_details):
         top = sorted((a for a in (r.get("asins") or "").split() if a in pool), key=lambda a: -(pool[a].get("est_sales") or 0))[:2]
         asins += [r["ref_asin"]] + top
     asins = list(dict.fromkeys(asins))
-    pages = page_details(asins) if asins else {}
+    pages = review_info(asins) if asins else {}
     errs = {}
     for d in pages.values():
-        k = d.get("err") or ("no reviews field" if d.get("reviews") is None else "ok")
+        k = "ok" if d.get("reviews") is not None else "no reviews field"
         errs[k] = errs.get(k, 0) + 1
-    print("  validation: %d candidates, %d product pages: %s" % (len(cand), len(pages), errs))
+    print("  validation: %d candidates, %d asins with review data: %s" % (len(cand), len(pages), errs))
     for r in cand:
         tops = sorted((a for a in (r.get("asins") or "").split() if a in pool), key=lambda a: -(pool[a].get("est_sales") or 0))[:2]
         ds = [pages.get(a) or {} for a in dict.fromkeys([r["ref_asin"]] + tops)]
@@ -103,7 +147,7 @@ def run(c, rows, abrows, pool, page_details):
         r["ref_bought_month"] = (pages.get(r["ref_asin"]) or {}).get("bought_month")
         r["gated"] = restricted(c, r["ref_asin"])
         time.sleep(0.4)
-    print("  validation: restriction check errors: %s, seller id present: %s" % (ERR or "none", bool(c.get("SELLER_ID"))))
+    print("  validation: restriction check errors: %s, seller id present: %s" % (ERR or "none", bool(_seller_id(c))))
     for r in rows:
         why = list(r.get("why_not") or [])
         if r["grade"] != "C":
@@ -137,6 +181,13 @@ def run(c, rows, abrows, pool, page_details):
             r["verdict"] = "GO"
         else:
             r["verdict"] = "WATCH"
+    need = [x["asin"] for x in sorted((y for y in abrows if y.get("temu_twin") and (y.get("roi_wholesale") or 0) >= 0.3 and (y.get("rank") or 9e9) <= AB_RANK_MAX
+                                       and y.get("reviews") is None), key=lambda y: y.get("rank") or 9e9)][:max(3, AMZ_MAX // 3)]
+    if need:
+        for a, d in review_info(need).items():
+            for x in abrows:
+                if x["asin"] == a:
+                    x["reviews"], x["rating"] = d.get("reviews"), d.get("rating")
     for x in abrows:
         why = []
         if (x.get("reviews") or 0) < REV_MIN:
