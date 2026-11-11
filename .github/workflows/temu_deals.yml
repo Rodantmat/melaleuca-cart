@@ -37,6 +37,8 @@ jobs:
         env:
           CRED_ENV: ${{ secrets.CREDENTIALS_ENV }}
           PROXY_URL: ${{ secrets.PROXY_URL }}
+          ALIEXPRESS_APP_KEY: ${{ secrets.ALIEXPRESS_APP_KEY }}
+          ALIEXPRESS_APP_SECRET: ${{ secrets.ALIEXPRESS_APP_SECRET }}
           APIFY_TOKEN: ${{ secrets.APIFY_TOKEN || secrets.APIFY_API_TOKEN || secrets.APIFY_KEY || secrets.APIFY }}
           DEAL_SOURCE: ${{ github.event.inputs.source }}
           PER_KW: ${{ github.event.inputs.per_kw }}
@@ -51,7 +53,7 @@ jobs:
           # full output stays private: only count lines reach the public log
           python temu/deal_finder.py "${ARGS[@]}" --out /tmp/deals > /tmp/deals/run.log 2>&1 || true
           rm -f reprice/credentials.env
-          grep -E "^(Temu items to check|AliExpress keywords|Amazon listings found|Temu items with a real|RESULT:)|apify .*status|product pages read|offers read: [0-9]+00/|Traceback|Error" /tmp/deals/run.log | sed -E 's/\$[0-9][0-9.,]*/$x/g' || true
+          grep -E "^(Temu items to check|AliExpress keywords|Amazon listings found|Temu items with a real|RESULT:)|apify .*status|official affiliate API|ali_api|product pages read|offers read: [0-9]+00/|Traceback|Error" /tmp/deals/run.log | sed -E 's/\$[0-9][0-9.,]*/$x/g' || true
       - name: Store in private Postgres
         if: always()
         env:

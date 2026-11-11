@@ -11,7 +11,7 @@ For every cheap Temu item:
 Inputs: --from-json (a temu_bridge.py output) and/or --search "kw1|kw2" (pulls Temu live, paced).
 Output: CSV + JSON ranked (best ROI first), printed top table.
 """
-import argparse, csv, json, math, os, re, sys, time
+import time, argparse, csv, json, math, os, re, sys, time
 from datetime import datetime, timezone
 
 HERE = os.path.dirname(os.path.abspath(__file__))
@@ -332,8 +332,19 @@ def main():
         import apify_source
         pairs = keyword_chunk(a.search) if a.search.startswith("chunk:") else [("-", x.strip()) for x in a.search.split("|") if x.strip()]
         cats = {q: cat for cat, q in pairs}
-        print("AliExpress keywords (Apify): %d" % len(pairs))
-        rows, _run = apify_source.ali_search([q for _, q in pairs], PER_KW)
+        import ali_api
+        if ali_api.KEY and ali_api.SECRET:
+            print("AliExpress keywords (official affiliate API): %d" % len(pairs))
+            rows = []
+            for _c, q in pairs:
+                try:
+                    rows += ali_api.search(q, pages=1, size=min(50, PER_KW))
+                except Exception as e:
+                    print("  ali_api error for one keyword:", str(e)[:100])
+                time.sleep(0.3)
+        else:
+            print("AliExpress keywords (Apify): %d" % len(pairs))
+            rows, _run = apify_source.ali_search([q for _, q in pairs], PER_KW)
         per = {}
         for it in rows:
             q = it.get("kw") or "-"
