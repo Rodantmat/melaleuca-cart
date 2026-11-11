@@ -4,6 +4,7 @@ on:
     inputs:
       ali:  { description: "AliExpress keywords | (empty = skip)", default: "garlic press|drawer organizer" }
       temu: { description: "Temu keywords | (empty = skip)", default: "garlic press" }
+      amz:  { description: "Amazon ASINs | (empty = skip)", default: "" }
       max:  { description: "results per keyword", default: "20" }
 permissions: { contents: read }
 jobs:
@@ -16,4 +17,4 @@ jobs:
         with: { python-version: "3.12" }
       - env:
           APIFY_TOKEN: ${{ secrets.APIFY_TOKEN || secrets.APIFY_API_TOKEN || secrets.APIFY_KEY || secrets.APIFY }}
-        run: python temu/apify_source.py --check --ali "${{ github.event.inputs.ali }}" --temu "${{ github.event.inputs.temu }}" --max "${{ github.event.inputs.max }}"
+        run: python temu/apify_source.py --check --ali "${{ github.event.inputs.ali }}" --temu "${{ github.event.inputs.temu }}" --amz "${{ github.event.inputs.amz }}" --max "${{ github.event.inputs.max }}"

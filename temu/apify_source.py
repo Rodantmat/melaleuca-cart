@@ -74,11 +74,34 @@ def temu_search(queries, max_items=40):
     return out, run
 
 
+ACT_AMZ = os.environ.get("APIFY_AMZ_ACTOR", "qianyii~amazon-product-scraper")
+
+
+def amazon_info(asins):
+    """Ratings + review counts for ASINs (Amazon product pages block the runner even through the proxy). ~$0.01 per ASIN, so callers cache."""
+    asins = list(dict.fromkeys(a for a in asins if a))
+    if not asins:
+        return {}
+    items, _run = run_actor(ACT_AMZ, {"asins": asins, "country": "us", "action": "product"}, wait_s=900)
+    out = {}
+    if items:
+        print("  amazon actor fields: %s" % sorted(items[0].keys())[:40])
+    for r in items:
+        a = r.get("asin") or r.get("ASIN") or r.get("parent_asin")
+        if not a:
+            continue
+        rc = r.get("rating_count") or r.get("reviews_count") or r.get("reviewsCount") or r.get("review_count")
+        out[a] = {"rating": _num(r.get("rating") or r.get("stars")), "reviews": int(_num(rc)) if _num(rc) is not None else None,
+                  "bought_month": r.get("bought_past_month") or r.get("bought_in_past_month") or r.get("boughtInPastMonth")}
+    return out
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--check", action="store_true")
     ap.add_argument("--ali", default="")
     ap.add_argument("--temu", default="")
+    ap.add_argument("--amz", default="")
     ap.add_argument("--max", type=int, default=20)
     ap.add_argument("--out", default="/tmp/apify_out.json")
     a = ap.parse_args()
@@ -105,6 +128,9 @@ def main():
         res["temu"] = rows
         for r in rows[:6]:
             print("   TEMU $%-7s sold %-8s rating %-4s %s" % (r["price"], r["sold"], r["rating"], r["title"][:70]))
+    if a.amz:
+        info = amazon_info([x for x in a.amz.split("|") if x])
+        print("  amazon_info: %d asins -> %s" % (len(info), [(v["rating"], v["reviews"], v["bought_month"]) for v in info.values()][:5]))
     json.dump(res, open(a.out, "w"), indent=1)
 
 
