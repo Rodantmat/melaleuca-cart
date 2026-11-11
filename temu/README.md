@@ -1,6 +1,6 @@
 # Temu bridge
 
-> **Status 2026-11-10 (about 20:30 UTC): BLOCKED.** It worked for about an hour (3 searches of 40 products each, plus product prices). After that Temu stopped putting product data in the HTML for crawler requests from cloud IPs (GitHub runner and Cloudflare WARP tested), and in the normal shopper homepage too. The code is kept in case the route reopens. Don't rotate more disguises: Temu closed this deliberately.
+> **Status 2026-11-11 05:15 UTC: WORKING.** About 40-50 fast requests in 10 min on 2026-11-10 tripped a block (11:48 PT). It was still blocked at 12:03 PT and open again by 16:42 PT, so the cooldown is somewhere between 15 min and 5 h. Requests are now paced 35 s apart (about 17 per 10 min). A run stops at its first empty page and starts `temu_watch.yml` with loop=1, which re-checks every 10 min and logs the exact reopen time to `temu-data/temu/watch.log`.
 
 Products and prices from Temu with **no login, no proxy, no VPN, no browser and no images**. It runs on a plain GitHub runner and costs nothing.
 
