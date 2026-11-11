@@ -21,6 +21,11 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 330
     steps:
+      - name: Preflight - private Postgres must be reachable before any work
+        env: { DATABASE_URL: "${{ secrets.DATABASE_URL }}" }
+        run: |
+          if [ -z "$DATABASE_URL" ]; then echo "::error::secret DATABASE_URL missing in melaleuca-cart - add the AlphaDog Postgres URL"; exit 1; fi
+          psql "$DATABASE_URL" -Atqc "select count(*) from deals.runs" >/dev/null && echo "Postgres OK"
       - uses: actions/checkout@v4
         with: { ref: main }
       - uses: actions/setup-python@v5
