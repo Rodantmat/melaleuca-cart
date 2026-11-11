@@ -104,7 +104,7 @@ def img_hash(url):
 
 def img_dist(a, b):
     ha, hb = img_hash(a), img_hash(b)
-    return (ha - hb) if (ha is not None and hb is not None) else None
+    return int(ha - hb) if (ha is not None and hb is not None) else None
 
 
 def query_for(title):
