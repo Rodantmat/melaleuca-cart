@@ -404,6 +404,31 @@ def main():
     for x in ab_all:
         x.update(pages.get(x["asin"]) or {})
 
+    # 4b. reverse direction: abandoned listings with demand -> search Temu for their twin (paced, stops if Temu blocks)
+    AB_TEMU_MAX = int(os.environ.get("AB_TEMU_MAX", "12"))
+    hunt = [x for x in ab_all if (x.get("reviews") or 0) >= REV_MIN or (x.get("bought_month") or 0) > 0][:AB_TEMU_MAX]
+    if hunt and os.environ.get("TEMU_REVERSE", "1") == "1":
+        import temu_bridge
+        for x in hunt:
+            if temu_bridge.STATS.get("closed"):
+                break
+            res = [r for r in temu_bridge.search(query_for(x["title"])) if r.get("price")]
+            best = None
+            for r in res[:15]:
+                sv = sim(r["title"], x["title"])
+                if sv < 0.35:
+                    continue
+                dist = img_dist(r.get("image"), x.get("image"))
+                ok = (dist is not None and dist <= IMG_OK) or sv >= STRONG_SIM
+                if ok and (best is None or r["price"] < best[0]["price"]):
+                    best = (r, sv, dist)
+            if best:
+                r, sv, dist = best
+                r["kw"] = "reverse: " + x["asin"]
+                items.append(r)                       # becomes the twin candidate below
+                x["reverse_twin"] = {"title": r["title"][:90], "price": r["price"], "sim": round(sv, 2), "img_dist": dist, "url": r["url"]}
+        print("  reverse search: %d abandoned listings searched on Temu, %d twins found" % (len(hunt), sum(1 for x in hunt if x.get("reverse_twin"))))
+
     # 5. fees (SP-API) at the market price / abandoned target price
     pairs = [(m["ref"], round(m["price"], 2)) for m in markets if m["price"]]
     for x in ab_all:
@@ -444,14 +469,17 @@ def main():
         fee = fees.get("%s@%.2f" % (x["asin"], x["fee_price"]))
         fee = fee if fee is not None else fee_guess(x["fee_price"])
         best, bsv = None, 0.0               # cheapest Temu twin for the cost side
-        for it in items:
+        if x.get("reverse_twin"):
+            rt = x["reverse_twin"]
+            best, bsv = {"title": rt["title"], "price": rt["price"], "image": None}, max(rt["sim"], STRONG_SIM)
+        for it in ([] if best else items):
             sv = sim(it["title"], x["title"])
             if sv > bsv:
                 best, bsv = it, sv
         rec = {"kind": "ABANDONED", "asin": x["asin"], "amz_title": x["title"][:120], "brand": x.get("brand"), "rank": x.get("rank"), "rank_cat": x.get("rank_cat"),
                "est_sales_month": x.get("est_sales"), "reviews": x.get("reviews"), "rating": x.get("rating"), "bought_month": x.get("bought_month"),
                "list_price": x.get("list_price"), "price_used": x["fee_price"], "fees": round(fee, 2), "url": "https://www.amazon.com/dp/" + x["asin"]}
-        if best and bsv >= 0.45:
+        if best and bsv >= 0.45 and not x.get("reverse_twin"):
             dist = img_dist(best.get("image"), x.get("image"))
             if not ((dist is not None and dist <= IMG_OK) or bsv >= STRONG_SIM):
                 best = None
@@ -459,6 +487,8 @@ def main():
             wcost = round(best["price"] * WHOLESALE_F + FREIGHT + INBOUND, 2)
             pw = x["fee_price"] - fee - wcost
             units = x.get("bought_month") or x.get("est_sales") or 0
+            if x.get("reverse_twin"):
+                rec["temu_twin_url"] = x["reverse_twin"]["url"]; rec["temu_twin_photo_dist"] = x["reverse_twin"]["img_dist"]
             rec.update({"temu_twin": best["title"][:90], "temu_twin_price": best["price"], "temu_twin_sim": round(bsv, 2), "wholesale_cost_est": wcost,
                         "profit_unit": round(pw, 2), "roi_wholesale": round(pw / wcost, 2), "profit_month": round(units * pw, 0)})
         abrows.append(rec)
