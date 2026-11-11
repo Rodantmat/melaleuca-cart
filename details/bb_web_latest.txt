@@ -1,21 +1,26 @@
-# 2026-11-10T17:39:54Z  bb_web  success  run 42862961607
+# 2026-11-11T06:59:30Z  bb_web  success  run 42972866833
 rival stock reads: off (budget 80)
-browser session 1 on proxy port 10096  (0 of 167 products read so far, wire 0.0 MB)
+browser session 1 on proxy port 10095  (0 of 167 products read so far, wire 0.0 MB)
+B096HWPYWW captcha - switching IP
+browser session 2 on proxy port 10103  (0 of 167 products read so far, wire 0.0 MB)
   1/30  price=64.95 seller=Qmax Brands  (1.4 MB so far)
-  21/30  price=None seller=None  (10.1 MB so far)
-browser session 2 on proxy port 10105  (30 of 167 products read so far, wire 3.8 MB)
+  21/30  price=None seller=None  (11.7 MB so far)
+browser session 3 on proxy port 10115  (30 of 167 products read so far, wire 3.9 MB)
   1/30  price=29.09 seller=Flipping Magic  (0.2 MB so far)
-  21/30  price=23.99 seller=Oasis Enterprises LLC  (11.4 MB so far)
-browser session 3 on proxy port 10117  (60 of 167 products read so far, wire 7.3 MB)
+  21/30  price=23.99 seller=Oasis Enterprises LLC  (13.6 MB so far)
+browser session 4 on proxy port 10126  (60 of 167 products read so far, wire 8.1 MB)
   1/30  price=64.99 seller=Flipping Magic  (0.0 MB so far)
-  21/30  price=None seller=None  (12.2 MB so far)
-browser session 4 on proxy port 10128  (90 of 167 products read so far, wire 10.6 MB)
-  1/30  price=53.95 seller=MEGA SAVINGS  (1.7 MB so far)
-  21/30  price=15.49 seller=Arabianperfumes  (14.2 MB so far)
-browser session 5 on proxy port 10136  (120 of 167 products read so far, wire 14.1 MB)
-  1/30  price=None seller=None  (0.0 MB so far)
-  21/30  price=64.12 seller=Flipping Magic  (14.5 MB so far)
-browser session 6 on proxy port 10151  (150 of 167 products read so far, wire 18.0 MB)
-  1/17  price=24.0 seller=Lamoure INC  (1.4 MB so far)
-proxy traffic on the wire: 21.3 MB in 244 requests; by type: {'document': 19.3, 'fetch': 1.7}
-web Buy Box: 167 ASINs read, 131 with a price, we win 60, errors 3
+  21/30  price=None seller=None  (14.7 MB so far)
+browser session 5 on proxy port 10138  (90 of 167 products read so far, wire 12.1 MB)
+  1/30  price=53.95 seller=MEGA SAVINGS  (1.5 MB so far)
+rate limited (503) after 24 ASINs - switching IP
+browser session 6 on proxy port 10145  (110 of 167 products read so far, wire 15.6 MB)
+rate limited (503) after 2 ASINs - switching IP
+browser session 7 on proxy port 10156  (110 of 167 products read so far, wire 15.9 MB)
+browser session 8 on proxy port 10168  (134 of 167 products read so far, wire 19.2 MB)
+  1/30  price=42.99 seller=Qmax Brands  (1.4 MB so far)
+  21/30  price=8.0 seller=HEALTHY AND DREAM  (18.7 MB so far)
+browser session 9 on proxy port 10178  (164 of 167 products read so far, wire 23.1 MB)
+  1/3  price=20.32 seller=Flipping Magic  (0.0 MB so far)
+proxy traffic on the wire: 24.0 MB in 263 requests; by type: {'document': 22.1, 'fetch': 1.7}
+web Buy Box: 167 ASINs read, 126 with a price, we win 51, errors 3
