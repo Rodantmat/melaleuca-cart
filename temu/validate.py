@@ -170,8 +170,8 @@ def run(c, rows, abrows, pool, page_details):
                     why.append("competitor reviews unknown")
                 elif r["top_reviews"] > REV_CEIL:
                     why.append("entrenched competitor (%d reviews)" % r["top_reviews"])
-                if r.get("gated"):
-                    why.append("gated / approval needed")
+                # a gated competitor ASIN only blocks *joining* that listing; Rodo sells generic on his own new listing, so it is information, not a blocker
+                r["path"] = "own listing only (that ASIN needs brand approval)" if r.get("gated") else "own listing or join"
                 if r.get("ref_bought_month") is not None and r["ref_bought_month"] < 0.4 * (r.get("market_sales_month") or 0) and r["ref_bought_month"] < 100:
                     why.append("Amazon shows only %s bought/month" % r["ref_bought_month"])
         r["why_not"] = why
