@@ -122,9 +122,27 @@ def restricted(c, asin):
 ERR = {}
 
 
+WIGGLE_MIN_ROI = float(os.environ.get("WIGGLE_MIN_ROI", "0.30"))   # ROI after ads still needed when priced 20% under the incumbent
+
+
+def undercut(r, pct):
+    """Profit per unit (after ads) and ROI if priced pct below the market price: referral fee scales with price, FBA part stays."""
+    amz, fee, w = r.get("amz_price"), r.get("fees"), r.get("wholesale_cost_est")
+    if not (amz and fee is not None and w):
+        return None, None
+    p = amz * (1 - pct)
+    f = max(0.30, fee - 0.15 * amz) + 0.15 * p if fee > 0.15 * amz else fee
+    prof = p - f - w - 0.15 * p
+    return round(prof, 2), round(prof / w, 2)
+
+
 def run(c, rows, abrows, pool, page_details):
     for r in rows:
         r["grade"], r["why_not"] = grade_market(r)
+        for pct in (15, 20):
+            pu, ro = undercut(r, pct / 100.0)
+            r["u%d_profit_unit" % pct], r["u%d_roi" % pct] = pu, ro
+        r["u20_profit_month"] = round((r.get("your_units_month") or 0) * r["u20_profit_unit"], 0) if r.get("u20_profit_unit") is not None else None
     cand = sorted([r for r in rows if r["grade"] in ("A", "B") and (r.get("roi_wholesale") or 0) >= 0.3 and (r.get("profit_month") or 0) >= PROFIT_WATCH],
                   key=lambda r: -(r.get("profit_month") or 0))[:DP_CAND]
     asins = []
@@ -155,6 +173,8 @@ def run(c, rows, abrows, pool, page_details):
                 why.append("fees are a guess")
             if (r.get("roi_wholesale") or 0) < ROI_GO:
                 why.append("ROI under %d%%" % (ROI_GO * 100))
+            if r.get("u20_roi") is None or r["u20_roi"] < WIGGLE_MIN_ROI:
+                why.append("thin margin if priced 20%% under (ROI %s)" % r.get("u20_roi"))
             if (r.get("profit_month") or 0) < PROFIT_GO:
                 why.append("profit under $%d/month" % PROFIT_GO)
             if r.get("amazon_sells"):
