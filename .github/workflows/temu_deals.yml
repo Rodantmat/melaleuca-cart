@@ -4,7 +4,7 @@ name: Temu deals -> Amazon profit (read-only on Amazon)
 on:
   workflow_dispatch:
     inputs:
-      search:   { description: "chunk:N/M = part N of M of temu/keywords.txt (~110 generic keywords), or keywords separated by |, or empty = last saved Temu pull", default: "chunk:1/4" }
+      search:   { description: "chunk:N/M = part N of M of temu/keywords.txt (~110 generic keywords), or keywords separated by |, or saved = last saved Temu pull", default: "chunk:1/4" }
       roi_min:  { description: "min ROI to flag (0.30 = 30%)", default: "0.30" }
       max_temu: { description: "max Temu price to consider", default: "25" }
       wholesale_factor: { description: "est. Alibaba unit price = Temu price x this", default: "0.60" }
@@ -35,7 +35,7 @@ jobs:
           FREIGHT_PER_UNIT: ${{ github.event.inputs.freight }}
         run: |
           mkdir -p /tmp/deals; printf '%s\n' "$CRED_ENV" > reprice/credentials.env
-          if [ -n "$Q" ]; then ARGS=(--search "$Q"); else ARGS=(--from-json /tmp/temu_last.json); fi
+          if [ -n "$Q" ] && [ "$Q" != "saved" ]; then ARGS=(--search "$Q"); else ARGS=(--from-json /tmp/temu_last.json); fi
           python temu/deal_finder.py "${ARGS[@]}" --out /tmp/deals 2>&1 | tee /tmp/deals/run.log || true
           rm -f reprice/credentials.env
           { echo '```'; tail -70 /tmp/deals/run.log; echo '```'; } >> "$GITHUB_STEP_SUMMARY"
