@@ -9,6 +9,8 @@ on:
       max_temu: { description: "max Temu price to consider", default: "25" }
       wholesale_factor: { description: "est. Alibaba unit price = Temu price x this", default: "0.60" }
       freight: { description: "est. Alibaba freight + duties per unit", default: "1.00" }
+      source: { description: "ali = AliExpress via Apify (no cooldowns, ~$0.8/1000), temu = paced free Temu bridge, both", default: "ali" }
+      per_kw: { description: "source products per keyword", default: "30" }
 permissions:
   contents: write
   actions: write
@@ -29,6 +31,9 @@ jobs:
         env:
           CRED_ENV: ${{ secrets.CREDENTIALS_ENV }}
           PROXY_URL: ${{ secrets.PROXY_URL }}
+          APIFY_TOKEN: ${{ secrets.APIFY_TOKEN || secrets.APIFY_API_TOKEN || secrets.APIFY_KEY || secrets.APIFY }}
+          DEAL_SOURCE: ${{ github.event.inputs.source }}
+          PER_KW: ${{ github.event.inputs.per_kw }}
           Q: ${{ github.event.inputs.search }}
           ROI_MIN: ${{ github.event.inputs.roi_min }}
           MAX_TEMU_PRICE: ${{ github.event.inputs.max_temu }}

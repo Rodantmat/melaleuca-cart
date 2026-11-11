@@ -309,6 +309,7 @@ def main():
     ap.add_argument("--from-json", default="")
     ap.add_argument("--search", default="")
     ap.add_argument("--out", default="/tmp/deals")
+    ap.add_argument("--source", default=os.environ.get("DEAL_SOURCE", "ali"), help="ali = AliExpress via Apify (no cooldowns), temu = paced Temu bridge, both")
     a = ap.parse_args()
     c = spapi.load_creds(os.path.join(HERE, "..", "reprice"))
     temu, kws = [], []
@@ -318,7 +319,21 @@ def main():
             kws.append(("-", q))
             for it in its:
                 it["kw"] = q; temu.append(it)
-    if a.search:
+    if a.search and a.source in ("ali", "both"):
+        import apify_source
+        pairs = keyword_chunk(a.search) if a.search.startswith("chunk:") else [("-", x.strip()) for x in a.search.split("|") if x.strip()]
+        cats = {q: cat for cat, q in pairs}
+        print("AliExpress keywords (Apify): %d" % len(pairs))
+        rows, _run = apify_source.ali_search([q for _, q in pairs], PER_KW)
+        per = {}
+        for it in rows:
+            q = it.get("kw") or "-"
+            per[q] = per.get(q, 0) + 1
+            if per[q] > PER_KW:
+                continue
+            it["cat"] = cats.get(q, "-"); temu.append(it)
+        kws += pairs
+    if a.search and a.source in ("temu", "both"):
         import temu_bridge
         pairs = keyword_chunk(a.search) if a.search.startswith("chunk:") else [("-", x.strip()) for x in a.search.split("|") if x.strip()]
         print("Temu keywords: %d (%s)" % (len(pairs), ", ".join(k for _, k in pairs)))
@@ -326,7 +341,8 @@ def main():
             got = temu_bridge.search(q)[:PER_KW]
             for it in got:
                 it["kw"] = q; it["cat"] = cat; temu.append(it)
-            kws.append((cat, q))
+            if (cat, q) not in kws:
+                kws.append((cat, q))
             if temu_bridge.STATS.get("closed"):
                 print("Temu blocked (%s) - continuing with what was pulled" % temu_bridge.STATS["closed"]); break
     seen, items = set(), []
@@ -407,7 +423,7 @@ def main():
     # 4b. reverse direction: abandoned listings with demand -> search Temu for their twin (paced, stops if Temu blocks)
     AB_TEMU_MAX = int(os.environ.get("AB_TEMU_MAX", "12"))
     hunt = [x for x in ab_all if (x.get("reviews") or 0) >= REV_MIN or (x.get("bought_month") or 0) > 0][:AB_TEMU_MAX]
-    if hunt and os.environ.get("TEMU_REVERSE", "1") == "1":
+    if hunt and os.environ.get("TEMU_REVERSE", "1") == "1" and a.source in ("temu", "both"):
         import temu_bridge
         for x in hunt:
             if temu_bridge.STATS.get("closed"):
@@ -441,7 +457,7 @@ def main():
         it, x = m["it"], pool[m["ref"]]
         cost = round(it["price"] * (1 + TAX) + INBOUND, 2)
         wcost = round(it["price"] * WHOLESALE_F + FREIGHT + INBOUND, 2)
-        rec = {"kind": "MARKET", "cat": it.get("cat"), "kw": it.get("kw"), "risk_flag": (RISK.search(it["title"]) or [None])[0],
+        rec = {"kind": "MARKET", "source": it.get("source", "temu"), "source_sold": it.get("sold"), "source_rating": it.get("rating"), "cat": it.get("cat"), "kw": it.get("kw"), "risk_flag": (RISK.search(it["title"]) or [None])[0],
                "temu_title": it["title"][:120], "temu_price": it["price"], "landed_cost": cost, "wholesale_cost_est": wcost, "temu_url": it["url"], "temu_id": it["goods_id"],
                "match_conf": "PHOTO MATCH" if m["photo_matches"] else "TITLE MATCH", "photo_matches": m["photo_matches"],
                "listings": m["listings"], "abandoned_listings": len(m["aband"]), "sellers": m["sellers"], "multi_listing_sellers": m["multi_listing_sellers"],
