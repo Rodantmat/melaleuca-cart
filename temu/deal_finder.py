@@ -1,4 +1,6 @@
-"""Temu -> Amazon deal finder (read-only on Amazon: catalog search, Buy Box/offers, fee estimates - nothing is listed or changed).
+"""Temu -> Amazon deal finder (read-only on Amazon: catalog search, offers, fee estimates, public product pages - nothing is listed or changed).
+v2 (2026-11-11): market level - every matching Amazon listing per Temu item (photo or strong title), all their sellers (incl. one seller
+running several listings), total market sales, Amazon retail presence; plus a deep hunt for ABANDONED listings (0 sellers) with reviews.
 
 For every cheap Temu item:
   1. find the matching Amazon listings (SP-API catalog keyword search, title similarity)
@@ -15,7 +17,7 @@ from datetime import datetime, timezone
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, os.path.join(HERE, "..", "reprice"))
 sys.path.insert(0, HERE)
-import spapi, amazon_pricing  # noqa: E402
+import spapi  # noqa: E402
 
 MK = spapi.MARKETPLACE
 TAX = float(os.environ.get("TEMU_TAX", "0.0775"))        # San Diego sales tax on the Temu order
@@ -111,37 +113,48 @@ def query_for(title):
     return " ".join(toks(title)[:7])
 
 
-def catalog_search(c, q):
-    try:
-        r = spapi.call(c, "GET", "/catalog/2022-04-01/items", params={"keywords": q, "marketplaceIds": MK, "includedData": "summaries,salesRanks,attributes,images", "pageSize": 10}, quiet=True, tries=4)
-    except Exception as e:
-        print("  catalog ERR %s" % str(e)[:120]); return []
-    out = []
-    for it in r.get("items") or []:
-        sm = (it.get("summaries") or [{}])[0]
-        rank, sub = None, None
-        for sr in it.get("salesRanks") or []:
-            for d in sr.get("displayGroupRanks") or []:
-                if d.get("rank") and (rank is None or d["rank"] < rank[0]):
-                    rank = (d["rank"], d.get("title"))
-            for d in sr.get("classificationRanks") or []:
-                if d.get("rank") and (sub is None or d["rank"] < sub[0]):
-                    sub = (d["rank"], d.get("title"))
-        lp = None
-        for x in ((it.get("attributes") or {}).get("list_price") or []):
-            try:
-                lp = float(x.get("value_with_tax") or x.get("value")); break
-            except Exception:
-                pass
-        img = None
-        for grp in it.get("images") or []:
-            cand = [x for x in grp.get("images") or [] if x.get("variant") == "MAIN"]
-            cand.sort(key=lambda x: abs((x.get("width") or 0) - 500))
-            if cand:
-                img = cand[0].get("link"); break
-        out.append({"asin": it.get("asin"), "image": img, "title": sm.get("itemName") or "", "brand": sm.get("brand") or sm.get("brandName"),
-                    "rank": rank[0] if rank else None, "rank_cat": rank[1] if rank else None,
-                    "sub_rank": sub[0] if sub else None, "sub_cat": sub[1] if sub else None, "list_price": lp})
+def _parse_item(it):
+    sm = (it.get("summaries") or [{}])[0]
+    rank, sub = None, None
+    for sr in it.get("salesRanks") or []:
+        for d in sr.get("displayGroupRanks") or []:
+            if d.get("rank") and (rank is None or d["rank"] < rank[0]):
+                rank = (d["rank"], d.get("title"))
+        for d in sr.get("classificationRanks") or []:
+            if d.get("rank") and (sub is None or d["rank"] < sub[0]):
+                sub = (d["rank"], d.get("title"))
+    lp = None
+    for x in ((it.get("attributes") or {}).get("list_price") or []):
+        try:
+            lp = float(x.get("value_with_tax") or x.get("value")); break
+        except Exception:
+            pass
+    img = None
+    for grp in it.get("images") or []:
+        cand = [x for x in grp.get("images") or [] if x.get("variant") == "MAIN"]
+        cand.sort(key=lambda x: abs((x.get("width") or 0) - 500))
+        if cand:
+            img = cand[0].get("link"); break
+    return {"asin": it.get("asin"), "image": img, "title": sm.get("itemName") or "", "brand": sm.get("brand") or sm.get("brandName"),
+            "rank": rank[0] if rank else None, "rank_cat": rank[1] if rank else None,
+            "sub_rank": sub[0] if sub else None, "sub_cat": sub[1] if sub else None, "list_price": lp}
+
+
+def catalog_search(c, q, size=10, pages=1):
+    out, tok = [], None
+    for _ in range(pages):
+        prm = {"keywords": q, "marketplaceIds": MK, "includedData": "summaries,salesRanks,attributes,images", "pageSize": size}
+        if tok:
+            prm["pageToken"] = tok
+        try:
+            r = spapi.call(c, "GET", "/catalog/2022-04-01/items", params=prm, quiet=True, tries=4)
+        except Exception as e:
+            print("  catalog ERR %s" % str(e)[:120]); break
+        out += [_parse_item(it) for it in r.get("items") or []]
+        tok = (r.get("pagination") or {}).get("nextToken")
+        time.sleep(0.6)
+        if not tok:
+            break
     return out
 
 
@@ -194,21 +207,86 @@ def est_monthly_sales(rank, cat):
     return 1
 
 
-def offers_detail(c, asins):
-    """getItemOffers v0 summary: total offers, FBA offers, is Amazon itself selling, Buy Box price. ~0.5 req/s."""
+def offers_batch(c, asins):
+    """getItemOffersBatch (20 ASINs per call, ~0.1 call/s): total sellers, FBA sellers, Amazon retail, Buy Box + lowest price, seller ids."""
     out = {}
-    for a in asins:
+    asins = sorted(set(a for a in asins if a))
+    for i in range(0, len(asins), 20):
+        chunk = asins[i:i + 20]
+        body = {"requests": [{"uri": "/products/pricing/v0/items/%s/offers" % a, "method": "GET", "MarketplaceId": MK,
+                              "ItemCondition": "New", "CustomerType": "Consumer"} for a in chunk]}
         try:
-            r = spapi.call(c, "GET", "/products/pricing/v0/items/%s/offers" % a, params={"MarketplaceId": MK, "ItemCondition": "New", "CustomerType": "Consumer"}, quiet=True, tries=4)
-            pl = r.get("payload") or {}
-            sm = pl.get("Summary") or {}
-            tot = sum(int(x.get("OfferCount") or 0) for x in sm.get("NumberOfOffers") or [])
-            fba = sum(int(x.get("OfferCount") or 0) for x in sm.get("NumberOfOffers") or [] if x.get("fulfillmentChannel") == "Amazon")
-            amazon = any(o.get("SellerId") == "ATVPDKIKX0DER" for o in pl.get("Offers") or [])
-            out[a] = {"total": tot, "fba": fba, "amazon_sells": amazon}
+            r = spapi.call(c, "POST", "/batches/products/pricing/v0/itemOffers", body=body, quiet=True, tries=5)
+            for x in r.get("responses") or []:
+                b = x.get("body") or {}
+                pl = b.get("payload") or {}
+                a = pl.get("ASIN") or ((x.get("request") or {}).get("uri") or "").split("/items/")[-1].split("/")[0]
+                if (x.get("status") or {}).get("statusCode") != 200 or not a:
+                    continue
+                sm = pl.get("Summary") or {}
+                tot = sm.get("TotalOfferCount")
+                if tot is None:
+                    tot = sum(int(y.get("OfferCount") or 0) for y in sm.get("NumberOfOffers") or [] if (y.get("condition") or "new").lower() == "new")
+                fba = sum(int(y.get("OfferCount") or 0) for y in sm.get("NumberOfOffers") or []
+                          if y.get("fulfillmentChannel") == "Amazon" and (y.get("condition") or "new").lower() == "new")
+                bb = None
+                for y in sm.get("BuyBoxPrices") or []:
+                    if (y.get("condition") or "New").lower() == "new":
+                        bb = float(((y.get("LandedPrice") or y.get("ListingPrice") or {}).get("Amount")) or 0) or None
+                low = None
+                for y in sm.get("LowestPrices") or []:
+                    if (y.get("condition") or "new").lower() == "new":
+                        v = float(((y.get("LandedPrice") or y.get("ListingPrice") or {}).get("Amount")) or 0)
+                        if v and (low is None or v < low):
+                            low = v
+                sellers = sorted({o.get("SellerId") for o in pl.get("Offers") or [] if o.get("SellerId")})
+                out[a] = {"total": int(tot or 0), "fba": fba, "amazon_sells": "ATVPDKIKX0DER" in sellers, "bb": bb, "low": low, "sellers": sellers}
         except Exception as e:
-            out[a] = {"err": str(e)[:80]}
-        time.sleep(2.1)
+            print("  offers ERR %s" % str(e)[:160])
+        if (i // 20) % 10 == 9:
+            print("  offers read: %d/%d listings" % (min(i + 20, len(asins)), len(asins)))
+        time.sleep(10.5)
+    return out
+
+
+DP_MAX = int(os.environ.get("DP_MAX", "15"))        # public product pages per run (reviews, 'bought in past month'); ~2 MB each
+REV_MIN = int(os.environ.get("REV_MIN", "5"))
+
+
+def page_details(asins):
+    """Public product page -> reviews, rating, 'bought in past month', availability (reprice/bb_web.parse_dp).
+    Free GitHub runner IP first; the paid proxy (own port) only if Amazon answers with a captcha."""
+    import bb_web, urllib.parse as up
+    from curl_cffi import requests as cr
+    out, mb, use_proxy, px = {}, 0.0, False, None
+    raw = os.environ.get("PROXY_URL", "").strip()
+    if raw:
+        u = up.urlparse(raw); login = up.unquote(u.username or "")
+        if "__" not in login:
+            login += "__cr.us"
+        px = "http://%s:%s@%s:%s" % (up.quote(login, safe=""), up.quote(up.unquote(u.password or ""), safe=""), u.hostname, os.environ.get("DP_PROXY_PORT", "10160"))
+    for a in asins[:DP_MAX]:
+        for attempt in (0, 1):
+            prox = {"http": px, "https": px} if (use_proxy and px) else None
+            try:
+                r = cr.get("https://www.amazon.com/dp/%s" % a, impersonate="chrome", timeout=40, proxies=prox, headers={"Accept-Language": "en-US,en;q=0.9"})
+                if use_proxy:
+                    mb += len(r.content) / 1048576.0
+                d = bb_web.parse_dp(r.text)
+                if d.get("captcha") or r.status_code != 200:
+                    if not use_proxy and px:
+                        use_proxy = True
+                        print("  amazon page: runner IP got a captcha -> proxy for product pages")
+                        continue
+                    out[a] = {"err": "captcha/%s" % r.status_code}
+                    break
+                out[a] = {k: d.get(k) for k in ("reviews", "rating", "bought_month", "unavailable", "offers_n", "bb_price")}
+                break
+            except Exception as e:
+                out[a] = {"err": str(e)[:80]}
+                break
+        time.sleep(3)
+    print("  product pages read: %d (proxy MB: %.1f)" % (len(out), mb))
     return out
 
 
@@ -216,27 +294,39 @@ def fee_guess(price):
     return round(max(0.30, 0.15 * price) + (3.22 if price < 10 else 3.86), 2)   # referral + small/large-standard FBA guess
 
 
+KW_PAGES = int(os.environ.get("KW_PAGES", "2"))          # Amazon catalog pages (20 each) per keyword - abandoned listings sit deep
+STRONG_SIM = float(os.environ.get("STRONG_SIM", "0.55"))
+SHARE_CAP = float(os.environ.get("SHARE_CAP", "0.15"))     # a new own listing never assumed above 15% of the market
+
+
+def median(v):
+    v = sorted(x for x in v if x)
+    return v[len(v) // 2] if v else None
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--from-json", default="")
     ap.add_argument("--search", default="")
     ap.add_argument("--out", default="/tmp/deals")
-    ap.add_argument("--per-item", type=int, default=1)
     a = ap.parse_args()
     c = spapi.load_creds(os.path.join(HERE, "..", "reprice"))
-    temu = []
+    temu, kws = [], []
     if a.from_json:
         d = json.load(open(a.from_json))
-        for q, items in (d.get("searches") or {}).items():
-            for it in items:
+        for q, its in (d.get("searches") or {}).items():
+            kws.append(("-", q))
+            for it in its:
                 it["kw"] = q; temu.append(it)
     if a.search:
         import temu_bridge
         pairs = keyword_chunk(a.search) if a.search.startswith("chunk:") else [("-", x.strip()) for x in a.search.split("|") if x.strip()]
         print("Temu keywords: %d (%s)" % (len(pairs), ", ".join(k for _, k in pairs)))
         for cat, q in pairs:
-            for it in temu_bridge.search(q)[:PER_KW]:
+            got = temu_bridge.search(q)[:PER_KW]
+            for it in got:
                 it["kw"] = q; it["cat"] = cat; temu.append(it)
+            kws.append((cat, q))
             if temu_bridge.STATS.get("closed"):
                 print("Temu blocked (%s) - continuing with what was pulled" % temu_bridge.STATS["closed"]); break
     seen, items = set(), []
@@ -244,144 +334,164 @@ def main():
         if it["goods_id"] in seen or not it.get("price") or it["price"] > MAX_TEMU or EXCLUDE.search(it.get("title") or ""):
             continue
         seen.add(it["goods_id"]); items.append(it)
-    print("Temu items to check: %d (price <= $%.0f)" % (len(items), MAX_TEMU))
+    print("Temu items to check: %d generic (price <= $%.0f), keywords: %d" % (len(items), MAX_TEMU, len(kws)))
 
-    # 1. match
-    rows, asins = [], set()
+    # 1. Amazon catalog: every keyword (deep, for abandoned listings) + every Temu item (its own title search)
+    pool, kw_asins, item_asins = {}, {}, {}
+    for cat, q in kws:
+        res = catalog_search(c, q, size=20, pages=KW_PAGES)
+        kw_asins[q] = [x["asin"] for x in res]
+        for x in res:
+            pool.setdefault(x["asin"], x)
     for n, it in enumerate(items, 1):
-        q = query_for(it["title"])
-        cands = catalog_search(c, q)
-        for cd in cands:
-            cd["sim"] = round(sim(it["title"], cd["title"]), 2)
-        cands = [x for x in cands if x["sim"] >= SIM_MIN and not BIG_BRANDS.match((x.get("brand") or "").strip())]
-        cands = sorted(cands, key=lambda x: -x["sim"])[:3]
-        for cd in cands:                         # same product photo? (generic items usually reuse the factory photos)
-            cd["img_dist"] = img_dist(it.get("image"), cd.get("image"))
-            cd["score"] = cd["sim"] + (0.6 if (cd["img_dist"] is not None and cd["img_dist"] <= IMG_OK) else 0)
-        cands = sorted(cands, key=lambda x: -x["score"])[:a.per_item]
-        if not cands:
-            rows.append({"temu": it, "amz": None})
-        for cd in cands:
-            rows.append({"temu": it, "amz": cd}); asins.add(cd["asin"])
-        if n % 25 == 0:
-            print("  matched %d/%d items, %d ASINs" % (n, len(items), len(asins)))
-        time.sleep(0.6)
-    print("Amazon candidates: %d ASINs" % len(asins))
+        res = catalog_search(c, query_for(it["title"]), size=10, pages=1)
+        item_asins[it["goods_id"]] = [x["asin"] for x in res]
+        for x in res:
+            pool.setdefault(x["asin"], x)
+        if n % 50 == 0:
+            print("  Amazon search: %d/%d Temu items, %d listings in pool" % (n, len(items), len(pool)))
+    print("Amazon listings found: %d" % len(pool))
 
-    # 2. live offers
-    live = amazon_pricing.fetch(spapi.call, c, sorted(asins), log=print) if asins else {}
+    # 2. live sellers for every listing in the pool
+    offers = offers_batch(c, list(pool))
+    for a_, x in pool.items():
+        o = offers.get(a_) or {}
+        x.update({"offers": o.get("total"), "fba_offers": o.get("fba"), "amazon_sells": o.get("amazon_sells"), "bb": o.get("bb"), "low": o.get("low"),
+                  "sellers": o.get("sellers") or [], "est_sales": est_monthly_sales(x.get("rank"), x.get("rank_cat"))})
 
-    # 3. fees at the live price (competitive) or at the list price / 3x Temu (abandoned)
-    pairs = []
-    for r in rows:
-        if not r["amz"]:
+    # 3. per Temu item: the whole competing market (every matching listing, all their sellers)
+    markets = []
+    for it in items:
+        cand = {a_ for a_ in item_asins.get(it["goods_id"], []) + kw_asins.get(it.get("kw"), [])}
+        scored = []
+        for a_ in cand:
+            x = pool[a_]
+            if BIG_BRANDS.match((x.get("brand") or "").strip()):
+                continue
+            sv = sim(it["title"], x["title"])
+            if sv < SIM_MIN:
+                continue
+            scored.append([sv, a_])
+        scored.sort(reverse=True)
+        matches = []
+        for sv, a_ in scored[:12]:                   # photo check on the 12 closest titles
+            dist = img_dist(it.get("image"), pool[a_].get("image"))
+            photo = dist is not None and dist <= IMG_OK
+            if photo or sv >= STRONG_SIM:
+                matches.append({"asin": a_, "sim": round(sv, 2), "img_dist": dist, "photo": photo})
+        if not matches:
             continue
-        L = live.get(r["amz"]["asin"]) or {}
-        price = L.get("bb") or L.get("low_new") or r["amz"].get("list_price")
-        r["status"] = "COMPETITIVE" if (L.get("bb") or L.get("n_offers")) else "ABANDONED"
-        r["amz_price"] = round(price, 2) if price else None
-        r["fee_price"] = r["amz_price"] or round(max(9.99, r["temu"]["price"] * 3), 2)
-        pairs.append((r["amz"]["asin"], r["fee_price"]))
+        act = [m for m in matches if (pool[m["asin"]].get("offers") or 0) > 0]
+        aband = [m for m in matches if (pool[m["asin"]].get("offers") or 0) == 0 and pool[m["asin"]].get("offers") is not None]
+        seller_listings = {}
+        for m in act:
+            for sid in pool[m["asin"]]["sellers"]:
+                seller_listings[sid] = seller_listings.get(sid, 0) + 1
+        price = median([pool[m["asin"]].get("bb") or pool[m["asin"]].get("low") for m in act]) or median([pool[m["asin"]].get("list_price") for m in matches])
+        ref = max(act or matches, key=lambda m: pool[m["asin"]].get("est_sales") or 0)
+        markets.append({"it": it, "matches": matches, "act": act, "aband": aband, "price": price, "ref": ref["asin"],
+                        "listings": len(act), "sellers": len(seller_listings), "multi_listing_sellers": sum(1 for v in seller_listings.values() if v > 1),
+                        "max_listings_one_seller": max(seller_listings.values()) if seller_listings else 0,
+                        "market_sales": sum(pool[m["asin"]].get("est_sales") or 0 for m in act),
+                        "amazon_sells": any(pool[m["asin"]].get("amazon_sells") for m in act),
+                        "photo_matches": sum(1 for m in matches if m["photo"])})
+    print("Temu items with a real Amazon market (photo or strong title match): %d" % len(markets))
+
+    # 4. abandoned listings with demand: 0 sellers, has a sales rank -> product page for reviews / 'bought in past month'
+    ab_all = [x for x in pool.values() if x.get("offers") == 0 and x.get("rank") and not BIG_BRANDS.match((x.get("brand") or "").strip())]
+    ab_all.sort(key=lambda x: x["rank"])
+    pages = page_details([x["asin"] for x in ab_all])
+    for x in ab_all:
+        x.update(pages.get(x["asin"]) or {})
+
+    # 5. fees (SP-API) at the market price / abandoned target price
+    pairs = [(m["ref"], round(m["price"], 2)) for m in markets if m["price"]]
+    for x in ab_all:
+        x["fee_price"] = round(x.get("list_price") or x.get("bb_price") or 19.99, 2)
+        pairs.append((x["asin"], x["fee_price"]))
     fees = fees_batch(c, sorted(set(pairs)))
 
-    # 4. profit
-    out = []
-    for r in rows:
-        t, m = r["temu"], r["amz"]
-        cost = round(t["price"] * (1 + TAX) + INBOUND, 2)
-        rec = {"cat": t.get("cat"), "risk_flag": (RISK.search(t["title"]) or [None])[0], "kw": t.get("kw"), "temu_id": t["goods_id"], "temu_title": t["title"][:120], "temu_price": t["price"], "landed_cost": cost, "temu_url": t["url"]}
-        if not m:
-            rec.update({"status": "NO MATCH"}); out.append(rec); continue
-        L = live.get(m["asin"]) or {}
-        fee = fees.get("%s@%.2f" % (m["asin"], r["fee_price"]))
-        fee_src = "spapi" if fee is not None else "guess"
-        if fee is None:
-            fee = fee_guess(r["fee_price"])
-        # break-even and target price solve p - fee(p) = cost (fee scales ~ with price)
-        fixed = fee - 0.15 * r["fee_price"]          # FBA + other fixed fees; referral ~15% scales with price
-        be = round((cost + fixed) / 0.85, 2)
-        target = round((cost * (1 + ROI_MIN) + fixed) / 0.85, 2)
-        strong = (m.get("img_dist") is not None and m["img_dist"] <= IMG_OK) or m["sim"] >= 0.55
-        ratio = (r["amz_price"] / t["price"]) if (r["amz_price"] and t["price"]) else None
-        conf = "PHOTO MATCH" if (m.get("img_dist") is not None and m["img_dist"] <= IMG_OK) else ("TITLE MATCH" if strong else "WEAK - check")
-        if ratio and ratio > RATIO_MAX:
-            conf = "CHECK - Amazon %.0fx Temu" % ratio
-        rec.update({"status": r["status"], "match_conf": conf, "img_dist": m.get("img_dist"), "asin": m["asin"], "amz_title": m["title"][:120], "brand": m.get("brand"), "match": m["sim"],
-                    "sales_rank": m.get("rank"), "rank_cat": m.get("rank_cat"), "amz_price": r["amz_price"], "list_price": m.get("list_price"),
-                    "offers": L.get("n_offers", 0), "fba_offers": L.get("n_afn", 0), "fees": round(fee, 2), "fees_src": fee_src,
-                    "breakeven_price": be, "target_price": target, "amz_url": "https://www.amazon.com/dp/" + m["asin"]})
-        wcost = round(t["price"] * WHOLESALE_F + FREIGHT + INBOUND, 2)
-        rec["wholesale_cost_est"] = wcost
-        rec["target_price_wholesale"] = round((wcost * (1 + ROI_MIN) + fixed) / 0.85, 2)
-        if r["amz_price"]:
-            p = r["amz_price"] - fee - cost
-            pw = r["amz_price"] - fee - wcost
-            rec.update({"profit": round(p, 2), "roi": round(p / cost, 2), "profit_wholesale": round(pw, 2), "roi_wholesale": round(pw / wcost, 2)})
-        out.append(rec)
-    # 5. demand + competition + projected profit for every positive-ROI row (and every abandoned listing)
-    pos = [x for x in out if (x.get("roi_wholesale") or -1) > 0 or x.get("status") == "ABANDONED"]
-    det = offers_detail(c, sorted({x["asin"] for x in pos if x.get("asin")}))
-    for x in pos:
-        d = det.get(x["asin"]) or {}
-        x["offers"] = d.get("total", x.get("offers")); x["fba_offers"] = d.get("fba", x.get("fba_offers")); x["amazon_sells"] = d.get("amazon_sells")
-        ms = est_monthly_sales(x.get("sales_rank"), x.get("rank_cat"))
-        x["est_sales_month"] = ms
-        if ms is None:
-            continue
-        n_off = x.get("offers") or 0
-        if x.get("status") == "ABANDONED" or n_off == 0:
-            mode, share, ppc = "JOIN abandoned listing", 1.0, 0.0
-        elif n_off == 1:
-            # one seller = usually the brand's own private-label listing: joining it invites brand complaints,
-            # so the realistic path is your OWN generic listing competing in search (with ads)
-            mode, share, ppc = "OWN listing (1-seller brand)", NEW_LISTING_SHARE, PPC_PCT * (x.get("amz_price") or 0)
-        else:
-            mode, share, ppc = "JOIN listing (%d sellers)" % n_off, SHARE_HAIRCUT / ((x.get("fba_offers") or n_off) + 1), 0.0
-            if x.get("amazon_sells"):
-                share *= 0.3                      # Amazon retail keeps most of the Buy Box
-        x["path"] = mode
-        x["ppc_per_unit"] = round(ppc, 2)
-        x["your_share"] = round(share, 2)
-        x["your_units_month"] = round(ms * share, 1)
-        if x.get("profit_wholesale") is not None:
-            pu = x["profit_wholesale"] - ppc
-            x["profit_unit_after_ads"] = round(pu, 2)
-            x["profit_month_wholesale"] = round(x["your_units_month"] * pu, 0)
-            x["profit_12m_wholesale"] = round(x["profit_month_wholesale"] * 12 * YEAR_FACTOR, 0)
-            x["capital_2months"] = round(x["your_units_month"] * 2 * x["wholesale_cost_est"], 0)
-        x["competition"] = ("ABANDONED" if mode.startswith("JOIN abandoned") else "AMAZON SELLS" if x.get("amazon_sells") else
-                            "1 brand seller" if n_off == 1 else "LOW" if n_off <= 3 else "MEDIUM" if n_off <= 8 else "HIGH")
-    out.sort(key=lambda x: (-(x.get("profit_month_wholesale") or -1e9), -(x.get("roi_wholesale") or -9)))
+    rows = []
+    for m in markets:
+        it, x = m["it"], pool[m["ref"]]
+        cost = round(it["price"] * (1 + TAX) + INBOUND, 2)
+        wcost = round(it["price"] * WHOLESALE_F + FREIGHT + INBOUND, 2)
+        rec = {"kind": "MARKET", "cat": it.get("cat"), "kw": it.get("kw"), "risk_flag": (RISK.search(it["title"]) or [None])[0],
+               "temu_title": it["title"][:120], "temu_price": it["price"], "landed_cost": cost, "wholesale_cost_est": wcost, "temu_url": it["url"], "temu_id": it["goods_id"],
+               "match_conf": "PHOTO MATCH" if m["photo_matches"] else "TITLE MATCH", "photo_matches": m["photo_matches"],
+               "listings": m["listings"], "abandoned_listings": len(m["aband"]), "sellers": m["sellers"], "multi_listing_sellers": m["multi_listing_sellers"],
+               "max_listings_one_seller": m["max_listings_one_seller"], "amazon_sells": m["amazon_sells"], "market_sales_month": m["market_sales"],
+               "amz_price": m["price"], "ref_asin": m["ref"], "ref_title": x["title"][:120], "ref_rank": x.get("rank"), "rank_cat": x.get("rank_cat"),
+               "ref_url": "https://www.amazon.com/dp/" + m["ref"], "asins": " ".join(z["asin"] for z in m["matches"])}
+        if m["price"]:
+            fee = fees.get("%s@%.2f" % (m["ref"], round(m["price"], 2)))
+            rec["fees_src"] = "spapi" if fee is not None else "guess"
+            fee = fee if fee is not None else fee_guess(m["price"])
+            rec["fees"] = round(fee, 2)
+            pw, p = m["price"] - fee - wcost, m["price"] - fee - cost
+            ppc = PPC_PCT * m["price"]
+            share = min(SHARE_CAP, SHARE_HAIRCUT / (m["listings"] + 1)) if m["listings"] else 0
+            if m["amazon_sells"]:
+                share *= 0.5
+            units = round(m["market_sales"] * share, 1)
+            rec.update({"profit_wholesale": round(pw, 2), "roi_wholesale": round(pw / wcost, 2), "profit_temu": round(p, 2), "roi_temu": round(p / cost, 2),
+                        "ppc_per_unit": round(ppc, 2), "profit_unit_after_ads": round(pw - ppc, 2), "your_share": round(share, 3), "your_units_month": units,
+                        "profit_month": round(units * (pw - ppc), 0), "profit_12m": round(units * (pw - ppc) * 12 * YEAR_FACTOR, 0),
+                        "capital_2months": round(units * 2 * wcost, 0)})
+        rows.append(rec)
+    abrows = []
+    for x in ab_all:
+        fee = fees.get("%s@%.2f" % (x["asin"], x["fee_price"]))
+        fee = fee if fee is not None else fee_guess(x["fee_price"])
+        best, bsv = None, 0.0               # cheapest Temu twin for the cost side
+        for it in items:
+            sv = sim(it["title"], x["title"])
+            if sv > bsv:
+                best, bsv = it, sv
+        rec = {"kind": "ABANDONED", "asin": x["asin"], "amz_title": x["title"][:120], "brand": x.get("brand"), "rank": x.get("rank"), "rank_cat": x.get("rank_cat"),
+               "est_sales_month": x.get("est_sales"), "reviews": x.get("reviews"), "rating": x.get("rating"), "bought_month": x.get("bought_month"),
+               "list_price": x.get("list_price"), "price_used": x["fee_price"], "fees": round(fee, 2), "url": "https://www.amazon.com/dp/" + x["asin"]}
+        if best and bsv >= SIM_MIN:
+            wcost = round(best["price"] * WHOLESALE_F + FREIGHT + INBOUND, 2)
+            pw = x["fee_price"] - fee - wcost
+            units = x.get("bought_month") or x.get("est_sales") or 0
+            rec.update({"temu_twin": best["title"][:90], "temu_twin_price": best["price"], "temu_twin_sim": round(bsv, 2), "wholesale_cost_est": wcost,
+                        "profit_unit": round(pw, 2), "roi_wholesale": round(pw / wcost, 2), "profit_month": round(units * pw, 0)})
+        abrows.append(rec)
+
+    rows.sort(key=lambda r: (-(r.get("profit_month") if r.get("profit_month") is not None else -1e9), -(r.get("roi_wholesale") or -9)))
+    abrows.sort(key=lambda r: (-(r.get("reviews") or 0), r.get("rank") or 9e9))
     os.makedirs(a.out, exist_ok=True)
-    stamp = datetime.now(timezone.utc).strftime("%Y%m%dT%H%MZ")
     tag = a.search.replace(":", "").replace("/", "of") if a.search.startswith("chunk:") else "latest"
-    json.dump({"run_at": stamp, "params": {"tax": TAX, "inbound": INBOUND, "roi_min": ROI_MIN, "max_temu": MAX_TEMU, "sim_min": SIM_MIN}, "rows": out},
+    json.dump({"run_at": datetime.now(timezone.utc).strftime("%Y%m%dT%H%MZ"), "markets": rows, "abandoned": abrows},
               open(os.path.join(a.out, "deals_%s.json" % tag), "w"), indent=1)
-    cols = ["status", "path", "profit_month_wholesale", "profit_12m_wholesale", "est_sales_month", "your_share", "your_units_month", "competition",
-            "amazon_sells", "capital_2months", "roi_wholesale", "profit_wholesale", "ppc_per_unit", "profit_unit_after_ads", "wholesale_cost_est", "roi", "profit", "temu_price", "landed_cost", "amz_price", "fees", "fees_src", "breakeven_price", "target_price", "target_price_wholesale", "list_price",
-            "offers", "fba_offers", "sales_rank", "rank_cat", "sub_rank", "sub_cat", "match_conf", "img_dist", "match", "risk_flag", "cat", "kw", "temu_title", "amz_title", "brand", "asin", "amz_url", "temu_url", "temu_id"]
-    with open(os.path.join(a.out, "deals_%s.csv" % tag), "w", newline="") as f:
-        w = csv.DictWriter(f, fieldnames=cols, extrasaction="ignore"); w.writeheader(); w.writerows(out)
-    pos = [x for x in out if (x.get("roi_wholesale") or -1) > 0]
-    conf = [x for x in pos if x.get("match_conf") in ("PHOTO MATCH", "TITLE MATCH")]
-    ab = [x for x in out if x.get("status") == "ABANDONED"]
-    print("\nRESULT: %d generic Temu items, %d matched rows, %d with positive ROI at est. wholesale (%d confident matches), %d abandoned listings" % (
-        len(items), sum(1 for x in out if x.get("asin")), len(pos), len(conf), len(ab)))
-    print("Assumptions: wholesale = Temu x %.2f + $%.2f freight/duties + $%.2f inbound; sales from BSR bands (+/-50%%); JOIN = %.0f%% of an equal Buy Box split (30%% of that if Amazon sells); OWN listing = %.0f%% of the matched listing's sales minus ads at %.0f%% of price; 12 m = 12 x month x %.2f" % (
-        WHOLESALE_F, FREIGHT, INBOUND, SHARE_HAIRCUT * 100, NEW_LISTING_SHARE * 100, PPC_PCT * 100, YEAR_FACTOR))
-    hdr = "  %-11s %-14s %7s %8s %6s %6s %-14s %6s %6s %6s %6s %5s %8s  %s"
+    for name, data in (("deals_%s.csv" % tag, rows), ("abandoned_%s.csv" % tag, abrows)):
+        cols = []
+        for r in data:
+            for k in r:
+                if k not in cols:
+                    cols.append(k)
+        with open(os.path.join(a.out, name), "w", newline="") as f:
+            w = csv.DictWriter(f, fieldnames=cols or ["none"]); w.writeheader(); w.writerows(data)
+
+    pos = [r for r in rows if (r.get("roi_wholesale") or -1) > 0]
+    print("\nRESULT: %d generic Temu items -> %d with a real Amazon market, %d with positive ROI at est. wholesale; %d abandoned listings with a sales rank (%d with %d+ reviews)" % (
+        len(items), len(rows), len(pos), len(abrows), sum(1 for r in abrows if (r.get("reviews") or 0) >= REV_MIN), REV_MIN))
+    print("Assumptions: wholesale = Temu x %.2f + $%.2f freight/duties + $%.2f inbound; sales from BSR bands (+/-50%%); new own listing gets %.0f%% of an equal split of the market (max %.0f%%, half if Amazon sells); ads %.0f%% of price; 12 m = 12 x month x %.2f" % (
+        WHOLESALE_F, FREIGHT, INBOUND, SHARE_HAIRCUT * 100, SHARE_CAP * 100, PPC_PCT * 100, YEAR_FACTOR))
+    hdr = "  %-5s %7s %8s %7s %5s %4s %5s %-3s %6s %6s %6s %6s  %s"
     print("\nALL POSITIVE-ROI PRODUCTS (best projected monthly profit first):")
-    print(hdr % ("match", "path", "$/month", "$/12m", "sold/m", "you/m", "competition", "ROIw", "+$/u", "temu", "amz", "offr", "rank", "Temu item | Amazon listing"))
-    for x in pos:
-        print(hdr % ((x.get("match_conf") or "")[:11], (x.get("path") or "-")[:14], x.get("profit_month_wholesale", "-"), x.get("profit_12m_wholesale", "-"), x.get("est_sales_month") or "-",
-                     x.get("your_units_month") or "-", (x.get("competition") or "-")[:14], "%.0f%%" % (x["roi_wholesale"] * 100), "%.2f" % x.get("profit_unit_after_ads", x["profit_wholesale"]),
-                     x["temu_price"], x.get("amz_price"), x.get("offers"), x.get("sales_rank") or "-",
-                     ("[%s] " % x["risk_flag"] if x.get("risk_flag") else "") + x["temu_title"][:38] + " | " + x["amz_title"][:38]))
-    print("\nABANDONED LISTINGS (no offers) - price you need on Amazon (at Temu cost / at est. wholesale):")
-    for x in sorted(ab, key=lambda x: (x.get("sales_rank") or 9e9))[:30]:
-        print("  temu $%-6.2f -> target $%-6.2f / $%-6.2f list $%-6s rank %-8s est sold/m %-5s brand %-12s %s | %s" % (
-            x["temu_price"], x["target_price"], x["target_price_wholesale"], x.get("list_price") or "-", x.get("sales_rank") or "-", x.get("est_sales_month") or "-",
-            (x.get("brand") or "-")[:12], x["temu_title"][:38], x["amz_title"][:38]))
+    print(hdr % ("match", "$/month", "$/12m", "mkt/m", "lists", "sell", "multi", "AMZ", "ROIw", "+$/u", "temu", "amz", "Temu item | best-selling Amazon listing"))
+    for r in pos:
+        print(hdr % (r["match_conf"][:5], r.get("profit_month"), r.get("profit_12m"), r["market_sales_month"], r["listings"], r["sellers"],
+                     r["max_listings_one_seller"], "Y" if r["amazon_sells"] else "-", "%.0f%%" % (r["roi_wholesale"] * 100), r["profit_unit_after_ads"],
+                     r["temu_price"], r["amz_price"], ("[%s] " % r["risk_flag"] if r.get("risk_flag") else "") + r["temu_title"][:38] + " | " + r["ref_title"][:38]))
+    print("\nABANDONED LISTINGS (0 sellers) - most reviews first:")
+    for r in abrows[:40]:
+        print("  reviews %-6s rating %-4s bought/m %-6s rank %-8s est/m %-5s list $%-6s %s %s" % (
+            r.get("reviews") if r.get("reviews") is not None else "?", r.get("rating") or "-", r.get("bought_month") or "-", r.get("rank"), r.get("est_sales_month") or "-",
+            r.get("list_price") or "-", r["amz_title"][:60],
+            ("| Temu twin $%s ROIw %.0f%% $%s/m" % (r["temu_twin_price"], r["roi_wholesale"] * 100, r["profit_month"])) if r.get("temu_twin") else ""))
 
 
 if __name__ == "__main__":

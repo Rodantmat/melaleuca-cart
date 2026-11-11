@@ -16,7 +16,7 @@ concurrency: { group: temu-bridge, cancel-in-progress: false }
 jobs:
   deals:
     runs-on: ubuntu-latest
-    timeout-minutes: 240
+    timeout-minutes: 330
     steps:
       - uses: actions/checkout@v4
         with: { ref: main }
@@ -28,6 +28,7 @@ jobs:
       - name: Find deals
         env:
           CRED_ENV: ${{ secrets.CREDENTIALS_ENV }}
+          PROXY_URL: ${{ secrets.PROXY_URL }}
           Q: ${{ github.event.inputs.search }}
           ROI_MIN: ${{ github.event.inputs.roi_min }}
           MAX_TEMU_PRICE: ${{ github.event.inputs.max_temu }}
@@ -47,6 +48,6 @@ jobs:
           git config user.name "temu-bot"; git config user.email "temu-bot@users.noreply.github.com"
           git checkout -q -B temu-data origin/temu-data
           mkdir -p temu/deals
-          cp /tmp/deals/deals_*.csv /tmp/deals/deals_*.json temu/deals/
+          cp /tmp/deals/deals_*.csv /tmp/deals/deals_*.json /tmp/deals/abandoned_*.csv temu/deals/ 2>/dev/null || true
           cp /tmp/deals/run.log "temu/deals/run_$TS.log"
           git add temu/deals && git commit -qm "deals $TS" && for i in 1 2 3 4 5; do git push -q origin temu-data && break; git pull -q --rebase origin temu-data; sleep 3; done
