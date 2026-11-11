@@ -1,17 +1,19 @@
 name: Temu watch (hourly 2-request check, stops itself after 2026-11-12 20:00 UTC)
 on:
   schedule: [{ cron: "17 * * * *" }]
-  workflow_dispatch: {}
+  workflow_dispatch:
+    inputs:
+      loop: { description: "1 = re-check every 10 min until Temu reopens (max 5.5 h)", default: "0" }
 permissions: { contents: write }
 concurrency: { group: temu-watch, cancel-in-progress: false }
 jobs:
   check:
     runs-on: ubuntu-latest
-    timeout-minutes: 5
+    timeout-minutes: 345
     steps:
-      - name: Stop after the 48 h window
+      - name: Stop after the 48 h window (scheduled runs only)
         id: win
-        run: if [ "$(date -u +%Y%m%d%H)" -gt 2026111220 ]; then echo "done=1" >> "$GITHUB_OUTPUT"; echo "window over"; fi
+        run: if [ "${{ github.event_name }}" = "schedule" ] && [ "$(date -u +%Y%m%d%H)" -gt 2026111220 ]; then echo "done=1" >> "$GITHUB_OUTPUT"; echo "window over"; fi
       - uses: actions/checkout@v4
         if: steps.win.outputs.done != '1'
       - uses: actions/setup-python@v5
@@ -23,5 +25,4 @@ jobs:
           cp temu/temu_watch.py /tmp/w.py
           git config user.name "temu-bot"; git config user.email "temu-bot@users.noreply.github.com"
           git fetch -q origin temu-data:temu-data && git checkout -q temu-data
-          mkdir -p temu && python /tmp/w.py temu/watch.log
-          git add temu/watch.log && git commit -qm "temu watch $(date -u +%H:%M)" && git push -q origin temu-data
+          mkdir -p temu && WATCH_PUSH=1 WATCH_LOOP="${{ github.event.inputs.loop || '0' }}" python /tmp/w.py temu/watch.log

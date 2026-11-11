@@ -9,7 +9,7 @@ with that client header returns the same public data a shopper sees. Runs on a p
 
 CLI:  python temu/temu_bridge.py --search "dog shirt|cat mug" --ids 603242230592430,601102364449217 --best --out temu/out/latest.json
 """
-import argparse, json, os, random, re, sys, time, urllib.parse
+import argparse, html as _html, json, os, random, re, sys, time, urllib.parse
 from datetime import datetime, timezone
 from curl_cffi import requests as cr
 
@@ -88,7 +88,7 @@ def norm_goods(g):
     title = g.get("goodsName") or g.get("title") or ""
     return {
         "goods_id": gid,
-        "title": title.strip(),
+        "title": _html.unescape(title.strip()),
         "price": price,
         "list_price": mk,
         "currency": pi.get("currency") or "USD",
@@ -165,7 +165,7 @@ def product(gid):
             for im in (d2.get("image") or []):
                 imgs.append(im.get("contentURL") if isinstance(im, dict) else im)
             rec.update({
-                "title": d2.get("name"),
+                "title": _html.unescape(d2.get("name") or ""),
                 "price": _num(off.get("price") or off.get("lowPrice")),
                 "high_price": _num(off.get("highPrice")),
                 "currency": off.get("priceCurrency"),

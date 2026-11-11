@@ -9,6 +9,7 @@ on:
       best:   { description: "1 = also pull best sellers", default: "0" }
 permissions:
   contents: write
+  actions: write
 concurrency: { group: temu-bridge, cancel-in-progress: false }
 jobs:
   pull:
@@ -39,3 +40,10 @@ jobs:
           cp /tmp/temu_out.json temu/latest.json; cp /tmp/temu_out.json "temu/runs/$TS.json"; cp /tmp/temu_run.log temu/latest.log
           git add temu/latest.json temu/latest.log "temu/runs/$TS.json"
           git commit -qm "temu pull $TS" && git push origin temu-data
+      - name: If Temu blocked this run, start the 10-minute cooldown probe
+        if: always()
+        env: { GH_TOKEN: "${{ github.token }}" }
+        run: |
+          [ -f /tmp/temu_out.json ] || exit 0
+          C=$(python -c "import json;print(json.load(open('/tmp/temu_out.json'))['stats'].get('closed',''))")
+          if [ -n "$C" ]; then echo "blocked: $C -> starting cooldown probe"; gh workflow run temu_watch.yml -R "$GITHUB_REPOSITORY" -f loop=1; fi
