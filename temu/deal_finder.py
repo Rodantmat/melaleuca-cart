@@ -451,7 +451,11 @@ def main():
         rec = {"kind": "ABANDONED", "asin": x["asin"], "amz_title": x["title"][:120], "brand": x.get("brand"), "rank": x.get("rank"), "rank_cat": x.get("rank_cat"),
                "est_sales_month": x.get("est_sales"), "reviews": x.get("reviews"), "rating": x.get("rating"), "bought_month": x.get("bought_month"),
                "list_price": x.get("list_price"), "price_used": x["fee_price"], "fees": round(fee, 2), "url": "https://www.amazon.com/dp/" + x["asin"]}
-        if best and bsv >= SIM_MIN:
+        if best and bsv >= 0.45:
+            dist = img_dist(best.get("image"), x.get("image"))
+            if not ((dist is not None and dist <= IMG_OK) or bsv >= STRONG_SIM):
+                best = None
+        if best and bsv >= 0.45:
             wcost = round(best["price"] * WHOLESALE_F + FREIGHT + INBOUND, 2)
             pw = x["fee_price"] - fee - wcost
             units = x.get("bought_month") or x.get("est_sales") or 0
