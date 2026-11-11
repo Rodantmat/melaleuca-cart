@@ -30,8 +30,9 @@ EXCLUDE = re.compile(r"\b(t-?shirts?|tees?|hoodies?|sweatshirts?|jumpsuit|mugs?|
                      r"keychains?|flag|banner|blanket with|print(ed)? (t|tee|shirt)|graphic|slogan|quote|funny|christmas|halloween|"
                      r"disney|marvel|pokemon|hello kitty|barbie|nfl|nba|mlb|harry potter|star wars|nike|adidas|apple|iphone|samsung|"
                      r"stanley|yeti|owala|lego|sanrio|minecraft|bluey|jesus|christian)\b", re.I)
-RISK = re.compile(r"\b(batter(y|ies)|rechargeable|usb|electric|cordless|heated|heating|lighter|torch|flame|baby|infant|toddler|kids?|children|toys?|"
-                  r"supplement|edible|cosmetic|serum|cream|lotion|helmet|life jacket|smoke|carbon monoxide)\b", re.I)
+# extra Amazon paperwork even with liability insurance: CPC (children's), hazmat review (lithium), ingestible/cosmetic rules
+RISK = re.compile(r"\b(lithium|li-ion|batter(y|ies) included|baby|infant|toddler|kids?|children|toys?|"
+                  r"supplement|edible|cosmetic|serum|cream|lotion|helmet|life jacket|smoke detector|carbon monoxide)\b", re.I)
 PER_KW = int(os.environ.get("PER_KW", "20"))                       # first N Temu results per keyword (Temu's own ranking)
 
 

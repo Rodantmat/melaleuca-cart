@@ -1,5 +1,5 @@
-# category | Temu search keyword   (generic, no brands; avoids Amazon's new $1M-insurance groups: electric appliances,
-# lithium batteries, children's, ingestible/cosmetic, fire/heating, safety gear - those get flagged if they slip in)
+# category | Temu search keyword   (generic, no brands. Owner has the $1M liability insurance, appliances OK.
+# Flagged, not dropped: children's (CPC), lithium (hazmat review), ingestible/cosmetic.)
 kitchen | vegetable chopper
 kitchen | garlic press
 kitchen | silicone spatula set
@@ -111,3 +111,23 @@ accessories | jewelry organizer
 accessories | sunglasses case
 accessories | watch band
 accessories | phone lanyard
+appliances | mini blender portable
+appliances | milk frother handheld
+appliances | electric milk frother
+appliances | digital kitchen scale
+appliances | hand mixer electric
+appliances | egg cooker electric
+appliances | mini waffle maker
+appliances | electric can opener
+appliances | coffee grinder electric
+appliances | vacuum sealer machine
+appliances | electric spice grinder
+appliances | mini food processor
+appliances | yogurt maker
+appliances | electric kettle small
+appliances | sandwich maker
+appliances | mini rice cooker
+appliances | bottle sealer electric
+appliances | handheld vacuum sealer
+appliances | electric salt pepper grinder
+appliances | air fryer accessories
