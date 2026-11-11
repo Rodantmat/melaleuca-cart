@@ -4,9 +4,11 @@ name: Temu deals -> Amazon profit (read-only on Amazon)
 on:
   workflow_dispatch:
     inputs:
-      search:   { description: "Temu keywords, separated by | (empty = use the last saved Temu pull)", default: "" }
+      search:   { description: "Temu keywords separated by |, 'default' = generic household/kitchen/organizer set, empty = last saved Temu pull", default: "default" }
       roi_min:  { description: "min ROI to flag (0.30 = 30%)", default: "0.30" }
       max_temu: { description: "max Temu price to consider", default: "25" }
+      wholesale_factor: { description: "est. Alibaba unit price = Temu price x this", default: "0.60" }
+      freight: { description: "est. Alibaba freight + duties per unit", default: "1.00" }
 permissions:
   contents: write
   actions: write
@@ -14,7 +16,7 @@ concurrency: { group: temu-bridge, cancel-in-progress: false }
 jobs:
   deals:
     runs-on: ubuntu-latest
-    timeout-minutes: 120
+    timeout-minutes: 180
     steps:
       - uses: actions/checkout@v4
         with: { ref: main }
@@ -29,6 +31,8 @@ jobs:
           Q: ${{ github.event.inputs.search }}
           ROI_MIN: ${{ github.event.inputs.roi_min }}
           MAX_TEMU_PRICE: ${{ github.event.inputs.max_temu }}
+          WHOLESALE_FACTOR: ${{ github.event.inputs.wholesale_factor }}
+          FREIGHT_PER_UNIT: ${{ github.event.inputs.freight }}
         run: |
           mkdir -p /tmp/deals; printf '%s\n' "$CRED_ENV" > reprice/credentials.env
           if [ -n "$Q" ]; then ARGS=(--search "$Q"); else ARGS=(--from-json /tmp/temu_last.json); fi

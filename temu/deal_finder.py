@@ -23,6 +23,18 @@ INBOUND = float(os.environ.get("INBOUND_PER_UNIT", "0.75"))  # shipping the unit
 ROI_MIN = float(os.environ.get("ROI_MIN", "0.30"))
 MAX_TEMU = float(os.environ.get("MAX_TEMU_PRICE", "25"))
 SIM_MIN = float(os.environ.get("SIM_MIN", "0.30"))
+WHOLESALE_F = float(os.environ.get("WHOLESALE_FACTOR", "0.60"))    # Alibaba unit price ~ Temu price x this
+FREIGHT = float(os.environ.get("FREIGHT_PER_UNIT", "1.00"))         # Alibaba freight + duties per unit (estimate)
+# generic products only: no printed apparel / POD-style items, no brands, characters or licences
+EXCLUDE = re.compile(r"\b(t-?shirts?|tees?|hoodies?|sweatshirts?|jumpsuit|mugs?|tumblers?|posters?|canvas|wall art|metal sign|signs?|stickers?|"
+                     r"keychains?|flag|banner|blanket with|print(ed)? (t|tee|shirt)|graphic|slogan|quote|funny|christmas|halloween|"
+                     r"disney|marvel|pokemon|hello kitty|barbie|nfl|nba|mlb|harry potter|star wars|nike|adidas|apple|iphone|samsung|"
+                     r"stanley|yeti|owala|lego|sanrio|minecraft|bluey|jesus|christian)\b", re.I)
+DEFAULT_KWS = ("kitchen gadgets|vegetable chopper|silicone kitchen utensils|drawer organizer|fridge organizer|spice rack organizer|"
+               "under sink organizer|cable organizer|closet organizer|shoe rack|bathroom organizer|shower caddy|cleaning brush|"
+               "lint remover|reusable food storage|oil sprayer|garlic press|measuring cups|can opener|ice cube tray|"
+               "car organizer|phone stand|desk organizer|travel organizer|jewelry organizer|makeup organizer|storage bins|"
+               "hangers|clothes drying rack|pet hair remover")
 STOP = set("a an and the for with of in on to by from at as is it this that your you our pc pcs 1pc 2pcs piece pieces set pack "
            "new 2d flat not 3d style design gift gifts women's men's womens mens unisex suitable perfect ideal use".split())
 
@@ -108,6 +120,8 @@ def main():
         for q, items in (d.get("searches") or {}).items():
             for it in items:
                 it["kw"] = q; temu.append(it)
+    if a.search == "default":
+        a.search = DEFAULT_KWS
     if a.search:
         import temu_bridge
         for q in [x.strip() for x in a.search.split("|") if x.strip()]:
@@ -117,7 +131,7 @@ def main():
                 print("Temu blocked (%s) - continuing with what was pulled" % temu_bridge.STATS["closed"]); break
     seen, items = set(), []
     for it in temu:
-        if it["goods_id"] in seen or not it.get("price") or it["price"] > MAX_TEMU:
+        if it["goods_id"] in seen or not it.get("price") or it["price"] > MAX_TEMU or EXCLUDE.search(it.get("title") or ""):
             continue
         seen.add(it["goods_id"]); items.append(it)
     print("Temu items to check: %d (price <= $%.0f)" % (len(items), MAX_TEMU))
@@ -176,30 +190,35 @@ def main():
                     "sales_rank": m.get("rank"), "rank_cat": m.get("rank_cat"), "amz_price": r["amz_price"], "list_price": m.get("list_price"),
                     "offers": L.get("n_offers", 0), "fba_offers": L.get("n_afn", 0), "fees": round(fee, 2), "fees_src": fee_src,
                     "breakeven_price": be, "target_price": target, "amz_url": "https://www.amazon.com/dp/" + m["asin"]})
+        wcost = round(t["price"] * WHOLESALE_F + FREIGHT + INBOUND, 2)
+        rec["wholesale_cost_est"] = wcost
+        rec["target_price_wholesale"] = round((wcost * (1 + ROI_MIN) + fixed) / 0.85, 2)
         if r["amz_price"]:
             p = r["amz_price"] - fee - cost
-            rec.update({"profit": round(p, 2), "roi": round(p / cost, 2)})
+            pw = r["amz_price"] - fee - wcost
+            rec.update({"profit": round(p, 2), "roi": round(p / cost, 2), "profit_wholesale": round(pw, 2), "roi_wholesale": round(pw / wcost, 2)})
         out.append(rec)
-    out.sort(key=lambda x: (-(x.get("roi") or -9), x.get("status") != "ABANDONED"))
+    out.sort(key=lambda x: (-(x.get("roi_wholesale") or -9), x.get("status") != "ABANDONED"))
     os.makedirs(a.out, exist_ok=True)
     stamp = datetime.now(timezone.utc).strftime("%Y%m%dT%H%MZ")
     json.dump({"run_at": stamp, "params": {"tax": TAX, "inbound": INBOUND, "roi_min": ROI_MIN, "max_temu": MAX_TEMU, "sim_min": SIM_MIN}, "rows": out},
               open(os.path.join(a.out, "deals_latest.json"), "w"), indent=1)
-    cols = ["status", "roi", "profit", "temu_price", "landed_cost", "amz_price", "fees", "fees_src", "breakeven_price", "target_price", "list_price",
+    cols = ["status", "roi_wholesale", "profit_wholesale", "wholesale_cost_est", "roi", "profit", "temu_price", "landed_cost", "amz_price", "fees", "fees_src", "breakeven_price", "target_price", "target_price_wholesale", "list_price",
             "offers", "fba_offers", "sales_rank", "rank_cat", "match", "kw", "temu_title", "amz_title", "brand", "asin", "amz_url", "temu_url", "temu_id"]
     with open(os.path.join(a.out, "deals_latest.csv"), "w", newline="") as f:
         w = csv.DictWriter(f, fieldnames=cols, extrasaction="ignore"); w.writeheader(); w.writerows(out)
-    good = [x for x in out if (x.get("roi") or -1) >= ROI_MIN]
+    good = [x for x in out if (x.get("roi_wholesale") or -1) >= ROI_MIN]
     ab = [x for x in out if x.get("status") == "ABANDONED"]
-    print("\nRESULT: %d Temu items, %d matched rows, %d profitable (ROI >= %.0f%%), %d abandoned listings" % (len(items), sum(1 for x in out if x.get("asin")), len(good), ROI_MIN * 100, len(ab)))
-    print("\nTOP PROFITABLE (competitive listings):")
+    print("\nRESULT: %d generic Temu items, %d matched rows, %d profitable at est. wholesale (ROI >= %.0f%%), %d of them also at Temu price, %d abandoned listings" % (
+        len(items), sum(1 for x in out if x.get("asin")), len(good), ROI_MIN * 100, sum(1 for x in good if (x.get("roi") or -1) >= ROI_MIN), len(ab)))
+    print("\nTOP PROFITABLE (competitive listings) - ROI at est. Alibaba cost / at Temu price:")
     for x in good[:25]:
-        print("  ROI %4.0f%%  +$%-6.2f temu $%-6.2f -> amz $%-6.2f fees $%-5.2f offers %-2s rank %-8s match %.2f  %s | %s" % (
-            x["roi"] * 100, x["profit"], x["temu_price"], x["amz_price"], x["fees"], x["offers"], x.get("sales_rank") or "-", x["match"], x["temu_title"][:45], x["amz_title"][:45]))
-    print("\nABANDONED LISTINGS (no offers) - price needed:")
+        print("  ROIw %4.0f%% (+$%-5.2f) ROItemu %4.0f%%  temu $%-6.2f -> amz $%-6.2f fees $%-5.2f offers %-2s rank %-8s match %.2f  %s | %s" % (
+            x["roi_wholesale"] * 100, x["profit_wholesale"], x["roi"] * 100, x["temu_price"], x["amz_price"], x["fees"], x["offers"], x.get("sales_rank") or "-", x["match"], x["temu_title"][:42], x["amz_title"][:42]))
+    print("\nABANDONED LISTINGS (no offers) - price you need on Amazon (at Temu cost / at est. wholesale):")
     for x in sorted(ab, key=lambda x: (x.get("sales_rank") or 9e9))[:20]:
-        print("  temu $%-6.2f -> break-even $%-6.2f target $%-6.2f list $%-6s rank %-8s match %.2f  %s | %s" % (
-            x["temu_price"], x["breakeven_price"], x["target_price"], x.get("list_price") or "-", x.get("sales_rank") or "-", x["match"], x["temu_title"][:45], x["amz_title"][:45]))
+        print("  temu $%-6.2f -> target $%-6.2f / $%-6.2f list $%-6s rank %-8s brand %-12s match %.2f  %s | %s" % (
+            x["temu_price"], x["target_price"], x["target_price_wholesale"], x.get("list_price") or "-", x.get("sales_rank") or "-", (x.get("brand") or "-")[:12], x["match"], x["temu_title"][:40], x["amz_title"][:40]))
 
 
 if __name__ == "__main__":
