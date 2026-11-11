@@ -1,4 +1,4 @@
-# 2026-11-10T18:53:56Z  feed  success  run 42878758281
+# 2026-11-11T18:57:33Z  feed  success  run 43081662249
 Requesting reports ...
 Waiting for Amazon to build them (usually 1-10 minutes) ...
   planning                     DONE
@@ -9,18 +9,19 @@ Waiting for Amazon to build them (usually 1-10 minutes) ...
   orders_01                    DONE
   orders_02                    DONE
   orders_03                    DONE
-Reading the live Buy Box price of 176 ASINs (about 4 minutes) ...
-  live Buy Box prices: 20 of 176 ASINs read
+Reading the live Buy Box price of 174 ASINs (about 4 minutes) ...
+  live Buy Box prices: 20 of 174 ASINs read
   (Amazon busy / rate limit, HTTP 429 - waiting 5s)
-  live Buy Box prices: 40 of 176 ASINs read
-  live Buy Box prices: 60 of 176 ASINs read
-  live Buy Box prices: 80 of 176 ASINs read
-  live Buy Box prices: 100 of 176 ASINs read
-  live Buy Box prices: 120 of 176 ASINs read
-  live Buy Box prices: 140 of 176 ASINs read
-  live Buy Box prices: 160 of 176 ASINs read
-  live Buy Box prices: 176 of 176 ASINs read
-  live prices: 176 ASINs
+  live Buy Box prices: 40 of 174 ASINs read
+  live Buy Box prices: 60 of 174 ASINs read
+  live Buy Box prices: 80 of 174 ASINs read
+  live Buy Box prices: 100 of 174 ASINs read
+  live Buy Box prices: 120 of 174 ASINs read
+  live Buy Box prices: 140 of 174 ASINs read
+  live Buy Box prices: 160 of 174 ASINs read
+  (Amazon busy / rate limit, HTTP 429 - waiting 5s)
+  live Buy Box prices: 174 of 174 ASINs read
+  live prices: 174 ASINs
 
 Summary
   planning       OK
@@ -35,15 +36,14 @@ Summary
 
 Files are in: /home/runner/work/melaleuca-cart/melaleuca-cart/feedwork/raw
 Send Claude the file raw\headers_summary.txt (it contains no sales data).
-Asking Amazon for fee estimates on 164 products ...
-  (Amazon busy / rate limit, HTTP 429 - waiting 5s)
+Asking Amazon for fee estimates on 163 products ...
 demand history: 212 products with orders, 181 with a stock ledger (folder /home/runner/work/melaleuca-cart/melaleuca-cart/feedwork/state)
 
 Built feed files in: /home/runner/work/melaleuca-cart/melaleuca-cart/feedwork/feed
-  Inventory rows: 177 | FBA rows: 175 | fees known: 175
-  note: 12 SKU(s) were in the planning report but missing from the FBA inventory report - added from planning: ME0048, ME0083, ME0090, ME1130, ME1201, ME1252, ME1645, ME1806, ME1824, ME1826, ME1827, ME1828
-  note: sales history carried over to B0HF3N73XB from B007134WGC: 5 units in 90 days
-  note: 3 SKU(s) have no listing on Amazon any more (no stock, nothing inbound) - not priced, no fee asked: ME0048, ME0083, ME1660
+  Inventory rows: 176 | FBA rows: 174 | fees known: 175
+  note: 11 SKU(s) were in the planning report but missing from the FBA inventory report - added from planning: ME0048, ME0083, ME0090, ME1201, ME1252, ME1645, ME1806, ME1824, ME1826, ME1827, ME1828
+  note: sales history carried over to B0HF3N73XB from B007134WGC: 4 units in 90 days
+  note: 4 SKU(s) have no listing on Amazon any more (no stock, nothing inbound) - not priced, no fee asked: ME0048, ME0083, ME1101, ME1660
   note: 2 product(s) disappeared but had sales in the last 90 days: see feed\alias_suggestions.tsv (if one was recreated, add it to asin_aliases.tsv)
   note: incomplete fee (no FBA fee) for 9P-4ZS7-QV81 - not used
   note: no fee for ME1128: {'Type': 'Sender', 'Code': 'InvalidParameterValue', 'Message': 'No ASIN found fo
