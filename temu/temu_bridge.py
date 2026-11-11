@@ -18,19 +18,36 @@ HDR = {"User-Agent": "Pinterestbot/1.0 (+http://www.pinterest.com/bot.html)", "A
 STATS = {"requests": 0, "bytes": 0, "failed": 0}
 
 
-def fetch(url, tries=3):
+PACE = float(os.environ.get("TEMU_PACE", "35"))   # seconds between requests: ~17 per 10 min, well under the ~40-50 that tripped the block
+_last = [0.0]
+
+
+def fetch(url, tries=2):
+    """One paced request. Never hammers: waits PACE s since the last request; retries only on network errors."""
+    if STATS.get("closed"):
+        return None, None
     for k in range(tries):
+        wait = PACE - (time.time() - _last[0])
+        if wait > 0:
+            time.sleep(wait + random.random() * 5)
+        _last[0] = time.time()
         try:
             r = cr.get(url, impersonate="chrome", headers=HDR, timeout=45)
             STATS["requests"] += 1; STATS["bytes"] += len(r.content)
             if r.status_code == 200 and "bgn_verification" not in r.url and "login.html" not in r.url:
                 return r.text, r.url
             print("  ! %s -> %s %s" % (url[:90], r.status_code, r.url[:90]), file=sys.stderr)
+            break
         except Exception as e:
             print("  ! %s -> %s" % (url[:90], str(e)[:120]), file=sys.stderr)
-        time.sleep(2 + 3 * k + random.random())
     STATS["failed"] += 1
     return None, None
+
+
+def trip(what):
+    """Page came back without product data = Temu has closed the door. Stop the whole run (no hammering)."""
+    STATS["closed"] = "%s at %s UTC" % (what, datetime.now(timezone.utc).strftime("%H:%M"))
+    print("  !! no product data on %s - Temu is blocking; stopping this run" % what, file=sys.stderr)
 
 
 def raw_data(html):
@@ -116,7 +133,10 @@ def goods_from_html(html):
 
 def search(query):
     html, final = fetch("%s/search_result.html?search_key=%s" % (BASE, urllib.parse.quote(query)))
-    return goods_from_html(html) if html else []
+    items = goods_from_html(html) if html else []
+    if html and not items:
+        trip("search %r" % query)
+    return items
 
 
 def best_sellers():
@@ -161,6 +181,8 @@ def product(gid):
         m = re.search(r'product:price:amount"\s+content="([^"]+)"', html)
         if m:
             rec["price"] = _num(m.group(1))
+    if not rec.get("title") and rec.get("price") is None:
+        trip("product %s" % gid)
     if rec.get("price") is None:
         rec["note"] = "no price block on this product page (some big-ticket items) - use the price from search results"
     if not rec.get("title"):
@@ -184,12 +206,10 @@ def main():
         print("\nSEARCH %r -> %d products" % (q, len(items)))
         for it in items[:15]:
             print("  $%-8s %-10s %-4s %-10s %s  %s" % (it.get("price"), it.get("sold") or "", it.get("rating") or "", it.get("goods_id"), (it.get("title") or "")[:70], ""))
-        time.sleep(2 + random.random() * 2)
     for gid in [x.strip() for x in a.ids.split(",") if x.strip()]:
         p = product(gid)
         res["products"].append(p)
         print("\nPRODUCT %s -> $%s %s stock=%s rating=%s reviews=%s  %s" % (gid, p.get("price"), p.get("currency"), p.get("in_stock"), p.get("rating"), p.get("reviews"), (p.get("title") or "")[:70]))
-        time.sleep(1.5 + random.random())
     if a.best:
         res["best_sellers"] = best_sellers()
         print("\nBEST SELLERS -> %d" % len(res["best_sellers"]))
