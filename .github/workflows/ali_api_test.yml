@@ -1,0 +1,13 @@
+name: AliExpress affiliate API test
+on: { workflow_dispatch: { inputs: { kw: { description: keyword, default: garlic press } } } }
+permissions: { contents: read }
+jobs:
+  t:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - env:
+          ALIEXPRESS_APP_KEY: ${{ secrets.ALIEXPRESS_APP_KEY }}
+          ALIEXPRESS_APP_SECRET: ${{ secrets.ALIEXPRESS_APP_SECRET }}
+        run: python temu/ali_api.py --test "${{ github.event.inputs.kw }}"
