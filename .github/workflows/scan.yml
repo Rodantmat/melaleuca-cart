@@ -31,6 +31,7 @@ jobs:
       - name: Save results to branch scan-results
         run: |
           git config user.name "scan-bot"; git config user.email "scan-bot@users.noreply.github.com"
+          find . -name credentials.env -not -path "./.git/*" -delete  # SCRUB secrets before anything is committed
           git checkout --orphan scan-results
           git rm -rf . >/dev/null 2>&1 || true
           mkdir -p results; cp melaleuca_offers.json account_offers.tsv scan.log results/ 2>/dev/null || true

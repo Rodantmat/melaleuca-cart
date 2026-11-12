@@ -48,6 +48,7 @@ jobs:
           git config user.name "lab-bot"; git config user.email "lab-bot@users.noreply.github.com"
           mkdir -p /tmp/res && cp lab.log /tmp/res/ ; cp -r local/feed /tmp/res/feed; rm -rf /tmp/res/feed/plans 2>/dev/null || true
           rm -rf /tmp/res/feed/debug/*.png
+          find . -name credentials.env -not -path "./.git/*" -delete  # SCRUB secrets before anything is committed
           git checkout --orphan lab-results-${{ github.run_id }}
           git rm -rf . >/dev/null 2>&1 || true
           mkdir -p results && cp -r /tmp/res/* results/

@@ -32,6 +32,7 @@ jobs:
           git config user.name "feed-bot"; git config user.email "feed-bot@users.noreply.github.com"
           rm -rf /tmp/so && mkdir -p /tmp/so
           cp reprice/listing_fix.log /tmp/so/ 2>/dev/null || true
+          find . -name credentials.env -not -path "./.git/*" -delete  # SCRUB secrets before anything is committed
           git checkout --orphan lf-new
           git rm -rf . >/dev/null 2>&1 || true
           cp -a /tmp/so/. .

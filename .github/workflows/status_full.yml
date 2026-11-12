@@ -79,6 +79,7 @@ jobs:
         if: github.event.inputs.dry == 'true'
         run: |
           git config user.name "status-bot"; git config user.email "status-bot@users.noreply.github.com"
+          find . -name credentials.env -not -path "./.git/*" -delete  # SCRUB secrets before anything is committed
           git checkout --orphan dry-new
           git rm -rf . >/dev/null 2>&1 || true
           cp /tmp/dry.txt dry.txt
