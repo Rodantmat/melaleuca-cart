@@ -1,0 +1,36 @@
+name: Deal sheet (deep dossiers for the best candidates)
+on:
+  workflow_dispatch:
+    inputs:
+      top: { description: "How many top candidates", default: "12" }
+      refs: { description: "Optional: reference ASINs separated by space (overrides top)", default: "" }
+      undercut: { description: "Price below the median competitor (0.15 = 15%)", default: "0.15" }
+permissions: { contents: read }
+concurrency: { group: deal-sheet, cancel-in-progress: false }
+jobs:
+  sheet:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+        with: { ref: main }
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - run: pip install -q "curl_cffi>=0.7" "psycopg[binary]"
+      - name: Build dossiers (private - only counts reach this log)
+        env:
+          CRED_ENV: ${{ secrets.CREDENTIALS_ENV }}
+          AMZ_CLIENT: ${{ secrets.AMZ_CLIENT }}
+          AMZ_SECRET: ${{ secrets.AMZ_SECRET }}
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+          APIFY_TOKEN: ${{ secrets.APIFY_TOKEN || secrets.APIFY_API_TOKEN || secrets.APIFY_KEY || secrets.APIFY }}
+          TOP: ${{ github.event.inputs.top || '12' }}
+          REFS: ${{ github.event.inputs.refs }}
+          UNDERCUT: ${{ github.event.inputs.undercut || '0.15' }}
+        run: |
+          mkdir -p /tmp/ds; printf '%s\n' "$CRED_ENV" > reprice/credentials.env
+          if [ -n "$AMZ_SECRET" ]; then printf 'CLIENT_ID=%s\nCLIENT_SECRET=%s\n' "$AMZ_CLIENT" "$AMZ_SECRET" >> reprice/credentials.env; fi
+          python temu/deal_sheet.py > /tmp/ds/run.log 2>&1 || true
+          rm -f reprice/credentials.env
+          grep -E "^dealsheet:|reviews:|Traceback|Error|ERR" /tmp/ds/run.log | sed -E 's/\$[0-9][0-9.,]*/$x/g' | head -40 || true
+          rm -rf /tmp/ds
