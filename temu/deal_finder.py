@@ -486,7 +486,16 @@ def main():
     for x in ab_all:
         x["fee_price"] = round(x.get("list_price") or x.get("bb_price") or 19.99, 2)
         pairs.append((x["asin"], x["fee_price"]))
-    fees = fees_batch(c, sorted(set(pairs)))
+    allp = sorted(set(pairs))
+    fees = fees_batch(c, allp)
+    for _try in range(2):                                   # a throttled/failed batch must not silently turn real fees into guesses
+        miss = [q for q in allp if "%s@%.2f" % (q[0], q[1]) not in fees]
+        if not miss:
+            break
+        print("  fees: %d of %d missing - retry %d after pause" % (len(miss), len(allp), _try + 1))
+        time.sleep(45)
+        fees.update(fees_batch(c, miss))
+    print("fees: spapi real fees for %d of %d prices" % (sum(1 for q in allp if "%s@%.2f" % (q[0], q[1]) in fees), len(allp)))
 
     rows = []
     for m in markets:
