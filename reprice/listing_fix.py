@@ -24,6 +24,8 @@ def pesticide_patches(at):
          ("liquid_contents_description", t("Toilet bowl cleaning gel", False)),
          ("recommended_uses_for_product", t("Toilet bowl cleaner")),
          ("product_description", t(desc))]
+    # never send an empty attribute (e.g. a SKU with no bullets or no description)
+    P = [(k, v) for k, v in P if v and not (k in ("product_description",) and not desc)]
     return [{"op": "replace", "path": "/attributes/" + k, "value": v} for k, v in P]
 
 
