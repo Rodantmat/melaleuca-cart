@@ -93,5 +93,7 @@ jobs:
         if: success() || failure()
         env: { GH_TOKEN: "${{ github.token }}" }
         run: |
-          sleep 7200
+          # dossiers for new strong candidates (private, Postgres only) - runs in parallel, own concurrency group
+          gh workflow run deal_sheet.yml --repo "${{ github.repository }}" --ref main -f top=10 || true
+          sleep 600
           gh workflow run temu_deals.yml --repo "${{ github.repository }}" --ref main -f search=auto
