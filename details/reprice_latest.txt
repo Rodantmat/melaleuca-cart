@@ -1,4 +1,4 @@
-# 2026-11-11T19:26:35Z  reprice  success  run 43085774038
+# 2026-11-12T01:42:25Z  reprice  success  run 43135190667
 /home/runner/work/melaleuca-cart/melaleuca-cart/reprice/run.py:14: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
   now = dt.datetime.utcnow()
 mode=live live_writes_allowed=True killed=False skus=167
@@ -12,19 +12,20 @@ mode=live live_writes_allowed=True killed=False skus=167
   live Buy Box prices: 140 of 167 ASINs read
   live Buy Box prices: 160 of 167 ASINs read
   live Buy Box prices: 167 of 167 ASINs read
-Amazon target prices (FOEP) read for 55 products
+Amazon target prices (FOEP) read for 58 products
 seller id found
-decided 149 products: {'hold': 143, 'down': 6} ; applied this run: 1
-  ME0017 down 16.09 -> 15.61  drought/surplus: 4 days without sale (limit 30), 87 days of supply | SHADOW (not applied)
-  ME0063 down 21.99 -> 21.33  drought/surplus: 15 days without sale (limit 30), 90 days of supply | SHADOW (not applied)
+decided 149 products: {'hold': 142, 'down': 4, 'up': 2, 'revert': 1} ; applied this run: 3
+  ME0017 down 16.09 -> 15.61  drought/surplus: 5 days without sale (limit 30), 90 days of supply | SHADOW (not applied)
+  ME0063 down 21.99 -> 21.33  drought/surplus: 16 days without sale (limit 30), 90 days of supply | SHADOW (not applied)
   ME0276 down 31.93 -> 30.97  drought/surplus: 1 days without sale (limit 30), 80 days of supply | SHADOW (not applied)
-  ME0357 down 19.83 -> 19.24  drought/surplus: 24 days without sale (limit 30), 210 days of supply; market price 17.99 | SHADOW (not applied
-  ME1102 down 55.75 -> 52.79  no Buy Box shown (only offer, price 55.75 is above the 52.79 ceiling): step toward the ceiling so the stock ca
-  ME1419 down 44.99 -> 43.64  drought/surplus: 8 days without sale (limit 30), 120 days of supply | SHADOW (not applied)
-units to sell 1283 | cost paid 8402 | at your listed prices 35000 | net payout base 25730 | net payout conservative 24636
-Counter({'OK': 83, 'BUY MORE': 58, 'BUY': 18, 'BUY LESS': 7, 'STOP buying': 5, 'STOP buying - no sales 90d': 1})
-market depth for 155 products: {'MEDIUM': 46, 'HIGH': 13, 'LOW': 96}
-bb intel: 154 ASINs, we own the box in 43% of web scans; API vs web: {('same seller', 'same price'): 123, ('different seller', 'different price'): 20, ('different seller', 'same price'): 6, ('same seller', 'different price'): 5}
+  ME0285 up 16.53 -> 17.36  alone on the listing, sells 0.33/day: test 17.36
+  ME1300 revert 37.12 -> 36.04  after the raise to 37.12 the sales speed fell to 0% of before - back to 36.04
+  ME1305 up 24.88 -> 26.12  sells well (0.17/day, 0 days of supply, Buy Box held): test 26.12
+  ME1419 down 44.99 -> 43.64  drought/surplus: 1 days without sale (limit 30), 120 days of supply | SHADOW (not applied)
+units to sell 1291 | cost paid 8480 | at your listed prices 34507 | net payout base 25783 | net payout conservative 24693
+Counter({'OK': 82, 'BUY MORE': 58, 'BUY': 17, 'BUY LESS': 8, 'STOP buying': 6, 'STOP buying - no sales 90d': 1})
+market depth for 155 products: {'MEDIUM': 47, 'HIGH': 12, 'LOW': 96}
+bb intel: 154 ASINs, we own the box in 43% of web scans; API vs web: {('different seller', 'different price'): 35, ('same seller', 'same price'): 106, ('different seller', 'same price'): 8, ('same seller', 'different price'): 5}
 /home/runner/work/melaleuca-cart/melaleuca-cart/reprice/reports.py:54: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
   now = dt.datetime.utcnow()
-reports: rival stock hints {'WAIT': 2, 'DROP-CANDIDATE': 4, 'WATCH': 3, 'HOLD': 51} | restock alerts 43 (profit at risk $2787/month) | rival alerts 34 | outcomes 150
+reports: rival stock hints {'WAIT': 4, 'DROP-CANDIDATE': 2, 'WATCH': 3, 'HOLD': 51} | restock alerts 38 (profit at risk $2545/month) | rival alerts 34 | outcomes 155
