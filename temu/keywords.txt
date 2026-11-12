@@ -186,3 +186,17 @@ fitness | resistance band set
 fitness | yoga block set
 fitness | ab roller wheel
 fitness | doorway pull up bar
+pets | pet hair remover gloves
+pets | dog grooming glove brush
+pets | cat litter mat
+pets | dog paw cleaner cup
+bathroom | shower drain hair catcher silicone
+bathroom | tub drain strainer
+bathroom | toothbrush holder wall mounted
+bathroom | toothpaste dispenser squeezer
+bathroom | shower squeegee
+home | door bottom seal strip
+home | window draft stopper
+home | under door draft blocker
+car | car window squeegee
+car | microfiber detailing brush set
