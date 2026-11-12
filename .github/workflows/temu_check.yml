@@ -1,0 +1,28 @@
+name: Temu slow cross-check (best dossiers)
+on:
+  workflow_dispatch:
+    inputs:
+      wait: { description: "Seconds to wait first (lets the dossiers finish)", default: "0" }
+      maxn: { description: "Max dossiers to check", default: "6" }
+permissions: { contents: read }
+concurrency: { group: temu-check, cancel-in-progress: false }
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+        with: { ref: main }
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - run: pip install -q "curl_cffi>=0.7" imagehash pillow "psycopg[binary]"
+      - name: Cross-check on Temu (private - only counts reach this log)
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+          MAXN: ${{ github.event.inputs.maxn || '6' }}
+          WAIT: ${{ github.event.inputs.wait || '0' }}
+        run: |
+          sleep "$WAIT"
+          python temu/temu_check.py > /tmp/tc.log 2>&1 || true
+          grep -E "^temu_check:|Traceback|Error" /tmp/tc.log | head -20 || true
+          rm -f /tmp/tc.log
