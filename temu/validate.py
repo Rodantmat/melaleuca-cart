@@ -6,6 +6,7 @@ import spapi
 ROI_GO = float(os.environ.get("ROI_GO", "0.50"))          # min ROI at estimated wholesale for GO
 PROFIT_GO = float(os.environ.get("PROFIT_GO", "300"))     # min projected $/month after ads for GO
 PROFIT_WATCH = float(os.environ.get("PROFIT_WATCH", "150"))
+MARKET_MIN = int(os.environ.get("MARKET_MIN", "800"))      # whole-market units/month needed so a 3-10% share is a real business
 SELLERS_MAX = int(os.environ.get("SELLERS_MAX", "8"))
 REV_CEIL = int(os.environ.get("REV_CEIL", "3000"))        # a top competitor above this many reviews is entrenched
 AB_RANK_MAX = int(os.environ.get("AB_RANK_MAX", "60000"))
@@ -132,8 +133,9 @@ def undercut(r, pct):
         return None, None
     p = amz * (1 - pct)
     f = max(0.30, fee - 0.15 * amz) + 0.15 * p if fee > 0.15 * amz else fee
-    prof = p - f - w - 0.15 * p
-    return round(prof, 2), round(prof / w, 2)
+    extra = max(0.0, w - 1.75) * 0.25 + 1.20      # tariff/duty 25% of factory price + label/pack + returns + storage (see deal_sheet.py)
+    prof = p - f - w - extra - 0.15 * p
+    return round(prof, 2), round(prof / (w + extra), 2)
 
 
 def run(c, rows, abrows, pool, page_details):
@@ -177,6 +179,8 @@ def run(c, rows, abrows, pool, page_details):
                 why.append("thin margin if priced 20%% under (ROI %s)" % r.get("u20_roi"))
             if (r.get("profit_month") or 0) < PROFIT_GO:
                 why.append("profit under $%d/month" % PROFIT_GO)
+            if (r.get("market_sales_month") or 0) < MARKET_MIN:
+                why.append("market too small (%s units/month)" % r.get("market_sales_month"))
             if r.get("amazon_sells"):
                 why.append("Amazon sells it")
             if (r.get("sellers") or 0) > SELLERS_MAX:
