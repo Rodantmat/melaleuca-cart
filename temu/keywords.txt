@@ -131,3 +131,58 @@ appliances | bottle sealer electric
 appliances | handheld vacuum sealer
 appliances | electric salt pepper grinder
 appliances | air fryer accessories
+# batch 2 - higher-ticket, durable, bulky-but-light, low-return generic items
+bathroom | tension pole shower caddy
+bathroom | over the toilet storage shelf
+bathroom | bathtub caddy tray
+bathroom | shower curtain rod tension
+bathroom | bath mat memory foam
+bathroom | towel rack wall mounted
+furniture | bed frame center support leg
+furniture | adjustable laptop stand
+furniture | monitor riser stand
+furniture | foldable step stool
+furniture | under bed storage bin with wheels
+furniture | tv tray folding table
+furniture | cabinet shelf riser expandable
+furniture | corner shelf stand
+furniture | shoe storage cabinet
+furniture | folding clothes drying rack
+home | blackout curtain rod
+home | door mounted pull up bar
+home | wall mounted key holder
+home | floating shelves set
+home | magnetic phone mount car
+home | car trunk organizer
+home | seat gap filler car
+home | hanging closet shelves
+home | sliding drawer under cabinet
+kitchen | expandable dish rack over sink
+kitchen | stainless steel utensil holder
+kitchen | adjustable pot rack
+kitchen | cutting board with juice groove
+kitchen | bamboo drawer divider
+kitchen | stackable can organizer
+kitchen | pan organizer rack
+kitchen | multifunction vegetable cutter
+kitchen | meat tenderizer tool
+kitchen | nonstick silicone cookware set
+kitchen | spice jar set with rack
+pet | cat scratching post
+pet | dog car seat cover
+pet | pet stairs ramp foldable
+pet | elevated dog bowl stand
+pet | cat tree tower
+pet | dog training treat pouch
+garden | garden kneeler seat
+garden | plant stand indoor tiered
+garden | hose holder wall mount
+garden | raised garden bed
+garden | trellis for climbing plants
+tools | tool storage wall rack
+tools | magnetic wristband
+tools | cable organizer clips
+fitness | resistance band set
+fitness | yoga block set
+fitness | ab roller wheel
+fitness | doorway pull up bar
