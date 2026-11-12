@@ -21,10 +21,13 @@ jobs:
       - name: Build history
         env:
           CRED_ENV: ${{ secrets.CREDENTIALS_ENV }}
+          AMZ_CLIENT: ${{ secrets.AMZ_CLIENT }}
+          AMZ_SECRET: ${{ secrets.AMZ_SECRET }}
         run: |
           set -o pipefail
           cd reprice
           printf '%s\n' "$CRED_ENV" > credentials.env
+          if [ -n "$AMZ_SECRET" ]; then printf 'CLIENT_ID=%s\nCLIENT_SECRET=%s\n' "$AMZ_CLIENT" "$AMZ_SECRET" >> credentials.env; fi
           python history.py ${{ github.event.inputs.months }} 2>&1 | tee history.log
           rm -f credentials.env
       - name: Save state

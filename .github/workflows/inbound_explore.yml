@@ -13,11 +13,12 @@ jobs:
       - uses: actions/setup-python@v5
         with: { python-version: "3.12" }
       - name: Run
-        env: { CRED_ENV: "${{ secrets.CREDENTIALS_ENV }}" }
+        env: { CRED_ENV: "${{ secrets.CREDENTIALS_ENV }}", AMZ_CLIENT: "${{ secrets.AMZ_CLIENT }}", AMZ_SECRET: "${{ secrets.AMZ_SECRET }}" }
         run: |
           mkdir -p /tmp/so
           cd reprice
           printf '%s\n' "$CRED_ENV" > credentials.env
+          if [ -n "$AMZ_SECRET" ]; then printf 'CLIENT_ID=%s\nCLIENT_SECRET=%s\n' "$AMZ_CLIENT" "$AMZ_SECRET" >> credentials.env; fi
           python inbound_explore.py 2>&1 | tee /tmp/so/run.log
           rm -f credentials.env
       - name: Publish

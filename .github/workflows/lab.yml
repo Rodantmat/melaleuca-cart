@@ -25,6 +25,8 @@ jobs:
           U1: ${{ secrets.MELA_USER_1 }}
           P1: ${{ secrets.MELA_PASS_1 }}
           CRED_ENV: ${{ secrets.CREDENTIALS_ENV }}
+          AMZ_CLIENT: ${{ secrets.AMZ_CLIENT }}
+          AMZ_SECRET: ${{ secrets.AMZ_SECRET }}
           FILL_CLEAR: "1"
           PYTHONUTF8: "0"
           PYTHONCOERCECLOCALE: "0"
@@ -34,6 +36,7 @@ jobs:
           cd local
           if [ -n "$CRED_ENV" ]; then
             printf '%s\n' "$CRED_ENV" > credentials.env
+            if [ -n "$AMZ_SECRET" ]; then printf 'CLIENT_ID=%s\nCLIENT_SECRET=%s\n' "$AMZ_CLIENT" "$AMZ_SECRET" >> credentials.env; fi
             grep -q '^PROXY_URL=' credentials.env || printf 'PROXY_URL=%s\n' "$PROXY_URL" >> credentials.env
             grep -q '^STICKY_BASE=' credentials.env || printf 'STICKY_BASE=10000\n' >> credentials.env
           else

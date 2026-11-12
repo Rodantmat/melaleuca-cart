@@ -22,11 +22,12 @@ jobs:
           cp reprice/state/orders_*.tsv reprice/state/ledger_*.tsv feedwork/state/ 2>/dev/null || true
           ls feedwork/state | wc -l
       - name: Build the feed
-        env: { CRED_ENV: "${{ secrets.CREDENTIALS_ENV }}" }
+        env: { CRED_ENV: "${{ secrets.CREDENTIALS_ENV }}", AMZ_CLIENT: "${{ secrets.AMZ_CLIENT }}", AMZ_SECRET: "${{ secrets.AMZ_SECRET }}" }
         run: |
           set -o pipefail
           cd feedwork
           printf '%s\n' "$CRED_ENV" > credentials.txt
+          if [ -n "$AMZ_SECRET" ]; then printf 'CLIENT_ID=%s\nCLIENT_SECRET=%s\n' "$AMZ_CLIENT" "$AMZ_SECRET" >> credentials.txt; fi
           python amazon_feed.py refresh 2>&1 | tee feed_run.log
           rm -f credentials.txt
       - name: Journal this run (permanent run history on branch ops-log)

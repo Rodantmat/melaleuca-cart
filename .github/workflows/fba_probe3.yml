@@ -12,11 +12,12 @@ jobs:
       - uses: actions/setup-python@v5
         with: { python-version: "3.12" }
       - name: Probe
-        env: { CRED_ENV: "${{ secrets.CREDENTIALS_ENV }}" }
+        env: { CRED_ENV: "${{ secrets.CREDENTIALS_ENV }}", AMZ_CLIENT: "${{ secrets.AMZ_CLIENT }}", AMZ_SECRET: "${{ secrets.AMZ_SECRET }}" }
         run: |
           mkdir -p /tmp/so
           cd feedwork
           printf '%s\n' "$CRED_ENV" > credentials.txt
+          if [ -n "$AMZ_SECRET" ]; then printf 'CLIENT_ID=%s\nCLIENT_SECRET=%s\n' "$AMZ_CLIENT" "$AMZ_SECRET" >> credentials.txt; fi
           python fba_probe3.py 2>&1 | tee /tmp/so/run.log
           rm -f credentials.txt
       - name: Publish

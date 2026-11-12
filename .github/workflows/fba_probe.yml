@@ -12,11 +12,12 @@ jobs:
       - uses: actions/setup-python@v5
         with: { python-version: "3.12" }
       - name: Probe (Toronto + Vancouver test plans)
-        env: { CRED_ENV: "${{ secrets.CREDENTIALS_ENV }}" }
+        env: { CRED_ENV: "${{ secrets.CREDENTIALS_ENV }}", AMZ_CLIENT: "${{ secrets.AMZ_CLIENT }}", AMZ_SECRET: "${{ secrets.AMZ_SECRET }}" }
         run: |
           mkdir -p /tmp/so
           cd feedwork
           printf '%s\n' "$CRED_ENV" > credentials.txt
+          if [ -n "$AMZ_SECRET" ]; then printf 'CLIENT_ID=%s\nCLIENT_SECRET=%s\n' "$AMZ_CLIENT" "$AMZ_SECRET" >> credentials.txt; fi
           for f in inbound_test.tsv; do echo "=== $f"; python fba_probe.py $f 2>&1 | tee -a /tmp/so/run.log; done
           rm -f credentials.txt
       - name: Publish

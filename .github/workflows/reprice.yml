@@ -31,11 +31,14 @@ jobs:
       - name: Run
         env:
           CRED_ENV: ${{ secrets.CREDENTIALS_ENV }}
+          AMZ_CLIENT: ${{ secrets.AMZ_CLIENT }}
+          AMZ_SECRET: ${{ secrets.AMZ_SECRET }}
           REPRICE_LIVE: ${{ vars.REPRICE_LIVE }}
         run: |
           set -o pipefail
           cd reprice
           printf '%s\n' "$CRED_ENV" > credentials.env
+          if [ -n "$AMZ_SECRET" ]; then printf 'CLIENT_ID=%s\nCLIENT_SECRET=%s\n' "$AMZ_CLIENT" "$AMZ_SECRET" >> credentials.env; fi
           MODE="${{ github.event.inputs.mode }}"
           if [ -z "$MODE" ]; then MODE=live; fi   # scheduled runs are live; kill switch = reprice/config.json live_enabled=false or a KILL file; nothing manual needed
           if [ "$MODE" = "live" ]; then export REPRICE_LIVE=1; fi

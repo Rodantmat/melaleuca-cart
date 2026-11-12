@@ -52,6 +52,8 @@ jobs:
         env:
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
           CRED_ENV: ${{ secrets.CREDENTIALS_ENV }}
+          AMZ_CLIENT: ${{ secrets.AMZ_CLIENT }}
+          AMZ_SECRET: ${{ secrets.AMZ_SECRET }}
           PROXY_URL: ${{ secrets.PROXY_URL }}
           ALIEXPRESS_APP_KEY: ${{ secrets.ALIEXPRESS_APP_KEY }}
           ALIEXPRESS_APP_SECRET: ${{ secrets.ALIEXPRESS_APP_SECRET }}
@@ -65,6 +67,7 @@ jobs:
           FREIGHT_PER_UNIT: ${{ github.event.inputs.freight || '1.00' }}
         run: |
           mkdir -p /tmp/deals; printf '%s\n' "$CRED_ENV" > reprice/credentials.env
+          if [ -n "$AMZ_SECRET" ]; then printf 'CLIENT_ID=%s\nCLIENT_SECRET=%s\n' "$AMZ_CLIENT" "$AMZ_SECRET" >> reprice/credentials.env; fi
           if [ -n "$Q" ] && [ "$Q" != "saved" ]; then ARGS=(--search "$Q"); else ARGS=(--from-json /tmp/temu_last.json); fi
           # full output stays private: only count lines reach the public log
           python temu/deal_finder.py "${ARGS[@]}" --out /tmp/deals > /tmp/deals/run.log 2>&1 || true

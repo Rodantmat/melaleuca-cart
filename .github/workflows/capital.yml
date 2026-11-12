@@ -14,11 +14,12 @@ jobs:
       - name: Fetch saved state
         run: git fetch origin reprice-state:reprice-state 2>/dev/null && git checkout reprice-state -- reprice/state 2>/dev/null || true
       - name: Run
-        env: { CRED_ENV: "${{ secrets.CREDENTIALS_ENV }}" }
+        env: { CRED_ENV: "${{ secrets.CREDENTIALS_ENV }}", AMZ_CLIENT: "${{ secrets.AMZ_CLIENT }}", AMZ_SECRET: "${{ secrets.AMZ_SECRET }}" }
         run: |
           set -o pipefail
           cd reprice
           printf '%s\n' "$CRED_ENV" > credentials.env
+          if [ -n "$AMZ_SECRET" ]; then printf 'CLIENT_ID=%s\nCLIENT_SECRET=%s\n' "$AMZ_CLIENT" "$AMZ_SECRET" >> credentials.env; fi
           ONLY=tx python capital.py 2>&1 | tee capital.log
           rm -f credentials.env
       - name: Save state

@@ -12,11 +12,12 @@ jobs:
       - uses: actions/setup-python@v5
         with: { python-version: "3.12" }
       - name: Stage 1 on the Toronto and Vancouver test files
-        env: { CRED_ENV: "${{ secrets.CREDENTIALS_ENV }}", CREDENTIALS_ENV: "${{ secrets.CREDENTIALS_ENV }}", SHIPPO_LIVE_TOKEN: "${{ secrets.SHIPPO_LIVE_TOKEN }}" }
+        env: { CRED_ENV: "${{ secrets.CREDENTIALS_ENV }}", AMZ_CLIENT: "${{ secrets.AMZ_CLIENT }}", AMZ_SECRET: "${{ secrets.AMZ_SECRET }}", CREDENTIALS_ENV: "${{ secrets.CREDENTIALS_ENV }}", SHIPPO_LIVE_TOKEN: "${{ secrets.SHIPPO_LIVE_TOKEN }}" }
         run: |
           mkdir -p /tmp/so
           cd feedwork
           printf '%s\n' "$CRED_ENV" > credentials.txt
+          if [ -n "$AMZ_SECRET" ]; then printf 'CLIENT_ID=%s\nCLIENT_SECRET=%s\n' "$AMZ_CLIENT" "$AMZ_SECRET" >> credentials.txt; fi
           for f in inbound_test.tsv inbound_test_Vancouver.tsv; do echo "=== $f"; python fba_ship.py prepare $f --test 2>&1 | tee -a /tmp/so/run.log; done
           cp *_stage1.json /tmp/so/ 2>/dev/null || true
           rm -f credentials.txt
