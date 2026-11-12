@@ -1,4 +1,4 @@
-# 2026-11-11T18:57:33Z  feed  success  run 43081662249
+# 2026-11-12T19:12:40Z  feed  success  run 43286650482
 Requesting reports ...
 Waiting for Amazon to build them (usually 1-10 minutes) ...
   planning                     DONE
@@ -19,7 +19,6 @@ Reading the live Buy Box price of 174 ASINs (about 4 minutes) ...
   live Buy Box prices: 120 of 174 ASINs read
   live Buy Box prices: 140 of 174 ASINs read
   live Buy Box prices: 160 of 174 ASINs read
-  (Amazon busy / rate limit, HTTP 429 - waiting 5s)
   live Buy Box prices: 174 of 174 ASINs read
   live prices: 174 ASINs
 
@@ -37,6 +36,7 @@ Summary
 Files are in: /home/runner/work/melaleuca-cart/melaleuca-cart/feedwork/raw
 Send Claude the file raw\headers_summary.txt (it contains no sales data).
 Asking Amazon for fee estimates on 163 products ...
+  (Amazon busy / rate limit, HTTP 429 - waiting 5s)
 demand history: 212 products with orders, 181 with a stock ledger (folder /home/runner/work/melaleuca-cart/melaleuca-cart/feedwork/state)
 
 Built feed files in: /home/runner/work/melaleuca-cart/melaleuca-cart/feedwork/feed
