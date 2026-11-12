@@ -87,7 +87,7 @@ jobs:
         if: always()
         run: rm -rf /tmp/deals
       - name: Chain - pause, then start the next chunk
-        if: always()
+        if: success() || failure()
         env: { GH_TOKEN: "${{ github.token }}" }
         run: |
           sleep 7200
