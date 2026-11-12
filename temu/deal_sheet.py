@@ -143,7 +143,8 @@ def main():
         if not prices:
             continue
         med = statistics.median(prices)
-        P = round(med * (1 - UNDERCUT) - 0.01, 2)
+        wp = df.sales_weighted_price([(x["price"], x["est_units_month"]) for x in comps]) or med   # what buyers really pay (sales-weighted)
+        P = round(wp * (1 - UNDERCUT) - 0.01, 2)
         fees = df.fees_batch(c, [(ref, P)])
         fee_total = fees.get("%s@%.2f" % (ref, P))
         fees_src = "spapi" if fee_total is not None else "guess"
@@ -173,7 +174,7 @@ def main():
         data = {"product": r.get("temu_title"), "kw": r.get("kw"), "source_url": r.get("temu_url"), "source_orders_sold": r.get("source_sold"), "source_rating": r.get("source_rating"),
                 "source_price_shown": r.get("temu_price"), "pack_ratio": r.get("pack_ratio"), "ref_asin": ref, "ref_url": "https://www.amazon.com/dp/" + ref,
                 "competitors": comps, "n_listings": len(comps), "n_sellers_total": sum(x["sellers"] or 0 for x in comps),
-                "avg_competitor_price": round(statistics.mean(prices), 2), "median_competitor_price": round(med, 2),
+                "avg_competitor_price": round(statistics.mean(prices), 2), "median_competitor_price": round(med, 2), "sales_weighted_price": wp,
                 "avg_reviews": round(statistics.mean(known_rev)) if known_rev else None, "max_reviews": max(known_rev) if known_rev else None,
                 "avg_rating": round(statistics.mean([x["rating"] for x in comps if x["rating"]]), 2) if any(x["rating"] for x in comps) else None,
                 "avg_units_per_listing": round(statistics.mean(ests)) if ests else None, "market_units_month": market_units,

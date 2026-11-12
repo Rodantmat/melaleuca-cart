@@ -324,6 +324,13 @@ STRONG_SIM = float(os.environ.get("STRONG_SIM", "0.55"))
 SHARE_CAP = float(os.environ.get("SHARE_CAP", "0.15"))     # a new own listing never assumed above 15% of the market
 
 
+def sales_weighted_price(pairs):
+    """Price customers really pay: weight each competing listing's price by its estimated monthly sales (junk/unranked listings priced far
+    above the sellers that actually move units must not set our price)."""
+    ok = [(p, w) for p, w in pairs if p and w]
+    return round(sum(p * w for p, w in ok) / sum(w for _, w in ok), 2) if ok else None
+
+
 def median(v):
     v = sorted(x for x in v if x)
     return v[len(v) // 2] if v else None
@@ -439,7 +446,8 @@ def main():
         for m in act:
             for sid in pool[m["asin"]]["sellers"]:
                 seller_listings[sid] = seller_listings.get(sid, 0) + 1
-        price = median([pool[m["asin"]].get("bb") or pool[m["asin"]].get("low") for m in act]) or median([pool[m["asin"]].get("list_price") for m in matches])
+        price = sales_weighted_price([(pool[m["asin"]].get("bb") or pool[m["asin"]].get("low"), pool[m["asin"]].get("est_sales")) for m in act]) \
+            or median([pool[m["asin"]].get("bb") or pool[m["asin"]].get("low") for m in act]) or median([pool[m["asin"]].get("list_price") for m in matches])
         ref = max(act or matches, key=lambda m: pool[m["asin"]].get("est_sales") or 0)
         markets.append({"it": it, "matches": matches, "act": act, "aband": aband, "price": price, "ref": ref["asin"],
                         "listings": len(act), "sellers": len(seller_listings), "multi_listing_sellers": sum(1 for v in seller_listings.values() if v > 1),
