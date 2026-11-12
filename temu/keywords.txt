@@ -286,3 +286,23 @@ fitness | push up board
 fitness | stretching strap
 home | furniture risers couch legs
 home | sofa risers stackable
+# tuning round 2026-11-12: long-tail near GO families (pot lid holder, vegetable chopper, shower caddy, ab roller, bed riser, can opener)
+kitchen | pot lid rack stainless
+kitchen | lid holder for pots wall mount
+kitchen | pot lid organizer rack stand
+kitchen | utensil and lid holder stove
+kitchen | pot lid holder 3 piece set
+kitchen | vegetable chopper with container
+kitchen | onion dicer slicer manual
+kitchen | food chopper 12 in 1
+kitchen | vegetable slicer dicer set
+kitchen | mandoline vegetable cutter stainless
+bathroom | shower caddy basket with hooks
+bathroom | shower caddy 2 tier stainless
+bathroom | shower shelf organizer rustproof
+fitness | ab roller wheel double wheel
+fitness | abdominal wheel with mat
+home | bed risers 3 inch
+home | bed lifts stackable
+appliances | electric can opener one touch
+appliances | automatic can opener restaurant
