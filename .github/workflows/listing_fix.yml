@@ -25,6 +25,7 @@ jobs:
           cd reprice
           printf '%s\n' "$CRED_ENV" > credentials.env
           if [ -n "$AMZ_SECRET" ]; then printf 'CLIENT_ID=%s\nCLIENT_SECRET=%s\n' "$AMZ_CLIENT" "$AMZ_SECRET" >> credentials.env; fi
+          python3 -c "import re;d=dict(l.strip().split('=',1) for l in open('credentials.env') if '=' in l);s=d.get('CLIENT_SECRET','');print('DIAG secret_len',len(s),'new_prefix',s.startswith('amzn1.oa2-cs.v1.1e1526'),'client_ok',d.get('CLIENT_ID','').startswith('amzn1.application-oa2-client.0ee569'),'dupes',sum(1 for l in open('credentials.env') if l.startswith('CLIENT_SECRET=')))"
           FIX=${{ github.event.inputs.fix }} python listing_fix.py ${{ github.event.inputs.sku }} 2>&1 | tee listing_fix.log
           rm -f credentials.env
       - name: Publish
