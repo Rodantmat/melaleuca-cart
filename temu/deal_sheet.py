@@ -73,6 +73,8 @@ def pick(cx):
         return cx.execute(q, (refs,)).fetchall()
     q = """select ref_asin, row from (select distinct on (ref_asin) ref_asin, row, (row->>'u20_profit_month')::numeric pm
              from deals.markets where row->>'fees_src'='spapi' and (row->>'u20_roi')::numeric >= 0.30 and row->>'verdict' in ('GO','WATCH')
+              and run_id in (select run_id from deals.runs where run_at > '2026-11-12T09:30:00Z')            -- only scans with the realistic price/cost model
+              and ref_asin not in (select ref_asin from deals.dealsheet where run_at > now() - interval '30 hours')
              order by ref_asin, (row->>'u20_profit_month')::numeric desc) t order by pm desc limit %s"""
     return cx.execute(q, (TOP,)).fetchall()
 
