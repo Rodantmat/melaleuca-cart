@@ -3,8 +3,6 @@ name: Temu deals -> Amazon profit (read-only on Amazon)
 # Results go ONLY to the private Postgres (schema deals). This repo is public: the log shows counts, never products, prices or ASINs.
 # Nothing is listed or changed on Amazon.
 on:
-  schedule:
-    - cron: "17 1,7,13,19 * * *"   # 4 chunks a day, one at a time (concurrency group); ~2 h each, so SP-API is idle half the day
   workflow_dispatch:
     inputs:
       search:   { description: "auto = next chunk in rotation, chunk:N/M = part N of M of temu/keywords.txt (~110 generic keywords), or keywords separated by |, or saved = last saved Temu pull", default: "auto" }
@@ -17,6 +15,8 @@ on:
 permissions:
   contents: write
   actions: write
+# Self-chaining: GitHub's own cron skipped runs, so each run ends by starting the next one after a 2 h pause (about 5 chunks a day, one at a time).
+# If the chain ever breaks, the Claude health-check task restarts it.
 concurrency: { group: temu-bridge, cancel-in-progress: false }
 jobs:
   deals:
@@ -86,3 +86,9 @@ jobs:
       - name: Wipe local copies
         if: always()
         run: rm -rf /tmp/deals
+      - name: Chain - pause, then start the next chunk
+        if: always()
+        env: { GH_TOKEN: "${{ github.token }}" }
+        run: |
+          sleep 7200
+          gh workflow run temu_deals.yml --repo "${{ github.repository }}" --ref main -f search=auto
