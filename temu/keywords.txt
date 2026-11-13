@@ -34,7 +34,6 @@ car | trunk organizer
 car | car sun shade
 car | ice scraper
 office | desk organizer
-office | monitor stand riser
 office | laptop stand
 office | drawer label maker tape
 travel | toiletry bag
@@ -43,49 +42,29 @@ garden | garden kneeler pad
 garden | self watering spikes
 fitness | resistance bands
 fitness | yoga blocks
-fitness | jump rope
 fitness | ab roller
 fitness | foam roller
-crafts | craft storage box
 appliances | milk frother handheld
-appliances | electric milk frother
 appliances | digital kitchen scale
 appliances | electric can opener
-appliances | vacuum sealer machine
-appliances | electric spice grinder
-appliances | mini food processor
-appliances | yogurt maker
 appliances | electric kettle small
-appliances | sandwich maker
-appliances | mini rice cooker
-appliances | bottle sealer electric
 appliances | handheld vacuum sealer
 appliances | electric salt pepper grinder
-appliances | air fryer accessories
 # batch 2 - higher-ticket, durable, bulky-but-light, low-return generic items
 bathroom | tension pole shower caddy
 bathroom | over the toilet storage shelf
-bathroom | bathtub caddy tray
 bathroom | shower curtain rod tension
 bathroom | bath mat memory foam
 bathroom | towel rack wall mounted
 furniture | bed frame center support leg
 furniture | adjustable laptop stand
-furniture | monitor riser stand
 furniture | foldable step stool
-furniture | under bed storage bin with wheels
-furniture | tv tray folding table
 furniture | cabinet shelf riser expandable
-furniture | corner shelf stand
-furniture | shoe storage cabinet
 furniture | folding clothes drying rack
-home | blackout curtain rod
 home | door mounted pull up bar
 home | wall mounted key holder
 home | floating shelves set
-home | magnetic phone mount car
 home | car trunk organizer
-home | seat gap filler car
 home | hanging closet shelves
 home | sliding drawer under cabinet
 kitchen | expandable dish rack over sink
@@ -103,12 +82,10 @@ pet | cat scratching post
 pet | dog car seat cover
 pet | pet stairs ramp foldable
 pet | elevated dog bowl stand
-pet | cat tree tower
 pet | dog training treat pouch
 garden | garden kneeler seat
 garden | plant stand indoor tiered
 garden | hose holder wall mount
-garden | raised garden bed
 garden | trellis for climbing plants
 tools | tool storage wall rack
 tools | cable organizer clips
@@ -117,19 +94,13 @@ fitness | yoga block set
 fitness | ab roller wheel
 fitness | doorway pull up bar
 pets | dog grooming glove brush
-pets | cat litter mat
 pets | dog paw cleaner cup
 bathroom | tub drain strainer
 bathroom | toothbrush holder wall mounted
-bathroom | toothpaste dispenser squeezer
 home | door bottom seal strip
 home | window draft stopper
-home | under door draft blocker
-car | microfiber detailing brush set
-home | furniture risers heavy duty
 home | sofa leg risers
 kitchen | magnetic knife holder wall
-kitchen | magnetic tool holder
 kitchen | under sink shelf organizer
 kitchen | cabinet shelf organizer expandable
 bathroom | bathtub drain strainer
@@ -431,3 +402,24 @@ kitchen | food storage containers glass lids set
 organization | pantry bins clear stackable
 kitchen | large ice cube tray with lid
 kitchen | silicone ice ball mold
+# tuning round 2026-11-13k: dropped 30 keywords that never reached WATCH in 3 days; +sibling long-tails of under sink / pantry / knife strip / measuring cups / chopper / shower caddy / pot lid / ab roller
+kitchen | under sink organizer 2 tier pull out
+kitchen | under sink organizer with hooks bath
+kitchen | pantry organizer turntable
+kitchen | pantry shelf risers stackable
+kitchen | airtight cereal storage containers
+kitchen | magnetic knife bar stainless 16 inch
+kitchen | measuring spoons magnetic stainless
+kitchen | nesting measuring cups stainless steel
+kitchen | vegetable chopper with container 12 in 1
+kitchen | pot and pan lid organizer drawer
+kitchen | silicone pot holder trivet set
+kitchen | utensil crock ceramic
+bathroom | shower caddy corner stainless rustproof
+bathroom | shower shelf no drill adhesive 2 pack
+bathroom | shower caddy hanging over door
+fitness | ab roller wheel with knee pad
+fitness | push up bar stand handles
+fitness | exercise mat thick 10mm
+kitchen | lazy susan 2 tier cabinet organizer
+organization | stackable cabinet shelf white metal
