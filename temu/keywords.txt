@@ -7,7 +7,6 @@ kitchen | silicone ice cube tray
 kitchen | pot lid holder
 kitchen | dish drying rack
 kitchen | silicone stretch lids
-kitchen | reusable food storage bags
 kitchen | jar opener
 kitchen | mandoline slicer
 kitchen | kitchen sink strainer
@@ -27,10 +26,8 @@ organization | bed riser
 cleaning | grout cleaning brush
 cleaning | lint roller pet hair remover
 cleaning | drain hair catcher
-cleaning | toilet brush holder
 cleaning | window cleaning tool
 bathroom | shower caddy
-bathroom | toothbrush holder
 bathroom | bathroom counter organizer
 laundry | clothes drying rack
 home | door draft stopper
@@ -366,3 +363,22 @@ cleaning | sink hair catcher stainless
 home | bed risers adjustable furniture lifts
 home | couch risers furniture legs
 # tuning round 2026-11-13e: dropped 25 zero-keep (2+ rounds, 0 WATCH), +17 siblings of pot lid / chopper / shower caddy / under sink / ab roller / riser / knife
+kitchen | pot and pan lid rack wall mount
+kitchen | utensil holder with 3 compartments stainless
+kitchen | cutting board and lid organizer rack
+kitchen | vegetable slicer dicer with container
+kitchen | garlic press stainless steel
+kitchen | salad chopper bowl set
+kitchen | pantry shelf organizer stackable
+kitchen | airtight cereal container dispenser
+kitchen | can organizer rack for pantry
+kitchen | stackable canned food dispenser
+bathroom | shower caddy hanging over door
+bathroom | corner shower shelf adhesive 2 pack
+bathroom | shower squeegee glass wiper
+fitness | ab wheel with knee mat
+fitness | adjustable jump rope tangle free
+fitness | wrist strengthener grip trainer
+organization | stackable drawer organizer trays
+organization | under sink shelf expandable
+# tuning round 2026-11-13f: dropped 6 zero-keep (2+ rounds, 0 WATCH), +18 siblings of pot lid / chopper / shower caddy / pantry / ab roller / under sink
