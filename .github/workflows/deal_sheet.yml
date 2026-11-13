@@ -23,6 +23,7 @@ jobs:
           AMZ_CLIENT: ${{ secrets.AMZ_CLIENT }}
           AMZ_SECRET: ${{ secrets.AMZ_SECRET }}
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
+          PROXY_URL: ${{ secrets.PROXY_URL }}
           APIFY_TOKEN: ${{ secrets.APIFY_TOKEN || secrets.APIFY_API_TOKEN || secrets.APIFY_KEY || secrets.APIFY }}
           TOP: ${{ github.event.inputs.top || '12' }}
           REFS: ${{ github.event.inputs.refs }}

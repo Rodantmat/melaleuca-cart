@@ -62,6 +62,7 @@ def grade_market(r):
     return ("A" if r.get("match_conf") == "PHOTO MATCH" else "B"), why
 
 
+PROXY_REV_MAX = int(os.environ.get("PROXY_REV_MAX", "6"))     # DataImpulse fallback pages per run (~2 MB each)
 AMZ_MAX = int(os.environ.get("APIFY_AMZ_MAX", "10"))     # paid Apify lookups per run (~$0.007 each; the free plan has $5/month) - results cached 7 days
 
 
@@ -102,6 +103,26 @@ def review_info(asins):
                 cx.commit()
         except Exception as e:
             print("  apify amazon lookup failed:", str(e)[:100])
+    # fallback when Apify is out of budget / failed: a few public product pages (runner IP first, DataImpulse proxy only on a captcha, no images)
+    left = [a for a in asins if a not in out][:PROXY_REV_MAX]
+    if left and os.environ.get("PROXY_URL"):
+        try:
+            import deal_finder as _df
+            _df.DP_MAX = len(left)
+            pg = _df.page_details(left)
+            n = 0
+            for a, d in pg.items():
+                if d.get("reviews") is None and d.get("rating") is None:
+                    continue
+                out[a] = {"rating": d.get("rating"), "reviews": d.get("reviews")}
+                n += 1
+                if cx:
+                    cx.execute("insert into deals.asin_cache(asin, rating, reviews) values (%s,%s,%s) on conflict (asin) do update set fetched_at=now(), rating=excluded.rating, reviews=excluded.reviews", (a, d.get("rating"), d.get("reviews")))
+            if cx:
+                cx.commit()
+            print("  proxy fallback: %d of %d pages gave reviews" % (n, len(left)))
+        except Exception as e:
+            print("  proxy fallback failed:", str(e)[:100])
     print("  reviews: %d cached/fetched of %d wanted (paid lookups capped at %d)" % (len(out), len(asins), AMZ_MAX))
     return out
 
