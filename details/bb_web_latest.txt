@@ -1,15 +1,16 @@
-# 2026-11-12T17:52:42Z  bb_web  success  run 43272356885
+# 2026-11-13T06:41:14Z  bb_web  success  run 43379229481
 rival stock reads: off (budget 80)
-browser session 1 on proxy port 10091  (0 of 167 products read so far, wire 0.0 MB)
-  1/30  price=52.95 seller=MEGA SAVINGS  (1.4 MB so far)
-  21/30  price=None seller=None  (12.2 MB so far)
-browser session 2 on proxy port 10101  (30 of 167 products read so far, wire 3.6 MB)
-  1/30  price=22.99 seller=None  (2.0 MB so far)
-rate limited (503) after 16 ASINs - switching IP
-browser session 3 on proxy port 10112  (44 of 167 products read so far, wire 5.5 MB)
+browser session 1 on proxy port 10094  (0 of 167 products read so far, wire 0.0 MB)
+  1/30  price=52.95 seller=MEGA SAVINGS  (1.5 MB so far)
+  21/30  price=None seller=None  (16.4 MB so far)
+browser session 2 on proxy port 10106  (30 of 167 products read so far, wire 4.2 MB)
+  1/30  price=23.99 seller=MIMI HEALTH  (2.0 MB so far)
+rate limited (503) after 22 ASINs - switching IP
+browser session 3 on proxy port 10112  (49 of 167 products read so far, wire 7.1 MB)
 rate limited (503) after 2 ASINs - switching IP
-browser session 4 on proxy port 10127  (44 of 167 products read so far, wire 5.9 MB)
-rate limited (503) after 4 ASINs - switching IP
+browser session 4 on proxy port 10124  (49 of 167 products read so far, wire 7.3 MB)
+  1/30  price=None seller=None  (0.0 MB so far)
+rate limited (503) after 5 ASINs - switching IP
 three blocked sessions in a row - stopping for today (partial scan kept)
-proxy traffic on the wire: 6.7 MB in 77 requests; by type: {'document': 6.2, 'fetch': 0.4}
-web Buy Box: 45 ASINs read, 33 with a price, we win 11, errors 0
+proxy traffic on the wire: 7.7 MB in 86 requests; by type: {'document': 7.1, 'fetch': 0.5}
+web Buy Box: 51 ASINs read, 33 with a price, we win 8, errors 0
