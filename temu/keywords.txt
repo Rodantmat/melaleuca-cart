@@ -376,3 +376,21 @@ fitness | adjustable jump rope tangle free
 fitness | wrist strengthener grip trainer
 organization | stackable drawer organizer trays
 # tuning round 2026-11-13f: dropped 6 zero-keep (2+ rounds, 0 WATCH), +18 siblings of pot lid / chopper / shower caddy / pantry / ab roller / under sink
+# tuning round 2026-11-13g: dropped 21 zero-keep (8 rounds, 0 WATCH, n>=38), +17 siblings of pot lid / shower caddy / under sink / pantry / chopper
+kitchen | utensil holder for countertop
+kitchen | cooking utensil crock
+kitchen | pot and pan lid organizer rack
+kitchen | cutting board organizer rack
+kitchen | pan organizer rack for cabinet
+kitchen | cabinet shelf organizer expandable
+kitchen | dry food storage canisters airtight
+kitchen | cereal dispenser storage
+kitchen | pantry shelf risers
+kitchen | spice jars set with labels
+kitchen | food chopper manual pull
+kitchen | onion chopper dicer
+bathroom | shower corner shelf adhesive
+bathroom | shower shelf stainless steel no drilling
+bathroom | under cabinet bathroom organizer
+organization | under sink 2 tier organizer pull out
+organization | cabinet door organizer hanging
