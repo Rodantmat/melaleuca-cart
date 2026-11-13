@@ -1,0 +1,36 @@
+name: AliExpress photo match (private storage, counts only in log)
+on:
+  workflow_dispatch:
+    inputs:
+      refs: { description: "Reference ASINs separated by space", default: "" }
+      queries: { description: "AliExpress keyword searches separated by |", default: "" }
+permissions: { contents: read }
+jobs:
+  match:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+        with: { ref: main }
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - run: |
+          pip install -q torch --index-url https://download.pytorch.org/whl/cpu
+          pip install -q "curl_cffi>=0.7" "psycopg[binary]" transformers pillow requests
+      - name: Match
+        env:
+          CRED_ENV: ${{ secrets.CREDENTIALS_ENV }}
+          AMZ_CLIENT: ${{ secrets.AMZ_CLIENT }}
+          AMZ_SECRET: ${{ secrets.AMZ_SECRET }}
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+          ALIEXPRESS_APP_KEY: ${{ secrets.ALIEXPRESS_APP_KEY }}
+          ALIEXPRESS_APP_SECRET: ${{ secrets.ALIEXPRESS_APP_SECRET }}
+          REFS: ${{ github.event.inputs.refs }}
+          QUERIES: ${{ github.event.inputs.queries }}
+        run: |
+          mkdir -p /tmp/am; printf '%s\n' "$CRED_ENV" > reprice/credentials.env
+          if [ -n "$AMZ_SECRET" ]; then printf 'CLIENT_ID=%s\nCLIENT_SECRET=%s\n' "$AMZ_CLIENT" "$AMZ_SECRET" >> reprice/credentials.env; fi
+          python temu/ali_match.py > /tmp/am/run.log 2>&1 || true
+          rm -f reprice/credentials.env
+          grep -E "^ali_match:|Traceback|ERR|Error" /tmp/am/run.log | head -15 || true
+          rm -rf /tmp/am
