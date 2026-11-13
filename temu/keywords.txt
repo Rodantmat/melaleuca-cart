@@ -1,15 +1,11 @@
 # category | Temu search keyword   (generic, no brands. Owner has the $1M liability insurance, appliances OK.
 # Flagged, not dropped: children's (CPC), lithium (hazmat review), ingestible/cosmetic.)
 kitchen | vegetable chopper
-kitchen | garlic press
 kitchen | silicone spatula set
 kitchen | measuring cups and spoons
-kitchen | manual can opener
-kitchen | oil sprayer bottle
 kitchen | silicone ice cube tray
 kitchen | pot lid holder
 kitchen | dish drying rack
-kitchen | sink caddy sponge holder
 kitchen | silicone stretch lids
 kitchen | reusable food storage bags
 kitchen | jar opener
@@ -310,3 +306,20 @@ fitness | resistance bands set with handles
 home | bed risers heavy duty 5 inch
 home | couch leg extenders
 appliances | handheld can opener smooth edge
+# tuning round 2026-11-13b: dropped 9 zero-keep keywords (2 rounds), +16 siblings of under sink organizer / pantry containers / measuring cups / knife strip / dish rack
+kitchen | under sink organizer 2 tier
+kitchen | under sink shelf expandable
+kitchen | cabinet organizer pull out
+kitchen | under cabinet storage rack
+kitchen | pantry organizer bins clear
+kitchen | stainless steel food storage containers
+kitchen | stainless steel lunch box set
+kitchen | measuring spoons stainless magnetic
+kitchen | measuring cups set stainless steel
+kitchen | magnetic knife holder wall
+kitchen | knife block universal
+kitchen | dish drying rack foldable
+kitchen | over sink dish rack
+kitchen | utensil drying rack
+bathroom | bathroom under sink storage
+organization | drawer divider organizer adjustable
