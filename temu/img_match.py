@@ -39,7 +39,7 @@ def main():
         with torch.no_grad():
             f = model.get_image_features(**proc(images=imgs, return_tensors="pt"))
             if not torch.is_tensor(f):
-                f = model.visual_projection(f.pooler_output)
+                f = f.pooler_output
         return torch.nn.functional.normalize(f, dim=-1)
 
     extra = [q.strip() for q in (os.environ.get("QUERIES") or "").split("|") if q.strip()]
