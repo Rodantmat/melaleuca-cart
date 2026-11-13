@@ -1,4 +1,4 @@
-# 2026-11-12T19:12:40Z  feed  success  run 43286650482
+# 2026-11-13T18:50:00Z  feed  success  run 43485383252
 Requesting reports ...
 Waiting for Amazon to build them (usually 1-10 minutes) ...
   planning                     DONE
@@ -41,7 +41,7 @@ demand history: 212 products with orders, 181 with a stock ledger (folder /home/
 
 Built feed files in: /home/runner/work/melaleuca-cart/melaleuca-cart/feedwork/feed
   Inventory rows: 176 | FBA rows: 174 | fees known: 175
-  note: 11 SKU(s) were in the planning report but missing from the FBA inventory report - added from planning: ME0048, ME0083, ME0090, ME1201, ME1252, ME1645, ME1806, ME1824, ME1826, ME1827, ME1828
+  note: 12 SKU(s) were in the planning report but missing from the FBA inventory report - added from planning: ME0048, ME0083, ME0090, ME1128, ME1201, ME1252, ME1645, ME1806, ME1824, ME1826, ME1827, ME1828
   note: sales history carried over to B0HF3N73XB from B007134WGC: 4 units in 90 days
   note: 4 SKU(s) have no listing on Amazon any more (no stock, nothing inbound) - not priced, no fee asked: ME0048, ME0083, ME1101, ME1660
   note: 2 product(s) disappeared but had sales in the last 90 days: see feed\alias_suggestions.tsv (if one was recreated, add it to asin_aliases.tsv)
