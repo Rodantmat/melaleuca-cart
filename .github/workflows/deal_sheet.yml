@@ -28,7 +28,7 @@ jobs:
           TOP: ${{ github.event.inputs.top || '12' }}
           REFS: ${{ github.event.inputs.refs }}
           UNDERCUT: ${{ github.event.inputs.undercut || '0.15' }}
-          APIFY_AMZ_MAX: "10"
+          APIFY_AMZ_MAX: "2"
         run: |
           mkdir -p /tmp/ds; printf '%s\n' "$CRED_ENV" > reprice/credentials.env
           if [ -n "$AMZ_SECRET" ]; then printf 'CLIENT_ID=%s\nCLIENT_SECRET=%s\n' "$AMZ_CLIENT" "$AMZ_SECRET" >> reprice/credentials.env; fi

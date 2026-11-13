@@ -22,7 +22,7 @@ jobs:
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
           PROXY_URL: ${{ secrets.PROXY_URL }}
           APIFY_TOKEN: ${{ secrets.APIFY_TOKEN || secrets.APIFY_API_TOKEN || secrets.APIFY_KEY || secrets.APIFY }}
-          APIFY_AMZ_MAX: "12"
+          APIFY_AMZ_MAX: "2"
           ASINS: ${{ github.event.inputs.asins }}
         run: |
           mkdir -p /tmp/cc; printf '%s\n' "$CRED_ENV" > reprice/credentials.env

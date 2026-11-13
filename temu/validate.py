@@ -63,7 +63,7 @@ def grade_market(r):
 
 
 PROXY_REV_MAX = int(os.environ.get("PROXY_REV_MAX", "6"))     # DataImpulse fallback pages per run (~2 MB each)
-AMZ_MAX = int(os.environ.get("APIFY_AMZ_MAX", "10"))     # paid Apify lookups per run (~$0.007 each; the free plan has $5/month) - results cached 7 days
+AMZ_MAX = int(os.environ.get("APIFY_AMZ_MAX", "2"))     # paid Apify lookups per run (~$0.007 each; the free plan has $5/month) - results cached 7 days
 
 
 def _seller_id(c):
