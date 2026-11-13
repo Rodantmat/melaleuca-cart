@@ -29,5 +29,5 @@ jobs:
           if [ -n "$AMZ_SECRET" ]; then printf 'CLIENT_ID=%s\nCLIENT_SECRET=%s\n' "$AMZ_CLIENT" "$AMZ_SECRET" >> reprice/credentials.env; fi
           python temu/comp_check.py > /tmp/cc/run.log 2>&1 || true
           rm -f reprice/credentials.env
-          grep -E "^comp_check:|Traceback|ERR" /tmp/cc/run.log | head -10 || true
+          grep -E "^comp_check:|proxy fallback|  reviews:|Traceback|ERR" /tmp/cc/run.log | head -10 || true
           rm -rf /tmp/cc

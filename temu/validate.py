@@ -87,7 +87,8 @@ def review_info(asins):
         if cx:
             cx.execute("create table if not exists deals.asin_cache (asin text primary key, fetched_at timestamptz default now(), rating numeric, reviews int)")
             for a, r, n in cx.execute("select asin, rating, reviews from deals.asin_cache where asin = any(%s) and fetched_at > now() - interval '7 days'", (list(asins),)).fetchall():
-                out[a] = {"rating": float(r) if r is not None else None, "reviews": n}
+                if n is not None:
+                    out[a] = {"rating": float(r) if r is not None else None, "reviews": n}
     except Exception as e:
         print("  review cache unavailable:", str(e)[:80])
     miss = [a for a in asins if a not in out][:AMZ_MAX]
