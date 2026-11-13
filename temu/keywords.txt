@@ -22,13 +22,9 @@ organization | over the door organizer
 organization | cable management box
 organization | wall mounted shelf
 organization | lazy susan turntable
-organization | bed riser
 cleaning | grout cleaning brush
-cleaning | lint roller pet hair remover
-cleaning | drain hair catcher
 cleaning | window cleaning tool
 bathroom | shower caddy
-bathroom | bathroom counter organizer
 laundry | clothes drying rack
 home | door draft stopper
 home | furniture pads felt
@@ -125,28 +121,22 @@ fitness | resistance band set
 fitness | yoga block set
 fitness | ab roller wheel
 fitness | doorway pull up bar
-pets | pet hair remover gloves
 pets | dog grooming glove brush
 pets | cat litter mat
 pets | dog paw cleaner cup
-bathroom | shower drain hair catcher silicone
 bathroom | tub drain strainer
 bathroom | toothbrush holder wall mounted
 bathroom | toothpaste dispenser squeezer
-bathroom | shower squeegee
 home | door bottom seal strip
 home | window draft stopper
 home | under door draft blocker
-car | car window squeegee
 car | microfiber detailing brush set
 home | furniture risers heavy duty
-home | bed risers adjustable height
 home | sofa leg risers
 kitchen | magnetic knife holder wall
 kitchen | magnetic tool holder
 kitchen | under sink shelf organizer
 kitchen | cabinet shelf organizer expandable
-bathroom | shower drain hair catcher
 bathroom | bathtub drain strainer
 bathroom | shower corner caddy adhesive
 bathroom | shower shelf stainless
@@ -168,7 +158,6 @@ fitness | jump rope adjustable
 fitness | hand grip strengthener
 fitness | ab roller wheel kit
 fitness | yoga block foam
-home | bed risers 8 inch
 home | furniture sliders felt pads
 home | table leg extenders
 kitchen | manual can opener smooth edge
@@ -202,7 +191,6 @@ kitchen | cabinet door lid rack
 kitchen | utensil crock holder
 bathroom | shower shelf no drill
 bathroom | corner shower caddy
-bathroom | shower squeegee holder
 organization | cable organizer box
 organization | power strip cover box
 organization | under bathroom sink organizer
@@ -210,7 +198,6 @@ organization | cabinet shelf riser
 fitness | ab wheel with knee pad
 fitness | digital kitchen scale small
 kitchen | jewelry scale mini digital
-home | bed risers heavy duty
 kitchen | pan organizer rack for cabinet
 kitchen | lid organizer for drawer
 kitchen | pot and pan lid rack wall mount
@@ -241,7 +228,6 @@ bathroom | shower caddy 2 tier stainless
 bathroom | shower shelf organizer rustproof
 fitness | ab roller wheel double wheel
 fitness | abdominal wheel with mat
-home | bed risers 3 inch
 home | bed lifts stackable
 appliances | electric can opener one touch
 appliances | automatic can opener restaurant
@@ -259,7 +245,6 @@ bathroom | shower storage rack hanging
 bathroom | shower caddy over the door
 fitness | ab roller kneeling mat
 fitness | resistance bands set with handles
-home | bed risers heavy duty 5 inch
 home | couch leg extenders
 appliances | handheld can opener smooth edge
 # tuning round 2026-11-13b: dropped 9 zero-keep keywords (2 rounds), +16 siblings of under sink organizer / pantry containers / measuring cups / knife strip / dish rack
@@ -282,7 +267,6 @@ organization | under sink organizer 2 tier
 organization | under sink sliding basket
 bathroom | under bathroom sink organizer pull out
 kitchen | magnetic knife bar stainless
-bathroom | bathtub drain stopper hair catcher
 kitchen | sink strainer basket stainless
 kitchen | sink corner caddy sponge holder
 kitchen | silicone baking mat set
@@ -301,8 +285,6 @@ kitchen | pan lid rack wall mount
 kitchen | cutting board holder organizer
 kitchen | pantry storage canisters airtight
 kitchen | flour sugar container airtight
-cleaning | shower drain hair trap
-cleaning | bathtub drain stopper hair catcher
 fitness | ab wheel roller kneeling mat
 kitchen | silicone sink splash guard
 kitchen | dish drainer sink caddy
@@ -317,7 +299,6 @@ kitchen | banana hanger holder
 kitchen | water bottle cleaning brush set
 kitchen | stretch silicone lids set
 cleaning | gap cleaning brush keyboard vent
-cleaning | washing machine pet hair catcher
 cleaning | grout cleaning brush electric
 bathroom | adhesive toilet paper holder shelf
 bathroom | silicone faucet extender
@@ -349,8 +330,6 @@ organization | under sink organizer 2 tier sliding
 organization | cabinet shelf riser expandable
 fitness | ab roller wheel double
 fitness | push up bar stands
-cleaning | sink hair catcher stainless
-home | bed risers adjustable furniture lifts
 home | couch risers furniture legs
 # tuning round 2026-11-13e: dropped 25 zero-keep (2+ rounds, 0 WATCH), +17 siblings of pot lid / chopper / shower caddy / under sink / ab roller / riser / knife
 kitchen | utensil holder with 3 compartments stainless
@@ -363,7 +342,6 @@ kitchen | airtight cereal container dispenser
 kitchen | can organizer rack for pantry
 kitchen | stackable canned food dispenser
 bathroom | corner shower shelf adhesive 2 pack
-bathroom | shower squeegee glass wiper
 fitness | ab wheel with knee mat
 fitness | adjustable jump rope tangle free
 fitness | wrist strengthener grip trainer
@@ -406,24 +384,18 @@ organization | sink caddy sponge holder stainless
 # tuning round 2026-11-13h: dropped 8 low-yield/negative-profit singles, +16 siblings of ice tray / pot lid / shower caddy / baking rack families
 niche | under cabinet pull out trash can bracket
 niche | magnetic knife strip with shelf
-niche | retractable dog leash light
-niche | cordless handheld milk frother stand
 niche | collapsible silicone dog travel bowl set
 niche | bed sheet holder clips adjustable
 niche | car seat gap filler organizer
-niche | rechargeable bike tail light brake sensing
-niche | portable neck fan hands free
 niche | magnetic phone mount for kitchen cabinet
 niche | reusable silicone stretch lids set
 niche | under desk cable management tray
 niche | foldable laundry basket with handles
 niche | shoe rack stackable adjustable
-niche | heated pet bed cover
 niche | over sink drying rack roll up
 niche | toilet paper holder with phone shelf
 niche | self stirring mug lid
 niche | garage hook wall mount heavy duty bike
-niche | tire inflator portable mini
 niche | hanging closet organizer collapsible shelves
 niche | rotating makeup organizer turntable
 niche | pet hair roller reusable brush
@@ -434,3 +406,19 @@ niche | cord winder wrap cable organizer
 niche | stroller hook organizer clip
 niche | adjustable laptop stand portable aluminum
 niche | wine bottle chiller stick
+# tuning round 2026-11-13i: dropped negative-profit families (soap dispenser, laundry bags, bed riser, squeegee, hair catcher, pet hair roller, counter organizer) + lithium singles; +ice tray / pot lid / pantry siblings
+kitchen | ice cube tray 15 grid silicone
+kitchen | ice ball mold sphere silicone
+kitchen | ice cube tray with lid stackable
+kitchen | ice cube bin and scoop
+kitchen | silicone popsicle mold set
+kitchen | silicone ice stick tray water bottle
+kitchen | pot lid holder 4 tier
+kitchen | pot lid rack over sink
+kitchen | pan organizer rack cabinet
+kitchen | cookie cutter set stainless
+kitchen | silicone muffin cups reusable
+kitchen | cake decorating turntable
+kitchen | refrigerator egg holder tray
+kitchen | pantry bin with handle
+organization | stackable storage bins with lids
