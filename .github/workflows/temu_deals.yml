@@ -95,6 +95,7 @@ jobs:
         run: |
           # dossiers for new strong candidates (private, Postgres only) - runs in parallel, own concurrency group
           gh workflow run deal_sheet.yml --repo "${{ github.repository }}" --ref main -f top=10 || true
+          gh workflow run img_gate.yml --repo "${{ github.repository }}" --ref main || true
           gh workflow run temu_check.yml --repo "${{ github.repository }}" --ref main -f wait=1500 || true
           sleep 600
           gh workflow run temu_deals.yml --repo "${{ github.repository }}" --ref main -f search=auto

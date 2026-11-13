@@ -28,10 +28,7 @@ def fetch(url):
     except Exception:
         return None
 
-def main():
-    cx = psycopg.connect(os.environ["DATABASE_URL"], autocommit=True)
-    cx.execute("create table if not exists deals.img_match (id bigserial primary key, at timestamptz default now(), ref_asin text, asin text, sim real, data jsonb)")
-    c = spapi.load_creds(os.path.join(HERE, "..", "reprice"))
+def load_embed():
     model = CLIPModel.from_pretrained("openai/clip-vit-base-patch32").eval()
     proc = CLIPProcessor.from_pretrained("openai/clip-vit-base-patch32")
 
@@ -41,41 +38,70 @@ def main():
             if not torch.is_tensor(f):
                 f = f.pooler_output
         return torch.nn.functional.normalize(f, dim=-1)
+    return embed
+
+
+def ensure_images(cx, c, ref):
+    row = cx.execute("select urls from deals.asin_images where asin=%s", (ref,)).fetchone()
+    if row:
+        return row[0]
+    cx.execute("create table if not exists deals.asin_images (asin text primary key, main_url text, urls jsonb, at timestamptz default now())")
+    r = spapi.call(c, "GET", "/catalog/2022-04-01/items/" + ref, params={"marketplaceIds": df.MK, "includedData": "images"}, quiet=True, tries=4)
+    imgs = [{"variant": im.get("variant"), "url": im.get("link"), "w": im.get("width")} for g in (r.get("images") or []) for im in (g.get("images") or [])]
+    main = next((i["url"] for i in imgs if i["variant"] == "MAIN"), imgs[0]["url"] if imgs else None)
+    cx.execute("insert into deals.asin_images(asin, main_url, urls) values (%s,%s,%s) on conflict (asin) do update set urls=excluded.urls, main_url=excluded.main_url, at=now()", (ref, main, json.dumps(imgs)))
+    return imgs
+
+
+def match_ref(cx, c, embed, ref, extra=(), store=True):
+    """Returns (n_candidates_searched, kept rows [(sim, asin, parsed, offers)]) for one reference ASIN."""
+    it = spapi.call(c, "GET", "/catalog/2022-04-01/items/" + ref, params={"marketplaceIds": df.MK, "includedData": "summaries,images"}, quiet=True, tries=4)
+    title = df._parse_item(it)["title"]
+    urls = [i["url"] for i in ensure_images(cx, c, ref) if i.get("url") and "_SL" not in i["url"]][:6]
+    refimgs = [x for x in (fetch(u) for u in urls) if x]
+    if not refimgs:
+        return 0, []
+    R = embed(refimgs)
+    seen = {}
+    for q in queries_for(title, list(extra)):
+        for p in df.catalog_search(c, q, size=20, pages=2):
+            if p["asin"] and p["asin"] != ref and p["asin"] not in seen and p.get("image"):
+                seen[p["asin"]] = p
+    scored = []
+    for a, p in seen.items():
+        im = fetch(p["image"])
+        if not im:
+            continue
+        scored.append((float((embed([im]) @ R.T).max()), a, p))
+    scored.sort(key=lambda x: -x[0])
+    top = [x for x in scored if x[0] >= 0.75][:40]
+    offers = df.offers_batch(c, [a for _, a, _ in top])
+    out = [(s, a, p, offers.get(a)) for s, a, p in top]
+    if store:
+        for s, a, p, o in out:
+            d = {k: p.get(k) for k in ("title", "brand", "rank", "rank_cat", "list_price")}
+            d["offers"] = o
+            cx.execute("insert into deals.img_match(ref_asin, asin, sim, data) values (%s,%s,%s,%s)", (ref, a, round(s, 3), json.dumps(d)))
+    return len(scored), out
+
+
+def main():
+    cx = psycopg.connect(os.environ["DATABASE_URL"], autocommit=True)
+    cx.execute("create table if not exists deals.img_match (id bigserial primary key, at timestamptz default now(), ref_asin text, asin text, sim real, data jsonb)")
+    c = spapi.load_creds(os.path.join(HERE, "..", "reprice"))
+    embed = load_embed()
 
     extra = [q.strip() for q in (os.environ.get("QUERIES") or "").split("|") if q.strip()]
     tot = 0
     for ref in (os.environ.get("REFS") or "").split():
-        row = cx.execute("select urls from deals.asin_images where asin=%s", (ref,)).fetchone()
         try:
-            it = spapi.call(c, "GET", "/catalog/2022-04-01/items/" + ref, params={"marketplaceIds": df.MK, "includedData": "summaries,images"}, quiet=True, tries=4)
+            n, out = match_ref(cx, c, embed, ref, extra)
         except Exception as e:
             print("  ref ERR", str(e)[:60]); continue
-        title = df._parse_item(it)["title"]
-        urls = [i["url"] for i in (row[0] if row else []) if i.get("url") and "_SL" not in i["url"]][:6]
-        refimgs = [x for x in (fetch(u) for u in urls) if x]
-        if not refimgs:
-            print("  no ref images for one ref"); continue
-        R = embed(refimgs)
-        seen = {}
-        for q in queries_for(title, extra):
-            for p in df.catalog_search(c, q, size=20, pages=2):
-                if p["asin"] and p["asin"] != ref and p["asin"] not in seen and p.get("image"):
-                    seen[p["asin"]] = p
-        scored = []
-        for a, p in seen.items():
-            im = fetch(p["image"])
-            if not im: continue
-            s = float((embed([im]) @ R.T).max())
-            scored.append((s, a, p))
-        scored.sort(key=lambda x: -x[0])
-        top = [x for x in scored if x[0] >= 0.75][:40]
-        offers = df.offers_batch(c, [a for _, a, _ in top])
-        for s, a, p in top:
-            d = {k: p.get(k) for k in ("title", "brand", "rank", "rank_cat", "list_price")}
-            d["offers"] = offers.get(a)
-            cx.execute("insert into deals.img_match(ref_asin, asin, sim, data) values (%s,%s,%s,%s)", (ref, a, round(s, 3), json.dumps(d)))
-        tot += len(top)
-        print("img_match: ref scanned, %d candidates searched, %d kept (sim>=0.75)" % (len(scored), len(top)))
+        tot += len(out)
+        print("img_match: ref scanned, %d candidates searched, %d kept (sim>=0.75)" % (n, len(out)))
     print("img_match: done %d rows" % tot)
 
-main()
+
+if __name__ == "__main__":
+    main()

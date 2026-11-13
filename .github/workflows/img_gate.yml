@@ -1,0 +1,30 @@
+name: Image gate (same-product competitor check on dossiers; private results)
+on:
+  workflow_dispatch:
+permissions: { contents: read }
+concurrency: { group: img-gate, cancel-in-progress: false }
+jobs:
+  gate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 75
+    steps:
+      - uses: actions/checkout@v4
+        with: { ref: main }
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - run: |
+          pip install -q torch --index-url https://download.pytorch.org/whl/cpu
+          pip install -q "curl_cffi>=0.7" "psycopg[binary]" transformers pillow requests
+      - name: Gate dossiers
+        env:
+          CRED_ENV: ${{ secrets.CREDENTIALS_ENV }}
+          AMZ_CLIENT: ${{ secrets.AMZ_CLIENT }}
+          AMZ_SECRET: ${{ secrets.AMZ_SECRET }}
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+        run: |
+          mkdir -p /tmp/ig; printf '%s\n' "$CRED_ENV" > reprice/credentials.env
+          if [ -n "$AMZ_SECRET" ]; then printf 'CLIENT_ID=%s\nCLIENT_SECRET=%s\n' "$AMZ_CLIENT" "$AMZ_SECRET" >> reprice/credentials.env; fi
+          python temu/img_gate.py > /tmp/ig/run.log 2>&1 || true
+          rm -f reprice/credentials.env
+          grep -E "^img_gate:|Traceback|ERR|Error" /tmp/ig/run.log | head -15 || true
+          rm -rf /tmp/ig
