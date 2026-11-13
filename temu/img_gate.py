@@ -41,7 +41,7 @@ def gate(our_price, ref_rank, out, flags=()):
     elif len(fam) >= 6:
         reasons.append("%d active ranked look-alike listings" % len(fam))
     if len(fam) >= 3 and our_price and our_price > 1.5 * statistics.median([v[0] for v in fam.values()]):
-        reasons.append("our price is 50%+ above the look-alike median $%.2f - check these are really different" % statistics.median([v[0] for v in fam.values()]))
+        reasons.append("our price is 50%% above the look-alike median $%.2f - check these are really different" % statistics.median([v[0] for v in fam.values()]))
     if any("entrenched" in str(f) for f in flags):
         reasons.append("entrenched leader with a huge review count")
     if not active and not fam:
