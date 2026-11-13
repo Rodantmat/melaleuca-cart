@@ -11,10 +11,6 @@ kitchen | jar opener
 kitchen | mandoline slicer
 kitchen | kitchen sink strainer
 kitchen | magnetic knife strip
-kitchen | silicone baking mat
-organization | drawer organizer
-organization | fridge organizer bins
-organization | spice rack organizer
 organization | under sink organizer
 organization | pantry storage containers
 organization | closet organizer hanging
@@ -26,7 +22,6 @@ cleaning | grout cleaning brush
 cleaning | window cleaning tool
 bathroom | shower caddy
 laundry | clothes drying rack
-home | door draft stopper
 home | furniture pads felt
 home | cord cover
 home | curtain tie backs
@@ -422,3 +417,17 @@ kitchen | cake decorating turntable
 kitchen | refrigerator egg holder tray
 kitchen | pantry bin with handle
 organization | stackable storage bins with lids
+# tuning round 2026-11-13j: dropped low-market/low-profit singles (spice rack, baking mat, draft stopper, drawer org, fridge bins, bed riser); +siblings of pot lid / shower caddy / ab roller / chopper / pantry / ice tray
+kitchen | cutting board and lid holder stainless
+kitchen | stainless steel spoon rest
+kitchen | spatula and ladle holder countertop
+kitchen | cabinet door pot lid rack
+bathroom | shower squeegee holder hooks
+fitness | ab wheel roller knee mat
+fitness | resistance band door anchor
+kitchen | vegetable dicer with container
+kitchen | onion chopper manual
+kitchen | food storage containers glass lids set
+organization | pantry bins clear stackable
+kitchen | large ice cube tray with lid
+kitchen | silicone ice ball mold
