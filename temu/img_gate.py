@@ -6,6 +6,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE); sys.path.insert(0, os.path.join(HERE, "..", "reprice"))
 import psycopg, spapi
 import img_match as im
+import quality
 
 CLOSE = float(os.environ.get("CLOSE_SIM", "0.90"))
 FAMILY = float(os.environ.get("FAMILY_SIM", "0.82"))
@@ -76,7 +77,8 @@ def main():
             print("  gate ERR", str(e)[:70]); continue
         g = gate(((data.get("model") or {}).get("our_price")), ref_rank, out, data.get("flags") or [])
         g["searched"] = n
-        cx.execute("update deals.dealsheet set data = data || %s::jsonb where id=%s", (json.dumps({"img_gate": g}), id_))
+        q = quality.score(data, g)
+        cx.execute("update deals.dealsheet set data = data || %s::jsonb where id=%s", (json.dumps({"img_gate": g, "quality": q}), id_))
         cnt[g["verdict"]] += 1
     print("img_gate: %d PASS, %d WARN, %d FAIL, %d UNVERIFIED" % (cnt["PASS"], cnt["WARN"], cnt["FAIL"], cnt["UNVERIFIED"]))
 

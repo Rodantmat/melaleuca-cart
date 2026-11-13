@@ -50,3 +50,22 @@ if __name__ == "__main__":
     print("ali_api: %d products for test keyword" % len(rows))
     for r in rows[:3]:
         print("  $%s sold %s %s" % (r["price"], r["sold"], r["title"][:60]))
+
+
+def hot(category_ids="", pages=2, size=50, keywords=""):
+    """aliexpress.affiliate.hotproduct.query: AliExpress' own trending/high-volume feed (discovery without keywords)."""
+    out = []
+    for pg in range(1, pages + 1):
+        p = dict(page_no=pg, page_size=size, target_currency="USD", target_language="EN", ship_to_country="US", tracking_id=TRACK,
+                 sort="LAST_VOLUME_DESC", fields="product_id,product_title,target_sale_price,lastest_volume,evaluate_rate,product_main_image_url,product_detail_url")
+        if category_ids: p["category_ids"] = category_ids
+        if keywords: p["keywords"] = keywords
+        j = call("aliexpress.affiliate.hotproduct.query", **p)
+        resp = j.get("aliexpress_affiliate_hotproduct_query_response") or {}
+        prods = (((resp.get("resp_result") or {}).get("result") or {}).get("products") or {}).get("product") or []
+        if not prods:
+            print("  hot: none; keys", list(j.keys())[:3], str(j)[:200]); break
+        for r in prods:
+            out.append({"id": r.get("product_id"), "title": r.get("product_title") or "", "price": _num(r.get("target_sale_price")), "sold": r.get("lastest_volume"),
+                        "rating": r.get("evaluate_rate"), "image": r.get("product_main_image_url"), "url": r.get("product_detail_url")})
+    return out
