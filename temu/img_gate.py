@@ -11,7 +11,7 @@ CLOSE = float(os.environ.get("CLOSE_SIM", "0.90"))
 MAX = int(os.environ.get("GATE_MAX", "12"))
 
 
-def gate(our_price, ref_rank, out):
+def gate(our_price, ref_rank, out, flags=()):
     close = [(s, a, p, o) for s, a, p, o in out if s >= CLOSE]
     active = [x for x in close if x[3] and (x[3].get("total") or 0) >= 1 and x[3].get("bb")]
     ranked = [x for x in active if x[2].get("rank")]
@@ -31,7 +31,11 @@ def gate(our_price, ref_rank, out):
         reasons.append("%d active same-product listings" % len(active))
     if med and our_price and our_price > 1.15 * med:
         reasons.append("our price is above the ranked-twin median $%.2f" % med)
-    verdict = "FAIL" if twin or len(active) >= 8 else "WARN" if reasons else "PASS"
+    if any("entrenched" in str(f) for f in flags):
+        reasons.append("entrenched leader with a huge review count")
+    if not active:
+        reasons.append("no same-product listing found by photo - unverified")
+    verdict = "FAIL" if twin or len(active) >= 8 or any("entrenched" in r for r in reasons) else "UNVERIFIED" if not active else "WARN" if reasons else "PASS"
     return {"verdict": verdict, "reasons": reasons, "close_matches": len(close), "active": len(active), "ranked": len(ranked), "prime_sellers": len(prime),
             "ranked_median_price": med, "lowest_ranked_price": min(prices) if prices else None, "cheaper_twin": twin,
             "top": [{"asin": a, "sim": round(s, 3), "price": (o or {}).get("bb"), "rank": p.get("rank"), "brand": p.get("brand"), "prime": ((o or {}).get("fba") or 0) >= 1}
@@ -48,7 +52,7 @@ def main():
     print("img_gate: %d dossiers to gate" % len(rows))
     c = spapi.load_creds(os.path.join(HERE, "..", "reprice"))
     embed = im.load_embed()
-    cnt = {"PASS": 0, "WARN": 0, "FAIL": 0}
+    cnt = {"PASS": 0, "WARN": 0, "FAIL": 0, "UNVERIFIED": 0}
     for id_, ref, data in rows:
         try:
             n, out = im.match_ref(cx, c, embed, ref)
@@ -56,11 +60,11 @@ def main():
             ref_rank = im.df._parse_item(ref_it).get("rank")
         except Exception as e:
             print("  gate ERR", str(e)[:70]); continue
-        g = gate(((data.get("model") or {}).get("our_price")), ref_rank, out)
+        g = gate(((data.get("model") or {}).get("our_price")), ref_rank, out, data.get("flags") or [])
         g["searched"] = n
         cx.execute("update deals.dealsheet set data = data || %s::jsonb where id=%s", (json.dumps({"img_gate": g}), id_))
         cnt[g["verdict"]] += 1
-    print("img_gate: %d PASS, %d WARN, %d FAIL" % (cnt["PASS"], cnt["WARN"], cnt["FAIL"]))
+    print("img_gate: %d PASS, %d WARN, %d FAIL, %d UNVERIFIED" % (cnt["PASS"], cnt["WARN"], cnt["FAIL"], cnt["UNVERIFIED"]))
 
 
 main()
