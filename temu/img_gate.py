@@ -60,6 +60,8 @@ def gate(our_price, ref_rank, out, flags=()):
 def main():
     cx = psycopg.connect(os.environ["DATABASE_URL"], autocommit=True)
     cx.execute("create table if not exists deals.img_match (id bigserial primary key, at timestamptz default now(), ref_asin text, asin text, sim real, data jsonb)")
+    for id_, d in cx.execute("select id, data from deals.dealsheet where data ? 'img_gate' and not (data ? 'quality')").fetchall():
+        cx.execute("update deals.dealsheet set data = data || %s::jsonb where id=%s", (json.dumps({"quality": quality.score(d, d.get("img_gate"))}), id_))
     rows = cx.execute("""select id, ref_asin, data from (select distinct on (ref_asin) id, ref_asin, data, run_at from deals.dealsheet
                          where run_at > now() - interval '48 hours' order by ref_asin, run_at desc) t
                          where not (data ? 'img_gate') and (data->'model'->'scenarios'->'base'->>'profit_12m_after_setup')::numeric > 0
