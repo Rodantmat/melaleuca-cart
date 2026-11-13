@@ -1,16 +1,24 @@
-# 2026-11-13T06:41:14Z  bb_web  success  run 43379229481
-rival stock reads: off (budget 80)
-browser session 1 on proxy port 10094  (0 of 167 products read so far, wire 0.0 MB)
-  1/30  price=52.95 seller=MEGA SAVINGS  (1.5 MB so far)
-  21/30  price=None seller=None  (16.4 MB so far)
-browser session 2 on proxy port 10106  (30 of 167 products read so far, wire 4.2 MB)
-  1/30  price=23.99 seller=MIMI HEALTH  (2.0 MB so far)
-rate limited (503) after 22 ASINs - switching IP
-browser session 3 on proxy port 10112  (49 of 167 products read so far, wire 7.1 MB)
-rate limited (503) after 2 ASINs - switching IP
-browser session 4 on proxy port 10124  (49 of 167 products read so far, wire 7.3 MB)
+# 2026-11-13T12:59:17Z  bb_web  success  run 43425695541
+rival stock reads: ON (budget 80)
+browser session 1 on proxy port 10091  (0 of 167 products read so far, wire 0.0 MB)
+  1/30  price=52.95 seller=MEGA SAVINGS  (3.8 MB so far)
+  21/30  price=None seller=None  (33.0 MB so far)
+browser session 2 on proxy port 10106  (30 of 167 products read so far, wire 12.5 MB)
+  1/30  price=22.95 seller=MEGA SAVINGS  (5.1 MB so far)
+  21/30  price=23.99 seller=Oasis Enterprises LLC  (36.1 MB so far)
+browser session 3 on proxy port 10115  (60 of 167 products read so far, wire 22.1 MB)
   1/30  price=None seller=None  (0.0 MB so far)
-rate limited (503) after 5 ASINs - switching IP
+  21/30  price=None seller=None  (32.1 MB so far)
+browser session 4 on proxy port 10126  (90 of 167 products read so far, wire 28.8 MB)
+  1/30  price=53.95 seller=MEGA SAVINGS  (3.2 MB so far)
+  21/30  price=15.49 seller=aboutcare00  (43.1 MB so far)
+browser session 5 on proxy port 10140  (118 of 167 products read so far, wire 39.7 MB)
+rate limited (503) after 7 ASINs - switching IP
+browser session 6 on proxy port 10151  (120 of 167 products read so far, wire 41.4 MB)
+rate limited (503) after 2 ASINs - switching IP
+browser session 7 on proxy port 10161  (120 of 167 products read so far, wire 41.7 MB)
+  1/30  price=None seller=None  (0.0 MB so far)
+rate limited (503) after 3 ASINs - switching IP
 three blocked sessions in a row - stopping for today (partial scan kept)
-proxy traffic on the wire: 7.7 MB in 86 requests; by type: {'document': 7.1, 'fetch': 0.5}
-web Buy Box: 51 ASINs read, 33 with a price, we win 8, errors 0
+proxy traffic on the wire: 41.9 MB in 266 requests; by type: {'document': 40.5, 'fetch': 1.1}
+web Buy Box: 121 ASINs read, 87 with a price, we win 29, errors 1
