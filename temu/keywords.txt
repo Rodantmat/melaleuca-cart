@@ -7,7 +7,6 @@ kitchen | measuring cups and spoons
 kitchen | manual can opener
 kitchen | oil sprayer bottle
 kitchen | silicone ice cube tray
-kitchen | herb scissors
 kitchen | pot lid holder
 kitchen | dish drying rack
 kitchen | sink caddy sponge holder
@@ -18,38 +17,28 @@ kitchen | mandoline slicer
 kitchen | kitchen sink strainer
 kitchen | magnetic knife strip
 kitchen | silicone baking mat
-kitchen | splatter screen
-kitchen | egg separator
 organization | drawer organizer
 organization | fridge organizer bins
 organization | spice rack organizer
 organization | under sink organizer
 organization | pantry storage containers
 organization | closet organizer hanging
-organization | shoe rack organizer
 organization | over the door organizer
 organization | cable management box
-organization | stackable storage bins
 organization | wall mounted shelf
 organization | lazy susan turntable
-organization | velvet hangers
-organization | vacuum storage bags
 organization | bed riser
 cleaning | grout cleaning brush
-cleaning | microfiber cleaning cloths
 cleaning | lint roller pet hair remover
 cleaning | squeegee
 cleaning | scrub brush with handle
 cleaning | drain hair catcher
 cleaning | toilet brush holder
 cleaning | window cleaning tool
-cleaning | dust brush for blinds
 bathroom | shower caddy
 bathroom | toothbrush holder
 bathroom | soap dispenser
 bathroom | bathroom counter organizer
-bathroom | towel hooks adhesive
-bathroom | shower curtain hooks
 laundry | clothes drying rack
 laundry | laundry basket collapsible
 laundry | mesh laundry bags
@@ -57,14 +46,10 @@ laundry | sock organizer
 home | door draft stopper
 home | furniture pads felt
 home | cord cover
-home | adhesive wall hooks
-home | key holder wall
-home | doorstop
 home | curtain tie backs
 pet | pet grooming brush
 pet | collapsible dog bowl
 pet | dog poop bag holder
-pet | cat scratcher cardboard
 pet | pet hair remover roller
 pet | litter mat
 pet | slow feeder dog bowl
@@ -306,3 +291,22 @@ home | bed risers 3 inch
 home | bed lifts stackable
 appliances | electric can opener one touch
 appliances | automatic can opener restaurant
+# tuning round 2026-11-13: dropped 15 zero-keep keywords (3+ rounds), +18 siblings of pot lid / chopper / shower caddy / ab roller / riser
+kitchen | pan organizer rack for cabinet
+kitchen | cutting board holder stand
+kitchen | spatula and spoon rest holder
+kitchen | bakeware organizer rack
+kitchen | cutting board and lid rack drawer
+kitchen | adjustable pot lid rack cabinet door
+kitchen | vegetable dicer with drain basket
+kitchen | french fry cutter manual
+kitchen | spiralizer vegetable slicer
+kitchen | garlic chopper rocker
+bathroom | corner shower shelf no drill
+bathroom | shower storage rack hanging
+bathroom | shower caddy over the door
+fitness | ab roller kneeling mat
+fitness | resistance bands set with handles
+home | bed risers heavy duty 5 inch
+home | couch leg extenders
+appliances | handheld can opener smooth edge
