@@ -1,0 +1,30 @@
+name: Image fetch (private storage, counts only in log)
+on:
+  workflow_dispatch:
+    inputs:
+      refs: { description: "ASINs separated by space", default: "" }
+permissions: { contents: read }
+jobs:
+  img:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with: { ref: main }
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - run: pip install -q "curl_cffi>=0.7" "psycopg[binary]"
+      - name: Fetch images
+        env:
+          CRED_ENV: ${{ secrets.CREDENTIALS_ENV }}
+          AMZ_CLIENT: ${{ secrets.AMZ_CLIENT }}
+          AMZ_SECRET: ${{ secrets.AMZ_SECRET }}
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+          REFS: ${{ github.event.inputs.refs }}
+        run: |
+          mkdir -p /tmp/im; printf '%s\n' "$CRED_ENV" > reprice/credentials.env
+          if [ -n "$AMZ_SECRET" ]; then printf 'CLIENT_ID=%s\nCLIENT_SECRET=%s\n' "$AMZ_CLIENT" "$AMZ_SECRET" >> reprice/credentials.env; fi
+          python temu/img_fetch.py > /tmp/im/run.log 2>&1 || true
+          rm -f reprice/credentials.env
+          grep -E "^img_fetch:|Traceback|ERR" /tmp/im/run.log | head -10 || true
+          rm -rf /tmp/im
