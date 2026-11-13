@@ -26,8 +26,6 @@ organization | lazy susan turntable
 organization | bed riser
 cleaning | grout cleaning brush
 cleaning | lint roller pet hair remover
-cleaning | squeegee
-cleaning | scrub brush with handle
 cleaning | drain hair catcher
 cleaning | toilet brush holder
 cleaning | window cleaning tool
@@ -309,3 +307,17 @@ office | cable organizer box for power strip
 fitness | ab roller with knee pad
 fitness | abdominal wheel roller
 kitchen | pot lid holder drawer insert
+# tuning round 2026-11-13d: dropped 3 zero-keep (2 rounds, 0 WATCH), +13 siblings of under sink (28 WATCH) / pot lid (2 GO) / ab roller / hair catcher / pantry / knife strip
+organization | under sink shelf expandable
+organization | kitchen cabinet pull out organizer
+organization | bathroom under sink storage
+kitchen | pot lid organizer rack
+kitchen | pan lid rack wall mount
+kitchen | cutting board holder organizer
+kitchen | pantry storage canisters airtight
+kitchen | flour sugar container airtight
+cleaning | shower drain hair trap
+cleaning | bathtub drain stopper hair catcher
+fitness | ab wheel roller kneeling mat
+kitchen | silicone sink splash guard
+kitchen | dish drainer sink caddy
