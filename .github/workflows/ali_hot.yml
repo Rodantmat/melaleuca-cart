@@ -22,4 +22,4 @@ jobs:
           CATS: ${{ github.event.inputs.cats }}
           KWS: ${{ github.event.inputs.kws }}
         run: |
-          python temu/ali_hot.py 2>&1 | grep -E "^ali_hot|hot ERR|hot: none|Traceback" | head -10
+          python temu/ali_hot.py 2>&1 | tail -8
