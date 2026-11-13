@@ -8,6 +8,7 @@ import psycopg, spapi
 import img_match as im
 
 CLOSE = float(os.environ.get("CLOSE_SIM", "0.90"))
+FAMILY = float(os.environ.get("FAMILY_SIM", "0.82"))
 MAX = int(os.environ.get("GATE_MAX", "12"))
 
 
@@ -31,12 +32,20 @@ def gate(our_price, ref_rank, out, flags=()):
         reasons.append("%d active same-product listings" % len(active))
     if med and our_price and our_price > 1.15 * med:
         reasons.append("our price is above the ranked-twin median $%.2f" % med)
+    fam = {}
+    for s_, a_, p_, o_ in out:
+        if s_ >= FAMILY and o_ and (o_.get("total") or 0) >= 1 and o_.get("bb") and p_.get("rank"):
+            fam[a_] = (o_["bb"], p_["rank"])
+    if len(fam) >= 12:
+        reasons.append("crowded product family: %d active ranked look-alike listings" % len(fam))
+    elif len(fam) >= 6:
+        reasons.append("%d active ranked look-alike listings" % len(fam))
     if any("entrenched" in str(f) for f in flags):
         reasons.append("entrenched leader with a huge review count")
-    if not active:
+    if not active and not fam:
         reasons.append("no same-product listing found by photo - unverified")
-    verdict = "FAIL" if twin or len(active) >= 8 or any("entrenched" in r for r in reasons) else "UNVERIFIED" if not active else "WARN" if reasons else "PASS"
-    return {"verdict": verdict, "reasons": reasons, "close_matches": len(close), "active": len(active), "ranked": len(ranked), "prime_sellers": len(prime),
+    verdict = "FAIL" if twin or len(active) >= 8 or len(fam) >= 12 or any("entrenched" in r for r in reasons) else "UNVERIFIED" if not active and not fam else "WARN" if reasons else "PASS"
+    return {"verdict": verdict, "reasons": reasons, "close_matches": len(close), "active": len(active), "ranked": len(ranked), "family_active": len(fam), "family_median_price": round(statistics.median([v[0] for v in fam.values()]), 2) if fam else None, "prime_sellers": len(prime),
             "ranked_median_price": med, "lowest_ranked_price": min(prices) if prices else None, "cheaper_twin": twin,
             "top": [{"asin": a, "sim": round(s, 3), "price": (o or {}).get("bb"), "rank": p.get("rank"), "brand": p.get("brand"), "prime": ((o or {}).get("fba") or 0) >= 1}
                     for s, a, p, o in sorted(close, key=lambda x: -x[0])[:12]]}
