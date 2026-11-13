@@ -1,0 +1,32 @@
+name: Competitor check (private storage, counts only in log)
+on:
+  workflow_dispatch:
+    inputs:
+      asins: { description: "REF=ASIN pairs separated by space", default: "" }
+permissions: { contents: read }
+jobs:
+  comp:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with: { ref: main }
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - run: pip install -q "curl_cffi>=0.7" "psycopg[binary]"
+      - name: Check competitors
+        env:
+          CRED_ENV: ${{ secrets.CREDENTIALS_ENV }}
+          AMZ_CLIENT: ${{ secrets.AMZ_CLIENT }}
+          AMZ_SECRET: ${{ secrets.AMZ_SECRET }}
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+          APIFY_TOKEN: ${{ secrets.APIFY_TOKEN || secrets.APIFY_API_TOKEN || secrets.APIFY_KEY || secrets.APIFY }}
+          APIFY_AMZ_MAX: "12"
+          ASINS: ${{ github.event.inputs.asins }}
+        run: |
+          mkdir -p /tmp/cc; printf '%s\n' "$CRED_ENV" > reprice/credentials.env
+          if [ -n "$AMZ_SECRET" ]; then printf 'CLIENT_ID=%s\nCLIENT_SECRET=%s\n' "$AMZ_CLIENT" "$AMZ_SECRET" >> reprice/credentials.env; fi
+          python temu/comp_check.py > /tmp/cc/run.log 2>&1 || true
+          rm -f reprice/credentials.env
+          grep -E "^comp_check:|Traceback|ERR" /tmp/cc/run.log | head -10 || true
+          rm -rf /tmp/cc
