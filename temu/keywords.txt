@@ -47,8 +47,6 @@ pet | pet grooming brush
 pet | collapsible dog bowl
 pet | dog poop bag holder
 pet | pet hair remover roller
-pet | litter mat
-pet | slow feeder dog bowl
 car | car seat gap filler
 car | car trash can
 car | car phone mount
@@ -58,49 +56,27 @@ car | ice scraper
 office | desk organizer
 office | monitor stand riser
 office | laptop stand
-office | cable clips
 office | drawer label maker tape
-office | bookends
-travel | packing cubes
 travel | toiletry bag
-travel | luggage tags
 travel | passport holder
-travel | travel bottles silicone
-garden | plant labels
 garden | garden kneeler pad
-garden | plant support stakes
 garden | hose nozzle
-garden | bird feeder
 garden | self watering spikes
 tools | stud finder
-tools | magnetic wristband
-tools | picture hanging kit
-tools | tape measure
-tools | utility knife
 fitness | resistance bands
 fitness | yoga blocks
 fitness | jump rope
 fitness | ab roller
 fitness | foam roller
-fitness | grip strengthener
-crafts | embroidery kit
 crafts | glue gun sticks
 crafts | craft storage box
-crafts | sewing kit
-accessories | claw hair clips
 accessories | jewelry organizer
 accessories | sunglasses case
-accessories | watch band
-accessories | phone lanyard
-appliances | mini blender portable
 appliances | milk frother handheld
 appliances | electric milk frother
 appliances | digital kitchen scale
-appliances | hand mixer electric
 appliances | egg cooker electric
-appliances | mini waffle maker
 appliances | electric can opener
-appliances | coffee grinder electric
 appliances | vacuum sealer machine
 appliances | electric spice grinder
 appliances | mini food processor
@@ -161,7 +137,6 @@ garden | hose holder wall mount
 garden | raised garden bed
 garden | trellis for climbing plants
 tools | tool storage wall rack
-tools | magnetic wristband
 tools | cable organizer clips
 fitness | resistance band set
 fitness | yoga block set
@@ -288,8 +263,6 @@ home | bed lifts stackable
 appliances | electric can opener one touch
 appliances | automatic can opener restaurant
 # tuning round 2026-11-13: dropped 15 zero-keep keywords (3+ rounds), +18 siblings of pot lid / chopper / shower caddy / ab roller / riser
-kitchen | pan organizer rack for cabinet
-kitchen | cutting board holder stand
 kitchen | spatula and spoon rest holder
 kitchen | bakeware organizer rack
 kitchen | cutting board and lid rack drawer
@@ -316,10 +289,23 @@ kitchen | stainless steel food storage containers
 kitchen | stainless steel lunch box set
 kitchen | measuring spoons stainless magnetic
 kitchen | measuring cups set stainless steel
-kitchen | magnetic knife holder wall
-kitchen | knife block universal
 kitchen | dish drying rack foldable
 kitchen | over sink dish rack
 kitchen | utensil drying rack
 bathroom | bathroom under sink storage
 organization | drawer divider organizer adjustable
+# tuning round 2026-11-13c: dropped 24 zero-keep keywords (2+ rounds, 0 WATCH), +16 siblings of under sink / knife strip / hair catcher / sink strainer / baking mat / cable box / ab roller
+organization | under sink organizer 2 tier
+organization | under sink sliding basket
+bathroom | under bathroom sink organizer pull out
+kitchen | magnetic knife bar stainless
+bathroom | bathtub drain stopper hair catcher
+kitchen | sink strainer basket stainless
+kitchen | sink corner caddy sponge holder
+kitchen | silicone baking mat set
+kitchen | silicone pastry mat with measurements
+office | cable management box large
+office | cable organizer box for power strip
+fitness | ab roller with knee pad
+fitness | abdominal wheel roller
+kitchen | pot lid holder drawer insert
