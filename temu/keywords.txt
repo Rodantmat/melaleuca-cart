@@ -36,7 +36,6 @@ home | cord cover
 home | curtain tie backs
 pet | pet grooming brush
 pet | dog poop bag holder
-pet | pet hair remover roller
 car | car seat gap filler
 car | car trash can
 car | car phone mount
@@ -50,22 +49,16 @@ office | drawer label maker tape
 travel | toiletry bag
 travel | passport holder
 garden | garden kneeler pad
-garden | hose nozzle
 garden | self watering spikes
-tools | stud finder
 fitness | resistance bands
 fitness | yoga blocks
 fitness | jump rope
 fitness | ab roller
 fitness | foam roller
-crafts | glue gun sticks
 crafts | craft storage box
-accessories | jewelry organizer
-accessories | sunglasses case
 appliances | milk frother handheld
 appliances | electric milk frother
 appliances | digital kitchen scale
-appliances | egg cooker electric
 appliances | electric can opener
 appliances | vacuum sealer machine
 appliances | electric spice grinder
@@ -394,3 +387,20 @@ bathroom | shower shelf stainless steel no drilling
 bathroom | under cabinet bathroom organizer
 organization | under sink 2 tier organizer pull out
 organization | cabinet door organizer hanging
+kitchen | ice cube tray with lid and bin
+kitchen | large ice cube mold silicone
+kitchen | ice stick tray water bottle
+kitchen | silicone popsicle molds
+kitchen | freezer storage bins stackable
+kitchen | baking sheet rack organizer
+kitchen | bakeware divider tray organizer
+kitchen | cookware lid rack cabinet mount
+kitchen | plastic wrap foil dispenser rack
+kitchen | stainless steel dish rack plate holder
+kitchen | wok lid holder stand
+kitchen | countertop spoon rest utensil
+bathroom | corner shower shelf adhesive
+bathroom | shower shelf stainless steel no drill
+bathroom | shampoo bottle holder wall
+organization | sink caddy sponge holder stainless
+# tuning round 2026-11-13h: dropped 8 low-yield/negative-profit singles, +16 siblings of ice tray / pot lid / shower caddy / baking rack families
