@@ -31,18 +31,13 @@ cleaning | toilet brush holder
 cleaning | window cleaning tool
 bathroom | shower caddy
 bathroom | toothbrush holder
-bathroom | soap dispenser
 bathroom | bathroom counter organizer
 laundry | clothes drying rack
-laundry | laundry basket collapsible
-laundry | mesh laundry bags
-laundry | sock organizer
 home | door draft stopper
 home | furniture pads felt
 home | cord cover
 home | curtain tie backs
 pet | pet grooming brush
-pet | collapsible dog bowl
 pet | dog poop bag holder
 pet | pet hair remover roller
 car | car seat gap filler
@@ -338,7 +333,6 @@ bathroom | adhesive toilet paper holder shelf
 bathroom | silicone faucet extender
 bathroom | shower curtain weights
 pet | cat water fountain filter pack
-pet | slow feeder dog bowl
 pet | cat window perch suction
 home | cord organizer cable clips
 home | magnetic door stopper
@@ -354,3 +348,21 @@ fitness | foam roller massage ball
 garden | plant watering spikes self
 home | window insulation film kit
 home | drawer dividers expandable
+kitchen | pot lid holder stainless steel stand
+kitchen | pan organizer rack for cabinet
+kitchen | bakeware organizer rack
+kitchen | vegetable chopper onion dicer
+kitchen | food chopper manual pull
+kitchen | knife block holder universal
+kitchen | magnetic spice jar rack
+bathroom | shower caddy corner stainless steel
+bathroom | shower shelf no drilling
+bathroom | bathroom shelf over toilet
+organization | under sink organizer 2 tier sliding
+organization | cabinet shelf riser expandable
+fitness | ab roller wheel double
+fitness | push up bar stands
+cleaning | sink hair catcher stainless
+home | bed risers adjustable furniture lifts
+home | couch risers furniture legs
+# tuning round 2026-11-13e: dropped 25 zero-keep (2+ rounds, 0 WATCH), +17 siblings of pot lid / chopper / shower caddy / under sink / ab roller / riser / knife
