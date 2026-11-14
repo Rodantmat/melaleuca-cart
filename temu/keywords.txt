@@ -25,7 +25,6 @@ laundry | clothes drying rack
 home | cord cover
 pet | pet grooming brush
 car | car seat gap filler
-car | car trash can
 car | car phone mount
 car | car sun shade
 car | ice scraper
@@ -35,7 +34,6 @@ office | drawer label maker tape
 garden | garden kneeler pad
 garden | self watering spikes
 fitness | resistance bands
-fitness | yoga blocks
 fitness | ab roller
 fitness | foam roller
 appliances | milk frother handheld
@@ -75,15 +73,12 @@ garden | trellis for climbing plants
 tools | tool storage wall rack
 tools | cable organizer clips
 fitness | resistance band set
-fitness | yoga block set
 fitness | ab roller wheel
 fitness | doorway pull up bar
 pets | dog grooming glove brush
 pets | dog paw cleaner cup
 bathroom | tub drain strainer
 bathroom | toothbrush holder wall mounted
-home | door bottom seal strip
-home | window draft stopper
 home | sofa leg risers
 kitchen | magnetic knife holder wall
 kitchen | cabinet shelf organizer expandable
@@ -98,13 +93,10 @@ kitchen | measuring spoons magnetic
 home | cable management sleeve
 home | cable clips adhesive
 pet | pet hair lint brush reusable
-pet | slicker brush dog
 kitchen | smart can opener hands free
 fitness | ab wheel roller with knee mat
 fitness | push up bars handles
 fitness | resistance bands set loop
-fitness | jump rope adjustable
-fitness | hand grip strengthener
 fitness | ab roller wheel kit
 fitness | yoga block foam
 home | furniture sliders felt pads
