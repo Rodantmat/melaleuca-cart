@@ -1,4 +1,4 @@
-# 2026-11-13T18:50:00Z  feed  success  run 43485383252
+# 2026-11-14T17:23:59Z  feed  success  run 43620244154
 Requesting reports ...
 Waiting for Amazon to build them (usually 1-10 minutes) ...
   planning                     DONE
@@ -36,7 +36,6 @@ Summary
 Files are in: /home/runner/work/melaleuca-cart/melaleuca-cart/feedwork/raw
 Send Claude the file raw\headers_summary.txt (it contains no sales data).
 Asking Amazon for fee estimates on 163 products ...
-  (Amazon busy / rate limit, HTTP 429 - waiting 5s)
 demand history: 212 products with orders, 181 with a stock ledger (folder /home/runner/work/melaleuca-cart/melaleuca-cart/feedwork/state)
 
 Built feed files in: /home/runner/work/melaleuca-cart/melaleuca-cart/feedwork/feed
