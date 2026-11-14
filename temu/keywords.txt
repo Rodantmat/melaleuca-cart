@@ -44,8 +44,6 @@ bathroom | towel rack wall mounted
 furniture | bed frame center support leg
 furniture | foldable step stool
 furniture | cabinet shelf riser expandable
-furniture | folding clothes drying rack
-home | car trunk organizer
 home | sliding drawer under cabinet
 kitchen | expandable dish rack over sink
 kitchen | stainless steel utensil holder
@@ -160,7 +158,6 @@ fitness | resistance bands set with handles
 home | couch leg extenders
 kitchen | under sink organizer 2 tier
 kitchen | under sink shelf expandable
-kitchen | cabinet organizer pull out
 kitchen | pantry organizer bins clear
 kitchen | stainless steel food storage containers
 kitchen | stainless steel lunch box set
@@ -228,7 +225,6 @@ organization | stackable drawer organizer trays
 kitchen | utensil holder for countertop
 kitchen | pot and pan lid organizer rack
 kitchen | cutting board organizer rack
-kitchen | dry food storage canisters airtight
 kitchen | cereal dispenser storage
 kitchen | pantry shelf risers
 kitchen | spice jars set with labels
