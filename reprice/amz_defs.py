@@ -39,4 +39,22 @@ def main():
         for k in ("color", "size", "fit_type", "target_gender", "department", "style", "material", "neck", "sleeve", "age_range_description", "item_type_keyword", "headwear_size", "special_size_type", "model_name"):
             if k in props:
                 e = vals(props[k]); print("  attr", k, ("ENUM(%d) %s" % (len(e[0]), e[0][:25])) if e else "(free)", "| groups:", props[k].get("propertyGroup"))
+def compact(x, d=0):
+    """shrink a JSON-schema node: drop descriptions/titles/examples"""
+    if isinstance(x, dict):
+        return {k: compact(v, d+1) for k, v in x.items() if k not in ("description", "title", "examples", "$comment", "editable", "hidden", "selectors", "maxUniqueItems", "minUniqueItems")}
+    if isinstance(x, list): return [compact(v, d+1) for v in x][:60]
+    return x
+def dump_keys():
+    for ptype in ("SHIRT", "SWEATSHIRT", "HAT"):
+        sch = json.load(open("defs/%s.json" % ptype)); props = sch.get("properties", {})
+        keys = ("size", "color", "care_instructions", "import_designation", "fabric_type", "neck", "collar_style", "sleeve", "age_gender_category", "model_number", "model_name",
+                "number_of_items", "item_package_quantity", "supplier_declared_dg_hz_regulation", "seasons", "headwear_size", "purchasable_offer", "list_price",
+                "main_product_image_locator", "other_product_image_locator_1", "externally_assigned_product_identifier", "supplier_declared_has_product_identifier_exemption",
+                "parentage_level", "child_parent_sku_relationship", "style", "special_size_type", "fit_type", "target_gender", "department", "item_type_keyword",
+                "fulfillment_availability", "merchant_shipping_group", "condition_type", "material")
+        for k in keys:
+            if k in props:
+                print("SCHEMA", ptype, k, json.dumps(compact(props[k]), separators=(",", ":"))[:1400])
 main()
+dump_keys()
