@@ -387,15 +387,14 @@ garden | garden hose holder wall mount
 car | car trunk organizer foldable
 tools | tape measure magnetic stripper
 home | boot tray shoe mat
-Home & Kitchen | manual onion slicer chopper handheld
-Home & Kitchen | onion holder slicer guide
-Home & Kitchen | garlic onion mincer press
-Home & Kitchen | mini digital kitchen scale 500g
-Home & Kitchen | food scale with tare stainless
-Home & Kitchen | pocket scale 0.01g
-Home & Kitchen | stainless steel pot lid rack organizer
-Home & Kitchen | pot and pan lid organizer countertop
-Home & Kitchen | ladle spoon rest stove top
-Home & Kitchen | spoon rest silicone for stove
-Office | power strip hider cable management box
-Bathroom | shower caddy basket no drill
+kitchen | manual onion slicer chopper handheld
+kitchen | onion holder slicer guide
+kitchen | garlic onion mincer press
+kitchen | mini digital kitchen scale 500g
+kitchen | food scale with tare stainless
+kitchen | pocket scale 0.01g
+kitchen | stainless steel pot lid rack organizer
+kitchen | pot and pan lid organizer countertop
+kitchen | ladle spoon rest stove top
+kitchen | spoon rest silicone for stove
+office | power strip hider cable management box
