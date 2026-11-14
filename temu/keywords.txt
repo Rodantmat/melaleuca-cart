@@ -89,7 +89,6 @@ kitchen | smart can opener hands free
 fitness | ab wheel roller with knee mat
 fitness | push up bars handles
 fitness | resistance bands set loop
-fitness | ab roller wheel kit
 home | furniture sliders felt pads
 home | table leg extenders
 bathroom | shower caddy hanging over door
@@ -169,7 +168,6 @@ kitchen | measuring spoons stainless magnetic
 kitchen | measuring cups set stainless steel
 kitchen | dish drying rack foldable
 kitchen | over sink dish rack
-bathroom | bathroom under sink storage
 organization | under sink sliding basket
 bathroom | under bathroom sink organizer pull out
 kitchen | magnetic knife bar stainless
@@ -183,7 +181,6 @@ fitness | abdominal wheel roller
 kitchen | pot lid holder drawer insert
 kitchen | pot lid organizer rack
 kitchen | pan lid rack wall mount
-kitchen | cutting board holder organizer
 kitchen | flour sugar container airtight
 fitness | ab wheel roller kneeling mat
 kitchen | silicone sink splash guard
@@ -204,7 +201,6 @@ home | hanging closet organizer shelves
 car | windshield sun shade foldable
 fitness | resistance loop bands set
 fitness | foam roller massage ball
-garden | plant watering spikes self
 home | window insulation film kit
 kitchen | pot lid holder stainless steel stand
 kitchen | vegetable chopper onion dicer
@@ -215,7 +211,6 @@ bathroom | bathroom shelf over toilet
 organization | under sink organizer 2 tier sliding
 fitness | ab roller wheel double
 fitness | push up bar stands
-home | couch risers furniture legs
 kitchen | utensil holder with 3 compartments stainless
 kitchen | cutting board and lid organizer rack
 kitchen | vegetable slicer dicer with container
@@ -294,7 +289,6 @@ organization | stackable storage bins with lids
 kitchen | cutting board and lid holder stainless
 kitchen | stainless steel spoon rest
 kitchen | spatula and ladle holder countertop
-kitchen | cabinet door pot lid rack
 bathroom | shower squeegee holder hooks
 fitness | ab wheel roller knee mat
 fitness | resistance band door anchor
@@ -325,7 +319,6 @@ kitchen | lazy susan 2 tier cabinet organizer
 organization | stackable cabinet shelf white metal
 kitchen | onion dicer with container stainless blades
 kitchen | vegetable slicer dicer 8 in 1
-kitchen | food chopper hand press manual
 pet | pet hair remover glove
 pet | dog bath brush shampoo dispenser
 kitchen | pot lid holder wall mounted adhesive
@@ -398,3 +391,18 @@ kitchen | countertop utensil holder stainless steel
 bathroom | shower caddy 3 tier hanging stainless
 bathroom | shower shelf adhesive 2 pack
 organization | closet organizer hanging 6 shelf
+# tuning round 2026-11-14f: -12 gw=1 duplicates, +14 new families (onion/ab/cable siblings + diversified pet/garden/tools/car)
+kitchen | onion chopper with lid and container
+kitchen | mandoline slicer adjustable stainless
+fitness | push up board system
+fitness | hand grip strengthener adjustable
+fitness | resistance bands pull up assist set
+organization | cord organizer box wooden hider
+organization | drawer divider adjustable bamboo
+pet | dog slow feeder bowl
+pet | cat litter mat honeycomb
+garden | hose nozzle spray metal
+garden | plant support stakes cage
+tools | magnetic wristband for screws
+car | car seat back organizer kick mat
+car | steering wheel lock anti theft
