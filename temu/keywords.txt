@@ -22,21 +22,17 @@ cleaning | grout cleaning brush
 cleaning | window cleaning tool
 bathroom | shower caddy
 laundry | clothes drying rack
-home | furniture pads felt
 home | cord cover
 home | curtain tie backs
 pet | pet grooming brush
-pet | dog poop bag holder
 car | car seat gap filler
 car | car trash can
 car | car phone mount
-car | trunk organizer
 car | car sun shade
 car | ice scraper
 office | desk organizer
 office | laptop stand
 office | drawer label maker tape
-travel | toiletry bag
 travel | passport holder
 garden | garden kneeler pad
 garden | self watering spikes
@@ -46,13 +42,11 @@ fitness | ab roller
 fitness | foam roller
 appliances | milk frother handheld
 appliances | digital kitchen scale
-appliances | electric can opener
 appliances | electric kettle small
 appliances | handheld vacuum sealer
 appliances | electric salt pepper grinder
 # batch 2 - higher-ticket, durable, bulky-but-light, low-return generic items
 bathroom | tension pole shower caddy
-bathroom | over the toilet storage shelf
 bathroom | shower curtain rod tension
 bathroom | bath mat memory foam
 bathroom | towel rack wall mounted
@@ -61,11 +55,8 @@ furniture | adjustable laptop stand
 furniture | foldable step stool
 furniture | cabinet shelf riser expandable
 furniture | folding clothes drying rack
-home | door mounted pull up bar
 home | wall mounted key holder
-home | floating shelves set
 home | car trunk organizer
-home | hanging closet shelves
 home | sliding drawer under cabinet
 kitchen | expandable dish rack over sink
 kitchen | stainless steel utensil holder
@@ -80,11 +71,9 @@ kitchen | nonstick silicone cookware set
 kitchen | spice jar set with rack
 pet | cat scratching post
 pet | dog car seat cover
-pet | pet stairs ramp foldable
 pet | elevated dog bowl stand
 pet | dog training treat pouch
 garden | garden kneeler seat
-garden | plant stand indoor tiered
 garden | hose holder wall mount
 garden | trellis for climbing plants
 tools | tool storage wall rack
@@ -101,7 +90,6 @@ home | door bottom seal strip
 home | window draft stopper
 home | sofa leg risers
 kitchen | magnetic knife holder wall
-kitchen | under sink shelf organizer
 kitchen | cabinet shelf organizer expandable
 bathroom | bathtub drain strainer
 bathroom | shower corner caddy adhesive
@@ -145,7 +133,6 @@ kitchen | knife block universal
 kitchen | spice jar rack wall
 kitchen | stainless steel dish rack small
 kitchen | drawer knife organizer
-organization | under cabinet storage rack
 organization | expandable drawer organizer
 organization | pull out cabinet organizer
 organization | cutlery tray drawer
@@ -217,7 +204,6 @@ appliances | handheld can opener smooth edge
 kitchen | under sink organizer 2 tier
 kitchen | under sink shelf expandable
 kitchen | cabinet organizer pull out
-kitchen | under cabinet storage rack
 kitchen | pantry organizer bins clear
 kitchen | stainless steel food storage containers
 kitchen | stainless steel lunch box set
@@ -423,3 +409,12 @@ fitness | push up bar stand handles
 fitness | exercise mat thick 10mm
 kitchen | lazy susan 2 tier cabinet organizer
 organization | stackable cabinet shelf white metal
+# tuning round 2026-11-14a: dropped 16 low-WATCH / negative-profit bulky keywords; +siblings of onion dicer / dog grooming glove / pot lid / vegetable chopper (best base-profit dossiers)
+kitchen | onion dicer with container stainless blades
+kitchen | vegetable slicer dicer 8 in 1
+kitchen | food chopper hand press manual
+kitchen | salad chopper bowl set
+pet | pet hair remover glove
+pet | dog bath brush shampoo dispenser
+pet | cat grooming glove deshedding
+kitchen | pot lid holder wall mounted adhesive
