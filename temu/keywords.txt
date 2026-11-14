@@ -251,7 +251,6 @@ niche | reusable silicone stretch lids set
 niche | under desk cable management tray
 niche | foldable laundry basket with handles
 niche | shoe rack stackable adjustable
-niche | over sink drying rack roll up
 niche | toilet paper holder with phone shelf
 niche | self stirring mug lid
 niche | garage hook wall mount heavy duty bike
@@ -260,22 +259,15 @@ niche | rotating makeup organizer turntable
 niche | pet hair roller reusable brush
 niche | slim crevice cleaning brush set
 niche | dish brush soap dispensing handle storage
-niche | air fryer silicone liner reusable
 niche | cord winder wrap cable organizer
 niche | stroller hook organizer clip
-niche | adjustable laptop stand portable aluminum
 niche | wine bottle chiller stick
 kitchen | ice cube tray 15 grid silicone
 kitchen | ice ball mold sphere silicone
-kitchen | ice cube tray with lid stackable
 kitchen | ice cube bin and scoop
-kitchen | silicone popsicle mold set
-kitchen | silicone ice stick tray water bottle
 kitchen | pot lid holder 4 tier
 kitchen | pot lid rack over sink
 kitchen | pan organizer rack cabinet
-kitchen | cookie cutter set stainless
-kitchen | silicone muffin cups reusable
 kitchen | cake decorating turntable
 kitchen | refrigerator egg holder tray
 organization | stackable storage bins with lids
@@ -303,8 +295,6 @@ kitchen | vegetable chopper with container 12 in 1
 kitchen | pot and pan lid organizer drawer
 kitchen | silicone pot holder trivet set
 kitchen | utensil crock ceramic
-bathroom | shower caddy corner stainless rustproof
-bathroom | shower shelf no drill adhesive 2 pack
 fitness | ab roller wheel with knee pad
 fitness | push up bar stand handles
 fitness | exercise mat thick 10mm
@@ -313,7 +303,6 @@ organization | stackable cabinet shelf white metal
 kitchen | onion dicer with container stainless blades
 kitchen | vegetable slicer dicer 8 in 1
 pet | pet hair remover glove
-pet | dog bath brush shampoo dispenser
 kitchen | pot lid holder wall mounted adhesive
 organization | power strip cover box cord hider
 organization | cable box organizer bamboo desk
@@ -331,7 +320,6 @@ kitchen | airtight coffee flour canister stainless
 garden | tiered plant stand metal indoor outdoor
 garden | corner plant shelf 3 tier
 kitchen | gravity electric pepper mill set rechargeable
-kitchen | salt and pepper mill manual acrylic
 kitchen | stainless steel utensil holder pot lid 3pcs
 fitness | ab roller with knee mat
 fitness | ab wheel roller no noise
@@ -382,7 +370,6 @@ kitchen | countertop utensil holder stainless steel
 bathroom | shower caddy 3 tier hanging stainless
 bathroom | shower shelf adhesive 2 pack
 organization | closet organizer hanging 6 shelf
-# tuning round 2026-11-14f: -12 gw=1 duplicates, +14 new families (onion/ab/cable siblings + diversified pet/garden/tools/car)
 kitchen | onion chopper with lid and container
 kitchen | mandoline slicer adjustable stainless
 fitness | push up board system
@@ -397,3 +384,17 @@ garden | plant support stakes cage
 tools | magnetic wristband for screws
 car | car seat back organizer kick mat
 car | steering wheel lock anti theft
+# tuning round 2026-11-14g: -22 dead (avg ROI<0, <=1 good), +13 siblings of pot lid/onion/shower caddy/ab/cable
+kitchen | pot lid organizer rack cabinet door
+kitchen | pot lid holder wall mount stainless
+kitchen | spoon rest with lid holder
+kitchen | onion chopper with container
+kitchen | mandoline slicer adjustable
+bathroom | shower caddy 3 tier standing
+organization | power strip holder wall mount
+organization | desk drawer organizer tray
+pet | pet food storage container airtight
+garden | garden hose holder wall mount
+car | car trunk organizer foldable
+tools | tape measure magnetic stripper
+home | boot tray shoe mat
