@@ -1,0 +1,557 @@
+{
+ "meta": {
+  "last_sweep": "2026-10-21"
+ },
+ "sellers": {
+  "A3LDKS5CUEYHBY": {
+   "first": "2026-10-21",
+   "type": "M",
+   "fb_count": 72,
+   "fb_pct": 90.0,
+   "ships_from": "NY",
+   "hours": 24,
+   "prime": false,
+   "last": "2026-10-21"
+  },
+  "A33W1JPUAS0U0W": {
+   "first": "2026-10-21",
+   "type": "M",
+   "fb_count": 57,
+   "fb_pct": 84.0,
+   "ships_from": "FL",
+   "hours": 0,
+   "prime": false,
+   "last": "2026-10-21"
+  },
+  "A3431QI59MY9RE": {
+   "first": "2026-10-21",
+   "type": "F",
+   "fb_count": 190,
+   "fb_pct": 99.0,
+   "ships_from": null,
+   "hours": 0,
+   "prime": true,
+   "last": "2026-10-21"
+  },
+  "A2ZOCI5BGBLJOM": {
+   "first": "2026-10-21",
+   "type": "M",
+   "fb_count": 1565,
+   "fb_pct": 97.0,
+   "ships_from": "NJ",
+   "hours": 0,
+   "prime": false,
+   "last": "2026-10-21"
+  },
+  "A1RPIWLVJ7SQRO": {
+   "first": "2026-10-21",
+   "type": "F",
+   "fb_count": 19,
+   "fb_pct": 93.0,
+   "ships_from": null,
+   "hours": 0,
+   "prime": true,
+   "last": "2026-10-21"
+  },
+  "A2SK870QUCZDTW": {
+   "first": "2026-10-21",
+   "type": "M",
+   "fb_count": 35,
+   "fb_pct": 91.0,
+   "ships_from": "WY",
+   "hours": 96,
+   "prime": false,
+   "last": "2026-10-21"
+  },
+  "A34XPYM21HEXRE": {
+   "first": "2026-10-21",
+   "type": "F",
+   "fb_count": 145,
+   "fb_pct": 100.0,
+   "ships_from": null,
+   "hours": 0,
+   "prime": true,
+   "last": "2026-10-21"
+  },
+  "A3U98YBTTNVEJY": {
+   "first": "2026-10-21",
+   "type": "M",
+   "fb_count": 5,
+   "fb_pct": 80.0,
+   "ships_from": "FL",
+   "hours": 24,
+   "prime": false,
+   "last": "2026-10-21"
+  },
+  "A1EGEH1WT3TNR7": {
+   "first": "2026-10-21",
+   "type": "F",
+   "fb_count": 10846,
+   "fb_pct": 96.0,
+   "ships_from": null,
+   "hours": 0,
+   "prime": true,
+   "last": "2026-10-21"
+  },
+  "A2CQAQVRFBMFXD": {
+   "first": "2026-10-21",
+   "type": "M",
+   "fb_count": 72,
+   "fb_pct": 82.0,
+   "ships_from": "NM",
+   "hours": 24,
+   "prime": false,
+   "last": "2026-10-21"
+  },
+  "A18U6U3EIITJW0": {
+   "first": "2026-10-21",
+   "type": "M",
+   "fb_count": 55,
+   "fb_pct": 87.0,
+   "ships_from": "CA",
+   "hours": 24,
+   "prime": false,
+   "last": "2026-10-21"
+  },
+  "A34GH88RDKF8DU": {
+   "first": "2026-10-21",
+   "type": "F",
+   "fb_count": 37,
+   "fb_pct": 95.0,
+   "ships_from": null,
+   "hours": 0,
+   "prime": true,
+   "last": "2026-10-21"
+  },
+  "A20N1EZ80QSPZR": {
+   "first": "2026-10-21",
+   "type": "M",
+   "fb_count": 369,
+   "fb_pct": 96.0,
+   "ships_from": "CA",
+   "hours": 24,
+   "prime": false,
+   "last": "2026-10-21"
+  },
+  "A1OYQCBLT3HVHY": {
+   "first": "2026-10-21",
+   "type": "M",
+   "fb_count": 18,
+   "fb_pct": 89.0,
+   "ships_from": "NY",
+   "hours": 0,
+   "prime": false,
+   "last": "2026-10-21"
+  },
+  "A2PN9CVQ6DIJZW": {
+   "first": "2026-10-21",
+   "type": "F",
+   "fb_count": 979,
+   "fb_pct": 87.0,
+   "ships_from": null,
+   "hours": 0,
+   "prime": true,
+   "last": "2026-10-21"
+  },
+  "A3UDUFRPS6LTEI": {
+   "first": "2026-10-21",
+   "type": "M",
+   "fb_count": 144,
+   "fb_pct": 53.0,
+   "ships_from": "FL",
+   "hours": 24,
+   "prime": false,
+   "last": "2026-10-21"
+  },
+  "A1EJJKAII2MBVN": {
+   "first": "2026-10-21",
+   "type": "F",
+   "fb_count": 111,
+   "fb_pct": 100.0,
+   "ships_from": null,
+   "hours": 0,
+   "prime": true,
+   "last": "2026-10-21"
+  },
+  "A30JHXS87738TZ": {
+   "first": "2026-10-21",
+   "type": "M",
+   "fb_count": 115,
+   "fb_pct": 87.0,
+   "ships_from": "MD",
+   "hours": 24,
+   "prime": false,
+   "last": "2026-10-21"
+  },
+  "A3LM21FNT09E6H": {
+   "first": "2026-10-21",
+   "type": "F",
+   "fb_count": 207,
+   "fb_pct": 94.0,
+   "ships_from": null,
+   "hours": 0,
+   "prime": true,
+   "last": "2026-10-21"
+  },
+  "A2FYCBZU47WLV2": {
+   "first": "2026-10-21",
+   "type": "F",
+   "fb_count": 0,
+   "fb_pct": 0.0,
+   "ships_from": null,
+   "hours": 0,
+   "prime": true,
+   "last": "2026-10-21"
+  },
+  "A26YUA1Q5JCC6L": {
+   "first": "2026-10-21",
+   "type": "M",
+   "fb_count": 0,
+   "fb_pct": 0.0,
+   "ships_from": "NJ",
+   "hours": 24,
+   "prime": false,
+   "last": "2026-10-21"
+  },
+  "A1CHPKJLAEX2QK": {
+   "first": "2026-10-21",
+   "type": "M",
+   "fb_count": 14,
+   "fb_pct": 100.0,
+   "ships_from": "CA",
+   "hours": 24,
+   "prime": false,
+   "last": "2026-10-21"
+  },
+  "A1RIF9105QOHVH": {
+   "first": "2026-10-21",
+   "type": "M",
+   "fb_count": 3,
+   "fb_pct": 67.0,
+   "ships_from": "FL",
+   "hours": 0,
+   "prime": false,
+   "last": "2026-10-21"
+  },
+  "A14M4IJN6R8VWY": {
+   "first": "2026-10-21",
+   "type": "F",
+   "fb_count": 0,
+   "fb_pct": 0.0,
+   "ships_from": null,
+   "hours": 0,
+   "prime": true,
+   "last": "2026-10-21"
+  },
+  "A2B7UXZ1P8ZGI5": {
+   "first": "2026-10-21",
+   "type": "F",
+   "fb_count": 0,
+   "fb_pct": 0.0,
+   "ships_from": null,
+   "hours": 0,
+   "prime": true,
+   "last": "2026-10-21"
+  },
+  "A4W6V5IRXD79F": {
+   "first": "2026-10-21",
+   "type": "M",
+   "fb_count": 0,
+   "fb_pct": 0.0,
+   "ships_from": "TX",
+   "hours": 24,
+   "prime": false,
+   "last": "2026-10-21"
+  },
+  "A3JPYLDATQAFP6": {
+   "first": "2026-10-21",
+   "type": "M",
+   "fb_count": 49,
+   "fb_pct": 63.0,
+   "ships_from": "BC",
+   "hours": 0,
+   "prime": false,
+   "last": "2026-10-21"
+  },
+  "A3PE89TUAYO6SI": {
+   "first": "2026-10-21",
+   "type": "M",
+   "fb_count": 0,
+   "fb_pct": 0.0,
+   "ships_from": "FL",
+   "hours": 48,
+   "prime": false,
+   "last": "2026-10-21"
+  },
+  "A6Z16ZMY0PPCC": {
+   "first": "2026-10-21",
+   "type": "M",
+   "fb_count": 85,
+   "fb_pct": 93.0,
+   "ships_from": "CA",
+   "hours": 24,
+   "prime": false,
+   "last": "2026-10-21"
+  },
+  "A3OPDLT2RU443C": {
+   "first": "2026-10-21",
+   "type": "M",
+   "fb_count": 20,
+   "fb_pct": 45.0,
+   "ships_from": "TX",
+   "hours": 48,
+   "prime": false,
+   "last": "2026-10-21"
+  },
+  "A10HEHLCN2INB9": {
+   "first": "2026-10-21",
+   "type": "M",
+   "fb_count": 31,
+   "fb_pct": 81.0,
+   "ships_from": "CA",
+   "hours": 0,
+   "prime": false,
+   "last": "2026-10-21"
+  },
+  "A3Q5TYR1WNJ7Y": {
+   "first": "2026-10-21",
+   "type": "M",
+   "fb_count": 193,
+   "fb_pct": 96.0,
+   "ships_from": "NJ",
+   "hours": 24,
+   "prime": false,
+   "last": "2026-10-21"
+  },
+  "A1XB9I6SBF2RE0": {
+   "first": "2026-10-21",
+   "type": "M",
+   "fb_count": 2,
+   "fb_pct": 100.0,
+   "ships_from": "OR",
+   "hours": 24,
+   "prime": false,
+   "last": "2026-10-21"
+  },
+  "A1Y5P7PMGQW2SO": {
+   "first": "2026-10-21",
+   "type": "M",
+   "fb_count": 0,
+   "fb_pct": 0.0,
+   "ships_from": "NV",
+   "hours": 24,
+   "prime": false,
+   "last": "2026-10-21"
+  },
+  "A29O8SLOB9UWUQ": {
+   "first": "2026-10-21",
+   "type": "M",
+   "fb_count": 174,
+   "fb_pct": 84.0,
+   "ships_from": "FL",
+   "hours": 24,
+   "prime": false,
+   "last": "2026-10-21"
+  },
+  "A3JA0RYKLXEKB7": {
+   "first": "2026-10-21",
+   "type": "F",
+   "fb_count": 0,
+   "fb_pct": 0.0,
+   "ships_from": null,
+   "hours": 0,
+   "prime": true,
+   "last": "2026-10-21"
+  },
+  "A2FG3Z3GBIKJWH": {
+   "first": "2026-10-21",
+   "type": "M",
+   "fb_count": 0,
+   "fb_pct": 0.0,
+   "ships_from": "NY",
+   "hours": 48,
+   "prime": false,
+   "last": "2026-10-21"
+  },
+  "ADXSJFF0WRNQW": {
+   "first": "2026-10-21",
+   "type": "M",
+   "fb_count": 243,
+   "fb_pct": 55.0,
+   "ships_from": "NY",
+   "hours": 24,
+   "prime": false,
+   "last": "2026-10-21"
+  },
+  "A14LDK4BF9OVZE": {
+   "first": "2026-10-21",
+   "type": "M",
+   "fb_count": 181,
+   "fb_pct": 76.0,
+   "ships_from": "FL",
+   "hours": 24,
+   "prime": false,
+   "last": "2026-10-21"
+  },
+  "A2OC6EPIZ3YDT3": {
+   "first": "2026-10-21",
+   "type": "F",
+   "fb_count": 17,
+   "fb_pct": 94.0,
+   "ships_from": null,
+   "hours": 0,
+   "prime": true,
+   "last": "2026-10-21"
+  },
+  "A374YBB9V3U6NQ": {
+   "first": "2026-10-21",
+   "type": "M",
+   "fb_count": 191,
+   "fb_pct": 94.0,
+   "ships_from": "FL",
+   "hours": 0,
+   "prime": false,
+   "last": "2026-10-21"
+  },
+  "A335MHRUNVXH9O": {
+   "first": "2026-10-21",
+   "type": "M",
+   "fb_count": 138,
+   "fb_pct": 93.0,
+   "ships_from": "CA",
+   "hours": 24,
+   "prime": false,
+   "last": "2026-10-21"
+  },
+  "A1FF1T6RFJ87S6": {
+   "first": "2026-10-21",
+   "type": "M",
+   "fb_count": 326,
+   "fb_pct": 76.0,
+   "ships_from": "CA",
+   "hours": 24,
+   "prime": false,
+   "last": "2026-10-21"
+  },
+  "A9MOBFG4NL74I": {
+   "first": "2026-10-21",
+   "type": "M",
+   "fb_count": 0,
+   "fb_pct": 0.0,
+   "ships_from": "NV",
+   "hours": 24,
+   "prime": false,
+   "last": "2026-10-21"
+  },
+  "A577FVXCJNWT6": {
+   "first": "2026-10-21",
+   "type": "M",
+   "fb_count": 330,
+   "fb_pct": 95.0,
+   "ships_from": "FL",
+   "hours": 0,
+   "prime": false,
+   "last": "2026-10-21"
+  },
+  "A1JHMSQDE1XDER": {
+   "first": "2026-10-21",
+   "type": "M",
+   "fb_count": 1,
+   "fb_pct": 0.0,
+   "ships_from": "PA",
+   "hours": 24,
+   "prime": false,
+   "last": "2026-10-21"
+  },
+  "AHPUS10RQVM61": {
+   "first": "2026-10-21",
+   "type": "M",
+   "fb_count": 81,
+   "fb_pct": 85.0,
+   "ships_from": "FL",
+   "hours": 0,
+   "prime": false,
+   "last": "2026-10-21"
+  },
+  "ATV7I45KM1IFO": {
+   "first": "2026-10-21",
+   "type": "M",
+   "fb_count": 39,
+   "fb_pct": 72.0,
+   "ships_from": "NV",
+   "hours": 0,
+   "prime": false,
+   "last": "2026-10-21"
+  },
+  "A3KME4OG71SIYI": {
+   "first": "2026-10-21",
+   "type": "F",
+   "fb_count": 973,
+   "fb_pct": 100.0,
+   "ships_from": null,
+   "hours": 0,
+   "prime": true,
+   "last": "2026-10-21"
+  },
+  "AG6S4UE5Z03E1": {
+   "first": "2026-10-21",
+   "type": "M",
+   "fb_count": 89,
+   "fb_pct": 94.0,
+   "ships_from": "MA",
+   "hours": 24,
+   "prime": false,
+   "last": "2026-10-21"
+  },
+  "ASRI10BUIWVGE": {
+   "first": "2026-10-21",
+   "type": "M",
+   "fb_count": 57,
+   "fb_pct": 93.0,
+   "ships_from": "NJ",
+   "hours": 24,
+   "prime": false,
+   "last": "2026-10-21"
+  },
+  "A2N21GNTS5M5W3": {
+   "first": "2026-10-21",
+   "type": "M",
+   "fb_count": 40,
+   "fb_pct": 89.0,
+   "ships_from": "AL",
+   "hours": 24,
+   "prime": false,
+   "last": "2026-10-21"
+  },
+  "A3OJTL4W0ISHBH": {
+   "first": "2026-10-21",
+   "type": "M",
+   "fb_count": 18,
+   "fb_pct": 67.0,
+   "ships_from": null,
+   "hours": 120,
+   "prime": false,
+   "last": "2026-10-21"
+  },
+  "A3GROICQAADUYP": {
+   "first": "2026-10-21",
+   "type": "M",
+   "fb_count": 8,
+   "fb_pct": 38.0,
+   "ships_from": "TX",
+   "hours": 24,
+   "prime": false,
+   "last": "2026-10-21"
+  },
+  "A2HSYNJJUO56IK": {
+   "first": "2026-10-21",
+   "type": "M",
+   "fb_count": 15,
+   "fb_pct": 73.0,
+   "ships_from": "FL",
+   "hours": 24,
+   "prime": false,
+   "last": "2026-10-21"
+  }
+ }
+}

@@ -1,0 +1,173 @@
+sku	group	sellable_units	sold_per_month	days_cover	cost	price_base	price_cons	profit_unit_cons	value_cons	value_base	signal	unfulfillable
+ME0096	Renew - Lotion - 20oz	28	16.0	52	9.99	64.12	64.12	38.71	1363.57	1363.57	OK (52 d cover)	0
+ME0125	Laundry - Melapower - Island Breeze	18	6.0	90	19.49	51.99	51.99	17.05	657.72	657.72	OK (90 d cover)	0
+ME1432	Mela-Pharmacy - Activate-C - Raspberry	21	6.2	102	7.99	40.99	40.99	22.1	631.79	631.79	BUY LESS (102 d cover)	0
+ME0128	Laundry - MelaPower - Scent Free	14	5.7	74	19.49	59.99	59.99	24.92	621.74	621.74	OK (74 d cover)	0
+ME0029	Ecosense - Diamond Brite - 25 Loads	26	20.0	39	8.19	34.88	34.88	14.98	602.33	602.33	OK (39 d cover)	0
+ME1431	Exercise - Sustain Sport - Blueberry Pom	18	3.3	162	7.99	44.97	44.97	26.15	590.57	614.47	STOP buying (162 d cover)	0
+76-KHS9-9FXW	Ecosense - Clean And Gleam - 8oz	19	15.7	36	4.615	39.99	39.99	25.02	563.16	563.16	OK (36 d cover)	0
+ME0130	Laundry - Melapower - Garden Lavender	12	8.8	41	19.49	59.99	59.99	24.92	532.88	532.88	OK (41 d cover)	0
+9C-A4T7-C308	Laundry - Melabrite - 96 loads	13	10.3	38	15.99	54.99	54.99	24.46	525.85	525.85	OK (38 d cover)	0
+ME0022	Ecosense - PreSpot - 8oz	30	17.7	51	6.99	25.39	25.39	10.24	516.95	516.95	OK (51 d cover)	0
+ME1304	Ecosense - Harvest Pure - 8oz	17	9.0	57	6.99	39.99	39.99	22.65	503.88	503.88	OK (57 d cover)	0
+ZG-3DR2-6CUW	(not in sheet) Melaleuca Sol-U-Mel 3-in-	14	0.7	630	0.0	69.99	59.49	47.07	503.63	783.88	STOP buying (630 d cover)	0
+ME1815	Mela-Pharmacy - Mela-Out Magnesium	8	5.3	45	24.59	79.99	79.99	37.52	496.88	496.88	OK (45 d cover)	0
+ME0266	Mela-Pharmacy - Pain A Trate - Ultra	18	6.8	79	12.79	36.99	36.99	14.79	496.51	496.51	OK (79 d cover)	0
+ME1419	Haircare - Affinia Volume Shampoo	15	5.3	84	8.49	44.99	44.99	24.53	495.3	495.3	OK (84 d cover)	0
+ME1158	Renew - Eczema Treatment - 1.7oz	30	9.5	95	7.49	23.75	23.75	8.84	489.9	489.9	BUY LESS (95 d cover)	0
+OI-SORQ-OAIE	Laundry - MelaBoost - Garden Lavender	17	9.0	57	7.99	39.99	39.99	19.87	473.62	473.62	OK (57 d cover)	0
+ME1414	Laundry - MelaSoft Bottle - Clean Cotton	14	3.3	126	12.59	48.99	48.99	21.01	467.04	470.4	BUY LESS (126 d cover)	0
+ME0002	Ecosense - Tub and Tile - 8oz	29	10.3	84	6.99	23.89	23.89	9.0	463.61	463.61	OK (84 d cover)	0
+ME1301	Ecosense - Sol U Guard	20	20.7	29	9.39	32.84	32.84	13.3	453.85	453.85	BUY MORE (29 d cover)	0
+ME0027	Ecosense - Prespot with Scrubbing Brush	22	7.2	92	4.19	28.22	28.22	15.45	431.98	431.98	BUY LESS (92 d cover)	0
+LP-R08I-0PFV	(not in sheet) Melaleuca Sol-U-Mel 3-in-	10	0.7	450	0.0	69.99	59.49	47.07	381.25	559.91	STOP buying (450 d cover)	0
+ME1430	Exercise - Sustain Sport - Lemon	13	4.0	98	7.99	38.95	38.95	21.03	377.21	377.21	BUY LESS (98 d cover)	0
+ME1123	Mela-Pharmacy - Vitality Calcium Complet	16	4.7	103	11.49	32.39	32.39	11.96	375.12	375.12	BUY LESS (103 d cover)	0
+AB0003	(not in sheet) GEMOX Stainless Steel Fin	183	10.3	531	0.0	6.99	6.99	2.44	350.97	446.79	STOP buying (531 d cover)	0
+VI-4LX8-XEFI	(not in sheet) Melaleuca - Safe & Mighty	30	0.0	999	0.0	36.99	31.44	23.23	348.38	838.25	STOP buying - no sales 90d	0
+P9-9LY1-OBH4	Deodorant - Alloy Antiperspirant	19	10.0	57	5.79	25.99	25.99	12.44	346.37	346.37	OK (57 d cover)	1
+E0-FNUP-YHBK	Deodorant - Affinia Sweet Cream and Will	19	11.2	51	5.79	24.99	24.99	11.59	330.22	330.22	OK (51 d cover)	0
+ME0100	Laundry - MelaSoft Bottle - Spring Breez	10	4.2	72	12.59	44.99	44.99	19.34	319.3	319.3	OK (72 d cover)	0
+ME0357	EcoSense - Lemon Brite - 16oz - Apple Sc	32	9.3	103	4.39	17.7	17.7	5.44	314.54	314.54	BUY LESS (103 d cover)	0
+ME1135	Mela-Pharmacy - Activate-C - Orange	10	9.7	31	7.99	41.79	41.79	23.44	314.29	314.29	OK (31 d cover)	0
+ME1802	Exercise - Splash H2O - Strawberry Kiwi	14	8.2	51	5.223333333333334	29.99	29.99	16.41	302.82	302.82	OK (51 d cover)	0
+ME0066	Exercise - Sustain Sport - Raspberry Lem	10	3.3	90	7.99	39.8	39.8	21.5	294.88	294.88	OK (90 d cover)	0
+ME1413	Laundry - MelaSoft Bottle - Garden Laven	8	2.3	103	12.59	48.99	48.99	23.83	291.36	291.36	BUY LESS (103 d cover)	0
+ME0275	Ecosense - Tough and Tender - 8oz	17	15.3	33	4.615	23.79	23.79	11.22	269.28	269.28	OK (33 d cover)	0
+ME1833	Exercise - Splash H2O - Lemonade	12	6.3	57	5.223333333333334	29.99	29.99	16.41	259.56	259.56	OK (57 d cover)	0
+ME1416	Haircare - Affinia Moisture Shampoo 	9	6.7	40	8.49	39.82	39.82	20.14	257.64	257.64	OK (40 d cover)	0
+ME0052	Ecosense - No Work - 8oz	17	13.2	39	6.99	22.89	22.89	8.12	256.85	256.85	OK (39 d cover)	0
+ME0360	Ecosense - Mela-magic - 16oz	16	13.3	36	6.99	24.8	24.8	8.87	253.82	253.82	OK (36 d cover)	0
+ME1410	Laundry - Melasoft Dryer Sheets - Spring	12	2.8	127	6.49	29.99	29.99	14.65	251.57	253.68	BUY LESS (127 d cover)	2
+ME1635	Haircare - Affinia Moisture Conditioner 	8	5.2	46	8.49	42.99	42.99	22.83	250.56	250.56	OK (46 d cover)	0
+MQ-F85D-3ON7	Deodorant - Affinia Vanilla Musk and Jas	14	8.7	48	5.79	24.99	24.99	11.59	243.32	243.32	OK (48 d cover)	0
+ME0063	Toothcare - Koala Pals - Berrylicious	16	5.7	85	4.59	21.33	21.33	10.1	235.02	235.02	OK (85 d cover)	0
+ME1165	Exercise - FiberWise Drink-Berry Sugar-f	4	7.2	17	23.99	69.99	69.99	29.47	213.84	213.84	BUY MORE (17 d cover)	0
+ME0112	Toothcare - Breath-Away Mouth Rinse - 16	15	13.7	33	8.59	22.84	22.84	5.61	212.95	212.95	OK (33 d cover)	0
+ME0276	Haircare - Original Shampoo - 8oz	9	4.5	60	5.39	31.93	31.93	17.89	209.52	209.52	OK (60 d cover)	0
+ME1651	Beauty - Sei Bella Gentle Daily Cleanser	7	5.0	42	10.5	39.99	39.99	19.4	209.3	209.3	OK (42 d cover)	0
+ME1418	Haircare - Affinia Volume Conditioner	7	7.5	28	8.49	39.89	39.89	20.22	200.94	200.94	BUY MORE (28 d cover)	0
+ME0102	Renew - Body Wash 12oz	13	9.0	43	6.49	23.7	23.7	8.9	200.04	200.04	OK (43 d cover)	1
+ME0023	Haircare - Herbal Shampoo - 32oz	5	7.0	21	17.49	49.99	48.99	17.8	176.45	180.7	BUY MORE (21 d cover)	0
+ME1813	Ecosense - Revive - Original with Bottle	7	3.0	70	7.68	34.99	34.99	17.3	174.86	174.86	OK (70 d cover)	0
+ME1411	Laundry - Melasoft Dryer Sheets - Clean 	8	3.3	72	6.49	29.99	29.99	14.65	169.12	169.12	OK (72 d cover)	1
+ME1235	Laundry - MelaBoost - Mountain Fresh	6	7.5	24	7.99	39.99	39.99	19.88	167.19	167.19	BUY MORE (24 d cover)	0
+ME1433	Laundry - MelaBoost - Island Breeze	6	7.2	25	7.99	39.99	39.99	19.88	167.19	167.19	BUY MORE (25 d cover)	0
+ME0153	Haircare - Original Shampoo - 32oz	4	6.0	20	17.49	56.79	56.79	24.2	166.76	166.76	BUY MORE (20 d cover)	0
+37-VS1C-79P5	Mela-Pharmacy - Activate-C - Family Size	3	2.2	42	30.19	79.99	69.99	24.27	163.38	188.88	OK (42 d cover)	0
+ME0279	Ecosense - Diamond Brite - Packs	9	8.3	32	9.49	25.98	25.98	8.32	160.26	160.26	OK (32 d cover)	0
+ME1628	Koala Pals - Hair Wash	10	5.0	60	3.84	23.89	23.89	12.12	159.6	159.6	OK (60 d cover)	0
+ME0046	Toothcare - Classic - Fresh Mint	16	10.3	46	4.59	16.99	16.49	5.33	158.8	165.6	OK (46 d cover)	0
+ME1810	Exercise - Splash H2O - Peach Ice Tea	7	5.3	39	5.223333333333334	29.99	29.99	16.41	151.41	151.41	OK (39 d cover)	0
+ME1655	Oil - T36-C5-0.5 fl.oz.	6	2.7	68	8.75	31.99	31.99	14.35	138.6	138.6	OK (68 d cover)	0
+9P-4ZS7-QV81	Beauty - Sei Bella SPF 25 Sunscreen - 2.	5	0.7	225	15.5	45.63	38.79	13.93	136.83	176.22	STOP buying (225 d cover)	0
+ME0009	Mela-Pharmacy - MelaGel .4oz Disk	8	7.3	33	8.39	24.88	24.88	8.67	136.48	136.48	OK (33 d cover)	0
+ME0030	Renew - Hand Wash - Refill - 18oz Refill	6	4.3	42	12.79	32.95	32.95	9.61	134.38	134.38	OK (42 d cover)	0
+ME0033	Mela-Pharmacy - Pain A Trate - Original	7	11.0	19	10.69	26.79	26.79	8.22	132.4	132.4	BUY MORE (19 d cover)	0
+ME1202	Toothcare - Exceed - Cinnamon	11	12.5	26	4.59	18.89	18.89	7.38	131.62	131.62	BUY MORE (26 d cover)	0
+ME0068	EcoSense - Lemon Brite - 16oz - Tropical	11	12.0	28	4.39	19.5	19.5	6.96	124.85	124.85	BUY MORE (28 d cover)	0
+ME0111	Laundry - Melasoft Dryer Sheets - Garden	7	7.7	27	6.49	25.99	25.99	11.25	124.18	124.18	BUY MORE (27 d cover)	0
+ME1629	Koala Pals - Body Wash	9	5.7	48	3.84	21.35	21.35	9.54	120.38	120.38	OK (48 d cover)	0
+ME0039	Renew - Lotion - 8oz - Pure Lavender	6	11.7	15	9.49	28.39	28.39	10.55	120.26	120.26	BUY MORE (15 d cover)	0
+ME0020	EcoSense - Lemon Brite - 16oz - Lemon Sc	11	11.7	28	4.39	18.84	18.84	6.4	118.68	118.68	BUY MORE (28 d cover)	0
+NI-S69F-14K1	Ecosense - Rustic - 8oz	7	6.3	33	6.99	23.99	23.99	9.31	114.1	114.1	OK (33 d cover)	0
+8B-GMC4-4EZ8	(not in sheet) Melaleuca Sol-U-Mel 3-in-	3	2.0	45	0.0	54.99	46.74	36.23	108.69	129.72	OK (45 d cover)	0
+ME001502	Mela-Pharmacy - Replenex Extra Strength 	2	5.0	12	22.39	64.99	64.99	28.49	101.76	101.76	BUY MORE (12 d cover)	0
+ME1646	Haircare - Sei Bella Argan Oil and Cocon	3	2.2	42	20.0	44.79	44.79	13.31	99.93	99.93	OK (42 d cover)	0
+ME1775	Ecosense - Sol-U-Mel - Original - 8oz	3	1.0	90	11.99	42.99	42.99	20.46	97.35	97.35	OK (90 d cover)	0
+ME0008	Renew - Lotion - 8oz	5	7.3	20	10.29	27.39	27.39	8.64	94.65	94.65	BUY MORE (20 d cover)	0
+ME1650	Haircare - Sei Bella Argan Oil and Cocon	2	2.0	30	20.0	59.99	59.99	26.37	92.74	92.74	OK (30 d cover)	0
+ME1654	Beauty - Sei Bella Volume Extreme Mascar	3	5.7	16	15.5	44.99	39.99	14.4	89.7	102.45	BUY MORE (16 d cover)	0
+ME0282	Ecosense - Prespot Instant Stain Remover	16	9.2	52	2.59	10.99	10.99	2.89	87.62	87.62	OK (52 d cover)	0
+ME0285	Sun Shades - Lip Balm - Cranberry Tanger	11	9.0	37	2.69	13.39	13.39	5.16	86.3	86.3	OK (37 d cover)	0
+ME0277	Soap Bar - Pineapple Mango Bar	8	3.3	72	4.79	17.24	17.24	5.76	84.38	84.38	OK (72 d cover)	0
+ME1659	Ecosense - Clear Power Glass Cleaner - 8	3	1.0	90	8.780000000000001	37.99	37.99	18.75	82.59	82.59	OK (90 d cover)	0
+ME0050	Ecosense - Sol-U-Mel - Lemon Blossom - 8	4	4.0	30	11.99	28.74	28.74	8.35	81.35	81.35	OK (30 d cover)	0
+ME0127	Haircare - Herbal Shampoo - 8oz	4	5.2	23	5.39	28.95	28.95	14.87	81.02	81.02	BUY MORE (23 d cover)	0
+ME0286	Sun Shades - Lip Balm - Pina Colada	11	11.5	29	2.69	14.06	13.39	4.6	80.19	86.45	BUY MORE (29 d cover)	0
+ME1434	Renew - Lotion - 1oz - Pure Lavender	11	6.0	55	2.29	12.99	12.99	4.89	78.98	78.98	OK (55 d cover)	0
+ME0017	Soap Bar - Platinum Bar	8	4.3	55	4.79	16.09	16.09	4.8	76.72	76.72	OK (55 d cover)	0
+ME0287	Sun Shades - Lip Balm - Vanilla Bean	14	6.7	63	2.69	8.95	8.95	2.53	73.08	73.08	OK (63 d cover)	0
+ME1507	Toothcare - Breath-Away Mouth Rinse - 16	2	2.5	24	14.18	49.99	49.99	22.0	72.36	72.36	BUY MORE (24 d cover)	0
+ME1814	Ecosense - Clear Power Glass Cleaner Wip	6	1.8	98	4.29	18.81	18.81	7.61	71.38	71.38	BUY LESS (98 d cover)	0
+ME1303	Beauty - Sei Bella Facial Scrub	4	6.2	19	6.5	24.84	24.84	10.52	68.08	68.08	BUY MORE (19 d cover)	0
+ME1412	Laundry - Melasoft Dryer Sheets - Scent 	4	2.7	45	6.49	24.79	24.79	10.23	66.88	66.88	OK (45 d cover)	0
+ME1819	Mela-Pharmacy - Collagen Boost with Cera	1	2.3	13	39.89	84.99	84.99	26.47	66.36	66.36	BUY MORE (13 d cover)	0
+ME1302	EcoSense - Rinse Aid - 16oz	6	2.3	77	6.99	19.0	19.0	3.94	65.57	65.57	OK (77 d cover)	0
+ME1653	Toothcare - Exceed - Mints - Wintergreen	9	4.0	68	2.69	14.99	12.99	4.5	64.71	80.01	OK (68 d cover)	0
+ME1132	Toothcare - Koala Pals - Apple	5	6.7	22	4.59	19.99	19.99	8.31	64.5	64.5	BUY MORE (22 d cover)	0
+ME1647	Ecosense - Tough and Tender - 8oz with B	3	0.8	108	6.405	31.89	31.89	15.09	64.47	64.47	BUY LESS (108 d cover)	0
+ME1621	Ecosense - Prespot Instant Stain Remover	3	3.0	30	6.77	29.99	29.99	14.63	64.2	64.2	OK (30 d cover)	0
+ME0021	Renew - Hand Wash 8oz	4	6.0	20	7.39	24.48	24.48	8.66	64.19	64.19	BUY MORE (20 d cover)	0
+ME1102	Mela-Pharmacy - Florify Daily Probiotic	2	0.3	180	18.49	42.95	42.95	14.15	62.02	65.28	STOP buying (180 d cover)	0
+ME0092	Exercise - Sustain Sport - Orange Splash	2	6.8	9	7.99	39.95	39.95	21.89	59.75	59.75	BUY MORE (9 d cover)	0
+ME0031	Laundry - Melabrite - Oxi Packs	5	9.3	16	7.99	18.84	18.84	3.74	58.65	58.65	BUY MORE (16 d cover)	0
+PQ-6D5S-MTW1	Exercise - Sustain Electrolyte Tub - Ras	1	1.5	20	25.29	69.99	69.99	29.84	55.13	55.13	BUY MORE (20 d cover)	0
+ME1627	Exercise - Sustain Electrolyte Tub - Lem	1	1.7	18	25.29	69.99	69.99	29.17	54.46	54.46	BUY MORE (18 d cover)	0
+ME1133	Mela-Pharmacy - Vitality Vitamin D3 	3	2.8	32	8.39	24.99	24.99	8.99	52.14	52.14	OK (32 d cover)	0
+ME1128	Exercise - Simply Fit Chocolate Chip Dri	2	3.2	19	6.79	34.99	34.99	18.6	50.78	50.78	BUY MORE (19 d cover)	0
+05-SH42-DDII	Exercise - GC Control Creamy Vanilla Bea	1	1.7	18	27.29	64.99	64.99	22.92	50.21	50.21	BUY MORE (18 d cover)	0
+ME0018	Toothcare - Exceed - Fresh Mint	5	12.5	12	4.59	15.99	15.99	5.14	48.64	48.64	BUY MORE (12 d cover)	0
+DE-QFMC-M0RB	Sun Valley  - Foaming Hand Wash - Refill	2	0.7	90	19.69	34.35	29.2	4.38	48.13	56.89	OK (90 d cover)	0
+ME1238	Mela-Pharmacy - Phytomega 	1	3.0	10	16.595	59.89	59.89	29.69	46.29	46.29	BUY MORE (10 d cover)	0
+ME0088	Soap Bar - Gold Bar	5	5.8	26	4.79	15.47	15.47	4.26	45.27	45.27	BUY MORE (26 d cover)	0
+ME0289	Toothcare - Exceed - Spearmint with Fluo	4	11.3	11	4.59	17.89	17.89	6.53	44.48	44.48	BUY MORE (11 d cover)	0
+ME0024	Exercise - FiberWise Orange No Sugar	1	5.7	5	23.99	58.88	58.88	20.03	44.02	44.02	BUY MORE (5 d cover)	0
+ME1415	Exercise - FiberWise Green Apple with St	1	6.5	5	23.99	57.84	57.84	19.14	43.13	43.13	BUY MORE (5 d cover)	0
+ME1505	Ecosense - PreSpot - 8oz - 2-Pack	1	0.8	36	12.98	49.99	49.99	29.51	42.49	42.49	OK (36 d cover)	0
+ME1812	Ecosense - No Work - 8oz with Bottle	2	0.7	90	8.780000000000001	33.95	28.86	10.99	39.53	48.19	OK (90 d cover)	0
+ME1609	Ecosense - Tough and Tender - 8oz - 2-Pa	1	1.3	22	9.23	49.99	49.99	28.5	37.73	37.73	BUY MORE (22 d cover)	0
+HB-YB7V-EIA1	Ecosense - Tub and Tile - 8oz - 2-Pack	1	1.3	22	13.98	49.99	49.99	23.75	37.73	37.73	BUY MORE (22 d cover)	0
+ME1485	Ecosense - Rustic - 8oz - 2-Pack	1	1.0	30	13.98	49.49	49.49	23.33	37.31	37.31	OK (30 d cover)	0
+ME1482	Ecosense - Diamond Brite - 25 Loads - 2-	1	1.0	30	15.38	52.99	52.99	21.76	37.14	37.14	OK (30 d cover)	0
+ME1134	Mela-Pharmacy - Creme Delight - Peach Ma	1	2.3	13	22.79	47.01	47.01	12.4	35.19	35.19	BUY MORE (13 d cover)	0
+ME1805	Ecosense - Tough and Tender Wipes	4	2.7	45	4.29	14.99	14.99	4.36	34.6	34.6	OK (45 d cover)	0
+ME0043	Soap Bar - Exfoliating Bar - Almond Vani	4	6.0	20	4.79	14.89	14.89	3.78	34.28	34.28	BUY MORE (20 d cover)	0
+ME1305	Renew - Bath Oil 	2	3.3	18	7.59	24.88	24.88	9.47	34.12	34.12	BUY MORE (18 d cover)	0
+ME0032	Mela-Pharmacy - Vitality 50+	1	7.0	4	14.99	42.95	42.95	17.66	32.65	32.65	BUY MORE (4 d cover)	0
+ME1406	Deodorant - Herbal	2	6.8	9	5.79	21.89	21.89	8.96	29.5	29.5	BUY MORE (9 d cover)	0
+ME1441	Exercise - Simply Fit Vanilla Greek Yogu	2	1.0	60	6.79	22.39	22.39	7.89	29.36	29.36	OK (60 d cover)	0
+ME0256	Soap Bar - Exfoliating Bar	3	5.8	15	4.79	15.89	15.89	4.63	28.25	28.25	BUY MORE (15 d cover)	0
+4K-5OF1-YPS3	Ecosense - Sol-U-Guard Wipes	2	2.7	22	6.19	19.99	19.99	6.71	25.8	25.8	BUY MORE (22 d cover)	0
+ME1648	Ecosense - Tub and Tile - 8oz with Bottl	1	0.7	45	8.780000000000001	34.79	34.79	15.57	24.35	24.35	OK (45 d cover)	0
+ME1300	Ecosense - Safe and Mighty	1	9.3	3	6.19	34.99	34.99	17.94	24.13	24.13	BUY MORE (3 d cover)	0
+ME1429	Exercise - Access - Chocolate Raspberry 	1	1.3	22	16.99	39.51	33.58	6.79	23.78	28.82	BUY MORE (22 d cover)	0
+ME0003	Renew - Lotion - 1oz	7	20.7	10	2.09	6.1	6.1	1.03	21.84	21.84	BUY MORE (10 d cover)	0
+ME0291	Ecosense - Sol-U-Guard with Bottle	1	0.7	45	11.18	35.95	30.56	9.18	20.36	24.95	OK (45 d cover)	0
+ME1649	Ecosense - Prespot - 8oz with Bottle	1	0.8	36	8.780000000000001	35.0	29.75	11.29	20.07	24.53	OK (36 d cover)	0
+GV-PN7P-3X4C	Mela-Pharmacy - MelaGel .5oz Tube	2	4.0	15	8.39	15.49	15.39	1.25	19.29	19.46	BUY MORE (15 d cover)	0
+ME0064	Sun Shades - After Sun Relief Gel - 7.3o	1	1.7	18	10.19	22.5	22.5	4.59	14.78	14.78	BUY MORE (18 d cover)	0
+2Y-LBJT-OTHD	(not in sheet) Melaleuca Exceed Tooth Po	1	0.7	45	0.0	19.75	16.79	10.77	10.77	13.29	OK (45 d cover)	0
+ME0062	Soap Bar - Pink Grapefruit Bar	1	4.3	7	4.79	16.49	16.49	5.13	9.92	9.92	BUY MORE (7 d cover)	0
+ME1252	"(not in sheet) Melaleuca""Cell Wise"" Broa"	0	0.0	0	0.0	0	0.0	0.0	0.0	0.0	OK (0 d cover)	0
+ME1138	Mela-Pharmacy - Activate-C - Bottle	0	5.8	0	13.29	33.95	33.95	11.71	0.0	0.0	BUY (out of stock, sells 5.8/mo)	0
+ME0114	Sun Shades - Mineral Plus SPF 30+ Sunscr	0	8.8	0	13.49	21.0	21.0	0.25	0.0	0.0	BUY (out of stock, sells 8.8/mo)	0
+ME1828	Mela-Pharmacy - Vitality Essential Nutri	0	0.0	0	44.99	0	0.0	-44.99	0.0	0.0	OK (0 d cover)	0
+ME1824	Mela-Pharmacy - Peak Performance Nutriti	0	0.0	0	81.99	0	0.0	-81.99	0.0	0.0	OK (0 d cover)	0
+ME1622	Ecosense - Tough and Tender - Lavender -	0	3.0	0	6.99	34.99	34.99	18.4	0.0	0.0	BUY (out of stock, sells 3.0/mo)	0
+ME0090	(not in sheet) Melaleuca Oil T36-C5, 1 f	0	4.3	0	0.0	34.99	34.99	26.24	0.0	0.0	BUY (out of stock, sells 4.3/mo)	0
+ME1652	Sun Valley - Hand Wash - Mint and Herb -	1	0.7	45	7.48	0	0.0	-7.48	0.0	0.0	OK (45 d cover)	0
+ME1645	Mela-Pharmacy - Peak Performance Nutriti	0	0.0	0	81.99	139.0	118.15	12.04	0.0	0.0	BUY MORE (0 d cover)	0
+ME1826	Mela-Pharmacy - Vitality Essential Nutri	0	0.0	0	44.99	0	0.0	-44.99	0.0	0.0	OK (0 d cover)	0
+I0-FUBR-S9CU	Ecosense - Clear Power Glass Cleaner - 8	1	0.7	45	6.99	0	0.0	-6.99	0.0	0.0	OK (45 d cover)	0
+ME1811	Exercise - Access - Chocolate Caramel Kr	0	1.3	0	16.99	43.49	43.49	13.08	0.0	0.0	BUY (out of stock, sells 1.3/mo)	0
+ME1201	Mela-Pharmacy - ProvexCV	0	0.0	0	30.19	54.95	46.71	1.7	0.0	0.0	BUY MORE (0 d cover)	0
+ME0083	(not in sheet) Melaleuca MELABRITE 6X, C	0	0.0	0	0.0	0	0.0	0.0	0.0	0.0	OK (0 d cover)	0
+ME1657	Exercise - B-Fuel - Raspberry Lemonade -	0	0.0	0	2.375	0	0.0	-2.38	0.0	0.0	OK (0 d cover)	0
+ME0011	Mela-Pharmacy - Vitality Women	0	4.3	0	14.99	42.95	42.95	17.39	0.0	0.0	BUY (out of stock, sells 4.3/mo)	0
+GF-Y56X-CX1Z	(not in sheet) Melaleuca Mela-Gel Topica	0	0.0	0	0.0	0	0.0	0.0	0.0	0.0	OK (0 d cover)	0
+ME0070	Laundry - MelaPower - Mountain Fresh	0	8.7	0	19.49	51.79	51.79	17.95	0.0	0.0	BUY (out of stock, sells 8.7/mo)	0
+ME1623	Ecosense - Lemon Brite - 16oz - Lavender	0	6.7	0	4.39	24.99	24.99	12.09	0.0	0.0	BUY (out of stock, sells 6.7/mo)	0
+ME1131	Sun Shades - Lip Balm - Mountain Mist	0	8.3	0	2.69	10.03	10.03	2.39	0.0	0.0	BUY (out of stock, sells 8.3/mo)	0
+ME1827	Mela-Pharmacy - Vitality Essential Nutri	0	0.0	0	44.99	0	0.0	-44.99	0.0	0.0	OK (0 d cover)	0
+ME0361	Ecosense - Mela-magic - 16oz - 2-Pack	0	1.3	0	13.98	44.95	44.95	17.64	0.0	0.0	BUY (out of stock, sells 1.3/mo)	0
+ME1806	Mela-Pharmacy - Peak Performance Nutriti	0	0.0	0	81.99	0	0.0	-81.99	0.0	0.0	OK (0 d cover)	0
+ME1236	(not in sheet) Melaleuca MelaBoost - Gar	0	0.0	0	0.0	39.99	39.99	30.49	0.0	0.0	BUY MORE (0 d cover)	0
+ME1124	Mela-Pharmacy - Coldwater Omega 3	0	2.7	0	17.19	36.49	36.49	9.96	0.0	0.0	BUY (out of stock, sells 2.7/mo)	0
+ME1673	Beauty - Sei Bella Defense and Repair Tr	0	1.3	0	35.5	52.95	45.01	-1.37	0.0	0.0	BUY (out of stock, sells 1.3/mo)	0
+ME1409	Mela-Pharmacy - Good Zymes	0	4.0	0	16.99	50.33	50.33	21.43	0.0	0.0	BUY (out of stock, sells 4.0/mo)	0
+ME049	(not in sheet) Clear Power Glass Cleaner	0	6.0	0	0.0	23.99	23.99	16.89	0.0	0.0	BUY (out of stock, sells 6.0/mo)	0
+HN-7OON-4N0S	(not in sheet) Melaleuca PreSpot Gel wit	0	0.0	0	0.0	0	0.0	0.0	0.0	0.0	OK (0 d cover)	0
+ME0048	(not in sheet) Melaleuca Rustic Touch Fu	0	1.3	0	0.0	23.79	23.79	16.72	0.0	0.0	BUY (out of stock, sells 1.3/mo)	0
+ME1641	Ecosense - Sol-U-Mel - Lavender - 8oz	0	4.7	0	11.99	41.99	41.99	19.61	0.0	0.0	BUY (out of stock, sells 4.7/mo)	0
+ME1424	Exercise - Access - Chocolate S'mores Sp	0	0.3	0	16.99	0	0.0	-16.99	0.0	0.0	BUY (out of stock, sells 0.3/mo)	0

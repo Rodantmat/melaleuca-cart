@@ -1,0 +1,13 @@
+{
+ "ts": "2026-10-17T05:11:22.686003",
+ "tx_by_status": {
+  "RELEASED": 58555.89,
+  "DEFERRED": 4913.28,
+  "DEFERRED_RELEASED": 25053.7
+ },
+ "tx_counts": {
+  "RELEASED": 1377,
+  "DEFERRED": 204,
+  "DEFERRED_RELEASED": 1067
+ }
+}
