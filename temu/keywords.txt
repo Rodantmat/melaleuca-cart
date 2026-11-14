@@ -23,7 +23,6 @@ cleaning | window cleaning tool
 bathroom | shower caddy
 laundry | clothes drying rack
 home | cord cover
-home | curtain tie backs
 pet | pet grooming brush
 car | car seat gap filler
 car | car trash can
@@ -33,7 +32,6 @@ car | ice scraper
 office | desk organizer
 office | laptop stand
 office | drawer label maker tape
-travel | passport holder
 garden | garden kneeler pad
 garden | self watering spikes
 fitness | resistance bands
@@ -55,7 +53,6 @@ furniture | adjustable laptop stand
 furniture | foldable step stool
 furniture | cabinet shelf riser expandable
 furniture | folding clothes drying rack
-home | wall mounted key holder
 home | car trunk organizer
 home | sliding drawer under cabinet
 kitchen | expandable dish rack over sink
@@ -72,7 +69,6 @@ kitchen | spice jar set with rack
 pet | cat scratching post
 pet | dog car seat cover
 pet | elevated dog bowl stand
-pet | dog training treat pouch
 garden | garden kneeler seat
 garden | hose holder wall mount
 garden | trellis for climbing plants
@@ -91,7 +87,6 @@ home | window draft stopper
 home | sofa leg risers
 kitchen | magnetic knife holder wall
 kitchen | cabinet shelf organizer expandable
-bathroom | bathtub drain strainer
 bathroom | shower corner caddy adhesive
 bathroom | shower shelf stainless
 kitchen | digital kitchen scale small
@@ -114,15 +109,10 @@ fitness | ab roller wheel kit
 fitness | yoga block foam
 home | furniture sliders felt pads
 home | table leg extenders
-kitchen | manual can opener smooth edge
 kitchen | jar opener gripper
-kitchen | bottle opener wall mounted
 bathroom | shower caddy hanging over door
 bathroom | shower shelf no drilling
 bathroom | bathroom corner shelf adhesive
-bathroom | razor holder shower
-bathroom | shower hook rail
-organization | over door hooks
 organization | adhesive wall hooks heavy duty
 kitchen | utensil holder countertop
 kitchen | cutting board holder rack
@@ -149,7 +139,6 @@ organization | power strip cover box
 organization | under bathroom sink organizer
 organization | cabinet shelf riser
 fitness | ab wheel with knee pad
-fitness | digital kitchen scale small
 kitchen | jewelry scale mini digital
 kitchen | pan organizer rack for cabinet
 kitchen | lid organizer for drawer
@@ -191,7 +180,6 @@ kitchen | cutting board and lid rack drawer
 kitchen | adjustable pot lid rack cabinet door
 kitchen | vegetable dicer with drain basket
 kitchen | french fry cutter manual
-kitchen | spiralizer vegetable slicer
 kitchen | garlic chopper rocker
 bathroom | corner shower shelf no drill
 bathroom | shower storage rack hanging
@@ -199,7 +187,6 @@ bathroom | shower caddy over the door
 fitness | ab roller kneeling mat
 fitness | resistance bands set with handles
 home | couch leg extenders
-appliances | handheld can opener smooth edge
 # tuning round 2026-11-13b: dropped 9 zero-keep keywords (2 rounds), +16 siblings of under sink organizer / pantry containers / measuring cups / knife strip / dish rack
 kitchen | under sink organizer 2 tier
 kitchen | under sink shelf expandable
@@ -213,14 +200,11 @@ kitchen | dish drying rack foldable
 kitchen | over sink dish rack
 kitchen | utensil drying rack
 bathroom | bathroom under sink storage
-organization | drawer divider organizer adjustable
 # tuning round 2026-11-13c: dropped 24 zero-keep keywords (2+ rounds, 0 WATCH), +16 siblings of under sink / knife strip / hair catcher / sink strainer / baking mat / cable box / ab roller
-organization | under sink organizer 2 tier
 organization | under sink sliding basket
 bathroom | under bathroom sink organizer pull out
 kitchen | magnetic knife bar stainless
 kitchen | sink strainer basket stainless
-kitchen | sink corner caddy sponge holder
 kitchen | silicone baking mat set
 kitchen | silicone pastry mat with measurements
 office | cable management box large
@@ -229,9 +213,7 @@ fitness | ab roller with knee pad
 fitness | abdominal wheel roller
 kitchen | pot lid holder drawer insert
 # tuning round 2026-11-13d: dropped 3 zero-keep (2 rounds, 0 WATCH), +13 siblings of under sink (28 WATCH) / pot lid (2 GO) / ab roller / hair catcher / pantry / knife strip
-organization | under sink shelf expandable
 organization | kitchen cabinet pull out organizer
-organization | bathroom under sink storage
 kitchen | pot lid organizer rack
 kitchen | pan lid rack wall mount
 kitchen | cutting board holder organizer
@@ -279,7 +261,6 @@ kitchen | magnetic spice jar rack
 bathroom | shower caddy corner stainless steel
 bathroom | bathroom shelf over toilet
 organization | under sink organizer 2 tier sliding
-organization | cabinet shelf riser expandable
 fitness | ab roller wheel double
 fitness | push up bar stands
 home | couch risers furniture legs
@@ -304,13 +285,10 @@ kitchen | utensil holder for countertop
 kitchen | cooking utensil crock
 kitchen | pot and pan lid organizer rack
 kitchen | cutting board organizer rack
-kitchen | pan organizer rack for cabinet
-kitchen | cabinet shelf organizer expandable
 kitchen | dry food storage canisters airtight
 kitchen | cereal dispenser storage
 kitchen | pantry shelf risers
 kitchen | spice jars set with labels
-kitchen | food chopper manual pull
 kitchen | onion chopper dicer
 bathroom | shower corner shelf adhesive
 bathroom | shower shelf stainless steel no drilling
@@ -338,7 +316,6 @@ niche | under cabinet pull out trash can bracket
 niche | magnetic knife strip with shelf
 niche | collapsible silicone dog travel bowl set
 niche | bed sheet holder clips adjustable
-niche | car seat gap filler organizer
 niche | magnetic phone mount for kitchen cabinet
 niche | reusable silicone stretch lids set
 niche | under desk cable management tray
@@ -403,7 +380,6 @@ kitchen | silicone pot holder trivet set
 kitchen | utensil crock ceramic
 bathroom | shower caddy corner stainless rustproof
 bathroom | shower shelf no drill adhesive 2 pack
-bathroom | shower caddy hanging over door
 fitness | ab roller wheel with knee pad
 fitness | push up bar stand handles
 fitness | exercise mat thick 10mm
@@ -413,8 +389,26 @@ organization | stackable cabinet shelf white metal
 kitchen | onion dicer with container stainless blades
 kitchen | vegetable slicer dicer 8 in 1
 kitchen | food chopper hand press manual
-kitchen | salad chopper bowl set
 pet | pet hair remover glove
 pet | dog bath brush shampoo dispenser
 pet | cat grooming glove deshedding
 kitchen | pot lid holder wall mounted adhesive
+# tuning round 2026-11-14b: dropped 14 zero-WATCH keywords (>=15 hits, no WATCH); +siblings of cable organizer box / ab roller / shower shelf no drill / pet stairs / tool wall rack / pantry canisters / plant stand / salt-pepper grinder
+organization | power strip cover box cord hider
+organization | cable box organizer bamboo desk
+organization | wire management box for tv cables
+fitness | ab wheel roller silent wide wheel
+fitness | abs roller stainless handle
+bathroom | shower shelf stainless adhesive no drilling 2 tier
+bathroom | bathroom wall shelf no drill with hooks
+pet | foldable pet ramp for dogs sofa
+pet | dog steps for bed 3 tier
+tools | garage wall tool organizer rack heavy duty
+tools | screwdriver holder wall mounted
+kitchen | airtight cereal dispenser canisters set
+kitchen | airtight coffee flour canister stainless
+garden | tiered plant stand metal indoor outdoor
+garden | corner plant shelf 3 tier
+kitchen | gravity electric pepper mill set rechargeable
+kitchen | salt and pepper mill manual acrylic
+kitchen | stainless steel utensil holder pot lid 3pcs
