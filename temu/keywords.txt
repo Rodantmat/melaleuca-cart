@@ -23,9 +23,6 @@ laundry | clothes drying rack
 home | cord cover
 pet | pet grooming brush
 car | car seat gap filler
-car | car phone mount
-car | car sun shade
-car | ice scraper
 office | desk organizer
 office | drawer label maker tape
 garden | garden kneeler pad
@@ -364,11 +361,9 @@ pet | pet lint brush for couch
 home | under cabinet sliding basket organizer
 bathroom | under cabinet bathroom storage 2 tier
 kitchen | salt pepper grinder set stainless manual
-# tuning round 2026-11-14d: dropped 8 zero-WATCH (n>=22); +16 siblings of under sink / measuring cups / knife holder / spoon rest / dish rack / garden kneeler / pet lint brush. Comment block condensed.
 kitchen | pot and pan lid rack wall mounted
 kitchen | pan organizer rack cabinet pot lid
 bathroom | shower caddy shelf adhesive stainless steel
-# tuning round 2026-11-14e: -15 gw=1 rare/duplicates, +18 siblings of onion chopper / ab roller / cable box / spoon rest / pot lid / shower caddy
 bathroom | shower corner shelf 2 tier no drill
 kitchen | onion holder mandoline slicer dicer
 kitchen | vegetable cutter dicer with container
