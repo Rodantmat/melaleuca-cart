@@ -1,7 +1,6 @@
 kitchen | vegetable chopper
 kitchen | silicone spatula set
 kitchen | measuring cups and spoons
-kitchen | silicone ice cube tray
 kitchen | pot lid holder
 kitchen | dish drying rack
 kitchen | silicone stretch lids
@@ -80,16 +79,13 @@ kitchen | measuring spoons magnetic
 home | cable management sleeve
 home | cable clips adhesive
 pet | pet hair lint brush reusable
-kitchen | smart can opener hands free
 fitness | ab wheel roller with knee mat
-fitness | push up bars handles
 fitness | resistance bands set loop
 home | furniture sliders felt pads
 home | table leg extenders
 bathroom | shower caddy hanging over door
 bathroom | shower shelf no drilling
 bathroom | bathroom corner shelf adhesive
-organization | adhesive wall hooks heavy duty
 kitchen | utensil holder countertop
 kitchen | cutting board holder rack
 kitchen | pot and pan lid organizer
@@ -106,7 +102,6 @@ kitchen | wall mounted utensil rack
 kitchen | cutting board holder stand
 kitchen | bakeware rack organizer
 kitchen | cabinet door lid rack
-kitchen | utensil crock holder
 bathroom | shower shelf no drill
 bathroom | corner shower caddy
 organization | cable organizer box
@@ -133,15 +128,12 @@ kitchen | utensil and lid holder stove
 kitchen | pot lid holder 3 piece set
 kitchen | vegetable chopper with container
 kitchen | onion dicer slicer manual
-kitchen | food chopper 12 in 1
 kitchen | vegetable slicer dicer set
 kitchen | mandoline vegetable cutter stainless
 bathroom | shower caddy basket with hooks
 bathroom | shower caddy 2 tier stainless
 bathroom | shower shelf organizer rustproof
 fitness | ab roller wheel double wheel
-fitness | abdominal wheel with mat
-appliances | electric can opener one touch
 kitchen | spatula and spoon rest holder
 kitchen | bakeware organizer rack
 kitchen | cutting board and lid rack drawer
@@ -171,7 +163,6 @@ kitchen | silicone pastry mat with measurements
 office | cable management box large
 office | cable organizer box for power strip
 fitness | ab roller with knee pad
-fitness | abdominal wheel roller
 kitchen | pot lid holder drawer insert
 kitchen | pot lid organizer rack
 kitchen | pan lid rack wall mount
@@ -179,7 +170,6 @@ kitchen | flour sugar container airtight
 fitness | ab wheel roller kneeling mat
 kitchen | silicone sink splash guard
 kitchen | dish drainer sink caddy
-kitchen | pull out drawer ice cube tray with lid
 kitchen | foldable silicone lunch box
 kitchen | garlic peeler silicone roller
 kitchen | herb stripper tool
@@ -214,7 +204,6 @@ kitchen | can organizer rack for pantry
 kitchen | stackable canned food dispenser
 bathroom | corner shower shelf adhesive 2 pack
 fitness | ab wheel with knee mat
-fitness | adjustable jump rope tangle free
 fitness | wrist strengthener grip trainer
 organization | stackable drawer organizer trays
 kitchen | utensil holder for countertop
@@ -245,7 +234,6 @@ niche | magnetic phone mount for kitchen cabinet
 niche | reusable silicone stretch lids set
 niche | under desk cable management tray
 niche | foldable laundry basket with handles
-niche | shoe rack stackable adjustable
 niche | toilet paper holder with phone shelf
 niche | self stirring mug lid
 niche | garage hook wall mount heavy duty bike
@@ -259,7 +247,6 @@ niche | stroller hook organizer clip
 niche | wine bottle chiller stick
 kitchen | ice cube tray 15 grid silicone
 kitchen | ice ball mold sphere silicone
-kitchen | ice cube bin and scoop
 kitchen | pot lid holder 4 tier
 kitchen | pot lid rack over sink
 kitchen | pan organizer rack cabinet
@@ -370,7 +357,6 @@ pet | dog slow feeder bowl
 pet | cat litter mat honeycomb
 garden | hose nozzle spray metal
 garden | plant support stakes cage
-tools | magnetic wristband for screws
 car | car seat back organizer kick mat
 car | steering wheel lock anti theft
 # tuning round 2026-11-14g: -22 dead (avg ROI<0, <=1 good), +13 siblings of pot lid/onion/shower caddy/ab/cable
@@ -398,3 +384,17 @@ kitchen | pot and pan lid organizer countertop
 kitchen | ladle spoon rest stove top
 kitchen | spoon rest silicone for stove
 office | power strip hider cable management box
+# tuning round 2026-11-14h: -dead (0 GO/WATCH, avg ROI<0), +13 siblings of pot lid/chopper/lazy susan/spice/under sink/pocket scale
+kitchen | spice jar set with labels rotating
+kitchen | magnetic spice rack for refrigerator
+kitchen | turntable organizer for cabinet 2 tier
+kitchen | lazy susan 360 rotating kitchen
+kitchen | measuring spoons magnetic set
+kitchen | adjustable measuring cup
+kitchen | vegetable chopper with container dicer
+kitchen | salad chopper cutter bowl
+organization | under sink organizer pull out
+organization | hanging closet shelves 6 tier
+bathroom | grout brush electric scrubber
+bathroom | bathroom shelf over toilet organizer
+kitchen | digital pocket scale jewelry 200g
