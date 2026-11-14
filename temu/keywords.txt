@@ -1,5 +1,3 @@
-# category | Temu search keyword   (generic, no brands. Owner has the $1M liability insurance, appliances OK.
-# Flagged, not dropped: children's (CPC), lithium (hazmat review), ingestible/cosmetic.)
 kitchen | vegetable chopper
 kitchen | silicone spatula set
 kitchen | measuring cups and spoons
@@ -41,7 +39,6 @@ appliances | digital kitchen scale
 appliances | electric kettle small
 appliances | handheld vacuum sealer
 appliances | electric salt pepper grinder
-# batch 2 - higher-ticket, durable, bulky-but-light, low-return generic items
 bathroom | tension pole shower caddy
 bathroom | shower curtain rod tension
 bathroom | bath mat memory foam
@@ -83,7 +80,6 @@ home | sofa leg risers
 kitchen | magnetic knife holder wall
 kitchen | cabinet shelf organizer expandable
 bathroom | shower corner caddy adhesive
-bathroom | shower shelf stainless
 kitchen | digital kitchen scale small
 kitchen | jewelry gram scale
 kitchen | oil mister for cooking
@@ -146,7 +142,6 @@ fitness | push up board
 fitness | stretching strap
 home | furniture risers couch legs
 home | sofa risers stackable
-# tuning round 2026-11-12: long-tail near GO families (pot lid holder, vegetable chopper, shower caddy, ab roller, bed riser, can opener)
 kitchen | pot lid rack stainless
 kitchen | pot lid organizer rack stand
 kitchen | utensil and lid holder stove
@@ -163,7 +158,6 @@ fitness | ab roller wheel double wheel
 fitness | abdominal wheel with mat
 appliances | electric can opener one touch
 appliances | automatic can opener restaurant
-# tuning round 2026-11-13: dropped 15 zero-keep keywords (3+ rounds), +18 siblings of pot lid / chopper / shower caddy / ab roller / riser
 kitchen | spatula and spoon rest holder
 kitchen | bakeware organizer rack
 kitchen | cutting board and lid rack drawer
@@ -173,11 +167,9 @@ kitchen | french fry cutter manual
 kitchen | garlic chopper rocker
 bathroom | corner shower shelf no drill
 bathroom | shower storage rack hanging
-bathroom | shower caddy over the door
 fitness | ab roller kneeling mat
 fitness | resistance bands set with handles
 home | couch leg extenders
-# tuning round 2026-11-13b: dropped 9 zero-keep keywords (2 rounds), +16 siblings of under sink organizer / pantry containers / measuring cups / knife strip / dish rack
 kitchen | under sink organizer 2 tier
 kitchen | under sink shelf expandable
 kitchen | cabinet organizer pull out
@@ -190,7 +182,6 @@ kitchen | dish drying rack foldable
 kitchen | over sink dish rack
 kitchen | utensil drying rack
 bathroom | bathroom under sink storage
-# tuning round 2026-11-13c: dropped 24 zero-keep keywords (2+ rounds, 0 WATCH), +16 siblings of under sink / knife strip / hair catcher / sink strainer / baking mat / cable box / ab roller
 organization | under sink sliding basket
 bathroom | under bathroom sink organizer pull out
 kitchen | magnetic knife bar stainless
@@ -202,7 +193,6 @@ office | cable organizer box for power strip
 fitness | ab roller with knee pad
 fitness | abdominal wheel roller
 kitchen | pot lid holder drawer insert
-# tuning round 2026-11-13d: dropped 3 zero-keep (2 rounds, 0 WATCH), +13 siblings of under sink (28 WATCH) / pot lid (2 GO) / ab roller / hair catcher / pantry / knife strip
 organization | kitchen cabinet pull out organizer
 kitchen | pot lid organizer rack
 kitchen | pan lid rack wall mount
@@ -223,11 +213,8 @@ kitchen | stretch silicone lids set
 cleaning | gap cleaning brush keyboard vent
 cleaning | grout cleaning brush electric
 bathroom | adhesive toilet paper holder shelf
-bathroom | shower curtain weights
 pet | cat water fountain filter pack
 pet | cat window perch suction
-home | cord organizer cable clips
-home | magnetic door stopper
 home | under bed storage bag
 home | hanging closet organizer shelves
 car | car seat gap filler organizer
@@ -238,19 +225,16 @@ fitness | resistance loop bands set
 fitness | foam roller massage ball
 garden | plant watering spikes self
 home | window insulation film kit
-home | drawer dividers expandable
 kitchen | pot lid holder stainless steel stand
 kitchen | vegetable chopper onion dicer
 kitchen | food chopper manual pull
 kitchen | knife block holder universal
-kitchen | magnetic spice jar rack
 bathroom | shower caddy corner stainless steel
 bathroom | bathroom shelf over toilet
 organization | under sink organizer 2 tier sliding
 fitness | ab roller wheel double
 fitness | push up bar stands
 home | couch risers furniture legs
-# tuning round 2026-11-13e: dropped 25 zero-keep (2+ rounds, 0 WATCH), +17 siblings of pot lid / chopper / shower caddy / under sink / ab roller / riser / knife
 kitchen | utensil holder with 3 compartments stainless
 kitchen | cutting board and lid organizer rack
 kitchen | vegetable slicer dicer with container
@@ -265,8 +249,6 @@ fitness | ab wheel with knee mat
 fitness | adjustable jump rope tangle free
 fitness | wrist strengthener grip trainer
 organization | stackable drawer organizer trays
-# tuning round 2026-11-13f: dropped 6 zero-keep (2+ rounds, 0 WATCH), +18 siblings of pot lid / chopper / shower caddy / pantry / ab roller / under sink
-# tuning round 2026-11-13g: dropped 21 zero-keep (8 rounds, 0 WATCH, n>=38), +17 siblings of pot lid / shower caddy / under sink / pantry / chopper
 kitchen | utensil holder for countertop
 kitchen | cooking utensil crock
 kitchen | pot and pan lid organizer rack
@@ -297,11 +279,9 @@ bathroom | corner shower shelf adhesive
 bathroom | shower shelf stainless steel no drill
 bathroom | shampoo bottle holder wall
 organization | sink caddy sponge holder stainless
-# tuning round 2026-11-13h: dropped 8 low-yield/negative-profit singles, +16 siblings of ice tray / pot lid / shower caddy / baking rack families
 niche | under cabinet pull out trash can bracket
 niche | magnetic knife strip with shelf
 niche | collapsible silicone dog travel bowl set
-niche | bed sheet holder clips adjustable
 niche | magnetic phone mount for kitchen cabinet
 niche | reusable silicone stretch lids set
 niche | under desk cable management tray
@@ -321,7 +301,6 @@ niche | cord winder wrap cable organizer
 niche | stroller hook organizer clip
 niche | adjustable laptop stand portable aluminum
 niche | wine bottle chiller stick
-# tuning round 2026-11-13i: dropped negative-profit families (soap dispenser, laundry bags, bed riser, squeegee, hair catcher, pet hair roller, counter organizer) + lithium singles; +ice tray / pot lid / pantry siblings
 kitchen | ice cube tray 15 grid silicone
 kitchen | ice ball mold sphere silicone
 kitchen | ice cube tray with lid stackable
@@ -337,7 +316,6 @@ kitchen | cake decorating turntable
 kitchen | refrigerator egg holder tray
 kitchen | pantry bin with handle
 organization | stackable storage bins with lids
-# tuning round 2026-11-13j: dropped low-market/low-profit singles (spice rack, baking mat, draft stopper, drawer org, fridge bins, bed riser); +siblings of pot lid / shower caddy / ab roller / chopper / pantry / ice tray
 kitchen | cutting board and lid holder stainless
 kitchen | stainless steel spoon rest
 kitchen | spatula and ladle holder countertop
@@ -351,7 +329,6 @@ kitchen | food storage containers glass lids set
 organization | pantry bins clear stackable
 kitchen | large ice cube tray with lid
 kitchen | silicone ice ball mold
-# tuning round 2026-11-13k: dropped 30 keywords that never reached WATCH in 3 days; +sibling long-tails of under sink / pantry / knife strip / measuring cups / chopper / shower caddy / pot lid / ab roller
 kitchen | under sink organizer 2 tier pull out
 kitchen | under sink organizer with hooks bath
 kitchen | pantry organizer turntable
@@ -371,7 +348,6 @@ fitness | push up bar stand handles
 fitness | exercise mat thick 10mm
 kitchen | lazy susan 2 tier cabinet organizer
 organization | stackable cabinet shelf white metal
-# tuning round 2026-11-14a: dropped 16 low-WATCH / negative-profit bulky keywords; +siblings of onion dicer / dog grooming glove / pot lid / vegetable chopper (best base-profit dossiers)
 kitchen | onion dicer with container stainless blades
 kitchen | vegetable slicer dicer 8 in 1
 kitchen | food chopper hand press manual
@@ -379,7 +355,6 @@ pet | pet hair remover glove
 pet | dog bath brush shampoo dispenser
 pet | cat grooming glove deshedding
 kitchen | pot lid holder wall mounted adhesive
-# tuning round 2026-11-14b: dropped 14 zero-WATCH keywords (>=15 hits, no WATCH); +siblings of cable organizer box / ab roller / shower shelf no drill / pet stairs / tool wall rack / pantry canisters / plant stand / salt-pepper grinder
 organization | power strip cover box cord hider
 organization | cable box organizer bamboo desk
 organization | wire management box for tv cables
@@ -398,7 +373,6 @@ garden | corner plant shelf 3 tier
 kitchen | gravity electric pepper mill set rechargeable
 kitchen | salt and pepper mill manual acrylic
 kitchen | stainless steel utensil holder pot lid 3pcs
-# tuning round 2026-11-14c: dropped 14 zero-WATCH (n>=28, 8 rounds), +16 siblings of ab roller / pot lid / cable box / shower shelf / grooming glove / chopper
 fitness | ab roller with knee mat
 fitness | ab wheel roller no noise
 fitness | resistance band set loop
@@ -412,3 +386,20 @@ pets | pet grooming glove deshedding
 pets | dog hair remover roller
 kitchen | vegetable chopper stainless steel blades
 kitchen | mandoline slicer manual
+organization | under sink organizer with sliding drawers
+organization | under sink organizer bamboo
+organization | under sink organizer with hooks and cups
+kitchen | measuring spoons stainless steel set magnetic
+kitchen | measuring cups and spoons set nesting
+kitchen | magnetic knife holder for refrigerator
+kitchen | spoon rest double stainless steel
+kitchen | over the sink dish drying rack stainless
+kitchen | sink dish rack roll up
+garden | garden kneeler and seat folding
+garden | garden kneeling pad foam thick
+pet | pet hair remover reusable lint roller
+pet | pet lint brush for couch
+home | under cabinet sliding basket organizer
+bathroom | under cabinet bathroom storage 2 tier
+kitchen | salt pepper grinder set stainless manual
+# tuning round 2026-11-14d: dropped 8 zero-WATCH (n>=22); +16 siblings of under sink / measuring cups / knife holder / spoon rest / dish rack / garden kneeler / pet lint brush. Comment block condensed.
