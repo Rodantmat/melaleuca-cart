@@ -65,7 +65,13 @@ class Builder:
     def size(self, s):
         for cand in SIZE_NAMES[s]:
             for v, n in zip(self.sizevals, self.sizenames):
-                if str(n).lower() == cand.lower(): return v
+                if str(n).lower() == cand.lower() and not str(v).startswith(("jaspo", "numeric", "go_")) and not str(v)[:1].isdigit(): return v
+        return None
+    def pick(self, node, wants):
+        vals, names = enum_of(node)
+        for w in wants:
+            for v, n in zip(vals, names):
+                if str(v).lower() == w.lower() or str(n).lower() == w.lower(): return v
         return None
     def common(self, F, title):
         pk = F["prod"]; a = {}; sp = SPEC[pk]
@@ -85,12 +91,17 @@ class Builder:
         self.add(a, "number_of_items", 1); self.add(a, "item_package_quantity", 1)
         self.add(a, "age_gender_category", "unisex-adult" if sp["gender"] == "unisex" else "adult-women")
         if pk == "cap": self.add(a, "seasons", "All")
-        else: self.add(a, "special_size_type", "Standard")
+        self.add(a, "special_size_type", "Standard")
+        if "batteries_required" in self.p: a["batteries_required"] = [{"value": False, **({"marketplace_id": MP} if "marketplace_id" in self.p["batteries_required"]["items"]["properties"] else {})}]
         if sp["neck"] and "neck" in self.p:
             a["neck"] = [{**({"marketplace_id": MP} if "marketplace_id" in self.p["neck"]["items"]["properties"] else {}), "neck_style": [{"value": sp["neck"], "language_tag": "en_US"}]}]
         if sp["collar"]: self.add(a, "collar_style", sp["collar"])
         if sp["sleeve"] and "sleeve" in self.p:
-            a["sleeve"] = [{**({"marketplace_id": MP}), "length_description": [{"value": sp["sleeve"]}]}]
+            tp = self.p["sleeve"]["items"]["properties"].get("type")
+            slv = {"short_sleeve": ["Short Sleeve"], "long_sleeve": ["Long Sleeve"], "sleeveless": ["Sleeveless", "No Sleeve", "Sleeveless Sleeve"]}[sp["sleeve"]]
+            tv = self.pick(tp, slv) if tp else None
+            a["sleeve"] = [{**({"marketplace_id": MP}), "length_description": [{"value": sp["sleeve"]}], **({"type": [{"value": tv, "language_tag": "en_US"}]} if tv else {})}]
+            if not tv: print("NO SLEEVE TYPE for", pk, "enum:", enum_of(tp)[0][:60] if tp else None)
         return a
     def parent(self, F):
         a = self.common(F, F["title"])
@@ -107,7 +118,14 @@ class Builder:
         a["model_number"] = [{"value": k["sku"][:40], "marketplace_id": MP}]
         sk = SIZEKEY[F["ptype"]]
         if F["prod"] != "cap":
-            tok = self.size(k["size"]); a[sk] = [{"size_system": "as1", "size_class": "alpha", "size": tok or k["size"], **({"marketplace_id": MP} if "marketplace_id" in self.p[sk]["items"]["properties"] else {})}]
+            tok = self.size(k["size"]); ip = self.p[sk]["items"]["properties"]
+            el = {"size_system": "as1", "size_class": "alpha", "size": tok or k["size"]}
+            if "marketplace_id" in ip: el["marketplace_id"] = MP
+            for extra in ("body_type", "height_type"):
+                if extra in ip:
+                    v = self.pick(ip[extra], ["regular", "Regular"]) or (enum_of(ip[extra])[0] or [None])[0]
+                    if v: el[extra] = v
+            a[sk] = [el]
         else:
             tok = self.size("One size")
             if tok: a[sk] = [{"size_system": "as1", "size_class": "alpha", "size": tok, "marketplace_id": MP}]
@@ -129,6 +147,12 @@ def main():
     for pt in ("SHIRT", "SWEATSHIRT", "HAT"):
         B[pt] = Builder(load_schema(c, pt), pt)
         print("size tokens", pt, {s: B[pt].size(s) for s in ("S", "M", "L", "XL", "2XL", "One size")}, "| keyword for", pt, [B[pt].keyword(p) for p in KEYWORDS if {"SHIRT": ("tee", "wtank", "tank", "polo"), "SWEATSHIRT": ("hoodie",), "HAT": ("cap",)}[pt].count(p)])
+    for pt in ("SHIRT", "SWEATSHIRT", "HAT"):
+        pp = B[pt].p
+        for ex_k in ("sleeve", SIZEKEY[pt]):
+            if ex_k in pp:
+                for kk, vv in pp[ex_k]["items"]["properties"].items():
+                    if kk in ("type", "body_type", "height_type", "size_class"): print("ENUM", pt, ex_k, kk, enum_of(vv)[0][:40])
     stat = collections.Counter(); issues = collections.Counter(); ex = {}; shown = set()
     sample_n = int(os.environ.get("AMZ_SAMPLE", "2"))
     for F in feed:
@@ -144,7 +168,7 @@ def main():
                 stat[(role, "ERROR")] += 1; issues[("ERROR", str(e)[:200], "")] += 1; continue
             st = r.get("status"); stat[(role, st)] += 1
             for i in r.get("issues", []):
-                key = (i.get("severity"), i.get("code"), (i.get("message") or "")[:170], ",".join(i.get("attributeNames") or []))
+                key = (i.get("severity"), i.get("code"), (i.get("message") or "")[:(900 if i.get("code") == "5665" else 170)], ",".join(i.get("attributeNames") or []), F["prod"] + "/" + role)
                 issues[key] += 1; ex.setdefault(key, (F["id"], sk))
             tag = (F["prod"], role)
             if tag not in shown and os.environ.get("AMZ_SHOW", "1") == "1":
