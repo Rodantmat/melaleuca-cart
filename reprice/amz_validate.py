@@ -110,7 +110,8 @@ class Builder:
         for i, h in enumerate(F["heroes"][:1]): a["main_product_image_locator"] = [{"media_location": h, "marketplace_id": MP}]
         return a
     def child(self, F, k):
-        t = (F["title"].split(" | ")[0] + " - " + k["color"])[:200]
+        pr = k["color"].split(" · ")
+        t = ("AlphaDog Styles %s %s - %s" % (pr[0], F["noun"], ", ".join(pr[1:])))[:200]
         a = self.common(F, t)
         a["parentage_level"] = [{"value": "child", "marketplace_id": MP}]
         a["child_parent_sku_relationship"] = [{"child_relationship_type": "variation", "parent_sku": F["parent_sku"], "marketplace_id": MP}]
@@ -153,6 +154,23 @@ def main():
             if ex_k in pp:
                 for kk, vv in pp[ex_k]["items"]["properties"].items():
                     if kk in ("type", "body_type", "height_type", "size_class"): print("ENUM", pt, ex_k, kk, enum_of(vv)[0][:40])
+    def v(x): return [{"value": x, "marketplace_id": MP}]
+    for ptype, nm in (("SHIRT", "AlphaDog Styles French Bulldog Line Art Tee"), ("SWEATSHIRT", "AlphaDog Styles French Bulldog Hoodie"), ("HAT", "AlphaDog Styles French Bulldog Dad Hat")):
+        for variant in ("plain", "with_parentage_none"):
+            at = {"item_name": v(nm), "brand": v("AlphaDog Styles"), "supplier_declared_has_product_identifier_exemption": v(True), "color": v("White"),
+                  "country_of_origin": v("HN"), "bullet_point": v("Original dog breed line art"), "product_description": v("Original dog breed line-art design on a premium blank."),
+                  "purchasable_offer": [{"marketplace_id": MP, "currency": "USD", "our_price": [{"schedule": [{"value_with_tax": 30.0}]}]}],
+                  "fulfillment_availability": [{"fulfillment_channel_code": "DEFAULT", "quantity": 100}]}
+            try:
+                r = spapi.call(c, "PUT", "/listings/2021-08-01/items/%s/%s" % (seller, "ALPHADOG-MINIPROBE-" + ptype), params={"marketplaceIds": MP, "issueLocale": "en_US", "mode": MODE},
+                               body={"productType": ptype, "requirements": "LISTING", "attributes": at})
+                codes = collections.Counter((i.get("severity"), i.get("code")) for i in r.get("issues", []))
+                print("MINIPROBE", ptype, variant, r.get("status"), dict(codes))
+                for i in r.get("issues", []):
+                    if i.get("code") in ("5665", "8560"): print("   MINIPROBE_MSG", ptype, i.get("code"), (i.get("message") or "")[:400])
+            except spapi.SpError as e:
+                print("MINIPROBE", ptype, "ERROR", e)
+            break
     stat = collections.Counter(); issues = collections.Counter(); ex = {}; shown = set()
     sample_n = int(os.environ.get("AMZ_SAMPLE", "2"))
     for F in feed:
@@ -168,7 +186,7 @@ def main():
                 stat[(role, "ERROR")] += 1; issues[("ERROR", str(e)[:200], "")] += 1; continue
             st = r.get("status"); stat[(role, st)] += 1
             for i in r.get("issues", []):
-                key = (i.get("severity"), i.get("code"), (i.get("message") or "")[:(900 if i.get("code") == "5665" else 170)], ",".join(i.get("attributeNames") or []), F["prod"] + "/" + role)
+                key = (i.get("severity"), i.get("code"), (i.get("message") or "")[:(900 if i.get("code") in ("5665", "8560") else 170)], ",".join(i.get("attributeNames") or []), F["prod"] + "/" + role)
                 issues[key] += 1; ex.setdefault(key, (F["id"], sk))
             tag = (F["prod"], role)
             if tag not in shown and os.environ.get("AMZ_SHOW", "1") == "1":
