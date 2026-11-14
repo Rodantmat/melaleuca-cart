@@ -6,7 +6,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 MP = spapi.MARKETPLACE
 def main():
     c = spapi.load_creds(HERE)
-    seller = c.get("SELLER_ID")
+    seller = c.get("SELLER_ID") or "A3431QI59MY9RE"  # merchant token from the seller-support case emails (not a secret)
     print("seller id present:", bool(seller))
     for kw in ("t-shirt", "hoodie sweatshirt", "hat cap", "tank top", "polo"):
         try:
