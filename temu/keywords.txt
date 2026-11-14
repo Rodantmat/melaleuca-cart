@@ -94,7 +94,6 @@ fitness | ab wheel roller with knee mat
 fitness | push up bars handles
 fitness | resistance bands set loop
 fitness | ab roller wheel kit
-fitness | yoga block foam
 home | furniture sliders felt pads
 home | table leg extenders
 kitchen | jar opener gripper
@@ -140,8 +139,6 @@ bathroom | shower caddy basket suction
 fitness | ab wheel roller double wheel
 fitness | push up board
 fitness | stretching strap
-home | furniture risers couch legs
-home | sofa risers stackable
 kitchen | pot lid rack stainless
 kitchen | pot lid organizer rack stand
 kitchen | utensil and lid holder stove
@@ -157,7 +154,6 @@ bathroom | shower shelf organizer rustproof
 fitness | ab roller wheel double wheel
 fitness | abdominal wheel with mat
 appliances | electric can opener one touch
-appliances | automatic can opener restaurant
 kitchen | spatula and spoon rest holder
 kitchen | bakeware organizer rack
 kitchen | cutting board and lid rack drawer
@@ -166,7 +162,6 @@ kitchen | vegetable dicer with drain basket
 kitchen | french fry cutter manual
 kitchen | garlic chopper rocker
 bathroom | corner shower shelf no drill
-bathroom | shower storage rack hanging
 fitness | ab roller kneeling mat
 fitness | resistance bands set with handles
 home | couch leg extenders
@@ -180,7 +175,6 @@ kitchen | measuring spoons stainless magnetic
 kitchen | measuring cups set stainless steel
 kitchen | dish drying rack foldable
 kitchen | over sink dish rack
-kitchen | utensil drying rack
 bathroom | bathroom under sink storage
 organization | under sink sliding basket
 bathroom | under bathroom sink organizer pull out
@@ -215,9 +209,7 @@ cleaning | grout cleaning brush electric
 bathroom | adhesive toilet paper holder shelf
 pet | cat water fountain filter pack
 pet | cat window perch suction
-home | under bed storage bag
 home | hanging closet organizer shelves
-car | car seat gap filler organizer
 car | car trash can with lid
 car | windshield sun shade foldable
 car | magnetic phone mount dash
@@ -250,7 +242,6 @@ fitness | adjustable jump rope tangle free
 fitness | wrist strengthener grip trainer
 organization | stackable drawer organizer trays
 kitchen | utensil holder for countertop
-kitchen | cooking utensil crock
 kitchen | pot and pan lid organizer rack
 kitchen | cutting board organizer rack
 kitchen | dry food storage canisters airtight
@@ -265,9 +256,7 @@ organization | under sink 2 tier organizer pull out
 organization | cabinet door organizer hanging
 kitchen | ice cube tray with lid and bin
 kitchen | large ice cube mold silicone
-kitchen | ice stick tray water bottle
 kitchen | silicone popsicle molds
-kitchen | freezer storage bins stackable
 kitchen | baking sheet rack organizer
 kitchen | bakeware divider tray organizer
 kitchen | cookware lid rack cabinet mount
@@ -275,7 +264,6 @@ kitchen | plastic wrap foil dispenser rack
 kitchen | stainless steel dish rack plate holder
 kitchen | wok lid holder stand
 kitchen | countertop spoon rest utensil
-bathroom | corner shower shelf adhesive
 bathroom | shower shelf stainless steel no drill
 bathroom | shampoo bottle holder wall
 organization | sink caddy sponge holder stainless
