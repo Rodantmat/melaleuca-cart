@@ -53,6 +53,7 @@ def dump_keys():
                 "main_product_image_locator", "other_product_image_locator_1", "externally_assigned_product_identifier", "supplier_declared_has_product_identifier_exemption",
                 "parentage_level", "child_parent_sku_relationship", "style", "special_size_type", "fit_type", "target_gender", "department", "item_type_keyword",
                 "fulfillment_availability", "merchant_shipping_group", "condition_type", "material")
+        keys = tuple(k for k in props if "size" in k) + ("seasons", "supplier_declared_dg_hz_regulation", "headwear_size")
         for k in keys:
             if k in props:
                 print("SCHEMA", ptype, k, json.dumps(compact(props[k]), separators=(",", ":"))[:1400])
