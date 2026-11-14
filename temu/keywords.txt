@@ -156,7 +156,6 @@ home | furniture risers couch legs
 home | sofa risers stackable
 # tuning round 2026-11-12: long-tail near GO families (pot lid holder, vegetable chopper, shower caddy, ab roller, bed riser, can opener)
 kitchen | pot lid rack stainless
-kitchen | lid holder for pots wall mount
 kitchen | pot lid organizer rack stand
 kitchen | utensil and lid holder stove
 kitchen | pot lid holder 3 piece set
@@ -230,7 +229,6 @@ kitchen | avocado slicer tool set
 kitchen | pizza scissors cutter
 kitchen | rotating spice rack carousel
 kitchen | banana hanger holder
-kitchen | water bottle cleaning brush set
 kitchen | stretch silicone lids set
 cleaning | gap cleaning brush keyboard vent
 cleaning | grout cleaning brush electric
@@ -243,7 +241,6 @@ home | cord organizer cable clips
 home | magnetic door stopper
 home | under bed storage bag
 home | hanging closet organizer shelves
-home | adhesive hooks heavy duty
 car | car seat gap filler organizer
 car | car trash can with lid
 car | windshield sun shade foldable
@@ -412,3 +409,20 @@ garden | corner plant shelf 3 tier
 kitchen | gravity electric pepper mill set rechargeable
 kitchen | salt and pepper mill manual acrylic
 kitchen | stainless steel utensil holder pot lid 3pcs
+# tuning round 2026-11-14c: dropped 14 zero-WATCH (n>=28, 8 rounds), +16 siblings of ab roller / pot lid / cable box / shower shelf / grooming glove / chopper
+fitness | ab roller with knee mat
+fitness | ab wheel roller no noise
+fitness | push up bar stands
+fitness | resistance band set loop
+kitchen | pot lid holder wall mounted rack
+kitchen | pan organizer rack cabinet
+kitchen | cutting board holder stand
+kitchen | spatula utensil rest holder
+organization | cable box large power strip cover
+organization | cord organizer wrap
+bathroom | shower caddy corner suction
+bathroom | shower shelf stainless corner 2 pack
+pets | pet grooming glove deshedding
+pets | dog hair remover roller
+kitchen | vegetable chopper stainless steel blades
+kitchen | mandoline slicer manual
