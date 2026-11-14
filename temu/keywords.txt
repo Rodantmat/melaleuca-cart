@@ -169,7 +169,6 @@ bathroom | shower caddy 2 tier stainless
 bathroom | shower shelf organizer rustproof
 fitness | ab roller wheel double wheel
 fitness | abdominal wheel with mat
-home | bed lifts stackable
 appliances | electric can opener one touch
 appliances | automatic can opener restaurant
 # tuning round 2026-11-13: dropped 15 zero-keep keywords (3+ rounds), +18 siblings of pot lid / chopper / shower caddy / ab roller / riser
@@ -226,14 +225,12 @@ kitchen | foldable silicone lunch box
 kitchen | garlic peeler silicone roller
 kitchen | herb stripper tool
 kitchen | avocado slicer tool set
-kitchen | pizza scissors cutter
 kitchen | rotating spice rack carousel
 kitchen | banana hanger holder
 kitchen | stretch silicone lids set
 cleaning | gap cleaning brush keyboard vent
 cleaning | grout cleaning brush electric
 bathroom | adhesive toilet paper holder shelf
-bathroom | silicone faucet extender
 bathroom | shower curtain weights
 pet | cat water fountain filter pack
 pet | cat window perch suction
@@ -412,11 +409,8 @@ kitchen | stainless steel utensil holder pot lid 3pcs
 # tuning round 2026-11-14c: dropped 14 zero-WATCH (n>=28, 8 rounds), +16 siblings of ab roller / pot lid / cable box / shower shelf / grooming glove / chopper
 fitness | ab roller with knee mat
 fitness | ab wheel roller no noise
-fitness | push up bar stands
 fitness | resistance band set loop
 kitchen | pot lid holder wall mounted rack
-kitchen | pan organizer rack cabinet
-kitchen | cutting board holder stand
 kitchen | spatula utensil rest holder
 organization | cable box large power strip cover
 organization | cord organizer wrap
