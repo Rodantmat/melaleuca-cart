@@ -111,7 +111,6 @@ kitchen | pan organizer rack for cabinet
 kitchen | lid organizer for drawer
 kitchen | pot and pan lid rack wall mount
 kitchen | onion chopper handheld
-kitchen | salad chopper bowl
 kitchen | food chopper pull cord manual
 kitchen | fruit and vegetable slicer set
 bathroom | adhesive shower shelf stainless
@@ -133,15 +132,12 @@ bathroom | shower shelf organizer rustproof
 fitness | ab roller wheel double wheel
 kitchen | spatula and spoon rest holder
 kitchen | bakeware organizer rack
-kitchen | cutting board and lid rack drawer
-kitchen | adjustable pot lid rack cabinet door
 kitchen | vegetable dicer with drain basket
 kitchen | french fry cutter manual
 kitchen | garlic chopper rocker
 bathroom | corner shower shelf no drill
 fitness | ab roller kneeling mat
 fitness | resistance bands set with handles
-home | couch leg extenders
 kitchen | under sink organizer 2 tier
 kitchen | under sink shelf expandable
 kitchen | pantry organizer bins clear
@@ -225,7 +221,6 @@ niche | magnetic knife strip with shelf
 niche | magnetic phone mount for kitchen cabinet
 niche | reusable silicone stretch lids set
 niche | under desk cable management tray
-niche | foldable laundry basket with handles
 niche | toilet paper holder with phone shelf
 niche | garage hook wall mount heavy duty bike
 niche | hanging closet organizer collapsible shelves
@@ -398,3 +393,8 @@ organization | hanging shelf organizer closet 5 tier
 garden | garden tool organizer wall hanging
 car | car seat organizer storage pocket
 pet | dog leash hook wall holder
+kitchen | pull string food chopper manual
+kitchen | vegetable slicer dicer 4 blade
+kitchen | potato ricer masher stainless
+kitchen | digital kitchen scale 11 lb stainless
+kitchen | food scale with bowl grams ounces
