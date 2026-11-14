@@ -1,0 +1,25 @@
+name: Amazon product type definitions (read-only)
+on: { workflow_dispatch: {} }
+permissions: { contents: read }
+jobs:
+  defs:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with: { ref: main }
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - name: Fetch definitions (read-only)
+        env:
+          CRED_ENV: ${{ secrets.CREDENTIALS_ENV }}
+          AMZ_CLIENT: ${{ secrets.AMZ_CLIENT }}
+          AMZ_SECRET: ${{ secrets.AMZ_SECRET }}
+        run: |
+          cd reprice
+          printf '%s\n' "$CRED_ENV" > credentials.env
+          if [ -n "$AMZ_SECRET" ]; then printf 'CLIENT_ID=%s\nCLIENT_SECRET=%s\n' "$AMZ_CLIENT" "$AMZ_SECRET" >> credentials.env; fi
+          python amz_defs.py 2>&1 | tee defs.log
+          rm -f credentials.env
+      - uses: actions/upload-artifact@v4
+        with: { name: amz-defs, path: reprice/defs/*.json }
