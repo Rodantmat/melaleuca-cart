@@ -1,23 +1,5 @@
-kitchen | vegetable chopper
-kitchen | silicone spatula set
-kitchen | measuring cups and spoons
 kitchen | pot lid holder
-kitchen | dish drying rack
-kitchen | silicone stretch lids
-kitchen | jar opener
-kitchen | mandoline slicer
-kitchen | kitchen sink strainer
-kitchen | magnetic knife strip
-organization | under sink organizer
-organization | pantry storage containers
-organization | closet organizer hanging
-organization | over the door organizer
-organization | cable management box
-organization | wall mounted shelf
-organization | lazy susan turntable
 cleaning | grout cleaning brush
-cleaning | window cleaning tool
-bathroom | shower caddy
 laundry | clothes drying rack
 pet | pet grooming brush
 car | car seat gap filler
@@ -391,3 +373,22 @@ organization | garden tool organizer wall mount hooks stainless
 office | power strip cable box organizer large bamboo
 kitchen | ice cube tray silicone 2 pack with lid stackable
 tools | pegboard hooks wall tool organizer set
+kitchen | ice cube tray with lid stackable
+kitchen | ice storage box freezer scoop
+kitchen | vegetable chopper 12 in 1 container
+kitchen | salad chopper bowl manual
+kitchen | egg slicer wire stainless
+kitchen | herb stripper tool stainless
+kitchen | bag sealer clips food storage set
+organization | power strip cover box bamboo
+organization | cord hider box white large
+organization | router hider storage box wall
+organization | garage hook set heavy duty wall
+garden | garden tool wall hanger rack
+garden | hose reel wall hanging bracket
+pet | pet food storage scoop clip
+fitness | push up bars handles stand
+bathroom | toilet paper roll stand bathroom
+tools | screwdriver wall rack magnetic
+office | monitor stand riser storage drawer
+car | seat back organizer hooks
