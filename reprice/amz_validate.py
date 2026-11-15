@@ -7,7 +7,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 MP = spapi.MARKETPLACE
 FEED = "https://raw.githubusercontent.com/Rodantmat/Alphadog-Styles/main/store/data/amazon_feed.json"
 MODE = "VALIDATION_PREVIEW"      # never anything else in this file
-LEAD = {"tee": 7, "hoodie": 7, "wtank": 7, "tank": 7, "polo": 7, "cap": 12}   # owner Nov 14: 7 days shirts, 12 days caps
+LEAD = {"tee": 10, "hoodie": 10, "wtank": 10, "tank": 10, "polo": 10, "cap": 12}   # Printify catalog handling_time = 10 days (all blueprints); caps 12 per owner (Printify 10 + buffer)
 LEAD_DAYS = 7
 ORIGIN = {"tee": "HN", "hoodie": "HN", "wtank": "HN", "tank": "HN", "polo": "HN", "cap": "BD"}   # owner Nov 14: shirts Honduras, caps Bangladesh
 KEYWORDS = {"tee": ["fashion-t-shirts", "t-shirts"], "hoodie": ["fashion-hoodies"], "wtank": ["fashion-tank-tops", "tank-tops"], "tank": ["fashion-tank-tops", "tank-tops"],
