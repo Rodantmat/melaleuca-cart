@@ -1,4 +1,4 @@
-# 2026-11-15T20:15:54Z  reprice  failure  run 43757056498
+# 2026-11-15T20:17:09Z  reprice  failure  run 43757166468
 /home/runner/work/melaleuca-cart/melaleuca-cart/reprice/run.py:14: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
   now = dt.datetime.utcnow()
 mode=shadow live_writes_allowed=False killed=False skus=167
