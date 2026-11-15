@@ -27,4 +27,4 @@ jobs:
           git checkout --orphan p3-new
           git rm -rf . >/dev/null 2>&1 || true
           cp -a /tmp/so/. .
-          git add -A && git commit -qm "probe3" && git push -f origin p3-new:fba-probe3
+          find . -name 'credentials.*' -not -path './.git/*' -delete; git add -A && git commit -qm "probe3" && git push -f origin p3-new:fba-probe3

@@ -29,4 +29,4 @@ jobs:
           git checkout --orphan iv-new
           git rm -rf . >/dev/null 2>&1 || true
           cp -a /tmp/so/. .
-          git add -A && git commit -qm "inbound v0" && git push -f origin iv-new:inbound-v0
+          find . -name 'credentials.*' -not -path './.git/*' -delete; git add -A && git commit -qm "inbound v0" && git push -f origin iv-new:inbound-v0

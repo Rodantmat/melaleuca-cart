@@ -26,6 +26,7 @@ jobs:
         run: |
           set -o pipefail
           cd feedwork
+          trap 'rm -f credentials.txt' EXIT
           printf '%s\n' "$CRED_ENV" > credentials.txt
           if [ -n "$AMZ_SECRET" ]; then printf 'CLIENT_ID=%s\nCLIENT_SECRET=%s\n' "$AMZ_CLIENT" "$AMZ_SECRET" >> credentials.txt; fi
           python amazon_feed.py refresh 2>&1 | tee feed_run.log
@@ -46,4 +47,4 @@ jobs:
           git checkout --orphan feed-new
           git rm -rf . >/dev/null 2>&1 || true
           cp -a /tmp/fo/. . 
-          git add -A && git commit -qm "feed $(date -u +%F_%H%M)" && git push -f origin feed-new:feed-latest
+          find . -name 'credentials.*' -not -path './.git/*' -delete; git add -A && git commit -qm "feed $(date -u +%F_%H%M)" && git push -f origin feed-new:feed-latest

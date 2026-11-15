@@ -37,4 +37,4 @@ jobs:
           git checkout --orphan lf-new
           git rm -rf . >/dev/null 2>&1 || true
           cp -a /tmp/so/. .
-          git add -A && git commit -qm "listing fix" && git push -f origin lf-new:listing-fix
+          find . -name 'credentials.*' -not -path './.git/*' -delete; git add -A && git commit -qm "listing fix" && git push -f origin lf-new:listing-fix

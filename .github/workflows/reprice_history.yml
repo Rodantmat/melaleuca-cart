@@ -39,4 +39,4 @@ jobs:
           git checkout --orphan reprice-state-new
           git rm -rf . >/dev/null 2>&1 || true
           mkdir -p reprice && mkdir -p reprice/state && cp -a /tmp/st/state/. reprice/state/ && cp /tmp/st/history.log reprice/ 2>/dev/null || true
-          git add reprice && git commit -qm "reprice state (history)" && git push -f origin reprice-state-new:reprice-state
+          find . -name 'credentials.*' -not -path './.git/*' -delete; git add reprice && git commit -qm "reprice state (history)" && git push -f origin reprice-state-new:reprice-state

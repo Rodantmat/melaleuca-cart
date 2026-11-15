@@ -36,4 +36,4 @@ jobs:
           git checkout --orphan sku-new
           git rm -rf . >/dev/null 2>&1 || true
           cp -a /tmp/so/. .
-          git add -A && git commit -qm "sku check" && git push -f origin sku-new:sku-check
+          find . -name 'credentials.*' -not -path './.git/*' -delete; git add -A && git commit -qm "sku check" && git push -f origin sku-new:sku-check

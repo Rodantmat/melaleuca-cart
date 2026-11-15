@@ -30,4 +30,4 @@ jobs:
           git checkout --orphan lab-new
           git rm -rf . >/dev/null 2>&1 || true
           cp -a /tmp/so/. .
-          git add -A && git commit -qm "labels test" && git push -f origin lab-new:labels-test
+          find . -name 'credentials.*' -not -path './.git/*' -delete; git add -A && git commit -qm "labels test" && git push -f origin lab-new:labels-test

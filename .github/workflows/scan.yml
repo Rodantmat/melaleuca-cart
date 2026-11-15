@@ -35,4 +35,4 @@ jobs:
           git checkout --orphan scan-results
           git rm -rf . >/dev/null 2>&1 || true
           mkdir -p results; cp melaleuca_offers.json account_offers.tsv scan.log results/ 2>/dev/null || true
-          git add results; git commit -m "scan results" && git push -f origin scan-results
+          find . -name 'credentials.*' -not -path './.git/*' -delete; git add results; git commit -m "scan results" && git push -f origin scan-results

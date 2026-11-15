@@ -55,4 +55,4 @@ jobs:
           git checkout --orphan lab-results-${{ github.run_id }}
           git rm -rf . >/dev/null 2>&1 || true
           mkdir -p results && cp -r /tmp/res/* results/
-          git add results && git commit -m "lab results" && git push -f origin lab-results-${{ github.run_id }}
+          find . -name 'credentials.*' -not -path './.git/*' -delete; git add results && git commit -m "lab results" && git push -f origin lab-results-${{ github.run_id }}

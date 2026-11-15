@@ -123,7 +123,7 @@ jobs:
           for d in site state; do
             ( cd $d
               git config user.name "status-bot"; git config user.email "status-bot@users.noreply.github.com"
-              git add -A
+              find . -name 'credentials.*' -not -path './.git/*' -delete; git add -A
               if ! git diff --cached --quiet; then
                 git commit -qm "status $(date -u +%F_%H%M)"
                 b=$(git rev-parse --abbrev-ref HEAD)

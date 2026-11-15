@@ -29,4 +29,4 @@ jobs:
           git checkout --orphan sc-new
           git rm -rf . >/dev/null 2>&1 || true
           cp -a /tmp/so/. .
-          git add -A && git commit -qm "ship cost compare" && git push -f origin sc-new:ship-compare
+          find . -name 'credentials.*' -not -path './.git/*' -delete; git add -A && git commit -qm "ship cost compare" && git push -f origin sc-new:ship-compare

@@ -28,4 +28,4 @@ jobs:
           git checkout --orphan s1-new
           git rm -rf . >/dev/null 2>&1 || true
           cp -a /tmp/so/. .
-          git add -A && git commit -qm "stage1 test" && git push -f origin s1-new:fba-stage1
+          find . -name 'credentials.*' -not -path './.git/*' -delete; git add -A && git commit -qm "stage1 test" && git push -f origin s1-new:fba-stage1
