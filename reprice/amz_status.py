@@ -14,6 +14,7 @@ for sk in skus:
         print("    fulfillmentAvailability:", r.get("fulfillmentAvailability"), "| offers:", json.dumps(r.get("offers"))[:200], "| attr.fa:", json.dumps((r.get("attributes") or {}).get("fulfillment_availability"))[:200])
         print("    relationships:", json.dumps(r.get("relationships"))[:260], "| ptype:", json.dumps(r.get("productTypes"))[:80])
         at = r.get("attributes") or {}
+        print("    purchasable_offer:", json.dumps(at.get("purchasable_offer"))[:300])
         print("    media:", [ (k, (v[0] or {}).get("media_location","")[-40:]) for k, v in at.items() if "image_locator" in k])
         for i in r.get("issues", [])[:3]: print("    ", i.get("severity"), i.get("code"), (i.get("message") or "")[:160])
     except spapi.SpError as e: print(sk, "ERR", str(e)[:150])
