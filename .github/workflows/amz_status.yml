@@ -7,6 +7,7 @@ on:
       probe: { description: "1 = check every image URL is live", default: "" }
       audit: { description: "1 = audit every child", default: "" }
       dump: { description: "1 = print full non-image attributes of the listed SKUs", default: "" }
+      asins: { description: "comma list of ASINs -> read-only CATALOG view (classification, relationships)", default: "" }
       only: { description: "one listing id for a pilot (blank = all shirt types)", default: "amazon-tee-01" }
 permissions: { contents: read }
 jobs:
@@ -28,6 +29,7 @@ jobs:
           AMZ_PROBE: ${{ inputs.probe }}
           AMZ_AUDIT: ${{ inputs.audit }}
           AMZ_DUMP: ${{ inputs.dump }}
+          AMZ_ASINS: ${{ inputs.asins }}
           AMZ_FEED_URL: ${{ inputs.feed }}
         run: |
           cd reprice
@@ -36,5 +38,5 @@ jobs:
             grep -v -i -E '^[[:space:]]*(CLIENT_ID|CLIENT_SECRET|REFRESH_TOKEN)[[:space:]]*=' credentials.env > credentials.env.tmp; mv credentials.env.tmp credentials.env
             printf 'CLIENT_ID=%s\nCLIENT_SECRET=%s\nREFRESH_TOKEN=%s\n' "$AMZ_CLIENT" "$AMZ_SECRET" "$AMZ_REFRESH" >> credentials.env
           elif [ -n "$AMZ_SECRET" ]; then printf 'CLIENT_ID=%s\nCLIENT_SECRET=%s\n' "$AMZ_CLIENT" "$AMZ_SECRET" >> credentials.env; fi
-          if [ -n "$AMZ_AUDIT" ]; then python amz_audit.py 2>&1 | tee status.log; else python amz_status.py 2>&1 | tee status.log; fi
+          if [ -n "$AMZ_ASINS" ]; then python amz_catalog.py 2>&1 | tee status.log; elif [ -n "$AMZ_AUDIT" ]; then python amz_audit.py 2>&1 | tee status.log; else python amz_status.py 2>&1 | tee status.log; fi
           rm -f credentials.env
