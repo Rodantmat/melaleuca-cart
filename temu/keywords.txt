@@ -48,7 +48,6 @@ kitchen | pan organizer rack
 kitchen | multifunction vegetable cutter
 kitchen | meat tenderizer tool
 kitchen | nonstick silicone cookware set
-kitchen | spice jar set with rack
 pet | dog car seat cover
 pet | elevated dog bowl stand
 garden | garden kneeler seat
@@ -398,3 +397,4 @@ organization | garden tool wall rack with hooks
 organization | tool wall organizer pegboard hooks
 kitchen | under sink organizer pull out basket
 kitchen | under sink storage rack stackable
+kitchen | under sink organizer stainless steel
