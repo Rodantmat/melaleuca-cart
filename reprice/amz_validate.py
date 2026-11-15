@@ -108,7 +108,7 @@ class Builder:
         a = self.common(F, F["title"])
         a["parentage_level"] = [{"value": "parent", "marketplace_id": MP}]
         a["variation_theme"] = [{"name": "COLOR" if F["prod"] == "cap" else "COLOR/SIZE"}]
-        for i, h in enumerate(F["heroes"][:1]): a["main_product_image_locator"] = [{"media_location": h, "marketplace_id": MP}]
+        a["main_product_image_locator"] = [{"media_location": "https://alphadogstyles.com/mk/" + F["children"][0]["img"], "marketplace_id": MP}]
         return a
     def child(self, F, k):
         pr = k["color"].split(" · ")
@@ -138,8 +138,8 @@ class Builder:
         a["condition_type"] = [{"value": "new_new", "marketplace_id": MP}]
         imgs = ["https://alphadogstyles.com/mk/" + k["img"]] if k.get("img") else []
         if imgs: a["main_product_image_locator"] = [{"media_location": imgs[0], "marketplace_id": MP}]
-        for i, h in enumerate(F["heroes"][:3], 1):
-            a["other_product_image_locator_%d" % i] = [{"media_location": h, "marketplace_id": MP}]
+        for i, h in enumerate((k.get("others") or [])[:3], 1):
+            a["other_product_image_locator_%d" % i] = [{"media_location": "https://alphadogstyles.com/mk/" + h, "marketplace_id": MP}]
         return a, tok
 
 def main():
