@@ -1,21 +1,18 @@
-# 2026-11-15T06:55:32Z  bb_web  success  run 43685769549
-rival stock reads: off (budget 80)
-browser session 1 on proxy port 10093  (0 of 167 products read so far, wire 0.0 MB)
-  1/30  price=54.95 seller=MEGA SAVINGS  (1.4 MB so far)
-  21/30  price=None seller=None  (16.3 MB so far)
-browser session 2 on proxy port 10106  (30 of 167 products read so far, wire 3.7 MB)
-  1/30  price=23.0 seller=Lamoure INC  (1.9 MB so far)
-  21/30  price=23.99 seller=Oasis Enterprises LLC  (14.2 MB so far)
-browser session 3 on proxy port 10112  (59 of 167 products read so far, wire 7.4 MB)
-  1/30  price=23.99 seller=balabasics  (2.4 MB so far)
-  21/30  price=27.95 seller=MIMI HEALTH  (16.3 MB so far)
-browser session 4 on proxy port 10125  (89 of 167 products read so far, wire 11.1 MB)
+# 2026-11-15T12:48:45Z  bb_web  success  run 43714231291
+rival stock reads: ON (budget 80)
+browser session 1 on proxy port 10092  (0 of 167 products read so far, wire 0.0 MB)
+  1/30  price=54.95 seller=MEGA SAVINGS  (5.9 MB so far)
+  21/30  price=None seller=None  (43.1 MB so far)
+browser session 2 on proxy port 10101  (30 of 167 products read so far, wire 14.3 MB)
+  1/30  price=23.0 seller=Lamoure INC  (5.0 MB so far)
+  21/30  price=23.99 seller=Oasis Enterprises LLC  (30.5 MB so far)
+browser session 3 on proxy port 10116  (60 of 167 products read so far, wire 23.7 MB)
   1/30  price=None seller=None  (0.0 MB so far)
-  21/30  price=61.87 seller=Cronkai  (19.5 MB so far)
-browser session 5 on proxy port 10138  (119 of 167 products read so far, wire 15.5 MB)
-  1/30  price=54.95 seller=balabasics  (0.1 MB so far)
-  21/30  price=11.99 seller=Cronkai  (21.4 MB so far)
-browser session 6 on proxy port 10145  (149 of 167 products read so far, wire 20.4 MB)
-  1/18  price=16.09 seller=Premier Five Global Solutions  (1.9 MB so far)
-proxy traffic on the wire: 23.8 MB in 247 requests; by type: {'document': 21.8, 'fetch': 1.8}
-web Buy Box: 168 ASINs read, 130 with a price, we win 29, errors 4
+rate limited (503) after 7 ASINs - switching IP
+browser session 4 on proxy port 10128  (64 of 167 products read so far, wire 24.8 MB)
+rate limited (503) after 4 ASINs - switching IP
+browser session 5 on proxy port 10137  (65 of 167 products read so far, wire 25.0 MB)
+rate limited (503) after 5 ASINs - switching IP
+three blocked sessions in a row - stopping for today (partial scan kept)
+proxy traffic on the wire: 25.4 MB in 156 requests; by type: {'document': 24.6, 'fetch': 0.6}
+web Buy Box: 66 ASINs read, 44 with a price, we win 13, errors 0
