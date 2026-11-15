@@ -5,6 +5,17 @@ c = spapi.load_creds(V.HERE); seller = c.get("SELLER_ID") or "A3431QI59MY9RE"
 feed = json.loads(urllib.request.urlopen((os.environ.get("AMZ_FEED_URL") or V.FEED) + "?x=%d" % os.getpid(), timeout=120).read().decode())
 F = [f for f in feed if f["id"] == os.environ.get("AMZ_ONLY", "amazon-tee-01")][0]
 skus = os.environ["AMZ_SKUS"].split(",") if os.environ.get("AMZ_SKUS") else [F["parent_sku"]] + [F["children"][i]["sku"] for i in (0, 1, 5, 100, 330, -1) if abs(i) < len(F["children"])]
+if os.environ.get("AMZ_PROBE"):
+    import concurrent.futures as cf
+    urls = sorted({u for k in F["children"] for u in [k["img"]] + list(k.get("others") or [])})
+    def chk(u):
+        try:
+            r = urllib.request.urlopen(urllib.request.Request("https://alphadogstyles.com/mk/" + u, headers={"User-Agent": "Mozilla/5.0"}), timeout=40)
+            return u, (r.status == 200 and "image" in r.headers.get("content-type", ""))
+        except Exception as e: return u, False
+    bad = [u for u, ok in cf.ThreadPoolExecutor(16).map(chk, urls) if not ok]
+    print("PROBE urls", len(urls), "unreachable", len(bad))
+    for u in bad[:40]: print("PROBE BAD", u)
 for sk in skus:
     try:
         r = spapi.call(c, "GET", "/listings/2021-08-01/items/%s/%s" % (seller, sk), params={"marketplaceIds": spapi.MARKETPLACE, "includedData": "summaries,issues,attributes,fulfillmentAvailability,offers,relationships,productTypes"})
