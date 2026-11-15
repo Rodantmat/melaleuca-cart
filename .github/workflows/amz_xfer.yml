@@ -1,0 +1,30 @@
+name: Amazon credentials transfer to Alphadog-Styles (encrypted)
+on: { workflow_dispatch: {} }
+permissions: { contents: write }
+jobs:
+  x:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with: { ref: main }
+      - name: Encrypt the three SP-API values with the Alphadog-Styles public key
+        env:
+          CRED_ENV: ${{ secrets.CREDENTIALS_ENV }}
+          AMZ_CLIENT: ${{ secrets.AMZ_CLIENT }}
+          AMZ_SECRET: ${{ secrets.AMZ_SECRET }}
+        run: |
+          set -e
+          printf '%s\n' "$CRED_ENV" > c.env
+          if [ -n "$AMZ_SECRET" ]; then printf 'CLIENT_ID=%s\nCLIENT_SECRET=%s\n' "$AMZ_CLIENT" "$AMZ_SECRET" >> c.env; fi
+          # last occurrence wins (same as the reader in reprice/spapi.py); only these three keys are taken
+          grep -E '^(CLIENT_ID|CLIENT_SECRET|REFRESH_TOKEN)=' c.env | tr -d '\r' > payload.txt
+          [ "$(cut -d= -f1 payload.txt | sort -u | wc -l)" = 3 ] || { echo "missing one of the three values"; exit 1; }
+          curl -fsS https://raw.githubusercontent.com/Rodantmat/Alphadog-Styles/main/out/amz_xfer_pub.pem -o pub.pem
+          openssl rand -hex 32 > pass.txt
+          openssl enc -aes-256-cbc -pbkdf2 -salt -in payload.txt -out amz_xfer.data.enc -pass file:pass.txt
+          openssl pkeyutl -encrypt -pubin -inkey pub.pem -pkeyopt rsa_padding_mode:oaep -in pass.txt -out amz_xfer.key.enc
+          mkdir -p out && mv amz_xfer.data.enc amz_xfer.key.enc out/
+          rm -f c.env payload.txt pass.txt pub.pem
+          git config user.name bot; git config user.email bot@users.noreply.github.com
+          git add out/amz_xfer.data.enc out/amz_xfer.key.enc; git commit -qm "encrypted transfer blob (only Alphadog-Styles can open it)"; git pull -q --rebase; git push -q
+          echo encrypted-and-pushed
