@@ -13,7 +13,7 @@ def fix(k):
     sku = k["sku"]; assert re.match(r"^[A-Z]-[A-Z]{2}-\d-[A-Z]{2}(-\w+)?$", sku), sku     # AlphaDog SKUs only
     keep = 1 + len(k.get("others") or [])
     ops = [{"op": "delete", "path": "/attributes/other_product_image_locator_%d" % n, "value": [{"marketplace_id": MP}]} for n in range(keep, 9)]
-    if FA: ops.append({"op": "replace", "path": "/attributes/fulfillment_availability", "value": [{"fulfillment_channel_code": "DEFAULT", "quantity": 999, "lead_time_to_ship_max_days": V.LEAD[F["prod"]]}]})
+    if FA: ops.append({"op": "replace", "path": "/attributes/fulfillment_availability", "value": [{"fulfillment_channel_code": "DEFAULT", "quantity": 999, **({} if os.environ.get("AMZ_FA_NOLEAD") == "1" else {"lead_time_to_ship_max_days": V.LEAD[F["prod"]]})}]})
     try:
         r = spapi.call(c, "PATCH", "/listings/2021-08-01/items/%s/%s" % (seller, sku), params={"marketplaceIds": MP, "issueLocale": "en_US"}, body={"productType": F["ptype"], "patches": ops})
         for i in r.get("issues", []): msgs[(i.get("severity"), i.get("code"), (i.get("message") or "")[:160])] += 1

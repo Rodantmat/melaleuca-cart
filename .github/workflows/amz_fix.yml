@@ -6,6 +6,7 @@ on:
       feed: { default: "https://raw.githubusercontent.com/Rodantmat/Alphadog-Styles/main/store/data/amazon_pilot.json" }
       limit: { default: "1" }
       fa: { default: "" }
+      nolead: { default: "" }
 permissions: { contents: read }
 jobs:
   fix:
@@ -23,6 +24,7 @@ jobs:
           AMZ_FEED_URL: ${{ inputs.feed }}
           AMZ_FIX_LIMIT: ${{ inputs.limit }}
           AMZ_FIX_FA: ${{ inputs.fa }}
+          AMZ_FA_NOLEAD: ${{ inputs.nolead }}
         run: |
           cd reprice
           printf '%s\n' "$CRED_ENV" > credentials.env
