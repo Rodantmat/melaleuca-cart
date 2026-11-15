@@ -3,6 +3,8 @@ on:
   workflow_dispatch:
     inputs:
       only: { description: "one listing id for a pilot (blank = all shirt types)", default: "" }
+      feed: { description: "feed URL override", default: "" }
+      preview: { description: "1 = check-only (VALIDATION_PREVIEW)", default: "" }
 permissions: { contents: read }
 jobs:
   publish:
@@ -18,9 +20,11 @@ jobs:
           AMZ_CLIENT: ${{ secrets.AMZ_CLIENT }}
           AMZ_SECRET: ${{ secrets.AMZ_SECRET }}
           AMZ_ONLY: ${{ inputs.only }}
+          AMZ_FEED_URL: ${{ inputs.feed }}
+          AMZ_PREVIEW: ${{ inputs.preview }}
         run: |
           cd reprice
           printf '%s\n' "$CRED_ENV" > credentials.env
           if [ -n "$AMZ_SECRET" ]; then printf 'CLIENT_ID=%s\nCLIENT_SECRET=%s\n' "$AMZ_CLIENT" "$AMZ_SECRET" >> credentials.env; fi
-          python amz_publish.py 2>&1 | tee publish.log
+          [ -z "$AMZ_FEED_URL" ] && unset AMZ_FEED_URL; python amz_publish.py 2>&1 | tee publish.log
           rm -f credentials.env

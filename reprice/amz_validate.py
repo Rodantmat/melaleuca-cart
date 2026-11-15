@@ -107,17 +107,19 @@ class Builder:
     def parent(self, F):
         a = self.common(F, F["title"])
         a["parentage_level"] = [{"value": "parent", "marketplace_id": MP}]
-        a["variation_theme"] = [{"name": "COLOR" if F["prod"] == "cap" else "COLOR/SIZE"}]
+        a["variation_theme"] = [{"name": F.get("theme") or ("COLOR" if F["prod"] == "cap" else "COLOR/SIZE")}]
+        if F.get("theme"): a.pop("style", None)      # Style is the variation axis (breed) on the children
         a["main_product_image_locator"] = [{"media_location": "https://alphadogstyles.com/mk/" + F["children"][0]["img"], "marketplace_id": MP}]
         return a
     def child(self, F, k):
         pr = k["color"].split(" · ")
-        t = ("AlphaDog Styles Unisex %s for Adults - %s Art, %s" % (F["noun"], pr[0], ", ".join(pr[1:])))[:200]
+        t = k.get("title") or ("AlphaDog Styles Unisex %s for Adults - %s Art, %s" % (F["noun"], pr[0], ", ".join(pr[1:])))[:200]
         if F["prod"] == "wtank": t = t.replace("Unisex", "Women's", 1).replace("Women's Women's", "Women's")
         a = self.common(F, t)
         a["parentage_level"] = [{"value": "child", "marketplace_id": MP}]
         a["child_parent_sku_relationship"] = [{"child_relationship_type": "variation", "parent_sku": F["parent_sku"], "marketplace_id": MP}]
         self.add(a, "color", k["color"], standardized_values=[k["color_std"]])
+        if F.get("theme"): self.add(a, "style", k["style"])
         a["model_number"] = [{"value": k["sku"][:40], "marketplace_id": MP}]
         sk = SIZEKEY[F["ptype"]]
         if F["prod"] != "cap":

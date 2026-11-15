@@ -9,11 +9,14 @@ PRODS = set(os.environ.get("AMZ_PUBLISH_PRODS", "tee,wtank,tank,polo").split(","
 ONLY = os.environ.get("AMZ_ONLY", "").strip()
 def main():
     c = spapi.load_creds(V.HERE); seller = c.get("SELLER_ID") or "A3431QI59MY9RE"
-    feed = json.loads(urllib.request.urlopen(V.FEED, timeout=120).read().decode())
+    feed = json.loads(urllib.request.urlopen(os.environ.get("AMZ_FEED_URL", V.FEED) + "?x=%d" % os.getpid(), timeout=120).read().decode())
     feed = [f for f in feed if f["prod"] in PRODS and (not ONLY or f["id"] == ONLY)]
+    PREVIEW = os.environ.get("AMZ_PREVIEW") == "1"       # check-only: sends mode=VALIDATION_PREVIEW, nothing is created
+    if PREVIEW:
+        for f in feed: f["children"] = f["children"][:: max(1, len(f["children"]) // 6)][:6]
     print("publishing", len(feed), "listings,", sum(len(f["children"]) for f in feed), "children; products", sorted(PRODS), "only", ONLY or "-"); sys.stdout.flush()
     # the main images must be reachable by Amazon before anything goes live
-    probe = [k["img"] for f in feed[:6] for k in f["children"][:: max(1, len(f["children"]) // 3)][:3]][:12]
+    probe = [x for f in feed[:6] for k in f["children"][:: max(1, len(f["children"]) // 12)][:12] for x in [k["img"]] + list(k.get("others") or [])][:40]
     bad = 0
     for p in probe:
         try:
@@ -27,11 +30,11 @@ def main():
     stat = collections.Counter(); errs = collections.Counter(); first = {}
     def put(sk, ptype, attrs):
         try:
-            r = spapi.call(c, "PUT", "/listings/2021-08-01/items/%s/%s" % (seller, sk), params={"marketplaceIds": MP, "issueLocale": "en_US", "mode": None} if False else {"marketplaceIds": MP, "issueLocale": "en_US"},
+            r = spapi.call(c, "PUT", "/listings/2021-08-01/items/%s/%s" % (seller, sk), params={"marketplaceIds": MP, "issueLocale": "en_US", **({"mode": "VALIDATION_PREVIEW"} if PREVIEW else {})},
                            body={"productType": ptype, "requirements": "LISTING", "attributes": attrs})
         except spapi.SpError as e:
             return "HTTP_ERROR", [("ERROR", str(e)[:160])]
-        iss = [(i.get("severity"), "%s %s" % (i.get("code"), (i.get("message") or "")[:140])) for i in r.get("issues", []) if i.get("severity") == "ERROR"]
+        iss = [(i.get("severity"), "%s %s" % (i.get("code"), (i.get("message") or "")[:300])) for i in r.get("issues", []) if i.get("severity") == "ERROR"]
         return r.get("status"), iss
     for F in feed:
         b = B[F["ptype"]]

@@ -8,7 +8,8 @@ ids = [x.strip() for x in os.environ["AMZ_DELETE_IDS"].split(",") if x.strip()]
 feed = json.loads(urllib.request.urlopen(V.FEED + "?x=%d" % os.getpid(), timeout=120).read().decode())
 stat = collections.Counter()
 def rm(sku):
-    assert sku.startswith("AMZ-P-") or sku[1:2] == "-", sku
+    import re
+    assert sku.startswith("AMZ-P-") or re.match(r"^[A-Z]-[A-Z]{2}-\d-[A-Z]{2}(-\w+)?$", sku), sku  # AlphaDog SKUs only
     try:
         r = spapi.call(c, "DELETE", "/listings/2021-08-01/items/%s/%s" % (seller, sku), params={"marketplaceIds": MP, "issueLocale": "en_US"}); return r.get("status", "?")
     except spapi.SpError as e: return "404" if "404" in str(e) else "ERR " + str(e)[:80]
