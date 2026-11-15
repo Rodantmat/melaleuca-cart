@@ -3,6 +3,7 @@ on:
   workflow_dispatch:
     inputs:
       feed: { description: "feed URL override", default: "" }
+      skus: { description: "comma list of SKUs (prints full image URLs)", default: "" }
       only: { description: "one listing id for a pilot (blank = all shirt types)", default: "amazon-tee-01" }
 permissions: { contents: read }
 jobs:
@@ -19,6 +20,7 @@ jobs:
           AMZ_CLIENT: ${{ secrets.AMZ_CLIENT }}
           AMZ_SECRET: ${{ secrets.AMZ_SECRET }}
           AMZ_ONLY: ${{ inputs.only }}
+          AMZ_SKUS: ${{ inputs.skus }}
           AMZ_FEED_URL: ${{ inputs.feed }}
         run: |
           cd reprice
