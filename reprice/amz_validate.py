@@ -140,7 +140,7 @@ class Builder:
         a["condition_type"] = [{"value": "new_new", "marketplace_id": MP}]
         imgs = ["https://alphadogstyles.com/mk/" + k["img"]] if k.get("img") else []
         if imgs: a["main_product_image_locator"] = [{"media_location": imgs[0], "marketplace_id": MP}]
-        for i, h in enumerate((k.get("others") or [])[:3], 1):
+        for i, h in enumerate((k.get("others") or [])[:8], 1):
             a["other_product_image_locator_%d" % i] = [{"media_location": "https://alphadogstyles.com/mk/" + h, "marketplace_id": MP}]
         return a, tok
 
