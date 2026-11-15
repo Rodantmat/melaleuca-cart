@@ -124,7 +124,6 @@ kitchen | vegetable slicer dicer set
 kitchen | mandoline vegetable cutter stainless
 bathroom | shower shelf organizer rustproof
 kitchen | spatula and spoon rest holder
-kitchen | bakeware organizer rack
 kitchen | french fry cutter manual
 kitchen | garlic chopper rocker
 bathroom | corner shower shelf no drill
@@ -154,7 +153,6 @@ kitchen | flour sugar container airtight
 fitness | ab wheel roller kneeling mat
 kitchen | silicone sink splash guard
 kitchen | dish drainer sink caddy
-kitchen | rotating spice rack carousel
 kitchen | banana hanger holder
 kitchen | stretch silicone lids set
 cleaning | grout cleaning brush electric
@@ -398,3 +396,5 @@ kitchen | pocket kitchen scale 3kg
 organization | over cabinet door organizer hooks
 organization | garden tool wall rack with hooks
 organization | tool wall organizer pegboard hooks
+kitchen | under sink organizer pull out basket
+kitchen | under sink storage rack stackable
