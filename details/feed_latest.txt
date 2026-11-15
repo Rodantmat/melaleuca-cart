@@ -1,52 +1,151 @@
-# 2026-11-14T17:23:59Z  feed  success  run 43620244154
-Requesting reports ...
-Waiting for Amazon to build them (usually 1-10 minutes) ...
-  planning                     DONE
-  myi                          DONE
-  listings                     DONE
-  feeprev                      DONE
-  orders_00                    DONE
-  orders_01                    DONE
-  orders_02                    DONE
-  orders_03                    DONE
-Reading the live Buy Box price of 174 ASINs (about 4 minutes) ...
-  live Buy Box prices: 20 of 174 ASINs read
+# 2026-11-15T19:57:49Z  feed  cancelled  run 43743998238
+  live Buy Box prices: 300 of 8429 ASINs read
+  live Buy Box prices: 320 of 8429 ASINs read
+  live Buy Box prices: 340 of 8429 ASINs read
+  live Buy Box prices: 360 of 8429 ASINs read
+  live Buy Box prices: 380 of 8429 ASINs read
+  live Buy Box prices: 400 of 8429 ASINs read
+  live Buy Box prices: 420 of 8429 ASINs read
+  live Buy Box prices: 440 of 8429 ASINs read
+  live Buy Box prices: 460 of 8429 ASINs read
   (Amazon busy / rate limit, HTTP 429 - waiting 5s)
-  live Buy Box prices: 40 of 174 ASINs read
-  live Buy Box prices: 60 of 174 ASINs read
-  live Buy Box prices: 80 of 174 ASINs read
-  live Buy Box prices: 100 of 174 ASINs read
-  live Buy Box prices: 120 of 174 ASINs read
-  live Buy Box prices: 140 of 174 ASINs read
-  live Buy Box prices: 160 of 174 ASINs read
-  live Buy Box prices: 174 of 174 ASINs read
-  live prices: 174 ASINs
-
-Summary
-  planning       OK
-  myi            OK
-  listings       OK
-  feeprev        OK
-  orders_00      OK
-  orders_01      OK
-  orders_02      OK
-  orders_03      OK
-  pricing        OK
-
-Files are in: /home/runner/work/melaleuca-cart/melaleuca-cart/feedwork/raw
-Send Claude the file raw\headers_summary.txt (it contains no sales data).
-Asking Amazon for fee estimates on 163 products ...
-demand history: 212 products with orders, 181 with a stock ledger (folder /home/runner/work/melaleuca-cart/melaleuca-cart/feedwork/state)
-
-Built feed files in: /home/runner/work/melaleuca-cart/melaleuca-cart/feedwork/feed
-  Inventory rows: 176 | FBA rows: 174 | fees known: 175
-  note: 12 SKU(s) were in the planning report but missing from the FBA inventory report - added from planning: ME0048, ME0083, ME0090, ME1128, ME1201, ME1252, ME1645, ME1806, ME1824, ME1826, ME1827, ME1828
-  note: sales history carried over to B0HF3N73XB from B007134WGC: 4 units in 90 days
-  note: 4 SKU(s) have no listing on Amazon any more (no stock, nothing inbound) - not priced, no fee asked: ME0048, ME0083, ME1101, ME1660
-  note: 2 product(s) disappeared but had sales in the last 90 days: see feed\alias_suggestions.tsv (if one was recreated, add it to asin_aliases.tsv)
-  note: incomplete fee (no FBA fee) for 9P-4ZS7-QV81 - not used
-  note: no fee for ME1128: {'Type': 'Sender', 'Code': 'InvalidParameterValue', 'Message': 'No ASIN found fo
-  note: incomplete fee (no FBA fee) for OI-SORQ-OAIE - not used
-  note: incomplete fee (no FBA fee) for P9-9LY1-OBH4 - not used
-  note: 3 fee(s) came from the Fee Preview report (at your price, not the Buy Box price)
-  note: 9 fee(s) are the last known complete fee (Amazon gave none/incomplete today): GF-Y56X-CX1Z, HN-7OON-4N0S, ME1505, ME1657, ME1806, ME1824, ME1826, ME1827, ME1828
+  live Buy Box prices: 480 of 8429 ASINs read
+  live Buy Box prices: 500 of 8429 ASINs read
+  live Buy Box prices: 520 of 8429 ASINs read
+  live Buy Box prices: 540 of 8429 ASINs read
+  live Buy Box prices: 560 of 8429 ASINs read
+  live Buy Box prices: 580 of 8429 ASINs read
+  live Buy Box prices: 600 of 8429 ASINs read
+  live Buy Box prices: 620 of 8429 ASINs read
+  live Buy Box prices: 640 of 8429 ASINs read
+  live Buy Box prices: 660 of 8429 ASINs read
+  (Amazon busy / rate limit, HTTP 429 - waiting 5s)
+  live Buy Box prices: 680 of 8429 ASINs read
+  live Buy Box prices: 700 of 8429 ASINs read
+  (Amazon busy / rate limit, HTTP 429 - waiting 5s)
+  live Buy Box prices: 720 of 8429 ASINs read
+  (Amazon busy / rate limit, HTTP 429 - waiting 5s)
+  live Buy Box prices: 740 of 8429 ASINs read
+  live Buy Box prices: 760 of 8429 ASINs read
+  live Buy Box prices: 780 of 8429 ASINs read
+  live Buy Box prices: 800 of 8429 ASINs read
+  live Buy Box prices: 820 of 8429 ASINs read
+  live Buy Box prices: 840 of 8429 ASINs read
+  live Buy Box prices: 860 of 8429 ASINs read
+  live Buy Box prices: 880 of 8429 ASINs read
+  live Buy Box prices: 900 of 8429 ASINs read
+  live Buy Box prices: 920 of 8429 ASINs read
+  live Buy Box prices: 940 of 8429 ASINs read
+  live Buy Box prices: 960 of 8429 ASINs read
+  live Buy Box prices: 980 of 8429 ASINs read
+  live Buy Box prices: 1000 of 8429 ASINs read
+  (Amazon busy / rate limit, HTTP 429 - waiting 5s)
+  live Buy Box prices: 1020 of 8429 ASINs read
+  live Buy Box prices: 1040 of 8429 ASINs read
+  live Buy Box prices: 1060 of 8429 ASINs read
+  live Buy Box prices: 1080 of 8429 ASINs read
+  live Buy Box prices: 1100 of 8429 ASINs read
+  live Buy Box prices: 1120 of 8429 ASINs read
+  live Buy Box prices: 1140 of 8429 ASINs read
+  live Buy Box prices: 1160 of 8429 ASINs read
+  live Buy Box prices: 1180 of 8429 ASINs read
+  live Buy Box prices: 1200 of 8429 ASINs read
+  live Buy Box prices: 1220 of 8429 ASINs read
+  live Buy Box prices: 1240 of 8429 ASINs read
+  live Buy Box prices: 1260 of 8429 ASINs read
+  live Buy Box prices: 1280 of 8429 ASINs read
+  live Buy Box prices: 1300 of 8429 ASINs read
+  live Buy Box prices: 1320 of 8429 ASINs read
+  live Buy Box prices: 1340 of 8429 ASINs read
+  live Buy Box prices: 1360 of 8429 ASINs read
+  live Buy Box prices: 1380 of 8429 ASINs read
+  live Buy Box prices: 1400 of 8429 ASINs read
+  live Buy Box prices: 1420 of 8429 ASINs read
+  live Buy Box prices: 1440 of 8429 ASINs read
+  (Amazon busy / rate limit, HTTP 429 - waiting 5s)
+  live Buy Box prices: 1460 of 8429 ASINs read
+  live Buy Box prices: 1480 of 8429 ASINs read
+  live Buy Box prices: 1500 of 8429 ASINs read
+  live Buy Box prices: 1520 of 8429 ASINs read
+  live Buy Box prices: 1540 of 8429 ASINs read
+  live Buy Box prices: 1560 of 8429 ASINs read
+  live Buy Box prices: 1580 of 8429 ASINs read
+  live Buy Box prices: 1600 of 8429 ASINs read
+  live Buy Box prices: 1620 of 8429 ASINs read
+  live Buy Box prices: 1640 of 8429 ASINs read
+  (Amazon busy / rate limit, HTTP 429 - waiting 5s)
+  live Buy Box prices: 1660 of 8429 ASINs read
+  live Buy Box prices: 1680 of 8429 ASINs read
+  live Buy Box prices: 1700 of 8429 ASINs read
+  live Buy Box prices: 1720 of 8429 ASINs read
+  live Buy Box prices: 1740 of 8429 ASINs read
+  live Buy Box prices: 1760 of 8429 ASINs read
+  live Buy Box prices: 1780 of 8429 ASINs read
+  live Buy Box prices: 1800 of 8429 ASINs read
+  live Buy Box prices: 1820 of 8429 ASINs read
+  live Buy Box prices: 1840 of 8429 ASINs read
+  live Buy Box prices: 1860 of 8429 ASINs read
+  live Buy Box prices: 1880 of 8429 ASINs read
+  live Buy Box prices: 1900 of 8429 ASINs read
+  live Buy Box prices: 1920 of 8429 ASINs read
+  live Buy Box prices: 1940 of 8429 ASINs read
+  live Buy Box prices: 1960 of 8429 ASINs read
+  live Buy Box prices: 1980 of 8429 ASINs read
+  live Buy Box prices: 2000 of 8429 ASINs read
+  live Buy Box prices: 2020 of 8429 ASINs read
+  live Buy Box prices: 2040 of 8429 ASINs read
+  live Buy Box prices: 2060 of 8429 ASINs read
+  live Buy Box prices: 2080 of 8429 ASINs read
+  live Buy Box prices: 2100 of 8429 ASINs read
+  live Buy Box prices: 2120 of 8429 ASINs read
+  live Buy Box prices: 2140 of 8429 ASINs read
+  live Buy Box prices: 2160 of 8429 ASINs read
+  live Buy Box prices: 2180 of 8429 ASINs read
+  (Amazon busy / rate limit, HTTP 429 - waiting 5s)
+  live Buy Box prices: 2200 of 8429 ASINs read
+  live Buy Box prices: 2220 of 8429 ASINs read
+  live Buy Box prices: 2240 of 8429 ASINs read
+  live Buy Box prices: 2260 of 8429 ASINs read
+  live Buy Box prices: 2280 of 8429 ASINs read
+  live Buy Box prices: 2300 of 8429 ASINs read
+  live Buy Box prices: 2320 of 8429 ASINs read
+  live Buy Box prices: 2340 of 8429 ASINs read
+  live Buy Box prices: 2360 of 8429 ASINs read
+  live Buy Box prices: 2380 of 8429 ASINs read
+  live Buy Box prices: 2400 of 8429 ASINs read
+  live Buy Box prices: 2420 of 8429 ASINs read
+  live Buy Box prices: 2440 of 8429 ASINs read
+  live Buy Box prices: 2460 of 8429 ASINs read
+  live Buy Box prices: 2480 of 8429 ASINs read
+  live Buy Box prices: 2500 of 8429 ASINs read
+  live Buy Box prices: 2520 of 8429 ASINs read
+  live Buy Box prices: 2540 of 8429 ASINs read
+  live Buy Box prices: 2560 of 8429 ASINs read
+  live Buy Box prices: 2580 of 8429 ASINs read
+  live Buy Box prices: 2600 of 8429 ASINs read
+  live Buy Box prices: 2620 of 8429 ASINs read
+  live Buy Box prices: 2640 of 8429 ASINs read
+  live Buy Box prices: 2660 of 8429 ASINs read
+  live Buy Box prices: 2680 of 8429 ASINs read
+  live Buy Box prices: 2700 of 8429 ASINs read
+  (Amazon busy / rate limit, HTTP 429 - waiting 5s)
+  live Buy Box prices: 2720 of 8429 ASINs read
+  live Buy Box prices: 2740 of 8429 ASINs read
+  live Buy Box prices: 2760 of 8429 ASINs read
+  (Amazon busy / rate limit, HTTP 429 - waiting 5s)
+  live Buy Box prices: 2780 of 8429 ASINs read
+  live Buy Box prices: 2800 of 8429 ASINs read
+  live Buy Box prices: 2820 of 8429 ASINs read
+  live Buy Box prices: 2840 of 8429 ASINs read
+  live Buy Box prices: 2860 of 8429 ASINs read
+  live Buy Box prices: 2880 of 8429 ASINs read
+  live Buy Box prices: 2900 of 8429 ASINs read
+  live Buy Box prices: 2920 of 8429 ASINs read
+  live Buy Box prices: 2940 of 8429 ASINs read
+  live Buy Box prices: 2960 of 8429 ASINs read
+  live Buy Box prices: 2980 of 8429 ASINs read
+  live Buy Box prices: 3000 of 8429 ASINs read
+  live Buy Box prices: 3020 of 8429 ASINs read
+  live Buy Box prices: 3040 of 8429 ASINs read
+  live Buy Box prices: 3060 of 8429 ASINs read
+  live Buy Box prices: 3080 of 8429 ASINs read
