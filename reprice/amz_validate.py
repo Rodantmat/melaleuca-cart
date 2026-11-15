@@ -134,7 +134,7 @@ class Builder:
             if tok: a[sk] = [{"size_system": "as1", "size_class": "alpha", "size": tok, "marketplace_id": MP}]
         a["list_price"] = [{"currency": "USD", "value": k["price"], "marketplace_id": MP}]
         a["purchasable_offer"] = [{"marketplace_id": MP, "currency": "USD", "our_price": [{"schedule": [{"value_with_tax": k["price"]}]}]}]
-        a["fulfillment_availability"] = [{"fulfillment_channel_code": "DEFAULT", "quantity": 999, "lead_time_to_ship_max_days": LEAD[self.pk]}]
+        a["fulfillment_availability"] = [{"fulfillment_channel_code": "DEFAULT", "quantity": 999, "lead_time_to_ship_max_days": LEAD[F["prod"]]}]
         a["condition_type"] = [{"value": "new_new", "marketplace_id": MP}]
         imgs = ["https://alphadogstyles.com/mk/" + k["img"]] if k.get("img") else []
         if imgs: a["main_product_image_locator"] = [{"media_location": imgs[0], "marketplace_id": MP}]
