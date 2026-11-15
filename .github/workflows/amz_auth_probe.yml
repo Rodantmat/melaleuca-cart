@@ -1,0 +1,22 @@
+name: Amazon login probe (read-only)
+on: { workflow_dispatch: {} }
+permissions: { contents: read }
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with: { ref: main }
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - name: Probe
+        env:
+          AMZ_CLIENT: ${{ secrets.AMZ_CLIENT }}
+          AMZ_SECRET: ${{ secrets.AMZ_SECRET }}
+          AMZ_REFRESH: ${{ secrets.AMZ_REFRESH }}
+        run: |
+          cd reprice
+          printf 'CLIENT_ID=%s\nCLIENT_SECRET=%s\nREFRESH_TOKEN=%s\n' "$AMZ_CLIENT" "$AMZ_SECRET" "$AMZ_REFRESH" > credentials.env
+          python auth_probe.py; rc=$?
+          rm -f credentials.env; exit $rc
