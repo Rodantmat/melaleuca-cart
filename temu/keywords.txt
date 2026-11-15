@@ -110,7 +110,6 @@ kitchen | pot and pan lid rack wall mount
 kitchen | onion chopper handheld
 kitchen | food chopper pull cord manual
 kitchen | fruit and vegetable slicer set
-bathroom | adhesive shower shelf stainless
 bathroom | shower caddy basket suction
 fitness | ab wheel roller double wheel
 fitness | push up board
@@ -123,7 +122,6 @@ kitchen | vegetable chopper with container
 kitchen | onion dicer slicer manual
 kitchen | vegetable slicer dicer set
 kitchen | mandoline vegetable cutter stainless
-bathroom | shower caddy basket with hooks
 bathroom | shower caddy 2 tier stainless
 bathroom | shower shelf organizer rustproof
 fitness | ab roller wheel double wheel
@@ -172,7 +170,6 @@ fitness | resistance loop bands set
 fitness | foam roller massage ball
 kitchen | pot lid holder stainless steel stand
 kitchen | vegetable chopper onion dicer
-kitchen | food chopper manual pull
 kitchen | knife block holder universal
 bathroom | shower caddy corner stainless steel
 bathroom | bathroom shelf over toilet
@@ -196,7 +193,6 @@ kitchen | cutting board organizer rack
 kitchen | pantry shelf risers
 kitchen | onion chopper dicer
 bathroom | shower corner shelf adhesive
-bathroom | shower shelf stainless steel no drilling
 bathroom | under cabinet bathroom organizer
 organization | under sink 2 tier organizer pull out
 organization | cabinet door organizer hanging
@@ -262,7 +258,6 @@ organization | cable box organizer bamboo desk
 organization | wire management box for tv cables
 fitness | ab wheel roller silent wide wheel
 fitness | abs roller stainless handle
-bathroom | bathroom wall shelf no drill with hooks
 pet | foldable pet ramp for dogs sofa
 pet | dog steps for bed 3 tier
 tools | garage wall tool organizer rack heavy duty
@@ -287,7 +282,6 @@ kitchen | measuring spoons stainless steel set magnetic
 kitchen | measuring cups and spoons set nesting
 kitchen | magnetic knife holder for refrigerator
 kitchen | over the sink dish drying rack stainless
-kitchen | sink dish rack roll up
 garden | garden kneeler and seat folding
 garden | garden kneeling pad foam thick
 pet | pet hair remover reusable lint roller
@@ -356,7 +350,6 @@ bathroom | bathroom shelf over toilet organizer
 kitchen | digital pocket scale jewelry 200g
 bathroom | shower caddy suction cup corner 2 pack
 bathroom | shower shelf stick on stainless 3 pack
-bathroom | shower soap dish adhesive wall
 bathroom | razor holder shower wall adhesive
 kitchen | onion chopper pull string
 kitchen | vegetable chopper large capacity 4 blade
@@ -398,3 +391,10 @@ kitchen | pot lid rack wall mounted no drill
 kitchen | pan organizer rack cabinet 5 tier
 kitchen | spatula utensil rest holder stove
 kitchen | cutting board holder stand rack
+kitchen | pot lid holder stainless steel 2 pack
+kitchen | pan lid organizer stand stainless
+kitchen | stainless steel spoon rest double
+kitchen | ceramic spoon rest set
+kitchen | electric pepper grinder rechargeable
+kitchen | gravity electric salt grinder set
+kitchen | vegetable chopper 8 in 1 container
