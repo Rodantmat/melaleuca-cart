@@ -122,16 +122,12 @@ kitchen | vegetable chopper with container
 kitchen | onion dicer slicer manual
 kitchen | vegetable slicer dicer set
 kitchen | mandoline vegetable cutter stainless
-bathroom | shower caddy 2 tier stainless
 bathroom | shower shelf organizer rustproof
-fitness | ab roller wheel double wheel
 kitchen | spatula and spoon rest holder
 kitchen | bakeware organizer rack
-kitchen | vegetable dicer with drain basket
 kitchen | french fry cutter manual
 kitchen | garlic chopper rocker
 bathroom | corner shower shelf no drill
-fitness | ab roller kneeling mat
 fitness | resistance bands set with handles
 kitchen | under sink organizer 2 tier
 kitchen | under sink shelf expandable
@@ -199,7 +195,6 @@ organization | cabinet door organizer hanging
 kitchen | ice cube tray with lid and bin
 kitchen | bakeware divider tray organizer
 kitchen | plastic wrap foil dispenser rack
-kitchen | stainless steel dish rack plate holder
 kitchen | wok lid holder stand
 kitchen | countertop spoon rest utensil
 bathroom | shower shelf stainless steel no drill
@@ -211,7 +206,6 @@ niche | reusable silicone stretch lids set
 niche | under desk cable management tray
 niche | toilet paper holder with phone shelf
 niche | garage hook wall mount heavy duty bike
-niche | hanging closet organizer collapsible shelves
 niche | rotating makeup organizer turntable
 niche | pet hair roller reusable brush
 niche | dish brush soap dispensing handle storage
@@ -246,18 +240,15 @@ kitchen | vegetable chopper with container 12 in 1
 kitchen | pot and pan lid organizer drawer
 kitchen | silicone pot holder trivet set
 kitchen | utensil crock ceramic
-fitness | ab roller wheel with knee pad
 fitness | exercise mat thick 10mm
 organization | stackable cabinet shelf white metal
 kitchen | onion dicer with container stainless blades
-kitchen | vegetable slicer dicer 8 in 1
 pet | pet hair remover glove
 kitchen | pot lid holder wall mounted adhesive
 organization | power strip cover box cord hider
 organization | cable box organizer bamboo desk
 organization | wire management box for tv cables
 fitness | ab wheel roller silent wide wheel
-fitness | abs roller stainless handle
 pet | foldable pet ramp for dogs sofa
 pet | dog steps for bed 3 tier
 tools | garage wall tool organizer rack heavy duty
@@ -266,7 +257,6 @@ garden | tiered plant stand metal indoor outdoor
 kitchen | gravity electric pepper mill set rechargeable
 kitchen | stainless steel utensil holder pot lid 3pcs
 fitness | ab roller with knee mat
-fitness | ab wheel roller no noise
 fitness | resistance band set loop
 kitchen | pot lid holder wall mounted rack
 organization | cable box large power strip cover
@@ -283,7 +273,6 @@ kitchen | measuring cups and spoons set nesting
 kitchen | magnetic knife holder for refrigerator
 kitchen | over the sink dish drying rack stainless
 garden | garden kneeler and seat folding
-garden | garden kneeling pad foam thick
 pet | pet hair remover reusable lint roller
 pet | pet lint brush for couch
 home | under cabinet sliding basket organizer
@@ -398,3 +387,14 @@ kitchen | ceramic spoon rest set
 kitchen | electric pepper grinder rechargeable
 kitchen | gravity electric salt grinder set
 kitchen | vegetable chopper 8 in 1 container
+kitchen | stainless steel utensil crock with drip tray
+kitchen | pot lid holder wall mounted
+kitchen | pan lid organizer rack 3 tier
+kitchen | spoon rest double stainless steel
+kitchen | salt and pepper grinder electric gravity
+kitchen | magnetic spice rack stainless
+kitchen | kitchen sink caddy sponge holder stainless
+kitchen | pocket kitchen scale 3kg
+organization | over cabinet door organizer hooks
+organization | garden tool wall rack with hooks
+organization | tool wall organizer pegboard hooks
