@@ -19,15 +19,11 @@ jobs:
           CRED_ENV: ${{ secrets.CREDENTIALS_ENV }}
           AMZ_CLIENT: ${{ secrets.AMZ_CLIENT }}
           AMZ_SECRET: ${{ secrets.AMZ_SECRET }}
-          AMZ_REFRESH: ${{ secrets.AMZ_REFRESH }}
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
           REFS: ${{ github.event.inputs.refs }}
         run: |
           mkdir -p /tmp/im; printf '%s\n' "$CRED_ENV" > reprice/credentials.env
-          if [ -n "$AMZ_SECRET" ] && [ -n "$AMZ_REFRESH" ]; then
-            grep -v -i -E '^[[:space:]]*(CLIENT_ID|CLIENT_SECRET|REFRESH_TOKEN)[[:space:]]*=' reprice/credentials.env > reprice/credentials.env.tmp; mv reprice/credentials.env.tmp reprice/credentials.env
-            printf 'CLIENT_ID=%s\nCLIENT_SECRET=%s\nREFRESH_TOKEN=%s\n' "$AMZ_CLIENT" "$AMZ_SECRET" "$AMZ_REFRESH" >> reprice/credentials.env
-          elif [ -n "$AMZ_SECRET" ]; then printf 'CLIENT_ID=%s\nCLIENT_SECRET=%s\n' "$AMZ_CLIENT" "$AMZ_SECRET" >> reprice/credentials.env; fi
+          if [ -n "$AMZ_SECRET" ]; then printf 'CLIENT_ID=%s\nCLIENT_SECRET=%s\n' "$AMZ_CLIENT" "$AMZ_SECRET" >> reprice/credentials.env; fi
           python temu/img_fetch.py > /tmp/im/run.log 2>&1 || true
           rm -f reprice/credentials.env
           grep -E "^img_fetch:|Traceback|ERR" /tmp/im/run.log | head -10 || true

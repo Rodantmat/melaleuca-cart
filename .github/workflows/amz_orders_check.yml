@@ -13,12 +13,8 @@ jobs:
           CRED_ENV: ${{ secrets.CREDENTIALS_ENV }}
           AMZ_CLIENT: ${{ secrets.AMZ_CLIENT }}
           AMZ_SECRET: ${{ secrets.AMZ_SECRET }}
-          AMZ_REFRESH: ${{ secrets.AMZ_REFRESH }}
         run: |
           cd reprice
           printf '%s\n' "$CRED_ENV" > credentials.env
-          if [ -n "$AMZ_SECRET" ] && [ -n "$AMZ_REFRESH" ]; then
-            grep -v -i -E '^[[:space:]]*(CLIENT_ID|CLIENT_SECRET|REFRESH_TOKEN)[[:space:]]*=' credentials.env > credentials.env.tmp; mv credentials.env.tmp credentials.env
-            printf 'CLIENT_ID=%s\nCLIENT_SECRET=%s\nREFRESH_TOKEN=%s\n' "$AMZ_CLIENT" "$AMZ_SECRET" "$AMZ_REFRESH" >> credentials.env
-          elif [ -n "$AMZ_SECRET" ]; then printf 'CLIENT_ID=%s\nCLIENT_SECRET=%s\n' "$AMZ_CLIENT" "$AMZ_SECRET" >> credentials.env; fi
+          if [ -n "$AMZ_SECRET" ]; then printf 'CLIENT_ID=%s\nCLIENT_SECRET=%s\n' "$AMZ_CLIENT" "$AMZ_SECRET" >> credentials.env; fi
           python amz_orders_check.py 2>&1; rm -f credentials.env
