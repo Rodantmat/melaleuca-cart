@@ -2,6 +2,7 @@ name: Amazon listing STATUS (read-only)
 on:
   workflow_dispatch:
     inputs:
+      feed: { description: "feed URL override", default: "" }
       only: { description: "one listing id for a pilot (blank = all shirt types)", default: "amazon-tee-01" }
 permissions: { contents: read }
 jobs:
@@ -18,6 +19,7 @@ jobs:
           AMZ_CLIENT: ${{ secrets.AMZ_CLIENT }}
           AMZ_SECRET: ${{ secrets.AMZ_SECRET }}
           AMZ_ONLY: ${{ inputs.only }}
+          AMZ_FEED_URL: ${{ inputs.feed }}
         run: |
           cd reprice
           printf '%s\n' "$CRED_ENV" > credentials.env

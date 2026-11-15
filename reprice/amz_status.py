@@ -2,9 +2,9 @@
 import json, os, urllib.request, collections
 import spapi, amz_validate as V
 c = spapi.load_creds(V.HERE); seller = c.get("SELLER_ID") or "A3431QI59MY9RE"
-feed = json.loads(urllib.request.urlopen(V.FEED, timeout=120).read().decode())
+feed = json.loads(urllib.request.urlopen((os.environ.get("AMZ_FEED_URL") or V.FEED) + "?x=%d" % os.getpid(), timeout=120).read().decode())
 F = [f for f in feed if f["id"] == os.environ.get("AMZ_ONLY", "amazon-tee-01")][0]
-skus = [F["parent_sku"]] + [F["children"][i]["sku"] for i in (0, 1, 100, 300, -1)]
+skus = [F["parent_sku"]] + [F["children"][i]["sku"] for i in (0, 1, 5, 100, 330, -1) if abs(i) < len(F["children"])]
 for sk in skus:
     try:
         r = spapi.call(c, "GET", "/listings/2021-08-01/items/%s/%s" % (seller, sk), params={"marketplaceIds": spapi.MARKETPLACE, "includedData": "summaries,issues,attributes,fulfillmentAvailability,offers,relationships,productTypes"})
