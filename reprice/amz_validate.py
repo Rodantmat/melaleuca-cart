@@ -111,7 +111,8 @@ class Builder:
         return a
     def child(self, F, k):
         pr = k["color"].split(" · ")
-        t = ("AlphaDog Styles %s %s - %s" % (pr[0], F["noun"], ", ".join(pr[1:])))[:200]
+        t = ("AlphaDog Styles Unisex %s for Adults - %s Art, %s" % (F["noun"], pr[0], ", ".join(pr[1:])))[:200]
+        if F["prod"] == "wtank": t = t.replace("Unisex", "Women's", 1).replace("Women's Women's", "Women's")
         a = self.common(F, t)
         a["parentage_level"] = [{"value": "child", "marketplace_id": MP}]
         a["child_parent_sku_relationship"] = [{"child_relationship_type": "variation", "parent_sku": F["parent_sku"], "marketplace_id": MP}]
