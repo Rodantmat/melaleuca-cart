@@ -19,6 +19,7 @@ jobs:
           CRED_ENV: ${{ secrets.CREDENTIALS_ENV }}
           AMZ_CLIENT: ${{ secrets.AMZ_CLIENT }}
           AMZ_SECRET: ${{ secrets.AMZ_SECRET }}
+          AMZ_REFRESH: ${{ secrets.AMZ_REFRESH }}
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
           PROXY_URL: ${{ secrets.PROXY_URL }}
           APIFY_TOKEN: ${{ secrets.APIFY_TOKEN || secrets.APIFY_API_TOKEN || secrets.APIFY_KEY || secrets.APIFY }}
@@ -26,7 +27,10 @@ jobs:
           ASINS: ${{ github.event.inputs.asins }}
         run: |
           mkdir -p /tmp/cc; printf '%s\n' "$CRED_ENV" > reprice/credentials.env
-          if [ -n "$AMZ_SECRET" ]; then printf 'CLIENT_ID=%s\nCLIENT_SECRET=%s\n' "$AMZ_CLIENT" "$AMZ_SECRET" >> reprice/credentials.env; fi
+          if [ -n "$AMZ_SECRET" ] && [ -n "$AMZ_REFRESH" ]; then
+            grep -v -i -E '^[[:space:]]*(CLIENT_ID|CLIENT_SECRET|REFRESH_TOKEN)[[:space:]]*=' reprice/credentials.env > reprice/credentials.env.tmp; mv reprice/credentials.env.tmp reprice/credentials.env
+            printf 'CLIENT_ID=%s\nCLIENT_SECRET=%s\nREFRESH_TOKEN=%s\n' "$AMZ_CLIENT" "$AMZ_SECRET" "$AMZ_REFRESH" >> reprice/credentials.env
+          elif [ -n "$AMZ_SECRET" ]; then printf 'CLIENT_ID=%s\nCLIENT_SECRET=%s\n' "$AMZ_CLIENT" "$AMZ_SECRET" >> reprice/credentials.env; fi
           python temu/comp_check.py > /tmp/cc/run.log 2>&1 || true
           rm -f reprice/credentials.env
           grep -E "^comp_check:|proxy fallback|  reviews:|Traceback|ERR" /tmp/cc/run.log | head -10 || true
