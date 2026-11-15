@@ -19,7 +19,6 @@ cleaning | grout cleaning brush
 cleaning | window cleaning tool
 bathroom | shower caddy
 laundry | clothes drying rack
-home | cord cover
 pet | pet grooming brush
 car | car seat gap filler
 office | desk organizer
@@ -77,7 +76,6 @@ home | cable management sleeve
 home | cable clips adhesive
 pet | pet hair lint brush reusable
 fitness | ab wheel roller with knee mat
-fitness | resistance bands set loop
 home | furniture sliders felt pads
 home | table leg extenders
 bathroom | shower caddy hanging over door
@@ -226,7 +224,6 @@ niche | rotating makeup organizer turntable
 niche | pet hair roller reusable brush
 niche | dish brush soap dispensing handle storage
 niche | cord winder wrap cable organizer
-niche | wine bottle chiller stick
 kitchen | ice cube tray 15 grid silicone
 kitchen | ice ball mold sphere silicone
 kitchen | pot lid holder 4 tier
@@ -284,7 +281,6 @@ fitness | ab roller with knee mat
 fitness | ab wheel roller no noise
 fitness | resistance band set loop
 kitchen | pot lid holder wall mounted rack
-kitchen | spatula utensil rest holder
 organization | cable box large power strip cover
 organization | cord organizer wrap
 bathroom | shower caddy corner suction
@@ -321,7 +317,6 @@ fitness | ab roller double wheel
 office | power strip organizer box wood
 office | cord organizer box bamboo
 kitchen | spoon rest ceramic kitchen
-kitchen | utensil rest stove top holder
 kitchen | pot lid rack organizer 3 pcs
 kitchen | countertop utensil holder stainless steel
 bathroom | shower caddy 3 tier hanging stainless
@@ -389,12 +384,17 @@ office | monitor stand riser with storage
 organization | shoe rack organizer stackable
 organization | hanging shelf organizer closet 5 tier
 garden | garden tool organizer wall hanging
-car | car seat organizer storage pocket
-pet | dog leash hook wall holder
-kitchen | pull string food chopper manual
-kitchen | vegetable slicer dicer 4 blade
-kitchen | potato ricer masher stainless
-kitchen | digital kitchen scale 11 lb stainless
-kitchen | food scale with bowl grams ounces
-kitchen | egg slicer wire stainless
-kitchen | fruit vegetable cutter slicer set
+kitchen | onion slicer cutter handheld
+kitchen | multi-blade vegetable chopper 12 in 1
+kitchen | vegetable cutter dicer with drain basket
+kitchen | fruit slicer cutter pineapple corer
+kitchen | manual salad cutter bowl
+kitchen | pocket digital scale 500g
+kitchen | coffee scale with timer
+kitchen | pot lid organizer rack 3 tier
+kitchen | pot and pan lid holder wall mount
+bathroom | shower caddy hanging over head stainless
+bathroom | bathroom corner shelf stainless no drill
+organization | hanging closet organizer 6 shelf
+organization | hanging clothes organizer foldable fabric
+organization | closet shelf divider hanging purse
