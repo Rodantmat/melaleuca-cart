@@ -25,7 +25,7 @@ def main():
         except Exception as e: ok = False
         bad += 0 if ok else 1
     print("image probe: %d/%d reachable" % (len(probe) - bad, len(probe)))
-    if bad > len(probe) // 3: print("ABORT: main images not live yet"); sys.exit(1)
+    if bad > len(probe) // 3 and not PREVIEW: print("ABORT: main images not live yet"); sys.exit(1)
     B = {pt: V.Builder(V.load_schema(c, pt), pt) for pt in {f["ptype"] for f in feed}}
     stat = collections.Counter(); errs = collections.Counter(); first = {}
     def put(sk, ptype, attrs):
