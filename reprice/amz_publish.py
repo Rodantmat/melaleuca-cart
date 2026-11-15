@@ -39,16 +39,16 @@ def main():
     for F in feed:
         b = B[F["ptype"]]
         st, iss = put(F["parent_sku"], F["ptype"], b.parent(F)); stat[("PARENT", st)] += 1
-        if st != "ACCEPTED" or iss:
+        if st not in ("ACCEPTED", "VALID") or iss:
             print("PARENT FAILED", F["id"], st, iss[:2]); errs.update(i[1] for i in iss); continue
         done = 0
         def one(k):
             return put(k["sku"], F["ptype"], b.child(F, k)[0])
         with ThreadPoolExecutor(4) as ex:
             for n, (st, iss) in enumerate(ex.map(one, F["children"])):
-                stat[("CHILD", st if not iss else "ACCEPTED_WITH_ERRORS")] += 1
+                stat[("CHILD", st if not iss else "WITH_ERRORS")] += 1
                 for i in iss: errs[i[1]] += 1; first.setdefault(i[1], F["id"])
-                if n == 60 and sum(v for k, v in stat.items() if k[0] == "CHILD" and k[1] != "ACCEPTED") > 12: print("ABORT: too many child errors, stopping"); print(dict(errs)); sys.exit(2)
+                if n == 60 and sum(v for k, v in stat.items() if k[0] == "CHILD" and k[1] not in ("ACCEPTED", "VALID")) > 12: print("ABORT: too many child errors, stopping"); print(dict(errs)); sys.exit(2)
         print("done", F["id"], len(F["children"]), "children", dict((k[1], v) for k, v in stat.items() if k[0] == "CHILD")); sys.stdout.flush()
     print("\n=== SUMMARY"); [print("  ", k, v) for k, v in sorted(stat.items(), key=str)]
     print("=== ERRORS"); [print("  ", k, v, first.get(k)) for k, v in errs.most_common(15)]
