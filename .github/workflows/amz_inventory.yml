@@ -1,0 +1,31 @@
+name: Amazon pilot STOCK via Feeds API (AlphaDog SKUs only)
+on:
+  workflow_dispatch:
+    inputs:
+      only: { default: "pilot-tee-1" }
+      feed: { default: "https://raw.githubusercontent.com/Rodantmat/Alphadog-Styles/main/store/data/amazon_pilot.json" }
+      limit: { default: "1" }
+      fa: { default: "" }
+permissions: { contents: read }
+jobs:
+  fix:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with: { ref: main }
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - env:
+          CRED_ENV: ${{ secrets.CREDENTIALS_ENV }}
+          AMZ_CLIENT: ${{ secrets.AMZ_CLIENT }}
+          AMZ_SECRET: ${{ secrets.AMZ_SECRET }}
+          AMZ_ONLY: ${{ inputs.only }}
+          AMZ_FEED_URL: ${{ inputs.feed }}
+          AMZ_FIX_LIMIT: ${{ inputs.limit }}
+          AMZ_FIX_FA: ${{ inputs.fa }}
+        run: |
+          cd reprice
+          printf '%s\n' "$CRED_ENV" > credentials.env
+          if [ -n "$AMZ_SECRET" ]; then printf 'CLIENT_ID=%s\nCLIENT_SECRET=%s\n' "$AMZ_CLIENT" "$AMZ_SECRET" >> credentials.env; fi
+          python amz_inventory.py 2>&1 | tee inv.log
+          rm -f credentials.env
