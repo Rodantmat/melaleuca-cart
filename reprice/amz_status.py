@@ -30,5 +30,8 @@ for sk in skus:
         if os.environ.get("AMZ_SKUS"):
             for k, v in sorted(at.items()):
                 if "image_locator" in k: print("    IMG", k, (v[0] or {}).get("media_location",""))
+        if os.environ.get("AMZ_DUMP"):
+            print("    DUMP attrs:", json.dumps({k: v for k, v in at.items() if "image_locator" not in k}, sort_keys=True)[:6000])
+            print("    DUMP rel:", json.dumps(r.get("relationships")), "| summaries:", json.dumps(r.get("summaries"))[:600])
         for i in r.get("issues", [])[:3]: print("    ", i.get("severity"), i.get("code"), (i.get("message") or "")[:160])
     except spapi.SpError as e: print(sk, "ERR", str(e)[:150])
