@@ -197,4 +197,5 @@ def main():
     for k, v in sorted(stat.items(), key=str): print("  ", k, v)
     print("\n=== ISSUES (severity | code | message | attrs): count  [example listing, sku]")
     for k, v in sorted(issues.items(), key=lambda kv: (str(kv[0][0]), -kv[1])): print("  ", " | ".join(map(str, k)), ":", v, ex.get(k))
-main()
+if __name__ == "__main__":
+    main()
