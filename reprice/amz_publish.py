@@ -11,6 +11,9 @@ def main():
     c = spapi.load_creds(V.HERE); seller = c.get("SELLER_ID") or "A3431QI59MY9RE"
     feed = json.loads(urllib.request.urlopen(os.environ.get("AMZ_FEED_URL", V.FEED) + "?x=%d" % os.getpid(), timeout=120).read().decode())
     feed = [f for f in feed if f["prod"] in PRODS and (not ONLY or f["id"] == ONLY)]
+    SK = {x.strip() for x in os.environ.get("AMZ_SKUS", "").split(",") if x.strip()}
+    if SK:
+        for f in feed: f["children"] = [k for k in f["children"] if k["sku"] in SK]
     PREVIEW = os.environ.get("AMZ_PREVIEW") == "1"       # check-only: sends mode=VALIDATION_PREVIEW, nothing is created
     if PREVIEW:
         for f in feed: f["children"] = f["children"][:: max(1, len(f["children"]) // 6)][:6]

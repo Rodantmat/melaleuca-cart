@@ -2,6 +2,7 @@ name: Amazon PUBLISH shirt listings (owner approved)
 on:
   workflow_dispatch:
     inputs:
+      skus: { description: "comma list of child SKUs (blank = all)", default: "" }
       only: { description: "one listing id for a pilot (blank = all shirt types)", default: "" }
       feed: { description: "feed URL override", default: "" }
       preview: { description: "1 = check-only (VALIDATION_PREVIEW)", default: "" }
@@ -20,6 +21,7 @@ jobs:
           AMZ_CLIENT: ${{ secrets.AMZ_CLIENT }}
           AMZ_SECRET: ${{ secrets.AMZ_SECRET }}
           AMZ_ONLY: ${{ inputs.only }}
+          AMZ_SKUS: ${{ inputs.skus }}
           AMZ_FEED_URL: ${{ inputs.feed }}
           AMZ_PREVIEW: ${{ inputs.preview }}
         run: |
