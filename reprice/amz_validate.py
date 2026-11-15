@@ -7,8 +7,9 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 MP = spapi.MARKETPLACE
 FEED = "https://raw.githubusercontent.com/Rodantmat/Alphadog-Styles/main/store/data/amazon_feed.json"
 MODE = "VALIDATION_PREVIEW"      # never anything else in this file
-LEAD_DAYS = 7                    # production 2-5 business days + hand-off; keep realistic so Amazon's late-shipment metric is safe
-ORIGIN = {"tee": "HN", "hoodie": "HN", "wtank": "HN", "tank": "HN", "polo": "HN", "cap": "HN"}   # PLACEHOLDER for the check - must be verified per Printify print provider/blank before any publish
+LEAD = {"tee": 7, "hoodie": 7, "wtank": 7, "tank": 7, "polo": 7, "cap": 12}   # owner Nov 14: 7 days shirts, 12 days caps
+LEAD_DAYS = 7
+ORIGIN = {"tee": "HN", "hoodie": "HN", "wtank": "HN", "tank": "HN", "polo": "HN", "cap": "BD"}   # owner Nov 14: shirts Honduras, caps Bangladesh
 KEYWORDS = {"tee": ["fashion-t-shirts", "t-shirts"], "hoodie": ["fashion-hoodies"], "wtank": ["fashion-tank-tops", "tank-tops"], "tank": ["fashion-tank-tops", "tank-tops"],
             "polo": ["polo-shirts", "fashion-polos"], "cap": ["baseball-caps"]}
 SIZE_NAMES = {"S": ["S", "Small"], "M": ["M", "Medium"], "L": ["L", "Large"], "XL": ["XL", "X-Large", "X Large"], "2XL": ["2XL", "XXL", "XX-Large", "2X-Large"],
@@ -133,7 +134,7 @@ class Builder:
             if tok: a[sk] = [{"size_system": "as1", "size_class": "alpha", "size": tok, "marketplace_id": MP}]
         a["list_price"] = [{"currency": "USD", "value": k["price"], "marketplace_id": MP}]
         a["purchasable_offer"] = [{"marketplace_id": MP, "currency": "USD", "our_price": [{"schedule": [{"value_with_tax": k["price"]}]}]}]
-        a["fulfillment_availability"] = [{"fulfillment_channel_code": "DEFAULT", "quantity": 999, "lead_time_to_ship_max_days": LEAD_DAYS}]
+        a["fulfillment_availability"] = [{"fulfillment_channel_code": "DEFAULT", "quantity": 999, "lead_time_to_ship_max_days": LEAD[self.pk]}]
         a["condition_type"] = [{"value": "new_new", "marketplace_id": MP}]
         imgs = ["https://alphadogstyles.com/mk/" + k["img"]] if k.get("img") else []
         if imgs: a["main_product_image_locator"] = [{"media_location": imgs[0], "marketplace_id": MP}]
