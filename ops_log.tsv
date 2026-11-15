@@ -99,3 +99,4 @@ utc	job	status	trigger	run_id	summary
 2026-11-15T19:57:49Z	feed	cancelled	schedule	43743998238	(no summary lines)
 2026-11-15T20:15:54Z	reprice	failure	workflow_dispatch	43757056498	mode=shadow live_writes_allowed=False killed=False skus=167 | errors=10 first: Traceback (most recent call last):
 2026-11-15T20:17:09Z	reprice	failure	workflow_dispatch	43757166468	mode=shadow live_writes_allowed=False killed=False skus=167 | errors=10 first: Traceback (most recent call last):
+2026-11-15T20:18:15Z	reprice	failure	workflow_dispatch	43757278202	errors=3 first: Traceback (most recent call last):

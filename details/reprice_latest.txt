@@ -1,53 +1,13 @@
-# 2026-11-15T20:17:09Z  reprice  failure  run 43757166468
+# 2026-11-15T20:18:15Z  reprice  failure  run 43757278202
 /home/runner/work/melaleuca-cart/melaleuca-cart/reprice/run.py:14: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
   now = dt.datetime.utcnow()
-mode=shadow live_writes_allowed=False killed=False skus=167
-Traceback (most recent call last):
-  File "/home/runner/work/melaleuca-cart/melaleuca-cart/reprice/spapi.py", line 62, in call
-    with urllib.request.urlopen(req, timeout=90) as r:
-         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/opt/hostedtoolcache/Python/3.12.16/x64/lib/python3.12/urllib/request.py", line 215, in urlopen
-    return opener.open(url, data, timeout)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/opt/hostedtoolcache/Python/3.12.16/x64/lib/python3.12/urllib/request.py", line 521, in open
-    response = meth(req, response)
-               ^^^^^^^^^^^^^^^^^^^
-  File "/opt/hostedtoolcache/Python/3.12.16/x64/lib/python3.12/urllib/request.py", line 630, in http_response
-    response = self.parent.error(
-               ^^^^^^^^^^^^^^^^^^
-  File "/opt/hostedtoolcache/Python/3.12.16/x64/lib/python3.12/urllib/request.py", line 559, in error
-    return self._call_chain(*args)
-           ^^^^^^^^^^^^^^^^^^^^^^^
-  File "/opt/hostedtoolcache/Python/3.12.16/x64/lib/python3.12/urllib/request.py", line 492, in _call_chain
-    result = func(*args)
-             ^^^^^^^^^^^
-  File "/opt/hostedtoolcache/Python/3.12.16/x64/lib/python3.12/urllib/request.py", line 639, in http_error_default
-    raise HTTPError(req.full_url, code, msg, hdrs, fp)
-urllib.error.HTTPError: HTTP Error 403: 
-
-During handling of the above exception, another exception occurred:
-
 Traceback (most recent call last):
   File "/home/runner/work/melaleuca-cart/melaleuca-cart/reprice/run.py", line 463, in <module>
     sys.exit(main() or 0)
              ^^^^^^
-  File "/home/runner/work/melaleuca-cart/melaleuca-cart/reprice/run.py", line 261, in main
-    live = AP.fetch(api, c, asins, log)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/runner/work/melaleuca-cart/melaleuca-cart/reprice/amazon_pricing.py", line 125, in fetch
-    r = api(creds, "POST", "/batches/products/pricing/2022-05-01/items/competitiveSummary", body=body)
-        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/runner/work/melaleuca-cart/melaleuca-cart/reprice/run.py", line 260, in <lambda>
-    api = lambda cr, m, p, body=None: spapi.call(cr, m, p, body=body)
-                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/runner/work/melaleuca-cart/melaleuca-cart/reprice/spapi.py", line 76, in call
-    raise SpError("HTTP %s %s %s: %s" % (e.code, method, path[:60], msg[:400]), e.code)
-spapi.SpError: HTTP 403 POST /batches/products/pricing/2022-05-01/items/competitiveSummar: {
-  "errors": [
-    {
-      "code": "Unauthorized",
-      "message": "Access to requested resource is denied.",
-      "details": "The LWA secret token you provided has expired."
-    }
-  ]
-}
+  File "/home/runner/work/melaleuca-cart/melaleuca-cart/reprice/run.py", line 247, in main
+    c = spapi.load_creds(HERE)
+        ^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/melaleuca-cart/melaleuca-cart/reprice/spapi.py", line 34, in load_creds
+    raise SpError("missing credentials: " + ", ".join(miss))
+spapi.SpError: missing credentials: REFRESH_TOKEN
