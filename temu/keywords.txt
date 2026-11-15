@@ -190,7 +190,6 @@ kitchen | salad chopper bowl set
 kitchen | pantry shelf organizer stackable
 kitchen | airtight cereal container dispenser
 kitchen | can organizer rack for pantry
-kitchen | stackable canned food dispenser
 bathroom | corner shower shelf adhesive 2 pack
 fitness | ab wheel with knee mat
 fitness | wrist strengthener grip trainer
@@ -217,7 +216,6 @@ bathroom | shower shelf stainless steel no drill
 bathroom | shampoo bottle holder wall
 organization | sink caddy sponge holder stainless
 niche | under cabinet pull out trash can bracket
-niche | magnetic knife strip with shelf
 niche | magnetic phone mount for kitchen cabinet
 niche | reusable silicone stretch lids set
 niche | under desk cable management tray
@@ -398,3 +396,5 @@ kitchen | vegetable slicer dicer 4 blade
 kitchen | potato ricer masher stainless
 kitchen | digital kitchen scale 11 lb stainless
 kitchen | food scale with bowl grams ounces
+kitchen | egg slicer wire stainless
+kitchen | fruit vegetable cutter slicer set
