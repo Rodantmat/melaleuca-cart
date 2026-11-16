@@ -1,38 +1,16 @@
 kitchen | pot lid holder
 cleaning | grout cleaning brush
 pet | pet grooming brush
-garden | garden kneeler pad
-fitness | resistance bands
 appliances | digital kitchen scale
-bathroom | bath mat memory foam
-bathroom | towel rack wall mounted
-furniture | bed frame center support leg
 furniture | foldable step stool
-furniture | cabinet shelf riser expandable
-kitchen | adjustable pot rack
 kitchen | cutting board with juice groove
-kitchen | bamboo drawer divider
-kitchen | stackable can organizer
-kitchen | pan organizer rack
 kitchen | multifunction vegetable cutter
-kitchen | nonstick silicone cookware set
-pet | dog car seat cover
-pet | elevated dog bowl stand
-garden | garden kneeler seat
-garden | hose holder wall mount
-garden | trellis for climbing plants
 tools | tool storage wall rack
-fitness | resistance band set
-fitness | doorway pull up bar
 pets | dog grooming glove brush
 bathroom | tub drain strainer
-bathroom | toothbrush holder wall mounted
-home | sofa leg risers
-kitchen | cabinet shelf organizer expandable
 bathroom | shower corner caddy adhesive
 kitchen | digital kitchen scale small
 kitchen | jewelry gram scale
-kitchen | oil mister for cooking
 kitchen | chopper dicer manual
 kitchen | onion slicer
 kitchen | measuring spoons magnetic
@@ -398,3 +376,25 @@ fitness | ab wheel roller with knee mat
 car | car cup holder expander organizer
 car | trunk cargo net organizer
 garden | garden tool organizer wall hanging rack
+garden | garden tool holder wall mount hooks
+garden | garage garden tool storage rack wall
+cleaning | grout brush scrubber drill attachment
+cleaning | electric spin scrubber cordless cleaning brush
+bathroom | grout cleaning brush stiff bristle
+kitchen | manual salt and pepper mill set wood
+kitchen | salt pepper grinder acrylic set
+kitchen | onion chopper pro vegetable slicer
+kitchen | vegetable chopper with 4 blades container
+kitchen | cutting board set of 3 bamboo juice groove
+kitchen | pot lid rack stainless steel 3 piece
+kitchen | stove top utensil rest spoon holder stainless
+pet | pet hair remover glove cat dog
+bathroom | shower drain hair catcher silicone
+bathroom | bathtub drain stopper hair catcher
+bathroom | window squeegee shower glass
+tools | garage wall tool hooks rack heavy duty
+tools | tool wall organizer rack screwdriver pliers
+organization | cord hider box wood power strip cover
+organization | closet hanging organizer 5 shelves
+kitchen | digital kitchen scale 11 lb stainless
+fitness | ab wheel roller with mat
