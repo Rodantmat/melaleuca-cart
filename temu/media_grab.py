@@ -52,7 +52,8 @@ for pid in ids:
                     import re as _re
                     html = pgx.content().replace("\\u002F", "/").replace("\\/", "/")
                     srcs += [m.replace("&amp;", "&") for m in _re.findall(r'https?:[^"\'\\\s]+?\.mp4[^"\'\\\s]*', html)]
-                    print("media: %s page html %d chars" % (pid, len(html)))
+                    low = html.lower()
+                    print("media: %s page html %d chars; captcha/punish markers: %s; has videoUrl key: %s; has item title key: %s" % (pid, len(html), any(k in low for k in ("captcha", "punish", "slide to verify", "unusual traffic")), "videourl" in low or "videoid" in low, "subject" in low))
                     print("media: %s browser sees %d video elements, %d mp4 responses, title ok: %s" % (pid, len(srcs), len(found), bool(pgx.title())))
                     cand = [u for u in srcs + found if "h265" not in u] or (srcs + found)
                     if cand:
