@@ -11,7 +11,6 @@ home | furniture sliders felt pads
 home | table leg extenders
 bathroom | shower caddy hanging over door
 bathroom | shower shelf no drilling
-bathroom | bathroom corner shelf adhesive
 kitchen | utensil holder countertop
 kitchen | cutting board holder rack
 kitchen | pot and pan lid organizer
@@ -25,7 +24,6 @@ bathroom | shower shelf no drill
 bathroom | corner shower caddy
 organization | cable organizer box
 organization | power strip cover box
-organization | cabinet shelf riser
 kitchen | pan organizer rack for cabinet
 kitchen | pot and pan lid rack wall mount
 kitchen | onion chopper handheld
@@ -72,7 +70,6 @@ organization | stackable drawer organizer trays
 kitchen | utensil holder for countertop
 kitchen | pot and pan lid organizer rack
 kitchen | cutting board organizer rack
-kitchen | pantry shelf risers
 kitchen | onion chopper dicer
 bathroom | shower corner shelf adhesive
 organization | cabinet door organizer hanging
@@ -135,9 +132,7 @@ fitness | resistance bands pull up assist set
 organization | drawer divider adjustable bamboo
 garden | hose nozzle spray metal
 kitchen | onion chopper with container
-kitchen | mandoline slicer adjustable
 bathroom | shower caddy 3 tier standing
-organization | desk drawer organizer tray
 garden | garden hose holder wall mount
 car | car trunk organizer foldable
 kitchen | mini digital kitchen scale 500g
@@ -193,7 +188,6 @@ kitchen | cutting board juice groove bamboo
 kitchen | cutting board set with stand
 pet | pet hair remover roller reusable
 pet | dog grooming glove deshedding
-garden | garden kneeler pad with handles
 garden | garden tool wall hooks heavy duty
 garden | ladder hook garage wall
 kitchen | onion chopper handheld dicer
@@ -222,7 +216,6 @@ kitchen | ice cube tray silicone with lid 3 pack
 organization | wall mounted tool rack garage hooks
 organization | tool holder wall mounted screwdriver pliers rack
 organization | hanging closet organizer 4 shelf canvas
-organization | hanging shelves for closet 5 layer
 office | large cord hider box surge protector
 bathroom | corner shower caddy suction cup 2 tier
 bathroom | bathroom corner caddy stainless adhesive 3 pack
@@ -323,7 +316,6 @@ bathroom | corner shower shelf adhesive 2 pack
 bathroom | shower corner caddy stainless no drilling
 organization | hanging closet shelves 6 tier
 fitness | ab wheel roller with knee mat
-car | car cup holder expander organizer
 car | trunk cargo net organizer
 garden | garden tool organizer wall hanging rack
 garden | garden tool holder wall mount hooks
@@ -340,12 +332,10 @@ kitchen | pot lid rack stainless steel 3 piece
 kitchen | stove top utensil rest spoon holder stainless
 pet | pet hair remover glove cat dog
 bathroom | shower drain hair catcher silicone
-bathroom | bathtub drain stopper hair catcher
 bathroom | window squeegee shower glass
 tools | garage wall tool hooks rack heavy duty
 tools | tool wall organizer rack screwdriver pliers
 organization | cord hider box wood power strip cover
-organization | closet hanging organizer 5 shelves
 kitchen | digital kitchen scale 11 lb stainless
 fitness | ab wheel roller with mat
 kitchen | spoon rest with lid holder stainless steel 2 in 1
@@ -398,3 +388,18 @@ garden | hose holder wall mount
 garden | plant stand indoor tiered
 car | trunk organizer collapsible
 car | seat gap filler organizer
+cleaning | cordless electric scrubber long handle bathroom
+cleaning | spin scrubber replacement brush heads set
+cleaning | electric cleaning brush for tub tile
+kitchen | spoon rest ceramic double
+kitchen | utensil rest with lid holder silicone
+kitchen | pan lid rack holder countertop
+garden | garden tool storage rack garage hooks
+garden | rake and shovel wall holder
+organization | under sink storage rack expandable
+bathroom | under sink shelf with hooks 2 tier
+pet | dog deshedding glove gentle grooming
+pet | cat grooming glove massage
+kitchen | magnetic knife holder wall strip wood
+kitchen | silicone ice ball mold large 4 pack
+organization | surge protector cover box wood hider
