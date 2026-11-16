@@ -1,0 +1,35 @@
+name: Shipment check (read-only)
+on:
+  workflow_dispatch:
+    inputs:
+      plan: { required: true }
+      shipment: { required: true }
+      transactions: { required: true }
+permissions: { contents: read }
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+        with: { ref: main }
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - name: Check
+        env:
+          AMZ_CLIENT: ${{ secrets.AMZ_CLIENT }}
+          AMZ_SECRET: ${{ secrets.AMZ_SECRET }}
+          AMZ_REFRESH: ${{ secrets.AMZ_REFRESH }}
+          CRED_ENV: ${{ secrets.CREDENTIALS_ENV }}
+          SHIPPO_LIVE_TOKEN: ${{ secrets.SHIPPO_LIVE_TOKEN }}
+          SHIPPO_LIVE_API_KEY: ${{ secrets.SHIPPO_LIVE_API_KEY }}
+          SHIPPO_LIVE_KEY: ${{ secrets.SHIPPO_LIVE_KEY }}
+          SHIPPO_API_KEY: ${{ secrets.SHIPPO_API_KEY }}
+          P: ${{ inputs.plan }}
+          S: ${{ inputs.shipment }}
+          T: ${{ inputs.transactions }}
+        run: |
+          cd reprice
+          printf 'CLIENT_ID=%s\nCLIENT_SECRET=%s\nREFRESH_TOKEN=%s\n' "$AMZ_CLIENT" "$AMZ_SECRET" "$AMZ_REFRESH" > credentials.env
+          python ship_verify.py "$P" "$S" "$T"; rc=$?
+          rm -f credentials.env; exit $rc
