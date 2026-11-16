@@ -235,6 +235,19 @@ def merge_chunks(blobs):
 
 
 # --------------------------------------------------------------------- build (phase 2)
+# The seller account also holds the AlphaDog Styles print-on-demand listings (thousands of apparel variations, added Nov 2026).
+# They are not part of this Melaleuca feed: left in, the live Buy Box step alone needs hours and the run is cancelled at its time limit.
+_ALPHADOG_SKU = re.compile(r"^(?:[A-Z]-[A-Z]{2}-\d-[A-Z]{2}(?:-\w+)?|AMZ-P-.+)$")
+def not_alphadog(rows):
+    if rows is None: return None          # report missing: the caller reports that
+    out = []
+    for r in rows or []:
+        sku = (r.get("seller-sku") or "").strip().upper()
+        if _ALPHADOG_SKU.match(sku) or "alphadog" in (r.get("item-name") or "").lower(): continue
+        out.append(r)
+    return out
+
+
 def read_tsv(path):
     if not os.path.exists(path):
         return None
@@ -554,7 +567,7 @@ def cmd_build(creds, skip_fees=False):
     warnings = []
     plan_rows = read_tsv(os.path.join(RAW_DIR, "fba_inventory_planning_latest.tsv"))
     myi_rows = read_tsv(os.path.join(RAW_DIR, "fba_myi_inventory_latest.tsv"))
-    lst_rows = read_tsv(os.path.join(RAW_DIR, "merchant_listings_latest.tsv"))
+    lst_rows = not_alphadog(read_tsv(os.path.join(RAW_DIR, "merchant_listings_latest.tsv")))
     for nm, v in (("planning", plan_rows), ("fba inventory", myi_rows), ("listings", lst_rows)):
         if v is None:
             warnings.append("missing raw file: " + nm + " (run 'pull' first)")
@@ -902,7 +915,7 @@ def cmd_pull(creds, days, only, skip_orders, skip_pricing=False):
     if AP and not skip_pricing:
         try:
             pr = read_tsv(os.path.join(RAW_DIR, "fba_inventory_planning_latest.tsv")) or []
-            ls = read_tsv(os.path.join(RAW_DIR, "merchant_listings_latest.tsv")) or []
+            ls = not_alphadog(read_tsv(os.path.join(RAW_DIR, "merchant_listings_latest.tsv"))) or []
             asins = {r.get("asin", "") for r in pr} | {r.get("asin1", "") for r in ls}
             print("Reading the live Buy Box price of %d ASINs (about %d minutes) ..." % (len(asins), max(1, len(asins) // 40)))
             live = AP.fetch(api, creds, asins)
