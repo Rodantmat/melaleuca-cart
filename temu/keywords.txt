@@ -1,4 +1,3 @@
-pets | dog grooming glove brush
 bathroom | tub drain strainer
 bathroom | shower corner caddy adhesive
 kitchen | digital kitchen scale small
@@ -8,7 +7,6 @@ kitchen | onion slicer
 kitchen | measuring spoons magnetic
 home | cable management sleeve
 home | cable clips adhesive
-pet | pet hair lint brush reusable
 home | furniture sliders felt pads
 home | table leg extenders
 bathroom | shower caddy hanging over door
@@ -87,14 +85,11 @@ organization | sink caddy sponge holder stainless
 kitchen | avocado slicer tool stainless
 niche | reusable silicone stretch lids set
 niche | under desk cable management tray
-niche | toilet paper holder with phone shelf
 niche | garage hook wall mount heavy duty bike
-niche | pet hair roller reusable brush
 niche | dish brush soap dispensing handle storage
 kitchen | ice ball mold sphere silicone
 kitchen | pan organizer rack cabinet
 kitchen | refrigerator egg holder tray
-kitchen | cutting board and lid holder stainless
 kitchen | stainless steel spoon rest
 fitness | resistance band door anchor
 kitchen | vegetable dicer with container
@@ -108,7 +103,6 @@ kitchen | utensil crock ceramic
 fitness | exercise mat thick 10mm
 organization | stackable cabinet shelf white metal
 kitchen | onion dicer with container stainless blades
-pet | pet hair remover glove
 kitchen | pot lid holder wall mounted adhesive
 organization | power strip cover box cord hider
 organization | cable box organizer bamboo desk
@@ -398,3 +392,9 @@ tools | wall mount drill holder rack
 tools | pliers holder wall mount rack
 fitness | ab wheel roller set mat
 fitness | ab roller wheel kit with push up bars
+kitchen | onion chopper handheld pull cord
+kitchen | garlic press rocker
+kitchen | food chopper manual pull string
+kitchen | kitchen scale 11lb food
+kitchen | coffee scale with timer
+kitchen | herb stripper stainless
