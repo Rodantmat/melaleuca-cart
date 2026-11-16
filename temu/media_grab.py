@@ -10,6 +10,11 @@ ids = [i.replace("ali", "").strip() for i in (os.environ.get("ITEMS") or "").spl
 got = 0
 for pid in ids:
     try:
+        if "=" in pid:   # id=direct CDN video URL (discovered elsewhere): just download and store
+            pid, direct = pid.split("=", 1)
+            b = urllib.request.urlopen(urllib.request.Request(direct, headers={"User-Agent": "Mozilla/5.0"}), timeout=120).read()
+            cx.execute("insert into deals.product_media(ali_id, kind, src, size, sha256, data) values (%s,'video',%s,%s,%s,%s) on conflict (ali_id, src) do nothing", (pid, direct.split("?")[0], len(b), hashlib.sha256(b).hexdigest(), b))
+            got += 1; print("media: %s direct download stored %d bytes" % (pid, len(b))); continue
         j = ali_api.call("aliexpress.affiliate.productdetail.get", product_ids=pid, target_currency="USD", target_language="EN", tracking_id=ali_api.TRACK, country="US",
                          fields="product_id,product_title,product_video_url,product_main_image_url,product_small_image_urls")
         resp = j.get("aliexpress_affiliate_productdetail_get_response") or {}
