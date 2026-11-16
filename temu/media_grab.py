@@ -30,7 +30,31 @@ for pid in ids:
             except Exception as e:
                 print("media: %s page fetch ERR %s" % (pid, str(e)[:80]))
         print("media: %s video url present: %s" % (pid, bool(v)))
-        if not v: continue
+        if not v:
+            try:
+                from playwright.sync_api import sync_playwright
+                found = []
+                with sync_playwright() as pw:
+                    br = pw.chromium.launch()
+                    ctx = br.new_context(user_agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130 Safari/537.36", viewport={"width": 1280, "height": 900}, locale="en-US")
+                    pgx = ctx.new_page()
+                    pgx.on("response", lambda r: found.append(r.url) if ("video.aliexpress-media.com" in r.url and ".mp4" in r.url) else None)
+                    pgx.goto("https://www.aliexpress.us/item/%s.html" % pid, wait_until="domcontentloaded", timeout=60000)
+                    pgx.wait_for_timeout(9000)
+                    srcs = pgx.evaluate("[...document.querySelectorAll('video')].map(x=>x.currentSrc||x.src).filter(Boolean)")
+                    print("media: %s browser sees %d video elements, %d mp4 responses, title ok: %s" % (pid, len(srcs), len(found), bool(pgx.title())))
+                    cand = [u for u in srcs + found if "h265" not in u] or (srcs + found)
+                    if cand:
+                        v = cand[0]
+                        b = ctx.request.get(v, timeout=120000).body()
+                        cx.execute("insert into deals.product_media(ali_id, kind, src, size, sha256, data) values (%s,'video',%s,%s,%s,%s) on conflict (ali_id, src) do nothing",
+                                   (pid, v.split("?")[0], len(b), hashlib.sha256(b).hexdigest(), b))
+                        got += 1
+                        print("media: %s stored %d bytes via browser" % (pid, len(b)))
+                    br.close()
+            except Exception as e:
+                print("media: %s browser ERR %s" % (pid, str(e)[:100]))
+            continue
         req = urllib.request.Request(v, headers={"User-Agent": "Mozilla/5.0"})
         with urllib.request.urlopen(req, timeout=120) as r:
             b = r.read()
