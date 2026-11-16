@@ -26,13 +26,11 @@ organization | cable organizer box
 organization | power strip cover box
 kitchen | pan organizer rack for cabinet
 kitchen | pot and pan lid rack wall mount
-kitchen | onion chopper handheld
 kitchen | food chopper pull cord manual
 kitchen | fruit and vegetable slicer set
 bathroom | shower caddy basket suction
 fitness | push up board
 kitchen | pot lid organizer rack stand
-kitchen | bottle cleaning brush set long
 kitchen | vegetable chopper with container
 kitchen | onion dicer slicer manual
 kitchen | vegetable slicer dicer set
@@ -40,10 +38,8 @@ kitchen | mandoline vegetable cutter stainless
 bathroom | shower shelf organizer rustproof
 kitchen | spatula and spoon rest holder
 kitchen | french fry cutter manual
-kitchen | garlic chopper rocker
 bathroom | corner shower shelf no drill
 fitness | resistance bands set with handles
-kitchen | pantry organizer bins clear
 kitchen | stainless steel lunch box set
 kitchen | sink strainer basket stainless
 kitchen | silicone baking mat set
@@ -138,7 +134,6 @@ kitchen | mini digital kitchen scale 500g
 kitchen | pocket scale 0.01g
 kitchen | pot and pan lid organizer countertop
 kitchen | spice jar set with labels rotating
-kitchen | magnetic spice rack for refrigerator
 kitchen | lazy susan 360 rotating kitchen
 kitchen | measuring spoons magnetic set
 kitchen | vegetable chopper with container dicer
@@ -147,7 +142,6 @@ bathroom | grout brush electric scrubber
 kitchen | digital pocket scale jewelry 200g
 bathroom | shower caddy suction cup corner 2 pack
 bathroom | shower shelf stick on stainless 3 pack
-kitchen | onion chopper pull string
 bathroom | toilet brush wall mounted holder set
 bathroom | bathroom soap dispenser pump caddy
 kitchen | kitchen scale 11 lb stainless
@@ -162,8 +156,6 @@ bathroom | shower caddy hanging over head stainless
 organization | hanging closet organizer 6 shelf
 organization | closet shelf divider hanging purse
 kitchen | ice ball maker mold sphere silicone
-kitchen | ice cube tray with lid and bin stackable
-kitchen | ice cube tray with removable lid 2 pack
 kitchen | ice cube storage bin scoop
 kitchen | silicone freezer tray with lid 4 pack
 kitchen | spatula utensil rest holder stove
@@ -174,7 +166,6 @@ kitchen | vegetable chopper 8 in 1 container
 kitchen | stainless steel utensil crock with drip tray
 kitchen | pan lid organizer rack 3 tier
 kitchen | salt and pepper grinder electric gravity
-kitchen | magnetic spice rack stainless
 kitchen | kitchen sink caddy sponge holder stainless
 kitchen | pocket kitchen scale 3kg
 organization | over cabinet door organizer hooks
@@ -211,7 +202,6 @@ kitchen | small digital kitchen scale 5kg
 kitchen | food scale grams ounces rechargeable slim
 kitchen | pepper mill manual wood adjustable
 kitchen | salt and pepper grinder set 2 pack manual
-kitchen | ice cube tray silicone with lid 3 pack
 organization | wall mounted tool rack garage hooks
 organization | tool holder wall mounted screwdriver pliers rack
 organization | hanging closet organizer 4 shelf canvas
@@ -240,7 +230,6 @@ bathroom | shower shelf corner 2 tier no drilling stainless
 bathroom | shower caddy shelf organizer 3 pack
 organization | garden tool organizer wall mount hooks stainless
 office | power strip cable box organizer large bamboo
-kitchen | ice cube tray silicone 2 pack with lid stackable
 tools | pegboard hooks wall tool organizer set
 kitchen | ice storage box freezer scoop
 kitchen | vegetable chopper 12 in 1 container
@@ -331,7 +320,6 @@ kitchen | pot lid rack stainless steel 3 piece
 kitchen | stove top utensil rest spoon holder stainless
 pet | pet hair remover glove cat dog
 bathroom | shower drain hair catcher silicone
-bathroom | window squeegee shower glass
 tools | garage wall tool hooks rack heavy duty
 tools | tool wall organizer rack screwdriver pliers
 organization | cord hider box wood power strip cover
@@ -364,12 +352,8 @@ tools | wall mount drill holder rack
 tools | pliers holder wall mount rack
 fitness | ab wheel roller set mat
 fitness | ab roller wheel kit with push up bars
-kitchen | onion chopper handheld pull cord
-kitchen | garlic press rocker
-kitchen | food chopper manual pull string
 kitchen | kitchen scale 11lb food
 kitchen | coffee scale with timer
-kitchen | herb stripper stainless
 organization | closet shelf divider hanging 6 shelf
 organization | hanging sweater organizer
 organization | hanging handbag organizer closet
@@ -377,7 +361,6 @@ organization | shoe rack over door
 organization | hat rack organizer for baseball caps
 bathroom | corner shower shelf adhesive stainless
 bathroom | shower caddy hanging over showerhead
-bathroom | toothbrush holder wall mount
 tools | tool organizer pegboard hooks
 tools | screwdriver rack wall mount
 tools | magnetic tool holder strip
@@ -386,7 +369,6 @@ fitness | jump rope adjustable weighted
 garden | hose holder wall mount
 garden | plant stand indoor tiered
 car | trunk organizer collapsible
-car | seat gap filler organizer
 cleaning | cordless electric scrubber long handle bathroom
 cleaning | spin scrubber replacement brush heads set
 kitchen | spoon rest ceramic double
@@ -398,3 +380,22 @@ pet | dog deshedding glove gentle grooming
 kitchen | magnetic knife holder wall strip wood
 kitchen | silicone ice ball mold large 4 pack
 kitchen | onion chopper with container lid
+kitchen | vegetable dicer with container large
+kitchen | veggie chopper 4 blade dicer container
+kitchen | mandoline slicer with container
+kitchen | fruit and vegetable cutter multi blade
+kitchen | spoon rest with lid holder
+kitchen | double spoon rest stainless steel
+kitchen | kitchen scale with bowl 11 lb
+kitchen | digital food scale rechargeable
+kitchen | coffee scale with timer
+bathroom | shower caddy corner 2 tier stainless
+bathroom | shower shelf with hooks no drill 2 pack
+bathroom | corner shelf shower tension pole
+home | closet organizer shelf hanging 6 shelf
+home | hanging shoe organizer closet shelves
+home | cable management box bamboo large
+home | power strip cover box white
+garage | tool wall rack utility hooks heavy duty
+garage | garden tool hanger wall rack
+fitness | ab wheel with knee mat
