@@ -1,13 +1,10 @@
 kitchen | pot lid holder
 cleaning | grout cleaning brush
 pet | pet grooming brush
-office | desk organizer
 garden | garden kneeler pad
 fitness | resistance bands
-fitness | foam roller
 appliances | digital kitchen scale
 bathroom | tension pole shower caddy
-bathroom | shower curtain rod tension
 bathroom | bath mat memory foam
 bathroom | towel rack wall mounted
 furniture | bed frame center support leg
@@ -26,7 +23,6 @@ garden | garden kneeler seat
 garden | hose holder wall mount
 garden | trellis for climbing plants
 tools | tool storage wall rack
-tools | cable organizer clips
 fitness | resistance band set
 fitness | doorway pull up bar
 pets | dog grooming glove brush
