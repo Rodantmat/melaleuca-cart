@@ -1,0 +1,32 @@
+"""Fetch AliExpress product videos (official affiliate API gives product_video_url) and store them PRIVATELY in Postgres deals.product_media (bytea). Counts only in log.
+Env: ITEMS (AliExpress product ids, space separated), DATABASE_URL, ALIEXPRESS_APP_KEY/SECRET."""
+import hashlib, os, sys, urllib.request
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import psycopg, ali_api
+
+cx = psycopg.connect(os.environ["DATABASE_URL"], autocommit=True)
+cx.execute("create table if not exists deals.product_media (id bigserial primary key, at timestamptz default now(), ali_id text, kind text, src text, size int, sha256 text, data bytea, unique (ali_id, src))")
+ids = [i.replace("ali", "").strip() for i in (os.environ.get("ITEMS") or "").split() if i.strip()]
+got = 0
+for pid in ids:
+    try:
+        j = ali_api.call("aliexpress.affiliate.productdetail.get", product_ids=pid, target_currency="USD", target_language="EN", tracking_id=ali_api.TRACK, country="US",
+                         fields="product_id,product_title,product_video_url,product_main_image_url,product_small_image_urls")
+        resp = j.get("aliexpress_affiliate_productdetail_get_response") or {}
+        prods = (((resp.get("resp_result") or {}).get("result") or {}).get("products") or {}).get("product") or []
+        if not prods:
+            print("media: %s no detail; keys %s" % (pid, str(list(j.keys()))[:80])); continue
+        p = prods[0]
+        v = p.get("product_video_url")
+        print("media: %s video url present: %s" % (pid, bool(v)))
+        if not v: continue
+        req = urllib.request.Request(v, headers={"User-Agent": "Mozilla/5.0"})
+        with urllib.request.urlopen(req, timeout=120) as r:
+            b = r.read()
+        cx.execute("insert into deals.product_media(ali_id, kind, src, size, sha256, data) values (%s,'video',%s,%s,%s,%s) on conflict (ali_id, src) do nothing",
+                   (pid, v, len(b), hashlib.sha256(b).hexdigest(), b))
+        got += 1
+        print("media: %s stored %d bytes" % (pid, len(b)))
+    except Exception as e:
+        print("media: %s ERR %s" % (pid, str(e)[:100]))
+print("media: %d of %d stored" % (got, len(ids)))

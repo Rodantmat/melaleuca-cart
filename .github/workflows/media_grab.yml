@@ -1,0 +1,23 @@
+name: Product media grab (private storage, counts only)
+on:
+  workflow_dispatch:
+    inputs:
+      items: { description: "AliExpress product ids separated by space", default: "" }
+permissions: { contents: read }
+jobs:
+  grab:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with: { ref: main }
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - run: pip install -q "psycopg[binary]"
+      - env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+          ALIEXPRESS_APP_KEY: ${{ secrets.ALIEXPRESS_APP_KEY }}
+          ALIEXPRESS_APP_SECRET: ${{ secrets.ALIEXPRESS_APP_SECRET }}
+          ITEMS: ${{ github.event.inputs.items }}
+        run: |
+          python temu/media_grab.py 2>&1 | grep -E "^media:|Traceback" | head -20
