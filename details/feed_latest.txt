@@ -1,17 +1,16 @@
-# 2026-11-16T02:40:33Z  feed  success  run 43792764800
+# 2026-11-16T21:19:37Z  feed  success  run 43957839406
 Requesting reports ...
 Waiting for Amazon to build them (usually 1-10 minutes) ...
   planning                     DONE
-  feeprev                      DONE
+  myi                          DONE
   listings                     DONE
+  feeprev                      DONE
   orders_00                    DONE
   orders_01                    DONE
   orders_02                    DONE
   orders_03                    DONE
-  myi                          DONE
 Reading the live Buy Box price of 174 ASINs (about 4 minutes) ...
   live Buy Box prices: 20 of 174 ASINs read
-  (Amazon busy / rate limit, HTTP 429 - waiting 5s)
   live Buy Box prices: 40 of 174 ASINs read
   live Buy Box prices: 60 of 174 ASINs read
   live Buy Box prices: 80 of 174 ASINs read
@@ -24,13 +23,13 @@ Reading the live Buy Box price of 174 ASINs (about 4 minutes) ...
 
 Summary
   planning       OK
-  feeprev        OK
+  myi            OK
   listings       OK
+  feeprev        OK
   orders_00      OK
   orders_01      OK
   orders_02      OK
   orders_03      OK
-  myi            OK
   pricing        OK
 
 Files are in: /home/runner/work/melaleuca-cart/melaleuca-cart/feedwork/raw
