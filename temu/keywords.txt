@@ -111,10 +111,7 @@ pet | foldable pet ramp for dogs sofa
 tools | garage wall tool organizer rack heavy duty
 tools | screwdriver holder wall mounted
 garden | tiered plant stand metal indoor outdoor
-kitchen | stainless steel utensil holder pot lid 3pcs
 fitness | resistance band set loop
-kitchen | pot lid holder wall mounted rack
-organization | cable box large power strip cover
 bathroom | shower caddy corner suction
 pets | dog hair remover roller
 kitchen | vegetable chopper stainless steel blades
@@ -124,35 +121,28 @@ pet | pet hair remover reusable lint roller
 pet | pet lint brush for couch
 kitchen | salt pepper grinder set stainless manual
 kitchen | pot and pan lid rack wall mounted
-kitchen | pan organizer rack cabinet pot lid
 kitchen | onion holder mandoline slicer dicer
 kitchen | vegetable cutter dicer with container
 office | cable box organizer large cord hider
 pet | cat litter scoop metal
 pet | dog poop bag holder dispenser
-office | power strip organizer box wood
 office | cord organizer box bamboo
 bathroom | shower caddy 3 tier hanging stainless
 organization | closet organizer hanging 6 shelf
 kitchen | onion chopper with lid and container
 kitchen | mandoline slicer adjustable stainless
 fitness | resistance bands pull up assist set
-organization | cord organizer box wooden hider
 organization | drawer divider adjustable bamboo
 garden | hose nozzle spray metal
-kitchen | pot lid organizer rack cabinet door
-kitchen | pot lid holder wall mount stainless
 kitchen | onion chopper with container
 kitchen | mandoline slicer adjustable
 bathroom | shower caddy 3 tier standing
-organization | power strip holder wall mount
 organization | desk drawer organizer tray
 garden | garden hose holder wall mount
 car | car trunk organizer foldable
 kitchen | mini digital kitchen scale 500g
 kitchen | pocket scale 0.01g
 kitchen | pot and pan lid organizer countertop
-office | power strip hider cable management box
 kitchen | spice jar set with labels rotating
 kitchen | magnetic spice rack for refrigerator
 kitchen | lazy susan 360 rotating kitchen
@@ -167,7 +157,6 @@ kitchen | onion chopper pull string
 bathroom | toilet brush wall mounted holder set
 bathroom | bathroom soap dispenser pump caddy
 kitchen | kitchen scale 11 lb stainless
-office | cable box organizer hide power strip large
 organization | shoe rack organizer stackable
 garden | garden tool organizer wall hanging
 kitchen | multi-blade vegetable chopper 12 in 1
@@ -183,14 +172,12 @@ kitchen | ice cube tray with lid and bin stackable
 kitchen | ice cube tray with removable lid 2 pack
 kitchen | ice cube storage bin scoop
 kitchen | silicone freezer tray with lid 4 pack
-kitchen | pot lid rack wall mounted no drill
 kitchen | spatula utensil rest holder stove
 kitchen | cutting board holder stand rack
 kitchen | stainless steel spoon rest double
 kitchen | electric pepper grinder rechargeable
 kitchen | vegetable chopper 8 in 1 container
 kitchen | stainless steel utensil crock with drip tray
-kitchen | pot lid holder wall mounted
 kitchen | pan lid organizer rack 3 tier
 kitchen | salt and pepper grinder electric gravity
 kitchen | magnetic spice rack stainless
@@ -211,13 +198,10 @@ garden | garden tool wall hooks heavy duty
 garden | ladder hook garage wall
 kitchen | onion chopper handheld dicer
 kitchen | vegetable chopper 4 blade multi
-kitchen | manual food processor pull cord
 kitchen | food scale gram ounce
 organization | tool storage pegboard wall hooks
 organization | garage wall tool holder rack
-office | power strip wooden cable box
 bathroom | grout cleaning brush set
-bathroom | electric spin scrubber cordless short handle
 bathroom | shower shelf adhesive stainless 2 tier
 bathroom | corner shower shelf 3 tier
 organization | over door hanging closet shelves 6 tier
@@ -239,7 +223,6 @@ organization | wall mounted tool rack garage hooks
 organization | tool holder wall mounted screwdriver pliers rack
 organization | hanging closet organizer 4 shelf canvas
 organization | hanging shelves for closet 5 layer
-office | wooden power strip box cover cord organizer
 office | large cord hider box surge protector
 bathroom | corner shower caddy suction cup 2 tier
 bathroom | bathroom corner caddy stainless adhesive 3 pack
@@ -398,3 +381,20 @@ kitchen | food chopper manual pull string
 kitchen | kitchen scale 11lb food
 kitchen | coffee scale with timer
 kitchen | herb stripper stainless
+organization | closet shelf divider hanging 6 shelf
+organization | hanging sweater organizer
+organization | hanging handbag organizer closet
+organization | shoe rack over door
+organization | hat rack organizer for baseball caps
+bathroom | corner shower shelf adhesive stainless
+bathroom | shower caddy hanging over showerhead
+bathroom | toothbrush holder wall mount
+tools | tool organizer pegboard hooks
+tools | screwdriver rack wall mount
+tools | magnetic tool holder strip
+fitness | push up bars with handles
+fitness | jump rope adjustable weighted
+garden | hose holder wall mount
+garden | plant stand indoor tiered
+car | trunk organizer collapsible
+car | seat gap filler organizer
