@@ -12,7 +12,12 @@ for pid in ids:
     try:
         if "=" in pid:   # id=direct CDN video URL (discovered elsewhere): just download and store
             pid, direct = pid.split("=", 1)
-            b = urllib.request.urlopen(urllib.request.Request(direct, headers={"User-Agent": "Mozilla/5.0"}), timeout=120).read()
+            try:
+                b = urllib.request.urlopen(urllib.request.Request(direct, headers={"User-Agent": "Mozilla/5.0"}), timeout=120).read()
+            except Exception as e0:
+                print("media: %s direct download failed (%s); retrying via proxy" % (pid, str(e0)[:60]))
+                op = urllib.request.build_opener(urllib.request.ProxyHandler({"https": os.environ["PROXY_URL"], "http": os.environ["PROXY_URL"]}))
+                b = op.open(urllib.request.Request(direct, headers={"User-Agent": "Mozilla/5.0"}), timeout=180).read()
             cx.execute("insert into deals.product_media(ali_id, kind, src, size, sha256, data) values (%s,'video',%s,%s,%s,%s) on conflict (ali_id, src) do nothing", (pid, direct.split("?")[0], len(b), hashlib.sha256(b).hexdigest(), b))
             got += 1; print("media: %s direct download stored %d bytes" % (pid, len(b))); continue
         j = ali_api.call("aliexpress.affiliate.productdetail.get", product_ids=pid, target_currency="USD", target_language="EN", tracking_id=ali_api.TRACK, country="US",
