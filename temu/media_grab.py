@@ -18,6 +18,17 @@ for pid in ids:
             print("media: %s no detail; keys %s" % (pid, str(list(j.keys()))[:80])); continue
         p = prods[0]
         v = p.get("product_video_url")
+        if not v:
+            try:
+                from curl_cffi import requests as cr
+                pg = cr.get("https://www.aliexpress.us/item/%s.html" % pid, impersonate="chrome", timeout=60).text
+                import re
+                ms = re.findall(r'https?:[^"\'\\\s]+?\.mp4[^"\'\\\s]*', pg.replace("\\u002F", "/").replace("\\/", "/"))
+                ms = [m.replace("&amp;", "&") for m in ms if "definition=h265" not in m]
+                print("media: %s page fetch %d chars, %d mp4 links" % (pid, len(pg), len(ms)))
+                v = ms[0] if ms else None
+            except Exception as e:
+                print("media: %s page fetch ERR %s" % (pid, str(e)[:80]))
         print("media: %s video url present: %s" % (pid, bool(v)))
         if not v: continue
         req = urllib.request.Request(v, headers={"User-Agent": "Mozilla/5.0"})

@@ -13,7 +13,7 @@ jobs:
         with: { ref: main }
       - uses: actions/setup-python@v5
         with: { python-version: "3.12" }
-      - run: pip install -q "psycopg[binary]"
+      - run: pip install -q "psycopg[binary]" "curl_cffi>=0.7"
       - env:
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
           ALIEXPRESS_APP_KEY: ${{ secrets.ALIEXPRESS_APP_KEY }}
