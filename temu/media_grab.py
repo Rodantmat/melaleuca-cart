@@ -35,18 +35,29 @@ for pid in ids:
                 from playwright.sync_api import sync_playwright
                 found = []
                 with sync_playwright() as pw:
-                    br = pw.chromium.launch()
+                    import urllib.parse as up
+                    pu = os.environ.get("PROXY_URL", "")
+                    kw = {}
+                    if pu:
+                        u = up.urlparse(pu)
+                        kw["proxy"] = {"server": "%s://%s:%s" % (u.scheme or "http", u.hostname, u.port), "username": up.unquote(u.username or ""), "password": up.unquote(u.password or "")}
+                    br = pw.chromium.launch(**kw)
                     ctx = br.new_context(user_agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130 Safari/537.36", viewport={"width": 1280, "height": 900}, locale="en-US")
                     pgx = ctx.new_page()
+                    pgx.route("**/*", lambda route: route.abort() if route.request.resource_type in ("image", "font", "media", "stylesheet") else route.continue_())
                     pgx.on("response", lambda r: found.append(r.url) if ("video.aliexpress-media.com" in r.url and ".mp4" in r.url) else None)
                     pgx.goto("https://www.aliexpress.us/item/%s.html" % pid, wait_until="domcontentloaded", timeout=60000)
                     pgx.wait_for_timeout(9000)
                     srcs = pgx.evaluate("[...document.querySelectorAll('video')].map(x=>x.currentSrc||x.src).filter(Boolean)")
+                    import re as _re
+                    html = pgx.content().replace("\\u002F", "/").replace("\\/", "/")
+                    srcs += [m.replace("&amp;", "&") for m in _re.findall(r'https?:[^"\'\\\s]+?\.mp4[^"\'\\\s]*', html)]
+                    print("media: %s page html %d chars" % (pid, len(html)))
                     print("media: %s browser sees %d video elements, %d mp4 responses, title ok: %s" % (pid, len(srcs), len(found), bool(pgx.title())))
                     cand = [u for u in srcs + found if "h265" not in u] or (srcs + found)
                     if cand:
                         v = cand[0]
-                        b = ctx.request.get(v, timeout=120000).body()
+                        b = urllib.request.urlopen(urllib.request.Request(v, headers={"User-Agent": "Mozilla/5.0"}), timeout=120).read()
                         cx.execute("insert into deals.product_media(ali_id, kind, src, size, sha256, data) values (%s,'video',%s,%s,%s,%s) on conflict (ali_id, src) do nothing",
                                    (pid, v.split("?")[0], len(b), hashlib.sha256(b).hexdigest(), b))
                         got += 1
