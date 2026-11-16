@@ -1,21 +1,21 @@
-# 2026-11-16T13:06:23Z  bb_web  success  run 43867182636
-rival stock reads: ON (budget 80)
-browser session 1 on proxy port 10092  (0 of 167 products read so far, wire 0.0 MB)
-  1/30  price=54.95 seller=MEGA SAVINGS  (4.5 MB so far)
-  21/30  price=None seller=None  (27.2 MB so far)
-browser session 2 on proxy port 10107  (30 of 167 products read so far, wire 10.6 MB)
-  1/30  price=22.99 seller=Lamoure INC  (5.3 MB so far)
-  21/30  price=23.99 seller=Oasis Enterprises LLC  (40.2 MB so far)
-browser session 3 on proxy port 10112  (60 of 167 products read so far, wire 21.2 MB)
+# 2026-11-16T18:56:19Z  bb_web  success  run 43929578017
+rival stock reads: off (budget 80)
+browser session 1 on proxy port 10095  (0 of 167 products read so far, wire 0.0 MB)
+  1/30  price=54.95 seller=MEGA SAVINGS  (1.9 MB so far)
+  21/30  price=None seller=None  (17.8 MB so far)
+browser session 2 on proxy port 10102  (30 of 167 products read so far, wire 4.6 MB)
+  1/30  price=27.37 seller=Flipping Magic  (0.3 MB so far)
+  21/30  price=23.99 seller=Oasis Enterprises LLC  (14.6 MB so far)
+browser session 3 on proxy port 10113  (60 of 167 products read so far, wire 8.5 MB)
   1/30  price=None seller=None  (0.0 MB so far)
-  21/30  price=None seller=None  (58.3 MB so far)
-browser session 4 on proxy port 10129  (90 of 167 products read so far, wire 34.0 MB)
+  21/30  price=None seller=None  (15.4 MB so far)
+browser session 4 on proxy port 10128  (90 of 167 products read so far, wire 12.0 MB)
   1/30  price=59.99 seller=Flipping Magic  (0.1 MB so far)
-  21/30  price=15.49 seller=aboutcare00  (31.5 MB so far)
-browser session 5 on proxy port 10139  (120 of 167 products read so far, wire 42.9 MB)
+  21/30  price=15.45 seller=aboutcare00  (19.9 MB so far)
+browser session 5 on proxy port 10135  (120 of 167 products read so far, wire 16.5 MB)
   1/30  price=None seller=None  (0.0 MB so far)
-  21/30  price=64.12 seller=Flipping Magic  (17.7 MB so far)
-browser session 6 on proxy port 10145  (150 of 167 products read so far, wire 46.5 MB)
+  21/30  price=64.12 seller=Flipping Magic  (21.2 MB so far)
+browser session 6 on proxy port 10151  (150 of 167 products read so far, wire 21.3 MB)
   1/17  price=25.99 seller=ccomstore18  (1.5 MB so far)
-proxy traffic on the wire: 50.2 MB in 336 requests; by type: {'document': 48.1, 'fetch': 1.8}
-web Buy Box: 167 ASINs read, 128 with a price, we win 35, errors 3
+proxy traffic on the wire: 24.7 MB in 244 requests; by type: {'document': 22.6, 'fetch': 1.8}
+web Buy Box: 167 ASINs read, 128 with a price, we win 34, errors 3
