@@ -1,14 +1,10 @@
 kitchen | pot lid holder
 cleaning | grout cleaning brush
-laundry | clothes drying rack
 pet | pet grooming brush
-car | car seat gap filler
 office | desk organizer
 garden | garden kneeler pad
-garden | self watering spikes
 fitness | resistance bands
 fitness | foam roller
-appliances | milk frother handheld
 appliances | digital kitchen scale
 bathroom | tension pole shower caddy
 bathroom | shower curtain rod tension
@@ -23,7 +19,6 @@ kitchen | bamboo drawer divider
 kitchen | stackable can organizer
 kitchen | pan organizer rack
 kitchen | multifunction vegetable cutter
-kitchen | meat tenderizer tool
 kitchen | nonstick silicone cookware set
 pet | dog car seat cover
 pet | elevated dog bowl stand
@@ -63,9 +58,6 @@ kitchen | spice jar rack wall
 kitchen | stainless steel dish rack small
 kitchen | drawer knife organizer
 organization | expandable drawer organizer
-kitchen | magnetic spice rack
-kitchen | wall mounted utensil rack
-kitchen | cabinet door lid rack
 bathroom | shower shelf no drill
 bathroom | corner shower caddy
 organization | cable organizer box
@@ -78,7 +70,6 @@ kitchen | food chopper pull cord manual
 kitchen | fruit and vegetable slicer set
 bathroom | shower caddy basket suction
 fitness | push up board
-fitness | stretching strap
 kitchen | pot lid organizer rack stand
 kitchen | pot lid holder 3 piece set
 kitchen | vegetable chopper with container
@@ -94,7 +85,6 @@ fitness | resistance bands set with handles
 kitchen | pantry organizer bins clear
 kitchen | stainless steel food storage containers
 kitchen | stainless steel lunch box set
-kitchen | over sink dish rack
 kitchen | sink strainer basket stainless
 kitchen | silicone baking mat set
 office | cable management box large
@@ -136,7 +126,6 @@ niche | reusable silicone stretch lids set
 niche | under desk cable management tray
 niche | toilet paper holder with phone shelf
 niche | garage hook wall mount heavy duty bike
-niche | rotating makeup organizer turntable
 niche | pet hair roller reusable brush
 niche | dish brush soap dispensing handle storage
 kitchen | ice ball mold sphere silicone
@@ -398,3 +387,19 @@ organization | cable management box cover
 bathroom | shower caddy corner adhesive
 bathroom | shower shelf stainless steel adhesive
 bathroom | toothbrush holder wall mounted adhesive
+kitchen | vegetable chopper dicer 12 in 1 with container
+kitchen | onion cutter slicer handheld
+kitchen | spoon rest with lid holder silicone
+kitchen | ceramic spoon rest countertop
+kitchen | utensil rest double stainless
+office | cable box organizer with cord outlet
+office | surge protector cover box wood
+organization | cord hider box for tv wires
+tools | tool wall mount rack garage
+tools | screwdriver wrench organizer rack
+bathroom | corner shower shelf adhesive 2 pack
+bathroom | shower corner caddy stainless no drilling
+organization | hanging closet shelves 6 tier
+fitness | ab wheel roller with knee mat
+garden | wall mount garden hose holder
+pet | dog hair remover roller reusable
