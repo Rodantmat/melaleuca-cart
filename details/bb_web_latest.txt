@@ -1,21 +1,21 @@
-# 2026-11-17T18:56:06Z  bb_web  success  run 44148655291
+# 2026-11-17T19:19:12Z  bb_web  success  run 44150903306
 rival stock reads: off (budget 80)
-browser session 1 on proxy port 10090  (0 of 167 products read so far, wire 0.0 MB)
+browser session 1 on proxy port 10091  (0 of 167 products read so far, wire 0.0 MB)
   1/30  price=54.95 seller=MEGA SAVINGS  (1.5 MB so far)
   21/30  price=None seller=None  (11.3 MB so far)
-browser session 2 on proxy port 10104  (30 of 167 products read so far, wire 3.8 MB)
+browser session 2 on proxy port 10105  (30 of 167 products read so far, wire 3.8 MB)
   1/30  price=22.99 seller=MIMI HEALTH  (1.8 MB so far)
-  21/30  price=23.99 seller=Oasis Enterprises LLC  (16.3 MB so far)
-browser session 3 on proxy port 10117  (60 of 167 products read so far, wire 7.7 MB)
+  21/30  price=24.2 seller=aboutcare00  (16.1 MB so far)
+browser session 3 on proxy port 10114  (60 of 167 products read so far, wire 7.6 MB)
   1/30  price=None seller=None  (0.0 MB so far)
-  21/30  price=None seller=None  (15.1 MB so far)
-browser session 4 on proxy port 10128  (90 of 167 products read so far, wire 10.9 MB)
+  21/30  price=None seller=None  (17.7 MB so far)
+browser session 4 on proxy port 10127  (90 of 167 products read so far, wire 12.1 MB)
   1/30  price=59.99 seller=Flipping Magic  (0.1 MB so far)
-  21/30  price=15.45 seller=aboutcare00  (16.4 MB so far)
-browser session 5 on proxy port 10137  (120 of 167 products read so far, wire 14.6 MB)
+  21/30  price=15.45 seller=aboutcare00  (14.5 MB so far)
+browser session 5 on proxy port 10137  (120 of 167 products read so far, wire 15.8 MB)
   1/30  price=None seller=None  (0.0 MB so far)
-  21/30  price=59.0 seller=GLSGoods  (16.5 MB so far)
-browser session 6 on proxy port 10147  (150 of 167 products read so far, wire 18.3 MB)
+  21/30  price=58.0 seller=GLSGoods  (16.4 MB so far)
+browser session 6 on proxy port 10148  (150 of 167 products read so far, wire 19.5 MB)
   1/17  price=25.99 seller=ccomstore18  (1.5 MB so far)
-proxy traffic on the wire: 21.3 MB in 242 requests; by type: {'document': 19.3, 'fetch': 1.8}
-web Buy Box: 167 ASINs read, 131 with a price, we win 38, errors 3
+proxy traffic on the wire: 22.5 MB in 245 requests; by type: {'document': 20.5, 'fetch': 1.8}
+web Buy Box: 167 ASINs read, 130 with a price, we win 44, errors 3
