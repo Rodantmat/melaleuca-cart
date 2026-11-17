@@ -19,12 +19,10 @@ kitchen | drawer knife organizer
 organization | expandable drawer organizer
 bathroom | shower shelf no drill
 bathroom | corner shower caddy
-organization | cable organizer box
 organization | power strip cover box
 kitchen | pan organizer rack for cabinet
 kitchen | pot and pan lid rack wall mount
 kitchen | fruit and vegetable slicer set
-bathroom | shower caddy basket suction
 kitchen | pot lid organizer rack stand
 kitchen | vegetable chopper with container
 kitchen | onion dicer slicer manual
@@ -88,7 +86,6 @@ kitchen | vegetable chopper stainless steel blades
 kitchen | mandoline slicer manual
 garden | garden kneeler and seat folding
 pet | pet hair remover reusable lint roller
-pet | pet lint brush for couch
 kitchen | salt pepper grinder set stainless manual
 kitchen | pot and pan lid rack wall mounted
 kitchen | vegetable cutter dicer with container
@@ -137,7 +134,6 @@ garden | ladder hook garage wall
 kitchen | food scale gram ounce
 organization | garage wall tool holder rack
 office | desk cable tray under desk metal
-organization | wall mounted tool rack garage hooks
 organization | tool holder wall mounted screwdriver pliers rack
 bathroom | bathroom corner caddy stainless adhesive 3 pack
 kitchen | countertop utensil lid holder 2 in 1
@@ -152,17 +148,13 @@ organization | power strip cover box bamboo
 organization | router hider storage box wall
 organization | garage hook set heavy duty wall
 garden | garden tool wall hanger rack
-bathroom | toilet paper roll stand bathroom
 office | monitor stand riser storage drawer
 car | seat back organizer hooks
 kitchen | mandoline slicer with container
 kitchen | pocket kitchen scale 500g
-kitchen | ladle spatula rest holder stove
 tools | wall mounted tool holder rack hooks
 tools | hammer wrench wall hanger organizer
-bathroom | shower caddy shelf adhesive stainless
 organization | desk cable management box large
-kitchen | pan lid organizer adhesive
 kitchen | lid holder drawer organizer
 office | cable box organizer large
 office | cord management box for tv
@@ -268,7 +260,6 @@ tools | screwdriver wall rack magnetic
 kitchen | food scale stainless platform 11lb
 organization | hanging closet shelf 6 tier
 bathroom | shower corner rack 2 tier adhesive
-kitchen | ice bucket tray stackable
 kitchen | pot cover rack under cabinet
 kitchen | stainless steel pot lid rack 3 piece
 kitchen | vegetable chopper dicer 12 in 1 with container
@@ -398,3 +389,12 @@ organization | hanging closet shelves 4 tier collapsible
 organization | hanging wardrobe organizer sweater
 organization | cable box large wood hide cords tv
 organization | desk power strip box bamboo large
+kitchen | spoon rest ceramic double
+kitchen | spoon rest for stove top stainless steel
+kitchen | stainless steel utensil rest 2 slot
+kitchen | onion chopper pro with lid
+kitchen | vegetable chopper dicer 12 in 1
+kitchen | garlic press stainless steel
+kitchen | salad chopper bowl
+kitchen | manual food chopper hand pull
+kitchen | electric salt and pepper grinder set usb
