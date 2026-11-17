@@ -390,7 +390,6 @@ pet | cat car seat carrier cover
 pet | dog bed cover waterproof washable
 pet | pet hair remover brush self cleaning
 car | back seat cargo liner waterproof
-kitchen | herb scissors multi blade
 kitchen | vegetable spiralizer handheld
 kitchen | egg slicer stainless
 kitchen | mesh strainer set nesting
