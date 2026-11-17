@@ -1,4 +1,4 @@
-# 2026-11-17T07:26:34Z  reprice  success  run 44037532060
+# 2026-11-17T13:26:42Z  reprice  success  run 44091277867
 /home/runner/work/melaleuca-cart/melaleuca-cart/reprice/run.py:14: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
   now = dt.datetime.utcnow()
 mode=live live_writes_allowed=True killed=False skus=167
@@ -13,14 +13,13 @@ mode=live live_writes_allowed=True killed=False skus=167
   live Buy Box prices: 167 of 167 ASINs read
 Amazon target prices (FOEP) read for 71 products
 seller id found
-decided 149 products: {'hold': 146, 'down': 3} ; applied this run: 1
+decided 149 products: {'hold': 147, 'down': 2} ; applied this run: 0
   ME0017 down 16.09 -> 15.61  drought/surplus: 10 days without sale (limit 30), 90 days of supply | SHADOW (not applied)
-  ME0357 down 19.83 -> 19.24  drought/surplus: 30 days without sale (limit 30), 780 days of supply; market price 18.14
-  ME1430 down 42.99 -> 42.34  drought/surplus: 1 days without sale (limit 30), 150 days of supply; market price 42.34 | SHADOW (not applied)
-units to sell 1181 | cost paid 7737 | at your listed prices 32367 | net payout base 22896 | net payout conservative 21981
-Counter({'OK': 75, 'BUY MORE': 64, 'BUY': 19, 'BUY LESS': 8, 'STOP buying': 4, 'STOP buying - no sales 90d': 2})
+  ME1430 down 42.99 -> 42.83  drought/surplus: 1 days without sale (limit 30), 150 days of supply; market price 42.83 | SHADOW (not applied)
+units to sell 1169 | cost paid 7644 | at your listed prices 32046 | net payout base 22602 | net payout conservative 21696
+Counter({'OK': 74, 'BUY MORE': 64, 'BUY': 20, 'BUY LESS': 8, 'STOP buying': 4, 'STOP buying - no sales 90d': 2})
 market depth for 155 products: {'MEDIUM': 53, 'LOW': 92, 'HIGH': 10}
-bb intel: 154 ASINs, we own the box in 39% of web scans; API vs web: {('same seller', 'same price'): 122, ('different seller', 'different price'): 30, ('different seller', 'same price'): 2}
+bb intel: 154 ASINs, we own the box in 39% of web scans; API vs web: {('different seller', 'same price'): 5, ('same seller', 'same price'): 124, ('different seller', 'different price'): 25}
 /home/runner/work/melaleuca-cart/melaleuca-cart/reprice/reports.py:54: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
   now = dt.datetime.utcnow()
-reports: rival stock hints {'WAIT': 3, 'DROP-CANDIDATE': 5, 'WATCH': 3, 'HOLD': 81} | restock alerts 36 (profit at risk $2677/month) | rival alerts 57 | outcomes 193
+reports: rival stock hints {'WAIT': 2, 'DROP-CANDIDATE': 5, 'WATCH': 3, 'HOLD': 68} | restock alerts 38 (profit at risk $2728/month) | rival alerts 40 | outcomes 193
