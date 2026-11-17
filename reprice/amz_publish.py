@@ -1,11 +1,11 @@
 """PUBLISH the AlphaDog Styles shirt-type listings to Amazon US (putListingsItem, live). Owner approved publishing shirts (tees, tanks, women's tanks, polos) on Nov 14 2026.
-Never touches prices of other products, never cancels or deletes anything. Hoodies and caps are NOT in the default set (barcode exemption not confirmed).
+Never touches prices of other products, never cancels or deletes anything. Hoodies and caps were added Nov 17 2026 after Amazon approved their product ID exemptions.
 env: AMZ_PUBLISH_PRODS (default tee,wtank,tank,polo)  AMZ_ONLY (one listing id for a pilot)  Prints no credentials."""
 import json, os, sys, urllib.request, collections, time
 from concurrent.futures import ThreadPoolExecutor
 import spapi, amz_validate as V
 MP = spapi.MARKETPLACE
-PRODS = set(os.environ.get("AMZ_PUBLISH_PRODS", "tee,wtank,tank,polo").split(","))
+PRODS = set(os.environ.get("AMZ_PUBLISH_PRODS", "tee,wtank,tank,polo,hoodie,cap").split(","))   # hoodies and caps: product ID exemption approved Nov 17 2026 (validated, no 8560)
 ONLY = os.environ.get("AMZ_ONLY", "").strip()
 def main():
     c = spapi.load_creds(V.HERE); seller = c.get("SELLER_ID") or "A3431QI59MY9RE"
@@ -31,6 +31,10 @@ def main():
     if bad > len(probe) // 3 and not PREVIEW: print("ABORT: main images not live yet"); sys.exit(1)
     B = {pt: V.Builder(V.load_schema(c, pt), pt) for pt in {f["ptype"] for f in feed}}
     stat = collections.Counter(); errs = collections.Counter(); first = {}
+    if PREVIEW:
+        for pt, bb in B.items():
+            try: print("THEMES", pt, [t for t in V.enum_of(bb.p["variation_theme"])[0] if "STYLE" in t][:40])
+            except Exception as e: print("THEMES", pt, "n/a", e)
     def put(sk, ptype, attrs):
         try:
             r = spapi.call(c, "PUT", "/listings/2021-08-01/items/%s/%s" % (seller, sk), params={"marketplaceIds": MP, "issueLocale": "en_US", **({"mode": "VALIDATION_PREVIEW"} if PREVIEW else {})},
