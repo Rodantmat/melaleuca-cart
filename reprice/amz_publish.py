@@ -40,7 +40,7 @@ def main():
             r = spapi.call(c, "PUT", "/listings/2021-08-01/items/%s/%s" % (seller, sk), params={"marketplaceIds": MP, "issueLocale": "en_US", **({"mode": "VALIDATION_PREVIEW"} if PREVIEW else {})},
                            body={"productType": ptype, "requirements": "LISTING", "attributes": attrs})
         except spapi.SpError as e:
-            return "HTTP_ERROR", [("ERROR", str(e)[:160])]
+            return "HTTP_ERROR", [("ERROR", " ".join(str(e).split())[:700])]
         iss = [(i.get("severity"), "%s %s" % (i.get("code"), (i.get("message") or "")[:300])) for i in r.get("issues", []) if i.get("severity") == "ERROR"]
         return r.get("status"), iss
     for F in feed:
