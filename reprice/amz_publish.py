@@ -35,7 +35,12 @@ def main():
         for pt, bb in B.items():
             try: print("THEMES", pt, [t for t in V.enum_of(bb.p["variation_theme"])[0] if "STYLE" in t][:40])
             except Exception as e: print("THEMES", pt, "n/a", e)
-    def put(sk, ptype, attrs):
+    def put(sk, ptype, attrs, tries=3):
+        st, iss = put1(sk, ptype, attrs)
+        while st == "HTTP_ERROR" and "Unable to Retrieve" in str(iss) and tries > 1:     # transient Amazon-side failure: same request passes on retry
+            time.sleep(20); tries -= 1; st, iss = put1(sk, ptype, attrs)
+        return st, iss
+    def put1(sk, ptype, attrs):
         try:
             r = spapi.call(c, "PUT", "/listings/2021-08-01/items/%s/%s" % (seller, sk), params={"marketplaceIds": MP, "issueLocale": "en_US", **({"mode": "VALIDATION_PREVIEW"} if PREVIEW else {})},
                            body={"productType": ptype, "requirements": "LISTING", "attributes": attrs})
