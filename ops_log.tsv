@@ -130,3 +130,4 @@ utc	job	status	trigger	run_id	summary
 2026-11-17T19:19:12Z	bb_web	success	schedule	44150903306	1/17  price=25.99 seller=ccomstore18  (1.5 MB so far) (x11) | web Buy Box: 167 ASINs read, 130 with a price, we win 44, errors 3 | rival stock reads: off (budget 80) | proxy traffic on the wire: 22.5 MB in 245 requests; by type: {'document': 20.5, 'fetch': 1.8} | errors=1 first: web Buy Box: 167 ASINs read, 130 with a price, we win 44, errors 3
 2026-11-17T19:39:19Z	heartbeat	success	workflow_dispatch	44098179114	status dispatched 19:30 (x24) | next heartbeat started
 2026-11-17T20:05:36Z	feed	success	schedule	44164449159	Built feed files in: /home/runner/work/melaleuca-cart/melaleuca-cart/feedwork/feed | Inventory rows: 175 | FBA rows: 173 | fees known: 175 | note: incomplete fee (no FBA fee) for P9-9LY1-OBH4 - not used (x3)
+2026-11-18T01:20:13Z	heartbeat	success	workflow_dispatch	44160899826	status dispatched 01:10 (x23) | next heartbeat started
