@@ -20,6 +20,9 @@ try:
     a["fulfillment_availability"] = [{"fulfillment_channel_code": "AMAZON_NA"}]
     po = (own.get("attributes") or {}).get("purchasable_offer")
     if po: a["purchasable_offer"] = po
+    ex = json.load(open(os.path.join(HERE, "brand_relist_extra.json"))).get(new_sku, {})
+    for k, v in ex.items():
+        a[k] = [dict(x, marketplace_id=MP, **({"language_tag": "en_US"} if k == "bullet_point" else {})) for x in v]
     print("RELIST attrs:", json.dumps(sorted(a)))
     print("RELIST name:", a["item_name"][0]["value"])
     body = {"productType": pt, "requirements": "LISTING", "attributes": a}
