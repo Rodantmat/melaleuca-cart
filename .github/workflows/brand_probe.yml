@@ -1,0 +1,28 @@
+name: Brand probe (read-only)
+on:
+  workflow_dispatch:
+    inputs:
+      asins: { required: true }
+      keywords: { required: false, default: "" }
+permissions: { contents: read }
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+        with: { ref: main }
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - name: Probe
+        env:
+          AMZ_CLIENT: ${{ secrets.AMZ_CLIENT }}
+          AMZ_SECRET: ${{ secrets.AMZ_SECRET }}
+          AMZ_REFRESH: ${{ secrets.AMZ_REFRESH }}
+          ASINS: ${{ inputs.asins }}
+          KW: ${{ inputs.keywords }}
+        run: |
+          cd reprice
+          printf 'CLIENT_ID=%s\nCLIENT_SECRET=%s\nREFRESH_TOKEN=%s\n' "$AMZ_CLIENT" "$AMZ_SECRET" "$AMZ_REFRESH" > credentials.env
+          python brand_probe.py "$ASINS" "$KW"; rc=$?
+          rm -f credentials.env; exit $rc
