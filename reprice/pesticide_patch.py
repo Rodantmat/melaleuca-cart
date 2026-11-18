@@ -4,9 +4,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 c = spapi.load_creds(HERE); seller = c.get("SELLER_ID") or "A3431QI59MY9RE"
 sku, mode = sys.argv[1], (sys.argv[2] if len(sys.argv) > 2 else "preview")
 MP = spapi.MARKETPLACE
-if mode == "apply": sys.exit("apply is switched off in this version")
-for label, val in (("EPA reg type + not-a-pesticide", [{"marking_type": "epa_registration_number", "registration_status": "fifra_not_considered_pesticide", "marketplace_id": MP}]),
-                   ("EPA est type + not-a-pesticide", [{"marking_type": "epa_establishment_number", "registration_status": "fifra_not_considered_pesticide", "marketplace_id": MP}])):
+for label, val in (("EPA reg type + not-a-pesticide", [{"marking_type": "epa_registration_number", "registration_status": "fifra_not_considered_pesticide", "marketplace_id": MP}]),):
     body = {"productType": "CLEANING_AGENT", "patches": [{"op": "replace", "path": "/attributes/pesticide_marking", "value": val}]}
     p = {"marketplaceIds": MP, "issueLocale": "en_US"}
     if mode != "apply": p["mode"] = "VALIDATION_PREVIEW"
