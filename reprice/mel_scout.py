@@ -23,36 +23,53 @@ for cd in cards:
         if not ("melaleuca" in bm or "melaleuca" in nl or any(k in nl for k in toks) or any(k in bm for k in toks)): continue
         a = it["asin"]
         if a in seen: seen[a]["cards"].append(cd["id"]); continue
-        rk = None
+        rk = None; top = None
         for sr in it.get("salesRanks", []):
-            for x in (sr.get("displayGroupRanks") or []) + (sr.get("classificationRanks") or []):
+            for x in (sr.get("classificationRanks") or []):
                 if rk is None or x.get("rank", 9e9) < rk[0]: rk = (x.get("rank"), x.get("title"))
-            if rk: break
-        seen[a] = {"asin": a, "name": nm[:160], "brand": s.get("brand"), "mfr": s.get("manufacturer"), "rank": rk, "cards": [cd["id"]], "ours": a in ours}
+            for x in (sr.get("displayGroupRanks") or []):
+                if top is None or x.get("rank", 9e9) < top[0]: top = (x.get("rank"), x.get("title"))
+        seen[a] = {"asin": a, "name": nm[:160], "brand": s.get("brand"), "mfr": s.get("manufacturer"), "rank": rk, "top": top, "cards": [cd["id"]], "ours": a in ours}
         n += 1
     print("SCOUT_CARD", json.dumps({"id": cd["id"], "title": cd["title"], "cost": cd["cost"], "hits": n, "total": r.get("numberOfResults")}))
     sys.stdout.flush()
+OKB = ("melaleuca", "generic", "sei bella", "ecosense", "renew", "sun valley", "koala", "affinia", "alloy", "riverbend", "pure", "vitality", "sun shades", "exceed")
+def relevant(d):
+    b = (d.get("brand") or "").lower(); m = (d.get("mfr") or "").lower()
+    return (not b) or any(k in b for k in OKB) or "melaleuca" in m
+todo = [a for a, d in seen.items() if not d["ours"] and relevant(d)]
 for a, d in seen.items():
-    if d["ours"]: print("SCOUT_ASIN", json.dumps(d)); continue
+    if d["ours"] or a not in todo: d["skip"] = "ours" if d["ours"] else "other-brand"; print("SCOUT_ASIN", json.dumps(d))
+def take(d, o):
+    sm = o.get("Summary", {})
+    d["offers"] = sm.get("TotalOfferCount")
+    d["by"] = {x.get("fulfillmentChannel"): x.get("OfferCount") for x in sm.get("NumberOfOffers", []) if x.get("condition", "").lower() == "new"}
+    bb = [x for x in sm.get("BuyBoxPrices", []) if x.get("condition", "").lower() == "new"]
+    lo = sorted(v for v in (x.get("LandedPrice", {}).get("Amount") for x in sm.get("LowestPrices", []) if x.get("condition", "").lower() == "new") if v)
+    d["bb"] = bb[0].get("LandedPrice", {}).get("Amount") if bb else None
+    d["low"] = lo[0] if lo else None
+    d["list"] = (sm.get("ListPrice") or {}).get("Amount")
+    d["sellers"] = [{"fba": x.get("IsFulfilledByAmazon"), "p": round((x.get("ListingPrice", {}).get("Amount") or 0) + (x.get("Shipping", {}).get("Amount") or 0), 2), "bb": x.get("IsBuyBoxWinner"), "fb": (x.get("SellerFeedbackRating") or {}).get("FeedbackCount")} for x in o.get("Offers", [])[:10]]
+for i in range(0, len(todo), 20):
+    chunk = todo[i:i + 20]
     try:
-        o = spapi.call(c, "GET", "/products/pricing/v0/items/%s/offers" % a, params={"MarketplaceId": MP, "ItemCondition": "New"}, tries=6, quiet=True).get("payload", {})
-        sm = o.get("Summary", {})
-        d["offers"] = sm.get("TotalOfferCount")
-        d["by"] = {x.get("fulfillmentChannel"): x.get("OfferCount") for x in sm.get("NumberOfOffers", []) if x.get("condition", "").lower() == "new"}
-        bb = [x for x in sm.get("BuyBoxPrices", []) if x.get("condition", "").lower() == "new"]
-        lo = sorted((x.get("LandedPrice", {}).get("Amount") for x in sm.get("LowestPrices", []) if x.get("condition", "").lower() == "new" and x.get("LandedPrice")), key=lambda v: v or 9e9)
-        d["bb"] = bb[0].get("LandedPrice", {}).get("Amount") if bb else None
-        d["low"] = lo[0] if lo else None
-        d["amz"] = any(x.get("SellerId") == "ATVPDKIKX0DER" for x in o.get("Offers", []))
-        d["sellers"] = [{"fba": x.get("IsFulfilledByAmazon"), "p": (x.get("ListingPrice", {}).get("Amount") or 0) + (x.get("Shipping", {}).get("Amount") or 0), "bb": x.get("IsBuyBoxWinner"), "fb": (x.get("SellerFeedbackRating") or {}).get("FeedbackCount")} for x in o.get("Offers", [])[:8]]
-    except spapi.SpError as e: d["offers_err"] = str(e)[:100]
-    time.sleep(2.1)
-    price = d.get("bb") or d.get("low")
+        r = spapi.call(c, "POST", "/batches/products/pricing/v0/itemOffers", body={"requests": [{"uri": "/products/pricing/v0/items/%s/offers" % a, "method": "GET", "MarketplaceId": MP, "ItemCondition": "New"} for a in chunk]}, tries=7, quiet=True)
+        for x in r.get("responses", []):
+            a = (x.get("request") or {}).get("Asin") or ((x.get("body") or {}).get("payload") or {}).get("ASIN")
+            if a in seen and (x.get("status") or {}).get("statusCode") == 200: take(seen[a], (x.get("body") or {}).get("payload") or {})
+            elif a in seen: seen[a]["offers_err"] = json.dumps(x.get("status"))[:80]
+    except spapi.SpError as e:
+        for a in chunk: seen[a]["offers_err"] = str(e)[:100]
+    time.sleep(10.5)
+    print("SCOUT_PROGRESS offers", i + len(chunk), len(todo)); sys.stdout.flush()
+for n, a in enumerate(todo):
+    d = seen[a]; price = d.get("bb") or d.get("low")
     if price:
         try:
             f = spapi.call(c, "POST", "/products/fees/v0/items/%s/feesEstimate" % a, body={"FeesEstimateRequest": {"MarketplaceId": MP, "IsAmazonFulfilled": True, "Identifier": a, "PriceToEstimateFees": {"ListingPrice": {"CurrencyCode": "USD", "Amount": price}}}}, tries=5, quiet=True)
-            fe = f.get("payload", {}).get("FeesEstimateResult", {}).get("FeesEstimate", {})
-            d["fees"] = fe.get("TotalFeesEstimate", {}).get("Amount")
+            fr = f.get("payload", {}).get("FeesEstimateResult", {})
+            d["fees"] = (fr.get("FeesEstimate") or {}).get("TotalFeesEstimate", {}).get("Amount")
+            if d["fees"] is None: d["fees_err"] = json.dumps(fr.get("Error"))[:120]
         except spapi.SpError as e: d["fees_err"] = str(e)[:100]
         time.sleep(1.05)
     try:
