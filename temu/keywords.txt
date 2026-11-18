@@ -10,7 +10,6 @@ kitchen | spice jar rack wall
 kitchen | stainless steel dish rack small
 kitchen | drawer knife organizer
 organization | expandable drawer organizer
-bathroom | shower shelf no drill
 bathroom | corner shower caddy
 organization | power strip cover box
 kitchen | pan organizer rack for cabinet
@@ -131,7 +130,6 @@ tools | wall mounted tool rack garage
 office | power strip cable box organizer large bamboo
 tools | pegboard hooks wall tool organizer set
 organization | power strip cover box bamboo
-office | monitor stand riser storage drawer
 car | seat back organizer hooks
 kitchen | mandoline slicer with container
 kitchen | pocket kitchen scale 500g
@@ -168,7 +166,6 @@ organization | cord hider box wood power strip cover
 kitchen | chopping board stainless steel double sided
 kitchen | measuring cups spoons set 12 piece
 organization | power strip box large wood cord cover
-pet | dog grooming glove pair
 pet | pet hair remover glove 2 pack
 pet | cat deshedding glove
 organization | shoe rack over door
@@ -220,7 +217,6 @@ organization | hanging closet organizer 4 shelf canvas
 bathroom | corner shower caddy suction cup 2 tier
 home | pot lid holder cabinet door mount 3 pcs
 kitchen | pot lid holder 4 slot countertop stainless
-kitchen | pan lid rack adhesive stainless
 kitchen | vegetable chopper dicer 7 in 1 stainless
 kitchen | digital kitchen scale 10 lb stainless slim
 bathroom | shower shelf corner 2 tier no drilling stainless
@@ -228,9 +224,7 @@ kitchen | salad chopper bowl manual
 garden | hose reel wall hanging bracket
 tools | screwdriver wall rack magnetic
 kitchen | food scale stainless platform 11lb
-organization | hanging closet shelf 6 tier
 bathroom | shower corner rack 2 tier adhesive
-kitchen | pot cover rack under cabinet
 kitchen | stainless steel pot lid rack 3 piece
 kitchen | vegetable chopper dicer 12 in 1 with container
 office | surge protector cover box wood
@@ -275,14 +269,12 @@ fitness | yoga block cork set
 kitchen | utensil rest stainless steel double
 kitchen | ladle spoon holder stove stainless
 kitchen | mini food chopper manual pull string
-kitchen | vegetable slicer mandoline adjustable
 kitchen | kitchen scale 11lb stainless
 kitchen | tea scale small gram
 organization | cord management box for tv wires
 organization | surge protector cover box large
 organization | cable sleeve organizer desk tray
 bathroom | shower shelf stainless no drill 2 tier
-bathroom | corner shower caddy adhesive stainless
 home | closet hanging shelves 6 tier
 home | hanging sweater organizer closet
 organization | over door hooks heavy duty
@@ -344,7 +336,6 @@ kitchen | manual food chopper hand pull
 organization | tool wall rack utility hooks 8 hooks
 organization | garage wall hook rail heavy duty storage rack
 tools | magnetic tool holder strip wall 16 inch
-tools | pegboard hook assortment kit organizer
 garden | hose hanger wall mount heavy duty
 kitchen | vegetable dicer chopper with container 4 blade
 kitchen | onion cutter slicer dicer with bowl lid
@@ -357,7 +348,6 @@ office | wood power strip cover box with lid
 organization | surge protector cover box hide cords large
 pet | pet hair remover glove cat dog reusable
 pet | dog grooming glove soft bristles 2 pack
-pet | cat brush glove massage shedding
 fitness | ab wheel roller dual wheel with mat
 fitness | ab roller wheel kit with knee mat and bands
 kitchen | digital kitchen scale small 5kg
@@ -397,3 +387,14 @@ pet | dog lick mat with suction
 kitchen | electric can opener hands free
 fitness | resistance bands set with door anchor
 fitness | pull up assist bands set
+office | power strip cover box large
+office | cord organizer box for desk white
+office | cable management box surge protector hider
+office | under desk power strip mount
+kitchen | spoon rest with lid holder ceramic
+kitchen | pot lid rest stove stainless
+kitchen | stainless steel utensil rest 3 slot
+kitchen | manual citrus press lemon squeezer stainless
+kitchen | orange juicer hand press
+kitchen | salt and pepper mill set electric gravity
+kitchen | electric pepper mill automatic led light
