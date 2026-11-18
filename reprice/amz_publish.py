@@ -14,9 +14,10 @@ def main():
     SK = {x.strip() for x in os.environ.get("AMZ_SKUS", "").split(",") if x.strip()}
     if SK:
         for f in feed: f["children"] = [k for k in f["children"] if k["sku"] in SK]
-    PREVIEW = os.environ.get("AMZ_PREVIEW") == "1"       # check-only: sends mode=VALIDATION_PREVIEW, nothing is created
+    PV = os.environ.get("AMZ_PREVIEW", "").strip(); PREVIEW = PV.isdigit() and int(PV) >= 1       # check-only: sends mode=VALIDATION_PREVIEW, nothing is created
     if PREVIEW:
-        for f in feed: f["children"] = f["children"][:: max(1, len(f["children"]) // 6)][:6]
+        NS = 6 if int(PV) == 1 else int(PV)              # preview=1 samples 6 children, preview=N samples N evenly
+        for f in feed: f["children"] = f["children"][:: max(1, len(f["children"]) // NS)][:NS]
     print("publishing", len(feed), "listings,", sum(len(f["children"]) for f in feed), "children; products", sorted(PRODS), "only", ONLY or "-"); sys.stdout.flush()
     # the main images must be reachable by Amazon before anything goes live
     probe = [x for f in feed[:6] for k in f["children"][:: max(1, len(f["children"]) // 12)][:12] for x in [k["img"]] + list(k.get("others") or [])][:40]
