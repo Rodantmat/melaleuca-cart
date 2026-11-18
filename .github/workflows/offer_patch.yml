@@ -1,0 +1,30 @@
+name: Offer patch (preview by default)
+on:
+  workflow_dispatch:
+    inputs:
+      sku: { required: true }
+      price: { required: true }
+      mode: { required: false, default: "preview" }
+permissions: { contents: read }
+jobs:
+  look:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+        with: { ref: main }
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - name: Look
+        env:
+          AMZ_CLIENT: ${{ secrets.AMZ_CLIENT }}
+          AMZ_SECRET: ${{ secrets.AMZ_SECRET }}
+          AMZ_REFRESH: ${{ secrets.AMZ_REFRESH }}
+          SKU: ${{ inputs.sku }}
+          PRICE: ${{ inputs.price }}
+          MODE: ${{ inputs.mode }}
+        run: |
+          cd reprice
+          printf 'CLIENT_ID=%s\nCLIENT_SECRET=%s\nREFRESH_TOKEN=%s\n' "$AMZ_CLIENT" "$AMZ_SECRET" "$AMZ_REFRESH" > credentials.env
+          python offer_patch.py "$SKU" "$PRICE" "$MODE"; rc=$?
+          rm -f credentials.env; exit $rc
