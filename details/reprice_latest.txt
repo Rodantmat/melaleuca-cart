@@ -1,25 +1,28 @@
-# 2026-11-18T01:46:29Z  reprice  success  run 44217222926
+# 2026-11-18T07:27:00Z  reprice  success  run 44257720769
 /home/runner/work/melaleuca-cart/melaleuca-cart/reprice/run.py:14: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
   now = dt.datetime.utcnow()
-mode=live live_writes_allowed=True killed=False skus=167
-  live Buy Box prices: 20 of 167 ASINs read
-  live Buy Box prices: 40 of 167 ASINs read
-  live Buy Box prices: 60 of 167 ASINs read
-  live Buy Box prices: 80 of 167 ASINs read
-  live Buy Box prices: 100 of 167 ASINs read
-  live Buy Box prices: 120 of 167 ASINs read
-  live Buy Box prices: 140 of 167 ASINs read
-  live Buy Box prices: 160 of 167 ASINs read
-  live Buy Box prices: 167 of 167 ASINs read
-Amazon target prices (FOEP) read for 73 products
+mode=live live_writes_allowed=True killed=False skus=169
+  live Buy Box prices: 20 of 169 ASINs read
+  live Buy Box prices: 40 of 169 ASINs read
+  live Buy Box prices: 60 of 169 ASINs read
+  live Buy Box prices: 80 of 169 ASINs read
+  live Buy Box prices: 100 of 169 ASINs read
+  live Buy Box prices: 120 of 169 ASINs read
+  live Buy Box prices: 140 of 169 ASINs read
+  live Buy Box prices: 160 of 169 ASINs read
+  live Buy Box prices: 169 of 169 ASINs read
+Amazon target prices (FOEP) read for 72 products
 seller id found
-decided 149 products: {'hold': 147, 'down': 2} ; applied this run: 0
+decided 149 products: {'hold': 144, 'down': 2, 'revert': 3} ; applied this run: 3
   ME0017 down 16.09 -> 15.61  drought/surplus: 11 days without sale (limit 30), 90 days of supply | SHADOW (not applied)
+  ME0286 revert 14.06 -> 13.39  after the raise to 14.06 the sales speed fell to 0% of before - back to 13.39
+  ME1303 revert 31.28 -> 28.96  after the raise to 31.28 the sales speed fell to 44% of before - back to 28.96
+  ME1411 revert 31.49 -> 29.99  after the raise to 31.49 the sales speed fell to 0% of before - back to 29.99
   ME1430 down 42.99 -> 42.34  drought/surplus: 2 days without sale (limit 30), 100 days of supply; market price 42.34 | SHADOW (not applied)
-units to sell 1179 | cost paid 7704 | at your listed prices 33029 | net payout base 22748 | net payout conservative 21847
-Counter({'OK': 80, 'BUY MORE': 58, 'BUY': 20, 'BUY LESS': 8, 'STOP buying': 4, 'STOP buying - no sales 90d': 2})
-market depth for 155 products: {'MEDIUM': 59, 'LOW': 87, 'HIGH': 9}
-bb intel: 154 ASINs, we own the box in 39% of web scans; API vs web: {('same seller', 'same price'): 119, ('different seller', 'different price'): 27, ('different seller', 'same price'): 7, ('same seller', 'different price'): 1}
+units to sell 1198 | cost paid 7780 | at your listed prices 33396 | net payout base 22997 | net payout conservative 22079
+Counter({'OK': 79, 'BUY MORE': 59, 'BUY': 20, 'BUY LESS': 7, 'STOP buying': 5, 'STOP buying - no sales 90d': 2})
+market depth for 155 products: {'MEDIUM': 57, 'LOW': 87, 'HIGH': 11}
+bb intel: 154 ASINs, we own the box in 38% of web scans; API vs web: {('same seller', 'same price'): 127, ('different seller', 'different price'): 22, ('different seller', 'same price'): 4, ('same seller', 'different price'): 1}
 /home/runner/work/melaleuca-cart/melaleuca-cart/reprice/reports.py:54: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
   now = dt.datetime.utcnow()
-reports: rival stock hints {'WAIT': 2, 'DROP-CANDIDATE': 5, 'WATCH': 3, 'HOLD': 77} | restock alerts 36 (profit at risk $2589/month) | rival alerts 51 | outcomes 197
+reports: rival stock hints {'WAIT': 3, 'DROP-CANDIDATE': 7, 'WATCH': 4, 'HOLD': 82} | restock alerts 36 (profit at risk $2540/month) | rival alerts 71 | outcomes 197
