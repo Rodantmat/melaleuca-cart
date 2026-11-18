@@ -219,6 +219,16 @@ def listing(c, seller, sku):
                       params={"marketplaceIds": MK, "includedData": "summaries,attributes,issues"}, quiet=True)
 
 
+def listing_age_days(item, now):
+    """Days since Amazon created the listing (None when unknown)."""
+    try:
+        cd = ((item.get("summaries") or [{}])[0]).get("createdDate")
+        t = dt.datetime.fromisoformat(str(cd).replace("Z", "+00:00")).replace(tzinfo=None)
+        return max(0, (now.replace(tzinfo=None) - t).days)
+    except Exception:
+        return None
+
+
 def current_price(item):
     try:
         po = item["attributes"]["purchasable_offer"]
@@ -375,6 +385,9 @@ def main():
             d = {"action": "hold", "reason": "engine error %r - held" % e}
         if d["action"] == "up" and pressure.get(asin) == "HIGH":
             d = {"action": "hold", "reason": "raise skipped: many FBA rivals and the cheapest one keeps cutting (market pressure HIGH)", "flags": ["pressure_high"]}
+        age = listing_age_days(item, now)          # OWNER 2026-11-17: a new product gets time to find its buyers - no price drop in its first 60 days
+        if d["action"] == "down" and age is not None and age < conf.get("new_listing_no_drop_days", 60):
+            d = {"action": "hold", "reason": "new listing (%d days old): no price drop in the first %d days" % (age, conf.get("new_listing_no_drop_days", 60)), "flags": ["new_listing"]}
         np_ = d.get("price")
         if np_ is not None:
             if ov.get("min"): np_ = max(np_, float(ov["min"]))

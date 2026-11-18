@@ -9,6 +9,7 @@
   ],
   "max_changes_per_run": 20,
   "max_changes_per_day": 40,
+  "new_listing_no_drop_days": 60,
   "overrides": {},
   "cfg": {},
   "auto_raise": {

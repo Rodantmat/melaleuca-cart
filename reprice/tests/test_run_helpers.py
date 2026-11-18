@@ -23,6 +23,13 @@ class T(unittest.TestCase):
         d = bb_web.parse_dp("<html>nothing</html>")
         self.assertIsNone(d["bb_price"]); self.assertIsNone(d["seller_id"])
 
+    def test_listing_age_days(self):
+        n = dt.datetime(2026, 11, 18, 8, 0)
+        self.assertEqual(run.listing_age_days({"summaries": [{"createdDate": "2026-11-08T07:00:00Z"}]}, n), 10)
+        self.assertEqual(run.listing_age_days({"summaries": [{"createdDate": "2025-01-01T00:00:00.123Z"}]}, n) > 60, True)
+        self.assertIsNone(run.listing_age_days({"summaries": [{}]}, n))
+        self.assertIsNone(run.listing_age_days({}, n))
+
 
 if __name__ == "__main__":
     unittest.main()
