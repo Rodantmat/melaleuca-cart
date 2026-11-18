@@ -111,7 +111,6 @@ kitchen | food scale gram ounce
 organization | garage wall tool holder rack
 office | desk cable tray under desk metal
 organization | tool holder wall mounted screwdriver pliers rack
-bathroom | bathroom corner caddy stainless adhesive 3 pack
 bathroom | shower caddy corner stainless
 kitchen | spoon rest stainless steel with lid holder
 office | power strip hider box wood
@@ -170,9 +169,6 @@ kitchen | spoon rest with spatula holder
 kitchen | small digital food scale grams ounces
 kitchen | kitchen scale usb rechargeable
 kitchen | onion chopper pro with container
-office | cable management box white large
-office | cable concealer box for tv wires
-bathroom | shower shelf stainless steel no drill 2 tier
 bathroom | bathroom wall shelf adhesive floating
 pet | pet hair remover brush for couch
 pet | dog paw cleaner cup
@@ -181,11 +177,9 @@ car | car trunk organizer collapsible
 kitchen | pot lid holder drawer insert
 kitchen | pot lid holder wall mounted adhesive
 bathroom | shower caddy 3 tier hanging stainless
-bathroom | shower caddy 3 tier standing
 kitchen | salad chopper cutter bowl
 kitchen | kitchen scale 11 lb stainless
 bathroom | shower caddy hanging over head stainless
-kitchen | vegetable chopper 8 in 1 container
 bathroom | shower shelf adhesive stainless 2 tier
 kitchen | vegetable chopper with removable blades
 kitchen | vegetable chopper pro 12 in 1
@@ -197,7 +191,6 @@ home | pot lid holder cabinet door mount 3 pcs
 kitchen | pot lid holder 4 slot countertop stainless
 kitchen | vegetable chopper dicer 7 in 1 stainless
 kitchen | digital kitchen scale 10 lb stainless slim
-bathroom | shower shelf corner 2 tier no drilling stainless
 kitchen | salad chopper bowl manual
 garden | hose reel wall hanging bracket
 kitchen | food scale stainless platform 11lb
