@@ -1,11 +1,74 @@
-{"ME1238-M": {
-  "fc_shelf_life": [{"value": 730, "unit": "days"}],
-  "item_weight": [{"value": 0.7, "unit": "pounds"}],
-  "country_of_origin": [{"value": "US"}],
+{
+ "ME1238-M": {
+  "fc_shelf_life": [
+   {
+    "value": 730,
+    "unit": "days"
+   }
+  ],
+  "item_weight": [
+   {
+    "value": 0.7,
+    "unit": "pounds"
+   }
+  ],
+  "country_of_origin": [
+   {
+    "value": "US"
+   }
+  ],
   "bullet_point": [
-    {"value": "MELALEUCA PHYTOMEGA: Genuine Phytomega softgels made by Melaleuca, The Wellness Company"},
-    {"value": "FOUR KEY INGREDIENTS: Plant phytosterols, omega-3 fatty acids, CoQ10 and alpha lipoic acid together in one softgel"},
-    {"value": "OMEGA-3s: Provides EPA 330 mg and DHA 220 mg"},
-    {"value": "120 SOFTGELS: Each bottle contains 120 softgels"},
-    {"value": "NEW AND SEALED: Ships in the original factory-sealed Melaleuca bottle"}
-  ]}}
+   {
+    "value": "MELALEUCA PHYTOMEGA: Genuine Phytomega softgels made by Melaleuca, The Wellness Company"
+   },
+   {
+    "value": "FOUR KEY INGREDIENTS: Plant phytosterols, omega-3 fatty acids, CoQ10 and alpha lipoic acid together in one softgel"
+   },
+   {
+    "value": "OMEGA-3s: Provides EPA 330 mg and DHA 220 mg"
+   },
+   {
+    "value": "120 SOFTGELS: Each bottle contains 120 softgels"
+   },
+   {
+    "value": "NEW AND SEALED: Ships in the original factory-sealed Melaleuca bottle"
+   }
+  ]
+ },
+ "ME1238-V": {
+  "fc_shelf_life": [
+   {
+    "value": 730,
+    "unit": "days"
+   }
+  ],
+  "item_weight": [
+   {
+    "value": 0.7,
+    "unit": "pounds"
+   }
+  ],
+  "country_of_origin": [
+   {
+    "value": "US"
+   }
+  ],
+  "bullet_point": [
+   {
+    "value": "VITALITY FOR LIFE PHYTOMEGA: Genuine Phytomega softgels from the Vitality for Life line by Melaleuca"
+   },
+   {
+    "value": "FOUR KEY INGREDIENTS: Plant phytosterols, omega-3 fatty acids, CoQ10 and alpha lipoic acid together in one softgel"
+   },
+   {
+    "value": "OMEGA-3s: Provides EPA 330 mg and DHA 220 mg"
+   },
+   {
+    "value": "120 SOFTGELS: Each bottle contains 120 softgels"
+   },
+   {
+    "value": "NEW AND SEALED: Ships in the original factory-sealed bottle"
+   }
+  ]
+ }
+}
