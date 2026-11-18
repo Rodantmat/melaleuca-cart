@@ -1,0 +1,28 @@
+name: Melaleuca scout (read-only)
+on:
+  workflow_dispatch:
+    inputs:
+      part: { required: true }
+      parts: { required: true }
+permissions: { contents: read }
+jobs:
+  scout:
+    runs-on: ubuntu-latest
+    timeout-minutes: 170
+    steps:
+      - uses: actions/checkout@v4
+        with: { ref: main }
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - name: Scout
+        env:
+          AMZ_CLIENT: ${{ secrets.AMZ_CLIENT }}
+          AMZ_SECRET: ${{ secrets.AMZ_SECRET }}
+          AMZ_REFRESH: ${{ secrets.AMZ_REFRESH }}
+          PART: ${{ inputs.part }}
+          PARTS: ${{ inputs.parts }}
+        run: |
+          cd reprice
+          printf 'CLIENT_ID=%s\nCLIENT_SECRET=%s\nREFRESH_TOKEN=%s\n' "$AMZ_CLIENT" "$AMZ_SECRET" "$AMZ_REFRESH" > credentials.env
+          python mel_scout.py "$PART" "$PARTS"; rc=$?
+          rm -f credentials.env; exit $rc
