@@ -59,6 +59,7 @@ def main():
         with ThreadPoolExecutor(4) as ex:
             for n, (st, iss) in enumerate(ex.map(one, F["children"])):
                 stat[("CHILD", st if not iss else "WITH_ERRORS")] += 1
+                if PREVIEW and iss: print("PREVIEW-ERR", F["children"][n]["sku"], st, [i[1][:600] for i in iss][:3])
                 for i in iss: errs[i[1]] += 1; first.setdefault(i[1], F["id"])
                 if n == 60 and sum(v for k, v in stat.items() if k[0] == "CHILD" and k[1] not in ("ACCEPTED", "VALID")) > 12: print("ABORT: too many child errors, stopping"); print(dict(errs)); sys.exit(2)
         print("done", F["id"], len(F["children"]), "children", dict((k[1], v) for k, v in stat.items() if k[0] == "CHILD")); sys.stdout.flush()
