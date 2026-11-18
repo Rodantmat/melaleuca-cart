@@ -25,6 +25,8 @@ jobs:
           AMZ_REFRESH: ${{ secrets.AMZ_REFRESH }}
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
           PROXY_URL: ${{ secrets.PROXY_URL }}
+          AMZ_PROXY_ALWAYS: "1"
+          NO_IMAGES: "1"
           APIFY_TOKEN: ${{ secrets.APIFY_TOKEN || secrets.APIFY_API_TOKEN || secrets.APIFY_KEY || secrets.APIFY }}
           TOP: ${{ github.event.inputs.top || '12' }}
           REFS: ${{ github.event.inputs.refs }}

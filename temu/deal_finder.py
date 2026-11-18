@@ -83,6 +83,8 @@ _hash_cache = {}
 
 
 def img_hash(url):
+    if os.environ.get("NO_IMAGES") == "1":
+        return None  # owner's order: no image downloads (saves proxy MB)
     if isinstance(url, dict):
         url = url.get("url")
     if not url:
@@ -261,12 +263,14 @@ def page_details(asins):
     import bb_web, urllib.parse as up
     from curl_cffi import requests as cr
     out, mb, use_proxy, px = {}, 0.0, False, None
+    always = os.environ.get("AMZ_PROXY_ALWAYS") == "1"
     raw = os.environ.get("PROXY_URL", "").strip()
     if raw:
         u = up.urlparse(raw); login = up.unquote(u.username or "")
         if "__" not in login:
             login += "__cr.us"
         px = "http://%s:%s@%s:%s" % (up.quote(login, safe=""), up.quote(up.unquote(u.password or ""), safe=""), u.hostname, os.environ.get("DP_PROXY_PORT", "10160"))
+        use_proxy = always
     for a in asins[:DP_MAX]:
         for attempt in (0, 1):
             prox = {"http": px, "https": px} if (use_proxy and px) else None
