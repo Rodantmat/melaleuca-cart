@@ -1,0 +1,36 @@
+name: Brand relist (preview by default)
+on:
+  workflow_dispatch:
+    inputs:
+      src_sku: { required: true }
+      src_asin: { required: true }
+      new_sku: { required: true }
+      brand: { required: true }
+      mode: { required: false, default: "preview" }
+      upc: { required: false, default: "" }
+permissions: { contents: read }
+jobs:
+  relist:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+        with: { ref: main }
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - name: Relist
+        env:
+          AMZ_CLIENT: ${{ secrets.AMZ_CLIENT }}
+          AMZ_SECRET: ${{ secrets.AMZ_SECRET }}
+          AMZ_REFRESH: ${{ secrets.AMZ_REFRESH }}
+          A1: ${{ inputs.src_sku }}
+          A2: ${{ inputs.src_asin }}
+          A3: ${{ inputs.new_sku }}
+          A4: ${{ inputs.brand }}
+          A5: ${{ inputs.mode }}
+          A6: ${{ inputs.upc }}
+        run: |
+          cd reprice
+          printf 'CLIENT_ID=%s\nCLIENT_SECRET=%s\nREFRESH_TOKEN=%s\n' "$AMZ_CLIENT" "$AMZ_SECRET" "$AMZ_REFRESH" > credentials.env
+          python brand_relist.py "$A1" "$A2" "$A3" "$A4" "$A5" "$A6"; rc=$?
+          rm -f credentials.env; exit $rc
