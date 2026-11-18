@@ -23,6 +23,9 @@ try:
     ex = json.load(open(os.path.join(HERE, "brand_relist_extra.json"))).get(new_sku, {})
     for k, v in ex.items():
         a[k] = [dict(x, marketplace_id=MP, **({"language_tag": "en_US"} if k == "bullet_point" else {})) for x in v]
+    for d in a.get("item_package_dimensions", []):
+        for k in ("height", "length", "width"):
+            if isinstance(d.get(k), dict) and str(d[k].get("unit", "")).upper() == "IN": d[k]["unit"] = "inches"
     print("RELIST attrs:", json.dumps(sorted(a)))
     print("RELIST name:", a["item_name"][0]["value"])
     body = {"productType": pt, "requirements": "LISTING", "attributes": a}
