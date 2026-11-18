@@ -91,6 +91,20 @@ class Raises(unittest.TestCase):
         self.assertGreater(d["price"], 25.0 * 1.06)
         self.assertLessEqual(d["price"], 25.0 * 1.08 + 0.011)
 
+    def test_alone_and_selling_slowly_climbs_gently_instead_of_dropping(self):
+        # OWNER 2026-11-18: Sol-U-Mel 16oz - nobody else sells it, 1 sale in 30 days, a big stock: no drop, a gentle raise
+        s = base(price=69.99, cost=21.49, fba_fee=5.33, on_hand=12, units_30=1, units_90=1, days_since_sale=14, n_rivals=0, bb=69.99)
+        d = engine.decide(s, CFG, NOW)
+        self.assertEqual(d["action"], "up"); self.assertAlmostEqual(d["price"], 72.79, places=2)
+        # with a rival, or no sale for more than 30 days, the old rules decide (never a raise)
+        self.assertNotEqual(engine.decide(dict(s, n_rivals=2), CFG, NOW)["action"], "up")
+        self.assertNotEqual(engine.decide(dict(s, n_rivals=None), CFG, NOW)["action"], "up")
+        self.assertNotEqual(engine.decide(dict(s, days_since_sale=45, units_30=0), CFG, NOW)["action"], "up")
+        # the next step waits for a sale at the new price
+        lc = {"ts": NOW - timedelta(days=5), "old": 69.99, "new": 72.79, "dir": "up", "base_v": 0.03}
+        d2 = engine.decide(dict(s, price=72.79, bb=72.79, days_since_sale=19, last_change=lc, changes=[lc]), CFG, NOW)
+        self.assertEqual(d2["action"], "hold")
+
     def test_not_alone_keeps_small_steps(self):
         s = base(price=25.0, cost=6.0, fba_fee=4.0, on_hand=8, units_7=3, units_30=12, units_90=30, days_since_sale=1, bb=25.0, we_hold_bb=True,
                  n_rivals=2, low_fba=30.0, hist={"n": 30, "p_low": 22.0, "p_mid": 25.0, "p_high": 28.0})

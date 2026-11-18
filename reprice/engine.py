@@ -34,6 +34,8 @@ DEFAULTS = {
     "MAX_RISE_30D_ALONE": 0.30,
     "CEIL_MULT_ALONE": 1.60,
     "COOLDOWN_UP_ALONE_H": 72,
+    "ALONE_SELL_DAYS": 30,       # OWNER 2026-11-18: nobody else sells it and it sold within this many days -> the price climbs gradually (no drop for surplus)
+    "STEP_UP_ALONE_SLOW": 0.04,  # ... in this smaller step when it sells fewer than UP_MIN_UNITS_30 a month; the next step always waits for a sale at the new price
     "ZERO_STOCK_FOLLOW": True,
     "MAX_RISE_ZERO_STOCK": 0.60,   # nothing to sell now, so a big move costs no sales: follow the rival box up to this far in 30 days
     "UNDER_BB": 0.03,            # zero stock: raise to this many dollars under the rival Buy Box price
@@ -234,8 +236,11 @@ def decide(snap, cfg=None, now=None):
     if n14 >= cfg["MAX_CHANGES_14D"]:
         return hold("already changed %d times in 14 days - resting" % n14, floor=floor, ceil=ceil)
 
+    # OWNER 2026-11-18: "any product that has no competitors and is selling should gradually increase price"
+    alone_selling = bool(on_hand > 0 and snap.get("n_rivals") == 0 and not anomalous and u30 >= 1 and dss <= cfg["ALONE_SELL_DAYS"] and not aged >= cfg["AGED_UNITS_URGENT"])
+
     # =============================================================== DOWN
-    if on_hand > 0 and (in_drought or surplus):
+    if on_hand > 0 and (in_drought or surplus) and not alone_selling:
         if since_last_h < cfg["COOLDOWN_DOWN_H"]:
             return hold("waiting after the last change (%.0f h of %d h)" % (since_last_h, cfg["COOLDOWN_DOWN_H"]), floor=floor, ceil=ceil)
         if snap.get("rival_wait") and dss < cfg["SLOW1_DAYS"]:        # the Buy Box owner is nearly sold out: his box (and his low price) disappears by itself - keep our margin
@@ -362,7 +367,7 @@ def decide(snap, cfg=None, now=None):
             ("only %.0f days of supply (needs %d)" % (min(dos, 999), cfg["RIVAL_FLOOD_MIN_DOS"])) if dos < cfg["RIVAL_FLOOD_MIN_DOS"] else "", "we hold the box" if we_hold is True else "") if x)
 
     # =============================================================== UP
-    if (on_hand > 0 or inbound > 0) and u30 >= cfg["UP_MIN_UNITS_30"] and not in_drought and not surplus and not anomalous:
+    if alone_selling or ((on_hand > 0 or inbound > 0) and u30 >= cfg["UP_MIN_UNITS_30"] and not in_drought and not surplus and not anomalous):
         if since_last_h < cfg["COOLDOWN_UP_H"]:
             return hold("waiting after the last change", floor=floor, ceil=ceil)
         if unsold_raise:
@@ -379,7 +384,7 @@ def decide(snap, cfg=None, now=None):
         if alone and dos > 0:                           # nobody else sells it: raise hard, the 7-day sales test undoes a mistake
             if since_last_h < cfg["COOLDOWN_UP_ALONE_H"]:
                 return hold("waiting after the last change", floor=floor, ceil=ceil)
-            target = price * (1 + cfg["STEP_UP_ALONE"])
+            target = price * (1 + (cfg["STEP_UP_ALONE"] if u30 >= cfg["UP_MIN_UNITS_30"] else cfg["STEP_UP_ALONE_SLOW"]))
             room_ok = True
         elif dos <= cfg["DOS_LOW"]:                       # sells out soon: stop giving margin away
             step = cfg["STEP_UP"]
