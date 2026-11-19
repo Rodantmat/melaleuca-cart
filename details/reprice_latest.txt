@@ -1,4 +1,4 @@
-# 2026-11-18T19:40:16Z  reprice  success  run 44380926515
+# 2026-11-19T01:23:10Z  reprice  success  run 44435233177
 /home/runner/work/melaleuca-cart/melaleuca-cart/reprice/run.py:14: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
   now = dt.datetime.utcnow()
 mode=live live_writes_allowed=True killed=False skus=179
@@ -11,25 +11,17 @@ mode=live live_writes_allowed=True killed=False skus=179
   live Buy Box prices: 140 of 179 ASINs read
   live Buy Box prices: 160 of 179 ASINs read
   live Buy Box prices: 179 of 179 ASINs read
-Amazon target prices (FOEP) read for 72 products
+Amazon target prices (FOEP) read for 74 products
 seller id found
-decided 159 products: {'hold': 147, 'up': 9, 'down': 3} ; applied this run: 9
-  2Y-LBJT-OTHD up 19.75 -> 20.54  alone on the listing, sells 0.03/day: test 20.54
-  8B-GMC4-4EZ8 up 54.99 -> 57.19  alone on the listing, sells 0.04/day: test 57.19
-  DE-QFMC-M0RB up 34.35 -> 35.72  alone on the listing, sells 0.03/day: test 35.72
-  LP-R08I-0PFV up 69.99 -> 72.79  alone on the listing, sells 0.04/day: test 72.79
-  ME0017 down 16.09 -> 15.61  drought/surplus: 11 days without sale (limit 30), 90 days of supply | SHADOW (not applied)
-  ME1124 up 36.62 -> 37.99  no stock, rival Buy Box at 38.02: price follows it (37.99) so the next units sell higher
-  ME1419 down 44.0 -> 42.68  drought/surplus: 7 days without sale (limit 30), 80 days of supply
-  ME1430 down 42.99 -> 42.34  drought/surplus: 2 days without sale (limit 30), 100 days of supply; market price 42.34 | SHADOW (not applied)
+decided 159 products: {'hold': 155, 'down': 3, 'up': 1} ; applied this run: 0
+  ME0017 down 16.09 -> 15.61  drought/surplus: 12 days without sale (limit 30), 90 days of supply | SHADOW (not applied)
+  ME0063 down 20.69 -> 20.07  drought/surplus: 1 days without sale (limit 30), 100 days of supply | SHADOW (not applied)
+  ME1430 down 42.99 -> 41.85  drought/surplus: 3 days without sale (limit 30), 100 days of supply; market price 41.85 | SHADOW (not applied)
   ME1432 up 40.99 -> 45.09  Buy Box owner nearly sold out (owner has 1 left): raise ahead of it to 45.09, below the next seller at 39.88 |
-  ME1655 up 31.99 -> 33.27  alone on the listing, sells 0.12/day: test 33.27
-  ME1814 up 18.81 -> 19.56  alone on the listing, sells 0.03/day: test 19.56
-  ZG-3DR2-6CUW up 69.99 -> 72.79  alone on the listing, sells 0.04/day: test 72.79
-units to sell 1058 | cost paid 7664 | at your listed prices 28178 | net payout base 19584 | net payout conservative 18720
-Counter({'OK': 73, 'BUY MORE': 66, 'BUY': 22, 'STOP buying': 5, 'BUY LESS': 4, 'STOP buying - no sales 90d': 2})
-market depth for 163 products: {'LOW': 94, 'MEDIUM': 59, 'HIGH': 10}
-bb intel: 162 ASINs, we own the box in 38% of web scans; API vs web: {('different seller', 'same price'): 5, ('different seller', 'different price'): 22, ('same seller', 'same price'): 134, ('same seller', 'different price'): 1}
+units to sell 1051 | cost paid 7616 | at your listed prices 27942 | net payout base 19328 | net payout conservative 18525
+Counter({'OK': 72, 'BUY MORE': 66, 'BUY': 21, 'STOP buying': 8, 'BUY LESS': 4, 'STOP buying - no sales 90d': 1})
+market depth for 163 products: {'LOW': 92, 'MEDIUM': 61, 'HIGH': 10}
+bb intel: 162 ASINs, we own the box in 38% of web scans; API vs web: {('same seller', 'same price'): 121, ('different seller', 'different price'): 28, ('same seller', 'different price'): 8, ('different seller', 'same price'): 5}
 /home/runner/work/melaleuca-cart/melaleuca-cart/reprice/reports.py:54: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
   now = dt.datetime.utcnow()
-reports: rival stock hints {'WAIT': 4, 'DROP-CANDIDATE': 4, 'WATCH': 3, 'HOLD': 80} | restock alerts 44 (profit at risk $3786/month) | rival alerts 62 | outcomes 197
+reports: rival stock hints {'WAIT': 3, 'DROP-CANDIDATE': 4, 'WATCH': 3, 'HOLD': 81} | restock alerts 43 (profit at risk $3749/month) | rival alerts 62 | outcomes 211
