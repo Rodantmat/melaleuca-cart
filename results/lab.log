@@ -1,0 +1,13 @@
+proxy host: gw.dataimpulse.com | user: 80b90de2b9ea8841eb77__cr.us | password length: 16 | port in file: 823
+
+Location test (each line should show the city asked for):
+blue / S. California   FAILED (0.2s) <urlopen error Tunnel connection failed: 407 TRAFFIC_EXHAUSTED>
+blue / wider S. Calif. FAILED (0.2s) <urlopen error Tunnel connection failed: 407 TRAFFIC_EXHAUSTED>
+orange / Vancouver     FAILED (0.2s) <urlopen error Tunnel connection failed: 407 TRAFFIC_EXHAUSTED>
+yellow / Toronto       FAILED (0.0s) <urlopen error Tunnel connection failed: 407 TRAFFIC_EXHAUSTED>
+Canada only            FAILED (0.0s) <urlopen error Tunnel connection failed: 407 TRAFFIC_EXHAUSTED>
+
+Press Enter to closeTraceback (most recent call last):
+  File "/home/runner/work/melaleuca-cart/melaleuca-cart/local/check_proxy.py", line 52, in <module>
+    input("\nPress Enter to close")
+EOFError: EOF when reading a line
