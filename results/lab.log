@@ -1,0 +1,60 @@
+============================== tab 15 03:31:30
+03:31:30   proxy port 10015 | location: cr.us;city.losangeles,sandiego,longbeach,anaheim,irvine,santaana,riverside
+03:32:08 signed in as Abel P | plan: 39 lines, TOTAL points 144.0 cost 371.37
+03:32:23 lab cleanup attempt 1 failed: Page.goto: net::ERR_PROXY_AUTH_UNSUPPORTED at https://www.melaleuca.com/cart?sc_
+03:32:46 lab cleanup attempt 2 failed: Page.goto: net::ERR_PROXY_AUTH_UNSUPPORTED at https://www.melaleuca.com/cart?sc_
+03:33:18 lab cleanup attempt 3 failed: Page.goto: net::ERR_PROXY_AUTH_UNSUPPORTED at https://www.melaleuca.com/cart?sc_
+03:33:57 lab cleanup attempt 4 failed: Page.goto: net::ERR_PROXY_AUTH_UNSUPPORTED at https://www.melaleuca.com/cart?sc_
+03:34:29 LAB CLEANUP PROBLEM - empty the cart of the test account by hand
+Traceback (most recent call last):
+  File "/home/runner/work/melaleuca-cart/melaleuca-cart/local/melaleuca_fill.py", line 1669, in <module>
+    rc = run(n, dry="--dry" in sys.argv, lab="--lab" in sys.argv, final="--nofinal" not in sys.argv, audit="--audit" in sys.argv)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/melaleuca-cart/melaleuca-cart/local/melaleuca_fill.py", line 1187, in run
+    js, sm = fl.summary()
+             ^^^^^^^^^^^^
+  File "/home/runner/work/melaleuca-cart/melaleuca-cart/local/melaleuca_fill.py", line 925, in summary
+    js = self.cart()
+         ^^^^^^^^^^^
+  File "/home/runner/work/melaleuca-cart/melaleuca-cart/local/melaleuca_fill.py", line 921, in cart
+    r = self.s.fetch(self.s.cart_url())
+                     ^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/melaleuca-cart/melaleuca-cart/local/melaleuca_scan.py", line 304, in cart_url
+    self.page.goto(BASE + "/cart?sc_lang=en-US", wait_until="domcontentloaded", timeout=60000)
+  File "/opt/hostedtoolcache/Python/3.12.16/x64/lib/python3.12/site-packages/playwright/sync_api/_generated.py", line 18561, in goto
+    self._sync(
+  File "/opt/hostedtoolcache/Python/3.12.16/x64/lib/python3.12/site-packages/playwright/_impl/_sync_base.py", line 124, in _sync
+    return task.result()
+           ^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.16/x64/lib/python3.12/site-packages/playwright/_impl/page.py", line 600, in goto
+    return await self._main_frame.goto(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.16/x64/lib/python3.12/site-packages/playwright/_impl/frame.py", line 217, in goto
+    await self._channel.goto(
+  File "/opt/hostedtoolcache/Python/3.12.16/x64/lib/python3.12/site-packages/playwright/_impl/channel_owner.py", line 398, in _mapped
+    return mapper(await awaitable)
+                  ^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.16/x64/lib/python3.12/site-packages/playwright/_impl/channel_owner.py", line 387, in finish
+    raise e from None
+  File "/opt/hostedtoolcache/Python/3.12.16/x64/lib/python3.12/site-packages/playwright/_impl/channel_owner.py", line 352, in finish
+    result = await zone.run_async(lambda: awaitable)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.16/x64/lib/python3.12/site-packages/playwright/_impl/utils/zones.py", line 58, in run_async
+    return await func()
+           ^^^^^^^^^^^^
+playwright._impl._errors.Error: Page.goto: net::ERR_PROXY_AUTH_UNSUPPORTED at https://www.melaleuca.com/cart?sc_lang=en-US
+Call log:
+  - navigating to "https://www.melaleuca.com/cart?sc_lang=en-US", waiting until "domcontentloaded"
+
+
+
+############################## SUMMARY
+--- tab 15 rc=1
+     03:32:08 signed in as Abel P | plan: 39 lines, TOTAL points 144.0 cost 371.37
+     03:32:23 lab cleanup attempt 1 failed: Page.goto: net::ERR_PROXY_AUTH_UNSUPPORTED at https://www.melaleuca.com/cart?sc_
+     03:32:46 lab cleanup attempt 2 failed: Page.goto: net::ERR_PROXY_AUTH_UNSUPPORTED at https://www.melaleuca.com/cart?sc_
+     03:33:18 lab cleanup attempt 3 failed: Page.goto: net::ERR_PROXY_AUTH_UNSUPPORTED at https://www.melaleuca.com/cart?sc_
+     03:33:57 lab cleanup attempt 4 failed: Page.goto: net::ERR_PROXY_AUTH_UNSUPPORTED at https://www.melaleuca.com/cart?sc_
+     03:34:29 LAB CLEANUP PROBLEM - empty the cart of the test account by hand
+     Traceback (most recent call last):
+     playwright._impl._errors.Error: Page.goto: net::ERR_PROXY_AUTH_UNSUPPORTED at https://www.melaleuca.com/cart?sc_lang=en-US
