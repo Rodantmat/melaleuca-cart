@@ -137,6 +137,20 @@ def name_covered(sheet_name, store_title):
 LABELS = {"he", "regular", "detergent", "original", "packets", "packet", "pack"}
 
 
+def family_conflict(sheet_name, version_name, family_names):
+    """words that tell this version APART from the other versions of its family (so 'Waterproof', 'Prenatal') and that the sheet name does not have.
+    Words every version shares (Single Serve, Sugar-Free, Value Size ...) say nothing about which version the sheet means and are ignored."""
+    a, b = toks(sheet_name), toks(version_name)
+    n = len(family_names)
+    if n < 2:
+        return []
+    df = {}
+    for t in family_names:
+        for w in toks(t):
+            df[w] = df.get(w, 0) + 1
+    return sorted(w for w in b - a - GENERIC - LABELS if df.get(w, 0) < n)
+
+
 def name_conflict(sheet_name, version_name, labels=False):
     """the words of the store version that the sheet name does not have ('waterproof', 'prenatal'); [] when the version fits the name.
     labels=True also ignores structural label words (HE / Regular detergent ...) that sheet names never carry"""
@@ -480,9 +494,10 @@ class Catalog:
         sc = sorted(((name_score(L["name"], v["name"], wv), v) for v in vs), key=lambda t: -t[0])
         sold_note = "  - NOTE: the store lists this version as sold out / off sale at the moment; it is tried anyway and NOT replaced by another version"
         if len(vs) == 1:
-            VARNAME[vs[0]["sku"]] = vs[0]["name"]
+            VARNAME[vs[0]["sku"]] = (vs[0]["name"], [v["name"] for v in vs], False)
             return vs[0]["sku"], "only variant: " + vs[0]["name"] + (sold_note if vs[0]["sold"] else "")
         best = sc[0]
+        top_sku = best[1]["sku"]
         if best[1]["sold"] and best[0] >= 0.5 and name_conflict(L["name"], best[1]["name"]):
             # the best-named version is sold out AND the sheet name does not fully identify it (e.g. 'MelaPower - Scent Free' fits Regular and HE alike):
             # then, as before, the version that can be bought is used. When the name DOES identify it ('Black', '50+') it is kept and never swapped (see above).
@@ -499,7 +514,7 @@ class Catalog:
                 best = live[0]
             else:
                 return None, "ambiguous: '%s' fits %s and %s equally" % (L["name"], ties[0][1]["name"], ties[1][1]["name"])
-        VARNAME[best[1]["sku"]] = best[1]["name"]
+        VARNAME[best[1]["sku"]] = (best[1]["name"], [v["name"] for v in vs], best[1]["sku"] != top_sku)
         return best[1]["sku"], "%s (%.2f)%s" % (best[1]["name"], best[0], sold_note if best[1]["sold"] else "")
 
 
@@ -513,7 +528,7 @@ class Action:
 
 
 FIXED_SKUS = []          # item numbers the sheet had wrong, corrected by name: shown in the final box
-VARNAME = {}             # item number -> the store's name of the version that was chosen for a sheet row (for the name check)
+VARNAME = {}             # item number -> (name of the chosen store version, names of all versions of the family, True when a better-named version was passed over)
 NAMEWARN = []            # rows whose chosen store version carries a distinguishing word the sheet name does not have (e.g. "Waterproof", "Prenatal")
 IGN_TAIL = {"bottle", "loads", "load", "count", "ct", "ounce", "with"}
 
@@ -1030,6 +1045,31 @@ def stale_sets(plan):
     return out
 
 
+def arm_status(env, an, say=print):
+    """tells the tracking-status pages (GitHub) that the order of account `an` was just placed: the pages then check this account every morning until the
+    tracking numbers are there, and follow the carriers afterwards.  Best effort: a failure here never disturbs the filler.
+    needs GH_STATUS_TOKEN=<GitHub token with Actions: read and write on Rodantmat/melaleuca-cart> in credentials.env (this computer only)"""
+    tok = (env.get("GH_STATUS_TOKEN") or "").strip()
+    if not tok:
+        say("status page: GH_STATUS_TOKEN is not in credentials.env - the tracking page was not told about this order (it can be armed by hand in GitHub > Actions > 'Status pages - arm accounts')")
+        return False
+    import urllib.request, urllib.error
+    rq = urllib.request.Request("https://api.github.com/repos/Rodantmat/melaleuca-cart/actions/workflows/status_arm.yml/dispatches",
+                                data=json.dumps({"ref": "main", "inputs": {"accounts": str(an)}}).encode("utf-8"), method="POST",
+                                headers={"Authorization": "Bearer " + tok, "Accept": "application/vnd.github+json", "Content-Type": "application/json",
+                                         "X-GitHub-Api-Version": "2022-11-28", "User-Agent": "melaleuca-fill"})
+    try:
+        with urllib.request.urlopen(rq, timeout=30) as r:
+            ok = r.status in (200, 201, 202, 204)
+        say("status page: account %s armed - its order history is checked every morning until the tracking numbers appear" % an if ok else "status page: GitHub did not accept the arm request")
+        return ok
+    except urllib.error.HTTPError as e:
+        say("status page: could not arm account %s (GitHub answered %s%s)" % (an, e.code, " - the token is wrong or expired" if e.code in (401, 403, 404) else ""))
+    except Exception as e:
+        say("status page: could not arm account %s (%s)" % (an, str(e)[:80]))
+    return False
+
+
 def run(n, dry=False, lab=False, final=True, audit=False):
     import melaleuca_run as mr
     import melaleuca_scan as ms
@@ -1169,9 +1209,10 @@ def run(n, dry=False, lab=False, final=True, audit=False):
                 sku, why = cat.resolve(L)
                 say("  variant: %s (%s) -> %s" % (L["name"][:50], L["melid"], ("%s  %s" % (sku, why)) if sku else "NOT RESOLVED: " + why))
                 if sku and str(sku) in VARNAME and not variant_override(L.get("asin")):
-                    cf = name_conflict(L["name"], VARNAME[str(sku)], True)
+                    vn_, fam_, subst_ = VARNAME[str(sku)]
+                    cf = family_conflict(L["name"], vn_, fam_) if subst_ else []         # only when a better-named version was passed over (it was sold out)
                     if cf:
-                        msg = "CHECK THE NAME of row %d: the sheet says '%s', the store version used is '%s' (word(s) not in the sheet name: %s)" % (L["row"], L["name"][:60], VARNAME[str(sku)], ", ".join(cf))
+                        msg = "CHECK THE NAME of row %d: the sheet says '%s', the store version used is '%s' (word(s) that set it apart from the other versions and are not in the sheet name: %s)" % (L["row"], L["name"][:60], vn_, ", ".join(cf))
                         NAMEWARN.append(msg)
                         say("  " + msg)
                 return sku
@@ -1591,6 +1632,11 @@ def run(n, dry=False, lab=False, final=True, audit=False):
                     v.page.wait_for_timeout(1500)
                 except Exception:
                     break
+            if not lab and not dry:                                # the window was closed (= the order was paid or dropped): tell the tracking pages
+                try:
+                    arm_status(env, an, say)
+                except Exception:
+                    pass
             return 0
         finally:
             try:
