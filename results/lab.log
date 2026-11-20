@@ -1,0 +1,62 @@
+============================== tab 15 03:35:20
+03:35:20   proxy port 10015 | location: cr.us;city.losangeles,sandiego,longbeach,anaheim,irvine,santaana,riverside
+03:35:21 sign-in attempt 1 failed: Page.goto: net::ERR_PROXY_AUTH_UNSUPPORTED at https://www.melaleuca.com/cart
+Call log:
+  - navigatin
+03:35:21 the proxy service refused the connection (not the store) - waiting 15 s, then trying again on another port
+03:35:36   proxy port 10215 | location: cr.us;city.losangeles,sandiego,longbeach,anaheim,irvine,santaana,riverside
+03:35:37 sign-in attempt 2 failed: Page.goto: net::ERR_PROXY_AUTH_UNSUPPORTED at https://www.melaleuca.com/cart
+Call log:
+  - navigatin
+03:35:37 the proxy service refused the connection (not the store) - waiting 30 s, then trying again on another port
+03:36:07   proxy port 10315 | location: cr.us;city.losangeles,burbank,glendale,pasadena,torrance,pomona,fullerton,oceanside,escondido,sanbernardino,corona,ontario,fontana,ventura,oxnard,carlsbad,murrieta,temecula
+03:36:08 sign-in attempt 3 failed: Page.goto: net::ERR_PROXY_AUTH_UNSUPPORTED at https://www.melaleuca.com/cart
+Call log:
+  - navigatin
+03:36:08 the proxy service refused the connection (not the store) - waiting 45 s, then trying again on another port
+03:36:53   proxy port 10415 | location: cr.us;city.losangeles,burbank,glendale,pasadena,torrance,pomona,fullerton,oceanside,escondido,sanbernardino,corona,ontario,fontana,ventura,oxnard,carlsbad,murrieta,temecula
+03:36:54 sign-in attempt 4 failed: Page.goto: net::ERR_PROXY_AUTH_UNSUPPORTED at https://www.melaleuca.com/cart
+Call log:
+  - navigatin
+03:36:54 the proxy service refused the connection (not the store) - waiting 60 s, then trying again on another port
+03:37:54   proxy port 10515 | location: cr.us;city.losangeles,burbank,glendale,pasadena,torrance,pomona,fullerton,oceanside,escondido,sanbernardino,corona,ontario,fontana,ventura,oxnard,carlsbad,murrieta,temecula
+03:37:54 sign-in attempt 5 failed: Page.goto: net::ERR_PROXY_AUTH_UNSUPPORTED at https://www.melaleuca.com/cart
+Call log:
+  - navigatin
+03:37:54 the proxy service refused the connection (not the store) - waiting 75 s, then trying again on another port
+03:39:09   proxy port 10615 | location: cr.us;city.losangeles,burbank,glendale,pasadena,torrance,pomona,fullerton,oceanside,escondido,sanbernardino,corona,ontario,fontana,ventura,oxnard,carlsbad,murrieta,temecula
+03:39:10 sign-in attempt 6 failed: Page.goto: net::ERR_PROXY_AUTH_UNSUPPORTED at https://www.melaleuca.com/cart
+Call log:
+  - navigatin
+03:39:10 the proxy service refused the connection (not the store) - waiting 90 s, then trying again on another port
+03:40:40   proxy port 10715 | location: cr.us;city.losangeles,burbank,glendale,pasadena,torrance,pomona,fullerton,oceanside,escondido,sanbernardino,corona,ontario,fontana,ventura,oxnard,carlsbad,murrieta,temecula
+03:40:40 sign-in attempt 7 failed: Page.goto: net::ERR_PROXY_AUTH_UNSUPPORTED at https://www.melaleuca.com/cart
+Call log:
+  - navigatin
+03:40:41 the proxy service refused the connection (not the store) - waiting 90 s, then trying again on another port
+03:42:11   proxy port 10815 | location: cr.us;city.losangeles,burbank,glendale,pasadena,torrance,pomona,fullerton,oceanside,escondido,sanbernardino,corona,ontario,fontana,ventura,oxnard,carlsbad,murrieta,temecula
+03:42:11 sign-in attempt 8 failed: Page.goto: net::ERR_PROXY_AUTH_UNSUPPORTED at https://www.melaleuca.com/cart
+Call log:
+  - navigatin
+Traceback (most recent call last):
+  File "/home/runner/work/melaleuca-cart/melaleuca-cart/local/melaleuca_fill.py", line 1669, in <module>
+    rc = run(n, dry="--dry" in sys.argv, lab="--lab" in sys.argv, final="--nofinal" not in sys.argv, audit="--audit" in sys.argv)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/melaleuca-cart/melaleuca-cart/local/melaleuca_fill.py", line 1179, in run
+    raise RuntimeError("could not sign in")
+RuntimeError: could not sign in
+
+
+############################## SUMMARY
+--- tab 15 rc=1
+     03:35:21 sign-in attempt 1 failed: Page.goto: net::ERR_PROXY_AUTH_UNSUPPORTED at https://www.melaleuca.com/cart
+     03:35:37 sign-in attempt 2 failed: Page.goto: net::ERR_PROXY_AUTH_UNSUPPORTED at https://www.melaleuca.com/cart
+     03:36:08 sign-in attempt 3 failed: Page.goto: net::ERR_PROXY_AUTH_UNSUPPORTED at https://www.melaleuca.com/cart
+     03:36:54 sign-in attempt 4 failed: Page.goto: net::ERR_PROXY_AUTH_UNSUPPORTED at https://www.melaleuca.com/cart
+     03:37:54 sign-in attempt 5 failed: Page.goto: net::ERR_PROXY_AUTH_UNSUPPORTED at https://www.melaleuca.com/cart
+     03:39:10 sign-in attempt 6 failed: Page.goto: net::ERR_PROXY_AUTH_UNSUPPORTED at https://www.melaleuca.com/cart
+     03:40:40 sign-in attempt 7 failed: Page.goto: net::ERR_PROXY_AUTH_UNSUPPORTED at https://www.melaleuca.com/cart
+     03:42:11 sign-in attempt 8 failed: Page.goto: net::ERR_PROXY_AUTH_UNSUPPORTED at https://www.melaleuca.com/cart
+     Traceback (most recent call last):
+     raise RuntimeError("could not sign in")
+     RuntimeError: could not sign in
