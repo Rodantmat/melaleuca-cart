@@ -1,0 +1,72 @@
+asin	sku	box_owner	type	box_price	our_price	our_gap_pct	owner_left	reads	owner_sales_per_day	owner_days_to_zero	our_stock	our_sold_per_month	our_cover_days	hint	why	next_price	cheap_plenty_price
+B08PSS11NS	ME0096	GLSGoods	M	58.0	64.12	10.6	20+/none	0			9.0	19.2	31.0	DROP-CANDIDATE	a cheaper seller (59.00) has plenty of stock, we have 31 days of cover	59.0	59.0
+B00AA68KJC	ME0287	Arabianperfumes	F	8.94	11.04	23.5	20+/none	0			11.0	6.7	72.0	DROP-CANDIDATE	owner has plenty, we have 72 days of cover and are 23% above the box	8.95	
+B095XZVBZ9	ME0111	HEALING DREAM	M	24.9	31.99	28.5	1	32	0.07	15.2	6.0	6.3	52.0	DROP-CANDIDATE	a cheaper seller (25.99) has plenty of stock, we have 52 days of cover	25.99	25.99
+B0F3BSMXPZ	ME1431	MEGA SAVINGS	M	39.95	44.23	10.7	2	21	0.00		7.0	4.5	73.0	DROP-CANDIDATE	a cheaper seller (41.99) has plenty of stock, we have 73 days of cover	41.99	41.99
+B017RW4LTE	ME0066	Lamoure INC	M	37.0	40.93	10.6	2	4	0.00		10.0	3.0	100.0	DROP-CANDIDATE	a cheaper seller (35.99) has plenty of stock, we have 100 days of cover	39.8	35.99
+B00P1G0H24	ME0003	Pure Science USA	F	5.95	6.39	7.4	20+/none	0			7.0	19.3	11.0	WATCH		6.1	6.1
+B004P9TVK2	ME0017	aboutcare00	F	16.09	16.09	0.0	20+/none	0			6.0	4.3	62.0	WATCH		16.99	
+B0F37YG7GZ	ME1301	MEGA SAVINGS	M	33.95	36.2	6.6	2	28	0.62	3.2	0.0	20.3	18.0	HOLD	we have 0 units: keep the margin	33.99	33.99
+B0030JJNBK	ME0027	MIMI HEALTH	M	22.99	27.37	19.1	7	20	2.59	2.7	0.0	15.2	18.0	HOLD	we have 0 units: keep the margin	23.0	22.99
+B0968SBDJ3	ME0112	Oasis Enterprises LLC	F	25.95	25.92	-0.1	20+/none	0			0.0	14.3	19.0	HOLD	we have 0 units: keep the margin	26.99	
+B01G971HKO	ME0275	Arabianperfumes	F	24.18	24.47	1.2	20+/none	0			0.0	14.0	24.0	HOLD	we have 0 units: keep the margin	24.2	24.18
+B0DSVBYQ7M	ME1202	balabasics	F	18.99	18.89	-0.5	12	15	0.71	16.9	1.0	12.8	21.0	HOLD	we have 1 units: keep the margin		
+B07MWDCFRZ	ME0039	GLSGoods	M	25.0	28.39	13.6	20+/none	0			0.0	12.3	5.0	HOLD	we have 0 units: keep the margin	26.79	26.79
+B017J428HC	ME0018	aboutcare00	F	16.18	16.15	-0.2	20+/none	5			0.0	11.0	11.0	HOLD	we have 0 units: keep the margin	16.19	
+B071CWBVBR	ME0033	A1I457OVFEIWVO	M	26.95	37.95	40.8	20+/none	0			0.0	10.7	17.0	HOLD	we have 0 units: keep the margin	35.79	26.95
+B00OH20CSC	ME0031	Oasis Enterprises LLC	F	21.99	23.96	9.0	20+/none	0			0.0	10.0	15.0	HOLD	we have 0 units: keep the margin		
+B003J6QQW8	ME0289	Fit for All	M	19.0	20.32	6.9	5	2			0.0	10.0	15.0	HOLD	we have 0 units: keep the margin		
+B008K15NBM	ME1132	Qmax Brands	M	19.99	21.99	10.0	4	24	0.18	22.5	0.0	9.0	13.0	HOLD	we have 0 units: keep the margin		
+B004P3DRR6	ME0002	Oasis Enterprises LLC	F	23.99	24.17	0.8	20+/none	0			0.0	8.7	28.0	HOLD	we have 0 units: keep the margin	24.0	
+B01JKSBEKC	ME0009	Oasis Enterprises LLC	F	24.95	24.88	-0.3	20+/none	0			1.0	8.3	43.0	HOLD	we have 1 units: keep the margin	24.99	22.0
+B00J4F85C2	ME0102	Gigis Discount Store	M	23.7	26.89	13.5	3	8	0.35	8.5	3.0	8.3	47.0	HOLD	we have 3 units: keep the margin	24.89	
+B018C5698G	ME1131	aboutcare00	F	9.99	10.03	0.4	20+/none	0			0.0	8.3	0.0	HOLD	we have 0 units: keep the margin	12.5	
+B008L2GZJO	ME0070	HEALTHY AND DREAM	M	46.5	51.96	11.7	5	12	0.08	62.9	0.0	8.2	0.0	HOLD	we have 0 units: keep the margin	47.0	47.0
+B0DS9JN9D7	ME1158	Oasis Enterprises LLC	F	23.99	24.79	3.3	8	9	0.71	11.2	4.0	8.0	86.0	HOLD	we have 4 units: keep the margin	24.99	23.75
+B008HVD8IK	ME0023	HEALTHY AND DREAM	M	49.99	59.97	20.0	1	8	0.25	4.0	0.0	6.7	9.0	HOLD	we have 0 units: keep the margin	52.0	49.99
+B0F3B949PC	ME1415	HEALING DREAM	M	59.99	65.96	10.0	20+/none	1			0.0	6.5	5.0	HOLD	we have 0 units: keep the margin	64.99	64.99
+B0F3BC6Z7H	ME1416	Cronkai	M	34.99	43.06	23.1	20+/none	0			0.0	6.3	24.0	HOLD	we have 0 units: keep the margin	99.95	
+B00AOW2M3M	ME0032	Qmax Brands	M	44.95	48.54	8.0	7	16	1.09	6.4	0.0	6.3	5.0	HOLD	we have 0 units: keep the margin	44.99	44.99
+B005JKIIKU	ME0021	Bluepan.	M	24.48	26.67	8.9	1	32	0.16	6.3	0.0	6.3	9.0	HOLD	we have 0 units: keep the margin	27.99	
+B07P2F8GL8	ME0008	A1I457OVFEIWVO	M	24.78	28.74	16.0	20+/none	0			0.0	6.3	19.0	HOLD	we have 0 units: keep the margin	24.99	
+B0090PZAE2	ME0114	Lamoure INC	M	21.0	24.89	18.5	1	29	0.00		0.0	6.3	0.0	HOLD	we have 0 units: keep the margin	22.0	
+B004OV2DYW	ME0266	HEALTHY AND DREAM	M	40.0	44.26	10.7	20+/none	0			0.0	6.0	85.0	HOLD	we have 0 units: keep the margin	41.97	
+B00266EREQ	ME0088	aboutcare00	F	16.1	16.06	-0.2	20+/none	0			0.0	6.0	15.0	HOLD	we have 0 units: keep the margin	16.49	15.99
+B0F3B85XMK	ME1434	Cronkai	M	11.99	14.29	19.2	20+/none	0			0.0	5.8	57.0	HOLD	we have 0 units: keep the margin		
+B0089XP258	ME0092	MEGA SAVINGS	M	39.95	47.21	18.2	1	20	1.54	0.6	0.0	5.7	5.0	HOLD	we have 0 units: keep the margin	41.99	41.99
+B004PZRHHU	ME0153	HEALING DREAM	M	55.99	70.95	26.7	1	9	0.00		0.0	5.7	32.0	HOLD	we have 0 units: keep the margin	57.99	57.99
+B011K7CCN4	ME0024	Oasis Enterprises LLC	F	58.95	61.97	5.1	20+/none	1			0.0	5.3	6.0	HOLD	we have 0 units: keep the margin	60.0	55.0
+B005MJD1L4	ME0256	aboutcare00	F	15.99	15.89	-0.6	20+/none	0			0.0	5.3	17.0	HOLD	we have 0 units: keep the margin		
+B01DN3TZAQ	ME1138	Qmax Brands	M	34.95	34.92	-0.1	6	8			0.0	5.0	0.0	HOLD	we have 0 units: keep the margin	35.99	
+B078XGM6XF	ME0043	balabasics	F	16.49	16.46	-0.2	20+/none	4	0.00		0.0	5.0	24.0	HOLD	we have 0 units: keep the margin		
+B00NYAJ4GE	ME0127	Cronkai	M	28.99	34.99	20.7	20+/none	0			4.0	4.7	51.0	HOLD	we have 4 units: keep the margin	34.8	
+B00AV334R2	ME0125	Oasis Enterprises LLC	F	51.99	59.99	15.4	1	37	1.19	0.8	5.0	4.7	71.0	HOLD	we have 5 units: keep the margin	54.99	54.99
+B01INQN7FW	ME049	Fit for All	M	19.5	27.99	43.5	1	2	1.00	1.0	3.0	4.7	19.0	HOLD	we have 3 units: keep the margin	21.95	
+B00BY724HU	ME0050	HEALTHY AND DREAM	M	28.99	29.96	3.3	2	11	0.00		1.0	4.3	21.0	HOLD	we have 1 units: keep the margin	29.5	
+B008JZMRDQ	ME1123	MIMI HEALTH	M	29.99	32.39	8.0	7	11	0.13	54.6	2.0	4.2	86.0	HOLD	we have 2 units: keep the margin	30.75	29.99
+B0F39DTVMP	ME1409	Cronkai	M	61.87	61.84	-0.0	20+/none	0			0.0	4.0	0.0	HOLD	we have 0 units: keep the margin		
+B00WVEW79K	GV-PN7P-3X4C	aboutcare00	F	15.45	15.39	-0.4	20+/none	0			0.0	4.0	15.0	HOLD	we have 0 units: keep the margin	15.49	
+B08TB7GFKC	ME1133	Cronkai	M	23.99	24.99	4.2	20+/none	0			0.0	3.5	26.0	HOLD	we have 0 units: keep the margin		
+B004OURVLI	ME0011	Fit for All	M	40.0	51.99	30.0	4	2			0.0	3.3	0.0	HOLD	we have 0 units: keep the margin	49.99	49.99
+B0052H0OFC	ME0030	Qmax Brands	M	32.95	33.89	2.9	2	6	0.66	3.1	0.0	3.3	45.0	HOLD	we have 0 units: keep the margin	33.99	32.95
+B00TP98T0A	ME1128	Cronkai	M	24.99	34.99	40.0	20+/none	0			3.0	3.2	0.0	HOLD	we have 3 units: keep the margin		
+B0F37FQ5G9	ME1305	Cronkai	M	25.99	26.12	0.5	20+/none	0			0.0	3.2	9.0	HOLD	we have 0 units: keep the margin		
+B0F37NXFPH	ME1302	Lamoure INC	M	18.99	23.99	26.3	2	42	0.00		5.0	3.0	60.0	HOLD	we have 5 units: keep the margin	23.99	
+B008HUT1XC	ME0062	Qmax Brands	M	16.49	17.95	8.9	20+/none	3	0.13	37.8	0.0	3.0	30.0	HOLD	we have 0 units: keep the margin		16.09
+B095XNBDGX	ME1646	Fit for All	M	38.0	44.96	18.3	1	2			0.0	2.8	32.0	HOLD	we have 0 units: keep the margin	39.0	
+B000NZ4ETK	ME1124	GLSGoods	M	31.99	37.99	18.8	2	10	0.16	12.8	0.0	2.7	0.0	HOLD	we have 0 units: keep the margin	32.99	32.99
+B0DYWSVWJX	ME1238	MEGA SAVINGS	M	59.95	70.81	18.1	20+/none	2			1.0	2.7	11.0	HOLD	we have 1 units: keep the margin	63.99	59.95
+B00TPACURC	ME1134	KHALMA	F	47.84	47.01	-1.7	1	10	0.00		1.0	2.3	13.0	HOLD	we have 1 units: keep the margin		43.95
+B0088VS4QK	ME0064	balabasics	F	27.95	27.92	-0.1	20+/none	0			0.0	1.7	18.0	HOLD	we have 0 units: keep the margin	27.99	
+B08HVY8C85	ME1102	Fit for All	M	40.0	52.79	32.0	4	4			0.0	1.3	22.0	HOLD	we have 0 units: keep the margin	42.0	
+B0F3X15FT8	ME1485	A1Y5P7PMGQW2SO	M	49.49	49.49	0.0	1	14	0.00		0.0	1.0	30.0	HOLD	we have 0 units: keep the margin	51.99	
+B0085EQJE4	ME0291	HEALTHY AND DREAM	M	35.95	39.97	11.2	5	4	0.00		0.0	0.7	90.0	HOLD	we have 0 units: keep the margin	37.9	
+B01LBLKWO0	ME1647	KHALMA	M	30.0	33.79	12.6	1	5	0.00		1.0	0.7	90.0	HOLD	we have 1 units: keep the margin	30.89	
+B0085AT6FC	ME1648	HEALTHY AND DREAM	M	29.9	39.97	33.7	6	14	1.00	6.0	0.0	0.3	180.0	HOLD	we have 0 units: keep the margin	31.0	34.98
+B005YGOJGG	ME0139	MEGA SAVINGS	M	52.95	64.99	22.7	20+/none	0			0.0	0.0		HOLD	we have 0 units: keep the margin	59.75	
+B0075BH2C6	ME0103	Qmax Brands	M	56.95			20+/none	0			0.0	0.0		HOLD	we have 0 units: keep the margin	61.99	
+B0084DXAE8	ME1130	MEGA SAVINGS	F	33.45	33.69	0.7	20+/none	0			0.0	0.0		HOLD	we have 0 units: keep the margin		
+B0DS9JG8YB	ME1201	balabasics	F	54.95	56.88	3.5	20+/none	0			0.0	0.0	0.0	HOLD	we have 0 units: keep the margin	55.99	
+B09WSR8BD3	DW-ZS8U-L678	Cronkai	M	35.99			20+/none	0			0.0	0.0		HOLD	we have 0 units: keep the margin		
+B0027V3W96	ME0146	Fit for All	M	30.0			20+/none	0			0.0	0.0		HOLD	we have 0 units: keep the margin	31.95	
+B0DYWSXFD4	ME1236	Cronkai	M	44.89	39.99	-10.9	20+/none	0			0.0	0.0	0.0	HOLD	we have 0 units: keep the margin		
